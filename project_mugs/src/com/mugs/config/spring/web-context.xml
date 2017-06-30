@@ -9,12 +9,13 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
-	<context:component-scan base-package="domain.controller"/>
+	<context:component-scan base-package="com.mugs.controller"/>
 	
 	<mvc:annotation-driven/>
 	
 	<!-- 메인페이지 -->
-	<mvc:view-controller path="/index.do" view-name="index.tiles"/>
+	<mvc:view-controller view-name="index" path="index.do"/>
 
-	<bean name="internalViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:order="1"/>
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+            p:prefix="/WEB-INF/" p:suffix=".jsp"/>
 </beans>
