@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.guidanceStudentMapper">
+
+<resultMap type="guidanceStudent" id="guidanceStudent-basic-resultmap">
+		<id column="guidance_student_id" property="guidanceStudentId"/>
+		<result column="consultant_content" property="consultantContent"/>
+		<result column="consultant_date" property="consultantDate"/>
+		<result column="stu_id" property="stuId"/>
+		<result column="pro_id" property="proId"/>
+</resultMap>
+
+<sql id="select-guidanceStudent">
+	SELECT		guidance_student_id,
+				consultant_content,
+				consultant_date,
+				stu_id,
+				pro_id
+	FROM 		guidance_student					
+</sql>
+
+<!-- insert -->
+<insert id="insertguidanceStudent" parameterType="guidanceStudent">
+	<selectKey resultType="int" keyProperty="guidanceStudentId" order="BEFORE">
+		SELECT guidance_STUDENT_ID_SEQ.nextval FROM dual
+	</selectKey>
+	INSERT INTO major VALUES(#{guidanceStudentId}, #{consultantContent}, #{consultantDate}, #{stuId}, #{proId})
+</insert>
+
+<!-- update -->
+<update id="updateguidanceStudentById" parameterType="guidanceStudent">
+	UPDATE	guidance_student
+	SET		consultant_content=#{consultantContent},
+			consultant_date=#{consultantDate},
+			stu_id=#{stuId},
+			pro_id=#{proId}
+	WHERE	guidance_student_id=#{guidanceStudentId}
+</update>
+
+<!-- delete -->
+<delete id="deleteguidanceStudent" parameterType="int">
+	DELETE FROM guidance_student WHERE guidance_student_id=#{value}
+</delete>
+
+<!-- select -->
+<select id="selectguidanceStudentList" resultMap="guidanceStudent-basic-resultmap">
+	<include refid="select-guidanceStudent"/>
+</select>
+
+<select id="selectguidanceStudentById" resultMap="guidanceStudent-basic-resultmap" parameterType="int">
+	<include refid="select-guidanceStudent"/>
+	WHERE guidance_student_id=#{value}
+</select>
+
+</mapper>

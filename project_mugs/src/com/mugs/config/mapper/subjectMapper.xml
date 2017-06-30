@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.subjectMapper">
+
+	<sql id="select-subject">
+		SELECT subject_id,
+		subject_name,
+		subject_time,
+		subject_type,
+		subject_credit,
+		subject_capacity,
+		subject_request,
+		subject_grade,
+		subject_class,
+		subject_close_class,
+		subject_semester,
+		major_id,
+		lecture_id,
+
+		FROM subject
+	</sql>
+
+	<resultMap type="subject" id="subject-basic-resultmap">
+		<id column="subject_id" property="subjectId" />
+		<result column="subject_name" property="subjectName" />
+		<result column="subject_time" property="subjectTime" />
+		<result column="subject_type" property="subjectType" />
+		<result column="subject_credit" property="subjectCredit" />
+		<result column="subject_capacity" property="subjectCapacity" />
+		<result column="subject_request" property="subjectRequest" />
+		<result column="subject_grade" property="subjectGrade" />
+		<result column="subject_class" property="subjectClass" />
+		<result column="subject_close_class" property="subjectCloseClass" />
+		<result column="subject_semester" property="subjectSemester" />
+		<result column="major_id" property="majorId" />
+		<result column="lecture_id" property="lectureId" />
+	</resultMap>
+	
+	<!-- insert -->
+	<insert id="insertSubject" parameterType="subject">
+		INSERT INTO subject
+		VALUES(#{subjectId}, #{subjectName}, #{subjectTime},
+		#{subjectType},
+		#{subjectCredit}, #{subjectCapacity}, #{subjectRequest},
+		#{subjectGrade},
+		#{subjectClass}, #{subjectCloseClass}, #{subjectSemester},
+		#{majorId}, #{lectureId})
+	</insert>
+
+	<!-- update -->
+	<update id="updateSubjectById" parameterType="subject">
+		UPDATE subject
+		SET
+		subject_id = #{subjectId},
+		subject_name = #{subjectName},
+		subject_time = #{subjectTime},
+		subject_type = #{subjectType},
+		subject_credit = #{subjectCredit},
+		subject_capacity = #{subjectCapacity},
+		subject_request = #{subjectRequest},
+		subject_grade = #{subjectGrade},
+		subject_class = #{subjectClass},
+		subject_close_class= #{subjectCloseClass},
+		subject_semester = #{subjectSemester},
+		major_id = #{majorId},
+		lecture_id =  #{lectureId}
+		
+		WHERE subject_id=#{subjectId}
+	</update>
+
+	<!-- delete -->
+	<delete id="deleteSubject" parameterType="int">
+		DELETE FROM subject WHERE
+		subject_id = #{value}
+	</delete>
+
+	<!-- select -->
+	<select id="selectSubjectList" resultMap="subject-basic-resultmap">
+		<include refid="select-subject" />
+	</select>
+
+	<select id="selectUsersById" resultType="users" parameterType="int">
+		<include refid="select-subject" />
+		WHERE subject_id= #{value}
+	</select>
+
+
+</mapper>

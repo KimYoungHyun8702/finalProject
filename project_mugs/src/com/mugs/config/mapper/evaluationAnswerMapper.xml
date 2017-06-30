@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.evaluationAnswerMapper">
+	
+	<sql id = "select-evaluationAnswer-sql">
+		SELECT 
+		   	   evaluation_answer_id,
+			   evaluation_answer_state,
+			   evaluation_answer_year,
+			   evaluation_answer_semester,
+			   stu_id,
+			   subject_id
+			   
+		FROM   evaluation_answer   
+	</sql>
+	
+	<resultMap type="evaluationAnswer" id="evaluationAnswer-resultmap">
+		<id column="evaluation_answer_id" property="evaluationAnswerId"/>
+		<result column="evaluation_answer_state" property="evaluationAnswerState"/>
+		<result column="evaluation_answer_year"	property="evaluationAnswerYear"/>
+		<result column="evaluation_answer_semester" property="evaluationAnswerSemester"/>
+		<result column="stu_id" property="stuId"/>
+		<result column="subject_id" property="subjectId"/>
+	</resultMap>
+	
+	<!-- 평가응답 등록 -->
+	<insert id="insertEvaluationAnswer" parameterType="evaluationAnswer">
+		<selectKey order="BEFORE" keyProperty="evaluationAnswerId" resultType="int">
+		SELECT EVALUATION_ANSWER_ID_SEQ.nextval
+		FROM   dual
+		</selectKey>
+		INSERT INTO evaluation_answer
+		VALUES  (
+				#{evaluationAnswerId},
+				#{evaluationAnswerState},
+				#{evaluationAnswerYear},
+				#{evaluationAnswerSemester},
+				#{stuId},
+				#{subjectId}
+				)
+	</insert>
+	
+	<!-- 평가응답 수정 -->
+	<update id="updateEvaluationAnswerById" parameterType="evaluationAnswer">
+		UPDATE evaluation_answer
+		SET	  
+			   evaluation_answer_state = #{evaluationAnswerState},
+			   evaluation_answer_year=#{evaluationAnswerYear},
+			   evaluation_answer_semester=#{evaluationAnswerSemester},
+			   stu_id=#{stuId},
+			   subject_id=#{subjectId}
+		FROM   evaluation_answer_id = #{evaluationAnswerId}
+	</update>
+	
+	<!-- 평가응답 평가 id로 삭제 -->
+	<delete id="deleteEvaluationAnswerById" parameterType="int">
+		DELETE FROM evaluation_answer
+		WHERE  evaluation_answer_id = #{evaluationAnswerId}			`
+	</delete>
+	
+	<!-- 평가응답 전체조회 -->
+	<select id="selectEvaluationAnswerAll" 
+			resultType="java.util.ArrayList" 
+			resultMap="evaluationAnswer-resultmap">
+		<include refid="select-evaluationAnswer-sql"/>
+	</select>
+	
+	<!-- 평가응답 id로 조회 -->
+	<select id="selectEvaluationAnswerById" 
+		    resultType="evaluationAnswer" 
+		    parameterType="int">
+		<include refid="select-evaluationAnswer-sql"/>
+		WHERE evaluation_answer_id = #{evaluationAnswerId}
+	</select>
+
+</mapper>

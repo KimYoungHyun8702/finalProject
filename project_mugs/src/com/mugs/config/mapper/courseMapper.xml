@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.courseMapper">
+	<!-- 전체조회 -->
+	<sql id = "select-course-sql">
+		SELECT course_id,
+			   course_year,
+			   course_semester,
+			   subject_id,
+			   stu_id
+		FROM   course	   
+	</sql>
+	
+	<!-- 수강 resultmap -->
+	<resultMap type="course" 				id="course-resultmap">
+		<id column="course_id" 				property="courseId"/>
+		<result column="course_year" 		property="courseYear"/>
+		<result column="course_semester" 	property="courseSemester"/>
+		<result column="subject_id"		 	property="subjectId"/>
+		<result column="stu_id" 			property="stuId"/>
+	</resultMap>
+	
+	<!-- 시퀀스 조회 후 수강 id에 저장, 수강 등록 -->
+	<insert id="insertCourse" parameterType="course">
+		<selectKey order="BEFORE" keyProperty="courseId" resultType="int">
+		SELECT COURSE_ID_SEQ.nextval
+		FROM dual
+		</selectKey>
+		INSERT INTO course
+		VALUES (
+				#{courseId},
+				#{courseYear},
+				#{courseSemester},
+				#{subjectId},
+				#{stuId}		
+				)	
+	</insert>
+	
+	<!-- id로 수강변경  -->
+	<update id="updateCourseById" parameterType="Course">
+	UPDATE course
+	SET    course_year = 	 #{courseYear},
+		   course_semester = #{courseSemester},
+		   subject_id = 	 #{subjectId},
+		   stu_id = 		 #{stuId}
+	WHERE  course_id=		 #{courseId}
+	</update>
+	
+	<!-- id로 수강삭제 -->
+	<delete id="deleteCourseById" parameterType="int">
+	DELETE FROM course
+	WHERE  course_id=#{courseId}	
+	</delete>
+	
+	<!-- 수강 전체조회 -->
+	<select id="selectCourseAll" resultType="java.util.ArrayList">
+		<include refid="select-course-sql"/>
+	</select>
+	
+	<!-- id로 수강조회 -->
+	<select id="selectCourseById" parameterType="int" resultType="course">
+		<include refid="select-course-sql"/>
+		WHERE course_id=#{courseId}
+	</select>
+
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.standardMapper">
+
+	<sql id="select-standard">
+		SELECT standard_year,
+			   major_id,
+			   standard_min_credit,
+		 	  standard_max_credit,
+		  	 standard_min_scholarship,
+		  	 standard_delay_min_credit,
+		  	 standard_delay_max_credit
+		FROM   STANDARD
+	</sql>
+
+	<resultMap type="standard" id="standard-basic-resultmap">
+		<id column="standard_year" property="standardYear"/>
+		<result column="major_id" property="majorId"/>
+		<result column="standard_min_credit" property="standardMinCredit"/>
+		<result column="standard_max_credit" property="standardMaxCredit"/>
+		<result column="standard_min_scholarship" property="standardMinScholarship"/>
+		<result column="standard_delay_min_credit" property="standardDelayMinCredit"/>
+		<result column="standard_delay_max_credit" property="standardDelayMaxCredit"/>
+	</resultMap>
+
+
+	<insert id="insertStandard" parameterType="standard">
+		INSERT INTO STANDARD
+		VALUES(#{standardYear}, 
+			   #{majorId}, 
+			   #{standardMinCredit},
+			   #{standardMaxCredit},
+			   #{standardMinScholarship},
+			   #{standardDelayMinCredit},
+			   #{standardDelayMaxCredit})
+	</insert>
+
+
+	<update id="updateStandard" parameterType="standard">
+		UPDATE STANDARD
+		SET standard_year = #{standardYear}.
+			major_id = #{majorId},
+			standard_min_credit = #{standardMinCredit},
+			standard_max_credit = #{standardMaxCredit},
+			standard_min_scholarship = #{standardMinScholarship},
+			standard_delay_min_credit = #{standardDelayMinCredit},
+			standard_delay_max_credit = #{standardDelayMaxCredit}
+	</update>
+
+
+
+	<delete id="deleteStandard" parameterType="int">
+		DELETE FROM STANDARD
+		WHERE standard_year = #{standardYear},
+		AND	  major_id = #{majorId}
+	</delete>
+
+
+
+	<select id="selectStandardById" resultMap="standard-basic-resultmap" parameterType="map">
+		<include refid="select-standard"/>
+		WHERE standard_year = #{standardYear}
+		AND   major_id = #{majorId}
+	</select>	
+
+
+	<select id="selectStandardList" resultMap="standard-basic-resultmap">
+		<include refid="select-standard"/>
+	</select>
+
+</mapper>

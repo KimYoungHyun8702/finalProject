@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.subjectPlanMapper">
+	
+	<sql id="select-subjectPlan">
+		SELECT plan_id,
+		plan_summary,
+		plan_marking_method,
+		plan_lesson_goal,
+		plan_week_content,
+		plan_bookinfo,
+		plan_bibliography,
+		plan_year,
+		plan_semester,
+		plan_note,
+		pro_id,
+		subject_id
+
+		FROM subject_plan
+	</sql>
+
+	<resultMap type="subjectPlan" id="subjectPlan-basic-resultmap">
+		<id column="plan_id" property="planId" />
+		<result column="plan_summary" property="planSummary" />
+		<result column="plan_marking_method" property="planMarkingMethod" />
+		<result column="plan_lesson_goal" property="planLessonGoal" />
+		<result column="plan_week_content" property="planWeekContent" />
+		<result column="plan_bookinfo" property="planBookinfo" />
+		<result column="plan_bibliography" property="planBibliography" />
+		<result column="plan_year" property="planYear" />
+		<result column="plan_semester" property="planSemester" />
+		<result column="plan_note" property="planNote" />
+		<result column="pro_id" property="proId" />
+		<result column="subject_id" property="subjectId" />
+	</resultMap>
+	
+	<!-- insert -->
+	<insert id="insertSubject" parameterType="subject">
+		INSERT INTO subject_plan
+		VALUES(#{planId}, #{planSummary}, #{planMarkingMethod},
+		#{planLessonGoal},
+		#{planWeekContent}, #{planBookinfo}, #{planBibliography},
+		#{planYear},
+		#{planSemester}, #{planNote}, #{proId},
+		#{subjectId})
+	</insert>
+
+	<!-- update -->
+	<update id="updateSubjectPlanById" parameterType="subjectPlan">
+		UPDATE subject_plan
+		SET
+		plan_id = #{planId},
+		plan_summary = #{planSummary},
+		plan_marking_method = #{planMarkingMethod},
+		plan_lesson_goal = #{planLessonGoal},
+		plan_week_content = #{planWeekContent},
+		plan_bookinfo = #{planBookinfo},
+		plan_bibliography = #{planBibliography},
+		plan_year = #{planYear},
+		plan_semester = #{planSemester},
+		plan_note= #{planNote},
+		pro_id = #{proId},
+		subject_id = #{subjectId}
+		
+		WHERE plan_id=#{planId}
+	</update>
+
+	<!-- delete -->
+	<delete id="deleteSubjectPlan" parameterType="int">
+		DELETE FROM subject_plan WHERE
+		plan_id = #{value}
+	</delete>
+
+	<!-- select -->
+	<select id="selectSubjectPlanList" resultMap="subjectPlan-basic-resultmap">
+		<include refid="select-subjectPlan" />
+	</select>
+
+	<select id="selectSubjectPlanById" resultType="subjectPlan" parameterType="int">
+		<include refid="select-subjectPlan" />
+		WHERE plan_id= #{value}
+	</select>
+
+
+
+ </mapper>

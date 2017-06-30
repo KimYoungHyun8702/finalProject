@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.roomMapper">
+
+	<sql id="select-room">
+		SELECT room_id,
+			   building_id
+		FROM   ROOM
+	</sql>
+
+	<resultMap type="room" id="room-basic-resultmap">
+		<id column="room_id" property="roomId"/>
+		<result column="building_id" property="buildingId"/>
+	</resultMap>
+
+	<insert id="insertRoom" parameterType="room">
+		INSERT INTO ROOM
+		VALUES(#{roomId}, #{buildingId})
+	</insert>
+
+	<update id="updateRoom" parameterType="room">
+		UPDATE ROOM
+		SET room_id = #{roomId},
+			building_id = #{buildingId}
+	</update>
+
+
+	<delete id="deleteRoom" parameterType="java.lang.String">
+		DELETE FROM ROOM
+		WHERE room_id = #{value}
+	</delete>
+
+
+
+	<select id="selectRoomById" parameterType="java.lang.String" resultMap="room-basic-resultmap">
+		<include refid="select-room"/>
+		WHERE room_id = #{value}
+	</select>
+
+
+	<select id="selectRoomList" resultMap="room-basic-resultmap">
+		SELECT room_id roomId,
+			   building_id buildingId
+		FROM ROOM
+	</select>
+
+</mapper>

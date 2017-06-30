@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.studentMapper">
+
+	<sql id="select-student">
+		SELECT stu_id,
+			   stu_course,
+			   stu_army,
+			   stu_admission_date,
+			   stu_graduation_date,
+			   stu_register_state,
+			   stu_student_state,
+			   stu_grade,
+			   stu_graduation_exam,
+			   stu_early_graduation,
+			   stu_semester,
+			   major_id,
+			   major_dual_id,
+			   major_minor_id
+		FROM   STUDENT
+	</sql>
+
+	<resultMap type="student" id="student-basic-resultmap">
+		<id column="stu_id" property="stuId"/>
+		<result column="stu_course" property="stuCourse"/>
+		<result column="stu_army" property="stuArmy"/>
+		<result column="stu_admission_date" property="stuAdmissionDate"/>
+		<result column="stu_graduation_date" property="stuGraduationDate"/>
+		<result column="stu_register_state" property="stuRegisterState"/>
+		<result column="stu_student_state" property="stuStudentState"/>
+		<result column="stu_grade" property="stuGrade"/>
+		<result column="stu_graduation_exam" property="stuGraduationExam"/>
+		<result column="stu_early_graduation" property="stuEarlyGraduation"/>
+		<result column="stu_semester" property="stuSemester"/>
+		<result column="major_id" property="majorId"/>
+		<result column="major_dual_id" property="majorDualId"/>
+		<result column="major_minor_id" property="majorMinorId"/>	
+	</resultMap>
+
+
+
+	<insert id="insertStudent" parameterType="student">
+		INSERT INTO STUDENT
+		VALUES (#{stuId}, #{stuCourse}, #{stuArmy}, 
+			   #{stuAdmissionDate}, 
+			   #{stuGraduationDate}, 
+			   #{stuRegisterState}, 
+			   #{stuStudentState}, 
+			   #{stuGrade}, 
+			   #{stuGraduationExam}, 
+			   #{stuEarlyGraduation}, 
+			   #{stuSemester},
+			   #{majorId}, 
+			   #{majorDualId}, 
+			   #{majorMinorId}
+			   )
+	</insert>
+	
+
+	<update id="updateStudent" parameterType="student">
+		UPDATE STUDENT
+		SET
+			stu_course = #{stuCourse}, 
+			stu_army = #{stuArmy}, 
+			stu_admission_date = #{stuAdmissionDate}, 
+			stu_graduation_date = #{stuGraduationDate}, 
+			stu_register_state = #{stuRegisterState}, 
+			stu_student_state = #{stuStudentState}, 
+			stu_grade = #{stuGrade}, 
+			stu_graduation_exam = #{stuGraduationExam}, 
+			stu_early_graduation = #{stuEarlyGraduation}, 
+			stu_semester = #{stuSemester}, 
+			major_dual_id = #{majorDualId}, 
+			major_minor_id = #{majorMinorId},
+			major_id = #{majorId}
+		where stu_id = #{stuId}
+	</update>
+	
+	
+	
+
+	<delete id="deleteStudent" parameterType="java.lang.String">
+		DELETE FROM STUDENT
+		WHERE stu_id = #{value}
+	</delete>	
+	
+	
+
+	<select id="selectStudentById" resultMap="student-basic-resultmap" parameterType="java.lang.String">
+		<include refid="select-student"/>
+		WHERE stu_id = #{value}
+	</select>	
+	
+	
+
+	<select id="selectStudentList" resultMap="student-basic-resultmap">
+		<include refid="select-student"/>
+	</select>
+
+</mapper>

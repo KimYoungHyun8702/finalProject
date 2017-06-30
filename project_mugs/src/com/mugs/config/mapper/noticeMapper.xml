@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.mybatis.config.mapper.noticeMapper">
+
+	<resultMap id="notice-resultmap" type="notice">
+		<id column="notice_id" property="noticeId" />
+		<result column="notice_content" property="noticeContent" />
+		<result column="notice_date" property="noticeDate" />
+		<result column="users_id" property="usersId" />
+	</resultMap>
+	
+	<sql id="select-notice">
+	SELECT notice_id,
+		notice_content, notice_date, users_id
+	FROM notice				
+	</sql>
+
+	<select id="selectNoticeList" resultMap="notice-resultmap">
+		<include refid="select-notice"/>
+	</select>
+
+	<select id="selectNoticeById" resultMap="notice-resultmap"
+		parameterType="int">
+		<include refid="select-notice"/>
+		WHERE notice_id = #{value}
+	</select>
+
+	<insert id="insertNotice" parameterType="Notice">
+		<selectKey resultType="int" keyProperty="noticeId" order="BEFORE">
+			SELECT notice_id_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO notice
+		VALUES(#{noticeId},#{noticeContent},#{noticeDate},#{usersId})
+	</insert>
+
+	<delete id="deleteNoticeById" parameterType="int">
+		DELETE FROM notice
+		WHERE notice_id = #{value}
+	</delete>
+
+	<update id="updateNotice" parameterType="Notice">
+		UPDATE notice
+		SET
+		notice_content = #{noticeContent}, notice_date =#{noticeDate},
+		users_Id = #{usersId}
+		WHERE notice_id = #{noticeId}
+	</update>
+
+</mapper>

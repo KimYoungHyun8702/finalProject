@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.mybatis.config.mapper.professorSubjectMapper">
+	<resultMap id="professor_subject-resultmap" type="professorSubject">
+		<id column="pro_subject_id" property="proSubjectId" />
+		<result column="pro_subject_semester" property="proSubjectSemester" />
+		<result column="pro_subject_year" property="proSubjectYear" />
+	</resultMap>
+	
+	<sql id="select-professor_subject">
+	SELECT pro_subject_id, pro_subject_semester, pro_subject_year
+	FROM professor_subject		
+	</sql>
+	
+	<select id="selectProfessorSubjectList" resultMap="professor_subject-resultmap">
+		<include refid="select-professor_subject"/>
+	</select>
+
+	<select id="selectProfessorSubjectById" resultMap="professor_subject-resultmap"
+		parameterType="int">
+		<include refid="select-professor_subject"/>
+		WHERE pro_subject_id = #{value}
+	</select>
+
+	<insert id="insertProfessorSubject" parameterType="professorSubject">
+		INSERT INTO professor_subject
+		VALUES(#{proSubjectId},#{proSubjectSemester},#{proSubjectYear})
+	</insert>
+
+	<delete id="deleteProfessorSubjectById" parameterType="int">
+		DELETE FROM professor_subject
+		WHERE pro_subject_id = #{value}
+	</delete>
+
+	<update id="updateProfessorSubject" parameterType="professorSubject">
+		UPDATE professor_subject
+		SET
+		pro_subject_semester = #{proSubjectSemester}, 
+		pro_subject_year = #{proSubjectYear}
+		WHERE pro_subject_id = #{proSubjectId}
+	</update>
+</mapper>

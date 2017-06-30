@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.evaluationMapper">
+
+		<!-- 평가 정보 조회  -->
+	<sql id = "select-evaluation-sql">
+	SELECT evaluation_id,
+		   evaluation_year,
+		   evaluation_semester,
+		   evaluation_task,
+		   evaluation_exam,
+		   evaluation_ready,
+		   evaluation_passion,
+		   evaluation_question,
+		   pro_id,
+		   subject_id, 
+		   evaluation_start,
+		   evaluation_end,
+		   evaluation_read_start,
+		   evaluation_read_end
+		  
+	FROM   evaluation
+	</sql>
+	
+	
+	<resultMap type="evaluation" id="evaluation-resultMap">
+		<id column="evaluation_id" property="evaluationId"/>
+		<result column="evaluation_year" property="evaluationYear"/>
+		<result column="evaluation_semester" property="evaluationSemester"/>
+		<result column="evaluation_task" property="evaluationTask"/>
+		<result column="evaluation_exam" property="evaluationExam"/>
+		<result column="evaluation_ready" property="evaluationReady"/>
+		<result column="evaluation_passion" property="evaluationPassion"/>
+		<result column="evaluation_question" property="evaluationQuestion"/>
+		<result column="pro_id" property="proId"/>
+		<result column="subject_id" property="subjectId"/>
+		<result column="evaluation_start" property="evaluationStart"/>
+		<result column="evaluation_end" property="evaluationEnd"/>
+		<result column="evaluation_read_start" property="evaluationReadStart"/>
+		<result column="evaluation_read_end" property="evaluationReadEnd"/>
+		
+	</resultMap>
+	
+	<!-- 평가등록 (등록 전 시퀀스 조회 후 삽입 -->
+	<insert id="insertEvaluation" parameterType="evaluation">
+			<!-- <selectKey order="BEFORE" keyProperty="evaluationId" resultType="int">
+			SELECT EVALUATION_ID_SEQ.nextval
+			FROM dual
+			</selectKey> -->
+		INSERT INTO evaluation
+		 VALUES (
+				#{evaluationId},
+		   		#{evaluationYear},
+		   		#{evaluationSemester},
+		   		#{evaluationTask},
+		   		#{evaluationExam},
+		   		#{evaluationReady},
+		   		#{evaluationPassion},
+		   		#{evaluationQuestion},
+		   		#{proId},
+		   		#{subjectId},	
+		   		#{evaluationStart},
+		   		#{evaluationEnd},
+		   		#{evaluationReadStart},
+		   		#{evaluationReadEnd}		  					
+				)
+	</insert>
+	
+	<!-- 평가 id로 변경 -->
+	<update id="updateEvaluation" parameterType="evaluation">
+	UPDATE evaluation
+	SET   		evaluation_year=#{evaluationYear},
+		   		evaluation_semester=#{evaluationSemester},
+		   		evaluation_task=#{evaluationTask},
+		   		evaluation_exam=#{evaluationExam},
+		   		evaluation_ready=#{evaluationReady},
+		   		evaluation_passion=#{evaluationPassion},
+		   		evaluation_question=#{evaluationQuestion},
+		   		pro_id = 		#{proId},
+		   		subject_id = 	#{subjectId},
+		   		evaluation_start=#{evaluationStart},
+		   		evaluation_end=#{evaluationEnd},
+		   		evaluation_read_start=#{evaluationReadStart},
+		   		evaluation_read_end=#{evaluationReadEnd}
+		   		
+	WHERE 		evaluation_id = #{evaluationId}
+	</update>
+	
+	<!-- 평가 id로 삭제 -->
+	<delete id="deleteEvaluationById" parameterType="int">
+	DELETE FROM evaluation
+	WHERE evaluation_id=#{evaluationId}
+	</delete>
+	
+	<!-- 평가 전체 조회 -->
+	<select id="selectEvaluationAll" resultType="java.util.ArrayList" resultMap="evaluation-resultMap">
+	<include refid="select-evaluation-sql"/>
+	</select>
+	
+	<!-- 평가id로 조회 -->
+	<select id="selectEvaluationById" parameterType="int" 
+									  resultType="evaluation" 
+									  resultMap="evaluation-resultMap">
+		<include refid="select-evaluation-sql"/>
+		WHERE evaluation_id = #{evaluationId}
+	</select>
+
+
+</mapper>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.creditMapper">
+
+	<sql id="select-credit">
+		SELECT		credit_id,
+						credit_year,
+						credit_semester,
+						credit_acquire,
+						credit_grade,
+						credit_score,
+						credit_recource,
+						subject_id,
+						stu_id,
+						credit_read_start,
+						credit_read_end
+		FROM 		credit					
+	</sql>
+	<sql id="select-credit-subject-join">
+		SELECT 	c.credit_year,
+						c.credit_semester,
+						c.credit_acquire,
+						c.credit_grade,
+						c.credit_score,
+						c.credit_recource,
+						s.subject_id,
+						s.subject_name,
+						s.subject_type,
+						s.subject_credit,
+						s.subject_class
+		FROM 		credit c, subject s
+		
+	</sql>
+<resultMap type="credit" id="credit-basic-resultmap">
+		<id column="credit_id" property="creditId"/>
+		<result column="credit_year" property="creditYear"/>
+		<result column="credit_semester" property="creditSemester"/>
+		<result column="credit_acquire" property="creditAcquire"/>
+		<result column="credit_grade" property="creditGrade"/>
+		<result column="credit_score" property="creditScore"/>
+		<result column="credit_recource" property="creditRecourse"/>
+		<result column="subject_id" property="subjectId"/>
+		<result column="stu_id" property="stuId"/>
+		<result column="credit_read_start" property="creditReadStart"/>
+		<result column="credit_read_end" property="creditReadEnd"/>
+</resultMap>
+
+<resultMap type="credit" id="credit-subject-resultmap" extends="credit-basic-resultmap">
+	<collection property="subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-basic-resultmap"/>
+</resultMap>
+
+<!-- insert -->
+<insert id="insertCredit" parameterType="credit">
+	INSERT INTO credit VALUES(#{creditId}, #{creditYear}, #{creditSemester}, #{creditAcquire}, #{creditGrade}, #{creditScore}, #{creditResource}, #{subjectId}, #{stuId}, #{creditReadStart}, #{creditReadEnd})
+</insert>
+
+<!-- update -->
+<update id="updateCreditById" parameterType="credit">
+	UPDATE credit
+		SET		credit_id=#{creditId},
+					credit_year=#{creditYear},
+					credit_semester=#{creditSemester},
+					credit_acquire=#{creditAcquire},
+					credit_grade=#{creditGrade},
+					credit_score=#{creditScore},
+					credit_recource=#{creditRecource},
+					subject_id=#{subjectId},
+					stu_id=#{stuId},
+					credit_read_start=#{creditReadStart},
+					credit_read_end=#{creditReadEnd}
+					
+	   WHERE		credit_id=#{creditId}
+	   
+</update>
+
+<!-- delete -->
+	<delete id="deleteCredit" parameterType="int">
+		DELETE FROM credit WHERE credut_id = #{value}
+	</delete>
+
+<!-- select -->
+<select id="selectCreditList" resultMap="credit-basic-resultmap">
+	<include refid="select-credit"/>
+</select>
+
+<select id="selectCreditById" resultType="credit" parameterType="int">
+	<include refid="select-credit"/>
+	WHERE credit_id= #{value}
+</select>
+
+<select id="selectYearByStuId" resultType="credit" parameterType="string">
+	SELECT credit_year FROM credit WHERE stu_id =#{value}
+</select>
+<select id="selectCreditByYear" resultMap="credit-subject-resultmap" parameterType="int">
+	<include refid="select-credit-subject-join"/>
+	WHERE	c.subject_id = s.subject_id(+)
+	AND 		c.credit_year=#{value}
+</select>
+
+<select id="selectCreditBySemester" resultMap="credit-subject-resultmap" parameterType="string">
+	<include refid="select-credit-subject-join"/>
+	WHERE c.subject_id = s.subject_id(+)
+	AND	c.credit_semester=#{value}
+</select>
+
+<select id="selectCreditByType" resultMap="credit-subject-resultmap" parameterType="string">
+		<include refid="select-credit-subject-join"/>
+	WHERE c.subject_id = s.subject_id(+)
+	AND	s.subject_type=#{value}
+</select>
+<select id="selectCreditByYearAndSemester" resultMap="credit-subject-resultmap" parameterType="map">
+	<include refid="select-credit-subject-join"/>
+	WHERE c.subject_id = s.subject_id(+)
+	AND c.credit=#{year} AND c.credit_semester=#{semester}
+</select>
+
+
+
+
+
+
+
+
+
+
+</mapper>

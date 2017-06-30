@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.buildingMapper">
+
+<sql id="select-building">
+	SELECT building_id,
+		   building_name
+	FROM   building
+</sql>
+
+<resultMap type="building" id="building-basic-reresultmap">
+	<id column="building_id" property="buildingId"/>
+	<result column="building_name" property="buildingName"/>
+</resultMap>
+
+<!-- insert -->
+<insert id="insertBuilding" parameterType="building">
+	INSERT INTO building VALUES(#{buildingId},#{buildingName})
+</insert>
+
+<!-- update -->
+<update id="updateBuildingById" parameterType="building">
+	UPDATE building
+	   SET building_id=#{buildingId},
+	   	   building_name=#{buildingName}
+	 WHERE building_id=#{buildingId} 	   
+</update>
+
+<!-- delete -->
+<delete id="deleteBuilding" parameterType="int">
+	DELETE FROM building WHERE building_id=#{value}
+</delete>
+
+<!-- select -->
+<select id="selectBuildingList" resultMap="building-basic-reresultmap">
+	<include refid="select-building"/>
+</select>
+
+<select id="selectBuildingById" resultType="building" parameterType="int">
+	<include refid="select-building"/>
+	WHERE building_id=#{value}
+</select>
+
+</mapper>
+

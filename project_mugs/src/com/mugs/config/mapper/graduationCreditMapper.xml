@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.graduationCreditMapper">
+
+<resultMap type="graduationCredit" id="graduationCredit-basic-resultmap">
+		<id column="major_id" property="majorId"/>
+		<id column="graduation_credit_year" property="graduationCreditYear"/>
+		<result column="graduation_credit_score" property="graduationCreditScore"/>
+</resultMap>
+
+<sql id="select-graduationCredit">
+	SELECT		major_id,
+				graduation_credit_year,
+				graduation_credit_score
+	FROM 		graduation_credit					
+</sql>
+
+<!-- insert -->
+<insert id="insertGraduationCredit" parameterType="graduationCredit">
+	INSERT INTO major VALUES(#{major_id}, #{graduation_credit_year}, #{graduation_credit_score})
+</insert>
+
+<!-- update -->
+<update id="updateGraduationCreditById" parameterType="graduationCredit">
+	UPDATE	graduation_credit
+	SET		graduation_credit_score=#{graduationCreditScore}
+	WHERE	major_id=#{majorId}
+	AND 	graduation_credit_year={graduationCreditYear}
+</update>
+
+<!-- delete -->
+<delete id="deleteGraduationCredit" parameterType="map">
+	DELETE FROM graduation_credit WHERE major_id=#{majorId} AND graduation_credit_year=#{graduationCreditYear}
+</delete>
+
+<!-- select -->
+<select id="selectGraduationCreditList" resultMap="graduationCredit-basic-resultmap">
+	<include refid="select-graduationCredit"/>
+</select>
+
+<select id="selectGraduationCreditById" resultType="graduationCredit" parameterType="map">
+	<include refid="select-graduationCredit"/>
+	WHERE major_id=#{majorId}
+	AND graduation_credit_year={graduationCreditYear}
+</select>
+
+</mapper>

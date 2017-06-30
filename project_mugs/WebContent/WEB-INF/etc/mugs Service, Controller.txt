@@ -1,0 +1,24 @@
+Service, Controller 
+
+Actor - 관리자, 교수, 학생
+
+관리자 - 공지사항 ex) NoticeService, NoticeController
+       - 학생(조회, 등록, 수정, 삭제)관리
+       - 건물관리(강의실, 건물)
+       - 과목관리
+       - 교수관리
+       - 학과관리
+       - 단과대학관리
+
+교수 - 지도학생관리(상담내용 관리) ex) GuidenceStudentService, GuidenceStudentController
+     - 강의계획서 관리
+     - 학생성적등록
+     - 교수개인정보관리 ex) ProfessorInfoService, ProfessorInfoController
+
+학생 - 시간표관리(개인시간표, 학과시간표) ex) TimeTableService, TimeTableController
+     - 성적관리(성적조회, 학점포기)
+     - 수강신청(개설과목조회, 수강신청과목조회, 기준인정학점조회)
+     - 학생개인정보관리
+     - 신청관리(휴복학신청, 부전공신청, 복수전공신청 등등)
+     - 평가관리(평가등록, 평가조회, 평가등록여부)
+     - 졸업관리(졸업생 여부, 졸업기준학점, 시험통과여부, 학점충족여부)

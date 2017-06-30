@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+
+	<typeAliases>
+		<package name="com.mugs.vo" />
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="com/mugs/config/mapper/authoritiesMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/buildingMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/collegeMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/courseMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/creditMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/evaluationAnswerMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/evaluationMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/noticeMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/professorMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/professorSubjectMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/roomMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/standardMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/studentMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/subjectMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/subjectPlanMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/usersMapper.xml" />
+	</mappers>
+
+</configuration>

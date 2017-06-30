@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.authorities">
+
+<sql id="select-authorities">
+	SELECT users_id,
+		   authorities_role
+	FROM   authorities
+</sql>
+
+<resultMap type="authorities" id="authorities-basic-reresultmap">
+	<id column="users_id" property="usersId"/>
+	<result column="authorities_role" property="authoritiesRole"/>
+</resultMap>
+
+<!-- insert -->
+<insert id="insertAuthorities" parameterType="authorities">
+	INSERT INTO authorities VALUES(#{usersId},#{authoritiesRole})
+</insert>
+
+<!-- update -->
+<update id="updateAuthoritiesById" parameterType="authorities">
+	UPDATE authorities
+	   SET users_id=#{usersId},
+	   	   authorities_role=#{authoritiesRole}
+	 WHERE users_id=#{usersId}  	   
+</update>
+
+<!-- delete -->
+<delete id="deleteAuthorities" parameterType="string">
+	DELETE FROM authorities WHERE users_id=#{value}
+</delete>
+
+<!-- select -->
+<select id="selectAuthoritiesList" resultMap="authorities-basic-reresultmap">
+	<include refid="select-authorities"/>
+</select>
+
+<select id="selectAuthoritiesById" resultType="authorities" parameterType="int">
+	<include refid="select-authorities"/>
+	WHERE users_id=#{value}
+</select>
+
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.mybatis.config.mapper.professorMapper">
+
+	<resultMap id="professor-resultmap" type="professor">
+		<id column="pro_id" property="proId" />
+		<result column="pro_university" property="proUniversity" />
+		<result column="pro_grad_school" property="proGradSchool" />
+		<result column="pro_office_phone_num" property="proOfficePhoneNum" />
+	</resultMap>
+	
+	<sql id="select-professor">
+	SELECT pro_id, pro_university, pro_grad_school, pro_office_phone_num
+	FROM professor			
+	</sql>
+	
+	<select id="selectProfessorList" resultMap="professor-resultmap">
+		<include refid="select-professor"/>
+	</select>
+
+	<select id="selectProfessorById" resultMap="professor-resultmap"
+		parameterType="String">
+		<include refid="select-professor"/>
+		WHERE pro_id = #{value}
+	</select>
+
+	<insert id="insertProfessor" parameterType="professor">
+		INSERT INTO professor
+		VALUES(#{proId},#{proUniversity},#{proGradSchool},#{proOfficePhoneNum})
+	</insert>
+
+	<delete id="deleteProfessorById" parameterType="String">
+		DELETE FROM professor
+		WHERE pro_id = #{value}
+	</delete>
+
+	<update id="updateProfessor" parameterType="professor">
+		UPDATE professor
+		SET
+		pro_university = #{proUniversity}, pro_grad_school = #{proGradSchool}, 
+		pro_office_phone_num = #{proOfficePhoneNum}
+		WHERE pro_id = #{proId}
+	</update>
+</mapper>

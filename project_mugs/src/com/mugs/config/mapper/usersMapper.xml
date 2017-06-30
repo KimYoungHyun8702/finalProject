@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.usersMapper">
+	<sql id="select-users">
+		SELECT users_id,
+		users_password,
+		users_name,
+		users_eng_name,
+		users_rrn,
+		users_email,
+		users_phone_num,
+		users_cell_num,
+		users_national,
+		users_current_addr,
+		users_born_addr,
+		users_enable,
+		users_photo
+
+		FROM users
+	</sql>
+
+	<resultMap type="users" id="users-basic-resultmap">
+		<id column="users_id" property="usersId" />
+		<result column="users_password" property="usersPassword" />
+		<result column="users_name" property="usersName" />
+		<result column="users_eng_name" property="usersEngName" />
+		<result column="users_rrn" property="usersRRN" />
+		<result column="users_email" property="usersEmail" />
+		<result column="users_phone_num" property="usersPhoneNum" />
+		<result column="users_cell_num" property="usersCellNum" />
+		<result column="users_national" property="usersNational" />
+		<result column="users_current_addr" property="usersCurrentAddr" />
+		<result column="users_born_addr" property="usersBornAddr" />
+		<result column="users_enable" property="usersEnable" />
+		<result column="users_photo" property="usersPhoto" />
+	</resultMap>
+
+	<!-- insert -->
+	<insert id="insertUsers" parameterType="users">
+		INSERT INTO users
+		VALUES(#{usersId}, #{usersPassword}, #{usersName},
+		#{usersEngName}, #{usersRrn}, #{usersEmail}, #{usersPhoneNum},
+		#{usersCellNum}, #{usersNational}, #{usersCurrentAddr}, #{usersBornAddr}, #{usersEnable}, #{usersPhoto})
+	</insert>
+
+	<!-- update -->
+	<update id="updateUsersById" parameterType="users">
+		UPDATE users
+		SET
+		users_id=#{usersId},
+		users_password=#{usersPassword},
+		users_name=#{usersName},
+		users_eng_name=#{usersEngName},
+		users_rrn=#{usersRrn},
+		users_email=#{usersEmail},
+		users_phone_num=#{usersPhoneNum},
+		users_cell_num=#{usersCellNum},
+		users_national=#{usersNational},
+		users_current_addr=#{usersCurrentAddr},
+		users_born_addr=#{usersBornAddr},
+		users_enable=#{usersEnable},
+		users_photo=#{usersPhoto}
+		
+		WHERE users_id=#{usersId}
+	</update>
+
+	<!-- delete -->
+	<delete id="deleteUsers" parameterType="string">
+		DELETE FROM users WHERE
+		users_id = #{value}
+	</delete>
+
+	<!-- select -->
+	<select id="selectUsersList" resultMap="users-basic-resultmap">
+		<include refid="select-users" />
+	</select>
+
+	<select id="selectUsersById" resultType="users" parameterType="string">
+		<include refid="select-users" />
+		WHERE users_id= #{value}
+	</select>
+
+
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.collegeMapper">
+
+<sql id="select-college">
+	SELECT college_id,  
+		   college_name  
+	FROM  college
+</sql>
+
+<resultMap type="college" id="college-basic-reresultmap">
+	<id column="college_id" property="collegeId"/>
+	<result column="college_name" property="collegeName"/>
+</resultMap>
+
+<!-- insert -->
+<insert id="insertCollege" parameterType="college">
+	INSERT INTO college VALUES(#{collegeId},#{collegeName})
+</insert>
+
+<!-- update -->
+<update id="updateCollegeById" parameterType="college">
+	UPDATE college
+	   SET college_id=#{collegeId},
+	   	   college_name=#{collegeName}
+	 WHERE college_id=#{collegeId} 	   
+</update>
+
+<!-- delete -->
+<delete id="deleteCollege" parameterType="int">
+	DELETE FROM college WHERE college_id=#{value}
+</delete>
+
+<!-- select -->
+<select id="selectCollegeList" resultMap="college-basic-reresultmap">
+	<include refid="select-college"/>
+</select>
+
+<select id="selectCollegeById" resultType="college" parameterType="int">
+	<include refid="select-college"/>
+	WHERE college_id=#{value}
+</select>
+
+</mapper>
