@@ -6,7 +6,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Index</h1>
+
+<hr>
+<h1>백진현 학생</h1>
+<hr>
+<a href="/project_mugs/student/subjectType.do">수강신청</a>
+
+<hr>
+<h1>현동준 관리자</h1>
 <hr>
 <a href="/${initParam.rootPath }/admin/selectStudentController.do">학생 조회</a>
 <a href="insertStudent.do">학생 등록</a>
@@ -22,5 +29,11 @@
 <a href="${initParam.rootPath }/insertBuilding.do">건물 등록</a>
 <a href="selectCollege.do">강의실 조회</a>
 <a href="${initParam.rootPath }/insertRoom.do">강의실 등록</a>
+
+<hr>
+<h1>김진광 학생</h1>
+<hr>
+<a href="${initParam.rootPath }/gradeInquiry.do">성적 조회 -딘강</a>
+
 </body>
 </html>

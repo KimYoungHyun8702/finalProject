@@ -36,7 +36,7 @@
 	<include refid="select-authorities"/>
 </select>
 
-<select id="selectAuthoritiesById" resultType="authorities" parameterType="int">
+<select id="selectAuthoritiesById" resultMap="authorities-basic-reresultmap" parameterType="int">
 	<include refid="select-authorities"/>
 	WHERE users_id=#{value}
 </select>

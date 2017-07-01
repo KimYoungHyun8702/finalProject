@@ -15,7 +15,7 @@ public class MajorDaoImpl implements MajorDao{
 	private SqlSessionTemplate session;
 	
 	private String makeSqlId(String id){
-		return "com.mugs.mybatis.config.mapper.MajorMapper."+id;
+		return "com.mugs.config.mapper.majorMapper."+id;
 	}
 
 	@Override
@@ -41,6 +41,12 @@ public class MajorDaoImpl implements MajorDao{
 	@Override
 	public Major selectMajorById(int majorId) {
 		return session.selectOne(makeSqlId("selectMajorById"), majorId);
+	}
+
+	@Override
+	public List<Major> selectMajorByCollegeId(int collegeId) {
+		// TODO Auto-generated method stub
+		return session.selectList(makeSqlId("selectMajorByCollegeId"), collegeId);
 	}
 	
 	
