@@ -67,7 +67,7 @@
 	
 	<!-- 평가응답 id로 조회 -->
 	<select id="selectEvaluationAnswerById" 
-		    resultType="evaluationAnswer" 
+		    resultMap="evaluationAnswer-resultmap" 
 		    parameterType="int">
 		<include refid="select-evaluationAnswer-sql"/>
 		WHERE evaluation_answer_id = #{evaluationAnswerId}

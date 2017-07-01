@@ -38,7 +38,7 @@
 	<include refid="select-graduationCredit"/>
 </select>
 
-<select id="selectGraduationCreditById" resultType="graduationCredit" parameterType="map">
+<select id="selectGraduationCreditById" resultMap="graduationCredit-basic-resultmap" parameterType="map">
 	<include refid="select-graduationCredit"/>
 	WHERE major_id=#{majorId}
 	AND graduation_credit_year={graduationCreditYear}

@@ -43,4 +43,6 @@ public interface SubjectDao {
 	 * @return
 	 */
 	List<Subject> selectSubjectList();
+	
+	List<String> subjectTypeList();
 }
