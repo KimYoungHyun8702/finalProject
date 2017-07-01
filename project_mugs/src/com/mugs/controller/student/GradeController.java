@@ -26,7 +26,6 @@ public class GradeController {
 	
 	@RequestMapping("semesterInquiry")
 	public List<String> semesterInquiry(int year){
-		service.
 		return null;
 		
 	}

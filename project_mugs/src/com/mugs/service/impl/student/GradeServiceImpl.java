@@ -23,7 +23,7 @@ public class GradeServiceImpl implements GradeService {
 
 	@Override
 	public List<String> getSemester(int year) {
-		return dao.selec;
+		return null;
 	}
 	
 }
