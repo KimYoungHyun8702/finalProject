@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h2>수강정보목록조회하는 jsp</h2>
 </body>
 </html>

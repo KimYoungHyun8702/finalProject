@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h2>설문응답조회하는 jsp</h2>
+<a href="${initParam.rootPath }/evaluationAnswerRegisteration.do">설문응답평가하기로 이동하기</a><br>
 
 </body>
 </html>

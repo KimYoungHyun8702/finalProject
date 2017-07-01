@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h2>설문응답평가등록하는jsp</h2>
 </body>
 </html>
