@@ -99,7 +99,6 @@
 	
 	<!-- 평가id로 조회 -->
 	<select id="selectEvaluationById" parameterType="int" 
-									  resultType="evaluation" 
 									  resultMap="evaluation-resultMap">
 		<include refid="select-evaluation-sql"/>
 		WHERE evaluation_id = #{evaluationId}

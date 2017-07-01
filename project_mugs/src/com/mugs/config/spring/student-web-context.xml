@@ -9,6 +9,7 @@
 
 	<context:component-scan base-package="com.mugs.controller.student" />
 	<mvc:annotation-driven />
+
 	
 	
 	<mvc:view-controller path="/index.do" view-name="/index" />
@@ -19,8 +20,17 @@
 	<mvc:view-controller path="/evaluationAnswerView.do" view-name="/view/contents/student/evaluationAnswer/evaluationAnswerView"/>
 	
 	
+
+
+	<mvc:view-controller path="/gradeInquiry.do" view-name="view/contents/student/gradeInquiry" />
+
 	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+
 		p:prefix="/WEB-INF/" p:suffix=".jsp" /><!-- WEB-INF/view밑에 있는데 view는 어디서 설정해준거지..어디서 써준거지..? -->
+
+		
+
+
 </beans>

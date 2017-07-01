@@ -39,4 +39,7 @@ public interface MajorDao {
 	 * @return
 	 */
 	Major selectMajorById(int majorId);
+	
+	
+	List<Major> selectMajorByCollegeId(int collegeId);
 }

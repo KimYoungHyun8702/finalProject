@@ -12,9 +12,12 @@ import com.mugs.vo.Building;
 @Repository
 public class BuildingDaoImpl implements BuildingDao{
 
+	
+
 	//Spring Container에서 SqlSessionTemplate을 주입받아서 instance변수로 대입
 	@Autowired
 	private SqlSessionTemplate session;
+	
 	private String makeSql(String tagId){
 		return "com.mugs.config.mapper.buildingMapper."+tagId;
 	}
@@ -31,12 +34,17 @@ public class BuildingDaoImpl implements BuildingDao{
 
 	@Override
 	public int deleteBuilding(int buildingId) {
-		return session.delete(makeSql("deleteBuildingById"), buildingId);
+		return session.delete(makeSql("deleteBuilding"), buildingId);
 	}
 
 	@Override
 	public Building selectBuildingById(int buildingId) {
 		return session.selectOne(makeSql("selectBuildingById"), buildingId);
+	}
+	
+	@Override
+	public Building selectBuildingByIdJoin(int buildingId) {
+		return session.selectOne(makeSql("selectBuildingByIdJoin"), buildingId);
 	}
 
 	@Override

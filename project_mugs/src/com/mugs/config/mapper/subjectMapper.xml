@@ -79,10 +79,14 @@
 		<include refid="select-subject" />
 	</select>
 
-	<select id="selectUsersById" resultType="users" parameterType="int">
+	<select id="selectUsersById" resultMap="subject-basic-resultmap" parameterType="int">
 		<include refid="select-subject" />
 		WHERE subject_id= #{value}
 	</select>
 
+	<select id="selectSubjectType" resultType="string">
+		select distinct subject_type
+		from subject
+	</select>
 
 </mapper>

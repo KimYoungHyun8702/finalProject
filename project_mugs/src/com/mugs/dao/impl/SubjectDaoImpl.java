@@ -48,4 +48,10 @@ public class SubjectDaoImpl implements SubjectDao {
 	private String makeSqlId(String id){
 		return "com.mugs.config.mapper.subjectMapper."+id;
 	}
+
+	@Override
+	public List<String> subjectTypeList() {
+		// TODO Auto-generated method stub
+		return session.selectList(makeSqlId("selectSubjectType"));
+	}
 }
