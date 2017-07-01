@@ -7,5 +7,6 @@
 </head>
 <body>
 <h1>Index</h1>
+<a href="/project_mugs/view/contents/professor/professorInfo.do">교수 개인 정보</a>
 </body>
 </html>
