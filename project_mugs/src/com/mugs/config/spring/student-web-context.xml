@@ -10,7 +10,27 @@
 	<context:component-scan base-package="com.mugs.controller.student" />
 	<mvc:annotation-driven />
 
+	
+	
+	<mvc:view-controller path="/index.do" view-name="/index" />
+	<mvc:view-controller path="/courseStandardView.do" view-name="/view/contents/student/standard/courseStandardView"/>
+	<mvc:view-controller path="/myTimeTableView.do" view-name="/view/contents/student/timeTable/myTimeTableView"/>
+	<mvc:view-controller path="/course_InformationListView.do" view-name="/view/contents/student/courseInformationList/course_InformationListView"/>
+	<mvc:view-controller path="/evaluationAnswerRegisteration.do" view-name="/view/contents/student/evaluationAnswer/evaluationAnswerRegisteration"/>
+	<mvc:view-controller path="/evaluationAnswerView.do" view-name="/view/contents/student/evaluationAnswer/evaluationAnswerView"/>
+	
+	
+
+
+	<mvc:view-controller path="/gradeInquiry.do" view-name="view/contents/student/gradeInquiry" />
+
+	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/" p:suffix=".jsp" />
+
+		p:prefix="/WEB-INF/" p:suffix=".jsp" /><!-- WEB-INF/view밑에 있는데 view는 어디서 설정해준거지..어디서 써준거지..? -->
+
+		
+
+
 </beans>
