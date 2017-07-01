@@ -84,5 +84,9 @@
 		WHERE subject_id= #{value}
 	</select>
 
+	<select id="selectSubjectType" resultType="string">
+		select distinct subject_type
+		from subject
+	</select>
 
 </mapper>

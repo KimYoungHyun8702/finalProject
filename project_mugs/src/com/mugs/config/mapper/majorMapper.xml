@@ -46,4 +46,9 @@
 	WHERE major_id=#{value}
 </select>
 
+<select id="selectMajorByCollegeId" resultMap="major-basic-resultmap" parameterType="int">
+	<include refid="select-major"/>
+	where college_id=#{value}
+</select>
+
 </mapper>

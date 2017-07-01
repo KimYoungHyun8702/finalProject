@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Index</h1>
+<h1>린덱스.제이에쓰피</h1>
+<a href="/project_mugs/student/subjectType.do">수강신청</a>
 </body>
 </html>
