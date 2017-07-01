@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.mugs.vo.Student;
 
-public interface studentDao {
+public interface StudentDao {
 	/**
 	 * 한 학생의 데이터를 insert하는 메소드
 	 * @param student
@@ -43,5 +43,12 @@ public interface studentDao {
 	 * @return
 	 */
 	List<Student> selectStudentList();
+	
+	/**
+	 * @author 병문
+	 * 학과 이름을 가져오기 위한 select 메소드, 학과 이름은 학생vo의 list에 저장되게 함.
+	 * @return 학생-학과정보 조인한 학생의 정보, 
+	 */
+	Student selectStudentMajorName();
 
 }

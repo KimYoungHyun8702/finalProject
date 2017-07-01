@@ -7,5 +7,8 @@
 </head>
 <body>
 <h1>Index</h1>
+<a href="/project_mugs/teststudentInfo.do">test페이지로 이동</a>
+
+
 </body>
 </html>
