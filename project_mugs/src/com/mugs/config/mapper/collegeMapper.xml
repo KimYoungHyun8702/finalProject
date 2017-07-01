@@ -37,7 +37,7 @@
 	order by college_name asc
 </select>
 
-<select id="selectCollegeById" resultType="college" parameterType="int">
+<select id="selectCollegeById" resultMap="college-basic-reresultmap" parameterType="int">
 	<include refid="select-college"/>
 	WHERE college_id=#{value}
 </select>

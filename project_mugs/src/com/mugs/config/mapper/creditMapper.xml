@@ -83,12 +83,12 @@
 	<include refid="select-credit"/>
 </select>
 
-<select id="selectCreditById" resultType="credit" parameterType="int">
+<select id="selectCreditById" resultMap="credit-basic-resultmap" parameterType="int">
 	<include refid="select-credit"/>
 	WHERE credit_id= #{value}
 </select>
 
-<select id="selectYearByStuId" resultType="credit" parameterType="string">
+<select id="selectYearByStuId" resultType="int" parameterType="string">
 	SELECT credit_year FROM credit WHERE stu_id =#{value}
 </select>
 <select id="selectCreditByYear" resultMap="credit-subject-resultmap" parameterType="int">
