@@ -291,6 +291,8 @@ CREATE SEQUENCE MAJOR_ID_SEQ; /* 학과 테이블의 기본키에 대한 시퀀�
 CREATE SEQUENCE COLLEGE_ID_SEQ; /* 대학(학부) 테이블의 기본키에 대한 시퀀스 생성 */
 CREATE SEQUENCE COURSE_ID_SEQ; /* 수강 테이블의 기본키에 대한 시퀀스 생성 */
 CREATE SEQUENCE CREDIT_ID_SEQ; /* 학점 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀스 생성 */
+
 
 /* 각 테이블의 기본키에 대한 필요 시퀀스 삭제 */
 
@@ -305,3 +307,15 @@ DROP SEQUENCE MAJOR_ID_SEQ; /* 학과 테이블의 기본키에 대한 시퀀스
 DROP SEQUENCE COLLEGE_ID_SEQ; /* 대학(학부) 테이블의 기본키에 대한 시퀀스 삭제 */
 DROP SEQUENCE COURSE_ID_SEQ; /* 수강 테이블의 기본키에 대한 시퀀스 삭제 */
 DROP SEQUENCE CREDIT_ID_SEQ;
+DROP SEQUENCE BUILDING_ID_SEQ;
+
+
+select * from BUILDING
+insert into room values('101호',33)
+SELECT * FROM ROOM
+SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID
+		FROM BUILDING B, ROOM R
+		WHERE B.BUILDING_ID = R.BUILDING_ID AND B.BUILDING_ID = 33
+SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID
+FROM BUILDING B, ROOM R
+WHERE B.BUILDING_ID = R.BUILDING_ID AND B.BUILDING_ID = 33
