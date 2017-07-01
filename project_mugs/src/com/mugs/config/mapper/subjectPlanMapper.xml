@@ -76,7 +76,7 @@
 		<include refid="select-subjectPlan" />
 	</select>
 
-	<select id="selectSubjectPlanById" resultType="subjectPlan" parameterType="int">
+	<select id="selectSubjectPlanById" resultMap="subjectPlan-basic-resultmap" parameterType="int">
 		<include refid="select-subjectPlan" />
 		WHERE plan_id= #{value}
 	</select>

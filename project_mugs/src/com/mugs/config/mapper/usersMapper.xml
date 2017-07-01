@@ -15,7 +15,6 @@
 		users_born_addr,
 		users_enable,
 		users_photo
-
 		FROM users
 	</sql>
 
@@ -75,7 +74,7 @@
 		<include refid="select-users" />
 	</select>
 
-	<select id="selectUsersById" resultType="users" parameterType="string">
+	<select id="selectUsersById" resultMap="users-basic-resultmap" parameterType="string">
 		<include refid="select-users" />
 		WHERE users_id= #{value}
 	</select>

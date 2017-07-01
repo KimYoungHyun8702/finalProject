@@ -36,7 +36,7 @@
 	<include refid="select-building"/>
 </select>
 
-<select id="selectBuildingById" resultType="building" parameterType="int">
+<select id="selectBuildingById" resultMap="building-basic-reresultmap" parameterType="int">
 	<include refid="select-building"/>
 	WHERE building_id=#{value}
 </select>

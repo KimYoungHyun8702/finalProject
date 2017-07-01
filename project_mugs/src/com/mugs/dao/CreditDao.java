@@ -38,6 +38,14 @@ public interface CreditDao {
 	Credit selectCreditById(int id);
 
 	/**
+	 * 매개변수로 받은 학생Id와 일치하는 연도들을 조회.
+	 * 
+	 * @param id
+	 * @return
+	 */
+	List<Integer> selectYearByStuId(String id);
+
+	/**
 	 * 모든 Credit Data들을 select하는 메소드.
 	 * 
 	 * @return

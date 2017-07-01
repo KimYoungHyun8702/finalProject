@@ -41,7 +41,7 @@
 	<include refid="select-major"/>
 </select>
 
-<select id="selectMajorById" resultType="major" parameterType="int">
+<select id="selectMajorById" resultMap="major-basic-resultmap" parameterType="int">
 	<include refid="select-major"/>
 	WHERE major_id=#{value}
 </select>

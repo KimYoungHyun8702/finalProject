@@ -53,12 +53,12 @@
 	</delete>
 	
 	<!-- 수강 전체조회 -->
-	<select id="selectCourseAll" resultType="java.util.ArrayList">
+	<select id="selectCourseAll" resultMap="course-resultmap">
 		<include refid="select-course-sql"/>
 	</select>
 	
 	<!-- id로 수강조회 -->
-	<select id="selectCourseById" parameterType="int" resultType="course">
+	<select id="selectCourseById" parameterType="int" resultMap="course-resultmap">
 		<include refid="select-course-sql"/>
 		WHERE course_id=#{courseId}
 	</select>
