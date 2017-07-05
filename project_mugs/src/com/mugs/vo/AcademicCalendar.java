@@ -10,7 +10,7 @@ public class AcademicCalendar implements Serializable {
 	private Date calendarFinish;
 	private int calendarYear;
 	private String calendarName;
-	
+
 	public AcademicCalendar() {
 	}
 
@@ -113,5 +113,4 @@ public class AcademicCalendar implements Serializable {
 				+ calendarFinish + ", calendarYear=" + calendarYear + ", calendarName=" + calendarName + "]";
 	}
 
-	
 }

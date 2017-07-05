@@ -6,11 +6,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mugs.dao.roomDao;
+import com.mugs.dao.RoomDao;
 import com.mugs.vo.Room;
 
 @Repository
-public class roomDaoImpl implements roomDao {
+public class RoomDaoImpl implements RoomDao {
 	
 	@Autowired
 	private SqlSessionTemplate session;

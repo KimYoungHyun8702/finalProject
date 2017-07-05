@@ -31,8 +31,15 @@ public interface BuildingDao {
 	int deleteBuilding(int buildingId);
 	
 	/**
-	 * 매개변수로 받은 buildingId와 일치하는 building data를 select하는 메소드
+	 * 매개변수로 받은 buildingId와 일치하는 building data를 select하는 메소드 Join
 	 * 
+	 * @param buildingId
+	 * @return
+	 */
+	Building selectBuildingByIdJoin(int buildingId);
+	
+	/**
+	 * 매개변수로 받은 buildingId와 일치하는 building data를 select하는 메소드 
 	 * @param buildingId
 	 * @return
 	 */

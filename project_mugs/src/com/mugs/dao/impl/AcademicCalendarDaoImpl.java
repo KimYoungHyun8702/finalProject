@@ -12,15 +12,15 @@ import com.mugs.dao.AcademicCalendarDao;
 import com.mugs.vo.AcademicCalendar;
 
 @Repository
-public class AcademicCalendarDaoImpl implements AcademicCalendarDao{
+public class AcademicCalendarDaoImpl implements AcademicCalendarDao {
 
 	@Autowired
 	private SqlSessionTemplate session;
-	
-	private String makeSql(String tagId){
-		return "com.mugs.config.mapper.academicCalendarMapper."+tagId;
+
+	private String makeSql(String tagId) {
+		return "com.mugs.config.mapper.academicCalendarMapper." + tagId;
 	}
-	
+
 	@Override
 	public int insertAcademicCalendar(AcademicCalendar academicCalendar) {
 		// TODO Auto-generated method stub

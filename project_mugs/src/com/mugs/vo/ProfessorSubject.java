@@ -10,9 +10,8 @@ package com.mugs.vo;
 import java.io.Serializable;
 import java.util.List;
 
-
 public class ProfessorSubject implements Serializable {
-	
+
 	private int proSubjectId;
 	private String proSubjectSemester;
 	private int proSubjectYear;
@@ -20,7 +19,7 @@ public class ProfessorSubject implements Serializable {
 	private int subjectId;
 	private Subject subject;
 	private Professor professor;
-	
+
 	public ProfessorSubject() {
 	}
 

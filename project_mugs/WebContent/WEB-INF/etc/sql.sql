@@ -16,6 +16,26 @@ CREATE TABLE USERS (
 	PRIMARY KEY(USERS_ID) /* 기본키 설정 */
 );
 
+insert into USERS values('6666', '6666', '김학생', 'kim', '111111-1111111', 'kim@a.com', '043-211-0101', '010-6878-1234', '한국', '충청북도 청주시', '충청북도 청주시', 1, null);
+insert into USERS values('7777', '7777', '이학생', 'lee', '222222-2222222', 'lee@a.com', '043-211-2121', '010-5555-3214', '한국', '충청북도 청주시', '충청북도 청주시', 1, null);
+insert into USERS values('8888', '8888', '박학생', 'park', '333333-3333333', 'park@a.com', '043-212-3131', '010-6666-5555', '한국', '충청북도 충주시', '전라북도 전주시', 1, null);
+insert into USERS values('9999', '9999', '최학생', 'chai', '444444-4444444', 'chai@a.com', '031-213-4343', '010-7777-0000', '한국', '강원도 태백시', '강원도 춘천시', 1, null);
+insert into USERS values('1010', '1010', '현학생', 'hyun', '555555-5555555', 'hyun@a.com', '052-212-5555', '010-8888-1234', '한국', '부산광역시', '경상남도 밀양시', 1, null);
+
+SELECT p.pro_id, p.pro_university, p.pro_grad_school, p.pro_office_phone_num, 
+			   u.users_id, u.users_password, u.users_name, u.users_eng_name,
+			   u.users_rrn, u.users_email, u.users_phone_num, u.users_cell_num,
+			   u.users_national, u.users_current_addr, u.users_born_addr, u.users_enable, u.users_photo
+		from professor p, users u
+		where p.pro_id=u.users_id
+		and p.pro_id='1111';
+
+insert into USERS values('1111', '1111', '김교수', 'kim', '111111-1111111', 'kim@a.com', '000-000-0000', '010-000-0000', '인민공화국', '평양특별시', '서울특별시', 1, null);
+insert into USERS values('2222', '1111', '박교수', 'park', '222222-2222222', 'park@a.com', '031-211-1712', '010-3318-1092', '대한민국', '서울특별시', '서울특별시', 1, null);
+insert into USERS values('3333', '1111', '이교수', 'lee', '333333-3333333', 'lee@a.com', '02-212-8282', '010-2964-9872', '대한민국', '경기도 성남시', '충청북도 청주시', 1, null);
+insert into USERS values('4444', '1111', '최교수', 'chai', '444444-4444444', 'chai@a.com', '043-213-7979', '010-1717-7272', '대한민국', '경기도 수원시', '전라북도 전주시', 1, null);
+insert into USERS values('5555', '1111', '서교수', 'seo', '555555-5555555', 'seo@a.com', '051-211-7942', '010-1910-6543', '대한민국', '경기도 용인시', '제주도 제주특별자치시', 1, null);
+
 /* 2.권한 */
 CREATE TABLE AUTHORITIES (
 	USERS_ID VARCHAR2(20) NOT NULL, /* 사용자 ID */
@@ -40,8 +60,15 @@ CREATE TABLE COLLEGE (
 	COLLEGE_NAME VARCHAR2(30) NOT NULL, /* 단과대학명 */
 	PRIMARY KEY(COLLEGE_ID) /* 기본키 설정 */
 );
+
 INSERT INTO COLLEGE VALUES(1, '컴퓨터정보학과')
 
+insert into COLLEGE values(1, '이공대학');
+insert into COLLEGE values(2, '예술대학');
+insert into COLLEGE values(3, '체육대학');
+insert into COLLEGE values(4, '사회대학');
+insert into COLLEGE values(5, '인문대학');
+update COLLEGE set COLLEGE_NAME = '사회대학' where COLLEGE_ID = 4;
 /* 5.학과 */
 CREATE TABLE MAJOR (
 	MAJOR_ID NUMBER NOT NULL, /* 학과 ID */
@@ -52,12 +79,48 @@ CREATE TABLE MAJOR (
 );
 INSERT INTO MAJOR VALUES(1, 'IT', 1)
 
+insert into MAJOR values(1, '컴퓨터공학과', 1);
+insert into MAJOR values(2, '정보통신학과', 1);
+insert into MAJOR values(3, '전기공학과', 1);
+insert into MAJOR values(4, '전자공학과', 1);
+insert into MAJOR values(5, '전파공학과', 1);
+
+insert into MAJOR values(6, '연극영화학과', 2);
+insert into MAJOR values(7, '공연예술학과', 2);
+insert into MAJOR values(8, '방송예술학과', 2);
+insert into MAJOR values(9, '무용학과', 2);
+insert into MAJOR values(10, '극작과', 2);
+
+insert into MAJOR values(11, '경호학과', 3);
+insert into MAJOR values(12, '무도학과', 3);
+insert into MAJOR values(13, '스포츠의학과', 3);
+insert into MAJOR values(14, '체육산업학과', 3);
+insert into MAJOR values(15, '체육학과', 3);
+
+insert into MAJOR values(16, '법학과', 4);
+insert into MAJOR values(17, '북한학과', 4);
+insert into MAJOR values(18, '행정학과', 4);
+insert into MAJOR values(19, '정치외교학과', 4);
+insert into MAJOR values(20, '지리학과', 4);
+
+insert into MAJOR values(21, '고고학과', 5);
+insert into MAJOR values(22, '미술사학과', 5);
+insert into MAJOR values(23, '사학과', 5);
+insert into MAJOR values(24, '종교학과', 5);
+insert into MAJOR values(25, '철학과', 5);
+
 /* 6.건물 */
 CREATE TABLE BUILDING (
 	BUILDING_ID NUMBER NOT NULL, /* 건물 ID */
 	BUILDING_NAME VARCHAR2(50) NOT NULL, /* 건물이름 */
 	PRIMARY KEY(BUILDING_ID) /* 기본키 설정 */
 );
+
+insert into BUILDING values(1, '이공대학 신관');
+insert into BUILDING values(2, '예술대학');
+insert into BUILDING values(3, '체육대학');
+insert into BUILDING values(4, '사회대학');
+insert into BUILDING values(5, '인문대학');
 
 /* 7.방 */
 CREATE TABLE ROOM (
@@ -66,6 +129,36 @@ CREATE TABLE ROOM (
 	PRIMARY KEY(ROOM_ID), /* 기본키 설정 */
 	FOREIGN KEY (BUILDING_ID) REFERENCES BUILDING(BUILDING_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
+
+insert into ROOM values('1-101', 1);
+insert into ROOM values('1-102', 1);
+insert into ROOM values('1-103', 1);
+insert into ROOM values('1-104', 1);
+insert into ROOM values('1-105', 1);
+
+insert into ROOM values('2-101', 2);
+insert into ROOM values('2-102', 2);
+insert into ROOM values('2-103', 2);
+insert into ROOM values('2-104', 2);
+insert into ROOM values('2-105', 2);
+
+insert into ROOM values('3-101', 3);
+insert into ROOM values('3-102', 3);
+insert into ROOM values('3-103', 3);
+insert into ROOM values('3-104', 3);
+insert into ROOM values('3-105', 3);
+
+insert into ROOM values('4-101', 4);
+insert into ROOM values('4-102', 4);
+insert into ROOM values('4-103', 4);
+insert into ROOM values('4-104', 4);
+insert into ROOM values('4-105', 4);
+
+insert into ROOM values('5-101', 5);
+insert into ROOM values('5-102', 5);
+insert into ROOM values('5-103', 5);
+insert into ROOM values('5-104', 5);
+insert into ROOM values('5-105', 5);
 
 /* 8.졸업학점 */
 CREATE TABLE GRADUATION_CREDIT (
@@ -112,7 +205,18 @@ CREATE TABLE STUDENT (
 	FOREIGN KEY (MAJOR_DUAL_ID) REFERENCES MAJOR(MAJOR_ID) ON DELETE CASCADE, /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 	FOREIGN KEY (MAJOR_MINOR_ID) REFERENCES MAJOR(MAJOR_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
-INSERT INTO STUDENT VALUES('사용자1', '과정', '군필', SYSDATE, SYSDATE, '재학중', '일반학생', 4, 'Y', 'N', '겨울학기', 1, NULL, NULL)
+
+INSERT INTO STUDENT VALUES('6666', '과정', '군필', SYSDATE, null, '재학', '일반학생', 4, 'Y', 'N', '2학기', 1, NULL, NULL);
+INSERT INTO STUDENT VALUES('7777', '과정', '군필', SYSDATE, null, '휴학', '일반학생', 4, 'Y', 'N', '2학기', 1, NULL, NULL);
+INSERT INTO STUDENT VALUES('8888', '과정', '미필', SYSDATE, null, '졸업유예', '일반학생', 4, 'Y', 'Y', '2학기', 1, NULL, NULL);
+INSERT INTO STUDENT VALUES('9999', '과정', '군필', SYSDATE, null, '재학', '일반학생', 4, 'Y', 'N', '2학기', 1, NULL, NULL);
+INSERT INTO STUDENT VALUES('1010', '과정', '군필', SYSDATE, null, '졸업유예', '일반학생', 4, 'Y', 'Y', '2학기', 1, NULL, NULL);
+
+
+
+
+INSERT INTO STUDENT VALUES('사용자1', '과정', '군필', SYSDATE, SYSDATE, '재학중', '일반학생', 4, 'Y', 'N', '겨울학기', 1, NULL, NULL);
+
 /* 11.교수 */
 CREATE TABLE PROFESSOR (
 	PRO_ID VARCHAR2(20) NOT NULL, /* 교수 ID */
@@ -129,6 +233,12 @@ CREATE TABLE PROFESSOR (
 	FOREIGN KEY (OFFICE_ID) REFERENCES ROOM(ROOM_ID) ON DELETE CASCADE, /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 	FOREIGN KEY (LABORATORY_ID) REFERENCES ROOM(ROOM_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
+
+insert into PROFESSOR values('1111', '김일성군사종합대학', '김일성군사종합대학원', null, null, null, null, null);
+insert into PROFESSOR values('2222', '서울대학교', '서울대학원', '070-1074-1717', '070-0160-0082', 1, '1-101', '1-103');
+insert into PROFESSOR values('3333', '한양대학교', '한양대학원', '070-1079-1718', '070-0170-0084', 1, '1-102', '1-104');
+insert into PROFESSOR values('4444', '한국외국어대학교', '한국외국어대학원', null, null, null, null, null);
+insert into PROFESSOR values('5555', '청주대학교', '청주대학원', null, null, null, null, null);
 
 /* 12.과목 */
 CREATE TABLE SUBJECT (
@@ -150,7 +260,95 @@ CREATE TABLE SUBJECT (
 	FOREIGN KEY (LECTURE_ID) REFERENCES ROOM(ROOM_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
-1`
+insert into SUBJECT values(1, 'Java기초', '월(1, 2)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-101');
+insert into SUBJECT values(2, 'C언어기초', '화(3, 4)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-102');
+insert into SUBJECT values(3, '정보보안', '수(5, 6)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-103');
+insert into SUBJECT values(4, '데이터통신', '목(1, 2)', '필수전공', 3, 30, 10, 3, '1분반', 'N', '1학기', 1,'1-104');
+insert into SUBJECT values(5, '데이터베이스', '금(3, 4)', '필수전공', 3, 30, 10, 4, '1분반', 'N', '1학기', 1,'1-105');
+
+insert into SUBJECT values(6, '임베디드', '월(1, 2)', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 1,'1-105');
+insert into SUBJECT values(7, '웹애니메이션', '화(3, 4)', '선택전공', 2, 50, 30, 1, '1분반', 'N', '1학기', 1,'1-104');
+insert into SUBJECT values(8, '포토샵기초', '수(5, 6)', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 1,'1-103');
+insert into SUBJECT values(9, 'IT서비스', '목(1, 2)', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 1,'1-102');
+insert into SUBJECT values(10, '이산수학', '금(3, 4)', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 1,'1-101');
+
+
+insert into SUBJECT values(11, '영어1', '월(1, 2)', '필수교양', 2, 50, 30, 3, '1분반', 'N', '1학기', NULL,'2-105');
+insert into SUBJECT values(12, '일본어1', '화(3, 4)', '필수교양', 2, 50, 30, 1, '1분반', 'N', '1학기', NULL,'2-104');
+insert into SUBJECT values(13, '중국어1', '수(5, 6)', '필수교양', 2, 50, 30, 2, '1분반', 'N', '1학기', NULL,'2-103');
+insert into SUBJECT values(14, '고급영어', '목(1, 2)', '필수교양', 2, 50, 30, 3, '1분반', 'N', '1학기', NULL,'3-102');
+insert into SUBJECT values(15, '중국어2', '금(3, 4)', '필수교양', 2, 50, 30, 2, '1분반', 'N', '1학기', NULL,'4-101');
+
+
+insert into SUBJECT values(16, '세계사산책', '월(1, 2)', '선택교양', 2, 50, 30, NULL, '1분반', 'N', '1학기', NULL,'5-105');
+insert into SUBJECT values(17, '일본문화기행', '화(3, 4)', '선택교양', 2, 50, 30, NULL, '1분반', 'N', '1학기', NULL,'1-104');
+insert into SUBJECT values(18, '당구의정석', '수(5, 6)', '선택교양', 2, 50, 30, NULL, '1분반', 'N', '1학기', NULL,'2-103');
+insert into SUBJECT values(19, '볼링의정석', '목(1, 2)', '선택교양', 2, 50, 30, NULL, '1분반', 'N', '1학기', NULL,'3-102');
+insert into SUBJECT values(20, '매너와교양', '금(3, 4)', '선택교양', 2, 50, 30, NULL, '1분반', 'N', '1학기', NULL,'4-101');
+
+
+/*********************************************************************************************************/
+
+insert into SUBJECT values(1, 'Java기초', '월(1, 2)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-101');
+insert into SUBJECT values(2, 'C언어기초', '화(3, 4)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-102');
+insert into SUBJECT values(3, '정보보안', '수(5, 6)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-103');
+insert into SUBJECT values(4, '데이터통신', '목(1, 2)', '필수전공', 3, 30, 10, 3, '1분반', 'N', '1학기', 1,'1-104');
+insert into SUBJECT values(5, '데이터베이스', '금(3, 4)', '필수전공', 3, 30, 10, 4, '1분반', 'N', '1학기', 1,'1-105');
+
+insert into SUBJECT values(1, '임베디드', '월(1, 2)', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 1,'1-105');
+insert into SUBJECT values(2, '웹애니메이션', '화(3, 4)', '선택전공', 2, 50, 30, 1, '1분반', 'N', '1학기', 1,'1-104');
+insert into SUBJECT values(3, '포토샵기초', '수(5, 6)', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 1,'1-103');
+insert into SUBJECT values(4, 'IT서비스', '목(1, 2)', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 1,'1-102');
+insert into SUBJECT values(5, '이산수학', '금(3, 4)', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 1,'1-101');
+
+
+
+
+insert into SUBJECT values(1, 'Java기초', '월(1, 2)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-101');
+insert into SUBJECT values(2, 'C언어기초', '화(3, 4)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-102');
+insert into SUBJECT values(3, '정보보안', '수(5, 6)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-103');
+insert into SUBJECT values(4, '데이터통신', '목(1, 2)', '필수전공', 3, 30, 10, 3, '1분반', 'N', '1학기', 1,'1-104');
+insert into SUBJECT values(5, '데이터베이스', '금(3, 4)', '필수전공', 3, 30, 10, 4, '1분반', 'N', '1학기', 1,'1-105');
+
+insert into SUBJECT values(1, '임베디드', '월(1, 2)', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 1,'1-105');
+insert into SUBJECT values(2, '웹애니메이션', '화(3, 4)', '선택전공', 2, 50, 30, 1, '1분반', 'N', '1학기', 1,'1-104');
+insert into SUBJECT values(3, '포토샵기초', '수(5, 6)', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 1,'1-103');
+insert into SUBJECT values(4, 'IT서비스', '목(1, 2)', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 1,'1-102');
+insert into SUBJECT values(5, '이산수학', '금(3, 4)', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 1,'1-101');
+
+
+
+
+insert into SUBJECT values(1, 'Java기초', '월(1, 2)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-101');
+insert into SUBJECT values(2, 'C언어기초', '화(3, 4)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-102');
+insert into SUBJECT values(3, '정보보안', '수(5, 6)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-103');
+insert into SUBJECT values(4, '데이터통신', '목(1, 2)', '필수전공', 3, 30, 10, 3, '1분반', 'N', '1학기', 1,'1-104');
+insert into SUBJECT values(5, '데이터베이스', '금(3, 4)', '필수전공', 3, 30, 10, 4, '1분반', 'N', '1학기', 1,'1-105');
+
+insert into SUBJECT values(1, '임베디드', '월(1, 2)', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 1,'1-105');
+insert into SUBJECT values(2, '웹애니메이션', '화(3, 4)', '선택전공', 2, 50, 30, 1, '1분반', 'N', '1학기', 1,'1-104');
+insert into SUBJECT values(3, '포토샵기초', '수(5, 6)', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 1,'1-103');
+insert into SUBJECT values(4, 'IT서비스', '목(1, 2)', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 1,'1-102');
+insert into SUBJECT values(5, '이산수학', '금(3, 4)', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 1,'1-101');
+
+
+
+insert into SUBJECT values(1, 'Java기초', '월(1, 2)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-101');
+insert into SUBJECT values(2, 'C언어기초', '화(3, 4)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-102');
+insert into SUBJECT values(3, '정보보안', '수(5, 6)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-103');
+insert into SUBJECT values(4, '데이터통신', '목(1, 2)', '필수전공', 3, 30, 10, 3, '1분반', 'N', '1학기', 1,'1-104');
+insert into SUBJECT values(5, '데이터베이스', '금(3, 4)', '필수전공', 3, 30, 10, 4, '1분반', 'N', '1학기', 1,'1-105');
+
+insert into SUBJECT values(1, '임베디드', '월(1, 2)', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 1,'1-105');
+insert into SUBJECT values(2, '웹애니메이션', '화(3, 4)', '선택전공', 2, 50, 30, 1, '1분반', 'N', '1학기', 1,'1-104');
+insert into SUBJECT values(3, '포토샵기초', '수(5, 6)', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 1,'1-103');
+insert into SUBJECT values(4, 'IT서비스', '목(1, 2)', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 1,'1-102');
+insert into SUBJECT values(5, '이산수학', '금(3, 4)', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 1,'1-101');
+
+
+
+
+>>>>>>> branch 'master' of https://github.com/KimYoungHyun8702/finalProject.git
 /* 13.교수담당과목 */
 CREATE TABLE PROFESSOR_SUBJECT (
 	PRO_SUBJECT_ID NUMBER NOT NULL, /* 교수담당과목 ID */
@@ -162,6 +360,30 @@ CREATE TABLE PROFESSOR_SUBJECT (
 	FOREIGN KEY (PRO_ID) REFERENCES PROFESSOR(PRO_ID) ON DELETE CASCADE, /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 	FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECT(SUBJECT_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
+
+insert into PROFESSOR_SUBJECT values(1, '1학기', 2017, '2222', 1);
+insert into PROFESSOR_SUBJECT values(2, '1학기', 2017, '2222', 2);
+insert into PROFESSOR_SUBJECT values(3, '1학기', 2017, '2222', 3);
+insert into PROFESSOR_SUBJECT values(4, '1학기', 2017, '2222', 4);
+insert into PROFESSOR_SUBJECT values(5, '1학기', 2017, '2222', 5);
+
+insert into PROFESSOR_SUBJECT values(6, '1학기', 2017, '3333', 6);
+insert into PROFESSOR_SUBJECT values(7, '1학기', 2017, '3333', 7);
+insert into PROFESSOR_SUBJECT values(8, '1학기', 2017, '3333', 8);
+insert into PROFESSOR_SUBJECT values(9, '1학기', 2017, '3333', 9);
+insert into PROFESSOR_SUBJECT values(10, '1학기', 2017, '3333', 10);
+
+insert into PROFESSOR_SUBJECT values(11, '1학기', 2017, '1111', 11);
+insert into PROFESSOR_SUBJECT values(12, '1학기', 2017, '1111', 12);
+insert into PROFESSOR_SUBJECT values(13, '1학기', 2017, '1111', 13);
+insert into PROFESSOR_SUBJECT values(14, '1학기', 2017, '4444', 14);
+insert into PROFESSOR_SUBJECT values(15, '1학기', 2017, '4444', 15);
+
+insert into PROFESSOR_SUBJECT values(16, '1학기', 2017, '4444', 16);
+insert into PROFESSOR_SUBJECT values(17, '1학기', 2017, '5555', 17);
+insert into PROFESSOR_SUBJECT values(18, '1학기', 2017, '5555', 18);
+insert into PROFESSOR_SUBJECT values(19, '1학기', 2017, '5555', 19);
+insert into PROFESSOR_SUBJECT values(20, '1학기', 2017, '4444', 20);
 
 /* 14.강의계획서 */
 CREATE TABLE SUBJECT_PLAN (
@@ -223,6 +445,10 @@ CREATE TABLE CREDIT (
 	FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECT(SUBJECT_ID) ON DELETE CASCADE, /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 	FOREIGN KEY (STU_ID) REFERENCES STUDENT(STU_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/KimYoungHyun8702/finalProject.git
 alter table CREDIT drop column CREDIT_READ_START;
 alter table CREDIT drop column CREDIT_READ_END;
 
@@ -256,14 +482,141 @@ CREATE TABLE EVALUATION (
 	EVALUATION_QUESTION NUMBER NOT NULL, /* 질의응답(평점 */
 	PRO_ID VARCHAR2(20) NOT NULL, /* 교수 ID */
 	SUBJECT_ID NUMBER NOT NULL, /* 과목 ID */
-	EVALUATION_START DATE NOT NULL, /* 평가시작일 */
-	EVALUATION_END DATE NOT NULL, /* 평가종료일 */
-	EVALUATION_READ_START DATE NOT NULL, /* 평가열람시작일 */
-	EVALUATION_READ_END DATE NOT NULL, /* 평가열람종료일 */
 	PRIMARY KEY(EVALUATION_ID), /* 기본키 설정 */
 	FOREIGN KEY (PRO_ID) REFERENCES PROFESSOR(PRO_ID) ON DELETE CASCADE, /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 	FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECT(SUBJECT_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
+
+
+alter table EVALUATION drop column EVALUATION_START;
+alter table EVALUATION drop column EVALUATION_END;
+alter table EVALUATION drop column EVALUATION_READ_START;
+alter table EVALUATION drop column EVALUATION_READ_END;
+
+/* 학사일정 */
+CREATE TABLE ACADEMIC_CALENDAR (
+	CALENDAR_ID NUMBER NOT NULL, /* 학사일정 ID */
+	CALENDAR_START DATE NOT NULL, /* 일정시작일 */
+	CALENDAR_FINISH DATE NOT NULL, /* 일정종료일 */
+	CALENDAR_YEAR NUMBER NOT NULL, /* 연도 */
+	CALENDAR_NAME VARCHAR2(4000) NOT NULL /* 학사일정명 */
+);
+
+/*학부테이블 값 삽입*/
+insert into COLLEGE values(1, '이공대학');
+insert into COLLEGE values(2, '예술대학');
+insert into COLLEGE values(3, '체육대학');
+insert into COLLEGE values(4, '사회대학');
+insert into COLLEGE values(5, '인문대학');
+
+select * from college;
+
+/*학부id에 따른 학과테이블 값 삽입*/
+insert into MAJOR values(1, '컴퓨터공학과', 1);
+insert into MAJOR values(2, '정보통신학과', 1);
+insert into MAJOR values(3, '전기공학과', 1);
+insert into MAJOR values(4, '전자공학과', 1);
+insert into MAJOR values(5, '전파공학과', 1);
+
+insert into MAJOR values(6, '연극영화학과', 2);
+insert into MAJOR values(7, '공연예술학과', 2);
+insert into MAJOR values(8, '방송예술학과', 2);
+insert into MAJOR values(9, '무용학과', 2);
+insert into MAJOR values(10, '극작과', 2);
+
+insert into MAJOR values(11, '경호학과', 3);
+insert into MAJOR values(12, '무도학과', 3);
+insert into MAJOR values(13, '스포츠의학과', 3);
+insert into MAJOR values(14, '체육산업학과', 3);
+insert into MAJOR values(15, '체육학과', 3);
+
+insert into MAJOR values(16, '법학과', 4);
+insert into MAJOR values(17, '북한학과', 4);
+insert into MAJOR values(18, '행정학과', 4);
+insert into MAJOR values(19, '정치외교학과', 4);
+insert into MAJOR values(20, '지리학과', 4);
+
+insert into MAJOR values(21, '고고학과', 5);
+insert into MAJOR values(22, '미술사학과', 5);
+insert into MAJOR values(23, '사학과', 5);
+insert into MAJOR values(24, '종교학과', 5);
+insert into MAJOR values(25, '철학과', 5);
+
+select * from major;
+
+/*건물테이블에 값 삽입*/
+insert into BUILDING values(1, '이공대학 신관');
+insert into BUILDING values(2, '예술대학');
+insert into BUILDING values(3, '체육대학');
+insert into BUILDING values(4, '사회대학');
+insert into BUILDING values(5, '인문대학');
+
+select * from BUILDING;
+
+
+/*건물id에 따른 강의실테이블 값 삽입*/
+insert into ROOM values('1-101', 1);
+insert into ROOM values('1-102', 1);
+insert into ROOM values('1-103', 1);
+insert into ROOM values('1-104', 1);
+insert into ROOM values('1-105', 1);
+
+insert into ROOM values('2-101', 2);
+insert into ROOM values('2-102', 2);
+insert into ROOM values('2-103', 2);
+insert into ROOM values('2-104', 2);
+insert into ROOM values('2-105', 2);
+
+insert into ROOM values('3-101', 3);
+insert into ROOM values('3-102', 3);
+insert into ROOM values('3-103', 3);
+insert into ROOM values('3-104', 3);
+insert into ROOM values('3-105', 3);
+
+insert into ROOM values('4-101', 4);
+insert into ROOM values('4-102', 4);
+insert into ROOM values('4-103', 4);
+insert into ROOM values('4-104', 4);
+insert into ROOM values('4-105', 4);
+
+insert into ROOM values('5-101', 5);
+insert into ROOM values('5-102', 5);
+insert into ROOM values('5-103', 5);
+insert into ROOM values('5-104', 5);
+insert into ROOM values('5-105', 5);
+
+select * from room;
+
+
+
+/*과목테이블에 값 삽입*/
+insert into SUBJECT values(1, 'Java기초', '월(1, 2)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-101');
+insert into SUBJECT values(2, 'C언어기초', '화(3, 4)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-102');
+insert into SUBJECT values(3, '정보보안', '수(5, 6)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-103');
+insert into SUBJECT values(4, '데이터통신', '목(1, 2)', '필수전공', 3, 30, 10, 3, '1분반', 'N', '1학기', 1,'1-104');
+insert into SUBJECT values(5, '데이터베이스', '금(3, 4)', '필수전공', 3, 30, 10, 4, '1분반', 'N', '1학기', 1,'1-105');
+
+insert into SUBJECT values(6, '임베디드', '월(1, 2)', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 1,'1-105');
+insert into SUBJECT values(7, '웹애니메이션', '화(3, 4)', '선택전공', 2, 50, 30, 1, '1분반', 'N', '1학기', 1,'1-104');
+insert into SUBJECT values(8, '포토샵기초', '수(5, 6)', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 1,'1-103');
+insert into SUBJECT values(9, 'IT서비스', '목(1, 2)', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 1,'1-102');
+insert into SUBJECT values(10, '이산수학', '금(3, 4)', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 1,'1-101');
+
+
+insert into SUBJECT values(11, '영어1', '월(1, 2)', '필수교양', 2, 50, 30, 3, '1분반', 'N', '1학기', NULL,'2-105');
+insert into SUBJECT values(12, '일본어1', '화(3, 4)', '필수교양', 2, 50, 30, 1, '1분반', 'N', '1학기', NULL,'2-104');
+insert into SUBJECT values(13, '중국어1', '수(5, 6)', '필수교양', 2, 50, 30, 2, '1분반', 'N', '1학기', NULL,'2-103');
+insert into SUBJECT values(14, '고급영어', '목(1, 2)', '필수교양', 2, 50, 30, 3, '1분반', 'N', '1학기', NULL,'3-102');
+insert into SUBJECT values(15, '중국어2', '금(3, 4)', '필수교양', 2, 50, 30, 2, '1분반', 'N', '1학기', NULL,'4-101');
+
+
+insert into SUBJECT values(16, '세계사산책', '월(1, 2)', '선택교양', 2, 50, 30, NULL, '1분반', 'N', '1학기', NULL,'5-105');
+insert into SUBJECT values(17, '일본문화기행', '화(3, 4)', '선택교양', 2, 50, 30, NULL, '1분반', 'N', '1학기', NULL,'1-104');
+insert into SUBJECT values(18, '당구의정석', '수(5, 6)', '선택교양', 2, 50, 30, NULL, '1분반', 'N', '1학기', NULL,'2-103');
+insert into SUBJECT values(19, '볼링의정석', '목(1, 2)', '선택교양', 2, 50, 30, NULL, '1분반', 'N', '1학기', NULL,'3-102');
+insert into SUBJECT values(20, '매너와교양', '금(3, 4)', '선택교양', 2, 50, 30, NULL, '1분반', 'N', '1학기', NULL,'4-101');
+
+select * from SUBJECT;
 
 /* 학사일정 */
 CREATE TABLE ACADEMIC_CALENDAR (
@@ -320,6 +673,11 @@ CREATE SEQUENCE COLLEGE_ID_SEQ; /* 대학(학부) 테이블의 기본키에 대�
 CREATE SEQUENCE COURSE_ID_SEQ; /* 수강 테이블의 기본키에 대한 시퀀스 생성 */
 CREATE SEQUENCE CREDIT_ID_SEQ; /* 학점 테이블의 기본키에 대한 시퀀스 생성 */
 
+create SEQUENCE CALENDAR_ID_SEQ;
+
+CREATE SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀스 생성 */
+
+
 /* 각 테이블의 기본키에 대한 필요 시퀀스 삭제 */
 
 DROP SEQUENCE EVALUATION_ANSWER_ID_SEQ; /* 평가응답 테이블의 기본키에 대한 시퀀스 삭제 */
@@ -332,4 +690,164 @@ DROP SEQUENCE EVALUATION_ID_SEQ; /* 평가 테이블의 기본키에 대한 시�
 DROP SEQUENCE MAJOR_ID_SEQ; /* 학과 테이블의 기본키에 대한 시퀀스 삭제 */
 DROP SEQUENCE COLLEGE_ID_SEQ; /* 대학(학부) 테이블의 기본키에 대한 시퀀스 삭제 */
 DROP SEQUENCE COURSE_ID_SEQ; /* 수강 테이블의 기본키에 대한 시퀀스 삭제 */
+
 DROP SEQUENCE CREDIT_ID_SEQ;
+
+
+SELECT		major_id,
+				major_name,
+				college_id
+	FROM 		major
+	where college_id=4;
+
+SELECT ps.pro_subject_id, ps.pro_subject_semester, ps.pro_subject_year, ps.pro_id, ps.subject_id,
+			   p.pro_id, p.pro_university, p.pro_grad_school, p.pro_office_phone_num, 
+			   u.users_id, u.users_password, u.users_name, u.users_eng_name,
+			   u.users_rrn, u.users_email, u.users_phone_num, u.users_cell_num,
+			   u.users_national, u.users_current_addr, u.users_born_addr, u.users_enable, u.users_photo,
+			   s.subject_id, s.subject_name, s.subject_time, s.subject_type, s.subject_credit,
+			   s.subject_capacity, s.subject_request, s.subject_grade, s.subject_class, 
+			   s.subject_close_class, s.subject_semester, s.major_id, s.lecture_id, (s.subject_capacity-s.subject_request) cnt
+		from professor_subject ps, subject s, professor p, users u
+		where ps.subject_id = s.subject_id
+		and ps.pro_id = p.pro_id
+		and p.pro_id = u.users_id
+		and ps.pro_subject_semester='1학기'
+		and ps.pro_subject_year=2017
+		and s.major_id=1
+		
+		
+INSERT INTO USERS VALUES('사용자1', '1111', '조새롬', 'ChoSaeRom', '920327-2151138', 'saerom327@naver.com', '031-809-3817', '010-4172-3817', '한국', '현거주지주소', '본적지주소', 1, '사진');
+INSERT INTO USERS VALUES('교수1', '2222', '조새봄교수', 'DDD', '920327-2151122', 'ssss@ssss.com', '031-000-0000', '000-0000-000-', '한국', '현주소', '본주소', 1, '사진');
+INSERT INTO PROFESSOR VALUES('교수1', '한국외대', '한국외대', '111-1111', '222-2222', 1, '조새봄교수실', '정통과연구실1');
+INSERT INTO COURSE VALUES(100, 2017, '1학기', 1, '사용자1', '교수1')
+
+CREATE TABLE ACADEMIC_PROBATION(
+   PROBATION_ID NUMBER NOT NULL,
+   PROBATION_YEAR NUMBER NOT NULL,
+   PROBATION_SEMESTER VARCHAR2(20) NOT NULL,
+   PROBATION_CREDIT_AVERAGE NUMBER NOT NULL,
+   STU_ID VARCHAR2(20) NOT NULL,
+   PRIMARY KEY(PROBATION_ID),
+   FOREIGN KEY(STU_ID) REFERENCES STUDENT(STU_ID) ON DELETE CASCADE
+);
+
+CREATE SEQUENCE ACADEMIC_PROBATION_ID_SEQ;
+
+
+/*1.사용자*/
+
+INSERT INTO	USERS VALUES ('1','1111','김갑수','KimGabSu','111111-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('2','2222','홍서범','HongSeoBum','222222-2222222','bcd@bcd.bcd','031-222-2222', '010-2222-2222','한국','경기도광주시','경기도 성남시',1,'c:/java');
+INSERT INTO	USERS VALUES ('3','3333','조갑경','ChoGabKyun','111111-1111111','efg@efg.efg','031-333-3333', '010-3333-3333','한국','경기도시흥시','경기도 광주시',0,'c:/java');
+
+/* 2.권한 */
+INSERT INTO	AUTHORITIES VALUES ('1','관리자');
+INSERT INTO	AUTHORITIES VALUES ('2','학생');
+INSERT INTO	AUTHORITIES VALUES ('3','교수');
+
+/* 3.공지사항 */
+INSERT INTO	NOTICE VALUES ('1','공지사항입니다','1111/01/01','1');
+INSERT INTO	NOTICE VALUES ('2','전달사항입니다','2222/02/02','1');
+INSERT INTO	NOTICE VALUES ('3','긴급사항입니다','3333/03/03','1');
+
+/* 4.대학(학부) */
+INSERT INTO	COLLEGE VALUES ('1','인문학부');
+INSERT INTO	COLLEGE VALUES ('2','체육학부');
+INSERT INTO	COLLEGE VALUES ('3','사범대학');
+
+/* 5.학과 */
+INSERT INTO	MAJOR VALUES ('1','국어국문학과','1');
+INSERT INTO	MAJOR VALUES ('2','문예창작과','1');
+INSERT INTO	MAJOR VALUES ('3','내거친생각과','1');
+INSERT INTO	MAJOR VALUES ('4','배드민턴과','2');
+INSERT INTO	MAJOR VALUES ('5','육상과','2');
+INSERT INTO	MAJOR VALUES ('6','불안한눈빛과','2');
+INSERT INTO	MAJOR VALUES ('7','국어교육과','3');
+INSERT INTO	MAJOR VALUES ('8','수학교육과','3');
+INSERT INTO	MAJOR VALUES ('9','너를위해떠날과','3');
+
+/* 6.건물 */
+INSERT INTO	BUILDING VALUES ('1','이공관');
+INSERT INTO	BUILDING VALUES ('2','교육관');
+INSERT INTO	BUILDING VALUES ('3','무슨상관');
+
+/* 7.방 */
+INSERT INTO	ROOM VALUES ('101','1');
+INSERT INTO	ROOM VALUES ('201','1');
+INSERT INTO	ROOM VALUES ('301','1');
+INSERT INTO	ROOM VALUES ('111','2');
+INSERT INTO	ROOM VALUES ('221','2');
+INSERT INTO	ROOM VALUES ('331','2');
+INSERT INTO	ROOM VALUES ('110','3');
+INSERT INTO	ROOM VALUES ('220','3');
+INSERT INTO	ROOM VALUES ('330','3');
+
+/* 8.졸업학점 */
+INSERT INTO	GRADUATION_CREDIT VALUES ('1','2015','140');
+INSERT INTO	GRADUATION_CREDIT VALUES ('1','2016','150');
+INSERT INTO	GRADUATION_CREDIT VALUES ('1','2017','160');
+INSERT INTO	GRADUATION_CREDIT VALUES ('2','2015','140');
+INSERT INTO	GRADUATION_CREDIT VALUES ('2','2016','150');
+INSERT INTO	GRADUATION_CREDIT VALUES ('2','2017','160');
+INSERT INTO	GRADUATION_CREDIT VALUES ('3','2015','140');
+INSERT INTO	GRADUATION_CREDIT VALUES ('3','2016','150');
+INSERT INTO	GRADUATION_CREDIT VALUES ('3','2017','160');
+
+/* 9.학점기준 */
+INSERT INTO	STANDARD VALUES ('2011','1','10','21','18','3','21');
+INSERT INTO	STANDARD VALUES ('2012','1','10','20','18','4','20');
+INSERT INTO	STANDARD VALUES ('2013','1','10','19','18','5','19');
+INSERT INTO	STANDARD VALUES ('2011','2','10','21','18','3','21');
+INSERT INTO	STANDARD VALUES ('2012','2','10','20','18','4','20');
+INSERT INTO	STANDARD VALUES ('2013','2','10','19','18','5','19');
+INSERT INTO	STANDARD VALUES ('2011','3','10','21','18','3','21');
+INSERT INTO	STANDARD VALUES ('2012','3','10','20','18','4','20');
+INSERT INTO	STANDARD VALUES ('2013','3','10','19','18','5','19');
+
+
+/* 10.학생 */
+INSERT INTO	STUDENT VALUES ('1','과정구분','미필','2015/01/01','2019/01/01','학적구분','학생구분','3','n','y','1','1','','');
+INSERT INTO	STUDENT VALUES ('2','과정구분','군필','2016/01/01','2020/01/01','학적구분','학생구분','2','n','n','1','2','','');
+INSERT INTO	STUDENT VALUES ('3','과정구분','','2017/01/01','2021/01/01','학적구분','학생구분','1','n','n','1','3','','');
+
+
+/* 11.교수 */
+INSERT INTO	PROFESSOR VALUES ('1','서울대','서울대학원','031-555-5555','031-555-5555','1','101','201');
+INSERT INTO	PROFESSOR VALUES ('2','고려대','고려대학원','031-666-6666','031-666-6666','2','111','221');
+INSERT INTO	PROFESSOR VALUES ('3','서울대','서울대학원','031-777-7777','031-777-7777','3','110','220');
+
+/* 12.과목 */
+INSERT INTO	SUBJECT VALUES ('1','국문학개론','월123','전공','3','50','40','1','분반1','n','1','1','301');
+INSERT INTO	SUBJECT VALUES ('2','체육학개론','화123','전공','3','50','45','1','분반1','n','1','1','331');
+INSERT INTO	SUBJECT VALUES ('3','교육학개론','수123','전공','3','50','50','1','분반1','n','1','1','330');
+
+/* 13.교수담당과목 */
+INSERT INTO	PROFESSOR_SUBJECT VALUES ('1','1','2015','1','1');
+INSERT INTO	PROFESSOR_SUBJECT VALUES ('2','1','2015','2','2');
+INSERT INTO	PROFESSOR_SUBJECT VALUES ('3','1','2015','3','3');
+
+/* 14.강의계획서 */
+INSERT INTO	SUBJECT_PLAN VALUES ('1','개론','출석30/과제30/얼굴40','개론이뭔지아라보자','8주까지 자습','개론의정석','개론논문','2015','1','없음','1','1');
+INSERT INTO	SUBJECT_PLAN VALUES ('2','개론','출석30/과제30/얼굴40','개론이뭔지아라보자','8주까지 자습','개론의정석','개론논문','2015','1','없음','2','2');
+INSERT INTO	SUBJECT_PLAN VALUES ('3','개론','출석30/과제30/얼굴40','개론이뭔지아라보자','8주까지 자습','개론의정석','개론논문','2015','1','없음','3','3');
+
+/* 15.지도학생 */
+INSERT INTO	GUIDENCE_STUDENT VALUES ('1','근면성실','2017/01/07','1','1');
+INSERT INTO	GUIDENCE_STUDENT VALUES ('2','근면성실','2017/01/07','2','2');
+INSERT INTO	GUIDENCE_STUDENT VALUES ('3','근면성실','2017/01/07','3','3');
+
+/* 16.수강 */
+INSERT INTO	COURSE VALUES ('1','2015','1','1','1');
+INSERT INTO	COURSE VALUES ('2','2015','1','2','2');
+INSERT INTO	COURSE VALUES ('3','2015','1','3','3');
+
+/* 17.학점 */
+INSERT INTO	CREDIT VALUES ('1','2015','1','3','A','90','n','1','1','2015/05/05','2015/06/06');
+INSERT INTO	CREDIT VALUES ('2','2015','1','3','A','90','n','2','2','2015/05/05','2015/06/06');
+INSERT INTO	CREDIT VALUES ('3','2015','1','3','A','90','n','3','3','2015/05/05','2015/06/06');
+
+/* 18.평가응답 */
+
+DROP SEQUENCE CREDIT_ID_SEQ;
+DROP SEQUENCE BUILDING_ID_SEQ;

@@ -78,7 +78,6 @@ public class GradeController {
 	
 	@RequestMapping("currentGradeInquiry")
 	public ModelAndView currentGradeInquiry(){
-		
 		return new ModelAndView("view/contents/student/currentGradeInquiry", "map", service.getCalendarByYearAndCalName());
 	}
 	

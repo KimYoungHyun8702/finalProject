@@ -39,4 +39,8 @@ public interface ProfessorDao {
 	 * @return
 	 */
 	Professor selectProfessorById(String proId);
+	
+	
+	
+	Professor selectFullInfoProfessorById(String proId);
 }

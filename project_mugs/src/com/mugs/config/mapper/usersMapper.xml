@@ -3,18 +3,18 @@
 <mapper namespace="com.mugs.config.mapper.usersMapper">
 	<sql id="select-users">
 		SELECT users_id,
-		users_password,
-		users_name,
-		users_eng_name,
-		users_rrn,
-		users_email,
-		users_phone_num,
-		users_cell_num,
-		users_national,
-		users_current_addr,
-		users_born_addr,
-		users_enable,
-		users_photo
+			   users_password,
+			   users_name,
+			   users_eng_name,
+			   users_rrn,
+			   users_email,
+			   users_phone_num,
+		       users_cell_num,
+			   users_national,
+			   users_current_addr,
+			   users_born_addr,
+			   users_enable,
+			   users_photo
 		FROM users
 	</sql>
 
@@ -76,7 +76,7 @@
 
 	<select id="selectUsersById" resultMap="users-basic-resultmap" parameterType="string">
 		<include refid="select-users" />
-		WHERE users_id= #{value}
+		WHERE users_id=#{value}
 	</select>
 
 

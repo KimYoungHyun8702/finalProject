@@ -11,9 +11,7 @@
 						credit_score,
 						credit_recource,
 						subject_id,
-						stu_id,
-						credit_read_start,
-						credit_read_end
+						stu_id
 		FROM 		credit					
 	</sql>
 	<sql id="select-credit-subject-join">
@@ -41,8 +39,6 @@
 		<result column="credit_recource" property="creditRecourse"/>
 		<result column="subject_id" property="subjectId"/>
 		<result column="stu_id" property="stuId"/>
-		<result column="credit_read_start" property="creditReadStart"/>
-		<result column="credit_read_end" property="creditReadEnd"/>
 </resultMap>
 
 <resultMap type="credit" id="credit-subject-resultmap" extends="credit-basic-resultmap">
@@ -51,7 +47,7 @@
 
 <!-- insert -->
 <insert id="insertCredit" parameterType="credit">
-	INSERT INTO credit VALUES(#{creditId}, #{creditYear}, #{creditSemester}, #{creditAcquire}, #{creditGrade}, #{creditScore}, #{creditResource}, #{subjectId}, #{stuId}, #{creditReadStart}, #{creditReadEnd})
+	INSERT INTO credit VALUES(#{creditId}, #{creditYear}, #{creditSemester}, #{creditAcquire}, #{creditGrade}, #{creditScore}, #{creditResource}, #{subjectId}, #{stuId})
 </insert>
 
 <!-- update -->
@@ -66,9 +62,6 @@
 					credit_recource=#{creditRecource},
 					subject_id=#{subjectId},
 					stu_id=#{stuId},
-					credit_read_start=#{creditReadStart},
-					credit_read_end=#{creditReadEnd}
-					
 	   WHERE		credit_id=#{creditId}
 	   
 </update>

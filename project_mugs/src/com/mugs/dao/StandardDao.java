@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.mugs.vo.Standard;
 
-public interface standardDao {
+public interface StandardDao {
 
 	/**
 	 * 하나의 학점기준을 insert하는 메소드
