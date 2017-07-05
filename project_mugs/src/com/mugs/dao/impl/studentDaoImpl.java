@@ -33,7 +33,7 @@ public class studentDaoImpl implements studentDao{
 	@Override
 	public int deleteStudent(String studentId) {
 		return session.delete(makeSql("deleteStudent"),studentId);
-	}
+	} 
 
 	@Override
 	public Student selectStudentById(String studentId) {
@@ -42,12 +42,11 @@ public class studentDaoImpl implements studentDao{
 
 	@Override
 	public List<Student> selectStudentList() {
-	
 		return session.selectList(makeSql("selectStudentList"));
 	}
 
-	@Override
-	public Student selectStudentInfoByJoin(String stuId) {
-		return session.selectOne(makeSql("selectStudentInfoByJoin"), stuId);
+	@Override //병문이꼬
+	public Student selectStudentMajorName() {
+		return session.selectOne(makeSql("selectStudentMajorName"));
 	}
 }

@@ -44,7 +44,11 @@ public interface studentDao {
 	 */
 	List<Student> selectStudentList();
 	
-	/**------------영현이꺼---------*/
-	Student selectStudentInfoByJoin(String stuId);
-	
+	/**
+	 * @author 병문이꼬
+	 * 학과 이름을 가져오기 위한 select 메소드, 학과 이름은 학생vo의 list에 저장되게 함.
+	 * @return 학생-학과정보 조인한 학생의 정보, 
+	 */
+	Student selectStudentMajorName();
+
 }
