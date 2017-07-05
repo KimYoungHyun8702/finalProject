@@ -11,8 +11,9 @@
 
 
 <h2>김영현교수</h2>
-<a href="/project_mugs/view/contents/professor/professorInfo.do">교수 개인 정보</a>
-
+<a href="${initParam.rootPath }/professorInfo.do">교수 개인 정보</a><br>
+<a href="${initParam.rootPath }/guidanceStudent.do">지도학생</a><br>
+<a href="${initParam.rootPath }/SubjectPlan.do">강의계획서</a><br>
 
 <h2>조새롬학생</h2>
 <a href="${initParam.rootPath }/courseStandardView.do">기준학점조회</a><br>

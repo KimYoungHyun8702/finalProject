@@ -43,5 +43,8 @@ public interface studentDao {
 	 * @return
 	 */
 	List<Student> selectStudentList();
-
+	
+	/**------------영현이꺼---------*/
+	Student selectStudentInfoByJoin(String stuId);
+	
 }

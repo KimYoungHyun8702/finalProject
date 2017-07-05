@@ -15,7 +15,7 @@
 		subject_close_class,
 		subject_semester,
 		major_id,
-		lecture_id,
+		lecture_id
 
 		FROM subject
 	</sql>

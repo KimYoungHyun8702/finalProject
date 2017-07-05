@@ -44,4 +44,10 @@ public class ProfessorSubjectDaoImpl implements ProfessorSubjectDao{
 		return session.selectOne(makeSqlId("selectProfessorSubjectById"), proSubjectId);
 	}
 
+	@Override
+	public List<ProfessorSubject> selectProfessorSubjectListJoinByProId(String proId) {
+		return session.selectList(makeSqlId("selectProfessorSubjectListJoinByProId"),proId);
+	}
+
+
 }

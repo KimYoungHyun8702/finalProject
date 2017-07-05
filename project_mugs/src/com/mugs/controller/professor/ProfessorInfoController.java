@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mugs.service.professor.ProfessorInfoService;
+import com.mugs.vo.Professor;
 import com.mugs.vo.Users;
 
 @Controller
@@ -18,22 +19,20 @@ public class ProfessorInfoController{
 	@Autowired
 	private ProfessorInfoService service;
 	
-	@RequestMapping("update_profile")
+	@RequestMapping("updateProfile")
 	public String updateProfessorProfile(@ModelAttribute Users users){
-	
+	System.out.println(users);
 	//Business Logic 호출	
-	service.updateProfessorInfo(users);	
-	
-	return "view/contents/professor/professorInfo";
+	service.updateProfessorInfo(users);
+	return "contents/professor/professorInfo"; //WEB-INF/view/contents/professor/professorInfo.jsp
 	}
 	
-	@RequestMapping("searchById")
+	@RequestMapping("searchByJoin")
 	@ResponseBody
-	public Users getProfessorProfile(String userId){
-	//Business Logic 호출	
-	Users users = service.getUsersByUsersId(userId);
-	System.out.println(users);
-	
-	return users;	
+	public Professor getProfessorRegisterByJoin(String proId){
+	System.out.println(proId);
+	Professor professor = service.getProfessorInfoByJoin(proId);
+	System.out.println(professor.getUsersEngName());
+	return professor;	
 	}
 }

@@ -1,27 +1,27 @@
 /* 1.사용자 */
 CREATE TABLE USERS (
-	USERS_ID VARCHAR2(20) NOT NULL, /* 사용자 ID */
-	USERS_PASSWORD VARCHAR2(20) NOT NULL, /* 비밀번호 */
-	USERS_NAME VARCHAR2(20) NOT NULL, /* 이름 */
-	USERS_ENG_NAME VARCHAR2(20) NOT NULL, /* 영문성명 */
-	USERS_RRN VARCHAR2(20) NOT NULL, /* 주민번호 */
-	USERS_EMAIL VARCHAR2(50) NOT NULL, /* 이메일 */
-	USERS_PHONE_NUM VARCHAR2(20) NOT NULL, /* 집 전화번호 */
-	USERS_CELL_NUM VARCHAR2(20) NOT NULL, /* 핸드폰 번호 */
-	USERS_NATIONAL VARCHAR2(50) NOT NULL, /* 국적 */
-	USERS_CURRENT_ADDR VARCHAR2(300) NOT NULL, /* 현거주지 주소 */
-	USERS_BORN_ADDR VARCHAR2(300) NOT NULL, /* 본적지 주소 */
-	USERS_ENABLE NUMBER(1) NOT NULL, /* 인증가능상태 */
-	USERS_PHOTO VARCHAR2(4000), /* 사진 */
-	PRIMARY KEY(USERS_ID) /* 기본키 설정 */
+   USERS_ID VARCHAR2(20) NOT NULL, /* 사용자 ID */
+   USERS_PASSWORD VARCHAR2(20) NOT NULL, /* 비밀번호 */
+   USERS_NAME VARCHAR2(20) NOT NULL, /* 이름 */
+   USERS_ENG_NAME VARCHAR2(20) NOT NULL, /* 영문성명 */
+   USERS_RRN VARCHAR2(20) NOT NULL, /* 주민번호 */
+   USERS_EMAIL VARCHAR2(50) NOT NULL, /* 이메일 */
+   USERS_PHONE_NUM VARCHAR2(20) NOT NULL, /* 집 전화번호 */
+   USERS_CELL_NUM VARCHAR2(20) NOT NULL, /* 핸드폰 번호 */
+   USERS_NATIONAL VARCHAR2(50) NOT NULL, /* 국적 */
+   USERS_CURRENT_ADDR VARCHAR2(300) NOT NULL, /* 현거주지 주소 */
+   USERS_BORN_ADDR VARCHAR2(300) NOT NULL, /* 본적지 주소 */
+   USERS_ENABLE NUMBER(1) NOT NULL, /* 인증가능상태 */
+   USERS_PHOTO VARCHAR2(4000), /* 사진 */
+   PRIMARY KEY(USERS_ID) /* 기본키 설정 */
 );
 
 /* 2.권한 */
 CREATE TABLE AUTHORITIES (
-	USERS_ID VARCHAR2(20) NOT NULL, /* 사용자 ID */
-	AUTHORITIES_ROLE VARCHAR2(20) NOT NULL, /* 권한 */
-	PRIMARY KEY(USERS_ID), /* 기본키 설정 */
-	FOREIGN KEY (USERS_ID) REFERENCES USERS (USERS_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
+   USERS_ID VARCHAR2(20) NOT NULL, /* 사용자 ID */
+   AUTHORITIES_ROLE VARCHAR2(20) NOT NULL, /* 권한 */
+   PRIMARY KEY(USERS_ID), /* 기본키 설정 */
+   FOREIGN KEY (USERS_ID) REFERENCES USERS (USERS_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
 /* 3.공지사항 */
@@ -342,13 +342,13 @@ CREATE TABLE SUBJECT_PLAN (
 );
 
 /* 15.지도학생 */
-CREATE TABLE GUIDENCE_STUDENT (
-	GUIDENCE_STUDENT_ID NUMBER NOT NULL, /* 지도학생 ID */
+CREATE TABLE GUIDANCE_STUDENT (
+	GUIDANCE_STUDENT_ID NUMBER NOT NULL, /* 지도학생 ID */
 	CONSULTANT_CONTENT VARCHAR2(4000), /* 상담내용 */
 	CONSULTANT_DATE DATE, /* 상담일자 */
 	PRO_ID VARCHAR2(20) NOT NULL, /* 교수 ID */
 	STU_ID VARCHAR2(20) NOT NULL, /* 학생 ID */
-	PRIMARY KEY(GUIDENCE_STUDENT_ID), /* 기본키 설정 */
+	PRIMARY KEY(GUIDANCE_STUDENT_ID), /* 기본키 설정 */
 	FOREIGN KEY (PRO_ID) REFERENCES PROFESSOR(PRO_ID) ON DELETE CASCADE, /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 	FOREIGN KEY (STU_ID) REFERENCES STUDENT(STU_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
@@ -546,7 +546,7 @@ DROP TABLE EVALUATION;
 DROP TABLE EVALUATION_ANSWER;
 DROP TABLE CREDIT;
 DROP TABLE COURSE;
-DROP TABLE GUIDENCE_STUDENT;
+DROP TABLE GUIDANCE_STUDENT;
 DROP TABLE SUBJECT_PLAN;
 DROP TABLE PROFESSOR_SUBJECT;
 DROP TABLE SUBJECT;
@@ -594,9 +594,37 @@ DROP SEQUENCE CREDIT_ID_SEQ;
 
 /*1.사용자*/
 
-INSERT INTO	USERS VALUES ('1','1111','김갑수','KimGabSu','111111-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
-INSERT INTO	USERS VALUES ('2','2222','홍서범','HongSeoBum','222222-2222222','bcd@bcd.bcd','031-222-2222', '010-2222-2222','한국','경기도광주시','경기도 성남시',1,'c:/java');
-INSERT INTO	USERS VALUES ('3','3333','조갑경','ChoGabKyun','111111-1111111','efg@efg.efg','031-333-3333', '010-3333-3333','한국','경기도시흥시','경기도 광주시',0,'c:/java');
+INSERT INTO	USERS VALUES ('1','1111','백진현','aaaa','111101-111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('2','1111','김딘강','bbbb','111102-2222222','bcd@bcd.bcd','031-222-2222', '010-2222-2222','한국','경기도광주시','경기도 성남시',1,'c:/java');
+INSERT INTO	USERS VALUES ('3','1111','현동준','cccc','111103-1111111','efg@efg.efg','031-333-3333', '010-3333-3333','한국','경기도시흥시','경기도 광주시',0,'c:/java');
+INSERT INTO	USERS VALUES ('4','1111','김티겅듀','dddd','111104-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('5','1111','뤼병문','eeee','111105-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('6','1111','최미니','ffff','111106-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('7','1111','노현식','gggg','111107-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('8','1111','김형주','hhhh','111108-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('9','1111','돼지녕','iiii','111109-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('11','1111','손용훈','jjjj','111111-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('12','1111','이승헌','kkkk','111112-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('13','1111','미령이','llll','111113-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('14','1111','천누리','mmmm','111114-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('15','1111','김성환','nnnn','111115-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('16','1111','김경혜','oooo','111116-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('17','1111','서현화','pppp','111117-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('18','1111','왕주니','qqqq','111118-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('19','1111','김장규','rrrr','111119-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('21','1111','은영이','ssss','111121-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('22','1111','하연수','tttt','111122-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('23','1111','김구라','uuuu','111123-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('24','1111','노숙자','vvvv','111124-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('25','1111','황봉알','wwww','111125-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('26','1111','모모','xxxx','111126-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('27','1111','나연','yyyy','111127-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('28','1111','사나','zzzz','111128-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('29','1111','쯔위','zzwi','111129-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('10','1111','김교수','KimGabSu','111110-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('20','1111','이교수','KimGabSu','111120-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+INSERT INTO	USERS VALUES ('30','1111','박교수','KimGabSu','111130-1111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
+
 
 /* 2.권한 */
 INSERT INTO	AUTHORITIES VALUES ('1','관리자');
@@ -665,14 +693,39 @@ INSERT INTO	STANDARD VALUES ('2013','3','10','19','18','5','19');
 
 /* 10.학생 */
 INSERT INTO	STUDENT VALUES ('1','과정구분','미필','2015/01/01','2019/01/01','학적구분','학생구분','3','n','y','1','1','','');
-INSERT INTO	STUDENT VALUES ('2','과정구분','군필','2016/01/01','2020/01/01','학적구분','학생구분','2','n','n','1','2','','');
-INSERT INTO	STUDENT VALUES ('3','과정구분','','2017/01/01','2021/01/01','학적구분','학생구분','1','n','n','1','3','','');
+INSERT INTO	STUDENT VALUES ('2','과정구분','군필','2015/01/01','2019/01/01','학적구분','학생구분','3','n','n','1','1','','');
+INSERT INTO	STUDENT VALUES ('3','과정구분','군필','2015/01/01','2019/01/01','학적구분','학생구분','3','n','n','2','1','','');
+INSERT INTO	STUDENT VALUES ('4','과정구분','군필','2016/01/01','2020/01/01','학적구분','학생구분','2','n','n','1','1','','');
+INSERT INTO	STUDENT VALUES ('5','과정구분','공익','2016/01/01','2020/01/01','학적구분','학생구분','2','n','n','1','1','','');
+INSERT INTO	STUDENT VALUES ('6','과정구분','미필','2016/01/01','2020/01/01','학적구분','학생구분','2','n','y','2','1','','');
+INSERT INTO	STUDENT VALUES ('7','과정구분','군필','2017/01/01','2021/01/01','학적구분','학생구분','1','n','n','1','1','','');
+INSERT INTO	STUDENT VALUES ('8','과정구분','공익','2017/01/01','2021/01/01','학적구분','학생구분','1','n','n','1','1','','');
+INSERT INTO	STUDENT VALUES ('9','과정구분','공익','2017/01/01','2021/01/01','학적구분','학생구분','1','n','n','2','1','','');
 
+INSERT INTO	STUDENT VALUES ('11','과정구분','미필','2015/01/01','2019/01/01','학적구분','학생구분','3','n','y','1','2','','');
+INSERT INTO	STUDENT VALUES ('12','과정구분','군필','2015/01/01','2019/01/01','학적구분','학생구분','3','n','n','1','2','','');
+INSERT INTO	STUDENT VALUES ('13','과정구분','군필','2015/01/01','2019/01/01','학적구분','학생구분','3','n','n','2','2','','');
+INSERT INTO	STUDENT VALUES ('14','과정구분','군필','2016/01/01','2020/01/01','학적구분','학생구분','2','n','n','1','2','','');
+INSERT INTO	STUDENT VALUES ('15','과정구분','공익','2016/01/01','2020/01/01','학적구분','학생구분','2','n','n','1','2','','');
+INSERT INTO	STUDENT VALUES ('16','과정구분','미필','2016/01/01','2020/01/01','학적구분','학생구분','2','n','y','2','2','','');
+INSERT INTO	STUDENT VALUES ('17','과정구분','군필','2017/01/01','2021/01/01','학적구분','학생구분','1','n','n','1','2','','');
+INSERT INTO	STUDENT VALUES ('18','과정구분','공익','2017/01/01','2021/01/01','학적구분','학생구분','1','n','n','1','2','','');
+INSERT INTO	STUDENT VALUES ('19','과정구분','공익','2017/01/01','2021/01/01','학적구분','학생구분','1','n','n','2','2','','');
+
+INSERT INTO	STUDENT VALUES ('21','과정구분','미필','2015/01/01','2019/01/01','학적구분','학생구분','3','n','y','1','3','','');
+INSERT INTO	STUDENT VALUES ('22','과정구분','군필','2015/01/01','2019/01/01','학적구분','학생구분','3','n','n','1','3','','');
+INSERT INTO	STUDENT VALUES ('23','과정구분','군필','2015/01/01','2019/01/01','학적구분','학생구분','3','n','n','2','3','','');
+INSERT INTO	STUDENT VALUES ('24','과정구분','군필','2016/01/01','2020/01/01','학적구분','학생구분','2','n','n','1','3','','');
+INSERT INTO	STUDENT VALUES ('25','과정구분','공익','2016/01/01','2020/01/01','학적구분','학생구분','2','n','n','1','3','','');
+INSERT INTO	STUDENT VALUES ('26','과정구분','미필','2016/01/01','2020/01/01','학적구분','학생구분','2','n','y','2','3','','');
+INSERT INTO	STUDENT VALUES ('27','과정구분','군필','2017/01/01','2021/01/01','학적구분','학생구분','1','n','n','1','3','','');
+INSERT INTO	STUDENT VALUES ('28','과정구분','공익','2017/01/01','2021/01/01','학적구분','학생구분','1','n','n','1','3','','');
+INSERT INTO	STUDENT VALUES ('29','과정구분','공익','2017/01/01','2021/01/01','학적구분','학생구분','1','n','n','2','3','','');
 
 /* 11.교수 */
-INSERT INTO	PROFESSOR VALUES ('1','서울대','서울대학원','031-555-5555','031-555-5555','1','101','201');
-INSERT INTO	PROFESSOR VALUES ('2','고려대','고려대학원','031-666-6666','031-666-6666','2','111','221');
-INSERT INTO	PROFESSOR VALUES ('3','서울대','서울대학원','031-777-7777','031-777-7777','3','110','220');
+INSERT INTO	PROFESSOR VALUES ('10','서울대','서울대학원','031-555-5555','031-555-5555','1','1-104','1-105');
+INSERT INTO	PROFESSOR VALUES ('20','고려대','고려대학원','031-666-6666','031-666-6666','2','2-104','2-105');
+INSERT INTO	PROFESSOR VALUES ('30','서울대','서울대학원','031-777-7777','031-777-7777','3','3-104','3-105');
 
 /* 12.과목 */
 INSERT INTO	SUBJECT VALUES ('1','국문학개론','월123','전공','3','50','40','1','분반1','n','1','1','301');
@@ -708,7 +761,4 @@ INSERT INTO	CREDIT VALUES ('3','2015','1','3','A','90','n','3','3','2015/05/05',
 
 DROP SEQUENCE CREDIT_ID_SEQ;
 DROP SEQUENCE BUILDING_ID_SEQ;
-
-
-
 

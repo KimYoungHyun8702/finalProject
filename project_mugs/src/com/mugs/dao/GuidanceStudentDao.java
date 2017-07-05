@@ -39,4 +39,11 @@ public interface GuidanceStudentDao {
 	 * @return
 	 */
 	GuidanceStudent selectguidanceStudentById(int guidanceStudentId);
-}
+	
+	/**
+	 * 매개변수로 proId를 받아 해당하는 지도학생 list를 조회하는 메소드
+	 * @param proId   String
+	 * @return
+	 */
+	GuidanceStudent selectguidanceStudentListByJoin(String proId);
+}  

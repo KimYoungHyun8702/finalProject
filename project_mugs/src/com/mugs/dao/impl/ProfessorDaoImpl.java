@@ -43,6 +43,11 @@ public class ProfessorDaoImpl implements ProfessorDao{
 	public Professor selectProfessorById(String proId) {
 		return session.selectOne(makeSqlId("selectProfessorById"), proId);
 	}
+
+	@Override
+	public Professor selectProfessorInfoByJoin(String proId) {
+		return session.selectOne(makeSqlId("selectProfessorInfoByJoin"), proId);
+	}
 	
 	
 }

@@ -45,4 +45,9 @@ public class studentDaoImpl implements studentDao{
 	
 		return session.selectList(makeSql("selectStudentList"));
 	}
+
+	@Override
+	public Student selectStudentInfoByJoin(String stuId) {
+		return session.selectOne(makeSql("selectStudentInfoByJoin"), stuId);
+	}
 }
