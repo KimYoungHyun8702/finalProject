@@ -1,5 +1,6 @@
 package com.mugs.service.professor;
 
+import com.mugs.vo.Professor;
 import com.mugs.vo.Users;
 
 
@@ -7,12 +8,12 @@ import com.mugs.vo.Users;
 public interface ProfessorInfoService {
 	
 	/**
-	 * UserID로 교수 개인 정보 조회
-	 * 교수ID는 UserId를 외래키로 받는다
-	 * @param userId
+	 * proId로 교수 개인-학적 정보 조회
+	 * user와 조인관계에 있다
+	 * @param proId
 	 * @return
 	 */
-	Users getUsersByUsersId(String userId);
+	Professor getProfessorInfoByJoin(String proId);
 	
 	/**
 	 * 교수 개인 정보 수정

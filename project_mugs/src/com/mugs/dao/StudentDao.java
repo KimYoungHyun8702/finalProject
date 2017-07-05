@@ -45,7 +45,7 @@ public interface StudentDao {
 	List<Student> selectStudentList();
 	
 	/**
-	 * @author 병문
+	 * @author 병문이꼬
 	 * 학과 이름을 가져오기 위한 select 메소드, 학과 이름은 학생vo의 list에 저장되게 함.
 	 * @return 학생-학과정보 조인한 학생의 정보, 
 	 */

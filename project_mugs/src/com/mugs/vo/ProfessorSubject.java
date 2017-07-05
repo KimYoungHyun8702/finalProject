@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 
 
+
 public class ProfessorSubject implements Serializable {
 
 	private int proSubjectId;
@@ -31,6 +32,17 @@ public class ProfessorSubject implements Serializable {
 		this.proSubjectYear = proSubjectYear;
 		this.proId = proId;
 		this.subjectId = subjectId;
+	}
+	
+	public ProfessorSubject(int proSubjectId, String proSubjectSemester, int proSubjectYear, String proId,
+			int subjectId, Subject subject) {
+		super();
+		this.proSubjectId = proSubjectId;
+		this.proSubjectSemester = proSubjectSemester;
+		this.proSubjectYear = proSubjectYear;
+		this.proId = proId;
+		this.subjectId = subjectId;
+		this.subject = subject;
 	}
 
 	public ProfessorSubject(int proSubjectId, String proSubjectSemester, int proSubjectYear, String proId,

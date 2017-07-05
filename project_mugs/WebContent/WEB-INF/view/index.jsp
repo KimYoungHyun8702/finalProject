@@ -13,9 +13,12 @@
 <h2>이병문 학생</h2>
 <a href="/project_mugs/teststudentInfo.do">test페이지로 이동</a>
 <h2>김영현교수</h2>
-<a href="/project_mugs/view/contents/professor/professorInfo.do">교수 개인 정보</a>
+<a href="${initParam.rootPath }/professorInfo.do">교수 개인 정보</a><br>
+<a href="${initParam.rootPath }/guidanceStudent.do">지도학생</a><br>
+<a href="${initParam.rootPath }/SubjectPlan.do">강의계획서</a><br>
 
-<h1>새롬스 학생</h1>
+
+<h1>조새롬 학생</h1>
 <a href="${initParam.rootPath }/student/getCollegeList.do">기준학점조회</a><br>
 <a href="${initParam.rootPath }/student/getMyTimeTable.do">나의 시간표 조회</a><br>
 <a href="${initParam.rootPath }/student/getMyCourseListByJoin.do">수강신청내역조회 클릭기기</a><br>

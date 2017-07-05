@@ -13,6 +13,7 @@
 	<mvc:view-controller path="/index.do" view-name="index" />
 	
 	
+		
 	<!--학생 관리  -->
 	<mvc:view-controller view-name="contents/admin/student/insertStudent" path="insertStudent.do"/>
 	<mvc:view-controller view-name="contents/admin/student/selectStudent" path="selectStudent.do"/>

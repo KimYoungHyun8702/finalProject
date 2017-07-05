@@ -3,6 +3,15 @@
 <mapper namespace="com.mugs.config.mapper.professorMapper">
 
 	<resultMap id="professor-resultmap" type="professor">
+
+		<result column="pro_laboratory_phone_num" property="proOfficePhoneNum" />
+		<result column="major_id" property="majorId" />
+		<result column="office_id" property="proRoomOfficeId" />
+		<result column="laboratory_id" property="proRoomLaboratoryId" />
+	</resultMap>
+
+	
+	<resultMap id="professor-user-resultmap" type="professor">
       <id column="pro_id" property="proId" />
       <result column="pro_university" property="proUniversity" />
       <result column="pro_grad_school" property="proGradSchool" />
@@ -23,7 +32,7 @@
    </resultMap>
 	
 	<sql id="select-professor">
-	SELECT pro_id, pro_university, pro_grad_school, pro_office_phone_num
+	SELECT pro_id, pro_university, pro_grad_school, pro_office_phone_num, pro_laboratory_phone_num, major_id,office_id,laboratory_id  
 	FROM professor			
 	</sql>
 	
@@ -55,13 +64,27 @@
 		WHERE pro_id = #{proId}
 	</update>
 	
-	<select id="selectupdateProfessorUsers" parameterType="string" resultMap="professor-resultmap">
-		SELECT p.pro_id, p.pro_university, p.pro_grad_school, p.pro_office_phone_num, 
-			   u.users_id, u.users_password, u.users_name, u.users_eng_name,
-			   u.users_rrn, u.users_email, u.users_phone_num, u.users_cell_num,
-			   u.users_national, u.users_current_addr, u.users_born_addr, u.users_enable, u.users_photo
-		from professor p, users u
-		where p.pro_id=u.users_id
-		and p.pro_id=#{value}
+
+	<select id="selectProfessorInfoByJoin" resultMap="professor-user-resultmap">
+		SELECT p.pro_id,
+		  	   p.pro_university,
+		  	   p.pro_grad_school,
+		  	   p.pro_office_phone_num,
+		   	   u.users_id, 
+		  	   u.users_password, 
+		  	   u.users_name,
+		   	   u.users_eng_name,
+		   	   u.users_rrn,
+		   	   u.users_email,
+		   	   u.users_phone_num,
+		  	   u.users_cell_num,
+		  	   u.users_national,
+		  	   u.users_current_addr,
+		  	   u.users_born_addr,
+		       u.users_enable,
+	           u.users_photo
+		FROM   professor p, users u
+		WHERE  p.pro_id = u.users_id
+		AND    p.pro_id = #{value}
 	</select>
 </mapper>

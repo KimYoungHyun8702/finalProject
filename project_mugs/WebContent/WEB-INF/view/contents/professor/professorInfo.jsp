@@ -1,24 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta>
 <title>Insert title here</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){
+	
 	$("#searchBtn").on("click",function(){
 		$.ajax({
-			"url":"/project_mugs/professor/searchById.do",
+			"url":"/project_mugs/professor/searchByJoin.do",
 			"type":"POST",
-			"data":{"userId":$("#userId").val()},
+			"data":{"proId":$("#id").val()},
 			"dataType":"json",
 			"success":function(obj){
-				alert("Á¶È¸¿Ï·á");
-				$("#id").val(obj.usersId);
+				alert("ê°œì¸ì •ë³´ ì¡°íšŒì™„ë£Œ");
+				$("#usersId").val(obj.usersId);
 				$("#usersPassword").val(obj.usersPassword);
 				$("#usersName").val(obj.usersName);
 				$("#usersEngName").val(obj.usersEngName);
@@ -31,37 +32,50 @@ $(document).ready(function(){
 				$("#usersBornAddr").val(obj.usersBornAddr);
 				$("#usersEnable").val(obj.usersEnable);
 				$("#usersPhoto").val(obj.usersPhoto);
+				$("#professorRegiste").empty().append("ì¡¸ì—…ëŒ€í•™ : " + obj.proUniversity + "<br>"+ "ì¡¸ì—…ëŒ€í•™ì› : " + obj.proGradSchool 
+						+ "<br>"+"êµìˆ˜ì‹¤ì „í™”ë²ˆí˜¸ : " + obj.proOfficePhoneNum + "<br>");
+			},
+			"error":function(){
+				alert("ì—ëŸ¬ë°œìƒ");
 			}
-		});	
-	});
+		});
+	}); 
 });
 
 </script>
 
 </head>
 <body>
-±³¼ö°³ÀÎÁ¤º¸~~~
-<form action="/project_mugs/professor/searchById.do" method="post">
-ID<input type="text" id="userId" name="userId">
-<button type="button" id="searchBtn">°Ë»ö</button>
-<div id="result">
+êµìˆ˜ê°œì¸ì •ë³´~~~<br>
+
+ID<input type="text" id="id" name="id">
+<button type="button" id="searchBtn">ê²€ìƒ‰</button>
+
+
+<form action="/project_mugs/professor/updateProfile.do" method="post">
+
+ì•„ì´ë””<input type="text" id="usersId" name="usersId" value="" readonly="readonly"><br>
+ë¹„ë°€ë²ˆí˜¸<input type="text" id="usersPassword" name="usersPassword" value="" readonly="readonly"><br>
+ì„±ëª…<input type="text" id="usersName" name="usersName" value="${param.userName }"><br>
+ì˜ë¬¸ì„±ëª…<input type="text" id="usersEngName" name="usersEngName" value=""><br>
+ì£¼ë¯¼ë²ˆí˜¸<input type="text" id="usersRRN" name="usersRRN" value=""><br>
+ì´ë©”ì¼<input type="text" id="usersEmail" name="usersEmail" value=""><br>
+ì „í™”ë²ˆí˜¸<input type="text" id="usersPhoneNum" name="usersPhoneNum" value=""><br>
+í•¸ë“œí°ë²ˆí˜¸<input type="text" id="usersCellNum" name="usersCellNum" value=""><br>
+êµ­ì <input type="text" id="usersNational" name="usersNational" value=""><br>
+í˜„ì£¼ì†Œ<input type="text" id="usersCurrentAddr" name="usersCurrentAddr" value=""><br>
+ë³¸ì ì§€<input type="text" id="usersBornAddr" name="usersBornAddr" value=""><br>
+ë­ë”ë¼..<input type="text" id="usersEnable" name="usersEnable" value=""><br>
+ì‚¬ì§„ì£¼ì†Œ<input type="text" id="usersPhoto" name="usersPhoto" value=""><br>
+
+<button type="submit" id="updateBtn">ìˆ˜ì •</button>
 </form>
-¾ÆÀÌµğ<input type="text" id="id" value="" readonly="readonly"><br>
-ºñ¹Ğ¹øÈ£<input type="text" id="usersPassword" value="" readonly="readonly"><br>
-¼º¸í<input type="text" id="usersName" value=""><br>
-¿µ¹®¼º¸í<input type="text" id="usersEngName" value=""><br>
-ÁÖ¹Î¹øÈ£<input type="text" id="usersRRN" value=""><br>
-ÀÌ¸ŞÀÏ<input type="text" id="usersEmail" value=""><br>
-ÀüÈ­¹øÈ£<input type="text" id="usersPhoneNum" value=""><br>
-ÇÚµåÆù¹øÈ£<input type="text" id="usersCellNum" value=""><br>
-±¹Àû<input type="text" id="usersNational" value=""><br>
-ÇöÁÖ¼Ò<input type="text" id="usersCurrentAddr" value=""><br>
-º»ÀûÁö<input type="text" id="usersBornAddr" value=""><br>
-¹¹´õ¶ó..<input type="text" id="usersEnable" value=""><br>
-»çÁøÁÖ¼Ò<input type="text" id="usersPhoto" value=""><br>
-<form action="/project_mugs/professor/searchById.do" method="post">
-<button type="button" id="updateBtn">¼öÁ¤</button>
-</form>
+
+<div id="professorRegiste">
+
+</div>
+
+
 
 </body>
 </html>

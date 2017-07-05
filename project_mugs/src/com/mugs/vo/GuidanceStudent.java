@@ -9,6 +9,7 @@ package com.mugs.vo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class GuidanceStudent implements Serializable {
 	
@@ -18,6 +19,7 @@ public class GuidanceStudent implements Serializable {
 	private String stuId;
 	private String proId;
 	private Student student;
+	private List<Student> studentList;
 	
 	public GuidanceStudent() {
 	}
@@ -39,6 +41,29 @@ public class GuidanceStudent implements Serializable {
 		this.stuId = stuId;
 		this.proId = proId;
 		this.student = student;
+	}
+
+	
+	
+	public GuidanceStudent(int guidanceStudentId, String consultantContent, Date consultantDate, String stuId,
+			String proId, Student student, List<Student> studentList) {
+		super();
+		this.guidanceStudentId = guidanceStudentId;
+		this.consultantContent = consultantContent;
+		this.consultantDate = consultantDate;
+		this.stuId = stuId;
+		this.proId = proId;
+		this.studentList = studentList;
+	}
+
+	
+	
+	public List<Student> getStudentList() {
+		return studentList;
+	}
+
+	public void setStudentList(List<Student> studentList) {
+		this.studentList = studentList;
 	}
 
 	public int getGuidanceStudentId() {
