@@ -29,4 +29,7 @@
 	
 
 
+		
+		<!-- 병문 view controller-->
+	<mvc:view-controller path="/teststudentInfo.do" view-name="view/contents/student/test"/>	
 </beans>

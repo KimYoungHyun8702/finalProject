@@ -1,6 +1,8 @@
 package com.mugs.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +12,15 @@ import com.mugs.dao.AcademicCalendarDao;
 import com.mugs.vo.AcademicCalendar;
 
 @Repository
-public class AcademicCalendarDaoImpl implements AcademicCalendarDao{
+public class AcademicCalendarDaoImpl implements AcademicCalendarDao {
 
 	@Autowired
 	private SqlSessionTemplate session;
-	
-	private String makeSql(String tagId){
-		return "com.mugs.config.mapper.academicCalendar."+tagId;
+
+	private String makeSql(String tagId) {
+		return "com.mugs.config.mapper.academicCalendarMapper." + tagId;
 	}
-	
+
 	@Override
 	public int insertAcademicCalendar(AcademicCalendar academicCalendar) {
 		// TODO Auto-generated method stub
@@ -47,6 +49,15 @@ public class AcademicCalendarDaoImpl implements AcademicCalendarDao{
 	public List<AcademicCalendar> selectAcademicCalendarList() {
 		// TODO Auto-generated method stub
 		return session.selectList(makeSql("selectAcademicCalendarList"));
+	}
+
+	@Override
+	public AcademicCalendar selectCalendarByYearCalName(int year, String calName) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("year", year);
+		map.put("calName", calName);
+		return session.selectOne(makeSql("selectCalendarByYearCalName"), map);
 	}
 
 }

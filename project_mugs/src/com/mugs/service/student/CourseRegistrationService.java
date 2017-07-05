@@ -7,6 +7,9 @@ import com.mugs.vo.College;
 import com.mugs.vo.Course;
 import com.mugs.vo.Major;
 import com.mugs.vo.Standard;
+import com.mugs.vo.Professor;
+import com.mugs.vo.ProfessorSubject;
+import com.mugs.vo.Subject;
 
 public interface CourseRegistrationService {
 
@@ -18,6 +21,7 @@ public interface CourseRegistrationService {
 	
 	//
 	List<String> getSubjectType();
+	
 	
 	//
 	List<Major> findMajorByCollegeId(int collegeId);
@@ -44,4 +48,18 @@ public interface CourseRegistrationService {
 	 */
 	Standard findStandardValue(int collegeId, int majorId, int standardYear);
 
+	// 단과대학(학부)의 ID를 매개변수 받아서 해당대학(학부)에 속하는 전체 학과 정보 얻기
+	List<Major> selectMajorByCollegeId(int collegeId);
+	
+	//
+	List<ProfessorSubject> getProfessorSubjectList(int majorId, int nowYear, String subjectSemester);
+	
+	
+	List<ProfessorSubject> getMySubject(int subjectId, String proId, String semester, int majorId);
+
+	
+	//
+	List<ProfessorSubject> deleteMySubject(int subjectId, String proId, String semester, int majorId);
+
+	Subject getSubject(int num);
 }

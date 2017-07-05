@@ -5,6 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/professor/")
-public class AddStudentGradeControllerImpl{
+public class SubjectPlanController{
 
 }

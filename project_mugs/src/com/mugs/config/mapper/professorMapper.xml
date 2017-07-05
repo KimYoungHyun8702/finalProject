@@ -54,4 +54,14 @@
 		pro_office_phone_num = #{proOfficePhoneNum}
 		WHERE pro_id = #{proId}
 	</update>
+	
+	<select id="selectupdateProfessorUsers" parameterType="string" resultMap="professor-resultmap">
+		SELECT p.pro_id, p.pro_university, p.pro_grad_school, p.pro_office_phone_num, 
+			   u.users_id, u.users_password, u.users_name, u.users_eng_name,
+			   u.users_rrn, u.users_email, u.users_phone_num, u.users_cell_num,
+			   u.users_national, u.users_current_addr, u.users_born_addr, u.users_enable, u.users_photo
+		from professor p, users u
+		where p.pro_id=u.users_id
+		and p.pro_id=#{value}
+	</select>
 </mapper>

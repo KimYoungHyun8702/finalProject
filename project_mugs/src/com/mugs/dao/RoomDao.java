@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.mugs.vo.Room;
 
-public interface roomDao {
+public interface RoomDao {
 
 	
 	/**

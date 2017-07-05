@@ -46,6 +46,22 @@ public interface CreditDao {
 	List<Integer> selectYearByStuId(String id);
 
 	/**
+	 * 매개변수로 박은 학생Id와 일치하는 모든 연도들의 성적을 조회.
+	 * 
+	 * @param id
+	 * @return
+	 */
+	List<Credit> selectAllCreditByStuId(String id);
+
+	/**
+	 * 매개변수로 받은 연도와 일치하는 학기들을 조회.
+	 * 
+	 * @param year
+	 * @return
+	 */
+	List<String> selectSemesterByYear(int year);
+
+	/**
 	 * 모든 Credit Data들을 select하는 메소드.
 	 * 
 	 * @return
@@ -77,10 +93,19 @@ public interface CreditDao {
 	 * @param type
 	 * @return
 	 */
-	List<Credit> selectCreditByType(String type);
+	List<Credit> selectCreditByType(int year, String semester, String type);
 
 	/**
-	 * credit_year(학년)와 credit_semester(학기)로 학점테이블의 데이터를 select하는 메소드. ->join
+	 * 학생의 전체 학점리스트에서 subject_type(이수구분)로 학점테이블의 데이터를 select하는 메소드. -> join 연산을 이용해 조회된 과목테이블에
+	 * 대한 정보도 같이 조회한다.
+	 * 
+	 * @param type
+	 * @return
+	 */
+	List<Credit> selectCreditByOneType(String type);
+
+	/**
+	 * credit_year(연도)와 credit_semester(학기)로 학점테이블의 데이터를 select하는 메소드. ->join
 	 * 연산을 이용해 조회된 과목테이블에 대한 정보도 같이 조회한다.
 	 * 
 	 * @param year
@@ -88,4 +113,11 @@ public interface CreditDao {
 	 * @return
 	 */
 	List<Credit> selectCreditByYearAndSemester(int year, String semester);
+	/**
+	 * credit_year(연도)와 subject_type로 학점테이블의 데이터를 select.
+	 * @param year
+	 * @param type
+	 * @return
+	 */
+	List<Credit> selectCreditByYearType(int year, String type);
 }

@@ -36,6 +36,7 @@ public class UsersDaoImpl implements UsersDao {
 	@Override
 	public Users selectUsersById(String id) {
 		// TODO Auto-generated method stub
+		System.out.println(id);
 		return session.selectOne(makeSqlId("selectUsersById"), id);
 	}
 

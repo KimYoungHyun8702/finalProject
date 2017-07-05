@@ -13,12 +13,7 @@
 		   evaluation_passion,
 		   evaluation_question,
 		   pro_id,
-		   subject_id, 
-		   evaluation_start,
-		   evaluation_end,
-		   evaluation_read_start,
-		   evaluation_read_end
-		  
+		   subject_id  
 	FROM   evaluation
 	</sql>
 	
@@ -34,11 +29,6 @@
 		<result column="evaluation_question" property="evaluationQuestion"/>
 		<result column="pro_id" property="proId"/>
 		<result column="subject_id" property="subjectId"/>
-		<result column="evaluation_start" property="evaluationStart"/>
-		<result column="evaluation_end" property="evaluationEnd"/>
-		<result column="evaluation_read_start" property="evaluationReadStart"/>
-		<result column="evaluation_read_end" property="evaluationReadEnd"/>
-		
 	</resultMap>
 	
 	<!-- 평가등록 (등록 전 시퀀스 조회 후 삽입 -->
@@ -58,11 +48,7 @@
 		   		#{evaluationPassion},
 		   		#{evaluationQuestion},
 		   		#{proId},
-		   		#{subjectId},	
-		   		#{evaluationStart},
-		   		#{evaluationEnd},
-		   		#{evaluationReadStart},
-		   		#{evaluationReadEnd}		  					
+		   		#{subjectId}		  					
 				)
 	</insert>
 	
@@ -77,12 +63,7 @@
 		   		evaluation_passion=#{evaluationPassion},
 		   		evaluation_question=#{evaluationQuestion},
 		   		pro_id = 		#{proId},
-		   		subject_id = 	#{subjectId},
-		   		evaluation_start=#{evaluationStart},
-		   		evaluation_end=#{evaluationEnd},
-		   		evaluation_read_start=#{evaluationReadStart},
-		   		evaluation_read_end=#{evaluationReadEnd}
-		   		
+		   		subject_id = 	#{subjectId}   		
 	WHERE 		evaluation_id = #{evaluationId}
 	</update>
 	

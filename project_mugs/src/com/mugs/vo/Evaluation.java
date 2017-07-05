@@ -22,10 +22,6 @@ public class Evaluation implements Serializable {
 	private int evaluationQuestion;
 	private String proId;
 	private int subjectId;
-	private Date evaluationStart;
-	private Date evaluationEnd;
-	private Date evaluationReadStart;
-	private Date evaluationReadEnd;
 	private Subject subject;
 	
 	public Evaluation() {
@@ -33,7 +29,7 @@ public class Evaluation implements Serializable {
 
 	public Evaluation(int evaluationId, int evaluationYear, String evaluationSemester, int evaluationTask,
 			int evaluationExam, int evaluationReady, int evaluationPassion, int evaluationQuestion, String proId,
-			int subjectId, Date evaluationStart, Date evaluationEnd, Date evaluationReadStart, Date evaluationReadEnd) {
+			int subjectId) {
 		this.evaluationId = evaluationId;
 		this.evaluationYear = evaluationYear;
 		this.evaluationSemester = evaluationSemester;
@@ -44,16 +40,11 @@ public class Evaluation implements Serializable {
 		this.evaluationQuestion = evaluationQuestion;
 		this.proId = proId;
 		this.subjectId = subjectId;
-		this.evaluationStart = evaluationStart;
-		this.evaluationEnd = evaluationEnd;
-		this.evaluationReadStart = evaluationReadStart;
-		this.evaluationReadEnd = evaluationReadEnd;
 	}
 
 	public Evaluation(int evaluationId, int evaluationYear, String evaluationSemester, int evaluationTask,
 			int evaluationExam, int evaluationReady, int evaluationPassion, int evaluationQuestion, String proId,
-			int subjectId, Date evaluationStart, Date evaluationEnd, Date evaluationReadStart, Date evaluationReadEnd,
-			Subject subject) {
+			int subjectId, Subject subject) {
 		this.evaluationId = evaluationId;
 		this.evaluationYear = evaluationYear;
 		this.evaluationSemester = evaluationSemester;
@@ -64,10 +55,6 @@ public class Evaluation implements Serializable {
 		this.evaluationQuestion = evaluationQuestion;
 		this.proId = proId;
 		this.subjectId = subjectId;
-		this.evaluationStart = evaluationStart;
-		this.evaluationEnd = evaluationEnd;
-		this.evaluationReadStart = evaluationReadStart;
-		this.evaluationReadEnd = evaluationReadEnd;
 		this.subject = subject;
 	}
 
@@ -151,38 +138,6 @@ public class Evaluation implements Serializable {
 		this.subjectId = subjectId;
 	}
 
-	public Date getEvaluationStart() {
-		return evaluationStart;
-	}
-
-	public void setEvaluationStart(Date evaluationStart) {
-		this.evaluationStart = evaluationStart;
-	}
-
-	public Date getEvaluationEnd() {
-		return evaluationEnd;
-	}
-
-	public void setEvaluationEnd(Date evaluationEnd) {
-		this.evaluationEnd = evaluationEnd;
-	}
-
-	public Date getEvaluationReadStart() {
-		return evaluationReadStart;
-	}
-
-	public void setEvaluationReadStart(Date evaluationReadStart) {
-		this.evaluationReadStart = evaluationReadStart;
-	}
-
-	public Date getEvaluationReadEnd() {
-		return evaluationReadEnd;
-	}
-
-	public void setEvaluationReadEnd(Date evaluationReadEnd) {
-		this.evaluationReadEnd = evaluationReadEnd;
-	}
-
 	public Subject getSubject() {
 		return subject;
 	}
@@ -197,25 +152,19 @@ public class Evaluation implements Serializable {
 				+ ", evaluationSemester=" + evaluationSemester + ", evaluationTask=" + evaluationTask
 				+ ", evaluationExam=" + evaluationExam + ", evaluationReady=" + evaluationReady + ", evaluationPassion="
 				+ evaluationPassion + ", evaluationQuestion=" + evaluationQuestion + ", proId=" + proId + ", subjectId="
-				+ subjectId + ", evaluationStart=" + evaluationStart + ", evaluationEnd=" + evaluationEnd
-				+ ", evaluationReadStart=" + evaluationReadStart + ", evaluationReadEnd=" + evaluationReadEnd
-				+ ", subject=" + subject + "]";
+				+ subjectId + ", subject=" + subject + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((evaluationEnd == null) ? 0 : evaluationEnd.hashCode());
 		result = prime * result + evaluationExam;
 		result = prime * result + evaluationId;
 		result = prime * result + evaluationPassion;
 		result = prime * result + evaluationQuestion;
-		result = prime * result + ((evaluationReadEnd == null) ? 0 : evaluationReadEnd.hashCode());
-		result = prime * result + ((evaluationReadStart == null) ? 0 : evaluationReadStart.hashCode());
 		result = prime * result + evaluationReady;
 		result = prime * result + ((evaluationSemester == null) ? 0 : evaluationSemester.hashCode());
-		result = prime * result + ((evaluationStart == null) ? 0 : evaluationStart.hashCode());
 		result = prime * result + evaluationTask;
 		result = prime * result + evaluationYear;
 		result = prime * result + ((proId == null) ? 0 : proId.hashCode());
@@ -233,11 +182,6 @@ public class Evaluation implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Evaluation other = (Evaluation) obj;
-		if (evaluationEnd == null) {
-			if (other.evaluationEnd != null)
-				return false;
-		} else if (!evaluationEnd.equals(other.evaluationEnd))
-			return false;
 		if (evaluationExam != other.evaluationExam)
 			return false;
 		if (evaluationId != other.evaluationId)
@@ -246,27 +190,12 @@ public class Evaluation implements Serializable {
 			return false;
 		if (evaluationQuestion != other.evaluationQuestion)
 			return false;
-		if (evaluationReadEnd == null) {
-			if (other.evaluationReadEnd != null)
-				return false;
-		} else if (!evaluationReadEnd.equals(other.evaluationReadEnd))
-			return false;
-		if (evaluationReadStart == null) {
-			if (other.evaluationReadStart != null)
-				return false;
-		} else if (!evaluationReadStart.equals(other.evaluationReadStart))
-			return false;
 		if (evaluationReady != other.evaluationReady)
 			return false;
 		if (evaluationSemester == null) {
 			if (other.evaluationSemester != null)
 				return false;
 		} else if (!evaluationSemester.equals(other.evaluationSemester))
-			return false;
-		if (evaluationStart == null) {
-			if (other.evaluationStart != null)
-				return false;
-		} else if (!evaluationStart.equals(other.evaluationStart))
 			return false;
 		if (evaluationTask != other.evaluationTask)
 			return false;

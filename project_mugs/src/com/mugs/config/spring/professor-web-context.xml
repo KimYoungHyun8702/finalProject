@@ -11,4 +11,9 @@
 	
 
 
+	<mvc:annotation-driven />
+	<mvc:view-controller path="view/contents/professor/professorInfo.do" view-name="view/contents/professor/professorInfo"/>
+
+
+
 </beans>

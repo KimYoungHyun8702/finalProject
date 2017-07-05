@@ -4,21 +4,23 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class AcademicCalendar implements Serializable {
-	
+
+
 	private int calendarId;
 	private Date calendarStart;
-	private Date calendarFinsh;
+	private Date calendarFinish;
 	private int calendarYear;
 	private String calendarName;
-	
+
 	public AcademicCalendar() {
 	}
 
-	public AcademicCalendar(int calendarId, Date calendarStart, Date calendarFinsh, int calendarYear,
+	public AcademicCalendar(int calendarId, Date calendarStart, Date calendarFinish, int calendarYear,
 			String calendarName) {
+		super();
 		this.calendarId = calendarId;
 		this.calendarStart = calendarStart;
-		this.calendarFinsh = calendarFinsh;
+		this.calendarFinish = calendarFinish;
 		this.calendarYear = calendarYear;
 		this.calendarName = calendarName;
 	}
@@ -39,12 +41,12 @@ public class AcademicCalendar implements Serializable {
 		this.calendarStart = calendarStart;
 	}
 
-	public Date getCalendarFinsh() {
-		return calendarFinsh;
+	public Date getCalendarFinish() {
+		return calendarFinish;
 	}
 
-	public void setCalendarFinsh(Date calendarFinsh) {
-		this.calendarFinsh = calendarFinsh;
+	public void setCalendarFinish(Date calendarFinish) {
+		this.calendarFinish = calendarFinish;
 	}
 
 	public int getCalendarYear() {
@@ -64,16 +66,10 @@ public class AcademicCalendar implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		return "AcademicCalendar [calendarId=" + calendarId + ", calendarStart=" + calendarStart + ", calendarFinsh="
-				+ calendarFinsh + ", calendarYear=" + calendarYear + ", calendarName=" + calendarName + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((calendarFinsh == null) ? 0 : calendarFinsh.hashCode());
+		result = prime * result + ((calendarFinish == null) ? 0 : calendarFinish.hashCode());
 		result = prime * result + calendarId;
 		result = prime * result + ((calendarName == null) ? 0 : calendarName.hashCode());
 		result = prime * result + ((calendarStart == null) ? 0 : calendarStart.hashCode());
@@ -90,10 +86,10 @@ public class AcademicCalendar implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		AcademicCalendar other = (AcademicCalendar) obj;
-		if (calendarFinsh == null) {
-			if (other.calendarFinsh != null)
+		if (calendarFinish == null) {
+			if (other.calendarFinish != null)
 				return false;
-		} else if (!calendarFinsh.equals(other.calendarFinsh))
+		} else if (!calendarFinish.equals(other.calendarFinish))
 			return false;
 		if (calendarId != other.calendarId)
 			return false;
@@ -111,4 +107,11 @@ public class AcademicCalendar implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "AcademicCalendar [calendarId=" + calendarId + ", calendarStart=" + calendarStart + ", calendarFinish="
+				+ calendarFinish + ", calendarYear=" + calendarYear + ", calendarName=" + calendarName + "]";
+	}
+
 }

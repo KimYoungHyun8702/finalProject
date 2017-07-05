@@ -22,20 +22,21 @@ public class Subject implements Serializable {
 	private int subjectRequest;
 	private Integer subjectGrade;
 	private String subjectClass;
-	private String subjectCloseClass;
+	private char subjectCloseClass;
 	private String subjectSemester;
 	private Integer majorId;
 	private String lectureId;
 	private int remainNum;
 	private SubjectPlan subjectPlan;
+
 	private Map<String, String> YoyilAndGyoshi;
 	
 	public Subject(){}
-	
+
 	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
-			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass,
-			String subjectCloseClass, String subjectSemester, Integer majorId, String lectureId, int remainNum,
-			SubjectPlan subjectPlan, Map<String, String> yoyilAndGyoshi) {
+			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass, char subjectCloseClass,
+			String subjectSemester, Integer majorId, String lectureId, int remainNum, SubjectPlan subjectPlan,
+			Map<String, String> yoyilAndGyoshi) {
 		super();
 		this.subjectId = subjectId;
 		this.subjectName = subjectName;
@@ -54,12 +55,10 @@ public class Subject implements Serializable {
 		this.subjectPlan = subjectPlan;
 		YoyilAndGyoshi = yoyilAndGyoshi;
 	}
-	
 
-	
 	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
-			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass,
-			String subjectCloseClass, String subjectSemester, Integer majorId, String lectureId, int remainNum) {
+			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass, char subjectCloseClass,
+			String subjectSemester, Integer majorId, String lectureId, int remainNum) {
 		super();
 		this.subjectId = subjectId;
 		this.subjectName = subjectName;
@@ -77,16 +76,134 @@ public class Subject implements Serializable {
 		this.remainNum = remainNum;
 	}
 
-	@Override
-	public String toString() {
-		return "Subject [subjectId=" + subjectId + ", subjectName=" + subjectName + ", subjectTime=" + subjectTime
-				+ ", subjectType=" + subjectType + ", subjectCredit=" + subjectCredit + ", subjectCapacity="
-				+ subjectCapacity + ", subjectRequest=" + subjectRequest + ", subjectGrade=" + subjectGrade
-				+ ", subjectClass=" + subjectClass + ", subjectCloseClass=" + subjectCloseClass + ", subjectSemester="
-				+ subjectSemester + ", majorId=" + majorId + ", lectureId=" + lectureId + ", remainNum=" + remainNum
-				+ ", subjectPlan=" + subjectPlan + ", YoyilAndGyoshi=" + YoyilAndGyoshi + "]";
+	public int getSubjectId() {
+		return subjectId;
 	}
-	
+
+	public void setSubjectId(int subjectId) {
+		this.subjectId = subjectId;
+	}
+
+	public String getSubjectName() {
+		return subjectName;
+	}
+
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
+
+	public String getSubjectTime() {
+		return subjectTime;
+	}
+
+	public void setSubjectTime(String subjectTime) {
+		this.subjectTime = subjectTime;
+	}
+
+	public String getSubjectType() {
+		return subjectType;
+	}
+
+	public void setSubjectType(String subjectType) {
+		this.subjectType = subjectType;
+	}
+
+	public int getSubjectCredit() {
+		return subjectCredit;
+	}
+
+	public void setSubjectCredit(int subjectCredit) {
+		this.subjectCredit = subjectCredit;
+	}
+
+	public int getSubjectCapacity() {
+		return subjectCapacity;
+	}
+
+	public void setSubjectCapacity(int subjectCapacity) {
+		this.subjectCapacity = subjectCapacity;
+	}
+
+	public int getSubjectRequest() {
+		return subjectRequest;
+	}
+
+	public void setSubjectRequest(int subjectRequest) {
+		this.subjectRequest = subjectRequest;
+	}
+
+	public Integer getSubjectGrade() {
+		return subjectGrade;
+	}
+
+	public void setSubjectGrade(Integer subjectGrade) {
+		this.subjectGrade = subjectGrade;
+	}
+
+	public String getSubjectClass() {
+		return subjectClass;
+	}
+
+	public void setSubjectClass(String subjectClass) {
+		this.subjectClass = subjectClass;
+	}
+
+	public char getSubjectCloseClass() {
+		return subjectCloseClass;
+	}
+
+	public void setSubjectCloseClass(char subjectCloseClass) {
+		this.subjectCloseClass = subjectCloseClass;
+	}
+
+	public String getSubjectSemester() {
+		return subjectSemester;
+	}
+
+	public void setSubjectSemester(String subjectSemester) {
+		this.subjectSemester = subjectSemester;
+	}
+
+	public Integer getMajorId() {
+		return majorId;
+	}
+
+	public void setMajorId(Integer majorId) {
+		this.majorId = majorId;
+	}
+
+	public String getLectureId() {
+		return lectureId;
+	}
+
+	public void setLectureId(String lectureId) {
+		this.lectureId = lectureId;
+	}
+
+	public int getRemainNum() {
+		return remainNum;
+	}
+
+	public void setRemainNum(int remainNum) {
+		this.remainNum = remainNum;
+	}
+
+	public SubjectPlan getSubjectPlan() {
+		return subjectPlan;
+	}
+
+	public void setSubjectPlan(SubjectPlan subjectPlan) {
+		this.subjectPlan = subjectPlan;
+	}
+
+	public Map<String, String> getYoyilAndGyoshi() {
+		return YoyilAndGyoshi;
+	}
+
+	public void setYoyilAndGyoshi(Map<String, String> yoyilAndGyoshi) {
+		YoyilAndGyoshi = yoyilAndGyoshi;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -97,7 +214,7 @@ public class Subject implements Serializable {
 		result = prime * result + remainNum;
 		result = prime * result + subjectCapacity;
 		result = prime * result + ((subjectClass == null) ? 0 : subjectClass.hashCode());
-		result = prime * result + ((subjectCloseClass == null) ? 0 : subjectCloseClass.hashCode());
+		result = prime * result + subjectCloseClass;
 		result = prime * result + subjectCredit;
 		result = prime * result + ((subjectGrade == null) ? 0 : subjectGrade.hashCode());
 		result = prime * result + subjectId;
@@ -109,6 +226,7 @@ public class Subject implements Serializable {
 		result = prime * result + ((subjectType == null) ? 0 : subjectType.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -142,10 +260,7 @@ public class Subject implements Serializable {
 				return false;
 		} else if (!subjectClass.equals(other.subjectClass))
 			return false;
-		if (subjectCloseClass == null) {
-			if (other.subjectCloseClass != null)
-				return false;
-		} else if (!subjectCloseClass.equals(other.subjectCloseClass))
+		if (subjectCloseClass != other.subjectCloseClass)
 			return false;
 		if (subjectCredit != other.subjectCredit)
 			return false;
@@ -185,102 +300,14 @@ public class Subject implements Serializable {
 			return false;
 		return true;
 	}
-	public int getSubjectId() {
-		return subjectId;
-	}
-	public void setSubjectId(int subjectId) {
-		this.subjectId = subjectId;
-	}
-	public String getSubjectName() {
-		return subjectName;
-	}
-	public void setSubjectName(String subjectName) {
-		this.subjectName = subjectName;
-	}
-	public String getSubjectTime() {
-		return subjectTime;
-	}
-	public void setSubjectTime(String subjectTime) {
-		this.subjectTime = subjectTime;
-	}
-	public String getSubjectType() {
-		return subjectType;
-	}
-	public void setSubjectType(String subjectType) {
-		this.subjectType = subjectType;
-	}
-	public int getSubjectCredit() {
-		return subjectCredit;
-	}
-	public void setSubjectCredit(int subjectCredit) {
-		this.subjectCredit = subjectCredit;
-	}
-	public int getSubjectCapacity() {
-		return subjectCapacity;
-	}
-	public void setSubjectCapacity(int subjectCapacity) {
-		this.subjectCapacity = subjectCapacity;
-	}
-	public int getSubjectRequest() {
-		return subjectRequest;
-	}
-	public void setSubjectRequest(int subjectRequest) {
-		this.subjectRequest = subjectRequest;
-	}
-	public Integer getSubjectGrade() {
-		return subjectGrade;
-	}
-	public void setSubjectGrade(Integer subjectGrade) {
-		this.subjectGrade = subjectGrade;
-	}
-	public String getSubjectClass() {
-		return subjectClass;
-	}
-	public void setSubjectClass(String subjectClass) {
-		this.subjectClass = subjectClass;
-	}
-	public String getSubjectCloseClass() {
-		return subjectCloseClass;
-	}
-	public void setSubjectCloseClass(String subjectCloseClass) {
-		this.subjectCloseClass = subjectCloseClass;
-	}
-	public String getSubjectSemester() {
-		return subjectSemester;
-	}
-	public void setSubjectSemester(String subjectSemester) {
-		this.subjectSemester = subjectSemester;
-	}
-	public Integer getMajorId() {
-		return majorId;
-	}
-	public void setMajorId(Integer majorId) {
-		this.majorId = majorId;
-	}
-	public String getLectureId() {
-		return lectureId;
-	}
-	public void setLectureId(String lectureId) {
-		this.lectureId = lectureId;
-	}
-	public int getRemainNum() {
-		return remainNum;
-	}
-	public void setRemainNum(int remainNum) {
-		this.remainNum = remainNum;
-	}
-	public SubjectPlan getSubjectPlan() {
-		return subjectPlan;
-	}
-	public void setSubjectPlan(SubjectPlan subjectPlan) {
-		this.subjectPlan = subjectPlan;
-	}
-	public Map<String, String> getYoyilAndGyoshi() {
-		return YoyilAndGyoshi;
-	}
-	public void setYoyilAndGyoshi(Map<String, String> yoyilAndGyoshi) {
-		YoyilAndGyoshi = yoyilAndGyoshi;
-	}
 
-	
+	@Override
+	public String toString() {
+		return "Subject [subjectId=" + subjectId + ", subjectName=" + subjectName + ", subjectTime=" + subjectTime
+				+ ", subjectType=" + subjectType + ", subjectCredit=" + subjectCredit + ", subjectCapacity="
+				+ subjectCapacity + ", subjectRequest=" + subjectRequest + ", subjectGrade=" + subjectGrade
+				+ ", subjectClass=" + subjectClass + ", subjectCloseClass=" + subjectCloseClass + ", subjectSemester="
+				+ subjectSemester + ", majorId=" + majorId + ", lectureId=" + lectureId + ", remainNum=" + remainNum
+				+ ", subjectPlan=" + subjectPlan + ", YoyilAndGyoshi=" + YoyilAndGyoshi + "]";
+	}
 }

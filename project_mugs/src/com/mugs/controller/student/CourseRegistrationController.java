@@ -3,6 +3,9 @@ package com.mugs.controller.student;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +18,7 @@ import com.mugs.vo.College;
 import com.mugs.vo.Course;
 import com.mugs.vo.Major;
 import com.mugs.vo.Standard;
+import com.mugs.vo.ProfessorSubject;
 
 @Controller
 @RequestMapping("/student/")
@@ -27,10 +31,9 @@ public class CourseRegistrationController {
 	@Autowired
 	private GraduationManagementService GraduationManagementServiceImpl;
 	
-	@RequestMapping("collegeList")
+	@RequestMapping("getCollegeListAjax")
 	@ResponseBody
-	public List<College> collegeList() {
-		
+	public List<College> getCollegeListAjax() {
 		return courseRegistrationService.getCollegeList();
 	}
 	
@@ -51,12 +54,10 @@ public class CourseRegistrationController {
 	public List<Major> getMajorListByCollegeId(int collegeId) {
 		return courseRegistrationService.findMajorByCollegeId(collegeId);
 	}
+
 	
-	/*@RequestMapping(value="/searchById", produces="text/html;charset=utf-8")
-	public @ResponseBody List searchById(@RequestBody String id) {
-		
-		return list;
-	}*/
+
+
 
 	@RequestMapping("getMyCourseListByJoin")
 	public ModelAndView getMyCourseListByJoin() {
@@ -85,4 +86,28 @@ public class CourseRegistrationController {
 		return courseRegistrationService.findStandardValue(collegeId, majorId, standardYear);
 	}
 	
+	@RequestMapping("subject")
+	@ResponseBody
+	public List<ProfessorSubject> subjectListByMajorId(String majorId, String subjectSemester, String nowYear) {
+		subjectSemester = "1학기";
+		int nowYearInt = Integer.parseInt(nowYear);
+		int majorIdInt = Integer.parseInt(majorId);
+		return courseRegistrationService.getProfessorSubjectList(majorIdInt, nowYearInt, subjectSemester);
+	}
+	
+	@RequestMapping("getMySubject")
+	@ResponseBody
+	public List<ProfessorSubject> getMySubject(String subjectId, String proId, String semester, String majorId) {
+		int subjectIdInt = Integer.parseInt(subjectId);
+		int majorIdInt = Integer.parseInt(majorId);
+		return courseRegistrationService.getMySubject(subjectIdInt, proId, semester, majorIdInt);
+	}
+	
+	@RequestMapping("deleteMySubject")
+	@ResponseBody
+	public List<ProfessorSubject> deleteMySubject(String subjectId, String proId, String semester, String majorId) {
+		int subjectIdInt = Integer.parseInt(subjectId);
+		int majorIdInt = Integer.parseInt(majorId);
+		return courseRegistrationService.deleteMySubject(subjectIdInt, proId, semester, majorIdInt);
+	}
 }
