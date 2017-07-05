@@ -21,7 +21,7 @@ public class Subject implements Serializable {
 	private int subjectRequest;
 	private Integer subjectGrade;
 	private String subjectClass;
-	private String subjectCloseClass;
+	private char subjectCloseClass;
 	private String subjectSemester;
 	private Integer majorId;
 	private String lectureId;
@@ -33,8 +33,8 @@ public class Subject implements Serializable {
 	}
 
 	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
-			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass,
-			String subjectCloseClass, String subjectSemester, Integer majorId, String lectureId) {
+			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass, char subjectCloseClass,
+			String subjectSemester, Integer majorId, String lectureId, int remainNum) {
 		this.subjectId = subjectId;
 		this.subjectName = subjectName;
 		this.subjectTime = subjectTime;
@@ -48,12 +48,12 @@ public class Subject implements Serializable {
 		this.subjectSemester = subjectSemester;
 		this.majorId = majorId;
 		this.lectureId = lectureId;
+		this.remainNum = remainNum;
 	}
 
 	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
-			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass,
-			String subjectCloseClass, String subjectSemester, Integer majorId, String lectureId, int remainNum,
-			SubjectPlan subjectPlan) {
+			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass, char subjectCloseClass,
+			String subjectSemester, Integer majorId, String lectureId, int remainNum, SubjectPlan subjectPlan) {
 		this.subjectId = subjectId;
 		this.subjectName = subjectName;
 		this.subjectTime = subjectTime;
@@ -143,11 +143,11 @@ public class Subject implements Serializable {
 		this.subjectClass = subjectClass;
 	}
 
-	public String getSubjectCloseClass() {
+	public char getSubjectCloseClass() {
 		return subjectCloseClass;
 	}
 
-	public void setSubjectCloseClass(String subjectCloseClass) {
+	public void setSubjectCloseClass(char subjectCloseClass) {
 		this.subjectCloseClass = subjectCloseClass;
 	}
 
@@ -210,7 +210,7 @@ public class Subject implements Serializable {
 		result = prime * result + remainNum;
 		result = prime * result + subjectCapacity;
 		result = prime * result + ((subjectClass == null) ? 0 : subjectClass.hashCode());
-		result = prime * result + ((subjectCloseClass == null) ? 0 : subjectCloseClass.hashCode());
+		result = prime * result + subjectCloseClass;
 		result = prime * result + subjectCredit;
 		result = prime * result + ((subjectGrade == null) ? 0 : subjectGrade.hashCode());
 		result = prime * result + subjectId;
@@ -251,10 +251,7 @@ public class Subject implements Serializable {
 				return false;
 		} else if (!subjectClass.equals(other.subjectClass))
 			return false;
-		if (subjectCloseClass == null) {
-			if (other.subjectCloseClass != null)
-				return false;
-		} else if (!subjectCloseClass.equals(other.subjectCloseClass))
+		if (subjectCloseClass != other.subjectCloseClass)
 			return false;
 		if (subjectCredit != other.subjectCredit)
 			return false;

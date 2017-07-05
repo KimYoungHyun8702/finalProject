@@ -111,6 +111,36 @@
 	<select id="selectStudentList" resultMap="student-basic-resultmap">
 		<include refid="select-student"/>
 	</select>
+	
+	<!-- 병문 : 학생- 학과 join mapper -->
+	
+	<resultMap type="student" id="student-major-resultmap" extends="student-basic-resultmap">
+		<!-- 학생:학과 == 1:1 참조관계-->
+		<!-- 학생의 주전공 -->	
+		<collection ofType="major" property="list" column="major_id">
+		<result column="major_name" property="majorName"/>		
+		</collection>
+		
+	 	
+	</resultMap>
+	
+	<select id="selectStudentMajorName" resultMap="student-major-resultmap">
+		SELECT	   	s.stu_id,
+			       	s.stu_course,
+			   	   	s.stu_army,
+			    	s.stu_admission_date,
+			   		s.stu_graduation_date,
+			   		s.stu_register_state,
+				   	s.stu_student_state,
+				  	s.stu_grade,
+				   	s.stu_graduation_exam,
+				   	s.stu_early_graduation,
+				   	s.stu_semester,
+				   	m.major_id,
+				   	m.major_name
+		FROM 		student s, major m
+		WHERE 		s.major_id = m.major_id(+)
+	</select>
 
 	<select id="selectStudentInfoByJoin" resultMap="student-user-resultmap">
 	SELECT	   s.stu_id,

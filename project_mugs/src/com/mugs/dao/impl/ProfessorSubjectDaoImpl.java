@@ -1,5 +1,6 @@
 package com.mugs.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -49,5 +50,13 @@ public class ProfessorSubjectDaoImpl implements ProfessorSubjectDao{
 		return session.selectList(makeSqlId("selectProfessorSubjectListJoinByProId"),proId);
 	}
 
-
+	/**----- 진현이꼬 --------------*/
+	public List<ProfessorSubject> selectProfessorSubjectList(int majorId, int nowYear, String subjectSemester) {
+		// TODO Auto-generated method stub
+		HashMap map = new HashMap();
+		map.put("majorId", majorId);
+		map.put("nowYear", nowYear);
+		map.put("subjectSemester", subjectSemester);
+		return session.selectList(makeSqlId("selectSubject"), map);
+	}
 }

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mugs.dao.GuidanceStudentDao;
-import com.mugs.dao.studentDao;
+import com.mugs.dao.StudentDao;
 import com.mugs.service.professor.GuidenceStudentService;
 import com.mugs.vo.GuidanceStudent;
 import com.mugs.vo.Student;
@@ -15,7 +15,7 @@ public class GuidenceStudentServiceImpl implements GuidenceStudentService{
 	@Autowired
 	private GuidanceStudentDao dao;
 	@Autowired
-	private studentDao dao2;
+	private StudentDao dao2;
 	
 	@Override
 	public GuidanceStudent getGuidanceStudentListByJoin(String proId) {
@@ -25,7 +25,7 @@ public class GuidenceStudentServiceImpl implements GuidenceStudentService{
 	@Override
 	public Student getStudentInfoByJoin(String stuId) {
 		
-		return dao2.selectStudentInfoByJoin(stuId);
+		return null;
 	}
 
 }

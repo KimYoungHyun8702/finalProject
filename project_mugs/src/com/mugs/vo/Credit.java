@@ -22,16 +22,13 @@ public class Credit implements Serializable {
 	private String creditRecourse;
 	private int subjectId;
 	private String stuId;
-	private Date creditReadStart;
-	private Date creditReadEnd;
 	private Subject subject;
 	
 	public Credit() {
 	}
 
 	public Credit(int creditId, int creditYear, String creditSemester, int creditAcquire, String creditGrade,
-			int creditScore, String creditRecourse, int subjectId, String stuId, Date creditReadStart,
-			Date creditReadEnd) {
+			int creditScore, String creditRecourse, int subjectId, String stuId) {
 		this.creditId = creditId;
 		this.creditYear = creditYear;
 		this.creditSemester = creditSemester;
@@ -41,13 +38,10 @@ public class Credit implements Serializable {
 		this.creditRecourse = creditRecourse;
 		this.subjectId = subjectId;
 		this.stuId = stuId;
-		this.creditReadStart = creditReadStart;
-		this.creditReadEnd = creditReadEnd;
 	}
 
 	public Credit(int creditId, int creditYear, String creditSemester, int creditAcquire, String creditGrade,
-			int creditScore, String creditRecourse, int subjectId, String stuId, Date creditReadStart,
-			Date creditReadEnd, Subject subject) {
+			int creditScore, String creditRecourse, int subjectId, String stuId, Subject subject) {
 		this.creditId = creditId;
 		this.creditYear = creditYear;
 		this.creditSemester = creditSemester;
@@ -57,8 +51,6 @@ public class Credit implements Serializable {
 		this.creditRecourse = creditRecourse;
 		this.subjectId = subjectId;
 		this.stuId = stuId;
-		this.creditReadStart = creditReadStart;
-		this.creditReadEnd = creditReadEnd;
 		this.subject = subject;
 	}
 
@@ -134,22 +126,6 @@ public class Credit implements Serializable {
 		this.stuId = stuId;
 	}
 
-	public Date getCreditReadStart() {
-		return creditReadStart;
-	}
-
-	public void setCreditReadStart(Date creditReadStart) {
-		this.creditReadStart = creditReadStart;
-	}
-
-	public Date getCreditReadEnd() {
-		return creditReadEnd;
-	}
-
-	public void setCreditReadEnd(Date creditReadEnd) {
-		this.creditReadEnd = creditReadEnd;
-	}
-
 	public Subject getSubject() {
 		return subject;
 	}
@@ -162,9 +138,8 @@ public class Credit implements Serializable {
 	public String toString() {
 		return "Credit [creditId=" + creditId + ", creditYear=" + creditYear + ", creditSemester=" + creditSemester
 				+ ", creditAcquire=" + creditAcquire + ", creditGrade=" + creditGrade + ", creditScore=" + creditScore
-				+ ", creditRecourse=" + creditRecourse + ", subjectId=" + subjectId + ", stuId=" + stuId
-				+ ", creditReadStart=" + creditReadStart + ", creditReadEnd=" + creditReadEnd + ", subject=" + subject
-				+ "]";
+				+ ", creditRecourse=" + creditRecourse + ", subjectId=" + subjectId + ", stuId=" + stuId + ", subject="
+				+ subject + "]";
 	}
 
 	@Override
@@ -174,8 +149,6 @@ public class Credit implements Serializable {
 		result = prime * result + creditAcquire;
 		result = prime * result + ((creditGrade == null) ? 0 : creditGrade.hashCode());
 		result = prime * result + creditId;
-		result = prime * result + ((creditReadEnd == null) ? 0 : creditReadEnd.hashCode());
-		result = prime * result + ((creditReadStart == null) ? 0 : creditReadStart.hashCode());
 		result = prime * result + ((creditRecourse == null) ? 0 : creditRecourse.hashCode());
 		result = prime * result + creditScore;
 		result = prime * result + ((creditSemester == null) ? 0 : creditSemester.hashCode());
@@ -203,16 +176,6 @@ public class Credit implements Serializable {
 		} else if (!creditGrade.equals(other.creditGrade))
 			return false;
 		if (creditId != other.creditId)
-			return false;
-		if (creditReadEnd == null) {
-			if (other.creditReadEnd != null)
-				return false;
-		} else if (!creditReadEnd.equals(other.creditReadEnd))
-			return false;
-		if (creditReadStart == null) {
-			if (other.creditReadStart != null)
-				return false;
-		} else if (!creditReadStart.equals(other.creditReadStart))
 			return false;
 		if (creditRecourse == null) {
 			if (other.creditRecourse != null)

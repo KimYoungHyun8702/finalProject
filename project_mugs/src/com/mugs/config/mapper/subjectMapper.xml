@@ -16,24 +16,24 @@
 		subject_semester,
 		major_id,
 		lecture_id
-
 		FROM subject
 	</sql>
 
 	<resultMap type="subject" id="subject-basic-resultmap">
-		<id column="subject_id" property="subjectId" />
-		<result column="subject_name" property="subjectName" />
-		<result column="subject_time" property="subjectTime" />
-		<result column="subject_type" property="subjectType" />
-		<result column="subject_credit" property="subjectCredit" />
-		<result column="subject_capacity" property="subjectCapacity" />
-		<result column="subject_request" property="subjectRequest" />
-		<result column="subject_grade" property="subjectGrade" />
-		<result column="subject_class" property="subjectClass" />
-		<result column="subject_close_class" property="subjectCloseClass" />
-		<result column="subject_semester" property="subjectSemester" />
-		<result column="major_id" property="majorId" />
-		<result column="lecture_id" property="lectureId" />
+		<id column="SUBJECT_ID" property="subjectId" />
+		<result column="SUBJECT_NAME" property="subjectName" />
+		<result column="SUBJECT_TIME" property="subjectTime" />
+		<result column="SUBJECT_TYPE" property="subjectType" />
+		<result column="SUBJECT_CREDIT" property="subjectCredit" />
+		<result column="SUBJECT_CAPACITY" property="subjectCapacity" />
+		<result column="SUBJECT_REQUEST" property="subjectRequest" />
+		<result column="SUBJECT_GRADE" property="subjectGrade" />
+		<result column="SUBJECT_CLASS" property="subjectClass" />
+		<result column="SUBJECT_CLOSE_CLASS" property="subjectCloseClass" />
+		<result column="SUBJECT_SEMESTER" property="subjectSemester" />
+		<result column="MAJOR_ID" property="majorId" />
+		<result column="LECTURE_ID" property="lectureId" />
+		<result column="cnt" property="remainNum" />
 	</resultMap>
 	
 	<!-- insert -->
@@ -51,7 +51,6 @@
 	<update id="updateSubjectById" parameterType="subject">
 		UPDATE subject
 		SET
-		subject_id = #{subjectId},
 		subject_name = #{subjectName},
 		subject_time = #{subjectTime},
 		subject_type = #{subjectType},
@@ -64,7 +63,6 @@
 		subject_semester = #{subjectSemester},
 		major_id = #{majorId},
 		lecture_id =  #{lectureId}
-		
 		WHERE subject_id=#{subjectId}
 	</update>
 
@@ -79,7 +77,7 @@
 		<include refid="select-subject" />
 	</select>
 
-	<select id="selectUsersById" resultMap="subject-basic-resultmap" parameterType="int">
+	<select id="selectSubjectById" resultMap="subject-basic-resultmap" parameterType="int">
 		<include refid="select-subject" />
 		WHERE subject_id= #{value}
 	</select>

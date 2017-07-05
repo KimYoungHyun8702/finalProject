@@ -3,10 +3,6 @@
 <mapper namespace="com.mugs.config.mapper.professorMapper">
 
 	<resultMap id="professor-resultmap" type="professor">
-		<id column="pro_id" property="proId" />
-		<result column="pro_university" property="proUniversity" />
-		<result column="pro_grad_school" property="proGradSchool" />
-		<result column="pro_office_phone_num" property="proOfficePhoneNum" />
 		<result column="pro_laboratory_phone_num" property="proOfficePhoneNum" />
 		<result column="major_id" property="majorId" />
 		<result column="office_id" property="proRoomOfficeId" />
@@ -66,6 +62,7 @@
 		WHERE pro_id = #{proId}
 	</update>
 	
+
 	<select id="selectProfessorInfoByJoin" resultMap="professor-user-resultmap">
 		SELECT p.pro_id,
 		  	   p.pro_university,
@@ -88,5 +85,4 @@
 		WHERE  p.pro_id = u.users_id
 		AND    p.pro_id = #{value}
 	</select>
-	
 </mapper>

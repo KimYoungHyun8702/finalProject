@@ -40,6 +40,7 @@ public interface ProfessorDao {
 	 */
 	Professor selectProfessorById(String proId);
 	
+
 	/** ---------영현이꼬---------
 	 * pro_id를 통해 사용자-교수의 Join된 테이블을 select하는 메소드
 	 * 
@@ -47,4 +48,9 @@ public interface ProfessorDao {
 	 * @return
 	 */
 	Professor selectProfessorInfoByJoin(String proId);
+
+	
+	/**------------진현이꼬-------------------*/
+	Professor selectFullInfoProfessorById(String proId);
+
 }

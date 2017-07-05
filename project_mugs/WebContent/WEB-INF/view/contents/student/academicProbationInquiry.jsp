@@ -6,6 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-aa
+<h2>학사경고 내역</h2>
 </body>
 </html>
