@@ -10,11 +10,11 @@
 	<context:component-scan base-package="com.mugs.controller.admin" />
 	<mvc:annotation-driven />
 	<!-- 메인페이지 -->
-	<mvc:view-controller path="/index.do" view-name="index" />
+	<mvc:view-controller path="/index.do" view-name="view/index" />
 	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/view/" p:suffix=".jsp" />
+		p:prefix="/WEB-INF/" p:suffix=".jsp" />
 		
 	<!--학생 관리  -->
 	<mvc:view-controller view-name="contents/admin/student/insertStudent" path="insertStudent.do"/>

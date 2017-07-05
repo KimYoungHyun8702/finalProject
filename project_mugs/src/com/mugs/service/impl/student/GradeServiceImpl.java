@@ -117,7 +117,7 @@ public class GradeServiceImpl implements GradeService {
 
 	@Override
 	public List<AcademicProbation> getAcademicProbationByStuId(String stuId) {
-		// TODO Auto-generated method stub
+		
 		return apDao.selectAcademicProbationByStuId(stuId);
 	}
 

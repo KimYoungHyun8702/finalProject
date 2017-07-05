@@ -17,7 +17,7 @@ import com.mugs.vo.Credit;
 public class GradeController {
 	@Autowired
 	private GradeService service;
-	
+
 	@RequestMapping("yearInquiry")
 	@ResponseBody
 	public List<Integer> yearInquiry() {
@@ -61,30 +61,31 @@ public class GradeController {
 		List<Credit> list = service.getCreditByType(year, semester, type);
 		return list;
 	}
-	
+
 	@RequestMapping("creditByOneType")
 	@ResponseBody
 	public List<Credit> creditByOneType(String type) {
-		List<Credit> list = service.getCreditByOneType(type); 
+		List<Credit> list = service.getCreditByOneType(type);
 		return list;
 	}
-	
+
 	@RequestMapping("creditByYearType")
 	@ResponseBody
-	public List<Credit> creditByYearType(int year, String type){
+	public List<Credit> creditByYearType(int year, String type) {
 		List<Credit> list = service.getCreditByYearType(year, type);
 		return list;
 	}
-	
+
 	@RequestMapping("currentGradeInquiry")
-	public ModelAndView currentGradeInquiry(){
-		return new ModelAndView("view/contents/student/currentGradeInquiry", "map", service.getCalendarByYearAndCalName());
+	public ModelAndView currentGradeInquiry() {
+		return new ModelAndView("view/contents/student/credit/currentGradeInquiry", "map",
+				service.getCalendarByYearAndCalName());
 	}
-	
+
 	@RequestMapping("academicProbationInquiry")
 	@ResponseBody
-	public ModelAndView academicProbationInquiry(){
-		String id = "사용자1";
-		return new ModelAndView("view/contents/student/academicProbationInquiry", "list", service.getAcademicProbationByStuId(id));
+	public List<AcademicProbation> academicProbationInquiry(String id) {
+		return service.getAcademicProbationByStuId(id);
 	}
+
 }

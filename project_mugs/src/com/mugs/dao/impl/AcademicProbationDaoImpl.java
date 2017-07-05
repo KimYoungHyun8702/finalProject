@@ -51,6 +51,7 @@ public class AcademicProbationDaoImpl implements AcademicProbationDao {
 	@Override
 	public List<AcademicProbation> selectAcademicProbationByStuId(String stuId) {
 		// TODO Auto-generated method stub
+		System.out.println("daoImpl / "+ stuId);
 		return session.selectList(makeSql("selectAcademicProbationByStuId"), stuId);
 	}
 	

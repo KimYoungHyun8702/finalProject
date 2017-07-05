@@ -59,8 +59,7 @@
 	
 	<select id="selectAcademicProbationByStuId" resultMap="academicProbation-count-resultmap" parameterType="string">
 		SELECT probation_id, probation_year, probation_semester, probation_credit_average, stu_id,
-		 (SELECT count(stu_id) FROM academic_probation WHERE stu_id='사용자1') count FROM academic_probation WHERE stu_id=#{value}
-		 
+		 (SELECT count(stu_id) FROM academic_probation WHERE stu_id=#{value}) count FROM academic_probation WHERE stu_id=#{value}
 	</select> 
 
 

@@ -13,27 +13,27 @@ import com.mugs.vo.Users;
 
 @Controller
 @RequestMapping("/professor/")
-public class ProfessorInfoController{
+public class ProfessorInfoController {
 
 	@Autowired
 	private ProfessorInfoService service;
-	
+
 	@RequestMapping("update_profile")
-	public String updateProfessorProfile(@ModelAttribute Users users){
-	
-	//Business Logic 호출	
-	service.updateProfessorInfo(users);	
-	
-	return "view/contents/professor/professorInfo";
+	public String updateProfessorProfile(@ModelAttribute Users users) {
+
+		// Business Logic 호출
+		service.updateProfessorInfo(users);
+
+		return "view/contents/professor/professorInfo";
 	}
-	
+
 	@RequestMapping("searchById")
 	@ResponseBody
-	public Users getProfessorProfile(String userId){
-	//Business Logic 호출	
-	Users users = service.getUsersByUsersId(userId);
-	System.out.println(users);
-	
-	return users;	
+	public Users getProfessorProfile(String userId) {
+		// Business Logic 호출
+		Users users = service.getUsersByUsersId(userId);
+		System.out.println(users);
+
+		return users;
 	}
 }
