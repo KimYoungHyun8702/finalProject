@@ -1,5 +1,6 @@
 package com.mugs.dao.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -51,6 +52,26 @@ public class standardDaoImpl implements standardDao {
 	@Override
 	public List<Standard> selectStandardList() {
 		return session.selectList(makeSql("selectStandardList"));
+	}
+
+	@Override
+	public List<String> selectMajorList() {
+		return session.selectList(makeSql("selectMajorList"));
+	}
+
+	@Override
+	public List<Standard> selectYearListByMajorId(int majorId) {
+		System.out.println(majorId);
+		return session.selectList(makeSql("selectYearListByMajorId"), majorId);
+	}
+
+	@Override
+	public Standard selectStandardValue(int collegeId, int majorId, int standardYear) {
+		HashMap params = new HashMap();
+		params.put("collegeId", collegeId);
+		params.put("majorId", majorId);
+		params.put("standardYear", standardYear);
+		return session.selectOne(makeSql("selectStandardValue"), params);
 	}
 
 	

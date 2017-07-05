@@ -1,7 +1,4 @@
 /**
- * 
- */
-/**
  * @author Administrator
  *
  */
@@ -12,39 +9,44 @@ import java.util.List;
 
 public class Professor extends Users implements Serializable {
 	
-	private String proId;
+	private String proId;   
 	private String proUniversity;
 	private String proGradSchool;
 	private String proOfficePhoneNum;
+	private String proLaboratoryPhoneNum;
 	private Integer majorId;
 	private String proRoomOfficeId;
-	private String proRoomLaboratiryId;
+	private String proRoomLaboratoryId;
 	private List<Object> list;
 	
-	public Professor() {
-	}
+	public Professor() {}
 
 	public Professor(String proId, String proUniversity, String proGradSchool, String proOfficePhoneNum,
-			Integer majorId, String proRoomOfficeId, String proRoomLaboratiryId) {
+			String proLaboratoryPhoneNum, Integer majorId, String proRoomOfficeId, String proRoomLaboratoryId,
+			List<Object> list) {
+		super();
 		this.proId = proId;
 		this.proUniversity = proUniversity;
 		this.proGradSchool = proGradSchool;
 		this.proOfficePhoneNum = proOfficePhoneNum;
+		this.proLaboratoryPhoneNum = proLaboratoryPhoneNum;
 		this.majorId = majorId;
 		this.proRoomOfficeId = proRoomOfficeId;
-		this.proRoomLaboratiryId = proRoomLaboratiryId;
-	}
-
-	public Professor(String proId, String proUniversity, String proGradSchool, String proOfficePhoneNum,
-			Integer majorId, String proRoomOfficeId, String proRoomLaboratiryId, List<Object> list) {
-		this.proId = proId;
-		this.proUniversity = proUniversity;
-		this.proGradSchool = proGradSchool;
-		this.proOfficePhoneNum = proOfficePhoneNum;
-		this.majorId = majorId;
-		this.proRoomOfficeId = proRoomOfficeId;
-		this.proRoomLaboratiryId = proRoomLaboratiryId;
+		this.proRoomLaboratoryId = proRoomLaboratoryId;
 		this.list = list;
+	}
+
+	public Professor(String proId, String proUniversity, String proGradSchool, String proOfficePhoneNum,
+			String proLaboratoryPhoneNum, Integer majorId, String proRoomOfficeId, String proRoomLaboratoryId) {
+		super();
+		this.proId = proId;
+		this.proUniversity = proUniversity;
+		this.proGradSchool = proGradSchool;
+		this.proOfficePhoneNum = proOfficePhoneNum;
+		this.proLaboratoryPhoneNum = proLaboratoryPhoneNum;
+		this.majorId = majorId;
+		this.proRoomOfficeId = proRoomOfficeId;
+		this.proRoomLaboratoryId = proRoomLaboratoryId;
 	}
 
 	public String getProId() {
@@ -79,6 +81,14 @@ public class Professor extends Users implements Serializable {
 		this.proOfficePhoneNum = proOfficePhoneNum;
 	}
 
+	public String getProLaboratoryPhoneNum() {
+		return proLaboratoryPhoneNum;
+	}
+
+	public void setProLaboratoryPhoneNum(String proLaboratoryPhoneNum) {
+		this.proLaboratoryPhoneNum = proLaboratoryPhoneNum;
+	}
+
 	public Integer getMajorId() {
 		return majorId;
 	}
@@ -95,12 +105,12 @@ public class Professor extends Users implements Serializable {
 		this.proRoomOfficeId = proRoomOfficeId;
 	}
 
-	public String getProRoomLaboratiryId() {
-		return proRoomLaboratiryId;
+	public String getProRoomLaboratoryId() {
+		return proRoomLaboratoryId;
 	}
 
-	public void setProRoomLaboratiryId(String proRoomLaboratiryId) {
-		this.proRoomLaboratiryId = proRoomLaboratiryId;
+	public void setProRoomLaboratoryId(String proRoomLaboratoryId) {
+		this.proRoomLaboratoryId = proRoomLaboratoryId;
 	}
 
 	public List<Object> getList() {
@@ -114,8 +124,9 @@ public class Professor extends Users implements Serializable {
 	@Override
 	public String toString() {
 		return "Professor [proId=" + proId + ", proUniversity=" + proUniversity + ", proGradSchool=" + proGradSchool
-				+ ", proOfficePhoneNum=" + proOfficePhoneNum + ", majorId=" + majorId + ", proRoomOfficeId="
-				+ proRoomOfficeId + ", proRoomLaboratiryId=" + proRoomLaboratiryId + ", list=" + list + "]";
+				+ ", proOfficePhoneNum=" + proOfficePhoneNum + ", proLaboratoryPhoneNum=" + proLaboratoryPhoneNum
+				+ ", majorId=" + majorId + ", proRoomOfficeId=" + proRoomOfficeId + ", proRoomLaboratoryId="
+				+ proRoomLaboratoryId + ", list=" + list + "]";
 	}
 
 	@Override
@@ -126,8 +137,9 @@ public class Professor extends Users implements Serializable {
 		result = prime * result + ((majorId == null) ? 0 : majorId.hashCode());
 		result = prime * result + ((proGradSchool == null) ? 0 : proGradSchool.hashCode());
 		result = prime * result + ((proId == null) ? 0 : proId.hashCode());
+		result = prime * result + ((proLaboratoryPhoneNum == null) ? 0 : proLaboratoryPhoneNum.hashCode());
 		result = prime * result + ((proOfficePhoneNum == null) ? 0 : proOfficePhoneNum.hashCode());
-		result = prime * result + ((proRoomLaboratiryId == null) ? 0 : proRoomLaboratiryId.hashCode());
+		result = prime * result + ((proRoomLaboratoryId == null) ? 0 : proRoomLaboratoryId.hashCode());
 		result = prime * result + ((proRoomOfficeId == null) ? 0 : proRoomOfficeId.hashCode());
 		result = prime * result + ((proUniversity == null) ? 0 : proUniversity.hashCode());
 		return result;
@@ -162,15 +174,20 @@ public class Professor extends Users implements Serializable {
 				return false;
 		} else if (!proId.equals(other.proId))
 			return false;
+		if (proLaboratoryPhoneNum == null) {
+			if (other.proLaboratoryPhoneNum != null)
+				return false;
+		} else if (!proLaboratoryPhoneNum.equals(other.proLaboratoryPhoneNum))
+			return false;
 		if (proOfficePhoneNum == null) {
 			if (other.proOfficePhoneNum != null)
 				return false;
 		} else if (!proOfficePhoneNum.equals(other.proOfficePhoneNum))
 			return false;
-		if (proRoomLaboratiryId == null) {
-			if (other.proRoomLaboratiryId != null)
+		if (proRoomLaboratoryId == null) {
+			if (other.proRoomLaboratoryId != null)
 				return false;
-		} else if (!proRoomLaboratiryId.equals(other.proRoomLaboratiryId))
+		} else if (!proRoomLaboratoryId.equals(other.proRoomLaboratoryId))
 			return false;
 		if (proRoomOfficeId == null) {
 			if (other.proRoomOfficeId != null)
@@ -184,4 +201,6 @@ public class Professor extends Users implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 }

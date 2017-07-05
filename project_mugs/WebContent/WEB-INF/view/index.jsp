@@ -10,12 +10,11 @@
 <h1>Index</h1>
 
 
-<h2>인덱스 페이지. 처음페이지.</h2>
-<a href="${initParam.rootPath }/courseStandardView.do">기준학점조회</a><br>
-<a href="${initParam.rootPath }/myTimeTableView.do">나의시간표</a><br>
-<a href="${initParam.rootPath }/course_InformationListView.do">수강내역조회</a><br>
-<a href="${initParam.rootPath }/evaluationAnswerView.do">설문응답평가조회</a><br>
-
+<h1>새롬스 학생</h1>
+<a href="${initParam.rootPath }/student/getCollegeList.do">기준학점조회</a><br>
+<a href="${initParam.rootPath }/student/getMyTimeTable.do">나의 시간표 조회</a><br>
+<a href="${initParam.rootPath }/student/getMyCourseListByJoin.do">수강신청내역조회 클릭기기</a><br>
+<a href="${initParam.rootPath }/student/getEvaluationValueList.do">설문응답평가조회</a><br>
 
 
 <hr>
