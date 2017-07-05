@@ -39,4 +39,8 @@ public interface ProfessorSubjectDao {
 	 * @return
 	 */
 	ProfessorSubject selectProfessorSubjectById(int proSubjectId);
+	
+	
+	
+	List<ProfessorSubject> selectProfessorSubjectList(int majorId, int nowYear, String subjectSemester);
 }

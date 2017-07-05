@@ -16,6 +16,26 @@ CREATE TABLE USERS (
 	PRIMARY KEY(USERS_ID) /* 기본키 설정 */
 );
 
+insert into USERS values('6666', '6666', '김학생', 'kim', '111111-1111111', 'kim@a.com', '043-211-0101', '010-6878-1234', '한국', '충청북도 청주시', '충청북도 청주시', 1, null);
+insert into USERS values('7777', '7777', '이학생', 'lee', '222222-2222222', 'lee@a.com', '043-211-2121', '010-5555-3214', '한국', '충청북도 청주시', '충청북도 청주시', 1, null);
+insert into USERS values('8888', '8888', '박학생', 'park', '333333-3333333', 'park@a.com', '043-212-3131', '010-6666-5555', '한국', '충청북도 충주시', '전라북도 전주시', 1, null);
+insert into USERS values('9999', '9999', '최학생', 'chai', '444444-4444444', 'chai@a.com', '031-213-4343', '010-7777-0000', '한국', '강원도 태백시', '강원도 춘천시', 1, null);
+insert into USERS values('1010', '1010', '현학생', 'hyun', '555555-5555555', 'hyun@a.com', '052-212-5555', '010-8888-1234', '한국', '부산광역시', '경상남도 밀양시', 1, null);
+
+SELECT p.pro_id, p.pro_university, p.pro_grad_school, p.pro_office_phone_num, 
+			   u.users_id, u.users_password, u.users_name, u.users_eng_name,
+			   u.users_rrn, u.users_email, u.users_phone_num, u.users_cell_num,
+			   u.users_national, u.users_current_addr, u.users_born_addr, u.users_enable, u.users_photo
+		from professor p, users u
+		where p.pro_id=u.users_id
+		and p.pro_id='1111';
+
+insert into USERS values('1111', '1111', '김교수', 'kim', '111111-1111111', 'kim@a.com', '000-000-0000', '010-000-0000', '인민공화국', '평양특별시', '서울특별시', 1, null);
+insert into USERS values('2222', '1111', '박교수', 'park', '222222-2222222', 'park@a.com', '031-211-1712', '010-3318-1092', '대한민국', '서울특별시', '서울특별시', 1, null);
+insert into USERS values('3333', '1111', '이교수', 'lee', '333333-3333333', 'lee@a.com', '02-212-8282', '010-2964-9872', '대한민국', '경기도 성남시', '충청북도 청주시', 1, null);
+insert into USERS values('4444', '1111', '최교수', 'chai', '444444-4444444', 'chai@a.com', '043-213-7979', '010-1717-7272', '대한민국', '경기도 수원시', '전라북도 전주시', 1, null);
+insert into USERS values('5555', '1111', '서교수', 'seo', '555555-5555555', 'seo@a.com', '051-211-7942', '010-1910-6543', '대한민국', '경기도 용인시', '제주도 제주특별자치시', 1, null);
+
 /* 2.권한 */
 CREATE TABLE AUTHORITIES (
 	USERS_ID VARCHAR2(20) NOT NULL, /* 사용자 ID */
@@ -40,6 +60,7 @@ CREATE TABLE COLLEGE (
 	COLLEGE_NAME VARCHAR2(30) NOT NULL, /* 단과대학명 */
 	PRIMARY KEY(COLLEGE_ID) /* 기본키 설정 */
 );
+
 INSERT INTO COLLEGE VALUES(1, '컴퓨터정보학과')
 
 insert into COLLEGE values(1, '이공대학');
@@ -184,7 +205,18 @@ CREATE TABLE STUDENT (
 	FOREIGN KEY (MAJOR_DUAL_ID) REFERENCES MAJOR(MAJOR_ID) ON DELETE CASCADE, /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 	FOREIGN KEY (MAJOR_MINOR_ID) REFERENCES MAJOR(MAJOR_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
-INSERT INTO STUDENT VALUES('사용자1', '과정', '군필', SYSDATE, SYSDATE, '재학중', '일반학생', 4, 'Y', 'N', '겨울학기', 1, NULL, NULL)
+
+INSERT INTO STUDENT VALUES('6666', '과정', '군필', SYSDATE, null, '재학', '일반학생', 4, 'Y', 'N', '2학기', 1, NULL, NULL);
+INSERT INTO STUDENT VALUES('7777', '과정', '군필', SYSDATE, null, '휴학', '일반학생', 4, 'Y', 'N', '2학기', 1, NULL, NULL);
+INSERT INTO STUDENT VALUES('8888', '과정', '미필', SYSDATE, null, '졸업유예', '일반학생', 4, 'Y', 'Y', '2학기', 1, NULL, NULL);
+INSERT INTO STUDENT VALUES('9999', '과정', '군필', SYSDATE, null, '재학', '일반학생', 4, 'Y', 'N', '2학기', 1, NULL, NULL);
+INSERT INTO STUDENT VALUES('1010', '과정', '군필', SYSDATE, null, '졸업유예', '일반학생', 4, 'Y', 'Y', '2학기', 1, NULL, NULL);
+
+
+
+
+INSERT INTO STUDENT VALUES('사용자1', '과정', '군필', SYSDATE, SYSDATE, '재학중', '일반학생', 4, 'Y', 'N', '겨울학기', 1, NULL, NULL);
+
 /* 11.교수 */
 CREATE TABLE PROFESSOR (
 	PRO_ID VARCHAR2(20) NOT NULL, /* 교수 ID */
@@ -201,6 +233,12 @@ CREATE TABLE PROFESSOR (
 	FOREIGN KEY (OFFICE_ID) REFERENCES ROOM(ROOM_ID) ON DELETE CASCADE, /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 	FOREIGN KEY (LABORATORY_ID) REFERENCES ROOM(ROOM_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
+
+insert into PROFESSOR values('1111', '김일성군사종합대학', '김일성군사종합대학원', null, null, null, null, null);
+insert into PROFESSOR values('2222', '서울대학교', '서울대학원', '070-1074-1717', '070-0160-0082', 1, '1-101', '1-103');
+insert into PROFESSOR values('3333', '한양대학교', '한양대학원', '070-1079-1718', '070-0170-0084', 1, '1-102', '1-104');
+insert into PROFESSOR values('4444', '한국외국어대학교', '한국외국어대학원', null, null, null, null, null);
+insert into PROFESSOR values('5555', '청주대학교', '청주대학원', null, null, null, null, null);
 
 /* 12.과목 */
 CREATE TABLE SUBJECT (
@@ -322,6 +360,30 @@ CREATE TABLE PROFESSOR_SUBJECT (
 	FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECT(SUBJECT_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
+insert into PROFESSOR_SUBJECT values(1, '1학기', 2017, '2222', 1);
+insert into PROFESSOR_SUBJECT values(2, '1학기', 2017, '2222', 2);
+insert into PROFESSOR_SUBJECT values(3, '1학기', 2017, '2222', 3);
+insert into PROFESSOR_SUBJECT values(4, '1학기', 2017, '2222', 4);
+insert into PROFESSOR_SUBJECT values(5, '1학기', 2017, '2222', 5);
+
+insert into PROFESSOR_SUBJECT values(6, '1학기', 2017, '3333', 6);
+insert into PROFESSOR_SUBJECT values(7, '1학기', 2017, '3333', 7);
+insert into PROFESSOR_SUBJECT values(8, '1학기', 2017, '3333', 8);
+insert into PROFESSOR_SUBJECT values(9, '1학기', 2017, '3333', 9);
+insert into PROFESSOR_SUBJECT values(10, '1학기', 2017, '3333', 10);
+
+insert into PROFESSOR_SUBJECT values(11, '1학기', 2017, '1111', 11);
+insert into PROFESSOR_SUBJECT values(12, '1학기', 2017, '1111', 12);
+insert into PROFESSOR_SUBJECT values(13, '1학기', 2017, '1111', 13);
+insert into PROFESSOR_SUBJECT values(14, '1학기', 2017, '4444', 14);
+insert into PROFESSOR_SUBJECT values(15, '1학기', 2017, '4444', 15);
+
+insert into PROFESSOR_SUBJECT values(16, '1학기', 2017, '4444', 16);
+insert into PROFESSOR_SUBJECT values(17, '1학기', 2017, '5555', 17);
+insert into PROFESSOR_SUBJECT values(18, '1학기', 2017, '5555', 18);
+insert into PROFESSOR_SUBJECT values(19, '1학기', 2017, '5555', 19);
+insert into PROFESSOR_SUBJECT values(20, '1학기', 2017, '4444', 20);
+
 /* 14.강의계획서 */
 CREATE TABLE SUBJECT_PLAN (
 	PLAN_ID NUMBER NOT NULL, /* 강의계획서 ID */
@@ -378,12 +440,13 @@ CREATE TABLE CREDIT (
 	CREDIT_RECOURCE CHAR(1) NOT NULL, /* 재수강여부 */
 	SUBJECT_ID NUMBER NOT NULL, /* 과목 ID */
 	STU_ID VARCHAR2(20) NOT NULL, /* 학생 ID */
-	CREDIT_READ_START DATE NOT NULL, /* 학점열람시작일 */
-	CREDIT_READ_END DATE NOT NULL, /* 학점열람종료일 */
 	PRIMARY KEY(CREDIT_ID), /* 기본키 설정 */
 	FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECT(SUBJECT_ID) ON DELETE CASCADE, /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 	FOREIGN KEY (STU_ID) REFERENCES STUDENT(STU_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
+
+alter table CREDIT drop column CREDIT_READ_START;
+alter table CREDIT drop column CREDIT_READ_END;
 
 INSERT INTO credit VALUES(1, 2016, 2, 3, 'B', 5, 0, 0, '사용자1', SYSDATE, SYSDATE)
 INSERT INTO credit VALUES(2, 2015, 2, 3, 'B', 5, 0, 0, '사용자1', SYSDATE, SYSDATE)
@@ -415,13 +478,24 @@ CREATE TABLE EVALUATION (
 	EVALUATION_QUESTION NUMBER NOT NULL, /* 질의응답(평점 */
 	PRO_ID VARCHAR2(20) NOT NULL, /* 교수 ID */
 	SUBJECT_ID NUMBER NOT NULL, /* 과목 ID */
-	EVALUATION_START DATE NOT NULL, /* 평가시작일 */
-	EVALUATION_END DATE NOT NULL, /* 평가종료일 */
-	EVALUATION_READ_START DATE NOT NULL, /* 평가열람시작일 */
-	EVALUATION_READ_END DATE NOT NULL, /* 평가열람종료일 */
 	PRIMARY KEY(EVALUATION_ID), /* 기본키 설정 */
 	FOREIGN KEY (PRO_ID) REFERENCES PROFESSOR(PRO_ID) ON DELETE CASCADE, /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 	FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECT(SUBJECT_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
+);
+
+
+alter table EVALUATION drop column EVALUATION_START;
+alter table EVALUATION drop column EVALUATION_END;
+alter table EVALUATION drop column EVALUATION_READ_START;
+alter table EVALUATION drop column EVALUATION_READ_END;
+
+/* 학사일정 */
+CREATE TABLE ACADEMIC_CALENDAR (
+	CALENDAR_ID NUMBER NOT NULL, /* 학사일정 ID */
+	CALENDAR_START DATE NOT NULL, /* 일정시작일 */
+	CALENDAR_FINISH DATE NOT NULL, /* 일정종료일 */
+	CALENDAR_YEAR NUMBER NOT NULL, /* 연도 */
+	CALENDAR_NAME VARCHAR2(4000) NOT NULL /* 학사일정명 */
 );
 
 /* 각 테이블의 삭제 */
@@ -458,7 +532,7 @@ CREATE SEQUENCE MAJOR_ID_SEQ; /* 학과 테이블의 기본키에 대한 시퀀�
 CREATE SEQUENCE COLLEGE_ID_SEQ; /* 대학(학부) 테이블의 기본키에 대한 시퀀스 생성 */
 CREATE SEQUENCE COURSE_ID_SEQ; /* 수강 테이블의 기본키에 대한 시퀀스 생성 */
 CREATE SEQUENCE CREDIT_ID_SEQ; /* 학점 테이블의 기본키에 대한 시퀀스 생성 */
-
+create SEQUENCE CALENDAR_ID_SEQ;
 /* 각 테이블의 기본키에 대한 필요 시퀀스 삭제 */
 
 DROP SEQUENCE EVALUATION_ANSWER_ID_SEQ; /* 평가응답 테이블의 기본키에 대한 시퀀스 삭제 */
@@ -478,3 +552,37 @@ SELECT		major_id,
 				college_id
 	FROM 		major
 	where college_id=4;
+
+SELECT ps.pro_subject_id, ps.pro_subject_semester, ps.pro_subject_year, ps.pro_id, ps.subject_id,
+			   p.pro_id, p.pro_university, p.pro_grad_school, p.pro_office_phone_num, 
+			   u.users_id, u.users_password, u.users_name, u.users_eng_name,
+			   u.users_rrn, u.users_email, u.users_phone_num, u.users_cell_num,
+			   u.users_national, u.users_current_addr, u.users_born_addr, u.users_enable, u.users_photo,
+			   s.subject_id, s.subject_name, s.subject_time, s.subject_type, s.subject_credit,
+			   s.subject_capacity, s.subject_request, s.subject_grade, s.subject_class, 
+			   s.subject_close_class, s.subject_semester, s.major_id, s.lecture_id, (s.subject_capacity-s.subject_request) cnt
+		from professor_subject ps, subject s, professor p, users u
+		where ps.subject_id = s.subject_id
+		and ps.pro_id = p.pro_id
+		and p.pro_id = u.users_id
+		and ps.pro_subject_semester='1학기'
+		and ps.pro_subject_year=2017
+		and s.major_id=1
+		
+		
+INSERT INTO USERS VALUES('사용자1', '1111', '조새롬', 'ChoSaeRom', '920327-2151138', 'saerom327@naver.com', '031-809-3817', '010-4172-3817', '한국', '현거주지주소', '본적지주소', 1, '사진');
+INSERT INTO USERS VALUES('교수1', '2222', '조새봄교수', 'DDD', '920327-2151122', 'ssss@ssss.com', '031-000-0000', '000-0000-000-', '한국', '현주소', '본주소', 1, '사진');
+INSERT INTO PROFESSOR VALUES('교수1', '한국외대', '한국외대', '111-1111', '222-2222', 1, '조새봄교수실', '정통과연구실1');
+INSERT INTO COURSE VALUES(100, 2017, '1학기', 1, '사용자1', '교수1')
+
+CREATE TABLE ACADEMIC_PROBATION(
+   PROBATION_ID NUMBER NOT NULL,
+   PROBATION_YEAR NUMBER NOT NULL,
+   PROBATION_SEMESTER VARCHAR2(20) NOT NULL,
+   PROBATION_CREDIT_AVERAGE NUMBER NOT NULL,
+   STU_ID VARCHAR2(20) NOT NULL,
+   PRIMARY KEY(PROBATION_ID),
+   FOREIGN KEY(STU_ID) REFERENCES STUDENT(STU_ID) ON DELETE CASCADE
+);
+
+CREATE SEQUENCE ACADEMIC_PROBATION_ID_SEQ;
