@@ -10,9 +10,45 @@
 	<context:component-scan base-package="com.mugs.controller.admin" />
 	<mvc:annotation-driven />
 	<!-- 메인페이지 -->
-	<mvc:view-controller path="/index.do" view-name="view/index" />
-
+	<mvc:view-controller path="/index.do" view-name="index" />
+	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/" p:suffix=".jsp" />
+		p:prefix="/WEB-INF/view/" p:suffix=".jsp" />
+		
+	<!--학생 관리  -->
+	<mvc:view-controller view-name="contents/admin/student/insertStudent" path="insertStudent.do"/>
+	<mvc:view-controller view-name="contents/admin/student/selectStudent" path="selectStudent.do"/>
+	<mvc:view-controller view-name="contents/admin/student/updateStudent" path="updateStudent.do"/>
+	<mvc:view-controller view-name="contents/admin/student/selectStudentInfo" path="selectStudentInfo.do"/>
+	<!--교수 관리  -->
+	<mvc:view-controller view-name="contents/admin/professor/insertProfessor" path="insertProfessor.do"/>
+	<mvc:view-controller view-name="contents/admin/professor/selectProfessor" path="selectProfessor.do"/>
+	<mvc:view-controller view-name="contents/admin/professor/updateProfessor" path="updateProfessor.do"/>
+	<mvc:view-controller view-name="contents/admin/professor/selectProfessorInfo" path="selectProfessorInfo.do"/>
+	<!--과목 관리  -->
+	<mvc:view-controller view-name="contents/admin/subject/insertSubject" path="insertSubject.do"/>
+	<mvc:view-controller view-name="contents/admin/subject/selectSubject" path="selectSubject.do"/>
+	<mvc:view-controller view-name="contents/admin/subject/updateSubject" path="updateSubject.do"/>
+	<mvc:view-controller view-name="contents/admin/subject/selectSubjectInfo" path="selectSubjectInfo.do"/>
+	<!--학과 관리  -->
+	<mvc:view-controller view-name="contents/admin/major/insertMajor" path="insertMajor.do"/>
+	<mvc:view-controller view-name="contents/admin/major/selectMajor" path="selectMajor.do"/>
+	<mvc:view-controller view-name="contents/admin/major/updateMajor" path="updateMajor.do"/>
+	<mvc:view-controller view-name="contents/admin/major/selectMajorInfo" path="selectMajorInfo.do"/>
+	<!--단과대학 관리  -->
+	<mvc:view-controller view-name="contents/admin/college/insertCollege" path="insertCollege.do"/>
+	<mvc:view-controller view-name="contents/admin/college/selectCollege" path="selectCollege.do"/>
+	<mvc:view-controller view-name="contents/admin/college/updateCollege" path="updateCollege.do"/>
+	<mvc:view-controller view-name="contents/admin/college/selectCollegeInfo" path="selectCollegeInfo.do"/>
+	<!--건물 관리  -->
+	<mvc:view-controller view-name="contents/admin/building/insertBuilding" path="insertBuilding.do"/>
+	<mvc:view-controller view-name="contents/admin/building/selectBuilding" path="selectBuilding.do"/>
+	<mvc:view-controller view-name="contents/admin/building/updateBuilding" path="updateBuilding.do"/>
+	<mvc:view-controller view-name="contents/admin/building/selectBuildingInfo" path="selectBuildingInfo.do"/>
+	<!--강의실 관리  -->
+	<mvc:view-controller view-name="contents/admin/room/insertRoom" path="insertRoom.do"/>
+	<mvc:view-controller view-name="contents/admin/room/selectRoom" path="selectRoom.do"/>
+	<mvc:view-controller view-name="contents/admin/room/updateRoom" path="updateRoom.do"/>
+	<mvc:view-controller view-name="contents/admin/room/selectRoomInfo" path="selectRoomInfo.do"/>
 </beans>

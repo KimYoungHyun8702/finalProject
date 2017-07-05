@@ -14,7 +14,13 @@
 		<mapper resource="com/mugs/config/mapper/authoritiesMapper.xml" />
 		<mapper resource="com/mugs/config/mapper/buildingMapper.xml" />
 		<mapper resource="com/mugs/config/mapper/collegeMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/graduationCreditMapper.xml" />
+      	<mapper resource="com/mugs/config/mapper/guidanceStudentMapper.xml" />
+      	<mapper resource="com/mugs/config/mapper/majorMapper.xml" />
 		<mapper resource="com/mugs/config/mapper/courseMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/graduationCreditMapper.xml" />
+     	<mapper resource="com/mugs/config/mapper/guidanceStudentMapper.xml" />
+     	<mapper resource="com/mugs/config/mapper/majorMapper.xml" />
 		<mapper resource="com/mugs/config/mapper/creditMapper.xml" />
 		<mapper resource="com/mugs/config/mapper/evaluationAnswerMapper.xml" />
 		<mapper resource="com/mugs/config/mapper/evaluationMapper.xml" />
