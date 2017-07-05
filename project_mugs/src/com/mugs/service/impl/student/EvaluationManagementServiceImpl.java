@@ -4,12 +4,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.mugs.dao.CourseDao;
 import com.mugs.dao.EvaluationAnswerDao;
 import com.mugs.service.student.EvaluationManagementService;
 import com.mugs.vo.EvaluationAnswer;
 
+@Service
 public class EvaluationManagementServiceImpl implements EvaluationManagementService {
 
 	@Autowired

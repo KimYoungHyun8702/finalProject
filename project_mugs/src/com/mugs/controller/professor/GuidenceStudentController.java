@@ -22,7 +22,7 @@ public class GuidenceStudentController{
 	public GuidanceStudent getGuidanceStudentList(String proId){
 	//Business Logic 호출	
 	GuidanceStudent guideStu = service.getGuidanceStudentListByJoin(proId);
-	System.out.println(guideStu);
+	
 	
 	return guideStu;	
 	}

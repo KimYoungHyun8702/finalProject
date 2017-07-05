@@ -16,7 +16,7 @@
 	</resultMap>
 	
 	
-	<resultMap type="professorSubject" id="professorSubject-subject-professor-resultmap" extends="professorSubject-resultmap">
+	<resultMap type="professorSubject" id="professorSubject-subject-professor-resultmap" extends="professor_subject-resultmap">
 		<association property="professor" resultMap="com.mugs.config.mapper.professorMapper.professor-resultmap"/>
 		<association property="subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-basic-resultmap"/>
 	</resultMap>

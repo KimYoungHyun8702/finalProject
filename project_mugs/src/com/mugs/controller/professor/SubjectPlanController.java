@@ -20,12 +20,10 @@ public class SubjectPlanController{
 	@RequestMapping("searchSubjectListById")
 	@ResponseBody
 	public List<ProfessorSubject> getProfessorSubjectList(String proId){
-		System.out.println(proId);
+		
 		//Business Logic 호출	
 		List<ProfessorSubject> list = service.getProfessorSubjectInfoByJoin(proId);
-		for(int i=0; i<list.size(); i++){
-			System.out.println(list.get(i));
-		}
+		
 		return list;
 	}
 }

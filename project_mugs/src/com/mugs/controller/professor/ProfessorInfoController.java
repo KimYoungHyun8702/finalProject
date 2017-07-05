@@ -21,7 +21,7 @@ public class ProfessorInfoController{
 	
 	@RequestMapping("updateProfile")
 	public String updateProfessorProfile(@ModelAttribute Users users){
-	System.out.println(users);
+	
 	//Business Logic 호출	
 	service.updateProfessorInfo(users);
 	return "contents/professor/professorInfo"; //WEB-INF/view/contents/professor/professorInfo.jsp
@@ -30,9 +30,9 @@ public class ProfessorInfoController{
 	@RequestMapping("searchByJoin")
 	@ResponseBody
 	public Professor getProfessorRegisterByJoin(String proId){
-	System.out.println(proId);
+	
 	Professor professor = service.getProfessorInfoByJoin(proId);
-	System.out.println(professor.getUsersEngName());
+	
 	return professor;	
 	}
 }

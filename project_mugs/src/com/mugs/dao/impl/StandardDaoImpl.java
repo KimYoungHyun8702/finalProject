@@ -61,7 +61,7 @@ public class StandardDaoImpl implements StandardDao {
 
 	@Override
 	public List<Standard> selectYearListByMajorId(int majorId) {
-		System.out.println(majorId);
+		
 		return session.selectList(makeSql("selectYearListByMajorId"), majorId);
 	}
 
