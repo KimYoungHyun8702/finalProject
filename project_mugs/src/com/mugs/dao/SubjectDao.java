@@ -2,9 +2,11 @@ package com.mugs.dao;
 
 import java.util.List;
 
+import com.mugs.vo.ProfessorSubject;
 import com.mugs.vo.Subject;
 
 public interface SubjectDao {
+	
 	/**
 	 * 한 개의 과목에 대한 데이터를 insert하는 메소드
 	 * 
@@ -45,7 +47,12 @@ public interface SubjectDao {
 	List<Subject> selectSubjectList();
 	
 	/**
+<<<<<<< HEAD
 	 * SubjectType 전체 조회 메소드. 
+=======
+	 * 
+	 * 
+>>>>>>> branch 'master' of https://github.com/KimYoungHyun8702/finalProject.git
 	 * @return
 	 */
 	List<String> subjectTypeList();

@@ -34,9 +34,21 @@ public interface ProfessorSubjectDao {
 	List<ProfessorSubject> selectProfessorSubjectList();
 	
 	/**
-	 * 매개변수로 proSubjectId를 받아 해당되는 교수 담당과목을 조회하는 메소드
+	 * 매개변수로 proSubjectId를 받아 해당되는 교수 담당과목을 조회하는 메소드(보류)
 	 * @param proSubjectId
 	 * @return
 	 */
 	ProfessorSubject selectProfessorSubjectById(int proSubjectId);
+	
+
+	/**
+	 * 매개변수로 proId를 받아 해당되는 교수 담당과목 list를 조회하는 메소드
+	 * @param proId
+	 * @return
+	 */
+	List<ProfessorSubject> selectProfessorSubjectListJoinByProId(String proId);
+
+	
+	/**---------------진현이꼬-----------*/
+	List<ProfessorSubject> selectProfessorSubjectList(int majorId, int nowYear, String subjectSemester);
 }

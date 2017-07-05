@@ -8,12 +8,37 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<context:component-scan base-package="com.mugs.controller.student" />
-	<mvc:annotation-driven />
+
+
+	
+	
+	<mvc:view-controller path="/index.do" view-name="view/index" />
+	<mvc:view-controller path="/courseStandardView.do" view-name="contents/student/standard/courseStandardView"/>
+	<mvc:view-controller path="/myTimeTableView.do" view-name="contents/student/timeTable/myTimeTableView"/>
+	<mvc:view-controller path="/course_InformationListView.do" view-name="/contents/student/courseInformationList/course_InformationListView"/>
+	<mvc:view-controller path="/evaluationAnswerRegisteration.do" view-name="/contents/student/evaluationAnswer/evaluationAnswerRegisteration"/>
+	<mvc:view-controller path="/evaluationAnswerView.do" view-name="contents/student/evaluationAnswer/evaluationAnswerView"/>
+	<mvc:view-controller path="/myTimeTableViewBeforeCategoryTab.do" view-name="contents/student/timeTable/myTimeTableViewBeforeCategoryTab"/>
+	
+	
+	<mvc:view-controller path="/index.do" view-name="/index" />
+	<mvc:view-controller path="/courseStandardView.do" view-name="/view/contents/student/standard/courseStandardView"/>
+	<mvc:view-controller path="/myTimeTableView.do" view-name="/view/contents/student/timeTable/myTimeTableView"/>
+	<mvc:view-controller path="/course_InformationListView.do" view-name="/view/contents/student/courseInformationList/course_InformationListView"/>
+	<mvc:view-controller path="/evaluationAnswerRegisteration.do" view-name="/view/contents/student/evaluationAnswer/evaluationAnswerRegisteration"/>
+	<mvc:view-controller path="/evaluationAnswerView.do" view-name="/view/contents/student/evaluationAnswer/evaluationAnswerView"/>
+
 
 	<mvc:view-controller path="/gradeInquiry.do" view-name="view/contents/student/gradeInquiry" />
-	
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/" p:suffix=".jsp" />
 
+	
+	
+
+
+		
+
+
+		
+		<!-- 병문 view controller-->
+	<mvc:view-controller path="/teststudentInfo.do" view-name="view/contents/student/test"/>	
 </beans>

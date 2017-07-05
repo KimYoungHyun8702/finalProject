@@ -21,6 +21,7 @@ public class Course implements Serializable {
 	private Subject subject;
 	private Student student;
 	private Professor professor;
+	
 
 	public Course() {
 	}

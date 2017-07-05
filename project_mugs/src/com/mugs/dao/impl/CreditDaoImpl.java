@@ -48,6 +48,18 @@ public class CreditDaoImpl implements CreditDao {
 	}
 
 	@Override
+	public List<Credit> selectAllCreditByStuId(String id) {
+		// TODO Auto-generated method stub
+		return session.selectList(makeSqlId("selectAllCreditByStuId"), id);
+	}
+
+	@Override
+	public List<String> selectSemesterByYear(int year) {
+		// TODO Auto-generated method stub
+		return session.selectList(makeSqlId("selectSemesterByYear"), year);
+	}
+
+	@Override
 	public List<Credit> selectCreditList() {
 		// TODO Auto-generated method stub
 		return session.selectList(makeSqlId("selectCreditList"));
@@ -66,9 +78,19 @@ public class CreditDaoImpl implements CreditDao {
 	}
 
 	@Override
-	public List<Credit> selectCreditByType(String type) {
+	public List<Credit> selectCreditByType(int year, String semester, String type) {
 		// TODO Auto-generated method stub
-		return session.selectList(makeSqlId("selectCreditByType"), type);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("year", year);
+		map.put("semester", semester);
+		map.put("type", type);
+		return session.selectList(makeSqlId("selectCreditByType"), map);
+	}
+
+	@Override
+	public List<Credit> selectCreditByOneType(String type) {
+		// TODO Auto-generated method stub
+		return session.selectList(makeSqlId("selectCreditByOneType"), type);
 	}
 
 	@Override
@@ -82,7 +104,17 @@ public class CreditDaoImpl implements CreditDao {
 	}
 
 	private String makeSqlId(String id) {
-		return "com.mugs.config.mapper.creditMapper."+id;
+		return "com.mugs.config.mapper.creditMapper." + id;
+	}
+
+	@Override
+	public List<Credit> selectCreditByYearType(int year, String type) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("year", year);
+		map.put("type", type);
+		
+		return session.selectList(makeSqlId("selectCreditByYearType"), map);
 	}
 
 }

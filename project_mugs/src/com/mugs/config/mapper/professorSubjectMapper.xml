@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mugs.mybatis.config.mapper.professorSubjectMapper">
+<mapper namespace="com.mugs.config.mapper.professorSubjectMapper">
+
+
 	<resultMap id="professor_subject-resultmap" type="professorSubject">
 		<id column="pro_subject_id" property="proSubjectId" />
 		<result column="pro_subject_semester" property="proSubjectSemester" />
 		<result column="pro_subject_year" property="proSubjectYear" />
+		<result column="pro_id" property="proId"/>
+		<result column="subject_id" property="subjectId"/>
 	</resultMap>
 	
+	<resultMap id="professor_subject-subject-resultmap" type="professorSubject" extends="professor_subject-resultmap">
+		<association property="subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-basic-resultmap"/>
+	</resultMap>
+	
+	
+	<resultMap type="professorSubject" id="professorSubject-subject-professor-resultmap" extends="professor_subject-resultmap">
+		<association property="professor" resultMap="com.mugs.config.mapper.professorMapper.professor-resultmap"/>
+		<association property="subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-basic-resultmap"/>
+	</resultMap>
+
 	<sql id="select-professor_subject">
-	SELECT pro_subject_id, pro_subject_semester, pro_subject_year
+	SELECT pro_subject_id, pro_subject_semester, pro_subject_year, pro_id, subject_id
 	FROM professor_subject		
 	</sql>
 	
@@ -24,7 +38,7 @@
 
 	<insert id="insertProfessorSubject" parameterType="professorSubject">
 		INSERT INTO professor_subject
-		VALUES(#{proSubjectId},#{proSubjectSemester},#{proSubjectYear})
+		VALUES(#{proSubjectId}, #{proSubjectSemester}, #{proSubjectYear}, #{proId}, #{subjectId})
 	</insert>
 
 	<delete id="deleteProfessorSubjectById" parameterType="int">
@@ -33,10 +47,57 @@
 	</delete>
 
 	<update id="updateProfessorSubject" parameterType="professorSubject">
-		UPDATE professor_subject
-		SET
-		pro_subject_semester = #{proSubjectSemester}, 
-		pro_subject_year = #{proSubjectYear}
-		WHERE pro_subject_id = #{proSubjectId}
+		UPDATE 	professor_subject
+		SET		pro_subject_semester = #{proSubjectSemester}, 
+				pro_subject_year = #{proSubjectYear}
+		WHERE 	pro_subject_id = #{proSubjectId}
 	</update>
+	
+
+	<!-- 담당과목 테이블에서 교수id로 담당과목을 찾는다(과목 조인) -->
+	<select id="selectProfessorSubjectListJoinByProId" resultMap="professor_subject-subject-resultmap" parameterType="string">
+	SELECT 
+	p.pro_subject_id, 
+	p.pro_subject_semester, 
+	p.pro_subject_year, 
+	p.pro_id, 
+	p.subject_id,
+	s.subject_id,
+	s.subject_name,
+	s.subject_time,
+	s.subject_type,
+	s.subject_credit,
+	s.subject_capacity,
+	s.subject_request,
+	s.subject_grade,
+	s.subject_class,
+	s.subject_close_class,
+	s.subject_semester,
+	s.major_id,
+	s.lecture_id
+	FROM professor_subject p, subject s 	
+	WHERE p.subject_id = s.subject_id
+	AND pro_id = #{value}
+	</select>
+
+	<!-- 진현이꼬 -->
+	<select id="selectSubject" resultMap="professorSubject-subject-professor-resultmap" parameterType="map">
+		SELECT ps.pro_subject_id, ps.pro_subject_semester, ps.pro_subject_year, ps.pro_id, ps.subject_id,
+			   p.pro_id, p.pro_university, p.pro_grad_school, p.pro_office_phone_num, 
+			   u.users_id, u.users_password, u.users_name, u.users_eng_name,
+			   u.users_rrn, u.users_email, u.users_phone_num, u.users_cell_num,
+			   u.users_national, u.users_current_addr, u.users_born_addr, u.users_enable, u.users_photo,
+			   s.subject_id, s.subject_name, s.subject_time, s.subject_type, s.subject_credit,
+			   s.subject_capacity, s.subject_request, s.subject_grade, s.subject_class,
+			   s.subject_close_class, s.subject_semester, s.major_id, s.lecture_id,
+			   (s.subject_capacity-s.subject_request) cnt
+		from professor_subject ps, professor p, users u, subject s
+		where ps.pro_id = p.pro_id
+		and ps.subject_id = s.subject_id
+		and p.pro_id = u.users_id
+		and ps.pro_subject_semester=#{subjectSemester}
+		and ps.pro_subject_year=#{nowYear}
+		and s.major_id=#{majorId}
+	</select>
+	
 </mapper>

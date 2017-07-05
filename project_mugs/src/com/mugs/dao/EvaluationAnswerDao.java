@@ -39,4 +39,12 @@ public interface EvaluationAnswerDao {
 	 */
 	EvaluationAnswer selectEvaluationAnswerById(int eaId);
 
+	/**
+	 * 현재 로그인한 id, 현재년도, 현재학기를 매개변수로 받아서 수강한 과목의 평가응답상태를 조회하는 메소드
+	 * @param loginIn
+	 * @param nowYear
+	 * @param nowSemester
+	 * @return
+	 */
+	List<EvaluationAnswer> selectEvaluationAnswerValueList(String loginIn, int nowYear, String nowSemester);
 }
