@@ -16,7 +16,7 @@ public class GraduationCreditDaoImpl implements GraduationCreditDao{
 	private SqlSessionTemplate session;
 	
 	private String makeSqlId(String id){
-		return "com.mugs.mybatis.config.mapper.GraduationCreditMapper."+id;
+		return "com.mugs.config.mapper.graduationCreditMapper."+id;
 	}
 	
 	@Override
@@ -50,4 +50,9 @@ public class GraduationCreditDaoImpl implements GraduationCreditDao{
 		return session.selectOne(makeSqlId("selectGraduationCreditById"), map);
 	}
 
+	@Override
+	public List<GraduationCredit> selectGraduationCreditByMajorId(int majorId) {
+		return session.selectList(makeSqlId("selectGraduationCreditByMajorId"),majorId);
+	}
+	
 }

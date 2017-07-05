@@ -4,9 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-
-</script>
 </head>
 <body>
 	<form action="${initParam.rootPath }/admin/updateBuildingController.do" method="post" onsubmit="return confirm('수정하시겠습니까?')">

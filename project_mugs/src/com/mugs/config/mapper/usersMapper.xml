@@ -50,7 +50,7 @@
 		users_password=#{usersPassword},
 		users_name=#{usersName},
 		users_eng_name=#{usersEngName},
-		users_rrn=#{usersRrn},
+		users_rrn=#{usersRRN},
 		users_email=#{usersEmail},
 		users_phone_num=#{usersPhoneNum},
 		users_cell_num=#{usersCellNum},

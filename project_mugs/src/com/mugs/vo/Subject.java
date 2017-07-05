@@ -8,7 +8,6 @@
 package com.mugs.vo;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class Subject implements Serializable {
 	
@@ -27,6 +26,37 @@ public class Subject implements Serializable {
 	private String lectureId;
 	private int remainNum;
 	private SubjectPlan subjectPlan;
+	private Major major;
+	private College college;
+	private Room room;
+	private Building building;
+	
+
+	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
+			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass,
+			String subjectCloseClass, String subjectSemester, Integer majorId, String lectureId, int remainNum,
+			SubjectPlan subjectPlan, Major major, College college, Room room, Building building) {
+		super();
+		this.subjectId = subjectId;
+		this.subjectName = subjectName;
+		this.subjectTime = subjectTime;
+		this.subjectType = subjectType;
+		this.subjectCredit = subjectCredit;
+		this.subjectCapacity = subjectCapacity;
+		this.subjectRequest = subjectRequest;
+		this.subjectGrade = subjectGrade;
+		this.subjectClass = subjectClass;
+		this.subjectCloseClass = subjectCloseClass;
+		this.subjectSemester = subjectSemester;
+		this.majorId = majorId;
+		this.lectureId = lectureId;
+		this.remainNum = remainNum;
+		this.subjectPlan = subjectPlan;
+		this.major = major;
+		this.college = college;
+		this.room = room;
+		this.building = building;
+	}
 
 	public Subject() {
 		super();
@@ -69,6 +99,103 @@ public class Subject implements Serializable {
 		this.lectureId = lectureId;
 		this.remainNum = remainNum;
 		this.subjectPlan = subjectPlan;
+	}
+
+	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
+			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass,
+			String subjectCloseClass, String subjectSemester, Integer majorId, String lectureId, int remainNum,
+			SubjectPlan subjectPlan, Major major) {
+		super();
+		this.subjectId = subjectId;
+		this.subjectName = subjectName;
+		this.subjectTime = subjectTime;
+		this.subjectType = subjectType;
+		this.subjectCredit = subjectCredit;
+		this.subjectCapacity = subjectCapacity;
+		this.subjectRequest = subjectRequest;
+		this.subjectGrade = subjectGrade;
+		this.subjectClass = subjectClass;
+		this.subjectCloseClass = subjectCloseClass;
+		this.subjectSemester = subjectSemester;
+		this.majorId = majorId;
+		this.lectureId = lectureId;
+		this.remainNum = remainNum;
+		this.subjectPlan = subjectPlan;
+		this.major = major;
+	}
+
+	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
+			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass,
+			String subjectCloseClass, String subjectSemester, Integer majorId, String lectureId, int remainNum,
+			SubjectPlan subjectPlan, Major major, College college) {
+		super();
+		this.subjectId = subjectId;
+		this.subjectName = subjectName;
+		this.subjectTime = subjectTime;
+		this.subjectType = subjectType;
+		this.subjectCredit = subjectCredit;
+		this.subjectCapacity = subjectCapacity;
+		this.subjectRequest = subjectRequest;
+		this.subjectGrade = subjectGrade;
+		this.subjectClass = subjectClass;
+		this.subjectCloseClass = subjectCloseClass;
+		this.subjectSemester = subjectSemester;
+		this.majorId = majorId;
+		this.lectureId = lectureId;
+		this.remainNum = remainNum;
+		this.subjectPlan = subjectPlan;
+		this.major = major;
+		this.college = college;
+	}
+
+	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
+			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass,
+			String subjectCloseClass, String subjectSemester, Integer majorId, String lectureId, int remainNum,
+			SubjectPlan subjectPlan, Major major, College college, Room room) {
+		super();
+		this.subjectId = subjectId;
+		this.subjectName = subjectName;
+		this.subjectTime = subjectTime;
+		this.subjectType = subjectType;
+		this.subjectCredit = subjectCredit;
+		this.subjectCapacity = subjectCapacity;
+		this.subjectRequest = subjectRequest;
+		this.subjectGrade = subjectGrade;
+		this.subjectClass = subjectClass;
+		this.subjectCloseClass = subjectCloseClass;
+		this.subjectSemester = subjectSemester;
+		this.majorId = majorId;
+		this.lectureId = lectureId;
+		this.remainNum = remainNum;
+		this.subjectPlan = subjectPlan;
+		this.major = major;
+		this.college = college;
+		this.room = room;
+	}
+
+	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
+			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass,
+			String subjectCloseClass, String subjectSemester, Integer majorId, String lectureId, int remainNum,
+			SubjectPlan subjectPlan, Major major, College college, Building building) {
+		super();
+		this.subjectId = subjectId;
+		this.subjectName = subjectName;
+		this.subjectTime = subjectTime;
+		this.subjectType = subjectType;
+		this.subjectCredit = subjectCredit;
+		this.subjectCapacity = subjectCapacity;
+		this.subjectRequest = subjectRequest;
+		this.subjectGrade = subjectGrade;
+		this.subjectClass = subjectClass;
+		this.subjectCloseClass = subjectCloseClass;
+		this.subjectSemester = subjectSemester;
+		this.majorId = majorId;
+		this.lectureId = lectureId;
+		this.remainNum = remainNum;
+		this.subjectPlan = subjectPlan;
+		this.major = major;
+		this.college = college;
+		this.building = building;
 	}
 
 	public int getSubjectId() {
@@ -191,6 +318,38 @@ public class Subject implements Serializable {
 		this.subjectPlan = subjectPlan;
 	}
 
+	public Major getMajor() {
+		return major;
+	}
+
+	public void setMajor(Major major) {
+		this.major = major;
+	}
+
+	public College getCollege() {
+		return college;
+	}
+
+	public void setCollege(College college) {
+		this.college = college;
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
+	public Building getBuilding() {
+		return building;
+	}
+
+	public void setBuilding(Building building) {
+		this.building = building;
+	}
+
 	@Override
 	public String toString() {
 		return "Subject [subjectId=" + subjectId + ", subjectName=" + subjectName + ", subjectTime=" + subjectTime
@@ -198,16 +357,21 @@ public class Subject implements Serializable {
 				+ subjectCapacity + ", subjectRequest=" + subjectRequest + ", subjectGrade=" + subjectGrade
 				+ ", subjectClass=" + subjectClass + ", subjectCloseClass=" + subjectCloseClass + ", subjectSemester="
 				+ subjectSemester + ", majorId=" + majorId + ", lectureId=" + lectureId + ", remainNum=" + remainNum
-				+ ", subjectPlan=" + subjectPlan + "]";
+				+ ", subjectPlan=" + subjectPlan + ", major=" + major + ", college=" + college + ", room=" + room
+				+ ", building=" + building + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((building == null) ? 0 : building.hashCode());
+		result = prime * result + ((college == null) ? 0 : college.hashCode());
 		result = prime * result + ((lectureId == null) ? 0 : lectureId.hashCode());
+		result = prime * result + ((major == null) ? 0 : major.hashCode());
 		result = prime * result + ((majorId == null) ? 0 : majorId.hashCode());
 		result = prime * result + remainNum;
+		result = prime * result + ((room == null) ? 0 : room.hashCode());
 		result = prime * result + subjectCapacity;
 		result = prime * result + ((subjectClass == null) ? 0 : subjectClass.hashCode());
 		result = prime * result + ((subjectCloseClass == null) ? 0 : subjectCloseClass.hashCode());
@@ -232,10 +396,25 @@ public class Subject implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Subject other = (Subject) obj;
+		if (building == null) {
+			if (other.building != null)
+				return false;
+		} else if (!building.equals(other.building))
+			return false;
+		if (college == null) {
+			if (other.college != null)
+				return false;
+		} else if (!college.equals(other.college))
+			return false;
 		if (lectureId == null) {
 			if (other.lectureId != null)
 				return false;
 		} else if (!lectureId.equals(other.lectureId))
+			return false;
+		if (major == null) {
+			if (other.major != null)
+				return false;
+		} else if (!major.equals(other.major))
 			return false;
 		if (majorId == null) {
 			if (other.majorId != null)
@@ -243,6 +422,11 @@ public class Subject implements Serializable {
 		} else if (!majorId.equals(other.majorId))
 			return false;
 		if (remainNum != other.remainNum)
+			return false;
+		if (room == null) {
+			if (other.room != null)
+				return false;
+		} else if (!room.equals(other.room))
 			return false;
 		if (subjectCapacity != other.subjectCapacity)
 			return false;

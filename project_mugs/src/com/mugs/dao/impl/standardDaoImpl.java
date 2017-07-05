@@ -7,11 +7,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mugs.dao.standardDao;
+import com.mugs.dao.StandardDao;
 import com.mugs.vo.Standard;
 
 @Repository
-public class standardDaoImpl implements standardDao {
+public class standardDaoImpl implements StandardDao {
 	
 	
 	@Autowired

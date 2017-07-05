@@ -44,7 +44,6 @@ public class CreditDaoImpl implements CreditDao {
 	@Override
 	public List<Integer> selectYearByStuId(String id) {
 		// TODO Auto-generated method stub
-		System.out.println("dd");
 		return session.selectList(makeSqlId("selectYearByStuId"), id);
 	}
 

@@ -6,11 +6,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mugs.dao.roomDao;
+import com.mugs.dao.RoomDao;
 import com.mugs.vo.Room;
 
 @Repository
-public class roomDaoImpl implements roomDao {
+public class roomDaoImpl implements RoomDao {
 	
 	@Autowired
 	private SqlSessionTemplate session;
@@ -18,7 +18,6 @@ public class roomDaoImpl implements roomDao {
 	private String makeSql(String id){
 		return "com.mugs.config.mapper.roomMapper."+id;
 	}
-
 
 	@Override
 	public int insertRoom(Room room) {
@@ -31,18 +30,24 @@ public class roomDaoImpl implements roomDao {
 	}
 
 	@Override
-	public int deleteRoom(String roomId) {
+	public int deleteRoom(int roomId) {
 		return session.delete(makeSql("deleteRoom"), roomId);
 	}
 
 	@Override
-	public Room selectRoomById(String roomId) {
+	public Room selectRoomById(int roomId) {
 		return session.selectOne(makeSql("selectRoomById"), roomId);
 	}
 
 	@Override
 	public List<Room> selectRoomList() {
-
 		return session.selectList(makeSql("selectRoomList"));
 	}
+
+	@Override
+	public List<Room> selectRoomByReference(int buildingId) {
+		return session.selectList(makeSql("selectRoomByReference"), buildingId);
+	}
+	
+	
 }

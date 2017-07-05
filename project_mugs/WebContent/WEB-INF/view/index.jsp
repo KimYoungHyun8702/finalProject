@@ -15,20 +15,19 @@
 <hr>
 <h1>현동준 관리자</h1>
 <hr>
-<a href="/${initParam.rootPath }/admin/selectStudentController.do">학생 조회</a>
+<a href="${initParam.rootPath }/admin/selectStudentController.do">학생 조회</a>
 <a href="insertStudent.do">학생 등록</a>
 <a href="selectProfessor.do">교수 조회</a>
 <a href="insertProfessor.do">교수 등록</a>
-<a href="selectSubject.do">과목 조회</a>
-<a href="insertSubject.do">과목 등록</a>
-<a href="selectMajor.do">학과 조회</a>
-<a href="insertMajor.do">학과 등록</a>
-<a href="selectCollege.do">단과대학 조회</a>
-<a href="insertCollege.do">단과대학 등록</a>
+<a href="${initParam.rootPath }/admin/selectSubjectTypeController.do">과목 조회</a>
+<a href="${initParam.rootPath }/admin/selectForInsertSubjectController.do">과목 등록</a>
+<a href="${initParam.rootPath }/admin/selectCollegeListForSelectController.do">학과 조회</a>
+<a href="${initParam.rootPath }/admin/selectCollegeListForinsertController.do">학과 등록</a>
+<a href="${initParam.rootPath }/admin/selectCollegeListController.do">단과대학 조회</a>
+<a href="${initParam.rootPath }/insert_college.do">단과대학 등록</a>
 <a href="${initParam.rootPath }/admin/selectBuildingListController.do">건물 조회</a>
-<a href="${initParam.rootPath }/insertBuilding.do">건물 등록</a>
-<a href="selectCollege.do">강의실 조회</a>
-<a href="${initParam.rootPath }/insertRoom.do">강의실 등록</a>
+<a href="${initParam.rootPath }/insert_building.do">강의동 등록</a>
+
 
 <hr>
 <h1>김진광 학생</h1>

@@ -31,11 +31,14 @@
 					<td>${requestScope.building.buildingId }</td>
 					<td>${requestScope.building.buildingName }</td>
 					<td><c:forEach items="${requestScope.building.roomList }" var="roomList">
-					${roomList.roomId }</c:forEach></td>
+					${roomList.roomName }</c:forEach></td>
 				</tr>
 		</tbody>
 	</table>
-	<button id="update" onclick="location.href='${initParam.rootPath }/updateBuilding.do?buildingId=${requestScope.building.buildingId }&buildingName=${requestScope.building.buildingName }'">수정</button>
+	<button id="update" onclick="location.href='${initParam.rootPath }/update_building.do?buildingId=${requestScope.building.buildingId }&buildingName=${requestScope.building.buildingName }'">수정</button>
 	<button id="delete" onclick="Building_delete(${requestScope.building.buildingId})">삭제</button>
+	<button onclick="location.href='${initParam.rootPath }/admin/selectBuildingNameController.do'">강의실/연구실 등록</button>
+	<button onclick="location.href='${initParam.rootPath }/admin/selectBuildingNameForUpdateController.do'">강의실/연구실 수정 및 삭제</button>
 	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
+	
 </body>

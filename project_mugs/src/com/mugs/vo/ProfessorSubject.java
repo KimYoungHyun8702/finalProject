@@ -1,16 +1,7 @@
-/**
- * 
- */
-/**
- * @author Administrator
- *
- */
+
 package com.mugs.vo;
 
 import java.io.Serializable;
-import java.util.List;
-
-import javax.security.auth.Subject;
 
 public class ProfessorSubject implements Serializable {
 	

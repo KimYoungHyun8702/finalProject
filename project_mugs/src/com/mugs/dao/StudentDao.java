@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.mugs.vo.Student;
 
-public interface studentDao {
+public interface StudentDao {
 	/**
 	 * 한 학생의 데이터를 insert하는 메소드
 	 * @param student

@@ -6,11 +6,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mugs.dao.studentDao;
+import com.mugs.dao.StudentDao;
 import com.mugs.vo.Student;
 
 @Repository
-public class studentDaoImpl implements studentDao{
+public class studentDaoImpl implements StudentDao{
 	
 	
 	@Autowired
