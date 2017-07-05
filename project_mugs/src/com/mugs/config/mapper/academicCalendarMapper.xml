@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.academicCalendarMapper">
+
+<sql id="select-academicCalendar">
+	SELECT calendar_id,
+		   calendar_start,
+		   calendar_finish,
+		   calendar_year,
+		   calendar_name
+	FROM   ACADEMIC_CALENDAR
+</sql>
+
+<resultMap type="academicCalendar" id="academicCalendar-basic-reresultmap">
+	<id column="calendar_id" property="calendarId"/>
+	<result column="calendar_start" property="calendarStart"/>
+	<result column="calendar_finish" property="calendarFinish"/>
+	<result column="calendar_year" property="calendarYear"/>
+	<result column="calendar_name" property="calendarName"/>
+</resultMap>
+
+<!-- insert -->
+<insert id="insertAcademicCalendar" parameterType="academicCalendar">
+	<selectKey resultType="int" keyProperty="calendarId" order="BEFORE">
+		SELECT CALENDAR_ID_SEQ.nextval FROM dual
+	</selectKey>
+	INSERT INTO academiccalendar VALUES(#{calendarId},#{calendarStart}, #{calendarFinish}, #{calendarYear}, #{calendarName})
+</insert>
+
+<!-- update -->
+<update id="updateAcademicCalendarById" parameterType="academicCalendar">
+	UPDATE academiccalendar
+	   SET calendar_start=#{calendarStart},
+	   	   calendar_finish=#{calendarFinish},
+	   	   calendar_year=#{calendarYear},
+	   	   calendar_name=#{calendarName}
+	 WHERE calendar_id=#{calendarId}  	   
+</update>
+
+<!-- delete -->
+<delete id="deleteAcademicCalendar" parameterType="int">
+	DELETE FROM academiccalendar WHERE calendar_id=#{value}
+</delete>
+
+<!-- select -->
+<select id="selectAcademicCalendarList" resultMap="academicCalendar-basic-reresultmap">
+	<include refid="select-academicCalendar"/>
+</select>
+
+<select id="selectAcademicCalendarById" resultMap="academicCalendar-basic-reresultmap" parameterType="int">
+	<include refid="select-academicCalendar"/>
+	WHERE calendar_id=#{value}
+</select>
+
+<select id="selectCalendarByYearCalName" resultMap="academicCalendar-basic-reresultmap" parameterType="map">
+	<include refid="select-academicCalendar"/>
+	WHERE calendar_year=#{year} AND calendar_name=#{calName}
+</select>
+
+</mapper>

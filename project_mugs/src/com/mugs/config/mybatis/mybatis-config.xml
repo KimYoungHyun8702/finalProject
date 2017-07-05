@@ -10,6 +10,8 @@
 	</typeAliases>
 
 	<mappers>
+		<mapper resource="com/mugs/config/mapper/academicCalendarMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/academicProbationMapper.xml" />
 		<mapper resource="com/mugs/config/mapper/authoritiesMapper.xml" />
 		<mapper resource="com/mugs/config/mapper/buildingMapper.xml" />
 		<mapper resource="com/mugs/config/mapper/collegeMapper.xml" />
