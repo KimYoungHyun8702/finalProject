@@ -1,6 +1,7 @@
 package com.mugs.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,4 +55,16 @@ public class SubjectDaoImpl implements SubjectDao {
 		// TODO Auto-generated method stub
 		return session.selectList(makeSqlId("selectSubjectType"));
 	}
+	//병문 DaoImpl
+	@Override
+	public List<Subject> selectSubjectTypeByMajorId(int majorId) {
+		return session.selectList(makeSqlId("selectSubjectTypeByMajorId"),majorId);
+	}
+	
+	@Override
+	public List<Subject> selectSubjectBySubjectTypeAndMajorId(Map<String,Object> typeAndMajorId) {
+		return session.selectList(makeSqlId("selectSubjectBySubjectTypeAndMajorId"),typeAndMajorId);
+	}
+
+	
 }

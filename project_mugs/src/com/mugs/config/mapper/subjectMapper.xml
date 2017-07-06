@@ -88,5 +88,29 @@
 		select distinct subject_type
 		from subject
 	</select>
+	
+	<!-- 병문 Mapper -->
+	
+	<select id="selectSubjectTypeByMajorId" resultType="subject" parameterType="int">
+		select distinct subject_type subjectType
+		from subject
+		WHERE major_id=#{majorId}
+	</select>
 
+	<!-- 해당 과목의 id, 이수구분별 과목 리스트 조회 -->
+	<select id="selectSubjectBySubjectTypeAndMajorId" resultType="subject" parameterType="java.util.Map">
+		SELECT 	subject_id subjectId,
+				subject_name subjectName,
+				subject_time subjectTime,
+				subject_type subjectType,
+				subject_credit subjectCredit,
+				subject_capacity subjectCapacity,
+				subject_grade subjectGrade,
+				subject_class subjectClass,
+				subject_semester subjectSemester,
+				lecture_id lectureId				
+		FROM    subject
+		WHERE   subject_type =#{subjectType}
+		AND		major_id =#{majorId}
+	</select>
 </mapper>

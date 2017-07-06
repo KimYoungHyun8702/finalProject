@@ -39,4 +39,11 @@ public interface ProfessorSubjectDao {
 	 * @return
 	 */
 	ProfessorSubject selectProfessorSubjectById(int proSubjectId);
+	
+	/**
+	 * 전체 시간표에서 이수구분 선택 시, 교수 이름을 가져오기 위한 메소드
+	 * @param proSubjectId
+	 * @return 교수담당과목
+	 */
+	ProfessorSubject selectProfessorSubjectBySubId(int subjectId);
 }

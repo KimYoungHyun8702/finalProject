@@ -43,5 +43,10 @@ public class ProfessorSubjectDaoImpl implements ProfessorSubjectDao{
 	public ProfessorSubject selectProfessorSubjectById(int proSubjectId) {
 		return session.selectOne(makeSqlId("selectProfessorSubjectById"), proSubjectId);
 	}
+	//병문 DaoImpl
+	@Override
+	public ProfessorSubject selectProfessorSubjectBySubId(int subjectId) {
+		return session.selectOne(makeSqlId("selectProfessorSubjectBySubId"),subjectId);
+	}
 
 }

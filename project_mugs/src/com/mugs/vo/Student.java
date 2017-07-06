@@ -12,12 +12,17 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.mugs.etc.DateJSONSerializer;
+
 public class Student extends Users implements Serializable {
 	
 	private String stuId;
 	private String stuCourse;
 	private String stuArmy;
+	@JsonSerialize(using=DateJSONSerializer.class)
 	private Date stuAdmissionDate;
+	@JsonSerialize(using=DateJSONSerializer.class)
 	private Date stuGraduationDate;
 	private String stuRegisterState;
 	private String stuStudentState;
@@ -28,14 +33,25 @@ public class Student extends Users implements Serializable {
 	private int majorId;
 	private Integer majorDualId;
 	private Integer majorMinorId;
+	
 	private List<Object> list;
 	
-	public Student() {
+	private Major mainMajor;
+	private Major subMajor;
+	private Major multiMajor;
+	
+	public Student (){
+		
 	}
 
-	public Student(String stuId, String stuCourse, String stuArmy, Date stuAdmissionDate, Date stuGraduationDate,
-			String stuRegisterState, String stuStudentState, int stuGrade, String stuGraduationExam,
-			String stuEarlyGraduation, String stuSemester, int majorId, Integer majorDualId, Integer majorMinorId) {
+	public Student(String usersId, String usersPassword, String usersName, String usersEngName, String usersRRN,
+			String usersEmail, String usersPhoneNum, String usersCellNum, String usersNational, String usersCurrentAddr,
+			String usersBornAddr, int usersEnable, String usersPhoto, List<Notice> noticeList, String stuId,
+			String stuCourse, String stuArmy, Date stuAdmissionDate, Date stuGraduationDate, String stuRegisterState,
+			String stuStudentState, int stuGrade, String stuGraduationExam, String stuEarlyGraduation,
+			String stuSemester, int majorId, Integer majorDualId, Integer majorMinorId) {
+		super(usersId, usersPassword, usersName, usersEngName, usersRRN, usersEmail, usersPhoneNum, usersCellNum,
+				usersNational, usersCurrentAddr, usersBornAddr, usersEnable, usersPhoto, noticeList);
 		this.stuId = stuId;
 		this.stuCourse = stuCourse;
 		this.stuArmy = stuArmy;
@@ -52,10 +68,15 @@ public class Student extends Users implements Serializable {
 		this.majorMinorId = majorMinorId;
 	}
 
-	public Student(String stuId, String stuCourse, String stuArmy, Date stuAdmissionDate, Date stuGraduationDate,
-			String stuRegisterState, String stuStudentState, int stuGrade, String stuGraduationExam,
-			String stuEarlyGraduation, String stuSemester, int majorId, Integer majorDualId, Integer majorMinorId,
-			List<Object> list) {
+
+	public Student(String usersId, String usersPassword, String usersName, String usersEngName, String usersRRN,
+			String usersEmail, String usersPhoneNum, String usersCellNum, String usersNational, String usersCurrentAddr,
+			String usersBornAddr, int usersEnable, String usersPhoto, List<Notice> noticeList, String stuId,
+			String stuCourse, String stuArmy, Date stuAdmissionDate, Date stuGraduationDate, String stuRegisterState,
+			String stuStudentState, int stuGrade, String stuGraduationExam, String stuEarlyGraduation,
+			String stuSemester, int majorId, Integer majorDualId, Integer majorMinorId, List<Object> list) {
+		super(usersId, usersPassword, usersName, usersEngName, usersRRN, usersEmail, usersPhoneNum, usersCellNum,
+				usersNational, usersCurrentAddr, usersBornAddr, usersEnable, usersPhoto, noticeList);
 		this.stuId = stuId;
 		this.stuCourse = stuCourse;
 		this.stuArmy = stuArmy;
@@ -71,6 +92,31 @@ public class Student extends Users implements Serializable {
 		this.majorDualId = majorDualId;
 		this.majorMinorId = majorMinorId;
 		this.list = list;
+	}
+
+
+	public Student(String stuId, String stuCourse, String stuArmy, Date stuAdmissionDate, Date stuGraduationDate,
+			String stuRegisterState, String stuStudentState, int stuGrade, String stuGraduationExam,
+			String stuEarlyGraduation, String stuSemester, int majorId, Integer majorDualId, Integer majorMinorId,
+			List<Object> list, Major mainMajor, Major subMajor, Major multiMajor) {
+		this.stuId = stuId;
+		this.stuCourse = stuCourse;
+		this.stuArmy = stuArmy;
+		this.stuAdmissionDate = stuAdmissionDate;
+		this.stuGraduationDate = stuGraduationDate;
+		this.stuRegisterState = stuRegisterState;
+		this.stuStudentState = stuStudentState;
+		this.stuGrade = stuGrade;
+		this.stuGraduationExam = stuGraduationExam;
+		this.stuEarlyGraduation = stuEarlyGraduation;
+		this.stuSemester = stuSemester;
+		this.majorId = majorId;
+		this.majorDualId = majorDualId;
+		this.majorMinorId = majorMinorId;
+		this.list = list;
+		this.mainMajor = mainMajor;
+		this.subMajor = subMajor;
+		this.multiMajor = multiMajor;
 	}
 
 	public String getStuId() {
@@ -193,14 +239,28 @@ public class Student extends Users implements Serializable {
 		this.list = list;
 	}
 
-	@Override
-	public String toString() {
-		return "Student [stuId=" + stuId + ", stuCourse=" + stuCourse + ", stuArmy=" + stuArmy + ", stuAdmissionDate="
-				+ stuAdmissionDate + ", stuGraduationDate=" + stuGraduationDate + ", stuRegisterState="
-				+ stuRegisterState + ", stuStudentState=" + stuStudentState + ", stuGrade=" + stuGrade
-				+ ", stuGraduationExam=" + stuGraduationExam + ", stuEarlyGraduation=" + stuEarlyGraduation
-				+ ", stuSemester=" + stuSemester + ", majorId=" + majorId + ", majorDualId=" + majorDualId
-				+ ", majorMinorId=" + majorMinorId + ", list=" + list + "]";
+	public Major getMainMajor() {
+		return mainMajor;
+	}
+
+	public void setMainMajor(Major mainMajor) {
+		this.mainMajor = mainMajor;
+	}
+
+	public Major getSubMajor() {
+		return subMajor;
+	}
+
+	public void setSubMajor(Major subMajor) {
+		this.subMajor = subMajor;
+	}
+
+	public Major getMultiMajor() {
+		return multiMajor;
+	}
+
+	public void setMultiMajor(Major multiMajor) {
+		this.multiMajor = multiMajor;
 	}
 
 	@Override
@@ -208,9 +268,11 @@ public class Student extends Users implements Serializable {
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ((list == null) ? 0 : list.hashCode());
+		result = prime * result + ((mainMajor == null) ? 0 : mainMajor.hashCode());
 		result = prime * result + ((majorDualId == null) ? 0 : majorDualId.hashCode());
 		result = prime * result + majorId;
 		result = prime * result + ((majorMinorId == null) ? 0 : majorMinorId.hashCode());
+		result = prime * result + ((multiMajor == null) ? 0 : multiMajor.hashCode());
 		result = prime * result + ((stuAdmissionDate == null) ? 0 : stuAdmissionDate.hashCode());
 		result = prime * result + ((stuArmy == null) ? 0 : stuArmy.hashCode());
 		result = prime * result + ((stuCourse == null) ? 0 : stuCourse.hashCode());
@@ -222,6 +284,7 @@ public class Student extends Users implements Serializable {
 		result = prime * result + ((stuRegisterState == null) ? 0 : stuRegisterState.hashCode());
 		result = prime * result + ((stuSemester == null) ? 0 : stuSemester.hashCode());
 		result = prime * result + ((stuStudentState == null) ? 0 : stuStudentState.hashCode());
+		result = prime * result + ((subMajor == null) ? 0 : subMajor.hashCode());
 		return result;
 	}
 
@@ -239,6 +302,11 @@ public class Student extends Users implements Serializable {
 				return false;
 		} else if (!list.equals(other.list))
 			return false;
+		if (mainMajor == null) {
+			if (other.mainMajor != null)
+				return false;
+		} else if (!mainMajor.equals(other.mainMajor))
+			return false;
 		if (majorDualId == null) {
 			if (other.majorDualId != null)
 				return false;
@@ -250,6 +318,11 @@ public class Student extends Users implements Serializable {
 			if (other.majorMinorId != null)
 				return false;
 		} else if (!majorMinorId.equals(other.majorMinorId))
+			return false;
+		if (multiMajor == null) {
+			if (other.multiMajor != null)
+				return false;
+		} else if (!multiMajor.equals(other.multiMajor))
 			return false;
 		if (stuAdmissionDate == null) {
 			if (other.stuAdmissionDate != null)
@@ -303,6 +376,24 @@ public class Student extends Users implements Serializable {
 				return false;
 		} else if (!stuStudentState.equals(other.stuStudentState))
 			return false;
+		if (subMajor == null) {
+			if (other.subMajor != null)
+				return false;
+		} else if (!subMajor.equals(other.subMajor))
+			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Student [stuId=" + stuId + ", stuCourse=" + stuCourse + ", stuArmy=" + stuArmy + ", stuAdmissionDate="
+				+ stuAdmissionDate + ", stuGraduationDate=" + stuGraduationDate + ", stuRegisterState="
+				+ stuRegisterState + ", stuStudentState=" + stuStudentState + ", stuGrade=" + stuGrade
+				+ ", stuGraduationExam=" + stuGraduationExam + ", stuEarlyGraduation=" + stuEarlyGraduation
+				+ ", stuSemester=" + stuSemester + ", majorId=" + majorId + ", majorDualId=" + majorDualId
+				+ ", majorMinorId=" + majorMinorId + ", list=" + list + ", mainMajor=" + mainMajor + ", subMajor="
+				+ subMajor + ", multiMajor=" + multiMajor + "]";
+	}
+	
+	
 }

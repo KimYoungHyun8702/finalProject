@@ -8,20 +8,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.mugs.dao.StudentDao;
 import com.mugs.dao.impl.StudentDaoImpl;
+import com.mugs.vo.Major;
 import com.mugs.vo.Student;
 
 public class BMtest {
 	public static void main(String[] args) {
-		ApplicationContext container = 
+		/*ApplicationContext container = 
 				new ClassPathXmlApplicationContext("com/mugs/config/spring/model-context.xml");
 		
-		StudentDao dao = (StudentDaoImpl)container.getBean("studentDaoImpl");
-		Student stu = dao.selectStudentMajorName();
-		ArrayList<String> list = (ArrayList)stu.getList();
-		for(String majorName : list ){
-			System.out.println(majorName);
-		}
-		
-		
+		*/
+		ArrayList<String> a = new ArrayList<>();
+		a.add("이병문");
+		System.out.println(a.get(0));
 	}
 }

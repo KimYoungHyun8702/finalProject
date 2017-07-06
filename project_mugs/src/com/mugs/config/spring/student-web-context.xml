@@ -24,16 +24,10 @@
 
 	<mvc:view-controller path="/gradeInquiry.do" view-name="view/contents/student/gradeInquiry" />
 
-	
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-
-		p:prefix="/WEB-INF/" p:suffix=".jsp" /><!-- WEB-INF/view밑에 있는데 view는 어디서 설정해준거지..어디서 써준거지..? -->
-
 		
 
 
 		
 		<!-- 병문 view controller-->
-	<mvc:view-controller path="/teststudentInfo.do" view-name="view/contents/student/test"/>	
+	<mvc:view-controller path="/teststudentInfo.do" view-name="view/contents/student/test"/>
 </beans>
