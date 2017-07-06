@@ -1,19 +1,11 @@
-/**
- * 
- */
-/**
- * @author Administrator
- *
- */
+
 package com.mugs.vo;
 
 import java.io.Serializable;
 import java.util.List;
 
-import javax.security.auth.Subject;
-
 public class ProfessorSubject implements Serializable {
-	
+
 	private int proSubjectId;
 	private String proSubjectSemester;
 	private int proSubjectYear;
@@ -21,7 +13,7 @@ public class ProfessorSubject implements Serializable {
 	private int subjectId;
 	private Subject subject;
 	private Professor professor;
-	
+
 	public ProfessorSubject() {
 	}
 
@@ -32,6 +24,17 @@ public class ProfessorSubject implements Serializable {
 		this.proSubjectYear = proSubjectYear;
 		this.proId = proId;
 		this.subjectId = subjectId;
+	}
+	
+	public ProfessorSubject(int proSubjectId, String proSubjectSemester, int proSubjectYear, String proId,
+			int subjectId, Subject subject) {
+		super();
+		this.proSubjectId = proSubjectId;
+		this.proSubjectSemester = proSubjectSemester;
+		this.proSubjectYear = proSubjectYear;
+		this.proId = proId;
+		this.subjectId = subjectId;
+		this.subject = subject;
 	}
 
 	public ProfessorSubject(int proSubjectId, String proSubjectSemester, int proSubjectYear, String proId,

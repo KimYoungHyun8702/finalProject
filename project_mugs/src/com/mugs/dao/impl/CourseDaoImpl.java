@@ -1,5 +1,6 @@
 package com.mugs.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -43,4 +44,30 @@ public class CourseDaoImpl implements CourseDao{
 	public Course selectCourseById(int cId) {
 		return session.selectOne(makeSql("selectCourseById"),cId);
 	}
+	
+
+	@Override
+	public String selectHackGiIlJung(int nowMonth) {
+		return session.selectOne(makeSql("selectHackGiIlJung"), nowMonth);
+	}
+	
+	@Override
+	public List<Course> selectMyTimeTableByJoin(String loginId, int nowYear, String nowSemester) {
+		HashMap params = new HashMap();
+		params.put("loginId", loginId);
+		params.put("nowYear", nowYear);
+		params.put("nowSemester", nowSemester);
+		return session.selectList(makeSql("selectMyTimeTableByJoin"), params);//매개변수들을 맵에 담아서 매퍼에 접근
+	}
+
+	@Override
+	public List<Course> selectMyCourseListByJoin(String loginId, int nowYear, String nowSemester) {
+		HashMap params = new HashMap();
+		params.put("loginId", loginId);
+		params.put("nowYear", nowYear);
+		params.put("nowSemester", nowSemester);
+		return session.selectList(makeSql("selectMyCourseListByJoin"), params);
+	}
+
+
 }

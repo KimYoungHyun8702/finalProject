@@ -13,7 +13,7 @@ $("#first_category").on("change", function(){
 	var idx = this.selectedIndex;	
 	$.ajax({
 		type:"POST",
-		url:"${initParam.rootPath}/student/getMajorList.do",
+		url:"${initParam.rootPath}/student/getMajorLists.do",
 		data:{"collegeId":$("#first_category").val()},
 		dataType:"JSON",
 		beforeSend:function(){
@@ -83,12 +83,10 @@ $("#first_category").on("change", function(){
 					alert("이수구분 선택하세요");
 					$("#wholeTimeThead").hide();
 					$("#wholeTimeTbody").empty();
-					return false;
 				}
 			},
 			success:function(jsonData){
 
-				//alert('넘겼니?')
 				//tbody 구성
 				var trs = "";
 				console.log(jsonData);
@@ -109,16 +107,13 @@ $("#first_category").on("change", function(){
 								 +"</td><td>"+subject.subjectCapacity
 								 +"</td><td>"+subject.subjectTime
 								 +"</td><td>"+subject.lectureId
-								 +" </td><td class='teacher'></td></tr>";
-								
-							}else {
-												
+								 +" </td><td class='teacher'></td></tr>";								
+							}else {												
 								if($('.teacher').length == 0 )$("#wholeTimeTbody").html(trs);
 								$('.teacher').eq(i).text(subject);
-							}
-							
-						}
-			    });
+							}//end of else						
+						}//end of for
+			    });//end of each
 				$("#wholeTimeThead").show();
 								
 			},

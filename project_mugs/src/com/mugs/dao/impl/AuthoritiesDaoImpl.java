@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.mugs.dao.AuthoritiesDao;
 import com.mugs.vo.Authorities;
-
+@Repository
 public class AuthoritiesDaoImpl implements AuthoritiesDao{
 
 	//Spring Container에서 SqlSessionTemplate을 주입받아서 instance변수로 대입

@@ -30,7 +30,7 @@ public interface RoomDao {
 	 * @param roomId
 	 * @return
 	 */
-	int deleteRoom(String roomId);
+	int deleteRoom(int roomId);
 	
 	
 	/**
@@ -38,7 +38,7 @@ public interface RoomDao {
 	 * @param roomId
 	 * @return
 	 */
-	Room selectRoomById(String roomId);
+	Room selectRoomById(int roomId);
 	
 	
 	/**
@@ -46,6 +46,14 @@ public interface RoomDao {
 	 * @return
 	 */
 	List<Room> selectRoomList();
+	
+	/**
+	 * 매개변수로 강의동을 받아서 조회하는 메소드
+	 * @param buildingId
+	 * @return
+	 */
+	List<Room> selectRoomByReference(int buildingId);
+
 
 
 	

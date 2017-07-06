@@ -23,6 +23,13 @@
 		<result column="subject_id" property="subjectId"/>
 	</resultMap>
 	
+	<!-- <resultMap type="evaluationAnswer" id="evaluation-professor-subject-resultmap" extends="evaluationAnswer-resultmap">
+		<association property=""
+		<association property="subject" javaType="com.mugs.vo.Subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-basic-resultmap"/>
+		
+	</resultMap> -->
+	
+	
 	<!-- 평가응답 등록 -->
 	<insert id="insertEvaluationAnswer" parameterType="evaluationAnswer">
 		<selectKey order="BEFORE" keyProperty="evaluationAnswerId" resultType="int">
@@ -49,7 +56,7 @@
 			   evaluation_answer_semester=#{evaluationAnswerSemester},
 			   stu_id=#{stuId},
 			   subject_id=#{subjectId}
-		FROM   evaluation_answer_id = #{evaluationAnswerId}
+		WHERE   evaluation_answer_id = #{evaluationAnswerId}
 	</update>
 	
 	<!-- 평가응답 평가 id로 삭제 -->
@@ -72,5 +79,20 @@
 		<include refid="select-evaluationAnswer-sql"/>
 		WHERE evaluation_answer_id = #{evaluationAnswerId}
 	</select>
+	
+	<!-- 설문평가응답여부jsp를 위한 쿼리문. 덜 구현함. -->
+	<!-- <select id="selectEvaluationAnswerStateByJoin" resultMap="evaluationAnswer-subject-professor-resultmap" parameterType="map">
+		SELECT s.subject_id, s.subject_name, s.subject_type, u.users_name, e.evaluation_answer_state
+		FROM   subject s, professor p, course c, users u, professor_subject q, evaluation_answer e
+		WHERE  c.subject_id = s.subject_id
+		AND    q.pro_id = p.pro_id
+		AND    s.subject_id = q.subject_id
+		AND    p.pro_id = u.users_id
+		AND    c.stu_id = e.stu_id
+		AND    c.subject_id = e.subject_id
+		AND    c.course_year = #{nowYear}
+		AND    c.course_semester = #{nowSemester}
+		AND    c.stu_id = #{loginId}
+	</select> -->
 
 </mapper>

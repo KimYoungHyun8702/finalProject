@@ -32,8 +32,8 @@
 		<result column="users_born_addr" property="usersBornAddr" />
 		<result column="users_enable" property="usersEnable" />
 		<result column="users_photo" property="usersPhoto" />
-	</resultMap>
-
+	</resultMap>	
+	
 	<!-- insert -->
 	<insert id="insertUsers" parameterType="users">
 		INSERT INTO users

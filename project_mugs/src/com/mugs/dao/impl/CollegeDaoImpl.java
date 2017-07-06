@@ -19,24 +19,25 @@ public class CollegeDaoImpl implements CollegeDao{
 	private String makeSql(String tagId){
 		return "com.mugs.config.mapper.collegeMapper."+tagId;
 	}
+	
 	@Override
 	public int insertCollege(College college) {
-		return session.insert(makeSql("insertCollege"));
+		return session.insert(makeSql("insertCollege"), college);
 	}
 
 	@Override
 	public int updateCollegeById(College college) {
-		return session.update(makeSql("updateCollegeById"));
+		return session.update(makeSql("updateCollegeById"), college);
 	}
 
 	@Override
 	public int deleteCollege(int collegeId) {
-		return session.delete(makeSql("deleteCollege"));
+		return session.delete(makeSql("deleteCollege"), collegeId);
 	}
 
 	@Override
 	public College selectCollegeById(int collegeId) {
-		return session.selectOne(makeSql("selectCollegeById"));
+		return session.selectOne(makeSql("selectCollegeById"), collegeId);
 	}
 
 	@Override

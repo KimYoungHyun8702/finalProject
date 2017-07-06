@@ -74,24 +74,21 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 	@Override
 	public Map<String,Object> getSubjectBySubjectTypeAndMajorId(Map<String,Object> subTypeAndMajorId) {
 		// 교수의 이름을 받아오기 위한 List 
-		List<String> proNameList = new ArrayList<String>();		
-		// 교수담당과목 리스트 (여기에 있는 교수 id를 이용해 교수의 이름들을 가져온다.
+		List<String> proNameList = new ArrayList<String>();				
+		// 교수담당과목 리스트 (담당과목 테이블의 교수 id를 이용해 교수의 이름들을 가져온다.)
 		List<ProfessorSubject> proSubList = new ArrayList<ProfessorSubject>();
-		//
-		HashMap<String,Object> result = new HashMap<String, Object>();
-		
-			
+		// 해당 전공 id, 이수구분에 맞는 과목의 리스트들.
+		HashMap<String,Object> resultSubList = new HashMap<String, Object>();
+					
 		// 전공 id, 이수구분별 과목 List를 넣어준다.
 		List<Subject> subList = subjectDao.selectSubjectBySubjectTypeAndMajorId(subTypeAndMajorId);		 
 		
 		// 과목 id들을 넣어준다.
 		List<Integer> subIdList = new ArrayList<Integer>();
-		
 		for(Subject sub : subList){
 			subIdList.add(sub.getSubjectId());
 		}
 		
-
 		// 과목 id 하나당 교수담당과목리스트에 교수담당과목을 추가한다.
 		for(Integer i:subIdList){
 			proSubList.add(proSubDao.selectProfessorSubjectBySubId(i));
@@ -101,10 +98,12 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 		for(ProfessorSubject ps : proSubList){
 			proNameList.add(ps.getProfessor().getUsersName());
 		}
-		result.put("subjectList", subList);
-		result.put("proNameList", proNameList);
 		
-		return result;
+		//Map에 넣어준다.
+		resultSubList.put("subjectList", subList);
+		resultSubList.put("proNameList", proNameList);
+		
+		return resultSubList;
 		
 	}
 

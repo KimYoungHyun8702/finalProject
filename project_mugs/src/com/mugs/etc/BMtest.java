@@ -7,7 +7,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.mugs.dao.StudentDao;
-import com.mugs.dao.impl.StudentDaoImpl;
 import com.mugs.vo.Major;
 import com.mugs.vo.Student;
 

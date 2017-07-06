@@ -64,9 +64,9 @@ public class StudentIndividualController {
 	 * @param collegeId
 	 * @return
 	 */
-	@RequestMapping("getMajorList")
+	@RequestMapping("getMajorLists")
 	@ResponseBody
-	public List<Major> getMajorList(int collegeId){
+	public List<Major> getMajorLists(int collegeId){
 		List<Major> majorList = service.getMajorList(collegeId);
 		return majorList;
 	}

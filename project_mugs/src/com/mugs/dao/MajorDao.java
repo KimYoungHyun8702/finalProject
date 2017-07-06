@@ -34,7 +34,7 @@ public interface MajorDao {
 	List<Major> selectMajorList();
 	
 	/**
-	 * 매개변수로 majorId를 받아 해당하는 학과를 조회하는 메소드
+	 * 매개변수로 majorId를 받아 해당하는 학과 조회 메소드
 	 * @param majorId
 	 * @return
 	 */
@@ -47,4 +47,11 @@ public interface MajorDao {
 	 * @return 해당하는 학과 리스트
 	 */
 	List<Major> selectMajorByCollegeId(int collegeId);
+	
+	/**
+	 * 매개변수로 majorId를 받아 해당하는 학과 및 졸업 점수 조회 메소드
+	 * @param majorId
+	 * @return
+	 */
+	List<Major> selectMajorGraduationCreditByMajorId(int majorId);
 }

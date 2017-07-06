@@ -19,7 +19,6 @@ public class RoomDaoImpl implements RoomDao {
 		return "com.mugs.config.mapper.roomMapper."+id;
 	}
 
-
 	@Override
 	public int insertRoom(Room room) {
 		return session.insert(makeSql("insertRoom"),room);
@@ -31,18 +30,22 @@ public class RoomDaoImpl implements RoomDao {
 	}
 
 	@Override
-	public int deleteRoom(String roomId) {
+	public int deleteRoom(int roomId) {
 		return session.delete(makeSql("deleteRoom"), roomId);
 	}
 
 	@Override
-	public Room selectRoomById(String roomId) {
+	public Room selectRoomById(int roomId) {
 		return session.selectOne(makeSql("selectRoomById"), roomId);
 	}
 
 	@Override
 	public List<Room> selectRoomList() {
-
 		return session.selectList(makeSql("selectRoomList"));
+	}
+
+	@Override
+	public List<Room> selectRoomByReference(int buildingId) {
+		return session.selectList(makeSql("selectRoomByReference"), buildingId);
 	}
 }

@@ -15,7 +15,8 @@ public class GuidanceStudentDaoImpl implements GuidanceStudentDao{
 	private SqlSessionTemplate session;
 	
 	private String makeSqlId(String id){
-		return "com.mugs.mybatis.config.mapper.GuidanceStudentMapper."+id;
+		return "com.mugs.config.mapper.guidanceStudentMapper."+id;
+		
 	}
 
 	@Override
@@ -41,6 +42,12 @@ public class GuidanceStudentDaoImpl implements GuidanceStudentDao{
 	@Override
 	public GuidanceStudent selectguidanceStudentById(int guidanceStudentId) {
 		return session.selectOne(makeSqlId("selectguidanceStudentById"), guidanceStudentId);
+	}
+
+	/**-------------------- 영혀니꼬꼬 -------------------------*/
+	@Override
+	public GuidanceStudent selectguidanceStudentListByJoin(String proId) {
+		return session.selectOne(makeSqlId("selectguidanceStudentListByJoin"), proId);
 	}
 	
 	

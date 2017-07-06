@@ -14,14 +14,16 @@
 	</sql>
 
 	<resultMap type="standard" id="standard-basic-resultmap">
-		<id column="standard_year" property="standardYear"/>
-		<result column="major_id" property="majorId"/>
-		<result column="standard_min_credit" property="standardMinCredit"/>
-		<result column="standard_max_credit" property="standardMaxCredit"/>
-		<result column="standard_min_scholarship" property="standardMinScholarship"/>
-		<result column="standard_delay_min_credit" property="standardDelayMinCredit"/>
-		<result column="standard_delay_max_credit" property="standardDelayMaxCredit"/>
+		<id column="STANDARD_YEAR" property="standardYear"/>
+		<result column="MAJOR_ID" property="majorId"/>
+		<result column="STANDARD_MIN_CREDIT" property="standardMinCredit"/>
+		<result column="STANDARD_MAX_CREDIT" property="standardMaxCredit"/>
+		<result column="STANDARD_MIN_SCHOLARSHIP" property="standardMinScholarship"/>
+		<result column="STANDARD_DELAY_MIN_CREDIT" property="standardDelayMinCredit"/>
+		<result column="STANDARD_DELAY_MAX_CREDIT" property="standardDelayMaxCredit"/>
 	</resultMap>
+	
+	
 
 
 	<insert id="insertStandard" parameterType="standard">
@@ -66,6 +68,28 @@
 
 	<select id="selectStandardList" resultMap="standard-basic-resultmap">
 		<include refid="select-standard"/>
+	</select>
+	
+	<select id="selectMajorList" resultType="String">
+		SELECT DISTINCT m.major_name
+		FROM   major m, standard d
+		WHERE  m.major_id = d.major_id 
+	</select>
+	
+	<select id="selectYearListByMajorId" parameterType="int" resultMap="standard-basic-resultmap">
+		SELECT DISTINCT standard_year
+		FROM   standard
+		WHERE  major_id = #{value}
+	</select>
+	
+	<select id="selectStandardValue" parameterType="map" resultMap="standard-basic-resultmap">
+	 	SELECT d.standard_year, d.standard_min_credit, d.standard_max_credit, d.standard_min_scholarship, d.standard_delay_min_credit, d.standard_delay_max_credit
+		FROM   standard d, college c, major m
+		WHERE  d.major_id = m.major_id
+		and    c.college_id = m.college_id
+		and    m.college_id = #{collegeId}
+		AND    d.major_id = #{majorId}
+		AND    d.standard_year = #{standardYear}		
 	</select>
 
 </mapper>

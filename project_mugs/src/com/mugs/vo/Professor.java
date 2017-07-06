@@ -1,187 +1,275 @@
-/**
- * 
- */
-/**
- * @author Administrator
- *
- */
 package com.mugs.vo;
 
 import java.io.Serializable;
 import java.util.List;
 
 public class Professor extends Users implements Serializable {
-	
-	private String proId;
-	private String proUniversity;
-	private String proGradSchool;
-	private String proOfficePhoneNum;
-	private Integer majorId;
-	private String proRoomOfficeId;
-	private String proRoomLaboratiryId;
-	private List<Object> list;
-	
-	public Professor() {
-	}
+   
+   private String proId;   
+   private String proUniversity;
+   private String proGradSchool;
+   private String proOfficePhoneNum;
+   private String proLaboratoryPhoneNum;
+   private Integer majorId;
+   private String majorName;
+   private String proRoomOfficeId;
+   private String officeName;
+   private String proRoomLaboratoryId;
+   private String laboratoryName;
+   private List<Object> list;
+   
+   
+   
+   public Professor(String proId, String proUniversity, String proGradSchool, String proOfficePhoneNum,
+		String proLaboratoryPhoneNum, Integer majorId, String majorName, String proRoomOfficeId, String officeName,
+		String proRoomLaboratoryId, String laboratoryName, List<Object> list) {
+	this.proId = proId;
+	this.proUniversity = proUniversity;
+	this.proGradSchool = proGradSchool;
+	this.proOfficePhoneNum = proOfficePhoneNum;
+	this.proLaboratoryPhoneNum = proLaboratoryPhoneNum;
+	this.majorId = majorId;
+	this.majorName = majorName;
+	this.proRoomOfficeId = proRoomOfficeId;
+	this.officeName = officeName;
+	this.proRoomLaboratoryId = proRoomLaboratoryId;
+	this.laboratoryName = laboratoryName;
+	this.list = list;
+}
 
-	public Professor(String proId, String proUniversity, String proGradSchool, String proOfficePhoneNum,
-			Integer majorId, String proRoomOfficeId, String proRoomLaboratiryId) {
-		this.proId = proId;
-		this.proUniversity = proUniversity;
-		this.proGradSchool = proGradSchool;
-		this.proOfficePhoneNum = proOfficePhoneNum;
-		this.majorId = majorId;
-		this.proRoomOfficeId = proRoomOfficeId;
-		this.proRoomLaboratiryId = proRoomLaboratiryId;
-	}
+public Professor(String proId, String proUniversity, String proGradSchool, String proOfficePhoneNum) {
+      super();
+      this.proId = proId;
+      this.proUniversity = proUniversity;
+      this.proGradSchool = proGradSchool;
+      this.proOfficePhoneNum = proOfficePhoneNum;
+   }
 
-	public Professor(String proId, String proUniversity, String proGradSchool, String proOfficePhoneNum,
-			Integer majorId, String proRoomOfficeId, String proRoomLaboratiryId, List<Object> list) {
-		this.proId = proId;
-		this.proUniversity = proUniversity;
-		this.proGradSchool = proGradSchool;
-		this.proOfficePhoneNum = proOfficePhoneNum;
-		this.majorId = majorId;
-		this.proRoomOfficeId = proRoomOfficeId;
-		this.proRoomLaboratiryId = proRoomLaboratiryId;
-		this.list = list;
-	}
+   public Professor(){
+      super();
+   }
 
-	public String getProId() {
-		return proId;
-	}
+   public Professor(String proId, String proUniversity, String proGradSchool, String proOfficePhoneNum,
+         String proLaboratoryPhoneNum, Integer majorId, String proRoomOfficeId, String proRoomLaboratoryId,
+         List<Object> list) {
+      super();
+      this.proId = proId;
+      this.proUniversity = proUniversity;
+      this.proGradSchool = proGradSchool;
+      this.proOfficePhoneNum = proOfficePhoneNum;
+      this.proLaboratoryPhoneNum = proLaboratoryPhoneNum;
+      this.majorId = majorId;
+      this.proRoomOfficeId = proRoomOfficeId;
+      this.proRoomLaboratoryId = proRoomLaboratoryId;
+      this.list = list;
+   }
 
-	public void setProId(String proId) {
-		this.proId = proId;
-	}
+   public Professor(String proId, String proUniversity, String proGradSchool, String proOfficePhoneNum,
+         String proLaboratoryPhoneNum, Integer majorId, String proRoomOfficeId, String proRoomLaboratoryId) {
+      super();
+      this.proId = proId;
+      this.proUniversity = proUniversity;
+      this.proGradSchool = proGradSchool;
+      this.proOfficePhoneNum = proOfficePhoneNum;
+      this.proLaboratoryPhoneNum = proLaboratoryPhoneNum;
+      this.majorId = majorId;
+      this.proRoomOfficeId = proRoomOfficeId;
+      this.proRoomLaboratoryId = proRoomLaboratoryId;
+   }
 
-	public String getProUniversity() {
-		return proUniversity;
-	}
+   public String getProId() {
+      return proId;
+   }
 
-	public void setProUniversity(String proUniversity) {
-		this.proUniversity = proUniversity;
-	}
+   public void setProId(String proId) {
+      this.proId = proId;
+   }
 
-	public String getProGradSchool() {
-		return proGradSchool;
-	}
+   public String getProUniversity() {
+      return proUniversity;
+   }
 
-	public void setProGradSchool(String proGradSchool) {
-		this.proGradSchool = proGradSchool;
-	}
+   public void setProUniversity(String proUniversity) {
+      this.proUniversity = proUniversity;
+   }
 
-	public String getProOfficePhoneNum() {
-		return proOfficePhoneNum;
-	}
+   public String getProGradSchool() {
+      return proGradSchool;
+   }
 
-	public void setProOfficePhoneNum(String proOfficePhoneNum) {
-		this.proOfficePhoneNum = proOfficePhoneNum;
-	}
+   public void setProGradSchool(String proGradSchool) {
+      this.proGradSchool = proGradSchool;
+   }
 
-	public Integer getMajorId() {
-		return majorId;
-	}
+   public String getProOfficePhoneNum() {
+      return proOfficePhoneNum;
+   }
 
-	public void setMajorId(Integer majorId) {
-		this.majorId = majorId;
-	}
+   public void setProOfficePhoneNum(String proOfficePhoneNum) {
+      this.proOfficePhoneNum = proOfficePhoneNum;
+   }
 
-	public String getProRoomOfficeId() {
-		return proRoomOfficeId;
-	}
+   public String getProLaboratoryPhoneNum() {
+      return proLaboratoryPhoneNum;
+   }
 
-	public void setProRoomOfficeId(String proRoomOfficeId) {
-		this.proRoomOfficeId = proRoomOfficeId;
-	}
+   public void setProLaboratoryPhoneNum(String proLaboratoryPhoneNum) {
+      this.proLaboratoryPhoneNum = proLaboratoryPhoneNum;
+   }
 
-	public String getProRoomLaboratiryId() {
-		return proRoomLaboratiryId;
-	}
+   public Integer getMajorId() {
+      return majorId;
+   }
 
-	public void setProRoomLaboratiryId(String proRoomLaboratiryId) {
-		this.proRoomLaboratiryId = proRoomLaboratiryId;
-	}
+   public void setMajorId(Integer majorId) {
+      this.majorId = majorId;
+   }
 
-	public List<Object> getList() {
-		return list;
-	}
+   public String getProRoomOfficeId() {
+      return proRoomOfficeId;
+   }
 
-	public void setList(List<Object> list) {
-		this.list = list;
-	}
+   public void setProRoomOfficeId(String proRoomOfficeId) {
+      this.proRoomOfficeId = proRoomOfficeId;
+   }
 
-	@Override
-	public String toString() {
-		return "Professor [proId=" + proId + ", proUniversity=" + proUniversity + ", proGradSchool=" + proGradSchool
-				+ ", proOfficePhoneNum=" + proOfficePhoneNum + ", majorId=" + majorId + ", proRoomOfficeId="
-				+ proRoomOfficeId + ", proRoomLaboratiryId=" + proRoomLaboratiryId + ", list=" + list + "]";
-	}
+   public String getProRoomLaboratoryId() {
+      return proRoomLaboratoryId;
+   }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((list == null) ? 0 : list.hashCode());
-		result = prime * result + ((majorId == null) ? 0 : majorId.hashCode());
-		result = prime * result + ((proGradSchool == null) ? 0 : proGradSchool.hashCode());
-		result = prime * result + ((proId == null) ? 0 : proId.hashCode());
-		result = prime * result + ((proOfficePhoneNum == null) ? 0 : proOfficePhoneNum.hashCode());
-		result = prime * result + ((proRoomLaboratiryId == null) ? 0 : proRoomLaboratiryId.hashCode());
-		result = prime * result + ((proRoomOfficeId == null) ? 0 : proRoomOfficeId.hashCode());
-		result = prime * result + ((proUniversity == null) ? 0 : proUniversity.hashCode());
-		return result;
-	}
+   public void setProRoomLaboratoryId(String proRoomLaboratoryId) {
+      this.proRoomLaboratoryId = proRoomLaboratoryId;
+   }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Professor other = (Professor) obj;
-		if (list == null) {
-			if (other.list != null)
-				return false;
-		} else if (!list.equals(other.list))
-			return false;
-		if (majorId == null) {
-			if (other.majorId != null)
-				return false;
-		} else if (!majorId.equals(other.majorId))
-			return false;
-		if (proGradSchool == null) {
-			if (other.proGradSchool != null)
-				return false;
-		} else if (!proGradSchool.equals(other.proGradSchool))
-			return false;
-		if (proId == null) {
-			if (other.proId != null)
-				return false;
-		} else if (!proId.equals(other.proId))
-			return false;
-		if (proOfficePhoneNum == null) {
-			if (other.proOfficePhoneNum != null)
-				return false;
-		} else if (!proOfficePhoneNum.equals(other.proOfficePhoneNum))
-			return false;
-		if (proRoomLaboratiryId == null) {
-			if (other.proRoomLaboratiryId != null)
-				return false;
-		} else if (!proRoomLaboratiryId.equals(other.proRoomLaboratiryId))
-			return false;
-		if (proRoomOfficeId == null) {
-			if (other.proRoomOfficeId != null)
-				return false;
-		} else if (!proRoomOfficeId.equals(other.proRoomOfficeId))
-			return false;
-		if (proUniversity == null) {
-			if (other.proUniversity != null)
-				return false;
-		} else if (!proUniversity.equals(other.proUniversity))
-			return false;
+   public List<Object> getList() {
+      return list;
+   }
+
+   public void setList(List<Object> list) {
+      this.list = list;
+   }
+
+   public String getMajorName() {
+	return majorName;
+}
+
+public void setMajorName(String majorName) {
+	this.majorName = majorName;
+}
+
+public String getOfficeName() {
+	return officeName;
+}
+
+public void setOfficeName(String officeName) {
+	this.officeName = officeName;
+}
+
+public String getLaboratoryName() {
+	return laboratoryName;
+}
+
+public void setLaboratoryName(String laboratoryName) {
+	this.laboratoryName = laboratoryName;
+}
+
+@Override
+public String toString() {
+	return "Professor [proId=" + proId + ", proUniversity=" + proUniversity + ", proGradSchool=" + proGradSchool
+			+ ", proOfficePhoneNum=" + proOfficePhoneNum + ", proLaboratoryPhoneNum=" + proLaboratoryPhoneNum
+			+ ", majorId=" + majorId + ", majorName=" + majorName + ", proRoomOfficeId=" + proRoomOfficeId
+			+ ", officeName=" + officeName + ", proRoomLaboratoryId=" + proRoomLaboratoryId + ", laboratoryName="
+			+ laboratoryName + ", list=" + list + "]";
+}
+
+   @Override
+public int hashCode() {
+	final int prime = 31;
+	int result = super.hashCode();
+	result = prime * result + ((laboratoryName == null) ? 0 : laboratoryName.hashCode());
+	result = prime * result + ((list == null) ? 0 : list.hashCode());
+	result = prime * result + ((majorId == null) ? 0 : majorId.hashCode());
+	result = prime * result + ((majorName == null) ? 0 : majorName.hashCode());
+	result = prime * result + ((officeName == null) ? 0 : officeName.hashCode());
+	result = prime * result + ((proGradSchool == null) ? 0 : proGradSchool.hashCode());
+	result = prime * result + ((proId == null) ? 0 : proId.hashCode());
+	result = prime * result + ((proLaboratoryPhoneNum == null) ? 0 : proLaboratoryPhoneNum.hashCode());
+	result = prime * result + ((proOfficePhoneNum == null) ? 0 : proOfficePhoneNum.hashCode());
+	result = prime * result + ((proRoomLaboratoryId == null) ? 0 : proRoomLaboratoryId.hashCode());
+	result = prime * result + ((proRoomOfficeId == null) ? 0 : proRoomOfficeId.hashCode());
+	result = prime * result + ((proUniversity == null) ? 0 : proUniversity.hashCode());
+	return result;
+}
+
+   @Override
+public boolean equals(Object obj) {
+	if (this == obj)
 		return true;
-	}
+	if (!super.equals(obj))
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Professor other = (Professor) obj;
+	if (laboratoryName == null) {
+		if (other.laboratoryName != null)
+			return false;
+	} else if (!laboratoryName.equals(other.laboratoryName))
+		return false;
+	if (list == null) {
+		if (other.list != null)
+			return false;
+	} else if (!list.equals(other.list))
+		return false;
+	if (majorId == null) {
+		if (other.majorId != null)
+			return false;
+	} else if (!majorId.equals(other.majorId))
+		return false;
+	if (majorName == null) {
+		if (other.majorName != null)
+			return false;
+	} else if (!majorName.equals(other.majorName))
+		return false;
+	if (officeName == null) {
+		if (other.officeName != null)
+			return false;
+	} else if (!officeName.equals(other.officeName))
+		return false;
+	if (proGradSchool == null) {
+		if (other.proGradSchool != null)
+			return false;
+	} else if (!proGradSchool.equals(other.proGradSchool))
+		return false;
+	if (proId == null) {
+		if (other.proId != null)
+			return false;
+	} else if (!proId.equals(other.proId))
+		return false;
+	if (proLaboratoryPhoneNum == null) {
+		if (other.proLaboratoryPhoneNum != null)
+			return false;
+	} else if (!proLaboratoryPhoneNum.equals(other.proLaboratoryPhoneNum))
+		return false;
+	if (proOfficePhoneNum == null) {
+		if (other.proOfficePhoneNum != null)
+			return false;
+	} else if (!proOfficePhoneNum.equals(other.proOfficePhoneNum))
+		return false;
+	if (proRoomLaboratoryId == null) {
+		if (other.proRoomLaboratoryId != null)
+			return false;
+	} else if (!proRoomLaboratoryId.equals(other.proRoomLaboratoryId))
+		return false;
+	if (proRoomOfficeId == null) {
+		if (other.proRoomOfficeId != null)
+			return false;
+	} else if (!proRoomOfficeId.equals(other.proRoomOfficeId))
+		return false;
+	if (proUniversity == null) {
+		if (other.proUniversity != null)
+			return false;
+	} else if (!proUniversity.equals(other.proUniversity))
+		return false;
+	return true;
+}
 }
