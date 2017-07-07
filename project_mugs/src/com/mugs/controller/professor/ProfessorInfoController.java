@@ -32,7 +32,7 @@ public class ProfessorInfoController{
 	public Professor getProfessorRegisterByJoin(String proId){
 	
 	Professor professor = service.getProfessorInfoByJoin(proId);
-	
+	System.out.println(professor);
 	return professor;	
 	}
 }

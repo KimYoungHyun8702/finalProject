@@ -72,6 +72,10 @@
 		</association>
 	</resultMap>
 	
+	<!-- 영현이꼬 -->
+	<resultMap id="subject-professor-resultmap" type="subject" extends="subject-basic-resultmap">
+		<association property="professor" resultMap="com.mugs.config.mapper.professorMapper.professor-resultmap"/>
+	</resultMap>
 	
 	<!-- insert -->
 	<insert id="insertSubject" parameterType="subject">
@@ -191,4 +195,9 @@
 		WHERE s.lecture_id = r.room_id AND r.building_id = b.building_id AND s.subject_id = #{value}
 	</select>
 	
+	<!-- 영현이고 -->
+	<select id="selectSubjectInfoByJoin" resultMap="subject-professor-resultmap" >
+		
+	</select>
+	 
 </mapper>

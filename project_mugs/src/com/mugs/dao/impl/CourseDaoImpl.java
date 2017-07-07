@@ -69,5 +69,14 @@ public class CourseDaoImpl implements CourseDao{
 		return session.selectList(makeSql("selectMyCourseListByJoin"), params);
 	}
 
+	@Override
+	public List<Course> selectCourseByThreeId(int courseYear, String courseSemester, int subjectId) {
+		HashMap params = new HashMap();
+		params.put("courseYear", courseYear);
+		params.put("courseSemester", courseSemester);
+		params.put("subjectId", subjectId);
+		return session.selectList(makeSql("selectCourseByThreeId"),params);
+	}
+
 
 }

@@ -56,7 +56,7 @@
 			   evaluation_answer_semester=#{evaluationAnswerSemester},
 			   stu_id=#{stuId},
 			   subject_id=#{subjectId}
-		FROM   evaluation_answer_id = #{evaluationAnswerId}
+		WHERE   evaluation_answer_id = #{evaluationAnswerId}
 	</update>
 	
 	<!-- 평가응답 평가 id로 삭제 -->

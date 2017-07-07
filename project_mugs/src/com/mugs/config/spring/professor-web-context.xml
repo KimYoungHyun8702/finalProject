@@ -10,12 +10,14 @@
 	<context:component-scan base-package="com.mugs.controller.professor" />
 	
 
-
 	<mvc:annotation-driven />
 	<mvc:view-controller path="/professorInfo.do" view-name="contents/professor/professorInfo"/>
 	<mvc:view-controller path="/guidanceStudent.do" view-name="contents/professor/guidanceStudent"/>
 	<mvc:view-controller path="/SubjectPlan.do" view-name="contents/professor/SubjectPlan"/>
-
+	<mvc:view-controller path="/SubjectPlan_success.do" view-name="contents/professor/SubjectPlan_success"/>
+	<mvc:view-controller path="/SubjectPlan_insert.do" view-name="contents/professor/SubjectPlan_insert"/>
+	<mvc:view-controller path="/SubjectPlan_update.do" view-name="contents/professor/SubjectPlan_update"/>
+	<mvc:view-controller path="/addStudentGrade.do" view-name="contents/professor/addStudentGrade"/>
 
 
 

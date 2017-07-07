@@ -16,6 +16,7 @@
 <a href="${initParam.rootPath }/professorInfo.do">교수 개인 정보</a><br>
 <a href="${initParam.rootPath }/guidanceStudent.do">지도학생</a><br>
 <a href="${initParam.rootPath }/SubjectPlan.do">강의계획서</a><br>
+<a href="${initParam.rootPath }/addStudentGrade.do">성적주기</a><br>
 
 
 <h1>조새롬 학생</h1>

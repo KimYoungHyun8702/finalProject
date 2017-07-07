@@ -34,9 +34,33 @@ public class Subject implements Serializable {
 	private Room room;
 	private Building building;
 	private Map<String, String> YoyilAndGyoshi;
+	/**------영현이꼬------------*/
+	private Professor professor;
 	
 	public Subject() {
 	}
+	
+	/**------영현이꼬 생성자------------*/
+	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
+			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass, char subjectCloseClass,
+			String subjectSemester, Integer majorId, String lectureId, Professor professor) {
+		super();
+		this.subjectId = subjectId;
+		this.subjectName = subjectName;
+		this.subjectTime = subjectTime;
+		this.subjectType = subjectType;
+		this.subjectCredit = subjectCredit;
+		this.subjectCapacity = subjectCapacity;
+		this.subjectRequest = subjectRequest;
+		this.subjectGrade = subjectGrade;
+		this.subjectClass = subjectClass;
+		this.subjectCloseClass = subjectCloseClass;
+		this.subjectSemester = subjectSemester;
+		this.majorId = majorId;
+		this.lectureId = lectureId;
+		this.professor = professor;
+	}
+
 
 	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
 			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass, char subjectCloseClass,
@@ -84,126 +108,7 @@ public class Subject implements Serializable {
 		YoyilAndGyoshi = yoyilAndGyoshi;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((YoyilAndGyoshi == null) ? 0 : YoyilAndGyoshi.hashCode());
-		result = prime * result + ((building == null) ? 0 : building.hashCode());
-		result = prime * result + ((college == null) ? 0 : college.hashCode());
-		result = prime * result + ((lectureId == null) ? 0 : lectureId.hashCode());
-		result = prime * result + ((major == null) ? 0 : major.hashCode());
-		result = prime * result + ((majorId == null) ? 0 : majorId.hashCode());
-		result = prime * result + remainNum;
-		result = prime * result + ((room == null) ? 0 : room.hashCode());
-		result = prime * result + subjectCapacity;
-		result = prime * result + ((subjectClass == null) ? 0 : subjectClass.hashCode());
-		result = prime * result + subjectCloseClass;
-		result = prime * result + subjectCredit;
-		result = prime * result + ((subjectGrade == null) ? 0 : subjectGrade.hashCode());
-		result = prime * result + subjectId;
-		result = prime * result + ((subjectName == null) ? 0 : subjectName.hashCode());
-		result = prime * result + ((subjectPlan == null) ? 0 : subjectPlan.hashCode());
-		result = prime * result + subjectRequest;
-		result = prime * result + ((subjectSemester == null) ? 0 : subjectSemester.hashCode());
-		result = prime * result + ((subjectTime == null) ? 0 : subjectTime.hashCode());
-		result = prime * result + ((subjectType == null) ? 0 : subjectType.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Subject other = (Subject) obj;
-		if (YoyilAndGyoshi == null) {
-			if (other.YoyilAndGyoshi != null)
-				return false;
-		} else if (!YoyilAndGyoshi.equals(other.YoyilAndGyoshi))
-			return false;
-		if (building == null) {
-			if (other.building != null)
-				return false;
-		} else if (!building.equals(other.building))
-			return false;
-		if (college == null) {
-			if (other.college != null)
-				return false;
-		} else if (!college.equals(other.college))
-			return false;
-		if (lectureId == null) {
-			if (other.lectureId != null)
-				return false;
-		} else if (!lectureId.equals(other.lectureId))
-			return false;
-		if (major == null) {
-			if (other.major != null)
-				return false;
-		} else if (!major.equals(other.major))
-			return false;
-		if (majorId == null) {
-			if (other.majorId != null)
-				return false;
-		} else if (!majorId.equals(other.majorId))
-			return false;
-		if (remainNum != other.remainNum)
-			return false;
-		if (room == null) {
-			if (other.room != null)
-				return false;
-		} else if (!room.equals(other.room))
-			return false;
-		if (subjectCapacity != other.subjectCapacity)
-			return false;
-		if (subjectClass == null) {
-			if (other.subjectClass != null)
-				return false;
-		} else if (!subjectClass.equals(other.subjectClass))
-			return false;
-		if (subjectCloseClass != other.subjectCloseClass)
-			return false;
-		if (subjectCredit != other.subjectCredit)
-			return false;
-		if (subjectGrade == null) {
-			if (other.subjectGrade != null)
-				return false;
-		} else if (!subjectGrade.equals(other.subjectGrade))
-			return false;
-		if (subjectId != other.subjectId)
-			return false;
-		if (subjectName == null) {
-			if (other.subjectName != null)
-				return false;
-		} else if (!subjectName.equals(other.subjectName))
-			return false;
-		if (subjectPlan == null) {
-			if (other.subjectPlan != null)
-				return false;
-		} else if (!subjectPlan.equals(other.subjectPlan))
-			return false;
-		if (subjectRequest != other.subjectRequest)
-			return false;
-		if (subjectSemester == null) {
-			if (other.subjectSemester != null)
-				return false;
-		} else if (!subjectSemester.equals(other.subjectSemester))
-			return false;
-		if (subjectTime == null) {
-			if (other.subjectTime != null)
-				return false;
-		} else if (!subjectTime.equals(other.subjectTime))
-			return false;
-		if (subjectType == null) {
-			if (other.subjectType != null)
-				return false;
-		} else if (!subjectType.equals(other.subjectType))
-			return false;
-		return true;
-	}
+	
 
 	public int getSubjectId() {
 		return subjectId;
@@ -211,6 +116,14 @@ public class Subject implements Serializable {
 
 	public void setSubjectId(int subjectId) {
 		this.subjectId = subjectId;
+	}
+
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 
 	public String getSubjectName() {
@@ -366,6 +279,133 @@ public class Subject implements Serializable {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((YoyilAndGyoshi == null) ? 0 : YoyilAndGyoshi.hashCode());
+		result = prime * result + ((building == null) ? 0 : building.hashCode());
+		result = prime * result + ((college == null) ? 0 : college.hashCode());
+		result = prime * result + ((lectureId == null) ? 0 : lectureId.hashCode());
+		result = prime * result + ((major == null) ? 0 : major.hashCode());
+		result = prime * result + ((majorId == null) ? 0 : majorId.hashCode());
+		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
+		result = prime * result + remainNum;
+		result = prime * result + ((room == null) ? 0 : room.hashCode());
+		result = prime * result + subjectCapacity;
+		result = prime * result + ((subjectClass == null) ? 0 : subjectClass.hashCode());
+		result = prime * result + subjectCloseClass;
+		result = prime * result + subjectCredit;
+		result = prime * result + ((subjectGrade == null) ? 0 : subjectGrade.hashCode());
+		result = prime * result + subjectId;
+		result = prime * result + ((subjectName == null) ? 0 : subjectName.hashCode());
+		result = prime * result + ((subjectPlan == null) ? 0 : subjectPlan.hashCode());
+		result = prime * result + subjectRequest;
+		result = prime * result + ((subjectSemester == null) ? 0 : subjectSemester.hashCode());
+		result = prime * result + ((subjectTime == null) ? 0 : subjectTime.hashCode());
+		result = prime * result + ((subjectType == null) ? 0 : subjectType.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Subject other = (Subject) obj;
+		if (YoyilAndGyoshi == null) {
+			if (other.YoyilAndGyoshi != null)
+				return false;
+		} else if (!YoyilAndGyoshi.equals(other.YoyilAndGyoshi))
+			return false;
+		if (building == null) {
+			if (other.building != null)
+				return false;
+		} else if (!building.equals(other.building))
+			return false;
+		if (college == null) {
+			if (other.college != null)
+				return false;
+		} else if (!college.equals(other.college))
+			return false;
+		if (lectureId == null) {
+			if (other.lectureId != null)
+				return false;
+		} else if (!lectureId.equals(other.lectureId))
+			return false;
+		if (major == null) {
+			if (other.major != null)
+				return false;
+		} else if (!major.equals(other.major))
+			return false;
+		if (majorId == null) {
+			if (other.majorId != null)
+				return false;
+		} else if (!majorId.equals(other.majorId))
+			return false;
+		if (professor == null) {
+			if (other.professor != null)
+				return false;
+		} else if (!professor.equals(other.professor))
+			return false;
+		if (remainNum != other.remainNum)
+			return false;
+		if (room == null) {
+			if (other.room != null)
+				return false;
+		} else if (!room.equals(other.room))
+			return false;
+		if (subjectCapacity != other.subjectCapacity)
+			return false;
+		if (subjectClass == null) {
+			if (other.subjectClass != null)
+				return false;
+		} else if (!subjectClass.equals(other.subjectClass))
+			return false;
+		if (subjectCloseClass != other.subjectCloseClass)
+			return false;
+		if (subjectCredit != other.subjectCredit)
+			return false;
+		if (subjectGrade == null) {
+			if (other.subjectGrade != null)
+				return false;
+		} else if (!subjectGrade.equals(other.subjectGrade))
+			return false;
+		if (subjectId != other.subjectId)
+			return false;
+		if (subjectName == null) {
+			if (other.subjectName != null)
+				return false;
+		} else if (!subjectName.equals(other.subjectName))
+			return false;
+		if (subjectPlan == null) {
+			if (other.subjectPlan != null)
+				return false;
+		} else if (!subjectPlan.equals(other.subjectPlan))
+			return false;
+		if (subjectRequest != other.subjectRequest)
+			return false;
+		if (subjectSemester == null) {
+			if (other.subjectSemester != null)
+				return false;
+		} else if (!subjectSemester.equals(other.subjectSemester))
+			return false;
+		if (subjectTime == null) {
+			if (other.subjectTime != null)
+				return false;
+		} else if (!subjectTime.equals(other.subjectTime))
+			return false;
+		if (subjectType == null) {
+			if (other.subjectType != null)
+				return false;
+		} else if (!subjectType.equals(other.subjectType))
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
 		return "Subject [subjectId=" + subjectId + ", subjectName=" + subjectName + ", subjectTime=" + subjectTime
 				+ ", subjectType=" + subjectType + ", subjectCredit=" + subjectCredit + ", subjectCapacity="
@@ -373,6 +413,9 @@ public class Subject implements Serializable {
 				+ ", subjectClass=" + subjectClass + ", subjectCloseClass=" + subjectCloseClass + ", subjectSemester="
 				+ subjectSemester + ", majorId=" + majorId + ", lectureId=" + lectureId + ", remainNum=" + remainNum
 				+ ", subjectPlan=" + subjectPlan + ", major=" + major + ", college=" + college + ", room=" + room
-				+ ", building=" + building + ", YoyilAndGyoshi=" + YoyilAndGyoshi + "]";
+				+ ", building=" + building + ", YoyilAndGyoshi=" + YoyilAndGyoshi + ", professor=" + professor + "]";
 	}
+
+	
+	
 }
