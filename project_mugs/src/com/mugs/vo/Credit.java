@@ -12,43 +12,45 @@ import java.util.Date;
 import java.util.List;
 
 public class Credit implements Serializable {
-	
+
 	private int creditId;
 	private int creditYear;
 	private String creditSemester;
 	private int creditAcquire;
 	private String creditGrade;
-	private int creditScore;
-	private String creditRecourse;
+	private double creditScore;
+	//creditRecource -> creditRecourse로 바꾸지마세요. 원래 Recourse가 맞지만 테이블 생성시 recource로 지정했기 때문에 수정의 번거러움을 피하기위해 그냥 적용.
+	private String creditRecource;
 	private int subjectId;
 	private String stuId;
+
 	private Subject subject;
-	
+
 	public Credit() {
 	}
 
 	public Credit(int creditId, int creditYear, String creditSemester, int creditAcquire, String creditGrade,
-			int creditScore, String creditRecourse, int subjectId, String stuId) {
+			double creditScore, String creditRecource, int subjectId, String stuId) {
 		this.creditId = creditId;
 		this.creditYear = creditYear;
 		this.creditSemester = creditSemester;
 		this.creditAcquire = creditAcquire;
 		this.creditGrade = creditGrade;
 		this.creditScore = creditScore;
-		this.creditRecourse = creditRecourse;
+		this.creditRecource = creditRecource;
 		this.subjectId = subjectId;
 		this.stuId = stuId;
 	}
 
 	public Credit(int creditId, int creditYear, String creditSemester, int creditAcquire, String creditGrade,
-			int creditScore, String creditRecourse, int subjectId, String stuId, Subject subject) {
+			double creditScore, String creditRecource, int subjectId, String stuId, Subject subject) {
 		this.creditId = creditId;
 		this.creditYear = creditYear;
 		this.creditSemester = creditSemester;
 		this.creditAcquire = creditAcquire;
 		this.creditGrade = creditGrade;
 		this.creditScore = creditScore;
-		this.creditRecourse = creditRecourse;
+		this.creditRecource = creditRecource;
 		this.subjectId = subjectId;
 		this.stuId = stuId;
 		this.subject = subject;
@@ -94,20 +96,20 @@ public class Credit implements Serializable {
 		this.creditGrade = creditGrade;
 	}
 
-	public int getCreditScore() {
+	public double getCreditScore() {
 		return creditScore;
 	}
 
-	public void setCreditScore(int creditScore) {
+	public void setCreditScore(double creditScore) {
 		this.creditScore = creditScore;
 	}
 
-	public String getCreditRecourse() {
-		return creditRecourse;
+	public String getCreditRecource() {
+		return creditRecource;
 	}
 
-	public void setCreditRecourse(String creditRecourse) {
-		this.creditRecourse = creditRecourse;
+	public void setCreditRecource(String creditRecource) {
+		this.creditRecource = creditRecource;
 	}
 
 	public int getSubjectId() {
@@ -135,22 +137,16 @@ public class Credit implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		return "Credit [creditId=" + creditId + ", creditYear=" + creditYear + ", creditSemester=" + creditSemester
-				+ ", creditAcquire=" + creditAcquire + ", creditGrade=" + creditGrade + ", creditScore=" + creditScore
-				+ ", creditRecourse=" + creditRecourse + ", subjectId=" + subjectId + ", stuId=" + stuId + ", subject="
-				+ subject + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + creditAcquire;
 		result = prime * result + ((creditGrade == null) ? 0 : creditGrade.hashCode());
 		result = prime * result + creditId;
-		result = prime * result + ((creditRecourse == null) ? 0 : creditRecourse.hashCode());
-		result = prime * result + creditScore;
+		result = prime * result + ((creditRecource == null) ? 0 : creditRecource.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(creditScore);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((creditSemester == null) ? 0 : creditSemester.hashCode());
 		result = prime * result + creditYear;
 		result = prime * result + ((stuId == null) ? 0 : stuId.hashCode());
@@ -177,12 +173,12 @@ public class Credit implements Serializable {
 			return false;
 		if (creditId != other.creditId)
 			return false;
-		if (creditRecourse == null) {
-			if (other.creditRecourse != null)
+		if (creditRecource == null) {
+			if (other.creditRecource != null)
 				return false;
-		} else if (!creditRecourse.equals(other.creditRecourse))
+		} else if (!creditRecource.equals(other.creditRecource))
 			return false;
-		if (creditScore != other.creditScore)
+		if (Double.doubleToLongBits(creditScore) != Double.doubleToLongBits(other.creditScore))
 			return false;
 		if (creditSemester == null) {
 			if (other.creditSemester != null)
@@ -205,4 +201,13 @@ public class Credit implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Credit [creditId=" + creditId + ", creditYear=" + creditYear + ", creditSemester=" + creditSemester
+				+ ", creditAcquire=" + creditAcquire + ", creditGrade=" + creditGrade + ", creditScore=" + creditScore
+				+ ", creditRecource=" + creditRecource + ", subjectId=" + subjectId + ", stuId=" + stuId + ", subject="
+				+ subject + "]";
+	}
+
 }

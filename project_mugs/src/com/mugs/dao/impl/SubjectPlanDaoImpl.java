@@ -1,5 +1,6 @@
 package com.mugs.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -48,4 +49,16 @@ public class SubjectPlanDaoImpl implements SubjectPlanDao {
 	private String makeSqlId(String id) {
 		return "com.mugs.config.mapper.subjectPlanMapper." + id;
 	}
+	
+	/**-------------영현이꼬-----*/
+	@Override
+	public SubjectPlan selectSubjectPlanByFourId(int planYear, String planSemester, int subjectId, String proId) {
+		HashMap params = new HashMap();
+		params.put("planYear", planYear);
+		params.put("planSemester", planSemester);
+		params.put("subjectId", subjectId);
+		params.put("proId", proId);
+		return session.selectOne(makeSqlId("selectSubjectPlanByFourId"),params);
+				
+}
 }

@@ -23,9 +23,32 @@ public class SubjectPlan implements Serializable {
 	private String planNote;
 	private String proId;
 	private int subjectId;
+	/**--영혀니가 넣었음--*/
+	private Professor professor;
+	private Subject subject;
 
 	public SubjectPlan() {
 		super();
+	}
+	/**-------영혀니가 넣은 생성자-------*/
+	public SubjectPlan(int planId, String planSummary, String planMarkingMethod, String planLessonGoal,
+			String planWeekContent, String planBookinfo, String planBibliography, int planYear, String planSemester,
+			String planNote, String proId, int subjectId, Professor professor, Subject subject) {
+		super();
+		this.planId = planId;
+		this.planSummary = planSummary;
+		this.planMarkingMethod = planMarkingMethod;
+		this.planLessonGoal = planLessonGoal;
+		this.planWeekContent = planWeekContent;
+		this.planBookinfo = planBookinfo;
+		this.planBibliography = planBibliography;
+		this.planYear = planYear;
+		this.planSemester = planSemester;
+		this.planNote = planNote;
+		this.proId = proId;
+		this.subjectId = subjectId;
+		this.professor = professor;
+		this.subject = subject;
 	}
 
 	public SubjectPlan(int planId, String planSummary, String planMarkingMethod, String planLessonGoal,
@@ -141,16 +164,26 @@ public class SubjectPlan implements Serializable {
 	public void setSubjectId(int subjectId) {
 		this.subjectId = subjectId;
 	}
-
+	public Professor getProfessor() {
+		return professor;
+	}
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+	public Subject getSubject() {
+		return subject;
+	}
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
 	@Override
 	public String toString() {
 		return "SubjectPlan [planId=" + planId + ", planSummary=" + planSummary + ", planMarkingMethod="
 				+ planMarkingMethod + ", planLessonGoal=" + planLessonGoal + ", planWeekContent=" + planWeekContent
 				+ ", planBookinfo=" + planBookinfo + ", planBibliography=" + planBibliography + ", planYear=" + planYear
 				+ ", planSemester=" + planSemester + ", planNote=" + planNote + ", proId=" + proId + ", subjectId="
-				+ subjectId + "]";
+				+ subjectId + ", professor=" + professor + ", subject=" + subject + "]";
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -166,10 +199,11 @@ public class SubjectPlan implements Serializable {
 		result = prime * result + ((planWeekContent == null) ? 0 : planWeekContent.hashCode());
 		result = prime * result + planYear;
 		result = prime * result + ((proId == null) ? 0 : proId.hashCode());
+		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
+		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
 		result = prime * result + subjectId;
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -228,8 +262,20 @@ public class SubjectPlan implements Serializable {
 				return false;
 		} else if (!proId.equals(other.proId))
 			return false;
+		if (professor == null) {
+			if (other.professor != null)
+				return false;
+		} else if (!professor.equals(other.professor))
+			return false;
+		if (subject == null) {
+			if (other.subject != null)
+				return false;
+		} else if (!subject.equals(other.subject))
+			return false;
 		if (subjectId != other.subjectId)
 			return false;
 		return true;
 	}
+
+	
 }

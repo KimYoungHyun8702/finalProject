@@ -7,11 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<h1>Index</h1>
+환영합니다~!
+<%-- <h1>Index</h1>
 
 <h2>이병문 학생</h2>
-<a href="/project_mugs/teststudentInfo.do">test페이지로 이동</a>
+<a href="${initParam.rootPath}/teststudentInfo.do">test페이지로 이동</a><br>
+<a href="${initParam.rootPath}/student/getAllTimeTable.do">강의시간표 조회</a><br>
+<a href="${initParam.rootPath}/graduationInfo.do">졸업정보 조회</a>
 <h2>김영현교수</h2>
 <a href="${initParam.rootPath }/professorInfo.do">교수 개인 정보</a><br>
 <a href="${initParam.rootPath }/guidanceStudent.do">지도학생</a><br>
@@ -50,10 +52,10 @@
 <hr>
 <h1>김진광 학생</h1>
 <hr>
-<a href="${initParam.rootPath }/gradeInquiry.do">성적 조회 -딘강</a>
+<a href="${initParam.rootPath }/student/gradeInquiry.do">성적 조회 -딘강</a>
 <br>
 <a href="${initParam.rootPath }/student/currentGradeInquiry.do">당학기 성적조회 -딘강</a>
 <br>
-<a href="${initParam.rootPath }/student/academicProbationInquiry.do">학사경고내역 조회-딘강</a>
+<a href="${initParam.rootPath }/student/academicProbation.do">학사경고내역 조회-딘강</a> --%>
 </body>
 </html>

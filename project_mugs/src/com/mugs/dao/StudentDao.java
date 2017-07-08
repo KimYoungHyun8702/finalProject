@@ -2,8 +2,8 @@ package com.mugs.dao;
 
 import java.util.List;
 
-
 import com.mugs.vo.Student;
+import com.mugs.vo.Users;
 
 public interface StudentDao {
 	/**
@@ -45,10 +45,18 @@ public interface StudentDao {
 	List<Student> selectStudentList();
 	
 	/**
-	 * @author 병문이꼬
-	 * 학과 이름을 가져오기 위한 select 메소드, 학과 이름은 학생vo의 list에 저장되게 함.
-	 * @return 학생-학과정보 조인한 학생의 정보, 
+	 * 학생의 인적정보와 전공정보를 select하는 메소드
+	 * @param stuId
+	 * @return 주전공, 부전공, 복수전공을 모두 가지고 있는 학생
+	 * @author 병문
 	 */
-	Student selectStudentMajorName();
-
+	Student selectStudentAllInfoByJoin(Student stu);
+	
+	/**
+	 * 학생의 졸업시험 패스여부를 select하는 메소드
+	 * @param stuId
+	 * @return 졸업시험 통과여부
+	 * @author 병문
+	 */
+	String selectStuGraduationExam(String stuId);
 }

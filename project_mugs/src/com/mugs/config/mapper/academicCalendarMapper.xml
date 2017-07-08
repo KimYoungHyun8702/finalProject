@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mugs.config.mapper.academicCalendar">
+<mapper namespace="com.mugs.config.mapper.academicCalendarMapper">
 
 <sql id="select-academicCalendar">
 	SELECT calendar_id,
 		   calendar_start,
-		   calendar_finsh,
+		   calendar_finish,
 		   calendar_year,
 		   calendar_name
-	FROM   academiccalendar
+	FROM   ACADEMIC_CALENDAR
 </sql>
 
 <resultMap type="academicCalendar" id="academicCalendar-basic-reresultmap">
 	<id column="calendar_id" property="calendarId"/>
 	<result column="calendar_start" property="calendarStart"/>
-	<result column="calendar_finsh" property="calendarFinish"/>
+	<result column="calendar_finish" property="calendarFinish"/>
 	<result column="calendar_year" property="calendarYear"/>
 	<result column="calendar_name" property="calendarName"/>
 </resultMap>
@@ -24,14 +24,14 @@
 	<selectKey resultType="int" keyProperty="calendarId" order="BEFORE">
 		SELECT CALENDAR_ID_SEQ.nextval FROM dual
 	</selectKey>
-	INSERT INTO academiccalendar VALUES(#{calendarId},#{calendarStart}, #{calendarFinsh}, #{calendarYear}, #{calendarName})
+	INSERT INTO academiccalendar VALUES(#{calendarId},#{calendarStart}, #{calendarFinish}, #{calendarYear}, #{calendarName})
 </insert>
 
 <!-- update -->
 <update id="updateAcademicCalendarById" parameterType="academicCalendar">
 	UPDATE academiccalendar
 	   SET calendar_start=#{calendarStart},
-	   	   calendar_finsh=#{calendarFinsh},
+	   	   calendar_finish=#{calendarFinish},
 	   	   calendar_year=#{calendarYear},
 	   	   calendar_name=#{calendarName}
 	 WHERE calendar_id=#{calendarId}  	   
@@ -52,6 +52,10 @@
 	WHERE calendar_id=#{value}
 </select>
 
-</mapper>
+<select id="selectCalendarByYearCalName" resultMap="academicCalendar-basic-reresultmap" parameterType="map">
+	<include refid="select-academicCalendar"/>
+	WHERE calendar_year=#{year} AND calendar_name=#{calName}
+</select>
 
+</mapper>
 

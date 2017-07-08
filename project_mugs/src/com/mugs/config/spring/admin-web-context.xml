@@ -9,42 +9,39 @@
 	<mvc:annotation-driven/>
 	<context:component-scan base-package="com.mugs.controller.admin" />
 
-	<!-- 메인페이지 -->
-	<mvc:view-controller path="/index.do" view-name="index" />
-		
 	<!--학생 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/student/insert_student" path="insert_student.do"/>
-	<mvc:view-controller view-name="view/contents/admin/student/select_student" path="select_student.do"/>
-	<mvc:view-controller view-name="view/contents/admin/student/update_student" path="update_student.do"/>
-	<mvc:view-controller view-name="view/contents/admin/student/select_student_info" path="select_student_info.do"/>
+	<mvc:view-controller view-name="admin/student/insert_student.do" path="insert_student.tiles"/>
+	<mvc:view-controller view-name="admin/student/select_student.do" path="select_student.tiles"/>
+	<mvc:view-controller view-name="admin/student/update_student.do" path="update_student.tiles"/>
+	<mvc:view-controller view-name="admin/student/select_student_info.do" path="select_student_info.tiles"/>
 	<!--교수 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/professor/insert_professor" path="insert_professor.do"/>
-	<mvc:view-controller view-name="view/contents/admin/professor/select_professor" path="select_professor.do"/>
-	<mvc:view-controller view-name="view/contents/admin/professor/update_professor" path="update_professor.do"/>
-	<mvc:view-controller view-name="view/contents/admin/professor/select_professor_info" path="select_professor_info.do"/>
+	<mvc:view-controller view-name="admin/professor/insert_professor.do" path="insert_professor.tiles"/>
+	<mvc:view-controller view-name="admin/professor/select_professor.do" path="select_professor.tiles"/>
+	<mvc:view-controller view-name="admin/professor/update_professor.do" path="update_professor.tiles"/>
+	<mvc:view-controller view-name="admin/professor/select_professor_info.do" path="select_professor_info.tiles"/>
 	<!--과목 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/subject/insert_subject" path="insert_subject.do"/>
-	<mvc:view-controller view-name="view/contents/admin/subject/select_subject" path="select_subject.do"/>
-	<mvc:view-controller view-name="view/contents/admin/subject/update_subject" path="update_subject.do"/>
-	<mvc:view-controller view-name="view/contents/admin/subject/select_subject_info" path="select_subject_info.do"/>
+	<mvc:view-controller view-name="admin/subject/insert_subject.do" path="insert_subject.tiles"/>
+	<mvc:view-controller view-name="admin/subject/select_subject.do" path="select_subject.tiles"/>
+	<mvc:view-controller view-name="admin/subject/update_subject.do" path="update_subject.tiles"/>
+	<mvc:view-controller view-name="admin/subject/select_subject_info.do" path="select_subject_info.tiles"/>
 	<!--학과 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/major/insert_major" path="insert_major.do"/>
-	<mvc:view-controller view-name="view/contents/admin/major/select_major" path="select_major.do"/>
-	<mvc:view-controller view-name="view/contents/admin/major/update_major" path="update_major.do"/>
-	<mvc:view-controller view-name="view/contents/admin/major/select_major_info" path="select_major_info.do"/>
+	<mvc:view-controller view-name="admin/major/insert_major.do" path="insert_major.tiles"/>
+	<mvc:view-controller view-name="admin/major/select_major.do" path="select_major.tiles"/>
+	<mvc:view-controller view-name="admin/major/update_major.do" path="update_major.tiles"/>
+	<mvc:view-controller view-name="admin/major/select_major_info.do" path="select_major_info.tiles"/>
 	<!--단과대학 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/college/insert_college" path="insert_college.do"/>
-	<mvc:view-controller view-name="view/contents/admin/college/select_college" path="select_college.do"/>
-	<mvc:view-controller view-name="view/contents/admin/college/update_college" path="update_college.do"/>
+	<mvc:view-controller view-name="admin/college/insert_college.do" path="insert_college.tiles"/>
+	<mvc:view-controller view-name="admin/college/select_college.do" path="select_college.tiles"/>
+	<mvc:view-controller view-name="admin/college/update_college.do" path="update_college.tiles"/>
 	<!--건물 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/building/insert_building" path="insert_building.do"/>
-	<mvc:view-controller view-name="view/contents/admin/building/select_building" path="select_building.do"/>
-	<mvc:view-controller view-name="view/contents/admin/building/update_building" path="update_building.do"/>
-	<mvc:view-controller view-name="view/contents/admin/building/select_building_info" path="select_building_info.do"/>
+	<mvc:view-controller view-name="admin/building/insert_building.do" path="insert_building.tiles"/>
+	<mvc:view-controller view-name="admin/building/select_building.do" path="select_building.tiles"/>
+	<mvc:view-controller view-name="admin/building/update_building.do" path="update_building.tiles"/>
+	<mvc:view-controller view-name="admin/building/select_building_info.do" path="select_building_info.tiles"/>
 	<!--강의실 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/room/insert_room" path="insert_room.do"/>
-	<mvc:view-controller view-name="view/contents/admin/room/update_room" path="update_room.do"/>
+	<mvc:view-controller view-name="admin/room/insert_room.do" path="insert_room.tiles"/>
+	<mvc:view-controller view-name="admin/room/update_room.do" path="update_room.tiles"/>
 	<!--졸업학점 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/graduationcredit/insert_graduation_credit" path="insert_graduation_credit.do"/>
-	<mvc:view-controller view-name="view/contents/admin/graduationcredit/update_graduation_credit" path="update_graduation_credit.do"/>
+	<mvc:view-controller view-name="admin/graduationcredit/insert_graduation_credit.do" path="insert_graduation_credit.tiles"/>
+	<mvc:view-controller view-name="admin/graduationcredit/update_graduation_credit.do" path="update_graduation_credit.tiles"/>
 </beans>
