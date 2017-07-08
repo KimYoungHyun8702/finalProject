@@ -72,7 +72,10 @@ CREATE TABLE ROOM (
 CREATE TABLE GRADUATION_CREDIT (
 	MAJOR_ID NUMBER NOT NULL, /* 학과 ID */
 	GRADUATION_CREDIT_YEAR NUMBER NOT NULL, /* 입학연도 */
-	GRADUATION_CREDIT_SCORE NUMBER NOT NULL, /* 졸업학점 */
+	GRAD_VITAL_EDU_CREDIT NUMBER NOT NULL, /* 교양필수 졸업학점 */
+	GRAD_SELECT_EDU_CREDIT NUMBER NOT NULL, /* 교양선택 졸업학점 */
+	GRAD_VITAL_MAJOR_CREDIT NUMBER NOT NULL, /* 전공필수 졸업학점 */
+	GRAD_SELECT_MAJOR_CREDIT NUMBER NOT NULL, /* 전공선택 졸업학점 */
 	PRIMARY KEY(MAJOR_ID, GRADUATION_CREDIT_YEAR), /* 기본키 설정 */
 	FOREIGN KEY (MAJOR_ID) REFERENCES MAJOR(MAJOR_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
@@ -410,7 +413,7 @@ CREATE SEQUENCE COLLEGE_ID_SEQ; /* 대학(학부) 테이블의 기본키에 대�
 CREATE SEQUENCE COURSE_ID_SEQ; /* 수강 테이블의 기본키에 대한 시퀀스 생성 */
 CREATE SEQUENCE CREDIT_ID_SEQ; /* 학점 테이블의 기본키에 대한 시퀀스 생성 */
 CREATE SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE ROOM_ID_SEQ;
+CREATE SEQUENCE ROOM_ID_SEQ;/* 방 테이블의 기본키에 대한 시퀀스 생성 */
 /* 각 테이블의 기본키에 대한 필요 시퀀스 삭제 */
 
 DROP SEQUENCE EVALUATION_ANSWER_ID_SEQ; /* 평가응답 테이블의 기본키에 대한 시퀀스 삭제 */
@@ -423,8 +426,8 @@ DROP SEQUENCE EVALUATION_ID_SEQ; /* 평가 테이블의 기본키에 대한 시�
 DROP SEQUENCE MAJOR_ID_SEQ; /* 학과 테이블의 기본키에 대한 시퀀스 삭제 */
 DROP SEQUENCE COLLEGE_ID_SEQ; /* 대학(학부) 테이블의 기본키에 대한 시퀀스 삭제 */
 DROP SEQUENCE COURSE_ID_SEQ; /* 수강 테이블의 기본키에 대한 시퀀스 삭제 */
-
-DROP SEQUENCE CREDIT_ID_SEQ;
+DROP SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀스 삭제 */
+DROP SEQUENCE CREDIT_ID_SEQ;/* 방 테이블의 기본키에 대한 시퀀스 삭제 */
 
 
 /*1.사용자*/
@@ -761,5 +764,5 @@ insert into ROOM values('5-103', 5);
 insert into ROOM values('5-104', 5);
 insert into ROOM values('5-105', 5);
 
-DROP SEQUENCE BUILDING_ID_SEQ;
+
 

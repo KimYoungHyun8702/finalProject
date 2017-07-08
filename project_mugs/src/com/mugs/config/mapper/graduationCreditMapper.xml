@@ -5,39 +5,56 @@
 <resultMap type="graduationCredit" id="graduationCredit-basic-resultmap">
 		<id column="major_id" property="majorId"/>
 		<id column="graduation_credit_year" property="graduationCreditYear"/>
-		<result column="graduation_credit_score" property="graduationCreditScore"/>
+		<result column="grad_vital_edu_credit" property="gradVitalEduCredit"/>
+		<result column="grad_select_edu_credit" property="gradSelectEduCredit"/>
+		<result column="grad_vital_major_credit" property="gradVitalMajorCredit"/>
+		<result column="grad_select_major_credit" property="gradSelectMajorCredit"/>
+		
 </resultMap>
 
 <resultMap type="graduationCredit" id="graduationCreditJoinMajorName-basic-resultmap">
 		<id column="major_id" property="majorId"/>
 		<id column="graduation_credit_year" property="graduationCreditYear"/>
-		<result column="graduation_credit_score" property="graduationCreditScore"/>
+		<result column="grad_vital_edu_credit" property="gradVitalEduCredit"/>
+		<result column="grad_select_edu_credit" property="gradSelectEduCredit"/>
+		<result column="grad_vital_major_credit" property="gradVitalMajorCredit"/>
+		<result column="grad_select_major_credit" property="gradSelectMajorCredit"/>
 		<result column="major_name" property="majorName"/>
 </resultMap>
 
 <sql id="select-graduationCredit">
 	SELECT		major_id,
 				graduation_credit_year,
-				graduation_credit_score
+				grad_vital_edu_credit,
+				grad_select_edu_credit,
+				grad_vital_major_credit,
+				grad_select_major_credit
 	FROM 		graduation_credit					
 </sql>
 
 <!-- insert -->
 <insert id="insertGraduationCredit" parameterType="graduationCredit">
-	INSERT INTO graduation_credit VALUES(#{majorId}, #{graduationCreditYear}, #{graduationCreditScore})
+	INSERT INTO graduation_credit VALUES(#{majorId}, #{graduationCreditYear}, 
+									#{gradVitalEduCredit},#{gradSelectEduCredit},
+									#{gradVitalMajorCredit},#{gradSelectMajorCredit})
 </insert>
 
 <!-- update -->
 <update id="updateGraduationCreditById" parameterType="graduationCredit">
 	UPDATE	graduation_credit
-	SET		graduation_credit_score=#{graduationCreditScore}
+	SET		grad_vital_edu_credit=#{gradVitalEduCredit},
+			grad_select_edu_credit=#{gradSelectEduCredit},
+			grad_vital_major_credit=#{gradVitalMajorCredit},
+			grad_select_major_credit=#{gradSelectMajorCredit}
 	WHERE	major_id=#{majorId}
 	AND 	graduation_credit_year=#{graduationCreditYear}
 </update>
 
 <!-- delete -->
 <delete id="deleteGraduationCredit" parameterType="map">
-	DELETE FROM graduation_credit WHERE major_id=#{majorId} AND graduation_credit_year=#{graduationCreditYear}
+	DELETE FROM graduation_credit 
+	WHERE major_id=#{majorId} 
+	AND graduation_credit_year=#{graduationCreditYear}
 </delete>
 
 <!-- select -->
@@ -52,9 +69,16 @@
 </select>
 
 <select id="selectGraduationCreditByMajorId" resultMap="graduationCreditJoinMajorName-basic-resultmap" parameterType="int">
-	SELECT m.major_name, g.major_id, g.graduation_credit_year, g.graduation_credit_score
+	SELECT 	m.major_name, 
+			g.major_id, 
+			g.graduation_credit_year, 
+			g.grad_vital_edu_credit,
+			g.grad_select_edu_credit,
+			g.grad_vital_major_credit,
+			g.grad_select_major_credit
 	FROM major m, graduation_credit g
-	WHERE m.major_id = g.major_id AND g.major_id = #{majorId}
+	WHERE m.major_id = g.major_id 
+	AND g.major_id = #{majorId}
 </select>
 
 </mapper>

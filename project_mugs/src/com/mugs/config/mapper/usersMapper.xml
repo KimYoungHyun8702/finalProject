@@ -38,7 +38,7 @@
 	<insert id="insertUsers" parameterType="users">
 		INSERT INTO users
 		VALUES(#{usersId}, #{usersPassword}, #{usersName},
-		#{usersEngName}, #{usersRrn}, #{usersEmail}, #{usersPhoneNum},
+		#{usersEngName}, #{usersRRN}, #{usersEmail}, #{usersPhoneNum},
 		#{usersCellNum}, #{usersNational}, #{usersCurrentAddr}, #{usersBornAddr}, #{usersEnable}, #{usersPhoto})
 	</insert>
 

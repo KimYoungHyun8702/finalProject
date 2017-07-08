@@ -40,8 +40,8 @@ public class NoticeDaoImpl implements NoticeDao{
 	}
 
 	@Override
-	public Notice SelectNoticeById(int noticeId) {
-		return session.selectOne(makeSqlId("selectNoticeById"), noticeId);
+	public Notice SelectNotice() {
+		return session.selectOne(makeSqlId("selectNotice"));
 	}
 	
 	

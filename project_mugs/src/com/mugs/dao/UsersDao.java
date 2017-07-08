@@ -11,7 +11,7 @@ public interface UsersDao {
 	 * @param user
 	 * @return
 	 */
-	int insertUsers(Users user);
+	int insertUsers(Users users);
 
 	/**
 	 * 한 명의 사용자에 대한 데이터를 매개변수로 받은 Users 객체의 Id와 일치하는 사용자의 정보를 update하는 메소드.
@@ -19,7 +19,7 @@ public interface UsersDao {
 	 * @param user
 	 * @return
 	 */
-	int updateUsersById(Users user);
+	int updateUsersById(Users users);
 
 	/**
 	 * 매개변수로 받은 사용자Id와 일치하는 Data 삭제.

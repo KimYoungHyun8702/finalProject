@@ -23,25 +23,25 @@ public class BuildingController {
 	@ResponseBody
 	public ModelAndView selectBuildingList(){
 		List<Building> list = buildingService.selectBuildingList();
-		return new ModelAndView("view/contents/admin/building/select_building","list",list);
+		return new ModelAndView("contents/admin/building/select_building","list",list);
 	}
 	
 	@RequestMapping("/selectBuildingByIdController")
 	public ModelAndView selectBuildingById(int buildingId){
 		Building building = buildingService.selectBuildingById(buildingId);
-		return new ModelAndView("view/contents/admin/building/select_building_info","building",building);
+		return new ModelAndView("contents/admin/building/select_building_info","building",building);
 	}
 	
 	@RequestMapping("/selectBuildingNameController")
 	public ModelAndView selectBuildingNameController(){
 		List<Building> list = buildingService.selectBuildingList();
-		return new ModelAndView("view/contents/admin/room/insert_room","list",list);
+		return new ModelAndView("contents/admin/room/insert_room","list",list);
 	}
 	
 	@RequestMapping("/selectBuildingNameForUpdateController")
 	public ModelAndView selectBuildingNameForUpdateController(){
 		List<Building> list = buildingService.selectBuildingList();
-		return new ModelAndView("view/contents/admin/room/update_room","list",list);
+		return new ModelAndView("contents/admin/room/update_room","list",list);
 	}
 	
 	@RequestMapping("/insertBuildingController")
@@ -72,6 +72,13 @@ public class BuildingController {
 	@ResponseBody
 	public List<Room> selectRoomByReference(int buildingId){
 		List<Room> list = buildingService.selectRoomByReference(buildingId);
+		return list;
+	}
+	
+	@RequestMapping("/selectRoomForProfessorController")
+	@ResponseBody
+	public List<Room> selectRoomForProfessor(int office){
+		List<Room> list = buildingService.selectRoomByReference(office);
 		return list;
 	}
 	

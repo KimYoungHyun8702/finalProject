@@ -23,7 +23,7 @@ public class SubjectController {
 	@RequestMapping("selectSubjectTypeController")
 	public ModelAndView selectSubjectType(){
 		List<String> list = subjectService.selectSubjectType();
-		return new ModelAndView("view/contents/admin/subject/select_subject","list",list);
+		return new ModelAndView("contents/admin/subject/select_subject","list",list);
 	}
 	
 	@RequestMapping("selectCollegeIdBySubjectTypeController")
@@ -58,7 +58,7 @@ public class SubjectController {
 	public ModelAndView selectForInsertSubject(){
 		Map<String, Object> map = subjectService.selectForInsertSubject();
 		ModelAndView view = new ModelAndView();
-		view.setViewName("view/contents/admin/subject/insert_subject");
+		view.setViewName("contents/admin/subject/insert_subject");
 		view.addObject("building",map.get("building"));
 		view.addObject("room",map.get("room"));
 		view.addObject("college",map.get("college"));
@@ -76,7 +76,7 @@ public class SubjectController {
 	public ModelAndView selectSubjectInfoBySubjectIdForUpdate(int subjectId){
 		Map<String, Object> map = subjectService.selectSubjectInfoBySubjectIdForUpdate(subjectId);
 		ModelAndView view = new ModelAndView();
-		view.setViewName("view/contents/admin/subject/update_subject");
+		view.setViewName("contents/admin/subject/update_subject");
 		view.addObject("building",map.get("building"));
 		view.addObject("subject",map.get("subject"));
 		return view;
@@ -112,7 +112,7 @@ public class SubjectController {
 	public ModelAndView selectSubjectInfoBySubjectIdForMinorUpdate(int subjectId){
 		Map<String, Object> map = subjectService.selectSubjectInfoBySubjectIdForMinorUpdate(subjectId);
 		ModelAndView view = new ModelAndView();
-		view.setViewName("view/contents/admin/subject/update_subject");
+		view.setViewName("contents/admin/subject/update_subject");
 		view.addObject("building",map.get("building"));
 		view.addObject("subject",map.get("subject"));
 		return view;

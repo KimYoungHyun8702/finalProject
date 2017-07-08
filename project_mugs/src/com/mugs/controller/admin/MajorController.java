@@ -26,19 +26,19 @@ public class MajorController {
 	@RequestMapping("/selectMajorListController")
 	public ModelAndView selectMajorList(){
 		List<Major> list = majorService.selectMajorList();
-		return new ModelAndView("view/contents/admin/major/select_major","list",list);
+		return new ModelAndView("contents/admin/major/select_major","list",list);
 	}
 	
 	@RequestMapping("/selectCollegeListForSelectController")
 	public ModelAndView selectCollegeListForSelect(){
 		List<College> list = collegeService.selectCollegeList();
-		return new ModelAndView("view/contents/admin/major/select_major","list",list);
+		return new ModelAndView("contents/admin/major/select_major","list",list);
 	}
 	
 	@RequestMapping("/selectCollegeListForinsertController")
 	public ModelAndView selectCollegeListForinsert(){
 		List<College> list = collegeService.selectCollegeList();
-		return new ModelAndView("view/contents/admin/major/insert_major","list",list);
+		return new ModelAndView("contents/admin/major/insert_major","list",list);
 	}
 	
 	@RequestMapping("/selectMajorByCollegeIdController")
@@ -51,13 +51,13 @@ public class MajorController {
 	@RequestMapping("/selectMajorGraduationCreditByMajorIdController")
 	public ModelAndView selectMajorGraduationCreditByMajorId(int majorId){
 		List<Major> list = majorService.selectMajorGraduationCreditByMajorId(majorId);
-		return new ModelAndView("view/contents/admin/major/select_major_info", "list",list);
+		return new ModelAndView("contents/admin/major/select_major_info", "list",list);
 	}
 	
 	@RequestMapping("/selectMajorByMajorIdForUpdateController")
 	public ModelAndView selectMajorByMajorIdForUpdate(int majorId){
 		Major major = majorService.selectMajorById(majorId);
-		return new ModelAndView("view/contents/admin/major/update_major","major",major);
+		return new ModelAndView("contents/admin/major/update_major","major",major);
 	}
 	
 	@RequestMapping("/insertMajorController")

@@ -14,7 +14,11 @@ function update_minor_subject(subjectId){
 	location.href="${initParam.rootPath }/admin/selectSubjectInfoBySubjectIdForMinorUpdateController.do?subjectId="+subjectId
 };
 function delete_subject(subjectId){
-	location.href="${initParam.rootPath }/admin/deleteSubjectBySubjectIdController.do?subjectId="+subjectId
+	if(confirm("삭제하시겠습니까?")){
+		location.href="${initParam.rootPath }/admin/deleteSubjectBySubjectIdController.do?subjectId="+subjectId
+	}else{
+		return false;
+	}
 };
 $(document).ready(function(){	
 	$("#college").hide();

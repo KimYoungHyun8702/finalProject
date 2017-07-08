@@ -8,13 +8,15 @@
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	$("#submit").hide();
 	$("#collegeId").on("change",function(){
 		if($("#collegeId").val() == "단과대학 선택"){
-			alert("단과대학 선택하세요")
 			$("#majorId").empty().append("<option>학과 선택</option>");
+			$("#submit").hide();
 		}else if($("#collegeId").val() == "교양"){
 			$("#majorId").empty().append("<option value=0>교양</option>");
 		}else{
+			$("#submit").hide();
 		$.ajax({
 			"url":"${initParam.rootPath }/admin/selectMajorByCollegeIdController.do",
 			"data":"collegeId="+$("#collegeId").val(),
@@ -28,6 +30,7 @@ $(document).ready(function(){
 		}//end of else
 	})//end of collegeId
 	$("#buildingId").on("change",function(){
+		$("#submit").hide();
 		if($("#buildingId").val() == "강의동 선택"){
 			alert("강의동을 선택하세요")
 		}else{
@@ -43,6 +46,18 @@ $(document).ready(function(){
 			});//end of ajax
 		}//end of else
 	})//end of buildingId
+	$("#lectureId").on("change",function(){
+		$("#submit").hide();
+		if($("#lectureId").val() != '강의실 선택' && $("#majorId").val() != '학과 선택'){
+			$("#submit").show();
+		}
+	})
+	$("#majorId").on("change",function(){
+		$("#submit").hide();
+		if($("#lectureId").val() != '강의실 선택' && $("#majorId").val() != '학과 선택'){
+			$("#submit").show();
+		}
+	})
 })//end of document
 </script>
 </head>
@@ -77,15 +92,17 @@ $(document).ready(function(){
 			<option>학과 선택</option>
 		</select> 
 	강의실 : <select name="buildingId" id="buildingId">
-		<option>강의동 선택</option>
-		<c:forEach var="list" items="${requestScope.building }">
-			<option value=${list.buildingId }>${list.buildingName }</option>
-		</c:forEach>
-	</select>
-	<select name="lectureId" id="lectureId">
-		<option>강의실 선택</option>
-	</select>
-			<input type="submit" value="등록">
+				<option>강의동 선택</option>
+					<c:forEach var="list" items="${requestScope.building }">
+						<option value=${list.buildingId }>${list.buildingName }</option>
+					</c:forEach>
+		   </select>
+		   <select name="lectureId" id="lectureId">
+				<option>강의실 선택</option>
+	       </select>
+	     	<br>
+				<input id="submit" type="submit" value="등록">
+	      
 	</form>
 	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
 </body>

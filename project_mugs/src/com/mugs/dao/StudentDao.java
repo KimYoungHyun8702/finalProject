@@ -27,7 +27,7 @@ public interface StudentDao {
 	 * @param studentId
 	 * @return
 	 */
-	int deleteStudent(String studentId);
+	int deleteStudent(String stuId);
 	
 	
 	/**
@@ -50,5 +50,41 @@ public interface StudentDao {
 	 * @return 학생-학과정보 조인한 학생의 정보, 
 	 */
 	Student selectStudentMajorName();
+	
+	/**
+	 * usersName으로 학생 조회 메소드
+	 * @param usersName
+	 * @return
+	 */
+	List<Student> selectStudentByName(String usersName);
+	
+	/**
+	 * stuId로 학과 조회 메소드
+	 * @param stuId
+	 * @return
+	 */
+	Student selectStudentInfoForMajorById(String stuId);
+	
+	/**
+	 * stuId로 복수 전공 조회 메소드
+	 * @param stuId
+	 * @return
+	 */
+	Student selectStudentInfoForMajorDualById(String stuId);
+	
+	/**
+	 * stuId로 부 전공 조회 메소드
+	 * @param stuId
+	 * @return
+	 */
+	Student selectStudentInfoForMajorMinorById(String stuId);
+	
+	/**
+	 * 매개변수로 stuId를 받아 해당하는 학생 조회 메소드
+	 * @param stuId
+	 * @return
+	 */
+	Student selectStudentInfoByStuId(String stuId);
+	
 
 }

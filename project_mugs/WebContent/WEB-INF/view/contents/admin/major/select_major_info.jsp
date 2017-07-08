@@ -35,7 +35,10 @@
 				<td align="center">학과 ID</td>
 				<td align="center">학과 이름</td>
 				<td align="center">적용 연도</td>
-				<td align="center">졸업 학점</td>
+				<td align="center">교양필수 졸업학점</td>
+				<td align="center">교양선택 졸업학점</td>
+				<td align="center">전공필수 졸업학점</td>
+				<td align="center">전공선택 졸업학점</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -47,6 +50,9 @@
 							<td>${major.majorName }</td>
 							<td></td>
 							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 						</tr>
 					</c:when>
 					<c:otherwise>
@@ -55,7 +61,10 @@
 								<td id="majorId">${major.majorId }</td>
 								<td>${major.majorName }</td>
 								<td>${list.graduationCreditYear }</td>
-								<td>${list.graduationCreditScore }</td>
+								<td>${list.gradVitalEduCredit }</td>
+								<td>${list.gradSelectEduCredit }</td>
+								<td>${list.gradVitalMajorCredit }</td>
+								<td>${list.gradSelectMajorCredit }</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>

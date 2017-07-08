@@ -34,7 +34,10 @@
 		<result column="stu_semester" property="stuSemester"/>
 		<result column="major_id" property="majorId"/>
 		<result column="major_dual_id" property="majorDualId"/>
-		<result column="major_minor_id" property="majorMinorId"/>	
+		<result column="major_minor_id" property="majorMinorId"/>
+		<result column="major_name" property="majorName"/>
+		<result column="major_name" property="majorDualName"/>
+		<result column="major_name" property="majorMinorName"/>	
 	</resultMap>
 
 	<resultMap id="student-user-resultmap" type="student" extends="student-basic-resultmap">
@@ -92,8 +95,6 @@
 	</update>
 	
 	
-	
-
 	<delete id="deleteStudent" parameterType="java.lang.String">
 		DELETE FROM STUDENT
 		WHERE stu_id = #{value}
@@ -142,7 +143,7 @@
 		WHERE 		s.major_id = m.major_id(+)
 	</select>
 
-	<select id="selectStudentInfoByJoin" resultMap="student-user-resultmap">
+	<select id="selectStudentInfoByJoin" resultMap="student-user-resultmap" parameterType="String">
 	SELECT	   s.stu_id,
 		  	   s.stu_course,
 		  	   s.stu_army,
@@ -173,7 +174,35 @@
 		FROM   student s, users u
 		WHERE  s.stu_id = u.users_id
 		AND    s.stu_id = #{value}
-	
-	
 	</select>
+	
+	<select id="selectStudentByName" resultMap="student-user-resultmap" parameterType="String">
+		SELECT s.stu_id,  	   
+		  	   u.users_name, u.users_rrn, u.users_email
+		FROM   student s, users u
+		WHERE  s.stu_id = u.users_id 
+		AND    u.users_name Like '%'||#{value}||'%'
+	</select>
+	 
+	<select id="selectStudentInfoForMajorById" resultMap="student-user-resultmap" parameterType="String">
+		SELECT m.major_name, s.major_id
+		FROM   student s, major m
+		WHERE  s.major_id = m.major_id
+		AND    s.stu_id = #{value}
+	</select>
+	
+	<select id="selectProfessorInfoForMajorDualById" resultMap="student-user-resultmap" parameterType="String">
+		SELECT m.major_name, s.major_dual_id
+		FROM   student s, major m
+		WHERE  s.major_dual_id = m.major_id
+		AND    s.stu_id = #{value}
+	</select>
+	
+	<select id="selectProfessorInfoForMajorMinorById" resultMap="student-user-resultmap" parameterType="String">
+		SELECT m.major_name, s.major_minor_id
+		FROM   student s, major m
+		WHERE  s.major_minor_id = m.major_id
+		AND    s.stu_id = #{value}
+	</select>
+	
 </mapper>

@@ -10,45 +10,42 @@
 	<context:component-scan base-package="com.mugs.controller.admin" />
 
 	<!-- 메인페이지 -->
-	<mvc:view-controller path="/index.do" view-name="view/index" />
-	
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/" p:suffix=".jsp" />
+	<mvc:view-controller path="/index.do" view-name="index" />
 		
 	<!--학생 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/student/insert_student" path="insert_student.do"/>
-	<mvc:view-controller view-name="view/contents/admin/student/select_student" path="select_student.do"/>
-	<mvc:view-controller view-name="view/contents/admin/student/update_student" path="update_student.do"/>
-	<mvc:view-controller view-name="view/contents/admin/student/select_student_info" path="select_student_info.do"/>
+	<mvc:view-controller view-name="contents/admin/student/insert_student" path="insert_student.do"/>
+	<mvc:view-controller view-name="contents/admin/student/select_student" path="select_student.do"/>
+	<mvc:view-controller view-name="contents/admin/student/update_student" path="update_student.do"/>
 	<!--교수 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/professor/insert_professor" path="insert_professor.do"/>
-	<mvc:view-controller view-name="view/contents/admin/professor/select_professor" path="select_professor.do"/>
-	<mvc:view-controller view-name="view/contents/admin/professor/update_professor" path="update_professor.do"/>
-	<mvc:view-controller view-name="view/contents/admin/professor/select_professor_info" path="select_professor_info.do"/>
+	<mvc:view-controller view-name="contents/admin/professor/insert_professor" path="insert_professor.do"/>
+	<mvc:view-controller view-name="contents/admin/professor/select_professor" path="select_professor.do"/>
+	<mvc:view-controller view-name="contents/admin/professor/update_professor" path="update_professor.do"/>
 	<!--과목 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/subject/insert_subject" path="insert_subject.do"/>
-	<mvc:view-controller view-name="view/contents/admin/subject/select_subject" path="select_subject.do"/>
-	<mvc:view-controller view-name="view/contents/admin/subject/update_subject" path="update_subject.do"/>
-	<mvc:view-controller view-name="view/contents/admin/subject/select_subject_info" path="select_subject_info.do"/>
+	<mvc:view-controller view-name="contents/admin/subject/insert_subject" path="insert_subject.do"/>
+	<mvc:view-controller view-name="contents/admin/subject/select_subject" path="select_subject.do"/>
+	<mvc:view-controller view-name="contents/admin/subject/update_subject" path="update_subject.do"/>
 	<!--학과 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/major/insert_major" path="insert_major.do"/>
-	<mvc:view-controller view-name="view/contents/admin/major/select_major" path="select_major.do"/>
-	<mvc:view-controller view-name="view/contents/admin/major/update_major" path="update_major.do"/>
-	<mvc:view-controller view-name="view/contents/admin/major/select_major_info" path="select_major_info.do"/>
+	<mvc:view-controller view-name="contents/admin/major/insert_major" path="insert_major.do"/>
+	<mvc:view-controller view-name="contents/admin/major/select_major" path="select_major.do"/>
+	<mvc:view-controller view-name="contents/admin/major/update_major" path="update_major.do"/>
+	<mvc:view-controller view-name="contents/admin/major/select_major_info" path="select_major_info.do"/>
 	<!--단과대학 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/college/insert_college" path="insert_college.do"/>
-	<mvc:view-controller view-name="view/contents/admin/college/select_college" path="select_college.do"/>
-	<mvc:view-controller view-name="view/contents/admin/college/update_college" path="update_college.do"/>
+	<mvc:view-controller view-name="contents/admin/college/insert_college" path="insert_college.do"/>
+	<mvc:view-controller view-name="contents/admin/college/select_college" path="select_college.do"/>
+	<mvc:view-controller view-name="contents/admin/college/update_college" path="update_college.do"/>
 	<!--건물 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/building/insert_building" path="insert_building.do"/>
-	<mvc:view-controller view-name="view/contents/admin/building/select_building" path="select_building.do"/>
-	<mvc:view-controller view-name="view/contents/admin/building/update_building" path="update_building.do"/>
-	<mvc:view-controller view-name="view/contents/admin/building/select_building_info" path="select_building_info.do"/>
+	<mvc:view-controller view-name="contents/admin/building/insert_building" path="insert_building.do"/>
+	<mvc:view-controller view-name="contents/admin/building/select_building" path="select_building.do"/>
+	<mvc:view-controller view-name="contents/admin/building/update_building" path="update_building.do"/>
+	<mvc:view-controller view-name="contents/admin/building/select_building_info" path="select_building_info.do"/>
 	<!--강의실 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/room/insert_room" path="insert_room.do"/>
-	<mvc:view-controller view-name="view/contents/admin/room/update_room" path="update_room.do"/>
+	<mvc:view-controller view-name="contents/admin/room/insert_room" path="insert_room.do"/>
+	<mvc:view-controller view-name="contents/admin/room/update_room" path="update_room.do"/>
 	<!--졸업학점 관리  -->
-	<mvc:view-controller view-name="view/contents/admin/graduationcredit/insert_graduation_credit" path="insert_graduation_credit.do"/>
-	<mvc:view-controller view-name="view/contents/admin/graduationcredit/update_graduation_credit" path="update_graduation_credit.do"/>
+	<mvc:view-controller view-name="contents/admin/graduationcredit/insert_graduation_credit" path="insert_graduation_credit.do"/>
+	<mvc:view-controller view-name="contents/admin/graduationcredit/update_graduation_credit" path="update_graduation_credit.do"/>
+	<!--공지사항 관리  -->
+	<mvc:view-controller view-name="contents/admin/notice/select_notice" path="select_notice.do"/>
+	<mvc:view-controller view-name="contents/admin/notice/insert_notice" path="insert_notice.do"/>
+	<mvc:view-controller view-name="contents/admin/notice/update_notice" path="update_notice.do"/>
 </beans>
