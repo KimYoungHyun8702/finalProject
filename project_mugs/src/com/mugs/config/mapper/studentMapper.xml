@@ -185,11 +185,17 @@
 		AND			s.major_dual_id  = multi.major_id(+)
 		AND			s.major_minor_id = sub.major_id(+)
 		AND			u.users_id = s.stu_id 
-		AND			u.users_id = #{stuId} 
+		AND			u.users_id = #{stuId} 	
 	</select>
 	
+	<select id="selectStuGraduationExam" resultType="string" parameterType="string">
+	SELECT 	stu_graduation_exam
+	FROM 	student
+	WHERE 	stu_id = #{stuId}
+	</select>
+	<!-- End BM -->
 	
-
+		
 	<select id="selectStudentInfoByJoin" resultMap="student-user-resultmap">
 	SELECT	   s.stu_id,
 		  	   s.stu_course,

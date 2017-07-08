@@ -36,13 +36,13 @@ public class StudentIndividualController {
 	
 	@RequestMapping("moveUpdateForm")
 	public String moveUpdateFrom(){
-		return "view/contents/student/IndividualInfo/stuInfo_update_form";
+		return "contents/student/IndividualInfo/stuInfo_update_form";
 	}
 
 	@RequestMapping("updateStu")
 	public String updateStudentInformation(Users users){	
 				service.updateStudentHumanInfo(users);	
-		return "view/contents/student/test";
+		return "contents/student/test";
 	}  
 	
 	@RequestMapping("getStudentInfoById")
@@ -50,20 +50,13 @@ public class StudentIndividualController {
 	public Student getStudentAllInformaion(String stuId){ 
 		return service.findStudentInfoById(stuId);
 	}
-	/**
-	 * 단과대학을 넘기는 Handler메소드
-	 * @return
-	 */
+	
 	@RequestMapping("getAllTimeTable")
 	public ModelAndView getAllTimeTable(){
 		 List<College> list = service.getCollegeList();
-		 return new ModelAndView("view/contents/student/IndividualInfo/allTimeTable","list",list);
+		 return new ModelAndView("contents/student/IndividualInfo/allTimeTable","list",list);
 	}
-	/**
-	 * 학과를 넘기는 Handler메소드
-	 * @param collegeId
-	 * @return
-	 */
+	
 	@RequestMapping("getMajorLists")
 	@ResponseBody
 	public List<Major> getMajorLists(int collegeId){
@@ -73,8 +66,7 @@ public class StudentIndividualController {
 	
 	@RequestMapping("getSubjectTypeList")
 	@ResponseBody
-	public List<String> getSubjectTypeListByMajorId(int majorId){ 
-		
+	public List<String> getSubjectTypeListByMajorId(int majorId){ 	
 		List<Subject> subjectList = service.getSubjectTypeListByMajorId(majorId);
 		List<String> subTypeList = new ArrayList<String>();
 		
@@ -87,17 +79,13 @@ public class StudentIndividualController {
 	
 	@RequestMapping("getSubjectBySubjectType")
 	@ResponseBody
-	public Map<String,Subject> getSubjectBySubjectType(@RequestParam String majorId,
-														@RequestParam String subjectType){
+	public List<Object> getSubjectBySubjectType(@RequestParam String majorId,
+												@RequestParam String subjectType){
+		List<Object> param = new ArrayList<Object>();
+		param.add(majorId); 
+		param.add(subjectType); 
 
-		System.out.println(majorId); 
-		System.out.println(subjectType);
-		
-		HashMap<String,Object> param = new HashMap<String, Object>();
-		param.put("majorId", majorId); 
-		param.put("subjectType", subjectType); 
-
-		Map<String,Subject> result = (HashMap)service.getSubjectBySubjectTypeAndMajorId(param);	
+		List<Object> result = service.getSubjectBySubjectTypeAndMajorId(param);	
 		return result; 
 	}
 }

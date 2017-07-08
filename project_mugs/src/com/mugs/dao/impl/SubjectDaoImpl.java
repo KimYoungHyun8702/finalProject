@@ -64,7 +64,7 @@ public class SubjectDaoImpl implements SubjectDao {
 	}
 	
 	@Override
-	public List<Subject> selectSubjectBySubjectTypeAndMajorId(Map<String,Object> typeAndMajorId) {
+	public List<Subject> selectSubjectBySubjectTypeAndMajorId(List<Object> typeAndMajorId) {
 		return session.selectList(makeSqlId("selectSubjectBySubjectTypeAndMajorId"),typeAndMajorId);
 	}
 	// End BM

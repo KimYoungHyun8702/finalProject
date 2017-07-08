@@ -49,7 +49,7 @@ public interface StudentIndividualService {
 	 * @param subjectType
 	 * @return 과목 리스트
 	 */
-	Map<String,Object> getSubjectBySubjectTypeAndMajorId(Map<String,Object> subTypeAndMajorId);
+	List<Object> getSubjectBySubjectTypeAndMajorId(List<Object> subTypeAndMajorId);
 	
 
 }

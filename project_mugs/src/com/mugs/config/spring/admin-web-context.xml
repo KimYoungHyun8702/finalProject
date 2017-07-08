@@ -10,7 +10,7 @@
 	<context:component-scan base-package="com.mugs.controller.admin" />
 
 	<!-- 메인페이지 -->
-	<mvc:view-controller path="/index.do" view-name="view/index" />
+	<mvc:view-controller path="/index.do" view-name="index" />
 
 	<mvc:view-controller view-name="view/contents/admin/student/insert_student" path="insert_student.do"/>
 	<mvc:view-controller view-name="view/contents/admin/student/select_student" path="select_student.do"/>

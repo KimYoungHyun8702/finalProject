@@ -68,6 +68,9 @@ $("#first_category").on("change", function(){
 				
 				$("#third_category").html(str);
 			},
+			error:function(){
+				alert("조회할 데이터가 없습니다");
+			}
 		});//ajax
 	});//on change
 	
@@ -88,33 +91,21 @@ $("#first_category").on("change", function(){
 			success:function(jsonData){
 
 				//tbody 구성
-				var trs = "";
-				console.log(jsonData);
-				
-				$.each(jsonData, function(){
-					var subjectList = this;
-						console.log(subjectList);
-						
-						for(var i =0; i < subjectList.length; i++) {
-							var subject = subjectList[i];
-							if($.type(subject) == "object") {
-								trs = trs+"<tr><td>"+subject.subjectType
-								 +"</td><td>"+subject.subjectId
-								 +"</td><td>"+subject.subjectName
-								 +"</td><td>"+subject.subjectCredit
-								 +"</td><td>"+subject.subjectGrade
-								 +"</td><td>"+subject.subjectClass
-								 +"</td><td>"+subject.subjectCapacity
-								 +"</td><td>"+subject.subjectTime
-								 +"</td><td>"+subject.lectureId
-								 +" </td><td class='teacher'></td></tr>";								
-							}else {												
-								if($('.teacher').length == 0 )$("#wholeTimeTbody").html(trs);
-								$('.teacher').eq(i).text(subject);
-							}//end of else						
-						}//end of for
-			    });//end of each
-				$("#wholeTimeThead").show();
+				var trs = "";				
+					for(var i = 0; i<jsonData[0].length;i++){
+					trs = trs+"<tr><td>"+jsonData[0][i].subjectType
+					 +"</td><td>"+jsonData[0][i].subjectId
+					 +"</td><td>"+jsonData[0][i].subjectName
+					 +"</td><td>"+jsonData[0][i].subjectCredit
+					 +"</td><td>"+jsonData[0][i].subjectGrade
+					 +"</td><td>"+jsonData[0][i].subjectClass
+					 +"</td><td>"+jsonData[0][i].subjectCapacity
+					 +"</td><td>"+jsonData[0][i].subjectTime
+					 +"</td><td>"+jsonData[2][i] 
+					 +" </td><td>"+jsonData[1][i]+"</td></tr>";
+					}//end of for				
+			    $("#wholeTimeTbody").html(trs);
+			    $("#wholeTimeThead").show();
 								
 			},
 

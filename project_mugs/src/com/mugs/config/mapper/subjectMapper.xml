@@ -136,7 +136,7 @@
 	</select>
 
 	<!-- 해당 과목의 id, 이수구분별 과목 리스트 조회 -->
-	<select id="selectSubjectBySubjectTypeAndMajorId" resultType="subject" parameterType="java.util.Map">
+	<select id="selectSubjectBySubjectTypeAndMajorId" resultType="subject" parameterType="java.util.List">
 		SELECT 	subject_id subjectId,
 				subject_name subjectName,
 				subject_time subjectTime,
@@ -148,8 +148,8 @@
 				subject_semester subjectSemester,
 				lecture_id lectureId				
 		FROM    subject
-		WHERE   subject_type =#{subjectType}
-		AND		major_id =#{majorId}
+		WHERE   subject_type =#{list[1]}
+		AND		major_id =#{list[0]}
 	</select>
 	<!-- End BM -->
 	

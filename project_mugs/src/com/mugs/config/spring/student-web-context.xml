@@ -9,10 +9,8 @@
 
 	<context:component-scan base-package="com.mugs.controller.student" />
 
-
 	
 	
-	<mvc:view-controller path="/index.do" view-name="view/index" />
 	<mvc:view-controller path="/courseStandardView.do" view-name="contents/student/standard/courseStandardView"/>
 	<mvc:view-controller path="/myTimeTableView.do" view-name="contents/student/timeTable/myTimeTableView"/>
 	<mvc:view-controller path="/course_InformationListView.do" view-name="/contents/student/courseInformationList/course_InformationListView"/>
@@ -20,8 +18,6 @@
 	<mvc:view-controller path="/evaluationAnswerView.do" view-name="contents/student/evaluationAnswer/evaluationAnswerView"/>
 	<mvc:view-controller path="/myTimeTableViewBeforeCategoryTab.do" view-name="contents/student/timeTable/myTimeTableViewBeforeCategoryTab"/>
 	
-	
-	<mvc:view-controller path="/index.do" view-name="/index" />
 	<mvc:view-controller path="/courseStandardView.do" view-name="/view/contents/student/standard/courseStandardView"/>
 	<mvc:view-controller path="/myTimeTableView.do" view-name="/view/contents/student/timeTable/myTimeTableView"/>
 	<mvc:view-controller path="/course_InformationListView.do" view-name="/view/contents/student/courseInformationList/course_InformationListView"/>
@@ -31,10 +27,8 @@
 
 	<mvc:view-controller path="/gradeInquiry.do" view-name="view/contents/student/gradeInquiry" />
 
-	
-
-
-		
+			
 		<!-- 병문 view controller-->
-	<mvc:view-controller path="/teststudentInfo.do" view-name="view/contents/student/test"/>
+	<mvc:view-controller path="/teststudentInfo.do" view-name="contents/student/test"/>
+	<mvc:view-controller path="/graduationInfo.do" view-name="contents/student/graduationInfo/graduationInfo"/>
 </beans>

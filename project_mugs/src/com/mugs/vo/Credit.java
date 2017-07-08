@@ -18,7 +18,7 @@ public class Credit implements Serializable {
 	private String creditSemester;
 	private int creditAcquire;
 	private String creditGrade;
-	private int creditScore;
+	private double creditScore;
 	private String creditRecourse;
 	private int subjectId;
 	private String stuId;
@@ -28,7 +28,7 @@ public class Credit implements Serializable {
 	}
 
 	public Credit(int creditId, int creditYear, String creditSemester, int creditAcquire, String creditGrade,
-			int creditScore, String creditRecourse, int subjectId, String stuId) {
+			double creditScore, String creditRecourse, int subjectId, String stuId) {
 		this.creditId = creditId;
 		this.creditYear = creditYear;
 		this.creditSemester = creditSemester;
@@ -41,7 +41,7 @@ public class Credit implements Serializable {
 	}
 
 	public Credit(int creditId, int creditYear, String creditSemester, int creditAcquire, String creditGrade,
-			int creditScore, String creditRecourse, int subjectId, String stuId, Subject subject) {
+			double creditScore, String creditRecourse, int subjectId, String stuId, Subject subject) {
 		this.creditId = creditId;
 		this.creditYear = creditYear;
 		this.creditSemester = creditSemester;
@@ -94,11 +94,11 @@ public class Credit implements Serializable {
 		this.creditGrade = creditGrade;
 	}
 
-	public int getCreditScore() {
+	public double getCreditScore() {
 		return creditScore;
 	}
 
-	public void setCreditScore(int creditScore) {
+	public void setCreditScore(double creditScore) {
 		this.creditScore = creditScore;
 	}
 
@@ -150,7 +150,9 @@ public class Credit implements Serializable {
 		result = prime * result + ((creditGrade == null) ? 0 : creditGrade.hashCode());
 		result = prime * result + creditId;
 		result = prime * result + ((creditRecourse == null) ? 0 : creditRecourse.hashCode());
-		result = prime * result + creditScore;
+		long temp;
+		temp = Double.doubleToLongBits(creditScore);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((creditSemester == null) ? 0 : creditSemester.hashCode());
 		result = prime * result + creditYear;
 		result = prime * result + ((stuId == null) ? 0 : stuId.hashCode());
@@ -182,7 +184,7 @@ public class Credit implements Serializable {
 				return false;
 		} else if (!creditRecourse.equals(other.creditRecourse))
 			return false;
-		if (creditScore != other.creditScore)
+		if (Double.doubleToLongBits(creditScore) != Double.doubleToLongBits(other.creditScore))
 			return false;
 		if (creditSemester == null) {
 			if (other.creditSemester != null)

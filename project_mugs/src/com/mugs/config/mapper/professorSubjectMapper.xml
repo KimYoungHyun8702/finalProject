@@ -71,7 +71,7 @@
 			   ps.pro_subject_year ,
 			   ps.pro_id,
 			   u.users_name professorName
-		FROM   professor_subject ps, profersor p, users u
+		FROM   professor_subject ps, professor p, users u
 		WHERE  ps.subject_id= #{subId}
 		AND	   ps.pro_id = p.pro_id
 		AND	   p.pro_id= u.users_id

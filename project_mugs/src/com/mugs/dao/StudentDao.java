@@ -51,5 +51,12 @@ public interface StudentDao {
 	 * @author 병문
 	 */
 	Student selectStudentAllInfoByJoin(Student stu);
-
+	
+	/**
+	 * 학생의 졸업시험 패스여부를 select하는 메소드
+	 * @param stuId
+	 * @return 졸업시험 통과여부
+	 * @author 병문
+	 */
+	String selectStuGraduationExam(String stuId);
 }

@@ -68,7 +68,7 @@ public interface SubjectDao {
 	 * @return 과목 리스트들
 	 * @author 병문
 	 */
-	List<Subject> selectSubjectBySubjectTypeAndMajorId(Map<String,Object> typeAndMajorId);
+	List<Subject> selectSubjectBySubjectTypeAndMajorId(List<Object> typeAndMajorId);
 	
 	/**
 	 * 매개변수로 subjectType를 받아 해당하는 college 조회 메소드
