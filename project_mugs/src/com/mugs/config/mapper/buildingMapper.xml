@@ -17,6 +17,7 @@
 		 -->
 		<collection ofType="room" property="roomList">
 			<result column="room_id" property="roomId" />
+			<result column="room_name" property="roomName" />
 		</collection>
 	</resultMap>
 
@@ -59,10 +60,11 @@
 	
 	<select id="selectBuildingByIdJoin" resultMap="Building-Room-resultmap"
 		parameterType="int">
-		SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID
+		SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID, R.ROOM_NAME
 		FROM BUILDING B, ROOM R
 		WHERE B.BUILDING_ID = R.BUILDING_ID AND B.BUILDING_ID = #{VALUE}
 	</select>
+	
 
 </mapper>
 

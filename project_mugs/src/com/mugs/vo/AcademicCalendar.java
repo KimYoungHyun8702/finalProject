@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class AcademicCalendar implements Serializable {
 
+
 	private int calendarId;
 	private Date calendarStart;
 	private Date calendarFinish;

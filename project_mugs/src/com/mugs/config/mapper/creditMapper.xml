@@ -36,7 +36,7 @@
 		<result column="credit_acquire" property="creditAcquire"/>
 		<result column="credit_grade" property="creditGrade"/>
 		<result column="credit_score" property="creditScore"/>
-		<result column="credit_recource" property="creditRecourse"/>
+		<result column="credit_recource" property="creditRecource"/>
 		<result column="subject_id" property="subjectId"/>
 		<result column="stu_id" property="stuId"/>
 </resultMap>
@@ -47,7 +47,7 @@
 
 <!-- insert -->
 <insert id="insertCredit" parameterType="credit">
-	INSERT INTO credit VALUES(#{creditId}, #{creditYear}, #{creditSemester}, #{creditAcquire}, #{creditGrade}, #{creditScore}, #{creditResource}, #{subjectId}, #{stuId})
+	INSERT INTO credit VALUES(#{creditId}, #{creditYear}, #{creditSemester}, #{creditAcquire}, #{creditGrade}, #{creditScore}, #{creditRecource}, #{subjectId}, #{stuId})
 </insert>
 
 <!-- update -->

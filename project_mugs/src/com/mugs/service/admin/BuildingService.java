@@ -3,6 +3,7 @@ package com.mugs.service.admin;
 import java.util.List;
 
 import com.mugs.vo.Building;
+import com.mugs.vo.Room;
 
 public interface BuildingService {
 	
@@ -46,4 +47,47 @@ public interface BuildingService {
 	 * @return
 	 */
 	Building selectBuildingById(int buildingId);
+	
+	/**
+	 * 하나의 강의실 등록 메소드
+	 * @param room
+	 * @return
+	 */
+	int insertRoom(Room room);
+	
+	/**
+	 * 하나의 강의실 수정 메소드
+	 * @param room
+	 * @return
+	 */
+	int updateRoom(Room room);
+	
+	/**
+	 * 강의실 전체 조회 메소드
+	 * @return
+	 */
+	List<Room> selectRoom();
+	
+	/**
+	 * 매개변수로 buildingId를 받아 조회하는 메소드
+	 * @param buildingId
+	 * @return
+	 */
+	List<Room> selectRoomByReference(int buildingId);
+	
+	/**
+	 * 매개변수로 roomId를 받아 삭제하는 메소드
+	 * @param roomId
+	 * @return
+	 */
+	int deleteRoom(int roomId);
+	
+	/**
+	 * 매개변수로 roomId를 받아 조회하는 메소드
+	 * @param roomId
+	 * @return
+	 */
+	Room selectById(int roomId);
+	
+
 }

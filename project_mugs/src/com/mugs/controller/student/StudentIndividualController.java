@@ -20,7 +20,7 @@ public class StudentIndividualController {
 	
 	@RequestMapping("getStudentInfoById")
 	public String getStudentInformation(String stuId){
-		System.out.println(stuId);
+		
 		service.findStudentById(stuId);
 		return null;
 	}

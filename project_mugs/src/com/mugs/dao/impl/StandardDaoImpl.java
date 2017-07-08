@@ -53,5 +53,26 @@ public class StandardDaoImpl implements StandardDao {
 		return session.selectList(makeSql("selectStandardList"));
 	}
 
+	@Override
+	public List<String> selectMajorList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Standard> selectYearListByMajorId(int majorId) {
+		
+		return session.selectList(makeSql("selectYearListByMajorId"), majorId);
+	}
+
+	@Override
+	public Standard selectStandardValue(int collegeId, int majorId, int standardYear) {
+		HashMap params = new HashMap();
+		params.put("collegeId", collegeId);
+		params.put("majorId", majorId);
+		params.put("standardYear", standardYear);
+		return session.selectOne(makeSql("selectStandardValue"), params);
+	}
+
 	
 }

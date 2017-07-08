@@ -8,6 +8,19 @@
 		<result column="college_id" property="collegeId"/>
 </resultMap>
 
+<resultMap id="major-graduationcredit-resultmap" type="major" extends="major-basic-resultmap">
+		<!-- 
+			collection 태그 :List
+			ofType : List<Employee> - collection에 담을 VO객체의 타입
+			property : List<Employee> employeeList - Attribute 이름
+		 -->
+		<collection ofType="GraduationCredit" property="graduationCreditList">
+			<result column="major_id" property="majorId" />
+			<result column="graduation_credit_year" property="graduationCreditYear" />
+			<result column="graduation_credit_score" property="graduationCreditScore" />
+		</collection>
+	</resultMap>
+
 <sql id="select-major">
 	SELECT		major_id,
 				major_name,
@@ -49,6 +62,12 @@
 <select id="selectMajorByCollegeId" resultMap="major-basic-resultmap" parameterType="int">
 	<include refid="select-major"/>
 	where college_id=#{value}
+</select>
+
+<select id="selectMajorGraduationCreditByMajorId" resultMap="major-graduationcredit-resultmap" parameterType="int">
+	SELECT m.major_id, m.major_name, m.college_id, g.major_id, g.graduation_credit_year, g.graduation_credit_score
+	FROM major m, graduation_credit g
+	WHERE m.major_id = g.major_id AND m.major_id = #{value}
 </select>
 
 </mapper>

@@ -3,6 +3,7 @@ package com.mugs.controller.student;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mugs.service.student.GradeService;
 import com.mugs.vo.AcademicProbation;
 import com.mugs.vo.Credit;
+import com.mugs.vo.Users;
 
 @Controller
 @RequestMapping("/student/")
@@ -21,7 +23,9 @@ public class GradeController {
 	@RequestMapping("yearInquiry")
 	@ResponseBody
 	public List<Integer> yearInquiry() {
-		String id = "사용자1";
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String id = users.getUsersId();
+		
 		List<Integer> list = service.getYear(id);
 		return list;
 	}
@@ -29,7 +33,9 @@ public class GradeController {
 	@RequestMapping("allCreditInquiry")
 	@ResponseBody
 	public List<Credit> allCreditInquiry() {
-		String id = "사용자1";
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String id = users.getUsersId();
+		
 		List<Credit> list = service.getAllCredit(id);
 		return list;
 	}
@@ -78,13 +84,16 @@ public class GradeController {
 
 	@RequestMapping("currentGradeInquiry")
 	public ModelAndView currentGradeInquiry() {
-		return new ModelAndView("view/contents/student/credit/currentGradeInquiry", "map",
+		return new ModelAndView("student/credit/currentGradeInquiry.tiles", "map",
 				service.getCalendarByYearAndCalName());
 	}
 
 	@RequestMapping("academicProbationInquiry")
 	@ResponseBody
-	public List<AcademicProbation> academicProbationInquiry(String id) {
+	public List<AcademicProbation> academicProbationInquiry() {
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String id = users.getUsersId();
+		
 		return service.getAcademicProbationByStuId(id);
 	}
 

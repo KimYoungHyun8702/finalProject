@@ -43,5 +43,4 @@ public interface UsersDao {
 	 * @return
 	 */
 	List<Users> selectUsersList();
-
 }

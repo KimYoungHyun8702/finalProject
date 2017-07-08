@@ -4,44 +4,50 @@
 
 	<sql id="select-room">
 		SELECT room_id,
+			   room_name,
 			   building_id
 		FROM   ROOM
 	</sql>
 
 	<resultMap type="room" id="room-basic-resultmap">
 		<id column="room_id" property="roomId"/>
+		<result column="room_name" property="roomName"/>
 		<result column="building_id" property="buildingId"/>
 	</resultMap>
 
 	<insert id="insertRoom" parameterType="room">
+		<selectKey resultType="int" keyProperty="roomId" order="BEFORE">
+			SELECT room_id_seq.nextval FROM dual
+		</selectKey>
 		INSERT INTO ROOM
-		VALUES(#{roomId}, #{buildingId})
+		VALUES(#{roomId},#{roomName}, #{buildingId})
 	</insert>
 
-	<update id="updateRoom" parameterType="room">
+	<update id="updateRoom" parameterType="Room">
 		UPDATE ROOM
-		SET room_id = #{roomId},
-			building_id = #{buildingId}
+		SET room_name = #{roomName}
+		WHERE room_id = #{roomId}
 	</update>
 
-
-	<delete id="deleteRoom" parameterType="java.lang.String">
+	<delete id="deleteRoom" parameterType="int">
 		DELETE FROM ROOM
 		WHERE room_id = #{value}
 	</delete>
 
 
-
-	<select id="selectRoomById" parameterType="java.lang.String" resultMap="room-basic-resultmap">
+	<select id="selectRoomById" parameterType="int" resultMap="room-basic-resultmap">
 		<include refid="select-room"/>
 		WHERE room_id = #{value}
 	</select>
 
-
+	<select id="selectRoomByReference" parameterType="int" resultMap="room-basic-resultmap">
+		<include refid="select-room"/>
+		WHERE building_id = #{value}
+		ORDER BY room_name
+	</select>
+	
 	<select id="selectRoomList" resultMap="room-basic-resultmap">
-		SELECT room_id roomId,
-			   building_id buildingId
-		FROM ROOM
+		<include refid="select-room"/>
 	</select>
 
 </mapper>

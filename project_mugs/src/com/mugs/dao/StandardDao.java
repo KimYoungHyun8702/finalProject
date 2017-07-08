@@ -46,4 +46,25 @@ public interface StandardDao {
 	 */
 	List<Standard> selectStandardList();
 	
+	/**
+	 * 학과리스트를 조회하는 메소드
+	 * @return
+	 */
+	List<String> selectMajorList();
+	
+	
+	/**
+	 * 학과id로 년도를 뽑아오는 메소드
+	 * @return
+	 */
+	List<Standard> selectYearListByMajorId(int majorId);
+	
+	
+	/**
+	 * 년도로 기준학점리스트를 조회하는 메소드 or 학부, 학과, 년도를 다 매개변수로 줘야 하나???
+	 * @param year
+	 * @return
+	 */
+	Standard selectStandardValue(int collegeId, int majorId, int standardYear);
+	
 }

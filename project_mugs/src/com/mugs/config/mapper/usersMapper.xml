@@ -32,8 +32,8 @@
 		<result column="users_born_addr" property="usersBornAddr" />
 		<result column="users_enable" property="usersEnable" />
 		<result column="users_photo" property="usersPhoto" />
-	</resultMap>
-
+	</resultMap>	
+	
 	<!-- insert -->
 	<insert id="insertUsers" parameterType="users">
 		INSERT INTO users
@@ -50,7 +50,7 @@
 		users_password=#{usersPassword},
 		users_name=#{usersName},
 		users_eng_name=#{usersEngName},
-		users_rrn=#{usersRrn},
+		users_rrn=#{usersRRN},
 		users_email=#{usersEmail},
 		users_phone_num=#{usersPhoneNum},
 		users_cell_num=#{usersCellNum},

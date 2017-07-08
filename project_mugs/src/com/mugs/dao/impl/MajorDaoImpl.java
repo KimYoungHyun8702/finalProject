@@ -45,9 +45,14 @@ public class MajorDaoImpl implements MajorDao{
 
 	@Override
 	public List<Major> selectMajorByCollegeId(int collegeId) {
-		// TODO Auto-generated method stub
 		return session.selectList(makeSqlId("selectMajorByCollegeId"), collegeId);
 	}
+
+	@Override
+	public List<Major> selectMajorGraduationCreditByMajorId(int majorId) {
+		return session.selectList(makeSqlId("selectMajorGraduationCreditByMajorId"),majorId);
+	}
+	
 	
 	
 	

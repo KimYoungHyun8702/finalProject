@@ -41,4 +41,11 @@ public interface GraduationCreditDao {
 	 * @return
 	 */
 	GraduationCredit selectGraduationCreditById(int majorId, int graduationCreditYear);
+	
+	/**
+	 * 매개변수로 majorId로 받아 해당하는 기준학점 조회 메소드
+	 * @param majorId
+	 * @return
+	 */
+	List<GraduationCredit> selectGraduationCreditByMajorId(int majorId);
 }

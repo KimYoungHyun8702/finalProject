@@ -10,6 +10,11 @@
 		<result column="pro_id" property="proId"/>
 </resultMap>
 
+
+<resultMap type="guidanceStudent" id="guidanceStudent-join-resultmap" extends="guidanceStudent-basic-resultmap">		
+	<collection ofType="com.mugs.vo.Student" property="studentList" resultMap="com.mugs.config.mapper.studentMapper.student-user-resultmap"/>		
+</resultMap>
+
 <sql id="select-guidanceStudent">
 	SELECT		guidance_student_id,
 				consultant_content,
@@ -52,4 +57,44 @@
 	WHERE guidance_student_id=#{value}
 </select>
 
+<select id="selectguidanceStudentListByJoin" resultMap="guidanceStudent-join-resultmap">
+	SELECT g.guidance_student_id,                   
+		   g.consultant_content,
+		   g.consultant_date,
+		   g.stu_id,
+		   g.pro_id,
+		   s.stu_id,
+		   s.stu_course,
+		   s.stu_army,
+		   s.stu_admission_date,
+		   s.stu_graduation_date,
+		   s.stu_register_state,
+		   s.stu_student_state,
+		   s.stu_grade,
+		   s.stu_graduation_exam,
+		   s.stu_early_graduation,
+		   s.stu_semester,
+		   s.major_id,
+		   s.major_dual_id,
+		   s.major_minor_id,
+		   u.users_id,
+		   u.users_password,
+		   u.users_name,
+		   u.users_eng_name,
+		   u.users_rrn,
+		   u.users_email,
+		   u.users_phone_num,
+		   u.users_cell_num,
+		   u.users_national,
+		   u.users_current_addr,
+		   u.users_born_addr,
+		   u.users_enable,
+		   u.users_photo 
+		   
+	FROM guidance_student g, student s, users u
+	WHERE g.stu_id=s.stu_id(+)
+	AND s.stu_id=u.users_id
+	AND g.pro_id=#{value}
+</select>
+ 
 </mapper>

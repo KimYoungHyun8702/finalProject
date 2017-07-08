@@ -15,7 +15,10 @@
 
 <!-- insert -->
 <insert id="insertCollege" parameterType="college">
-	INSERT INTO college VALUES(#{collegeId},#{collegeName})
+		<selectKey resultType="int" keyProperty="collegeId" order="BEFORE">
+			SELECT college_id_seq.nextval FROM dual
+		</selectKey>
+		INSERT INTO college VALUES(#{collegeId},#{collegeName})
 </insert>
 
 <!-- update -->
@@ -34,7 +37,7 @@
 <!-- select -->
 <select id="selectCollegeList" resultMap="college-basic-reresultmap">
 	<include refid="select-college"/>
-	order by college_name asc
+	order by college_id
 </select>
 
 <select id="selectCollegeById" resultMap="college-basic-reresultmap" parameterType="int">

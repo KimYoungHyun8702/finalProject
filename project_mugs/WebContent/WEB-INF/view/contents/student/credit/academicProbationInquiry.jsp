@@ -16,7 +16,7 @@
 			url:"/project_mugs/student/academicProbationInquiry.do",
 			type:"post",
 			dataType:"json",
-			data:{"id":"사용자1"},
+			data:{${_csrf.parameterName}:'${_csrf.token}'},
 			success:function(list){
 				var txt="";
 				var count=0;
