@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mugs.config.mapper.academicCalendar">
+<mapper namespace="com.mugs.config.mapper.academicCalendarMapper">
 
 <sql id="select-academicCalendar">
 	SELECT calendar_id,
@@ -52,6 +52,12 @@
 	WHERE calendar_id=#{value}
 </select>
 
+<select id="selectCalendarName" resultType="String" parameterType="java.util.Date">
+	select	 calendar_name
+	from 	 ACADEMIC_CALENDAR
+	where 	 #{value}
+	between	 calendar_start and calendar_finish
+</select>
 </mapper>
 
 

@@ -218,8 +218,6 @@ CREATE TABLE CREDIT (
 	CREDIT_RECOURCE CHAR(1) NOT NULL, /* 재수강여부 */
 	SUBJECT_ID NUMBER NOT NULL, /* 과목 ID */
 	STU_ID VARCHAR2(20) NOT NULL, /* 학생 ID */
-	CREDIT_READ_START DATE NOT NULL, /* 학점열람시작일 */
-	CREDIT_READ_END DATE NOT NULL, /* 학점열람종료일 */
 	PRIMARY KEY(CREDIT_ID), /* 기본키 설정 */
 	FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECT(SUBJECT_ID) ON DELETE CASCADE, /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 	FOREIGN KEY (STU_ID) REFERENCES STUDENT(STU_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
@@ -237,6 +235,15 @@ CREATE TABLE EVALUATION_ANSWER (
 	FOREIGN KEY (STU_ID) REFERENCES STUDENT(STU_ID) ON DELETE CASCADE, /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 	FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECT(SUBJECT_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
+INSERT INTO EVALUATION_ANSWER VALUES(1, 'N', 2017, '1학기', '1', 6);
+INSERT INTO EVALUATION_ANSWER VALUES(2, 'N', 2017, '1학기', '1', 7);
+INSERT INTO EVALUATION_ANSWER VALUES(3, 'N', 2017, '1학기', '1', 8);
+INSERT INTO EVALUATION_ANSWER VALUES(4, 'N', 2017, '1학기', '1', 9);
+INSERT INTO EVALUATION_ANSWER VALUES(5, 'N', 2016, '1학기', '1', 10);
+INSERT INTO EVALUATION_ANSWER VALUES(6, 'N', 2014, '1학기', '1', 1);
+INSERT INTO EVALUATION_ANSWER VALUES(7, 'N', 2017, '1학기', '1', 2);
+
+SELECT * FROM EVALUATION_ANSWER;
 
 /* 19.평가 */
 CREATE TABLE EVALUATION (
@@ -250,15 +257,31 @@ CREATE TABLE EVALUATION (
 	EVALUATION_QUESTION NUMBER NOT NULL, /* 질의응답(평점 */
 	PRO_ID VARCHAR2(20) NOT NULL, /* 교수 ID */
 	SUBJECT_ID NUMBER NOT NULL, /* 과목 ID */
-	EVALUATION_START DATE NOT NULL, /* 평가시작일 */
-	EVALUATION_END DATE NOT NULL, /* 평가종료일 */
-	EVALUATION_READ_START DATE NOT NULL, /* 평가열람시작일 */
-	EVALUATION_READ_END DATE NOT NULL, /* 평가열람종료일 */
 	PRIMARY KEY(EVALUATION_ID), /* 기본키 설정 */
 	FOREIGN KEY (PRO_ID) REFERENCES PROFESSOR(PRO_ID) ON DELETE CASCADE, /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 	FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECT(SUBJECT_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
-);
+);  
 
+
+/* 20.학사일정 */
+CREATE TABLE ACADEMIC_CALENDAR (
+   CALENDAR_ID NUMBER NOT NULL, /* 학사일정 ID */
+   CALENDAR_START DATE NOT NULL, /* 일정시작일 */
+   CALENDAR_FINISH DATE NOT NULL, /* 일정종료일 */
+   CALENDAR_YEAR NUMBER NOT NULL, /* 연도 */
+   CALENDAR_NAME VARCHAR2(4000) NOT NULL /* 학사일정명 */
+);
+insert into ACADEMIC_CALENDAR values(1, 2017,  )
+insert into ACADEMIC_CALENDAR values(1, to_date('2017-03-01', 'yyyy-mm-dd'), to_date('2017-06-20', 'yyyy-mm-dd'), 2017, '1학기');
+insert into ACADEMIC_CALENDAR values(2, to_date('2017-07-05', 'yyyy-mm-dd'), to_date('2017-08-10', 'yyyy-mm-dd'), 2017, '여름계절학기');
+insert into ACADEMIC_CALENDAR values(3, to_date('2017-09-01', 'yyyy-mm-dd'), to_date('2017-12-16', 'yyyy-mm-dd'), 2017, '2학기');
+insert into ACADEMIC_CALENDAR values(4, to_date('2017-01-05', 'yyyy-mm-dd'), to_date('2017-02-08', 'yyyy-mm-dd'), 2017, '겨울계절학기');
+insert into ACADEMIC_CALENDAR values(5, to_date('2017-02-05', 'yyyy-mm-dd'), to_date('2017-02-20', 'yyyy-mm-dd'), 2017, '1학기 수강신청');
+insert into ACADEMIC_CALENDAR values(6, to_date('2017-08-05', 'yyyy-mm-dd'), to_date('2017-08-20', 'yyyy-mm-dd'), 2017, '2학기 수강신청');
+
+select * from ACADEMIC_CALENDAR;
+
+drop table EVALUATION;
 /*학부테이블 값 삽입*/
 insert into COLLEGE values(1, '이공대학');
 insert into COLLEGE values(2, '예술대학');
@@ -309,38 +332,38 @@ insert into BUILDING values(4, '사회대학');
 insert into BUILDING values(5, '인문대학');
 
 select * from BUILDING;
-
+select * from room;
 
 /*건물id에 따른 강의실테이블 값 삽입*/
-insert into ROOM values('1-101', 1);
-insert into ROOM values('1-102', 1);
-insert into ROOM values('1-103', 1);
-insert into ROOM values('1-104', 1);
-insert into ROOM values('1-105', 1);
+insert into ROOM values(1, '공학실1', 1);
+insert into ROOM values(2, '공학실2', 1);
+insert into ROOM values(3, '공학실3', 1);
+insert into ROOM values(4, '공학실4', 1);
+insert into ROOM values(5, '공학실5', 1);
 
-insert into ROOM values('2-101', 2);
-insert into ROOM values('2-102', 2);
-insert into ROOM values('2-103', 2);
-insert into ROOM values('2-104', 2);
-insert into ROOM values('2-105', 2);
+insert into ROOM values(6, '교육실1', 2);
+insert into ROOM values(7, '교육실2', 2);
+insert into ROOM values(8, '교육실3', 2);
+insert into ROOM values(9, '교육실4', 2);
+insert into ROOM values(10, '교육실5', 2);
 
-insert into ROOM values('3-101', 3);
-insert into ROOM values('3-102', 3);
-insert into ROOM values('3-103', 3);
-insert into ROOM values('3-104', 3);
-insert into ROOM values('3-105', 3);
+insert into ROOM values(11, '무슨상관실1', 3);
+insert into ROOM values(12, '무슨상관실2', 3);
+insert into ROOM values(13, '무슨상관실3', 3);
+insert into ROOM values(14, '무슨상관실4', 3);
+insert into ROOM values(15, '무슨상관실5', 3);
 
-insert into ROOM values('4-101', 4);
-insert into ROOM values('4-102', 4);
-insert into ROOM values('4-103', 4);
-insert into ROOM values('4-104', 4);
-insert into ROOM values('4-105', 4);
+insert into ROOM values(16, '사회실1', 4);
+insert into ROOM values(17, '사회실2', 4);
+insert into ROOM values(19, '사회실3', 4);
+insert into ROOM values(20, '사회실4', 4);
+insert into ROOM values(18, '사회실5', 4);
 
-insert into ROOM values('5-101', 5);
-insert into ROOM values('5-102', 5);
-insert into ROOM values('5-103', 5);
-insert into ROOM values('5-104', 5);
-insert into ROOM values('5-105', 5);
+insert into ROOM values(21, '인문실1', 5);
+insert into ROOM values(22, '인문실2', 5);
+insert into ROOM values(23, '인문실3', 5);
+insert into ROOM values(24, '인문실4', 5);
+insert into ROOM values(25, '인문실5', 5);
 
 select * from room;
 
@@ -411,6 +434,7 @@ CREATE SEQUENCE COURSE_ID_SEQ; /* 수강 테이블의 기본키에 대한 시퀀
 CREATE SEQUENCE CREDIT_ID_SEQ; /* 학점 테이블의 기본키에 대한 시퀀스 생성 */
 CREATE SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀스 생성 */
 CREATE SEQUENCE ROOM_ID_SEQ;
+CREATE SEQUENCE CALENDAR_ID_SEQ;
 /* 각 테이블의 기본키에 대한 필요 시퀀스 삭제 */
 
 DROP SEQUENCE EVALUATION_ANSWER_ID_SEQ; /* 평가응답 테이블의 기본키에 대한 시퀀스 삭제 */
@@ -503,6 +527,7 @@ INSERT INTO	ROOM VALUES ('110','3');
 INSERT INTO	ROOM VALUES ('220','3');
 INSERT INTO	ROOM VALUES ('330','3');
 
+select * from room;
 /* 8.졸업학점 */
 INSERT INTO	GRADUATION_CREDIT VALUES ('1','2015','140');
 INSERT INTO	GRADUATION_CREDIT VALUES ('1','2016','150');
@@ -558,19 +583,19 @@ INSERT INTO	STUDENT VALUES ('28','과정구분','공익','2017/01/01','2021/01/0
 INSERT INTO	STUDENT VALUES ('29','과정구분','공익','2017/01/01','2021/01/01','학적구분','학생구분','1','n','n','2','3','','');
 
 /* 11.교수 */
-INSERT INTO	PROFESSOR VALUES ('10','서울대','서울대학원','031-555-5555','031-555-5555','1','1-104','1-105');
-INSERT INTO	PROFESSOR VALUES ('20','고려대','고려대학원','031-666-6666','031-666-6666','2','2-104','2-105');
-INSERT INTO	PROFESSOR VALUES ('30','서울대','서울대학원','031-777-7777','031-777-7777','3','3-104','3-105');
+INSERT INTO	PROFESSOR VALUES ('10','서울대','서울대학원','031-555-5555','031-555-5555',1,1,2);
+INSERT INTO	PROFESSOR VALUES ('20','고려대','고려대학원','031-666-6666','031-666-6666',2,6,7);
+INSERT INTO	PROFESSOR VALUES ('30','서울대','서울대학원','031-777-7777','031-777-7777',3,11,12);
 
 /* 12.과목 */
-INSERT INTO	SUBJECT VALUES ('1','국문학개론','월123','전공','3','50','40','1','분반1','n','1','1','301');
-INSERT INTO	SUBJECT VALUES ('2','체육학개론','화123','전공','3','50','45','1','분반1','n','1','1','331');
-INSERT INTO	SUBJECT VALUES ('3','교육학개론','수123','전공','3','50','50','1','분반1','n','1','1','330');
+INSERT INTO	SUBJECT VALUES (1,'국문학개론','월<1,2>/수<3,4>','전공',3,50,40,1,'분반1','n','1학기',1,1);
+INSERT INTO	SUBJECT VALUES (2,'체육학개론','화<3,4>/금<7,8>','전공',3,40,45,1,'분반1','n','1학기',6,6);
+INSERT INTO	SUBJECT VALUES (3,'교육학개론','<수5,6>/목<1,2>','전공',3,50,50,1,'분반1','n','1학기',9,11);
 
 /* 13.교수담당과목 */
-INSERT INTO	PROFESSOR_SUBJECT VALUES ('1','1','2015','1','1');
-INSERT INTO	PROFESSOR_SUBJECT VALUES ('2','1','2015','2','2');
-INSERT INTO	PROFESSOR_SUBJECT VALUES ('3','1','2015','3','3');
+INSERT INTO	PROFESSOR_SUBJECT VALUES (1,'1학기',2017,'10',1);
+INSERT INTO	PROFESSOR_SUBJECT VALUES (2,'1학기',2016,'20',2);
+INSERT INTO	PROFESSOR_SUBJECT VALUES (3,'1학기',2014,'30',3);
 
 /* 14.강의계획서 */
 INSERT INTO	SUBJECT_PLAN VALUES ('1','개론','출석30/과제30/얼굴40','개론이뭔지아라보자','8주까지 자습','개론의정석','개론논문','2015','1','없음','1','1');
@@ -583,9 +608,9 @@ INSERT INTO	GUIDENCE_STUDENT VALUES ('2','근면성실','2017/01/07','2','2');
 INSERT INTO	GUIDENCE_STUDENT VALUES ('3','근면성실','2017/01/07','3','3');
 
 /* 16.수강 */
-INSERT INTO	COURSE VALUES ('1','2015','1','1','1');
-INSERT INTO	COURSE VALUES ('2','2015','1','2','2');
-INSERT INTO	COURSE VALUES ('3','2015','1','3','3');
+INSERT INTO	COURSE VALUES (1,2017,'1학기',1,'1','10');
+INSERT INTO	COURSE VALUES (2,2016,'1학기',2,'2','20');
+INSERT INTO	COURSE VALUES (3,2014,'1학기',3,'3','30');
 
 /* 17.학점 */
 INSERT INTO	CREDIT VALUES ('1','2015','1','3','A','90','n','1','1','2015/05/05','2015/06/06');
@@ -601,24 +626,24 @@ DROP SEQUENCE ROOM_ID_SEQ;
 INSERT INTO credit VALUES(1, 2016, 2, 3, 'B', 5, 0, 0, '사용자1', SYSDATE, SYSDATE)
 INSERT INTO credit VALUES(2, 2015, 2, 3, 'B', 5, 0, 0, '사용자1', SYSDATE, SYSDATE)
 INSERT INTO credit VALUES(3, 2014, 2, 3, 'B', 5, 0, 0, '사용자1', SYSDATE, SYSDATE)
-insert into SUBJECT values(1, 'Java기초', '월(1, 2)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-101');
-insert into SUBJECT values(2, 'C언어기초', '화(3, 4)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-102');
-insert into SUBJECT values(3, '정보보안', '수(5, 6)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,'1-103');
-insert into SUBJECT values(4, '데이터통신', '목(1, 2)', '필수전공', 3, 30, 10, 3, '1분반', 'N', '1학기', 1,'1-104');
-insert into SUBJECT values(5, '데이터베이스', '금(3, 4)', '필수전공', 3, 30, 10, 4, '1분반', 'N', '1학기', 1,'1-105');
+insert into SUBJECT values(1, 'Java기초', '월(1, 2)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,1);
+insert into SUBJECT values(2, 'C언어기초', '화(3, 4)', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,1);
+insert into SUBJECT values(3, '정보보안', '수<1,2>/금<3,4>', '필수전공', 3, 30, 10, 1, '1분반', 'N', '1학기', 1,1);
+insert into SUBJECT values(4, '데이터통신', '화<3,4>/수<3,4>', '필수전공', 3, 30, 10, 3, '1분반', 'N', '1학기', 1,1);
+insert into SUBJECT values(5, '데이터베이스', '목<1,2>/금<5,6>', '필수전공', 3, 30, 10, 4, '1분반', 'N', '1학기', 1,1);
 
-insert into SUBJECT values(6, '임베디드', '월(1, 2)', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 1,'1-105');
-insert into SUBJECT values(7, '웹애니메이션', '화(3, 4)', '선택전공', 2, 50, 30, 1, '1분반', 'N', '1학기', 1,'1-104');
-insert into SUBJECT values(8, '포토샵기초', '수(5, 6)', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 1,'1-103');
-insert into SUBJECT values(9, 'IT서비스', '목(1, 2)', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 1,'1-102');
-insert into SUBJECT values(10, '이산수학', '금(3, 4)', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 1,'1-101');
+insert into SUBJECT values(6, '임베디드', '화<1,2>/수<3,4>', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 2,2);
+insert into SUBJECT values(7, '웹애니메이션', '목<2,3>/금<7,8>', '선택전공', 2, 50, 30, 1, '1분반', 'N', '1학기', 2,2);
+insert into SUBJECT values(8, '포토샵기초', '월<7,8>/금<1,2>', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 2,2);
+insert into SUBJECT values(9, 'IT서비스', '월<1,2>/수<3,4>', '선택전공', 2, 50, 30, 3, '1분반', 'N', '1학기', 2,2);
+insert into SUBJECT values(10, '이산수학', '목<1,2>/금<3,4>', '선택전공', 2, 50, 30, 2, '1분반', 'N', '1학기', 2,2);
 
 
-insert into SUBJECT values(5, '영어1', '월(1, 2)', '필수교양', 2, 50, 30, 3, '1분반', 'N', '1학기', NULL,7);
-insert into SUBJECT values(6, '일본어1', '화(3, 4)', '필수교양', 2, 50, 30, 1, '1분반', 'N', '1학기', NULL,12);
-insert into SUBJECT values(13, '중국어1', '수(5, 6)', '필수교양', 2, 50, 30, 2, '1분반', 'N', '1학기', NULL,'2-103');
-insert into SUBJECT values(14, '고급영어', '목(1, 2)', '필수교양', 2, 50, 30, 3, '1분반', 'N', '1학기', NULL,'3-102');
-insert into SUBJECT values(15, '중국어2', '금(3, 4)', '필수교양', 2, 50, 30, 2, '1분반', 'N', '1학기', NULL,'4-101');
+insert into SUBJECT values(11, '영어1', '화<2,3>/목<5,6>', '필수교양', 2, 50, 30, 3, '1분반', 'N', '1학기', 3,3);
+insert into SUBJECT values(12, '일본어1', '월<7,8>/금<1,4>', '필수교양', 2, 50, 30, 1, '1분반', 'N', '1학기', 3,3);
+insert into SUBJECT values(13, '중국어1', '월<1,2>/수<3,4>', '필수교양', 2, 50, 30, 2, '1분반', 'N', '1학기', 3,3);
+insert into SUBJECT values(14, '고급영어', '월<1,2>/수<3,4>', '필수교양', 2, 50, 30, 3, '1분반', 'N', '1학기', 3,3);
+insert into SUBJECT values(15, '중국어2', '월<1,2>/수<3,4>', '필수교양', 2, 50, 30, 2, '1분반', 'N', '1학기', 3,3);
 
 
 insert into SUBJECT values(7, '세계사산책', '월(1, 2)', '선택교양', 2, 50, 30, NULL, '1분반', 'N', '1학기', NULL,7);
@@ -762,4 +787,13 @@ insert into ROOM values('5-104', 5);
 insert into ROOM values('5-105', 5);
 
 DROP SEQUENCE BUILDING_ID_SEQ;
+
+select calendar_name
+from ACADEMIC_CALENDAR
+where '2017-03-11' 
+between calendar_start and calendar_finish;
+
+
+where calendar_start < '2017-03-11' 
+and   calendar_finish > '2017-03-11'
 
