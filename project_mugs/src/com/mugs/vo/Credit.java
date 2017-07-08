@@ -19,9 +19,11 @@ public class Credit implements Serializable {
 	private int creditAcquire;
 	private String creditGrade;
 	private double creditScore;
+	//creditRecource -> creditRecourse로 바꾸지마세요. 원래 Recourse가 맞지만 테이블 생성시 recource로 지정했기 때문에 수정의 번거러움을 피하기위해 그냥 적용.
 	private String creditRecource;
 	private int subjectId;
 	private String stuId;
+
 	private Subject subject;
 
 	public Credit() {

@@ -62,5 +62,4 @@
 		 (SELECT count(stu_id) FROM academic_probation WHERE stu_id=#{value}) count FROM academic_probation WHERE stu_id=#{value}
 	</select> 
 
-
 </mapper>

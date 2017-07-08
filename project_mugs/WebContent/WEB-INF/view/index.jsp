@@ -11,7 +11,9 @@
 <%-- <h1>Index</h1>
 
 <h2>이병문 학생</h2>
-<a href="/project_mugs/teststudentInfo.do">test페이지로 이동</a>
+<a href="${initParam.rootPath}/teststudentInfo.do">test페이지로 이동</a><br>
+<a href="${initParam.rootPath}/student/getAllTimeTable.do">강의시간표 조회</a><br>
+<a href="${initParam.rootPath}/graduationInfo.do">졸업정보 조회</a>
 <h2>김영현교수</h2>
 <a href="${initParam.rootPath }/professorInfo.do">교수 개인 정보</a><br>
 <a href="${initParam.rootPath }/guidanceStudent.do">지도학생</a><br>

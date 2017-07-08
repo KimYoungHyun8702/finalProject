@@ -41,9 +41,10 @@ public interface MajorDao {
 	Major selectMajorById(int majorId);
 	
 	/**
-	 * 매개변수로 collegeId를 받아 해당하는 학과 조회 메소드
+	 * 매개변수로 단과대학id를 받아 해당하는 학과 리스트를 조회하는 메소드
+	 * @author 병문
 	 * @param collegeId
-	 * @return
+	 * @return 해당하는 학과 리스트
 	 */
 	List<Major> selectMajorByCollegeId(int collegeId);
 	

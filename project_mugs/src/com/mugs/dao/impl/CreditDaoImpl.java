@@ -116,5 +116,16 @@ public class CreditDaoImpl implements CreditDao {
 		
 		return session.selectList(makeSqlId("selectCreditByYearType"), map);
 	}
+	
+	//병문 DaoImpl
+	@Override
+	public List<Credit> selectCreditByYearSemesterAndUsersId(int year, String semester,String usersId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("year", year);
+		map.put("semester", semester);
+		map.put("usersId", usersId);
+		return session.selectList(makeSqlId("selectCreditByYearSemesterAndUsersId"),map);
+	}
+   
 
 }

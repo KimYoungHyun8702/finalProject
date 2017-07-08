@@ -17,7 +17,7 @@
 		<collection ofType="GraduationCredit" property="graduationCreditList">
 			<result column="major_id" property="majorId" />
 			<result column="graduation_credit_year" property="graduationCreditYear" />
-			<result column="graduation_credit_score" property="graduationCreditScore" />
+		<!-- 	<result column="graduation_credit_score" property="graduationCreditScore" /> -->
 		</collection>
 	</resultMap>
 
@@ -63,6 +63,17 @@
 	<include refid="select-major"/>
 	where college_id=#{value}
 </select>
+
+
+<!-- 병문 majorMapper -->
+<select id="selectMajorListByMajorId" resultMap="major-basic-resultmap" parameterType="int">
+	SELECT		major_id ,
+				major_name,
+				college_id								
+	FROM 		major	
+	WHERE		college_id=#{collegeId}
+</select>
+<!-- end BM -->
 
 <select id="selectMajorGraduationCreditByMajorId" resultMap="major-graduationcredit-resultmap" parameterType="int">
 	SELECT m.major_id, m.major_name, m.college_id, g.major_id, g.graduation_credit_year, g.graduation_credit_score

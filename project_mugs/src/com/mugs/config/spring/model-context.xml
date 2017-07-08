@@ -11,7 +11,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-
 	<context:component-scan base-package="com.mugs.dao.impl, com.mugs.service.impl" />
 	<context:annotation-config />
 	
@@ -19,7 +18,7 @@
 	<bean name="dataSource" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver" p:url="jdbc:oracle:thin:@127.0.0.1:1521:XE"
 		p:username="mugs" p:password="1234" p:initialSize="1" p:maxTotal="100" />
-
+			  
 	<bean name="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="dataSource"
 		p:configLocation="classpath:com/mugs/config/mybatis/mybatis-config.xml" />
