@@ -31,7 +31,7 @@ $(document).ready(function(){
  			$("#type").val("전체").prop("selected", true);
  			$.ajax({
  				url:"/project_mugs/student/allCreditInquiry.do",
- 				type:"post",
+ 				type:"GET",
  				data:{${_csrf.parameterName}:'${_csrf.token}'},
  				dataType:"json",
  				success:function(list){
@@ -76,7 +76,7 @@ $(document).ready(function(){
 		}else{
 		$.ajax({
 			url:"/project_mugs/student/semesterInquiry.do",
-			type:"post",
+			type:"GET",
 			dataType:"json",
 			data:{"year":$("#year").val(),${_csrf.parameterName}:'${_csrf.token}'},
 			success:function(list){
@@ -95,7 +95,7 @@ $(document).ready(function(){
 		
 		$.ajax({
 				url:"/project_mugs/student/creditByYear.do",
-				type:"post",
+				type:"GET",
 				dataType:"json",
 				data:{"year":$("#year").val(),${_csrf.parameterName}:'${_csrf.token}'},
 				success:function(list){
@@ -140,7 +140,7 @@ $(document).ready(function(){
 		if($("#semester").val()=="전체"){
 			$.ajax({
 				url:"/project_mugs/student/creditByYear.do",
-				type:"post",
+				type:"GET",
 				dataType:"json",
 				data:{"year":$("#year").val(), ${_csrf.parameterName}:'${_csrf.token}'},
 				success:function(list){
@@ -180,7 +180,7 @@ $(document).ready(function(){
 		}else{
 		$.ajax({
 			url:"/project_mugs/student/creditByYearSemester.do",
-			type:"post",
+			type:"GET",
 			dataType:"json",
 			data:{"year":$("#year").val(),"semester":$("#semester").val(), ${_csrf.parameterName}:'${_csrf.token}'},
 			success:function(list){

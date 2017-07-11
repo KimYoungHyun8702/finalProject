@@ -8,6 +8,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
+
 	function selectCredit(){
 		$.ajax({
 			url:"/project_mugs/student/creditByYearSemester.do",
@@ -47,11 +48,10 @@
 </script>
 </head>
 <body>
-	<h2>당학기 성적조회</h2>
 	<c:choose>
 		<c:when test="${map.message=='접근허용'}">
-			접근허용
 			<script>selectCredit();</script>
+			<h2>당학기 성적조회</h2>
 			<hr>
 			<table id="table">
 				<thead id="thead"></thead>
@@ -64,8 +64,9 @@
 				</table>
 		</c:when>
 		<c:otherwise>
-		접급불가능해
+			<script>alert("성적조회기간이 아닙니다!!.");</script>
 	</c:otherwise>
 	</c:choose>
+	
 </body>
 </html>
