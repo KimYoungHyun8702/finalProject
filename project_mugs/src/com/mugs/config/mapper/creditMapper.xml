@@ -36,7 +36,7 @@
 		<result column="credit_acquire" property="creditAcquire"/>
 		<result column="credit_grade" property="creditGrade"/>
 		<result column="credit_score" property="creditScore"/>
-		<result column="credit_recource" property="creditRecourse"/>
+		<result column="credit_recource" property="creditRecource"/>
 		<result column="subject_id" property="subjectId"/>
 		<result column="stu_id" property="stuId"/>
 </resultMap>
@@ -47,7 +47,7 @@
 
 <!-- insert -->
 <insert id="insertCredit" parameterType="credit">
-	INSERT INTO credit VALUES(#{creditId}, #{creditYear}, #{creditSemester}, #{creditAcquire}, #{creditGrade}, #{creditScore}, #{creditResource}, #{subjectId}, #{stuId})
+	INSERT INTO credit VALUES(#{creditId}, #{creditYear}, #{creditSemester}, #{creditAcquire}, #{creditGrade}, #{creditScore}, #{creditRecource}, #{subjectId}, #{stuId})
 </insert>
 
 <!-- update -->
@@ -130,7 +130,29 @@
 	AND c.credit_year=#{year} AND s.subject_type=#{type}
 </select>
 
-
+<!-- 병문 Mapper -->
+<select id="selectCreditByYearSemesterAndUsersId" resultMap="credit-subject-resultmap" parameterType="map">
+	SELECT     			c.credit_year,
+						c.credit_semester,
+						c.credit_acquire,
+						c.credit_grade,
+						c.credit_score,
+						c.credit_recource,
+						s.subject_id,
+						s.subject_name,
+						s.subject_type,
+						s.subject_credit,
+						s.subject_class
+	FROM 				credit c, subject s, users u, student s
+	WHERE 				c.subject_id = s.subject_id(+)
+	AND 				c.credit_year = #{year} 
+	AND 				c.credit_semester = #{semester}
+	AND					u.users_id =#{usersId}
+	AND					s.stu_id = u.users_id
+	AND					c.stu_id = s.stu_id
+	
+		
+</select>
 
 
 

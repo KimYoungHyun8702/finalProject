@@ -38,7 +38,7 @@
 	<insert id="insertUsers" parameterType="users">
 		INSERT INTO users
 		VALUES(#{usersId}, #{usersPassword}, #{usersName},
-		#{usersEngName}, #{usersRrn}, #{usersEmail}, #{usersPhoneNum},
+		#{usersEngName}, #{usersRRN}, #{usersEmail}, #{usersPhoneNum},
 		#{usersCellNum}, #{usersNational}, #{usersCurrentAddr}, #{usersBornAddr}, #{usersEnable}, #{usersPhoto})
 	</insert>
 
@@ -78,6 +78,19 @@
 		<include refid="select-users" />
 		WHERE users_id=#{value}
 	</select>
-
+	<!-- 병문 유저Mapper -->
+	<!-- 학생의 인적정보를 수정한다.(id, 이름, 영문이름, 주민번호, 국적, 인증가능상태를 제외 -->
+	<update id="updateStudentHumanInfo" parameterType="users">
+	UPDATE users
+	SET
+			users_password=#{usersPassword},
+			users_email=#{usersEmail},
+			users_phone_num=#{usersPhoneNum},
+			users_cell_num=#{usersCellNum},
+			users_current_addr=#{usersCurrentAddr},
+			users_born_addr=#{usersBornAddr},
+			users_photo=#{usersPhoto}		
+	WHERE users_id=#{usersId}
+	</update>
 
 </mapper>

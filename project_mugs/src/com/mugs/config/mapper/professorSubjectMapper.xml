@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mugs.config.mapper.professorSubjectMapper">
 
-
 	<resultMap id="professor_subject-resultmap" type="professorSubject">
 		<id column="pro_subject_id" property="proSubjectId" />
 		<result column="pro_subject_semester" property="proSubjectSemester" />
@@ -54,7 +53,31 @@
 	</update>
 	
 
-	<!-- 담당과목 테이블에서 교수id로 담당과목을 찾는다(과목 조인) -->
+	<!-- 병문 교수담당과목Mapper -->
+	<resultMap type="professorSubject" id="professor-proName-resultMap" extends="professor_subject-resultmap">
+	    
+	    <result column="pro_id" property="proId"/>
+	    
+	    <!-- 조인된 교수의 객체를 1:1로 붙혀준다. - Alias 지정해준거 -->
+	    <association javaType="professor" property="professor">
+	    		<result column = "professorName" property="usersName"/>
+	    </association>	
+	    
+	</resultMap>
+	
+	<select id="selectProfessorSubjectBySubId" resultMap="professor-proName-resultMap" parameterType="int">
+		SELECT ps.pro_subject_id ,
+			   ps.pro_subject_semester ,
+			   ps.pro_subject_year ,
+			   ps.pro_id,
+			   u.users_name professorName
+		FROM   professor_subject ps, professor p, users u
+		WHERE  ps.subject_id= #{subId}
+		AND	   ps.pro_id = p.pro_id
+		AND	   p.pro_id= u.users_id
+	</select>
+
+	<!--(병문) 담당과목 테이블에서 교수id로 담당과목을 찾는다(과목 조인) -->
 	<select id="selectProfessorSubjectListJoinByProId" resultMap="professor_subject-subject-resultmap" parameterType="string">
 	SELECT 
 	p.pro_subject_id, 

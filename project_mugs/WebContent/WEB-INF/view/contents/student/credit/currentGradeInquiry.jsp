@@ -13,7 +13,7 @@
 			url:"/project_mugs/student/creditByYearSemester.do",
 			type:"post",
 			dataType:"json",
-			data:{"year":"${map.year}", "semester":"${map.semester}"},
+			data:{"year":"${map.year}", "semester":"${map.semester}", ${_csrf.parameterName}:'${_csrf.token}'},
 			success:function(list){
 				var txt="";
 				var txt2="";

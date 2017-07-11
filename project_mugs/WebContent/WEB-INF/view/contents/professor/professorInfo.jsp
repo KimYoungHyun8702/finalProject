@@ -6,7 +6,7 @@
 <head>
 <meta>
 <title>Insert title here</title>
-<script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="${initParam.rootPath}/resource/jquery/jquery-3.2.1.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){

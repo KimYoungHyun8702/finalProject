@@ -1,6 +1,7 @@
 package com.mugs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.mugs.vo.ProfessorSubject;
 import com.mugs.vo.Subject;
@@ -47,15 +48,27 @@ public interface SubjectDao {
 	List<Subject> selectSubjectList();
 	
 	/**
-<<<<<<< HEAD
 	 * SubjectType 전체 조회 메소드. 
-=======
 	 * 
-	 * 
->>>>>>> branch 'master' of https://github.com/KimYoungHyun8702/finalProject.git
 	 * @return
 	 */
 	List<String> subjectTypeList();
+	
+	/**
+	 * 전공 id로 이수구분 확인
+	 * @return 이수구분 리스트
+	 * @param 해당 전공 id
+	 * @author 병문
+	 */
+	List<Subject> selectSubjectTypeByMajorId(int majorId);
+	
+	/**
+	 * 이수구분별 과목 리스트를 select하는 메소드
+	 * @param subjectType, majorId
+	 * @return 과목 리스트들
+	 * @author 병문
+	 */
+	List<Subject> selectSubjectBySubjectTypeAndMajorId(List<Object> typeAndMajorId);
 	
 	/**
 	 * 매개변수로 subjectType를 받아 해당하는 college 조회 메소드

@@ -23,6 +23,7 @@ CREATE TABLE AUTHORITIES (
    PRIMARY KEY(USERS_ID), /* 기본키 설정 */
    FOREIGN KEY (USERS_ID) REFERENCES USERS (USERS_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
+insert into authorities values()
 
 /* 3.공지사항 */
 CREATE TABLE NOTICE (
@@ -57,6 +58,7 @@ CREATE TABLE BUILDING (
 	BUILDING_NAME VARCHAR2(50) NOT NULL, /* 건물이름 */
 	PRIMARY KEY(BUILDING_ID) /* 기본키 설정 */
 );
+select * from building;
 
 /* 7.방 */
 CREATE TABLE ROOM (
@@ -67,7 +69,7 @@ CREATE TABLE ROOM (
 	FOREIGN KEY (BUILDING_ID) REFERENCES BUILDING(BUILDING_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
-
+select * from room;
 /* 8.졸업학점 */
 CREATE TABLE GRADUATION_CREDIT (
 	MAJOR_ID NUMBER NOT NULL, /* 학과 ID */
@@ -797,3 +799,36 @@ between calendar_start and calendar_finish;
 where calendar_start < '2017-03-11' 
 and   calendar_finish > '2017-03-11'
 
+		SELECT s.subject_name, s.subject_time, s.lecture_id, u.users_name
+		FROM   course c, subject s, professor p, users u
+		WHERE  c.subject_id = s.subject_id
+		AND    c.pro_id = p.pro_id
+		AND    p.pro_id = u.users_id
+		AND    c.course_year = 2017
+		AND    c.course_semester = '1학기'
+		AND    c.stu_id = 1
+		
+		
+		
+		
+		
+			select	 calendar_name
+	from 	 ACADEMIC_CALENDAR
+	where 	 #{value}
+	between	 calendar_start and calendar_finish
+	
+	
+	
+	
+	
+			SELECT s.subject_name, s.subject_time, s.lecture_id, u.users_name, b.building_name, r.room_name
+		FROM   course c, subject s, professor p, users u, room r, building b
+		WHERE  c.subject_id = s.subject_id
+		and    s.lecture_id = r.room_id
+		and    r.building_id = b.building_id
+
+		AND    c.pro_id = p.pro_id
+		AND    p.pro_id = u.users_id
+		AND    c.course_year = 2017
+		AND    c.course_semester = '1학기'
+		AND    c.stu_id = '1'

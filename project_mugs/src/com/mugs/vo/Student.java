@@ -10,12 +10,17 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.mugs.etc.DateJSONSerializer;
+
 public class Student extends Users implements Serializable {
 	
 	private String stuId;
 	private String stuCourse;
 	private String stuArmy;
+	@JsonSerialize(using=DateJSONSerializer.class)
 	private Date stuAdmissionDate;
+	@JsonSerialize(using=DateJSONSerializer.class)
 	private Date stuGraduationDate;
 	private String stuRegisterState;
 	private String stuStudentState;

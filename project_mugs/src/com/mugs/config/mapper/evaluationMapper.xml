@@ -33,10 +33,10 @@
 	
 	<!-- 평가등록 (등록 전 시퀀스 조회 후 삽입 -->
 	<insert id="insertEvaluation" parameterType="evaluation">
-			<!-- <selectKey order="BEFORE" keyProperty="evaluationId" resultType="int">
+		 <selectKey order="BEFORE" keyProperty="evaluationId" resultType="int">
 			SELECT EVALUATION_ID_SEQ.nextval
 			FROM dual
-			</selectKey> -->
+		</selectKey> 
 		INSERT INTO evaluation
 		 VALUES (
 				#{evaluationId},

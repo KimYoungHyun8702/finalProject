@@ -23,11 +23,16 @@
 		<result column="subject_id" property="subjectId"/>
 	</resultMap>
 	
-	<!-- <resultMap type="evaluationAnswer" id="evaluation-professor-subject-resultmap" extends="evaluationAnswer-resultmap">
-		<association property=""
+	<resultMap type="evaluationAnswer" id="evaluationAnswer-subject-professor-course-resultmap" extends="evaluationAnswer-resultmap">
+		<association property="professor" javaType="com.mugs.vo.Professor" resultMap="com.mugs.config.mapper.professorMapper.professor-user-resultmap"/>
 		<association property="subject" javaType="com.mugs.vo.Subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-basic-resultmap"/>
-		
-	</resultMap> -->
+		<association property="course" javaType="com.mugs.vo.Course" resultMap="com.mugs.config.mapper.courseMapper.course-resultmap"/>
+	</resultMap> 
+	
+	<resultMap type="evaluationAnswer" id="evaluationAnswer-subject-professor-resultmap" extends="evaluationAnswer-resultmap">
+		<association property="professor" javaType="com.mugs.vo.Professor" resultMap="com.mugs.config.mapper.professorMapper.professor-user-resultmap"/>
+		<association property="subject" javaType="com.mugs.vo.Subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-basic-resultmap"/>
+	</resultMap> 
 	
 	
 	<!-- 평가응답 등록 -->
@@ -56,7 +61,7 @@
 			   evaluation_answer_semester=#{evaluationAnswerSemester},
 			   stu_id=#{stuId},
 			   subject_id=#{subjectId}
-		FROM   evaluation_answer_id = #{evaluationAnswerId}
+		WHERE   evaluation_answer_id = #{evaluationAnswerId}
 	</update>
 	
 	<!-- 평가응답 평가 id로 삭제 -->
@@ -80,19 +85,49 @@
 		WHERE evaluation_answer_id = #{evaluationAnswerId}
 	</select>
 	
-	<!-- 설문평가응답여부jsp를 위한 쿼리문. 덜 구현함. -->
-	<!-- <select id="selectEvaluationAnswerStateByJoin" resultMap="evaluationAnswer-subject-professor-resultmap" parameterType="map">
-		SELECT s.subject_id, s.subject_name, s.subject_type, u.users_name, e.evaluation_answer_state
-		FROM   subject s, professor p, course c, users u, professor_subject q, evaluation_answer e
-		WHERE  c.subject_id = s.subject_id
-		AND    q.pro_id = p.pro_id
-		AND    s.subject_id = q.subject_id
+	<select id="selectEvaluationAnswerValueList" resultMap="evaluationAnswer-subject-professor-course-resultmap" parameterType="map">
+	  SELECT  s.subject_id, s.subject_name, s.subject_type, u.users_name, e.evaluation_answer_state, 
+             c.course_year, c.course_semester, c.stu_id, c.subject_id, p.pro_id
+      FROM    subject s, professor p, course c, users u, professor_subject q, evaluation_answer e
+      where    c.subject_id=e.subject_id
+      and    e.subject_id=s.subject_id
+      and    s.subject_id=q.subject_id
+      and    q.pro_id=p.pro_id
+      and    p.pro_id=u.users_id
+      AND     c.course_year = #{nowYear}
+      AND     c.course_semester = #{nowSemester}
+      AND     c.stu_id = #{loginId}
+      and e.evaluation_answer_semester = #{nowSemester}
+      and e.evaluation_answer_year = #{nowYear}
+   </select> 
+   
+   	<!-- 설문응답에 응하였을 시, 설문응답상태가 'N'에서 'Y'로 바뀌는 update문 -->
+	<update id="updateEvaluationAnswerState" parameterType="map">
+		UPDATE evaluation_answer
+		SET    evaluation_answer_state='Y'
+		WHERE  subject_id = #{subjectId}
+		AND    stu_id = #{loginId}
+		AND    evaluation_answer_year = #{nowYear}
+		AND    evaluation_answer_semester = #{nowSemester}
+	</update>
+	
+   <select id="selectEvaluationAnswerValue" parameterType="map" resultMap="evaluationAnswer-subject-professor-resultmap" >
+<!-- 		SELECT s.subject_id, s.subject_name, u.users_name, e.evaluation_answer_state
+		FROM   subject s, professor p, users u, evaluation_answer e
+		WHERE  e.stu_id = #{nowId}
+		AND    e.evaluation_answer_year = #{nYear}
+		AND    e.evaluation_answer_semester = #{nSemester}
+		AND    e.subject_id = s.subject_id
+		AND    s.subject_id = #{subjctId} -->
+		SELECT s.subject_id, s.subject_name, u.users_name, e.evaluation_answer_state
+		FROM   subject s, professor p, users u, evaluation_answer e
+		WHERE  e.stu_id = #{nowId}
+		AND    e.evaluation_answer_year = #{nYear}
+		AND    e.evaluation_answer_semester = #{nSemester}
+		AND    e.subject_id = s.subject_id
+		AND    s.subject_id = #{subjctId}
 		AND    p.pro_id = u.users_id
-		AND    c.stu_id = e.stu_id
-		AND    c.subject_id = e.subject_id
-		AND    c.course_year = #{nowYear}
-		AND    c.course_semester = #{nowSemester}
-		AND    c.stu_id = #{loginId}
-	</select> -->
+ 
+	</select>
 
 </mapper>
