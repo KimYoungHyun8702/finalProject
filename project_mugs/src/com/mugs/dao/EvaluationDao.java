@@ -34,4 +34,5 @@ public interface EvaluationDao {
 	 * @return 리스트로 리턴.
 	 */
 	List<Evaluation> selectEvaluationAll();
+	
 }

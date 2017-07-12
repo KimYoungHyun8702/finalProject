@@ -12,8 +12,9 @@
 <%--인증 안된(로그인 안한) 사용자 메뉴  (!isAuthenticated()) : 인증되면 안보여야 하는 메뉴 --%>
 <sec:authorize access="!isAuthenticated()">	
 	<li><a href="${initParam.rootPath }/login_form.do">로그인</a></li>
+	<li><a href="javascript:popupOpen('${initParam.rootPath }/idFind.do');">아이디 찾기</a></li>
+	<li><a href="javascript:popupOpen('${initParam.rootPath }/pwFind.do');">비밀번호 찾기</a></li>
 </sec:authorize>
-
 
 <%--인증된(로그인한) 사용자 메뉴  (isAuthenticated()) : 인증 안 된 상태에서 안보여야 하는 메뉴 --%>
 <sec:authorize access="isAuthenticated()">
@@ -21,15 +22,16 @@
 </sec:authorize>
 
 <%--학생 메뉴--%>
-<sec:authorize access="hasRole('ROLE_STUDENT')">
+<sec:authorize access="hasRole('ROLE_STU')">
 <a href="${initParam.rootPath }/student/getCollegeList.do">기준학점조회</a><br>
 <a href="${initParam.rootPath }/student/getMyTimeTable.do">나의 시간표 조회</a><br>
 <a href="${initParam.rootPath }/student/getMyCourseListByJoin.do">수강신청내역조회 클릭기기</a><br>
-<a href="${initParam.rootPath }/student/getEvaluationValueList.do">설문응답평가조회</a><br>
+<a href="${initParam.rootPath }/student/compareEvaluationPeriod.do">설문응답평가조회-기간설정까지해준것</a><br>
 <a href="${initParam.rootPath }/student/subjectType.do">수강신청</a><br>
 <a href="${initParam.rootPath }/student/gradeInquiry.do">성적 조회 -딘강</a><br>
 <a href="${initParam.rootPath }/student/currentGradeInquiry.do">당학기 성적조회 -딘강</a><br>
 <a href="${initParam.rootPath }/student/academicProbation.do">학사경고내역 조회-딘강</a>
+<a href="${initParam.rootPath }/student/mapByBuildingId.do">지도-딘강</a>
 </sec:authorize>
 
 <%--교수 메뉴--%>
@@ -62,6 +64,41 @@
 <script type="text/javascript">
 	function logout(){
 		document.getElementById("logoutForm").submit();
+	}
+
+	function popupOpen(url){
+		var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;"; 
+			window.open(url,"",popOption);
+		}
+	$(document).ready(function(){
+		var periodResult = "${evaluationPeriodResult}";
+		if(periodResult != "" ) {
+			if(periodResult == '1학기' || periodResult == '2학기') {
+			alert(periodResult + "11");
+			//window.location.href="<c:url value='${initParam.rootPath }/student/selectEvaluationAnswerValueList.do'/>";
+				window.location.href = '${initParam.rootPath }/student/selectEvaluationAnswerValueList.do';
+			}
+			else {
+				alert("지금은 설문응답기간이 아닙니다. 정해진 기간 내에 설문에 응하여 주시기 바랍니다.");
+				return false;
+			}
+	
+	
+	function logout(){
+		document.getElementById("logoutForm").submit();
+	}
+	
+	var  stuRegister = "${stuRegister}";
+	
+	if(stuRegister == '휴학' || stuRegister == '군휴학') {
+		alert(stuRegister + "학생은 설문응답을 할 수 없습니다.");
+	} else {
+		var msg = "${msg}";
+		if(msg != "") {
+			alert(msg);
+		}
+	})
+
 	}
 </script>
 <form id="logoutForm" action="${initParam.rootPath }/logout.do" method="post" style="display:none">

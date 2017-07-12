@@ -14,22 +14,23 @@ public class Building implements Serializable {
 	
 	private int buildingId;
 	private String buildingName;
+	private String buildingURL;
+	
 	private List<Room> roomList;
 
 	public Building() {
-		super();
 	}
 
-	public Building(int buildingId, String buildingName) {
-		super();
+	public Building(int buildingId, String buildingName, String buildingURL) {
 		this.buildingId = buildingId;
 		this.buildingName = buildingName;
+		this.buildingURL = buildingURL;
 	}
 
-	public Building(int buildingId, String buildingName, List<Room> roomList) {
-		super();
+	public Building(int buildingId, String buildingName, String buildingURL, List<Room> roomList) {
 		this.buildingId = buildingId;
 		this.buildingName = buildingName;
+		this.buildingURL = buildingURL;
 		this.roomList = roomList;
 	}
 
@@ -49,6 +50,14 @@ public class Building implements Serializable {
 		this.buildingName = buildingName;
 	}
 
+	public String getBuildingURL() {
+		return buildingURL;
+	}
+
+	public void setBuildingURL(String buildingURL) {
+		this.buildingURL = buildingURL;
+	}
+
 	public List<Room> getRoomList() {
 		return roomList;
 	}
@@ -58,16 +67,12 @@ public class Building implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		return "Building [buildingId=" + buildingId + ", buildingName=" + buildingName + ", roomList=" + roomList + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + buildingId;
 		result = prime * result + ((buildingName == null) ? 0 : buildingName.hashCode());
+		result = prime * result + ((buildingURL == null) ? 0 : buildingURL.hashCode());
 		result = prime * result + ((roomList == null) ? 0 : roomList.hashCode());
 		return result;
 	}
@@ -88,6 +93,11 @@ public class Building implements Serializable {
 				return false;
 		} else if (!buildingName.equals(other.buildingName))
 			return false;
+		if (buildingURL == null) {
+			if (other.buildingURL != null)
+				return false;
+		} else if (!buildingURL.equals(other.buildingURL))
+			return false;
 		if (roomList == null) {
 			if (other.roomList != null)
 				return false;
@@ -95,4 +105,11 @@ public class Building implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Building [buildingId=" + buildingId + ", buildingName=" + buildingName + ", buildingURL=" + buildingURL
+				+ ", roomList=" + roomList + "]";
+	}
+
 }
