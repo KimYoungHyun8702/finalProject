@@ -88,11 +88,11 @@ $(document).on("change", ".selectBtn1", function(){
 				var txt = "";// undefined값
 				$.each(list, function(){ // style="display: none" 적용해서  + "</td><td>" 등등 삽입해두기!!
 					if(this.count=="1"){
-					txt += "<tr><td>"  + "<input id='' name='' value='' size='2'>" + "</td><td>" + courseYear +"</td><td>" + courseSemester +"</td><td>" + Acquire + "</td><td id='change1'>" + select1  
+					txt += "<tr><td>" + courseYear +"</td><td>" + courseSemester +"</td><td>" + Acquire + "</td><td id='change1'>" + select1  
 						+"</td><td>" + select2 +"</td><td id='change2'>" + 'N' + "</td><td>" + subjectId + "</td><td>" + this.student.usersId + "</td><td>" + this.student.usersName 
 						+ "</td><td>" + "<button id=" + "Btn2>" + "성적주기 </button>" + "</td></tr>"																		
 					}else{
-					txt += "<tr><td>"  + "<input id='' name='' value='' size='2'>" + "</td><td>" + courseYear +"</td><td>" + courseSemester +"</td><td>" + Acquire + "</td><td id='change1'>" + select3 
+					txt += "<tr><td>" + courseYear +"</td><td>" + courseSemester +"</td><td>" + Acquire + "</td><td id='change1'>" + select3 
 						+"</td><td>" + select4 +"</td><td id='change2'>" + 'Y' + "</td><td>" + subjectId + "</td><td>" + this.student.usersId + "</td><td>" + this.student.usersName 
 						+ "</td><td>" + "<button id=" + "Btn2>" + "성적주기 </button>" + "</td></tr>"					
 					}
@@ -151,7 +151,6 @@ $(document).on("change", ".selectBtn1", function(){
 	}
 	
 	$(document).on("click", "#Btn2", function(){		
-		var creditId = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().children().val();
 		var creditYear = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
 		var creditSemester = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().text();
 		var creditAcquire = $(this).parent().prev().prev().prev().prev().prev().prev().prev().text();
@@ -164,12 +163,12 @@ $(document).on("change", ".selectBtn1", function(){
 		$.ajax({
 			"url":"/project_mugs/professor/registerCredit.do",
 			"type":"POST",
-			"data":{"creditId":creditId,"creditYear":creditYear,"creditSemester":creditSemester,
+			"data":{"creditYear":creditYear,"creditSemester":creditSemester,
 				    "creditAcquire":creditAcquire,"creditGrade":creditGrade,"creditScore":creditScore,
 				    "creditRecource":creditRecource,"subjectId":subjectId,"stuId":stuId,
 				    ${_csrf.parameterName}:'${_csrf.token}'},
 			"dataType":"json",
-			"success":function(list){
+			"success":function(){
 				alert("성공");
 			},//success
 			"error":function(){		
@@ -245,7 +244,6 @@ $(document).on("change", ".selectBtn1", function(){
 <table id="table3" border="1">
 	<thead>
 		<tr>
-			<td>시퀀스(c)</td>
 			<td>연도(c)</td>
 			<td>학기(c)</td>
 			<td>취득학점(c)</td>

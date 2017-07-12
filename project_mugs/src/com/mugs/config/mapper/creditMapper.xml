@@ -47,6 +47,9 @@
 
 <!-- insert -->
 <insert id="insertCredit" parameterType="credit">
+		<selectKey resultType="int" keyProperty="creditId" order="BEFORE">
+			SELECT credit_id_seq.nextval FROM dual   
+		</selectKey>
 	INSERT INTO credit VALUES
 	(
 	#{creditId},
