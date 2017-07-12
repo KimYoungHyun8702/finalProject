@@ -130,12 +130,12 @@
 	AND c.credit_year=#{year} AND s.subject_type=#{type}
 </select>
 
-
-
-
-
-
-
+<select id="selectCreditScoreBySubjectIdStuId" resultType="double" parameterType="map">
+	select credit_score
+	from credit
+	where subject_id=#{subjectId}
+	and stu_id=#{stuId}
+</select>
 
 
 

@@ -37,7 +37,7 @@ public interface StandardDao {
 	 * @param majorId
 	 * @return
 	 */
-	int selectStandardById(int standardYear, int majorId);//매개변수가 2개라서 변수 선언해줄때 Map선언해주고 Map에 담아줘야 합니다.
+	Standard selectStandardById(int standardYear, int majorId);//매개변수가 2개라서 변수 선언해줄때 Map선언해주고 Map에 담아줘야 합니다.
 	
 	
 	/**

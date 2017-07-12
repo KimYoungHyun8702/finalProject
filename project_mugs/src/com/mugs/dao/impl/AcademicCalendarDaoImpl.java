@@ -60,4 +60,10 @@ public class AcademicCalendarDaoImpl implements AcademicCalendarDao {
 		return session.selectOne(makeSql("selectCalendarByYearCalName"), map);
 	}
 
+	@Override
+	public List<AcademicCalendar> selectCalendarByDate(String date) {
+		// TODO Auto-generated method stub
+		return session.selectList(makeSql("selectAcademicCalendarByFormatDate"), date);
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.mugs.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.mugs.vo.AcademicCalendar;
@@ -53,4 +54,13 @@ public interface AcademicCalendarDao {
 	 * @return
 	 */
 	AcademicCalendar selectCalendarByYearCalName(int year, String calName);
+	
+	
+	/**
+	 * 매개변수로 날짜를 이용하여 매개변수의 날짜에 해당하는 학사정보 select하는 메소드.
+	 * 
+	 * @param date
+	 * @return
+	 */
+	List<AcademicCalendar> selectCalendarByDate(String date);
 }

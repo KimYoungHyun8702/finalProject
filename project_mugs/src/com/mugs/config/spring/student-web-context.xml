@@ -30,8 +30,6 @@
 
 
 	<mvc:view-controller path="/gradeInquiry.do" view-name="view/contents/student/gradeInquiry" />
-
-	
 	
 
 

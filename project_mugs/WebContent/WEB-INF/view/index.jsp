@@ -5,6 +5,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	// 수강신천 기간 여부 및 학생의 재적상태를 보고 수강신청 가능 여부를 알려주는 자바스크립트
+	// By Beak.J.H
+	var  stuRegister = "${stuRegister}";
+	
+	if(stuRegister == '휴학' || stuRegister == '군휴학') {
+		alert(stuRegister + "학생은 수강신청을 할 수 없습니다.");
+	} else {
+		var msg = "${msg}";
+		if(msg != "") {
+			alert(msg);
+		}
+	}
+</script>
 </head>
 <body>
 
@@ -28,7 +43,8 @@
 <hr>
 <h1>백진현 학생</h1>
 <hr>
-<a href="/project_mugs/student/subjectType.do">수강신청</a>
+<a href="/project_mugs/student/getSubjectTypeList.do">수강신청</a>
+<a href="#">휴복학신청</a>
 
 <hr>
 <h1>현동준 관리자</h1>

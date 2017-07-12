@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mugs.config.mapper.academicCalendar">
+<mapper namespace="com.mugs.config.mapper.academicCalendarMapper">
 
 <sql id="select-academicCalendar">
 	SELECT calendar_id,
 		   calendar_start,
-		   calendar_finsh,
+		   calendar_finish,
 		   calendar_year,
 		   calendar_name
-	FROM   academiccalendar
+	FROM   academic_calendar
 </sql>
 
 <resultMap type="academicCalendar" id="academicCalendar-basic-reresultmap">
 	<id column="calendar_id" property="calendarId"/>
 	<result column="calendar_start" property="calendarStart"/>
-	<result column="calendar_finsh" property="calendarFinish"/>
+	<result column="calendar_finish" property="calendarFinish"/>
 	<result column="calendar_year" property="calendarYear"/>
 	<result column="calendar_name" property="calendarName"/>
 </resultMap>
@@ -24,14 +24,14 @@
 	<selectKey resultType="int" keyProperty="calendarId" order="BEFORE">
 		SELECT CALENDAR_ID_SEQ.nextval FROM dual
 	</selectKey>
-	INSERT INTO academiccalendar VALUES(#{calendarId},#{calendarStart}, #{calendarFinsh}, #{calendarYear}, #{calendarName})
+	INSERT INTO academic_calendar VALUES(#{calendarId},#{calendarStart}, #{calendarFinsh}, #{calendarYear}, #{calendarName})
 </insert>
 
 <!-- update -->
 <update id="updateAcademicCalendarById" parameterType="academicCalendar">
-	UPDATE academiccalendar
+	UPDATE academic_calendar
 	   SET calendar_start=#{calendarStart},
-	   	   calendar_finsh=#{calendarFinsh},
+	   	   calendar_finish=#{calendarFinsh},
 	   	   calendar_year=#{calendarYear},
 	   	   calendar_name=#{calendarName}
 	 WHERE calendar_id=#{calendarId}  	   
@@ -39,7 +39,7 @@
 
 <!-- delete -->
 <delete id="deleteAcademicCalendar" parameterType="int">
-	DELETE FROM academiccalendar WHERE calendar_id=#{value}
+	DELETE FROM academic_calendar WHERE calendar_id=#{value}
 </delete>
 
 <!-- select -->
@@ -52,6 +52,9 @@
 	WHERE calendar_id=#{value}
 </select>
 
+<select id="selectAcademicCalendarByFormatDate" resultMap="academicCalendar-basic-reresultmap" parameterType="string">
+	<include refid="select-academicCalendar"/>
+	WHERE TO_DATE(#{value}, 'YYYY-MM-DD') BETWEEN calendar_start AND calendar_finish
+</select>
+ 
 </mapper>
-
-

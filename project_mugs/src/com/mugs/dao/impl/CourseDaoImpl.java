@@ -69,5 +69,34 @@ public class CourseDaoImpl implements CourseDao{
 		return session.selectList(makeSql("selectMyCourseListByJoin"), params);
 	}
 
+	@Override
+	public int selectStudentCount(String semester, int nowYear, int subjectId) {
+		// TODO Auto-generated method stub
+		HashMap map = new HashMap();
+		map.put("semester", semester);
+		map.put("nowYear", nowYear);
+		map.put("subjectId", subjectId);
+		return session.selectOne(makeSql("selectStudentCount"), map);
+	}
 
+	@Override
+	public List<Course> selectMyCourseList(String stuId, int nowYear, String semester) {
+		// TODO Auto-generated method stub
+		HashMap map = new HashMap();
+		map.put("semester", semester);
+		map.put("nowYear", nowYear);
+		map.put("stuId", stuId);
+		return session.selectList(makeSql("selectMyCourseList"), map);
+	}
+
+	@Override
+	public int deleteCourse(String stuId, int nowYear, String semester, int subjectId) {
+		// TODO Auto-generated method stub
+		HashMap map = new HashMap();
+		map.put("semester", semester);
+		map.put("nowYear", nowYear);
+		map.put("stuId", stuId);
+		map.put("subjectId", subjectId);
+		return session.delete(makeSql("deleteCourse"), map);
+	}
 }

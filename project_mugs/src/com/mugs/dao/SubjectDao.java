@@ -47,15 +47,13 @@ public interface SubjectDao {
 	List<Subject> selectSubjectList();
 	
 	/**
-<<<<<<< HEAD
 	 * SubjectType 전체 조회 메소드. 
-=======
 	 * 
+	 * By Beak.J.H
 	 * 
->>>>>>> branch 'master' of https://github.com/KimYoungHyun8702/finalProject.git
 	 * @return
 	 */
-	List<String> subjectTypeList();
+	List<String> selectSubjectTypeList();
 	
 	/**
 	 * 매개변수로 subjectType를 받아 해당하는 college 조회 메소드

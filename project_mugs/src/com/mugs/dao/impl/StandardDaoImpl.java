@@ -40,11 +40,11 @@ public class StandardDaoImpl implements StandardDao {
 	}
 	
 	@Override
-	public int selectStandardById(int standardYear, int majorId) {//매개변수가 2개라서 변수 선언해줄때 Map선언해주고 Map에 담아줘야 합니다.
+	public Standard selectStandardById(int standardYear, int majorId) {//매개변수가 2개라서 변수 선언해줄때 Map선언해주고 Map에 담아줘야 합니다.
 		HashMap<String, Integer> param = new HashMap<>();
 		param.put("standardYear", standardYear);
 		param.put("majorId", majorId);
-		return session.selectOne(makeSql("selectStandardById"),param);
+		return session.selectOne(makeSql("selectStandardById"), param);
 	}
 
 

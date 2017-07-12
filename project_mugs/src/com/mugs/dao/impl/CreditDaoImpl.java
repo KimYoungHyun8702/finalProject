@@ -117,4 +117,12 @@ public class CreditDaoImpl implements CreditDao {
 		return session.selectList(makeSqlId("selectCreditByYearType"), map);
 	}
 
+	@Override
+	public List<Double> selectCreditScoreBySubjectIdStuId(int subjectId, String stuId) {
+		// TODO Auto-generated method stub
+		HashMap map = new HashMap();
+		map.put("subjectId", subjectId);
+		map.put("stuId", stuId);
+		return session.selectList(makeSqlId("selectCreditScoreBySubjectIdStuId"), map);
+	}
 }

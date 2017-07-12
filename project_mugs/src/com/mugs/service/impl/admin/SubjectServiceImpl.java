@@ -75,7 +75,7 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public List<String> selectSubjectType() {
-		return subjectDao.subjectTypeList();
+		return subjectDao.selectSubjectTypeList();
 	}
 
 	@Override
