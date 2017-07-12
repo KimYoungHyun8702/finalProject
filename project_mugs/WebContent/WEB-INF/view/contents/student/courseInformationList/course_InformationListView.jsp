@@ -63,7 +63,9 @@ td{
 				<td>${courseList.subject.lectureId}</td>
 			</tr>
 		</c:forEach>
+
 	</tbody>
 </table>
+<button onclick="location.href='${initParam.rootPath}/'">이전페이지로</button>
 </body>
 </html>

@@ -52,6 +52,13 @@
 	WHERE calendar_id=#{value}
 </select>
 
+<select id="selectCalendarName" resultType="String" parameterType="java.util.Date">
+	select	 calendar_name
+	from 	 ACADEMIC_CALENDAR
+	where 	 #{value}
+	between	 calendar_start and calendar_finish
+</select>
+
 <select id="selectCalendarByYearCalName" resultMap="academicCalendar-basic-reresultmap" parameterType="map">
 	<include refid="select-academicCalendar"/>
 	WHERE calendar_year=#{year} AND calendar_name=#{calName}

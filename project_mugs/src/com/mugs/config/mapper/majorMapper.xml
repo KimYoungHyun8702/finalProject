@@ -9,11 +9,7 @@
 </resultMap>
 
 <resultMap id="major-graduationcredit-resultmap" type="major" extends="major-basic-resultmap">
-		<!-- 
-			collection 태그 :List
-			ofType : List<Employee> - collection에 담을 VO객체의 타입
-			property : List<Employee> employeeList - Attribute 이름
-		 -->
+	
 		<collection ofType="GraduationCredit" property="graduationCreditList">
 			<result column="major_id" property="majorId" />
 			<result column="graduation_credit_year" property="graduationCreditYear" />

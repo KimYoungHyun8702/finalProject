@@ -3,13 +3,14 @@ package com.mugs.controller.student;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mugs.service.student.TimetableManagementService;
 import com.mugs.vo.Course;
+import com.mugs.vo.Users;
 
 @Controller
 @RequestMapping("/student/")
@@ -20,11 +21,32 @@ public class TimetableController {
 	
 	@RequestMapping("getMyTimeTable")
 	public ModelAndView getMyTimeTable(){
-		String loginId="사용자2";//시큐리티하기 전까지는 내가 임의로 선언 및 초기화
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String loginId = users.getUsersId();
+		
+		
+		//String loginId="1";//시큐리티하기 전까지는 내가 임의로 선언 및 초기화
 		//1.요청파라미터조회(위에서 다함) + 검증.  
 		//2.비즈니스로직처리(서비스메소드 호출)
 		List<Course> myTimeTableResult = timeTableManagementServiceImpl.findMyTimeTableByJoin(loginId);//내 시간표정보를 가져오는 서비스메소드
+/*		System.out.println(myTimeTableResult);
+		System.out.println("myTimeTableResult.get(0)  :  " + myTimeTableResult.get(0).getProfessor());
+		System.out.println("나오는거니!!!!!!!!!!!!!!!!!!!!");
+		//System.out.println("myTimeTableResult.get(0).toString()  :  " + myTimeTableResult.get(0).toString());
+		System.out.println("myTimeTableResult.get(0)  :  " + myTimeTableResult.get(1).getProfessor().getUsersName());
+		System.out.println("myTimeTableResult.get(1)  :  " + myTimeTableResult.get(1));
+		System.out.println(myTimeTableResult.get(0).getSubject().getGyoShi1());
+		System.out.println("강의실이름 : " + myTimeTableResult.get(0).getRoom().getRoomName());*/
+		//System.out.println(myTimeTableResult);
 		//3.응답
-		return new ModelAndView("contents/student/timeTable/myTimeTableView", "myTimeTableResult", myTimeTableResult);	
+		//view.setViewName("student/timeTable/myTimeTableView.tiles");
+		//view.addObject("timeTableResult", myTimeTableResult.get(0));
+		//view.addObject("yoyilAndGyoshi", myTimeTableResult.get(1));
+		//return new ModelAndView("contents/student/timeTable/myTimeTableView", "myTimeTableResult", myTimeTableResult);
+		System.out.println("컨트롤러 완료");
+		return new ModelAndView("student/timeTable/myTimeTableView.tiles", "myTimeTableResult", myTimeTableResult);
+		
+		//return view;
+	
 	}
 }
