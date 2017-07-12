@@ -1,10 +1,11 @@
 package com.mugs.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class LeaveReturnApplication {
+public class LeaveReturnApplication implements Serializable {
 	
 	private int LRApplicationId;
 	private String LRApplicationType;

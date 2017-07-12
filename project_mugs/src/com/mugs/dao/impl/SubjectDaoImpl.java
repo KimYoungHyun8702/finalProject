@@ -54,9 +54,10 @@ public class SubjectDaoImpl implements SubjectDao {
 	@Override
 	public List<String> selectSubjectTypeList() {
 		// TODO Auto-generated method stub
+
 		return session.selectList(makeSqlId("selectSubjectTypeList"));
 	}
-
+	
 	@Override
 	public List<Subject> selectCollegeIdBySubjectType(String subjectType) {
 		return session.selectList(makeSqlId("selectCollegeIdBySubjectType"),subjectType);
@@ -106,7 +107,41 @@ public class SubjectDaoImpl implements SubjectDao {
 	public Subject selectSubjectInfoBySubjectIdForMinorUpdate(int subjectId) {
 		return session.selectOne(makeSqlId("selectSubjectInfoBySubjectIdForMinorUpdate"),subjectId);
 	}
+
+	@Override
+	public Subject selectForOverlap(String subjectTime, String subjectSemester, int buildingId) {
+		Map map = new HashMap();
+		map.put("subjectTime", subjectTime);
+		map.put("subjectSemester", subjectSemester);
+		map.put("buildingId", buildingId);
+		return session.selectOne(makeSqlId("selectForOverlap"),map);
+	}
 	
 	
+	
+	//병문 DaoImpl
+	@Override
+	public List<Subject> selectSubjectTypeByMajorId(int majorId) {
+		return session.selectList(makeSqlId("selectSubjectTypeByMajorId"),majorId);
+	}
+	
+	@Override
+	public List<Subject> selectSubjectBySubjectTypeAndMajorId(List<Object> typeAndMajorId) {
+		return session.selectList(makeSqlId("selectSubjectBySubjectTypeAndMajorId"),typeAndMajorId);
+	}
+	
+	@Override
+	public List<Subject> selectSubjectListByMajorIdForAllTime(int majorId) {
+		return session.selectList(makeSqlId("selectSubjectListByMajorIdForAllTime"), majorId);
+	}
+	// End BM
+
+	@Override
+	public List<String> subjectTypeList() {
+		// TODO Auto-generated method stub
+		return session.selectList(makeSqlId("selectSubjectType"));
+	}
+
+
 	
 }

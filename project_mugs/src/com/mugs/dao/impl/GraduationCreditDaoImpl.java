@@ -54,5 +54,14 @@ public class GraduationCreditDaoImpl implements GraduationCreditDao{
 	public List<GraduationCredit> selectGraduationCreditByMajorId(int majorId) {
 		return session.selectList(makeSqlId("selectGraduationCreditByMajorId"),majorId);
 	}
+
+	@Override
+	public GraduationCredit selectGraduationCreditByMajorIdAndUsersId(int majorId, String year, String usersId) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("majorId", majorId);
+		map.put("year", year);
+		map.put("usersId", usersId);
+		return session.selectOne(makeSqlId("selectGraduationCreditByMajorIdAndUsersId"), map);
+	}
 	
 }

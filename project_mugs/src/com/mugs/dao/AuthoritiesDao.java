@@ -3,6 +3,8 @@ package com.mugs.dao;
 import java.util.List;
 
 import com.mugs.vo.Authorities;
+import com.mugs.vo.Users;
+
 
 public interface AuthoritiesDao {
 	
@@ -25,14 +27,14 @@ public interface AuthoritiesDao {
 	 * @param usersId
 	 * @return
 	 */
-	int deleteAuthorities(String usersId);
+	int deleteAuthorities(String userId);
 	
 	/**
 	 * 매개변수로 유저id를 받아서 권한 정보를 select하는 메소드
 	 * @param usersId
 	 * @return
 	 */
-	Authorities selectAuthoritiesById(String usersId);
+	Authorities selectAuthoritiesById(String userId);
 	
 	/**
 	 * Authorities테이블의 모든 권한 정보를 select하는 메소드
@@ -40,4 +42,17 @@ public interface AuthoritiesDao {
 	 */
 	List<Authorities> selectAuthoritiesList();
 	
+	/**
+	 * 인증가능 사용자 userId로 조회
+	 * @param userId
+	 * @return
+	 */
+	Users selectUserByUserId(String userId);
+	
+	/**
+	 * userId의 사용자의 권한 조회 
+	 * @param userId
+	 * @return
+	 */
+	Authorities selectAuthoritiesByUserId(String userId);
 }

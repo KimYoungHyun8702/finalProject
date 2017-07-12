@@ -38,5 +38,5 @@ public interface NoticeDao {
 	 * @param noticeId
 	 * @return
 	 */
-	Notice SelectNoticeById(int noticeId);
+	Notice SelectNotice();
 }

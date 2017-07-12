@@ -43,4 +43,12 @@ public interface SubjectPlanDao {
 	 * @return
 	 */
 	List<SubjectPlan> selectSubjectPlanList();
+	
+	/** 영현이꼬
+	 * 	4개의 매개변수를 받은 ID값들과 일치하는 강의계획서 Data 조회.
+	 * @param planYear,planSemester,subjectId,proId
+	 * @return SubjectPlan
+	 */
+	SubjectPlan selectSubjectPlanByFourId(int planYear, String planSemester, int subjectId, String proId);
+	
 }

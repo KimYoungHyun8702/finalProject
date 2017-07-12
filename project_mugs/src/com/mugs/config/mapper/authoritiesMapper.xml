@@ -8,12 +8,13 @@
 	FROM   authorities
 </sql>
 
-<resultMap type="authorities" id="authorities-basic-reresultmap">
+<resultMap type="authorities" id="authorities-basic-resultmap">
 	<id column="users_id" property="usersId"/>
 	<result column="authorities_role" property="authoritiesRole"/>
 </resultMap>
 
 <!-- insert -->
+<!-- 권한 추가 -->
 <insert id="insertAuthorities" parameterType="authorities">
 	INSERT INTO authorities VALUES(#{usersId},#{authoritiesRole})
 </insert>
@@ -23,7 +24,7 @@
 	UPDATE authorities
 	   SET users_id=#{usersId},
 	   	   authorities_role=#{authoritiesRole}
-	 WHERE users_id=#{usersId}  	   
+	 WHERE users_id=#{usersId} 
 </update>
 
 <!-- delete -->
@@ -32,13 +33,22 @@
 </delete>
 
 <!-- select -->
-<select id="selectAuthoritiesList" resultMap="authorities-basic-reresultmap">
+<select id="selectAuthoritiesList" resultMap="authorities-basic-resultmap">
 	<include refid="select-authorities"/>
 </select>
 
-<select id="selectAuthoritiesById" resultMap="authorities-basic-reresultmap" parameterType="int">
-	<include refid="select-authorities"/>
+<!-- 사용자 ID로 회원 정보 조회 - 인증가능 회원만 : enable=1 -->
+<select id="selectUserByUserId" resultMap="com.mugs.config.mapper.usersMapper.users-basic-resultmap" parameterType="string">
+	<include refid="com.mugs.config.mapper.usersMapper.select-users"/>
 	WHERE users_id=#{value}
+	AND users_enable = 1
 </select>
+
+<select id="selectAuthoritiesByUserId" parameterType="string" resultMap="authorities-basic-resultmap">
+		<include refid="select-authorities"/>
+		WHERE users_id = #{value}
+</select>
+
+
 
 </mapper>

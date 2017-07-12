@@ -6,19 +6,19 @@
 <head>
 <meta>
 <title>Insert title here</title>
-<script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-
+var x = "";
 $(document).ready(function(){
-	
-	$("#searchBtn").on("click",function(){
+	searchByJoin();
+});
+	function searchByJoin(){
 		$.ajax({
 			"url":"/project_mugs/professor/searchByJoin.do",
 			"type":"POST",
-			"data":{"proId":$("#id").val()},
+			"data":{${_csrf.parameterName}:'${_csrf.token}'},
 			"dataType":"json",
 			"success":function(obj){
-				alert("개인정보 조회완료");
 				$("#usersId").val(obj.usersId);
 				$("#usersPassword").val(obj.usersPassword);
 				$("#usersName").val(obj.usersName);
@@ -32,15 +32,28 @@ $(document).ready(function(){
 				$("#usersBornAddr").val(obj.usersBornAddr);
 				$("#usersEnable").val(obj.usersEnable);
 				$("#usersPhoto").val(obj.usersPhoto);
-				$("#professorRegiste").empty().append("졸업대학 : " + obj.proUniversity + "<br>"+ "졸업대학원 : " + obj.proGradSchool 
-						+ "<br>"+"교수실전화번호 : " + obj.proOfficePhoneNum + "<br>");
+				
+				$("#proUniversity").val(obj.proUniversity);
+				$("#proGradSchool").val(obj.proGradSchool);
+				$("#proOfficePhoneNum").val(obj.proOfficePhoneNum);
+				var x = obj;
 			},
 			"error":function(){
 				alert("에러발생");
 			}
-		});
-	}); 
-});
+		});//ajax
+	} 
+
+$(document).on("click", "#updateBtn", function(){
+	$.ajax({
+	"success":function(){
+		openchild();
+	},
+	"error":function(txt){	
+		alert('에러발생');
+		}
+	});//ajax
+});//document(click);  //집에서 처리
 
 </script>
 
@@ -48,15 +61,9 @@ $(document).ready(function(){
 <body>
 교수개인정보~~~<br>
 
-ID<input type="text" id="id" name="id">
-<button type="button" id="searchBtn">검색</button>
-
-
-<form action="/project_mugs/professor/updateProfile.do" method="post">
-
 아이디<input type="text" id="usersId" name="usersId" value="" readonly="readonly"><br>
 비밀번호<input type="text" id="usersPassword" name="usersPassword" value="" readonly="readonly"><br>
-성명<input type="text" id="usersName" name="usersName" value="${param.userName }"><br>
+성명<input type="text" id="usersName" name="usersName" value=""><br>
 영문성명<input type="text" id="usersEngName" name="usersEngName" value=""><br>
 주민번호<input type="text" id="usersRRN" name="usersRRN" value=""><br>
 이메일<input type="text" id="usersEmail" name="usersEmail" value=""><br>
@@ -69,14 +76,41 @@ ID<input type="text" id="id" name="id">
 사진주소<input type="text" id="usersPhoto" name="usersPhoto" value=""><br>
 
 <button type="submit" id="updateBtn">수정</button>
-</form>
+
 
 <div id="professorRegiste">
-
+졸업대학<input type="text" id="proUniversity" name="proUniversity" value="" readonly="readonly"><br>
+졸업대학원<input type="text" id="proGradSchool" name="proGradSchool" value="" readonly="readonly"><br>
+교수실전화번호<input type="text" id="proOfficePhoneNum" name="proOfficePhoneNum" value="" readonly="readonly"><br>
 </div>
-
-
-
 </body>
+<script type="text/javascript">
+	var openWin;
+	
+	function openchild(obj){
+		// window.name = "부모창 이름"; planId
+        window.name = "parentForm";
+        // window.open("open할 window", "자식창 이름", "팝업창 옵션");          
+        openWin = window.open("/project_mugs/professorInfoUpdate.do", "강의계획서수정", "width=500, height=400 resizable=no");
+        setTimeout(function(){
+        	openWin.document.getElementById("usersId").value = document.getElementById("usersId").value;
+        	openWin.document.getElementById("usersPassword").value = document.getElementById("usersPassword").value;
+        	openWin.document.getElementById("usersName").value = document.getElementById("usersName").value;
+        	openWin.document.getElementById("usersEngName").value = document.getElementById("usersEngName").value;
+        	openWin.document.getElementById("usersRRN").value = document.getElementById("usersRRN").value;
+        	openWin.document.getElementById("usersEmail").value = document.getElementById("usersEmail").value;
+        	openWin.document.getElementById("usersPhoneNum").value = document.getElementById("usersPhoneNum").value;
+        	openWin.document.getElementById("usersCellNum").value = document.getElementById("usersCellNum").value;
+        	openWin.document.getElementById("usersNational").value = document.getElementById("usersNational").value;
+        	openWin.document.getElementById("usersCurrentAddr").value = document.getElementById("usersCurrentAddr").value;
+        	openWin.document.getElementById("usersBornAddr").value = document.getElementById("usersBornAddr").value;
+        	openWin.document.getElementById("usersEnable").value = document.getElementById("usersEnable").value;
+        	openWin.document.getElementById("usersPhoto").value = document.getElementById("usersPhoto").value;
+        	openWin.document.getElementById("proUniversity").value = document.getElementById("proUniversity").value;
+        	openWin.document.getElementById("proGradSchool").value = document.getElementById("proGradSchool").value;
+        	openWin.document.getElementById("proOfficePhoneNum").value = document.getElementById("proOfficePhoneNum").value;
+        }, 1000);                
+	}
+</script>
 </html>
 

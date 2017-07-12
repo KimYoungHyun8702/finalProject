@@ -48,4 +48,14 @@ public interface GraduationCreditDao {
 	 * @return
 	 */
 	List<GraduationCredit> selectGraduationCreditByMajorId(int majorId);
+	
+	/**
+	 * 해당 학생 전공의 졸업기준학점을 조회하는 메소드
+	 * @param majorId
+	 * @param year
+	 * @param usersId
+	 * @return 졸업기준학점
+	 * @author 병문
+	 */
+	GraduationCredit selectGraduationCreditByMajorIdAndUsersId(int majorId, String year, String usersId);
 }

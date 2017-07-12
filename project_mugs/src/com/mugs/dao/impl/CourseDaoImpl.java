@@ -57,6 +57,7 @@ public class CourseDaoImpl implements CourseDao{
 		params.put("loginId", loginId);
 		params.put("nowYear", nowYear);
 		params.put("nowSemester", nowSemester);
+		
 		return session.selectList(makeSql("selectMyTimeTableByJoin"), params);//매개변수들을 맵에 담아서 매퍼에 접근
 	}
 
@@ -78,6 +79,23 @@ public class CourseDaoImpl implements CourseDao{
 		map.put("subjectId", subjectId);
 		return session.selectOne(makeSql("selectStudentCount"), map);
 	}
+	
+	public List<Course> selectCourseByThreeId(int courseYear, String courseSemester, int subjectId) {
+		HashMap params = new HashMap();
+		params.put("courseYear", courseYear);
+		params.put("courseSemester", courseSemester);
+		params.put("subjectId", subjectId);
+		return session.selectList(makeSql("selectCourseByThreeId"),params);
+	}
+
+	@Override
+	public List<Course> selectCourseByTwoId(int subjectId, String stuId) {
+		HashMap params = new HashMap();
+		params.put("subjectId", subjectId);
+		params.put("stuId", stuId);
+		return session.selectList(makeSql("selectCourseByTwoId"),params);
+	}
+
 
 	@Override
 	public List<Course> selectMyCourseList(String stuId, int nowYear, String semester) {

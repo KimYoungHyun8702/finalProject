@@ -1,6 +1,7 @@
 package com.mugs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.mugs.vo.ProfessorSubject;
 import com.mugs.vo.Subject;
@@ -55,11 +56,23 @@ public interface SubjectDao {
 	 */
 	List<String> selectSubjectTypeList();
 	
+	
+	
+	/**
+	 * SubjectType 전체 조회 메소드.
+	 * 
+	 * @return
+	 */
+	List<String> subjectTypeList();
+	
+	
+	
 	/**
 	 * 매개변수로 subjectType를 받아 해당하는 college 조회 메소드
 	 * @param subjectType
 	 * @return
 	 */
+	
 	List<Subject> selectCollegeIdBySubjectType(String subjectType);
 	
 	/**
@@ -111,4 +124,38 @@ public interface SubjectDao {
 	 * @return
 	 */
 	Subject selectSubjectInfoBySubjectIdForMinorUpdate(int subjectId);
+	
+	/**
+	 * 전공 id로 이수구분 확인
+	 * @return 이수구분 리스트
+	 * @param 해당 전공 id
+	 * @author 병문
+	 */
+	List<Subject> selectSubjectTypeByMajorId(int majorId);
+	
+	/**
+	 * 이수구분별 과목 리스트를 select하는 메소드
+	 * @param subjectType, majorId
+	 * @return 과목 리스트들
+	 * @author 병문
+	 */
+	List<Subject> selectSubjectBySubjectTypeAndMajorId(List<Object> typeAndMajorId);
+	
+	/**
+	 * 학과 id로 과목 리스트를 select하는 메소드
+	 * @param majorId
+	 * @return 과목 리스트들
+	 * @author 병문
+	 */
+	List<Subject> selectSubjectListByMajorIdForAllTime(int majorId);
+	
+	 /** 강의실 중복제거를 위한 조회 메소드
+	 * @param subjectTime
+	 * @param subjectSemester
+	 * @param lecureId
+	 * @param buildingId
+	 * @return
+	 */
+	Subject selectForOverlap(String subjectTime, String subjectSemester, int buildingId);
+
 }

@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.mugs.mybatis.config.mapper.noticeMapper">
+<mapper namespace="com.mugs.config.mapper.noticeMapper">
 
 	<resultMap id="notice-resultmap" type="notice">
 		<id column="notice_id" property="noticeId" />
 		<result column="notice_content" property="noticeContent" />
 		<result column="notice_date" property="noticeDate" />
 		<result column="users_id" property="usersId" />
+		<result column="users_name" property="usersName" />
 	</resultMap>
 	
 	<sql id="select-notice">
-	SELECT notice_id,
+		SELECT notice_id,
 		notice_content, notice_date, users_id
-	FROM notice				
+		FROM notice				
 	</sql>
 
 	<select id="selectNoticeList" resultMap="notice-resultmap">
 		<include refid="select-notice"/>
 	</select>
 
-	<select id="selectNoticeById" resultMap="notice-resultmap"
-		parameterType="int">
-		<include refid="select-notice"/>
-		WHERE notice_id = #{value}
+	<select id="selectNotice" resultMap="notice-resultmap">
+		SELECT n.notice_id,
+		n.notice_content, n.notice_date, u.users_id, u.users_name
+		FROM notice	n, users u
+		WHERE n.users_id = u.users_id
 	</select>
 
 	<insert id="insertNotice" parameterType="Notice">
@@ -45,5 +47,5 @@
 		users_Id = #{usersId}
 		WHERE notice_id = #{noticeId}
 	</update>
-
+	
 </mapper>

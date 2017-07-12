@@ -1,10 +1,11 @@
 package com.mugs.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class CreditGiveUp {
+public class CreditGiveUp implements Serializable {
 
 	private int CGUId;
 	private int CGUYear;

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mugs.dao.StudentDao;
 import com.mugs.vo.Student;
+import com.mugs.vo.Users;
 
 @Repository
 public class StudentDaoImpl implements StudentDao{
@@ -31,8 +32,8 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
-	public int deleteStudent(String studentId) {
-		return session.delete(makeSql("deleteStudent"),studentId);
+	public int deleteStudent(String stuId) {
+		return session.delete(makeSql("deleteStudent"),stuId);
 	} 
 
 	@Override
@@ -44,9 +45,42 @@ public class StudentDaoImpl implements StudentDao{
 	public List<Student> selectStudentList() {
 		return session.selectList(makeSql("selectStudentList"));
 	}
+	//병문 daoImpl
 
-	@Override //병문이꼬
-	public Student selectStudentMajorName() {
-		return session.selectOne(makeSql("selectStudentMajorName"));
+	@Override
+	public Student selectStudentAllInfoByJoin(Student stu) {
+		return session.selectOne(makeSql("selectStudentAllInfoByJoin"),stu);
 	}
+
+	@Override
+	public List<Student> selectStudentByName(String usersName) {
+		return session.selectList(makeSql("selectStudentByName"),usersName);
+	}
+
+	@Override
+	public Student selectStudentInfoForMajorById(String stuId) {
+		return session.selectOne(makeSql("selectStudentInfoForMajorById"),stuId);
+	}
+
+	@Override
+	public Student selectStudentInfoForMajorDualById(String stuId) {
+		return session.selectOne(makeSql("selectProfessorInfoForMajorDualById"),stuId);
+	}
+
+	@Override
+	public Student selectStudentInfoForMajorMinorById(String stuId) {
+		return session.selectOne(makeSql("selectProfessorInfoForMajorMinorById"),stuId);
+	}
+
+	@Override
+	public Student selectStudentInfoByStuId(String stuId) {
+		return session.selectOne(makeSql("selectStudentInfoByJoin"),stuId);
+	}
+	
+	@Override
+	public String selectStuGraduationExam(String stuId) {
+		return session.selectOne(makeSql("selectStuGraduationExam"),stuId);
+	}
+	
 }
+

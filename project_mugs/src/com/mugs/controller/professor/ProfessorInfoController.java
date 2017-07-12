@@ -1,6 +1,7 @@
 package com.mugs.controller.professor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,10 +15,11 @@ import com.mugs.vo.Users;
 
 @Controller
 @RequestMapping("/professor/")
-public class ProfessorInfoController{
+public class ProfessorInfoController {
 
 	@Autowired
 	private ProfessorInfoService service;
+
 	
 	@RequestMapping("updateProfile")
 	public String updateProfessorProfile(@ModelAttribute Users users){
@@ -25,14 +27,18 @@ public class ProfessorInfoController{
 	//Business Logic 호출	
 	service.updateProfessorInfo(users);
 	return "contents/professor/professorInfo"; //WEB-INF/view/contents/professor/professorInfo.jsp
+
 	}
 	
 	@RequestMapping("searchByJoin")
+
 	@ResponseBody
-	public Professor getProfessorRegisterByJoin(String proId){
-	
-	Professor professor = service.getProfessorInfoByJoin(proId);
-	
+	public Professor getProfessorRegisterByJoin(){
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String id = users.getUsersId();
+	Professor professor = service.getProfessorInfoByJoin(id);
+	System.out.println(professor);
 	return professor;	
+
 	}
 }

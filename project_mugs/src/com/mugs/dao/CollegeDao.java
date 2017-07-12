@@ -6,6 +6,7 @@ import java.util.List;
 import com.mugs.vo.College;
 
 public interface CollegeDao {
+	
 	/**
 	 * 한 학부의 데이터를 insert하는 메소드
 	 * 

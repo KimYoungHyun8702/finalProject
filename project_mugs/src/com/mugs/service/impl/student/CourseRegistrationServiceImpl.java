@@ -57,13 +57,14 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
 	private StandardDao standardDaoImpl;
 	
 	@Autowired
-	private AcademicCalendarDao AcademicCalendarDaoImpl;
-	
-	@Autowired
 	private StudentDao studentDaoImpl;
 	
 	@Autowired
 	private CreditDao creditDaoImpl;
+	
+	@Autowired
+	private AcademicCalendarDao academicCalendarDaoImpl;
+	
 	
 	
 	/**
@@ -97,7 +98,7 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
 		String dateStr = dataFormat.format(new Date());
 		
 		List<AcademicCalendar> academicCalendarList = 
-				AcademicCalendarDaoImpl.selectCalendarByDate(dateStr);
+				academicCalendarDaoImpl.selectCalendarByDate(dateStr);
 		
 		String msg = null;
 		String semester = null;
@@ -145,6 +146,11 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
 		return map;
 	}
 
+	@Override
+	   public List<College> getCollegeList() {
+	      // TODO Auto-generated method stub
+	      return collegeDaoImpl.selectCollegeList();
+	   }
 	
 	
 	
@@ -159,8 +165,16 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
 		// 여기서 년도랑 학기를 뽑아오는 메소드를 호출해서 지금년도, 지금학기와 비교하여... 해당학기, 해당년도를 조회한다.
 		Date date = new Date();
 		int nowYear = date.getYear() + 1900;
+		String nowSemester = "";
 		// int nowMonth = date.getMonth();
-		String nowSemester = "1학기";
+		
+		List<String> semesterList = academicCalendarDaoImpl.selectCalendarName(date);
+		for(int i = 0; i < semesterList.size(); i++) {
+			if(semesterList.get(i).contains("학기") && semesterList.get(i).length() < 5) {
+				nowSemester = semesterList.get(i);
+					
+			}
+		}
 
 		// 현재년도와 현재 월을 전달함으로써 몇학기인지가 조회되는 메소드
 		// String nowSemester = courseDao.selectHackGiIlJung(nowMonth);
@@ -226,18 +240,6 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
 
 		return map;
 	}
-
-	
-	
-	
-	@Override
-	public Subject getSubject(int num) {
-		// TODO Auto-generated method stub
-		return subjectDaoImpl.selectSubjectById(num);
-	}
-	
-	
-	
 	
 	/**
 	 * 수강신청시 로그인한 학생의 재학상태 확인 후 그에 맞는 최대 이수가능 학점
@@ -381,11 +383,5 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
 		map.put("professorSubjectList", professorSubjectList);
 		map.put("courseSubjectList", courseDaoImpl.selectMyCourseList(stuId, nowYear, semester));
 		return map;
-	}
-
-	@Override
-	public List<Major> selectMajorByCollegeId(int collegeId) {
-		// TODO Auto-generated method stub
-	return null;
 	}
 }

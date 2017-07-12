@@ -79,13 +79,6 @@ public interface CourseRegistrationService {
 
 	
 	
-	
-	// 단과대학(학부)의 ID를 매개변수 받아서 해당대학(학부)에 속하는 전체 학과 정보 얻기
-	List<Major> selectMajorByCollegeId(int collegeId);
-	
-	
-	
-	
 	/**
 	 * 학과의 ID와 현재연도, 학기정보, 이수구분을 이용하여
 	 * 그학과에서 개설한 강의를 모두 가져온다.
@@ -115,7 +108,7 @@ public interface CourseRegistrationService {
 	HashMap<String, Object> addCourseMySubject(int majorId, String semester, int nowYear, String subjectType, String recourse, String proId, int subjectId, String stuId, String  stuRegister);
 
 	
-	
+	List<College> getCollegeList();
 	
 	/**
 	 * 
@@ -129,9 +122,4 @@ public interface CourseRegistrationService {
 	 * @return
 	 */
 	HashMap<String, Object> deleteMySubject(int subjectId, String proId, String semester, int majorId, int nowYear, String stuId, String subjectType);
-
-	
-	
-	
-	Subject getSubject(int num);
 }

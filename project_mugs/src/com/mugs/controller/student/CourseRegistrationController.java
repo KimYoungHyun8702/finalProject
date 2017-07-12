@@ -1,11 +1,14 @@
 package com.mugs.controller.student;
 
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,6 +20,8 @@ import com.mugs.vo.College;
 import com.mugs.vo.Course;
 import com.mugs.vo.Major;
 import com.mugs.vo.Standard;
+import com.mugs.vo.Users;
+
 
 @Controller
 @RequestMapping("/student/")
@@ -26,10 +31,7 @@ public class CourseRegistrationController {
 	private CourseRegistrationService courseRegistrationService;
 	
 	@Autowired
-	private GraduationManagementService GraduationManagementServiceImpl;
-	
-	
-	
+	private GraduationManagementService graduationManagementServiceImpl;
 	
 	/** 
 	 * 이수구분을 선택한뒤 다음 중분류인 대학교에 존재하는
@@ -51,10 +53,11 @@ public class CourseRegistrationController {
 	/** By Cho.S.R **/
 	@RequestMapping("getCollegeList")
 	public ModelAndView getCollegeList(){
-		List<College> collegeList = courseRegistrationService.findCollegeList();
-		return new ModelAndView("contents/student/standard/courseStandardView", "collegeList", collegeList);
+		List<College> collegeList = courseRegistrationService.getCollegeList();
+		return new ModelAndView("student/standard/courseStandardView.tiles", "collegeList", collegeList);
+		
 	}
-	
+
 	
 	
 	
@@ -69,12 +72,13 @@ public class CourseRegistrationController {
 	 * By Baek.J.H 
 	 * 
 	 **/
-	@RequestMapping("getSubjectTypeList")
-	public ModelAndView getSubjectTypeList() {
+	@RequestMapping("subjectTypeList")
+	public ModelAndView subjectTypeList() {
 		
 		ModelAndView model = new ModelAndView();
 		
-		String stuId = "6666";	// 시큐리티 적용 전 임시 학생ID
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String stuId = users.getUsersId();
 		HashMap map = courseRegistrationService.getSubjectTypeMap(stuId);
 		
 		Iterator iterator = map.entrySet().iterator();
@@ -83,7 +87,7 @@ public class CourseRegistrationController {
 		   Entry entry = (Entry)iterator.next();
 		   if(entry.getKey().toString() == "stuRegister") {
 			   if(entry.getValue().equals("휴학") || entry.getValue().equals("군휴학")) {
-				   model.setViewName("view/index");
+				   model.setViewName("index.tiles");
 				   model.addObject(entry.getKey().toString(), entry.getValue());
 				   return model;
 			   } else {
@@ -91,14 +95,14 @@ public class CourseRegistrationController {
 			   }
 			   
 		   } else if(entry.getKey().toString() == "msg" && !entry.getValue().equals("")) {
-			   model.setViewName("view/index");
+			   model.setViewName("index.tiles");
 			   model.addObject(entry.getKey().toString(), entry.getValue());
 			   return model;
 		   }
 		   model.addObject(entry.getKey().toString(), entry.getValue());
 		}
 		
-		model.setViewName("view/contents/student/course");
+		model.setViewName("student/course.tiles");
 		return model;
 	}
 	
@@ -115,6 +119,7 @@ public class CourseRegistrationController {
 	@RequestMapping("getMajorListByCollegeId")
 	@ResponseBody
 	public List<Major> getMajorListByCollegeId(int collegeId) {
+
 		return courseRegistrationService.findMajorListByCollegeId(collegeId);
 	}
 
@@ -124,16 +129,21 @@ public class CourseRegistrationController {
 	/** By Cho.S.R **/
 	@RequestMapping("getMyCourseListByJoin")
 	public ModelAndView getMyCourseListByJoin() {
-		String loginId="사용자1";//시큐리티설정 전에 테스트위해서 설정해준 값
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String loginId = users.getUsersId();
+		//String loginId="1";//시큐리티설정 전에 테스트위해서 설정해준 값
 		List<Course> myCourseListResult = courseRegistrationService.findMyCourseListByJoin(loginId);
-		return new ModelAndView("contents/student/courseInformationList/course_InformationListView", "myCourseListResult", myCourseListResult);
+		System.out.println(myCourseListResult);
+		return new ModelAndView("student/courseInformationList/course_InformationListView.tiles", "myCourseListResult", myCourseListResult);
+		//return new ModelAndView("contents/student/courseInformationList/course_InformationListView", "myCourseListResult", myCourseListResult);
 	}
 
 	/** By Cho.S.R **/
 	@RequestMapping("getMajorList")
 	public ModelAndView getMajorList() {
-		List<String> majorListResult = GraduationManagementServiceImpl.getMajorList();
-		return new ModelAndView("contents/student/standard/courseStandardView", "majorListResult", majorListResult);
+		List<String> majorListResult = graduationManagementServiceImpl.getMajorList();
+		return new ModelAndView("student/standard/courseStandardView,.tiles", "majorListResult", majorListResult);
+		//return new ModelAndView("contents/student/standard/courseStandardView", "majorListResult", majorListResult);
 	}
 	
 	/** By Cho.S.R **/
@@ -164,7 +174,8 @@ public class CourseRegistrationController {
 	@RequestMapping("getSubjectListByJoin")
 	@ResponseBody
 	public HashMap<String, Object> getSubjectListByJoin(int majorId, String semester, int nowYear, String subjectType) {
-		String stuId = "6666";	// 시큐리티 적용전 임시 학생ID
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String stuId = users.getUsersId();
 		return courseRegistrationService.findSubjectListByJoin(majorId, nowYear, semester, subjectType, stuId);
 	}
 	
@@ -181,7 +192,8 @@ public class CourseRegistrationController {
 	@ResponseBody
 	public HashMap<String, Object> addCourseMySubject(int majorId, String semester, int nowYear, 
 			String subjectType, String recourse, String proId, int subjectId, String stuRegister) {
-		String stuId = "6666";	// 시큐리티 적용전 임시 학생ID
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String stuId = users.getUsersId();
 		return courseRegistrationService.addCourseMySubject(majorId, semester, nowYear, subjectType, recourse, proId, subjectId, stuId, stuRegister);
 	}
 	
@@ -197,7 +209,8 @@ public class CourseRegistrationController {
 	@RequestMapping("removeMySubject")
 	@ResponseBody
 	public HashMap<String, Object> removeMySubject(int majorId, String semester, int nowYear, String proId, int subjectId, String subjectType) {
-		String stuId = "6666";	// 시큐리티 적용전 임시 학생ID
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String stuId = users.getUsersId();
 		return courseRegistrationService.deleteMySubject(subjectId, proId, semester, majorId, nowYear, stuId, subjectType);
 	}
 }

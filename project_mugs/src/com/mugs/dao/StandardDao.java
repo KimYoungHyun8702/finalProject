@@ -67,4 +67,11 @@ public interface StandardDao {
 	 */
 	Standard selectStandardValue(int collegeId, int majorId, int standardYear);
 	
+	/**
+	 * 매개변수로 majorId를 받아 해당하는 기준학점 조회 메소드
+	 * @param majorId
+	 * @return
+	 */
+	List<Standard> selectListByMajorId(int majorId);
+	
 }

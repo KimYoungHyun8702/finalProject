@@ -8,13 +8,16 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<context:component-scan base-package="com.mugs.controller.professor" />
-	
-
-
 	<mvc:annotation-driven />
-	<mvc:view-controller path="/professorInfo.do" view-name="contents/professor/professorInfo"/>
-	<mvc:view-controller path="/guidanceStudent.do" view-name="contents/professor/guidanceStudent"/>
-	<mvc:view-controller path="/SubjectPlan.do" view-name="contents/professor/SubjectPlan"/>
+
+	<mvc:view-controller path="/professorInfo.do" view-name="professor/professorInfo.tiles"/>
+	<mvc:view-controller path="/professorInfoUpdate.do" view-name="professor/professorInfoUpdate.tiles"/>
+	<mvc:view-controller path="/guidanceStudent.do" view-name="professor/guidanceStudent.tiles"/>
+	<mvc:view-controller path="/SubjectPlan.do" view-name="professor/SubjectPlan.tiles"/>
+	<mvc:view-controller path="/SubjectPlan_success.do" view-name="professor/SubjectPlan_success.tiles"/>
+	<mvc:view-controller path="/SubjectPlan_insert.do" view-name="professor/SubjectPlan_insert.tiles"/>
+	<mvc:view-controller path="/SubjectPlan_update.do" view-name="professor/SubjectPlan_update.tiles"/>
+	<mvc:view-controller path="/addStudentGrade.do" view-name="professor/addStudentGrade.tiles"/>
 
 
 

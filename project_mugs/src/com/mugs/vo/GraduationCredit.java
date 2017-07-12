@@ -1,10 +1,3 @@
-/**
- * 
- */
-/**
- * @author Administrator
- *
- */
 package com.mugs.vo;
 
 import java.io.Serializable;
@@ -13,24 +6,34 @@ public class GraduationCredit implements Serializable {
 	
 	private int majorId;
 	private int graduationCreditYear;
-	private int graduationCreditScore;
+	private int gradVitalEduCredit;
+	private int gradSelectEduCredit;
+	private int gradVitalMajorCredit;
+	private int gradSelectMajorCredit;
 	private String majorName;
 	
-	public GraduationCredit() {
-		super();
+	public GraduationCredit(){
+		
 	}
 
-	public GraduationCredit(int majorId, int graduationCreditYear, int graduationCreditScore) {
-		super();
+	public GraduationCredit(int majorId, int graduationCreditYear, int gradVitalEduCredit, int gradSelectEduCredit,
+			int gradVitalMajorCredit, int gradSelectMajorCredit) {
 		this.majorId = majorId;
 		this.graduationCreditYear = graduationCreditYear;
-		this.graduationCreditScore = graduationCreditScore;
+		this.gradVitalEduCredit = gradVitalEduCredit;
+		this.gradSelectEduCredit = gradSelectEduCredit;
+		this.gradVitalMajorCredit = gradVitalMajorCredit;
+		this.gradSelectMajorCredit = gradSelectMajorCredit;
 	}
 
-	public GraduationCredit(int majorId, int graduationCreditYear, int graduationCreditScore, String majorName) {
+	public GraduationCredit(int majorId, int graduationCreditYear, int gradVitalEduCredit, int gradSelectEduCredit,
+			int gradVitalMajorCredit, int gradSelectMajorCredit, String majorName) {
 		this.majorId = majorId;
 		this.graduationCreditYear = graduationCreditYear;
-		this.graduationCreditScore = graduationCreditScore;
+		this.gradVitalEduCredit = gradVitalEduCredit;
+		this.gradSelectEduCredit = gradSelectEduCredit;
+		this.gradVitalMajorCredit = gradVitalMajorCredit;
+		this.gradSelectMajorCredit = gradSelectMajorCredit;
 		this.majorName = majorName;
 	}
 
@@ -50,12 +53,36 @@ public class GraduationCredit implements Serializable {
 		this.graduationCreditYear = graduationCreditYear;
 	}
 
-	public int getGraduationCreditScore() {
-		return graduationCreditScore;
+	public int getGradVitalEduCredit() {
+		return gradVitalEduCredit;
 	}
 
-	public void setGraduationCreditScore(int graduationCreditScore) {
-		this.graduationCreditScore = graduationCreditScore;
+	public void setGradVitalEduCredit(int gradVitalEduCredit) {
+		this.gradVitalEduCredit = gradVitalEduCredit;
+	}
+
+	public int getGradSelectEduCredit() {
+		return gradSelectEduCredit;
+	}
+
+	public void setGradSelectEduCredit(int gradSelectEduCredit) {
+		this.gradSelectEduCredit = gradSelectEduCredit;
+	}
+
+	public int getGradVitalMajorCredit() {
+		return gradVitalMajorCredit;
+	}
+
+	public void setGradVitalMajorCredit(int gradVitalMajorCredit) {
+		this.gradVitalMajorCredit = gradVitalMajorCredit;
+	}
+
+	public int getGradSelectMajorCredit() {
+		return gradSelectMajorCredit;
+	}
+
+	public void setGradSelectMajorCredit(int gradSelectMajorCredit) {
+		this.gradSelectMajorCredit = gradSelectMajorCredit;
 	}
 
 	public String getMajorName() {
@@ -70,7 +97,10 @@ public class GraduationCredit implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + graduationCreditScore;
+		result = prime * result + gradSelectEduCredit;
+		result = prime * result + gradSelectMajorCredit;
+		result = prime * result + gradVitalEduCredit;
+		result = prime * result + gradVitalMajorCredit;
 		result = prime * result + graduationCreditYear;
 		result = prime * result + majorId;
 		result = prime * result + ((majorName == null) ? 0 : majorName.hashCode());
@@ -86,7 +116,13 @@ public class GraduationCredit implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		GraduationCredit other = (GraduationCredit) obj;
-		if (graduationCreditScore != other.graduationCreditScore)
+		if (gradSelectEduCredit != other.gradSelectEduCredit)
+			return false;
+		if (gradSelectMajorCredit != other.gradSelectMajorCredit)
+			return false;
+		if (gradVitalEduCredit != other.gradVitalEduCredit)
+			return false;
+		if (gradVitalMajorCredit != other.gradVitalMajorCredit)
 			return false;
 		if (graduationCreditYear != other.graduationCreditYear)
 			return false;
@@ -103,10 +139,10 @@ public class GraduationCredit implements Serializable {
 	@Override
 	public String toString() {
 		return "GraduationCredit [majorId=" + majorId + ", graduationCreditYear=" + graduationCreditYear
-				+ ", graduationCreditScore=" + graduationCreditScore + ", majorName=" + majorName + "]";
+				+ ", gradVitalEduCredit=" + gradVitalEduCredit + ", gradSelectEduCredit=" + gradSelectEduCredit
+				+ ", gradVitalMajorCredit=" + gradVitalMajorCredit + ", gradSelectMajorCredit=" + gradSelectMajorCredit
+				+ ", majorName=" + majorName + "]";
 	}
 	
 	
-	
-	
-}
+	}
