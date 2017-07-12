@@ -62,11 +62,6 @@
 		document.getElementById("logoutForm").submit();
 	}
 	
-	
-	function logout(){
-		document.getElementById("logoutForm").submit();
-	}
-	
 	var  stuRegister = "${stuRegister}";
 	
 	if(stuRegister == '휴학' || stuRegister == '군휴학') {

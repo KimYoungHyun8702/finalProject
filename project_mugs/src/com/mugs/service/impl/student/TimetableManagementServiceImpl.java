@@ -25,8 +25,6 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
 	// 내 강의시간표 조회해주는 메소드(findMyTimeTableByJoin)
 	@Override
 	public List<Course> findMyTimeTableByJoin(String loginId) {
-		//ArrayList<Object> list = new ArrayList();
-		//ArrayList<Object> ygList = new ArrayList();
 		Date date = new Date();
 		String nowSemester ="";
 		List<String> semesterList= academicCalendarDaoImpl.selectCalendarName(date);
@@ -42,7 +40,6 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
 		
 		
 		int nowYear = date.getYear() + 1900;
-		//HashMap yAndG = new HashMap();
 		String firstYoYil = "";
 		String secondYoYil = "";
 		String firstGyoshi = "";
@@ -51,12 +48,6 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
 		String fourthGyoshi = "";
 		String firstYG = "";
 		String secondYG = "";
-		// int nowMonth = date.getMonth();
-		//String nowSemester = "1학기";//학기는 원래 여기서 해주지 않고 디비를 통해서 서비스에서 가져오는 건데 일단 이렇게 
-
-		// 현재년도와 현재 월을 전달함으로써 몇학기인지가 조회되는 메소드 - 학사일정테이블 필요
-		// String nowSemester = courseDaoImpl.selectHackSaIlJung(nowMonth);
-		// String nowSemester = nowMonth+"학기";
 
 		// daoImpl메소드 호출 -> 매퍼에서 써준 쿼리문을 실행해서 원하는 값을 갖게되는 메소드.(원하는 값 : 내 시간표정보)
 		List<Course> timeTableResult = courseDaoImpl.selectMyTimeTableByJoin(loginId, nowYear, nowSemester);

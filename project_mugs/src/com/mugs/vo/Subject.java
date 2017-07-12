@@ -24,7 +24,7 @@ public class Subject implements Serializable {
 	private char subjectCloseClass;
 	private String subjectSemester;
 	private Integer majorId;
-	private int lectureId;
+	private Integer lectureId;
 	private int remainNum;
 	private String recourse;
 	private SubjectPlan subjectPlan;

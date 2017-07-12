@@ -27,7 +27,7 @@ public class CourseRegistrationController {
 	
 	
 	@Autowired
-	private GraduationManagementService GraduationManagementServiceImpl;
+	private GraduationManagementService graduationManagementServiceImpl;
 	
 	@RequestMapping("getCollegeListAjax")
 	@ResponseBody
@@ -39,7 +39,6 @@ public class CourseRegistrationController {
 	public ModelAndView getCollegeList(){
 		List<College> collegeList = courseRegistrationService.getCollegeList();
 		return new ModelAndView("student/standard/courseStandardView.tiles", "collegeList", collegeList);
-		//return new ModelAndView("contents/student/standard/courseStandardView", "collegeList", collegeList);
 	}
 	
 
@@ -63,19 +62,16 @@ public class CourseRegistrationController {
 	public ModelAndView getMyCourseListByJoin() {
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String loginId = users.getUsersId();
-		//String loginId="1";//시큐리티설정 전에 테스트위해서 설정해준 값
 		List<Course> myCourseListResult = courseRegistrationService.findMyCourseListByJoin(loginId);
-		System.out.println(myCourseListResult);
 		return new ModelAndView("student/courseInformationList/course_InformationListView.tiles", "myCourseListResult", myCourseListResult);
-		//return new ModelAndView("contents/student/courseInformationList/course_InformationListView", "myCourseListResult", myCourseListResult);
+		
 	}
 
 	
 	@RequestMapping("getMajorList")
 	public ModelAndView getMajorList() {
-		List<String> majorListResult = GraduationManagementServiceImpl.getMajorList();
+		List<String> majorListResult = graduationManagementServiceImpl.getMajorList();
 		return new ModelAndView("student/standard/courseStandardView,.tiles", "majorListResult", majorListResult);
-		//return new ModelAndView("contents/student/standard/courseStandardView", "majorListResult", majorListResult);
 	}
 	
 	
