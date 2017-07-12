@@ -29,24 +29,8 @@ public class TimetableController {
 		//1.요청파라미터조회(위에서 다함) + 검증.  
 		//2.비즈니스로직처리(서비스메소드 호출)
 		List<Course> myTimeTableResult = timeTableManagementServiceImpl.findMyTimeTableByJoin(loginId);//내 시간표정보를 가져오는 서비스메소드
-/*		System.out.println(myTimeTableResult);
-		System.out.println("myTimeTableResult.get(0)  :  " + myTimeTableResult.get(0).getProfessor());
-		System.out.println("나오는거니!!!!!!!!!!!!!!!!!!!!");
-		//System.out.println("myTimeTableResult.get(0).toString()  :  " + myTimeTableResult.get(0).toString());
-		System.out.println("myTimeTableResult.get(0)  :  " + myTimeTableResult.get(1).getProfessor().getUsersName());
-		System.out.println("myTimeTableResult.get(1)  :  " + myTimeTableResult.get(1));
-		System.out.println(myTimeTableResult.get(0).getSubject().getGyoShi1());
-		System.out.println("강의실이름 : " + myTimeTableResult.get(0).getRoom().getRoomName());*/
-		//System.out.println(myTimeTableResult);
-		//3.응답
-		//view.setViewName("student/timeTable/myTimeTableView.tiles");
-		//view.addObject("timeTableResult", myTimeTableResult.get(0));
-		//view.addObject("yoyilAndGyoshi", myTimeTableResult.get(1));
-		//return new ModelAndView("contents/student/timeTable/myTimeTableView", "myTimeTableResult", myTimeTableResult);
-		System.out.println("컨트롤러 완료");
 		return new ModelAndView("student/timeTable/myTimeTableView.tiles", "myTimeTableResult", myTimeTableResult);
 		
-		//return view;
 	
 	}
 }

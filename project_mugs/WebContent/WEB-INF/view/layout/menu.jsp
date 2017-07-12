@@ -26,7 +26,7 @@
 <a href="${initParam.rootPath }/student/getCollegeList.do">기준학점조회</a><br>
 <a href="${initParam.rootPath }/student/getMyTimeTable.do">나의 시간표 조회</a><br>
 <a href="${initParam.rootPath }/student/getMyCourseListByJoin.do">수강신청내역조회 클릭기기</a><br>
-<a href="${initParam.rootPath }/student/compareEvaluationPeriod.do">설문응답평가조회-기간설정까지해준것</a>
+<a href="${initParam.rootPath }/student/compareEvaluationPeriod.do">설문응답평가조회-기간설정까지해준것</a><br>
 <a href="${initParam.rootPath }/student/subjectType.do">수강신청</a><br>
 <a href="${initParam.rootPath }/student/gradeInquiry.do">성적 조회 -딘강</a><br>
 <a href="${initParam.rootPath }/student/currentGradeInquiry.do">당학기 성적조회 -딘강</a><br>
@@ -80,9 +80,24 @@
 				alert("지금은 설문응답기간이 아닙니다. 정해진 기간 내에 설문에 응하여 주시기 바랍니다.");
 				return false;
 			}
+	
+	
+	function logout(){
+		document.getElementById("logoutForm").submit();
+	}
+	
+	var  stuRegister = "${stuRegister}";
+	
+	if(stuRegister == '휴학' || stuRegister == '군휴학') {
+		alert(stuRegister + "학생은 설문응답을 할 수 없습니다.");
+	} else {
+		var msg = "${msg}";
+		if(msg != "") {
+			alert(msg);
 		}
 	})
 
+	}
 </script>
 <form id="logoutForm" action="${initParam.rootPath }/logout.do" method="post" style="display:none">
     <sec:csrfInput/>

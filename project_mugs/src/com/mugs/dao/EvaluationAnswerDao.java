@@ -65,5 +65,7 @@ public interface EvaluationAnswerDao {
 	
 	
 	ArrayList<Object> updateEvaluationAnswerState(int nowYear, String nowSemester, String loginId, int subjectId);
+	
+	
 	List<EvaluationAnswer> selectEvaluationAnswerValue(int nowYear, String nowSemester, String loginId, int subjectId);
 }

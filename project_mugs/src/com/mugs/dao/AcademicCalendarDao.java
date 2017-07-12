@@ -60,5 +60,5 @@ public interface AcademicCalendarDao {
 	 * @param date
 	 * @return
 	 */
-	String selectCalendarName(Date date);
+	List<String> selectCalendarName(Date date);
 }
