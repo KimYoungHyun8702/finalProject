@@ -81,6 +81,16 @@ public class ProfessorDaoImpl implements ProfessorDao{
 	@Override
 	public Professor selectProfessorInfoForLaboratoryById(String proId) {
 		return session.selectOne(makeSqlId("selectProfessorInfoForLaboratoryById"),proId);
+	}
+
+	@Override
+	public List<Professor> selectProfessorOfficeForOverlap() {
+		return session.selectList(makeSqlId("selectProfessorOfficeForOverlap"));
+	}
+
+	@Override
+	public List<Professor> selectProfessorLabaratoryForoverlap() {
+		return session.selectList(makeSqlId("selectProfessorLabaratoryForoverlap"));
 	}			
 	
 	

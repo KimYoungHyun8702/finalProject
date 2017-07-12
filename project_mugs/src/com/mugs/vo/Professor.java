@@ -12,75 +12,31 @@ public class Professor extends Users implements Serializable {
    private String proLaboratoryPhoneNum;
    private Integer majorId;
    private String majorName;
-   private String proRoomOfficeId;
+   private Integer proRoomOfficeId;
    private String officeName;
-   private String proRoomLaboratoryId;
+   private Integer proRoomLaboratoryId;
    private String laboratoryName;
    private String buildingName;
    private List<Object> list;
    
-   
-   
+   public Professor() {
+   }
+
    public Professor(String proId, String proUniversity, String proGradSchool, String proOfficePhoneNum,
-		String proLaboratoryPhoneNum, Integer majorId, String majorName, String proRoomOfficeId, String officeName,
-		String proRoomLaboratoryId, String laboratoryName, List<Object> list) {
+		String proLaboratoryPhoneNum, Integer majorId, Integer proRoomOfficeId, Integer proRoomLaboratoryId) {
 	this.proId = proId;
 	this.proUniversity = proUniversity;
 	this.proGradSchool = proGradSchool;
 	this.proOfficePhoneNum = proOfficePhoneNum;
 	this.proLaboratoryPhoneNum = proLaboratoryPhoneNum;
 	this.majorId = majorId;
-	this.majorName = majorName;
 	this.proRoomOfficeId = proRoomOfficeId;
-	this.officeName = officeName;
 	this.proRoomLaboratoryId = proRoomLaboratoryId;
-	this.laboratoryName = laboratoryName;
-	this.list = list;
-}
-
-public Professor(String proId, String proUniversity, String proGradSchool, String proOfficePhoneNum) {
-      super();
-      this.proId = proId;
-      this.proUniversity = proUniversity;
-      this.proGradSchool = proGradSchool;
-      this.proOfficePhoneNum = proOfficePhoneNum;
-   }
-
-   public Professor(){
-      super();
    }
 
    public Professor(String proId, String proUniversity, String proGradSchool, String proOfficePhoneNum,
-         String proLaboratoryPhoneNum, Integer majorId, String proRoomOfficeId, String proRoomLaboratoryId,
-         List<Object> list) {
-      super();
-      this.proId = proId;
-      this.proUniversity = proUniversity;
-      this.proGradSchool = proGradSchool;
-      this.proOfficePhoneNum = proOfficePhoneNum;
-      this.proLaboratoryPhoneNum = proLaboratoryPhoneNum;
-      this.majorId = majorId;
-      this.proRoomOfficeId = proRoomOfficeId;
-      this.proRoomLaboratoryId = proRoomLaboratoryId;
-      this.list = list;
-   }
-
-   public Professor(String proId, String proUniversity, String proGradSchool, String proOfficePhoneNum,
-         String proLaboratoryPhoneNum, Integer majorId, String proRoomOfficeId, String proRoomLaboratoryId) {
-      super();
-      this.proId = proId;
-      this.proUniversity = proUniversity;
-      this.proGradSchool = proGradSchool;
-      this.proOfficePhoneNum = proOfficePhoneNum;
-      this.proLaboratoryPhoneNum = proLaboratoryPhoneNum;
-      this.majorId = majorId;
-      this.proRoomOfficeId = proRoomOfficeId;
-      this.proRoomLaboratoryId = proRoomLaboratoryId;
-   }
-
-   public Professor(String proId, String proUniversity, String proGradSchool, String proOfficePhoneNum,
-		String proLaboratoryPhoneNum, Integer majorId, String majorName, String proRoomOfficeId, String officeName,
-		String proRoomLaboratoryId, String laboratoryName, String buildingName, List<Object> list) {
+		String proLaboratoryPhoneNum, Integer majorId, String majorName, Integer proRoomOfficeId, String officeName,
+		Integer proRoomLaboratoryId, String laboratoryName, String buildingName, List<Object> list) {
 	this.proId = proId;
 	this.proUniversity = proUniversity;
 	this.proGradSchool = proGradSchool;
@@ -94,86 +50,70 @@ public Professor(String proId, String proUniversity, String proGradSchool, Strin
 	this.laboratoryName = laboratoryName;
 	this.buildingName = buildingName;
 	this.list = list;
-}
+   }
 
 public String getProId() {
-      return proId;
-   }
+	return proId;
+}
 
-   public void setProId(String proId) {
-      this.proId = proId;
-   }
+public void setProId(String proId) {
+	this.proId = proId;
+}
 
-   public String getProUniversity() {
-      return proUniversity;
-   }
+public String getProUniversity() {
+	return proUniversity;
+}
 
-   public void setProUniversity(String proUniversity) {
-      this.proUniversity = proUniversity;
-   }
+public void setProUniversity(String proUniversity) {
+	this.proUniversity = proUniversity;
+}
 
-   public String getProGradSchool() {
-      return proGradSchool;
-   }
+public String getProGradSchool() {
+	return proGradSchool;
+}
 
-   public void setProGradSchool(String proGradSchool) {
-      this.proGradSchool = proGradSchool;
-   }
+public void setProGradSchool(String proGradSchool) {
+	this.proGradSchool = proGradSchool;
+}
 
-   public String getProOfficePhoneNum() {
-      return proOfficePhoneNum;
-   }
+public String getProOfficePhoneNum() {
+	return proOfficePhoneNum;
+}
 
-   public void setProOfficePhoneNum(String proOfficePhoneNum) {
-      this.proOfficePhoneNum = proOfficePhoneNum;
-   }
+public void setProOfficePhoneNum(String proOfficePhoneNum) {
+	this.proOfficePhoneNum = proOfficePhoneNum;
+}
 
-   public String getProLaboratoryPhoneNum() {
-      return proLaboratoryPhoneNum;
-   }
+public String getProLaboratoryPhoneNum() {
+	return proLaboratoryPhoneNum;
+}
 
-   public void setProLaboratoryPhoneNum(String proLaboratoryPhoneNum) {
-      this.proLaboratoryPhoneNum = proLaboratoryPhoneNum;
-   }
+public void setProLaboratoryPhoneNum(String proLaboratoryPhoneNum) {
+	this.proLaboratoryPhoneNum = proLaboratoryPhoneNum;
+}
 
-   public Integer getMajorId() {
-      return majorId;
-   }
+public Integer getMajorId() {
+	return majorId;
+}
 
-   public void setMajorId(Integer majorId) {
-      this.majorId = majorId;
-   }
+public void setMajorId(Integer majorId) {
+	this.majorId = majorId;
+}
 
-   public String getProRoomOfficeId() {
-      return proRoomOfficeId;
-   }
-
-   public void setProRoomOfficeId(String proRoomOfficeId) {
-      this.proRoomOfficeId = proRoomOfficeId;
-   }
-
-   public String getProRoomLaboratoryId() {
-      return proRoomLaboratoryId;
-   }
-
-   public void setProRoomLaboratoryId(String proRoomLaboratoryId) {
-      this.proRoomLaboratoryId = proRoomLaboratoryId;
-   }
-
-   public List<Object> getList() {
-      return list;
-   }
-
-   public void setList(List<Object> list) {
-      this.list = list;
-   }
-
-   public String getMajorName() {
+public String getMajorName() {
 	return majorName;
 }
 
 public void setMajorName(String majorName) {
 	this.majorName = majorName;
+}
+
+public Integer getProRoomOfficeId() {
+	return proRoomOfficeId;
+}
+
+public void setProRoomOfficeId(Integer proRoomOfficeId) {
+	this.proRoomOfficeId = proRoomOfficeId;
 }
 
 public String getOfficeName() {
@@ -182,6 +122,14 @@ public String getOfficeName() {
 
 public void setOfficeName(String officeName) {
 	this.officeName = officeName;
+}
+
+public Integer getProRoomLaboratoryId() {
+	return proRoomLaboratoryId;
+}
+
+public void setProRoomLaboratoryId(Integer proRoomLaboratoryId) {
+	this.proRoomLaboratoryId = proRoomLaboratoryId;
 }
 
 public String getLaboratoryName() {
@@ -200,16 +148,15 @@ public void setBuildingName(String buildingName) {
 	this.buildingName = buildingName;
 }
 
-@Override
-public String toString() {
-	return "Professor [proId=" + proId + ", proUniversity=" + proUniversity + ", proGradSchool=" + proGradSchool
-			+ ", proOfficePhoneNum=" + proOfficePhoneNum + ", proLaboratoryPhoneNum=" + proLaboratoryPhoneNum
-			+ ", majorId=" + majorId + ", majorName=" + majorName + ", proRoomOfficeId=" + proRoomOfficeId
-			+ ", officeName=" + officeName + ", proRoomLaboratoryId=" + proRoomLaboratoryId + ", laboratoryName="
-			+ laboratoryName + ", buildingName=" + buildingName + ", list=" + list + "]";
+public List<Object> getList() {
+	return list;
 }
 
-   @Override
+public void setList(List<Object> list) {
+	this.list = list;
+}
+
+@Override
 public int hashCode() {
 	final int prime = 31;
 	int result = super.hashCode();
@@ -229,7 +176,7 @@ public int hashCode() {
 	return result;
 }
 
-   @Override
+@Override
 public boolean equals(Object obj) {
 	if (this == obj)
 		return true;
@@ -306,5 +253,16 @@ public boolean equals(Object obj) {
 	return true;
 }
 
+@Override
+public String toString() {
+	return "Professor [proId=" + proId + ", proUniversity=" + proUniversity + ", proGradSchool=" + proGradSchool
+			+ ", proOfficePhoneNum=" + proOfficePhoneNum + ", proLaboratoryPhoneNum=" + proLaboratoryPhoneNum
+			+ ", majorId=" + majorId + ", majorName=" + majorName + ", proRoomOfficeId=" + proRoomOfficeId
+			+ ", officeName=" + officeName + ", proRoomLaboratoryId=" + proRoomLaboratoryId + ", laboratoryName="
+			+ laboratoryName + ", buildingName=" + buildingName + ", list=" + list + "]";
+}
    
+   
+   
+  
 }

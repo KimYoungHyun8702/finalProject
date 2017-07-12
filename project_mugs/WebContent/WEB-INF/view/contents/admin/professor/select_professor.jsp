@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/project_mugs/resource/jquery/jquery.js"></script>
+<script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function update_professor(usersId){
 	location.href="${initParam.rootPath }/admin/selectProfessorForupdateController.do?usersId="+usersId
@@ -21,17 +22,25 @@ function info_professor(proId){
 		"url":"${initParam.rootPath }/admin/selectProfessorInfoByIdController.do",
 		"data":"proId="+proId,
 		"success":function(result){
-			var txt = "";
-			var txtb = "";
+			var txt1 = "";
+			var txt2 = "";
+			var txt3 = "";
+			var txt4 = "";
 			$.each(result,function(){
-			txt += "<tr><td align='center'>"+(this.info.usersPhoto==null?'':this.info.usersPhoto)+"</td><td align='center'>"+this.info.proId+"</td><td align='center'>"+this.info.usersName+"</td><td align='center'>"+this.info.usersRRN+
-			"</td><td>"+this.info.usersEmail+"</td><td>"+this.info.usersPhoneNum+"</td><td>"+this.info.usersCellNum+"</td><td>"+this.info.usersNational+"</td><td>"+this.info.usersCurrentAddr+"</td><td>"+this.info.usersBornAddr+"</td><tr>"
+			txt1 += "<tr><td align='center'>"+(this.info.usersPhoto==null?'':this.info.usersPhoto)+"</td><td align='center'>"+this.info.proId+"</td><td align='center'>"+this.info.usersName+"</td><td align='center'>"+this.info.usersEngName+"</td><td align='center'>"+this.info.usersRRN+
+			"</td><td align='center'>"+this.info.usersEmail+"</td></tr>"
 			
-			txtb += "<tr><td align='center'>"+this.info.usersEnable+"</td><td>"+this.info.proUniversity+"</td><td>"+this.info.proGradSchool+"</td><td>"+(this.info.proOfficePhoneNum == null?"":this.info.proOfficePhoneNum)+"</td><td>"+(this.info.prolaboratoryPhoneNum == null?"":this.info.proLaboratoryPhoneNum)+"</td><td>"+(this.major == null?"":this.major.majorName)+"</td><td>"
-			+(this.office == null?"":this.office.buildingName+",")+(this.office == null?"":this.office.officeName)+"</td><td>"+(this.laboratory == null?"":this.laboratory.buildingName+",")+(this.laboratory == null?"":this.laboratory.laboratoryName)+"</td><td align='center'><button onclick='update_professor("+this.info.usersId+")'>수정</button></td><td align='center'><button onclick='delete_professor("+this.info.usersId+")'>삭제</button></td></tr>"
+			txt2 += "<tr><td align='center'>"+this.info.usersPhoneNum+"</td><td align='center>'"+this.info.usersCellNum+"</td><td align='center'>"+this.info.usersNational+"</td><td align='center'>"+this.info.usersCurrentAddr+"</td><td align='center'>"+this.info.usersBornAddr+"</td><td align='center'>"+this.info.usersEnable+"</td></tr>"
+			
+			txt3 += "<tr><td align='center'>"+this.info.proUniversity+"</td><td align='center'>"+this.info.proGradSchool+"</td><td align='center'>"+(this.info.proOfficePhoneNum == null?"":this.info.proOfficePhoneNum)+"</td><td align='center'>"+(this.info.prolaboratoryPhoneNum == null?"":this.info.proLaboratoryPhoneNum)+"</td><td align='center'>"+(this.major == null?"":this.major.majorName)+"</td><td align='center'>"
+					+(this.office == null?"":this.office.buildingName+",")+(this.office == null?"":this.office.officeName)+"</td></tr>"
+			
+			txt4 +=	"<tr><td align='center'>"+(this.laboratory == null?"":this.laboratory.buildingName+",")+(this.laboratory == null?"":this.laboratory.laboratoryName)+"</td><td align='center'><button onclick='update_professor("+this.info.usersId+")'>수정</button></td><td align='center'><button onclick='delete_professor("+this.info.usersId+")'>삭제</button></td></tr>"
 			})
-			$("#infoTbody").html(txt);
-			$("#infoTbodyb").html(txtb);
+			$("#infoTbody1").html(txt1);
+			$("#infoTbody2").html(txt2);
+			$("#infoTbody3").html(txt3);
+			$("#infoTbody4").html(txt4);
 			$("#infoProfessor").show();	
 			$("#hr").show();
 			$("h1").show();
@@ -79,10 +88,27 @@ $(document).ready(function(){
 </head>
 <body>
 <h2>교수 조회</h2>
+<c:if test="${sessionScope.insertMessage != null}">
+		<script type="text/javascript">
+			alert("등록되었습니다");
+		</script>
+		<% session.removeAttribute("insertMessage"); %>
+</c:if>
+<c:if test="${sessionScope.updateMessage != null}">
+		<script type="text/javascript">
+			alert("수정되었습니다");
+		</script>
+		<% session.removeAttribute("updateMessage"); %>
+</c:if>
+<c:if test="${sessionScope.deleteMessage != null}">
+		<script type="text/javascript">
+			alert("삭제되었습니다");
+		</script>
+		<% session.removeAttribute("deleteMessage"); %>
+</c:if>
 <hr>
 	
 	검색할 이름 <input type="text" name="usersName" id="usersName"/><button id="searchProfessor">조회</button><br>
-	
 	
 	<table id="selectProfessor" border="1">
 		<thead>
@@ -104,32 +130,46 @@ $(document).ready(function(){
 				<td align="center">사진</td>
 				<td align="center">번호</td>
 				<td align="center">이름</td>
+				<td align="center">영문 이름</td>
 				<td align="center">주민 번호</td>
 				<td align="center">이메일</td>
+			</tr>
+		</thead>
+		<tbody id="infoTbody1"></tbody>
+			
+		<thead>
+			<tr>
 				<td align="center">집 전화번호</td>
 				<td align="center">핸드폰 번호 </td>
 				<td align="center">국적</td>
 				<td align="center">현 거주지 주소</td>
 				<td align="center">본적지 주소</td>
-				</tr>
-				</thead>
-		<tbody id="infoTbody"></tbody>
-		
+				<td align="center">인증가능 상태</td>
+			</tr>
+		</thead>
+		<tbody id="infoTbody2"></tbody>
+				
 		<thead>
 			<tr>
-			<td align="center">인증가능 상태</td>
 				<td align="center">졸업 대학</td>
 				<td align="center">졸업 대학원</td>
 				<td align="center">교수실 전화 번호</td>
 				<td align="center">연구실 전화 번호</td>
 				<td align="center">소속 학과</td>
 				<td align="center">교수실</td>
+				
+			</tr>
+		</thead>
+		<tbody id="infoTbody3"></tbody>
+		
+		<thead>
+			<tr>
 				<td align="center">연구실</td>
 				<td align="center">수정</td>
 				<td align="center">삭제</td>
 			</tr>
 		</thead>
-			<tbody id="infoTbodyb"></tbody>
+		<tbody id="infoTbody4"></tbody>
 	</table>
 	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
 

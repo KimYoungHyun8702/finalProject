@@ -1,21 +1,21 @@
 package com.mugs.service.impl.admin;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.mugs.dao.BuildingDao;
-import com.mugs.dao.CollegeDao;
+import com.mugs.dao.AuthoritiesDao;
 import com.mugs.dao.MajorDao;
-import com.mugs.dao.RoomDao;
 import com.mugs.dao.StudentDao;
 import com.mugs.dao.UsersDao;
 import com.mugs.service.admin.StudentService;
+import com.mugs.vo.Authorities;
 import com.mugs.vo.Major;
 import com.mugs.vo.Student;
 import com.mugs.vo.Users;
@@ -27,18 +27,22 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	private StudentDao studentDao;
 	@Autowired
-	private BuildingDao buildingDao;
-	@Autowired
-	private RoomDao roomDao;
-	@Autowired
 	private MajorDao majorDao;
 	@Autowired
-	private CollegeDao collegeDao;
+	private AuthoritiesDao authoritiesDao;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	
 	
 	@Override
-	public String insertStudent(Users users, Student student) {
+	@Transactional
+	public String insertStudent(Users users, Student student, String role) {
+		int index = users.getUsersRRN().indexOf("-");
+		users.setUsersPassword(users.getUsersRRN().substring(index+1));
+		users.setUsersPassword(passwordEncoder.encode(users.getUsersPassword()));
 		usersDao.insertUsers(users);
+		authoritiesDao.insertAuthorities(new Authorities(users.getUsersId(),role));
 		student.setStuId(users.getUsersId());
 		if(student.getMajorMinorId() == 0){
 			student.setMajorMinorId(null);
@@ -46,8 +50,6 @@ public class StudentServiceImpl implements StudentService {
 		if(student.getMajorDualId() == 0){
 			student.setMajorDualId(null);
 		}
-		System.out.println(student.getStuAdmissionDate());
-		System.out.println(student.getStuGraduationDate());
 		if(student.getStuAdmissionDate().equals(student.getStuGraduationDate())){
 			student.setStuGraduationDate(null);
 		}
@@ -60,6 +62,7 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
+	@Transactional
 	public String updateStudent(Users users, Student student) {
 		usersDao.updateUsersById(users);
 		student.setStuId(users.getUsersId());
@@ -106,7 +109,6 @@ public class StudentServiceImpl implements StudentService {
 		}
 		map.put("stuAdmissionDate", sd.format(info.getStuAdmissionDate()));
 		
-		System.out.println(map.get("stuAdmissionDate"));
 		map.put("info", info);
 		map.put("major", major);
 		map.put("majorDual", majorDual);
@@ -139,7 +141,6 @@ public class StudentServiceImpl implements StudentService {
 		}
 		map.put("stuAdmissionDate", sd.format(info.getStuAdmissionDate()));
 		
-		System.out.println(map.get("stuAdmissionDate"));
 		map.put("info", info);
 		map.put("major", major);
 		map.put("majorDual", majorDual);

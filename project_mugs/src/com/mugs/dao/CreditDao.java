@@ -120,4 +120,13 @@ public interface CreditDao {
 	 * @return
 	 */
 	List<Credit> selectCreditByYearType(int year, String type);
+	
+	/**
+	 * 해당 학생이 이수했던 과목들의 학점 조회 메소드
+	 * @param year
+	 * @param type
+	 * @return
+	 * @author 병문
+	 */
+	List<Credit> selectCreditByYearSemesterAndUsersId(int year, String semester,String usersId);
 }

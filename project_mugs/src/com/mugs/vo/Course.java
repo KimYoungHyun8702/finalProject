@@ -1,17 +1,10 @@
-/**
- * 
- */
-/**
- * @author Administrator
- *
- */
 package com.mugs.vo;
 
 import java.io.Serializable;
 import java.util.List;
 
 public class Course implements Serializable {
-	
+
 	private int courseId;
 	private int courseYear;
 	private String courseSemester;
@@ -21,11 +14,13 @@ public class Course implements Serializable {
 	private Subject subject;
 	private Student student;
 	private Professor professor;
-	
+	/** --영혀니가추가함-- */
+	private List<Student> studentList;
 
 	public Course() {
 	}
 
+	/** --영혀니가추가한 생성자-- */
 	public Course(int courseId, int courseYear, String courseSemester, int subjectId, String stuId, String proId) {
 		this.courseId = courseId;
 		this.courseYear = courseYear;
@@ -33,6 +28,19 @@ public class Course implements Serializable {
 		this.subjectId = subjectId;
 		this.stuId = stuId;
 		this.proId = proId;
+	}
+
+	public Course(int courseId, int courseYear, String courseSemester, int subjectId, String stuId, String proId,
+			Subject subject, List<Student> studentList) {
+		super();
+		this.courseId = courseId;
+		this.courseYear = courseYear;
+		this.courseSemester = courseSemester;
+		this.subjectId = subjectId;
+		this.stuId = stuId;
+		this.proId = proId;
+		this.subject = subject;
+		this.studentList = studentList;
 	}
 
 	public Course(int courseId, int courseYear, String courseSemester, int subjectId, String stuId, String proId,
@@ -46,6 +54,14 @@ public class Course implements Serializable {
 		this.subject = subject;
 		this.student = student;
 		this.professor = professor;
+	}
+
+	public List<Student> getStudentList() {
+		return studentList;
+	}
+
+	public void setStudentList(List<Student> studentList) {
+		this.studentList = studentList;
 	}
 
 	public int getCourseId() {
@@ -124,7 +140,7 @@ public class Course implements Serializable {
 	public String toString() {
 		return "Course [courseId=" + courseId + ", courseYear=" + courseYear + ", courseSemester=" + courseSemester
 				+ ", subjectId=" + subjectId + ", stuId=" + stuId + ", proId=" + proId + ", subject=" + subject
-				+ ", student=" + student + ", professor=" + professor + "]";
+				+ ", student=" + student + ", professor=" + professor + ", studentList=" + studentList + "]";
 	}
 
 	@Override
@@ -138,6 +154,7 @@ public class Course implements Serializable {
 		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
 		result = prime * result + ((stuId == null) ? 0 : stuId.hashCode());
 		result = prime * result + ((student == null) ? 0 : student.hashCode());
+		result = prime * result + ((studentList == null) ? 0 : studentList.hashCode());
 		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
 		result = prime * result + subjectId;
 		return result;
@@ -181,6 +198,11 @@ public class Course implements Serializable {
 				return false;
 		} else if (!student.equals(other.student))
 			return false;
+		if (studentList == null) {
+			if (other.studentList != null)
+				return false;
+		} else if (!studentList.equals(other.studentList))
+			return false;
 		if (subject == null) {
 			if (other.subject != null)
 				return false;
@@ -190,4 +212,5 @@ public class Course implements Serializable {
 			return false;
 		return true;
 	}
+
 }

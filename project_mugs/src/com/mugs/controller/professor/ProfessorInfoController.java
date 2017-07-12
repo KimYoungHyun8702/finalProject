@@ -14,10 +14,11 @@ import com.mugs.vo.Users;
 
 @Controller
 @RequestMapping("/professor/")
-public class ProfessorInfoController{
+public class ProfessorInfoController {
 
 	@Autowired
 	private ProfessorInfoService service;
+
 	
 	@RequestMapping("updateProfile")
 	public String updateProfessorProfile(@ModelAttribute Users users){
@@ -25,14 +26,17 @@ public class ProfessorInfoController{
 	//Business Logic 호출	
 	service.updateProfessorInfo(users);
 	return "contents/professor/professorInfo"; //WEB-INF/view/contents/professor/professorInfo.jsp
+
 	}
 	
 	@RequestMapping("searchByJoin")
+
 	@ResponseBody
 	public Professor getProfessorRegisterByJoin(String proId){
 	
 	Professor professor = service.getProfessorInfoByJoin(proId);
 	
 	return professor;	
+
 	}
 }

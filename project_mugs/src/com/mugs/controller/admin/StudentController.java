@@ -4,11 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mugs.service.admin.StudentService;
 import com.mugs.vo.Student;
@@ -25,18 +29,17 @@ public class StudentController {
 	public ModelAndView	selectMajorForInsert(){
 		ModelAndView view = new ModelAndView();
 		Map map = studentService.selectForInsertStudent();
-		view.setViewName("contents/admin/student/insert_student");
+		view.setViewName("admin/student/insert_student.tiles");
 		view.addObject("major",map.get("major"));
 		view.addObject("majorDual",map.get("majorDual"));
 		view.addObject("majorMinor",map.get("majorMinor"));
 		return view;
 	}
 	@RequestMapping("insertStudentController")
-	public ModelAndView insertStudent(Users users,Student student){
-		System.out.println(users);
-		System.out.println(student);
+	public ModelAndView insertStudent(Users users,Student student, HttpSession session){
+		session.setAttribute("insertMessage", "");
 		student.setStuId(users.getUsersId());
-		studentService.insertStudent(users, student);
+		studentService.insertStudent(users, student,"ROLE_STUDENT");
 		return new ModelAndView("redirect:/select_student.do");
 	}
 	
@@ -56,22 +59,24 @@ public class StudentController {
 	}
 	
 	@RequestMapping("deleteStudentController")
-	public String deleteStudent(String usersId){
+	public ModelAndView deleteStudent(String usersId, HttpSession session){
+		session.setAttribute("deleteMessage", "");
 		studentService.deleteStudent(usersId);
-		return "redirect:/select_student.do";
+		return new ModelAndView("redirect:/select_student.do","delete","delete");
 	}
 	
 	@RequestMapping("updateStudentController")
-	public String updateStudent(Users users, Student student){
+	public ModelAndView updateStudent(Users users, Student student,  HttpSession session){
+		session.setAttribute("updateMessage", "");
 		studentService.updateStudent(users, student);
-		return "redirect:/select_student.do";
+		return new ModelAndView("redirect:/select_student.do","update","update");
 	}
 	
 	@RequestMapping("selectStudentForUpdateController")
 	public ModelAndView selectStudentForUpdateController(String usersId){
 		Map map = studentService.selectStudentForupdate(usersId);
 		ModelAndView view = new ModelAndView();
-		view.setViewName("contents/admin/student/update_student");
+		view.setViewName("admin/student/update_student.tiles");
 		view.addObject("stuGraduationDate", map.get("stuGraduationDate"));
 		view.addObject("stuAdmissionDate", map.get("stuAdmissionDate"));
 		view.addObject("info", map.get("info"));

@@ -89,4 +89,16 @@ public interface ProfessorDao {
 	 * @return
 	 */
 	Professor selectProfessorInfoForLaboratoryById(String proId);
+	
+	/**
+	 * 중복제거를 위한 교수실강의동 조회 메소드
+	 * @return
+	 */
+	List<Professor> selectProfessorOfficeForOverlap();
+	
+	/**
+	 * 중복제거를 위한 연구실강의동 조회 메소드
+	 * @return
+	 */
+	List<Professor> selectProfessorLabaratoryForoverlap();
 }

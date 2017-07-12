@@ -22,7 +22,7 @@ public class CollegeController {
 	@RequestMapping("/selectCollegeListController")
 	public ModelAndView selectCollegeList(){
 		List<College> list = service.selectCollegeList();
-		return new ModelAndView("contents/admin/college/select_college","list",list);
+		return new ModelAndView("admin/college/select_college.tiles","list",list);
 	}
 	
 	@RequestMapping("/insertCollegeController")

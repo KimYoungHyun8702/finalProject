@@ -15,7 +15,7 @@ public interface StudentService {
 	 * @param student
 	 * @return
 	 */
-	String insertStudent(Users users, Student student);
+	String insertStudent(Users users, Student student, String role);
 	
 	/**
 	 * 학생 수정 메소드

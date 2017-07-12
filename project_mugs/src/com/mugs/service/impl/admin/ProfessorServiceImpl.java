@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.mugs.dao.AuthoritiesDao;
 import com.mugs.dao.BuildingDao;
 import com.mugs.dao.CollegeDao;
 import com.mugs.dao.MajorDao;
@@ -14,6 +17,7 @@ import com.mugs.dao.ProfessorDao;
 import com.mugs.dao.RoomDao;
 import com.mugs.dao.UsersDao;
 import com.mugs.service.admin.ProfessorService;
+import com.mugs.vo.Authorities;
 import com.mugs.vo.Building;
 import com.mugs.vo.College;
 import com.mugs.vo.Major;
@@ -36,18 +40,27 @@ public class ProfessorServiceImpl implements ProfessorService {
 	private MajorDao majorDao;
 	@Autowired
 	private CollegeDao collegeDao;
+	@Autowired
+	private AuthoritiesDao authoritiesDao;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Override
-	public int insertProfessor(Users users, Professor professor) {
+	@Transactional
+	public int insertProfessor(Users users, Professor professor, String role) {
+		int index = users.getUsersRRN().indexOf("-");
+		users.setUsersPassword(users.getUsersRRN().substring(index+1));
+		users.setUsersPassword(passwordEncoder.encode(users.getUsersPassword()));
 		usersDao.insertUsers(users);
+		authoritiesDao.insertAuthorities(new Authorities(users.getUsersId(),role));
 		professor.setProId(users.getUsersId());
 		if(professor.getMajorId() == 0){
 			professor.setMajorId(null);
 		}
-		if(professor.getProRoomOfficeId().equals("없음")){
+		if(professor.getProRoomOfficeId() == 0){
 			professor.setProRoomOfficeId(null);
 		}
-		if(professor.getProRoomLaboratoryId().equals("없음")){
+		if(professor.getProRoomLaboratoryId() == 0){
 			professor.setProRoomLaboratoryId(null);
 		}
 		professorDao.insertProfessor(professor);
@@ -55,16 +68,17 @@ public class ProfessorServiceImpl implements ProfessorService {
 	}
 
 	@Override
+	@Transactional
 	public int updateProfessor(Users users, Professor professor) {
 		usersDao.updateUsersById(users);
 		professor.setProId(users.getUsersId());
 		if(professor.getMajorId() == 0){
 			professor.setMajorId(null);
 		}
-		if(professor.getProRoomOfficeId().equals("없음")){
+		if(professor.getProRoomOfficeId() == 0){
 			professor.setProRoomOfficeId(null);
 		}
-		if(professor.getProRoomLaboratoryId().equals("없음")){
+		if(professor.getProRoomLaboratoryId() == 0){
 			professor.setProRoomLaboratoryId(null);
 		}
 		professorDao.updateProfessor(professor);
@@ -99,12 +113,36 @@ public class ProfessorServiceImpl implements ProfessorService {
 	@Override
 	public Map<String,Object> selectForInsertProfessor() {
 		Map<String,Object> map = new HashMap<>();
-		List<Building> building = buildingDao.selectBuildingList();
-		List<Room> room = roomDao.selectRoomList();
+		List<Building> laboratory = buildingDao.selectRoomListByLaboratory();
+		List<Professor> olapLaboratory = professorDao.selectProfessorLabaratoryForoverlap();
+		List<Professor> olapOffice = professorDao.selectProfessorOfficeForOverlap();
+		List<Building> office = buildingDao.selectRoomListByOffice();
 		List<College> college = collegeDao.selectCollegeList();
 		List<Major> major = majorDao.selectMajorList();
-		map.put("building", building);
-		map.put("room", room);
+		if(olapLaboratory == null){
+			map.put("laboratory", laboratory);			
+		}else{
+			for(int i = 0; i<laboratory.size(); i++){
+				for(int j = 0; j<olapLaboratory.size(); j++ ){
+					if(laboratory.get(0).getRoomList().get(i).getRoomId() == olapLaboratory.get(j).getProRoomLaboratoryId()){
+						laboratory.get(0).getRoomList().remove(i);
+					}
+				}
+			}
+			map.put("laboratory", laboratory);
+		}
+		if(olapOffice == null){
+			map.put("office", office);		
+		}else{
+			for(int i = 0; i<office.size(); i++){
+				for(int j = 0; j<olapOffice.size(); j++ ){
+					if(office.get(i).getRoomList().get(i).getRoomId() == olapOffice.get(j).getProRoomOfficeId()){
+						office.get(i).getRoomList().remove(i);
+					}
+				}
+			}
+			map.put("office", office);	
+		}
 		map.put("college", college);
 		map.put("major", major);
 		return map;

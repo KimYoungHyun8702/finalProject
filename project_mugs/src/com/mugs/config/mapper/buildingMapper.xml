@@ -65,6 +65,19 @@
 		WHERE B.BUILDING_ID = R.BUILDING_ID AND B.BUILDING_ID = #{VALUE}
 	</select>
 	
+	<select id="selectRoomListByOffice" resultMap="Building-Room-resultmap">
+		SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID, R.ROOM_NAME
+		FROM BUILDING B, ROOM R
+		WHERE b.building_id = r.building_id 
+		AND building_name = '교수실강의동'
+	</select>
+	
+	<select id="selectRoomListByLaboratory" resultMap="Building-Room-resultmap">
+		SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID, R.ROOM_NAME
+		FROM BUILDING B, ROOM R
+		WHERE b.building_id = r.building_id 
+		AND building_name = '연구실강의동'
+	</select>
 
 </mapper>
 

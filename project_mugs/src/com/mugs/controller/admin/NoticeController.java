@@ -36,7 +36,7 @@ public class NoticeController {
 	public ModelAndView selectNotice(){
 		ModelAndView view = new ModelAndView();
 		Map notice = noticeService.selectNotice();
-		view.setViewName("contents/admin/notice/select_notice");
+		view.setViewName("admin/notice/select_notice.tiles");
 		view.addObject("notice", notice.get("notice"));
 		view.addObject("date",notice.get("date"));
 		return view;
@@ -46,7 +46,7 @@ public class NoticeController {
 	public ModelAndView selectNoticeForUpdate(){
 		ModelAndView view = new ModelAndView();
 		Map notice = noticeService.selectNotice();
-		view.setViewName("contents/admin/notice/update_notice");
+		view.setViewName("admin/notice/update_notice.tiles");
 		view.addObject("notice", notice.get("notice"));
 		view.addObject("date",notice.get("date"));
 		return view;

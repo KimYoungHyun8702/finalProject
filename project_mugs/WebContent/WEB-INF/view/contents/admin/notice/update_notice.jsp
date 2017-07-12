@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 	<input type="hidden" name="noticeId" value="${requestScope.notice.noticeId }"/>
 	<input type="hidden" name="usersId" value="${requestScope.notice.usersId }"/>
 				<input id="submit" type="submit" value="수정">
+				<sec:csrfInput/>
 </form>
 	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
 </body>

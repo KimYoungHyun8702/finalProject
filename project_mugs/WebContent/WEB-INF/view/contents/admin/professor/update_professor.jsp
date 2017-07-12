@@ -1,18 +1,63 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/project_mugs/resource/jquery/jquery.js"></script>
+<script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
+function check(){
+	if($("#usersId").val() == "" || $("#usersId").val().trim() == 0 ){
+		alert("학번을 입력하세요");
+		return false;
+	}else if($("#usersName").val() == "" || $("#usersName").val().trim() == 0 ){
+		alert("이름을를 입력하세요")
+		return false;
+	}else if($("#usersEngName").val() == "" || $("#usersEngName").val().trim() == 0){
+		alert("영어 이름을 입력하세요")
+		return false;
+	}else if($("#usersRRN").val() == "" || $("#usersRRN").val().trim() == 0){
+		alert("주민번호를 입력하세요")
+		return false;
+	}else if($("#usersEmail").val() == "" || $("#usersEmail").val().trim() == 0){
+		alert("이메일을 입력하세요")
+		return false;
+	}else if($("#usersPhoneNum").val() == "" || $("#usersPhoneNum").val().trim() == 0){
+		alert("집 전화번호를 입력하세요")
+		return false;
+	}else if($("#usersCellNum").val() == "" || $("#usersCellNum").val().trim() == 0){
+		alert("핸드폰 번호를 입력하세요")
+		return false;
+	}else if($("#usersNational").val() == "국적" ){
+		alert("국적를 입력하세요")
+		return false;
+	}else if($("#usersCurrentAddr").val() == "" || $("#usersCurrentAddr").val().trim() == 0){
+		alert("현 거주지 주소를 입력하세요")
+		return false;
+	}else if($("#usersBornAddr").val() == "" || $("#usersBornAddr").val().trim() == 0){
+		alert("본적지 주소를 입력하세요")
+		return false;
+	}else if($("#usersEnable").val() == "" || $("#usersEnable").val().trim() == 0){
+		alert("인증가능 상태를 입력하세요")
+		return false;
+	}else if($("#proUniversity").val() == "" || $("#proUniversity").val().trim() == 0){
+		alert("졸업 대학을 입력하세요")
+		return false;
+	}else if($("#proGradSchool").val() == "" || $("#proGradSchool").val().trim() == 0){
+		alert("졸업 대학원을 입력하세요")
+		return false;
+	}else{
+		return confirm("등록하시겠습니까 ?")
+	}
+};
 $(document).ready(function(){
 	$("#office").on("change",function(){
 		if($("#office").val() == "강의동 선택"){
 			$("#proRoomOfficeId").empty().append("<option>교수실 선택</option>");
 		}else if($("#office").val() == "없음"){
-			$("#proRoomOfficeId").empty().append("<option>없음</option>");
+			$("#proRoomOfficeId").empty().append("<option value='0'>없음</option>");
 		}else{
 			$.ajax({
 				"url":"${initParam.rootPath }/admin/selectRoomForProfessorController.do",
@@ -30,7 +75,7 @@ $(document).ready(function(){
 		if($("#buildingId").val() == "강의동 선택"){
 			$("#proRoomLaboratoryId").empty().append("<option>연구실 선택</option>");
 		}else if($("#buildingId").val() == "없음"){
-			$("#proRoomLaboratoryId").empty().append("<option>없음</option>");
+			$("#proRoomLaboratoryId").empty().append("<option value='0'>없음</option>");
 		}else{
 			$.ajax({
 				"url":"${initParam.rootPath }/admin/selectRoomByReferenceController.do",
@@ -50,146 +95,193 @@ $(document).ready(function(){
 <body>
 <h2>교수 수정</h2>
 	<hr>
-	<form id="insertForm" action="${initParam.rootPath }/admin/updateProfessorController.do" method="post" onsubmit="return confirm('수정하시겠습니까?')">
-	사진 : <input type="text" name="usersPhoto" value="${requestScope.info.usersPhoto }"/><br>
-	교수 번호 : <input type="text" name="usersId" value="${requestScope.info.usersId }" readonly/><br>
-	비밀 번호 : <input type="text" name="usersPassword" value="${requestScope.info.usersPassword }"/><br>
-	이름 : <input type="text" name="usersName" value="${requestScope.info.usersName }"/><br>
-	영문 성명 : <input type="text" name="usersEngName" value="${requestScope.info.usersEngName }"/><br>
-	주민 번호 : <input type="text" name="usersRRN" value="${requestScope.info.usersRRN }"/><br>
-	이메일 : <input type="text" name="usersEmail" value="${requestScope.info.usersEmail }"/><br>
-	집 전화번호 : <input type="text" name="usersPhoneNum" value="${requestScope.info.usersPhoneNum }"/><br>
-	핸드폰 번호 : <input type="text" name="usersCellNum" value="${requestScope.info.usersCellNum }"/><br>
-	국적 
-	<select name="usersNational" id="usersNational">
-		<option>국적</option>
-		<c:choose>
-			<c:when test="${requestScope.info.usersNational == '한국' }">
-				<option selected>한국</option>
-			</c:when>
-			<c:otherwise>
-				<option>한국</option>
-			</c:otherwise>
-		</c:choose>
-		<c:choose>
-			<c:when test="${requestScope.info.usersNational == '중국' }">
-				<option selected>중국</option>
-			</c:when>
-			<c:otherwise>
-				<option>중국</option>
-			</c:otherwise>
-		</c:choose>
-		<c:choose>
-			<c:when test="${requestScope.info.usersNational == '일본' }">
-				<option selected>일본</option>
-			</c:when>
-			<c:otherwise>
-				<option>일본</option>
-			</c:otherwise>
-		</c:choose>
-		<c:choose>
-			<c:when test="${requestScope.info.usersNational == '북한' }">
-				<option selected>북한</option>
-			</c:when>
-			<c:otherwise>
-				<option>북한</option>
-			</c:otherwise>
-		</c:choose>
-	</select><br>
-	현 거주지 주소 : <input type="text" name="usersCurrentAddr" value="${requestScope.info.usersCurrentAddr }"/><br>
-	본적지 주소 : <input type="text" name="usersBornAddr" value="${requestScope.info.usersBornAddr }"/><br>
-	인증가능상태 : <input type="text" name="usersEnable" value="${requestScope.info.usersEnable }"/><br>
-	졸업 대학 : <input type="text" name="proUniversity" value="${requestScope.info.proUniversity }"/><br>
-	졸업 대학원 : <input type="text" name="proGradSchool" value="${requestScope.info.proGradSchool }"/><br>
-	교수실 전화 번호 : <input type="text" name="proOfficePhoneNum" value="${requestScope.info.proOfficePhoneNum }"/><br>
-	연구실 전화번호 : <input type="text" name="proLaboratoryPhoneNum" value="${requestScope.info.proLaboratoryPhoneNum }"/><br>
-	소속 학과 : 
-		<select name="majorId" id="majorId">
-			<option>학과 선택</option>
-			<c:choose>
-					<c:when test="${requestScope.proMajor == null }">
-						<option value="0" selected>없음</option>
-					</c:when>
-					<c:otherwise>
-						<option value="0">없음</option>
-					</c:otherwise>
-				</c:choose>
-			<c:forEach var="list" items="${requestScope.majorList }">
-				<c:choose>
-					<c:when test="${requestScope.proMajor.majorId == list.majorId }">
-						<option value=${list.majorId } selected>${list.majorName }</option>
-					</c:when>
-					<c:otherwise>
-						<option value=${list.majorId }>${list.majorName }</option>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		</select> 
-	교수실 
-		<select name="office" id="office">
-				<option>강의동 선택</option>
-				<c:choose>
-					<c:when test="${requestScope.office == null }">
-						<option selected>없음</option>
-					</c:when>
-					<c:otherwise>
-						<option >없음</option>
-					</c:otherwise>
-				</c:choose>
-					<c:forEach var="list" items="${requestScope.building }">
-						<c:choose>
-							<c:when test="${requestScope.office.buildingName == list.buildingName  }">
-								<option value=${list.buildingId } selected>${list.buildingName }</option>
-							</c:when>
-							<c:otherwise>
-								<option value=${list.buildingId }>${list.buildingName }</option>
-							</c:otherwise>
-						</c:choose>
-				</c:forEach>
-		   </select>
-		   <select name="proRoomOfficeId" id="proRoomOfficeId">
-		   <c:choose>
-					<c:when test="${requestScope.office == null }">
-							<option selected>없음</option>
-					</c:when>
-					<c:otherwise>
-						<option value="${requestScope.office.proRoomOfficeId }" selected>${requestScope.office.officeName }</option> 
-					</c:otherwise>
-			</c:choose>
-	       </select>
-	연구실 
-		   <select name="buildingId" id="buildingId">
-				<option>강의동 선택</option>
-				<c:choose>
-					<c:when test="${requestScope.laboratory == null }">
-						<option selected>없음</option>
-					</c:when>
-					<c:otherwise>
-						<option >없음</option>
-					</c:otherwise>
-				</c:choose>
-					<c:forEach var="list" items="${requestScope.building }">
-						<c:choose>
-							<c:when test="${requestScope.laboratory.buildingName == list.buildingName  }">
-								<option value=${list.buildingId } selected>${list.buildingName }</option>
-							</c:when>
-							<c:otherwise>
-								<option value=${list.buildingId }>${list.buildingName }</option>
-							</c:otherwise>
-						</c:choose>
-				</c:forEach>
-		   </select>
-		   <select name="proRoomLaboratoryId" id="proRoomLaboratoryId">
-				 <c:choose>
-					<c:when test="${requestScope.laboratory == null }">
-							<option selected>없음</option>
-					</c:when>
-					<c:otherwise>
-						<option value="${requestScope.office.proRoomLaboratoryId }" selected>${requestScope.office.laboratoryName }</option> 
-					</c:otherwise>
-			</c:choose>
-	       </select><br>
+	<form id="insertForm" action="${initParam.rootPath }/admin/updateProfessorController.do" method="post" onsubmit="return check()">
+	       <table id="infoProfessor" border="1">
+			<thead>
+				<tr>
+					<td align="center">번호</td>
+					<td align="center">이름</td>
+					<td align="center">영문 이름</td>
+					<td align="center">주민 번호</td>
+					<td align="center">이메일</td>
+					<td align="center">집 전화번호</td>
+				</tr>
+			</thead>
+			<tbody id="infoTbody1">
+				<tr>
+					<td align="center"><input type="number" name="usersId" id="usersId" value="${requestScope.info.usersId }" readonly/></td>
+					<td align="center"><input type="text" name="usersName" id="usersName" value="${requestScope.info.usersName }"/></td>
+					<td align="center"><input type="text" name="usersEngName" id="usersEngName" value="${requestScope.info.usersEngName }"/></td>
+					<td align="center"><input type="text" name="usersRRN" id="usersRRN" value="${requestScope.info.usersRRN }"/></td>
+					<td align="center"><input type="email" name="usersEmail" id="usersEmail" value="${requestScope.info.usersEmail }"/></td>
+					<td align="center"><input type="text" name="usersPhoneNum" id="usersPhoneNum" value="${requestScope.info.usersPhoneNum }"/></td>
+				</tr>
+			</tbody>
+
+			<thead>
+				<tr>
+					<td align="center">핸드폰 번호</td>
+					<td align="center">국적</td>
+					<td align="center">현 거주지 주소</td>
+					<td align="center">본적지 주소</td>
+					<td align="center">인증가능 상태</td>
+					<td align="center">졸업 대학</td>
+				</tr>
+			</thead>
+
+			<tbody id="infoTbody2">
+				<tr>
+					<td align="center"><input type="number" name="usersCellNum" id="usersCellNum" value="${requestScope.info.usersCellNum }"/></td>
+					<td align="center"><select name="usersNational"
+						id="usersNational">
+							<option>국적</option>
+							<c:choose>
+								<c:when test="${requestScope.info.usersNational == '한국' }">
+									<option selected>한국</option>
+								</c:when>
+								<c:otherwise>
+									<option>한국</option>
+								</c:otherwise>
+							</c:choose>
+							<c:choose>
+								<c:when test="${requestScope.info.usersNational == '중국' }">
+									<option selected>중국</option>
+								</c:when>
+								<c:otherwise>
+									<option>중국</option>
+								</c:otherwise>
+							</c:choose>
+							<c:choose>
+								<c:when test="${requestScope.info.usersNational == '일본' }">
+									<option selected>일본</option>
+								</c:when>
+								<c:otherwise>
+									<option>일본</option>
+								</c:otherwise>
+							</c:choose>
+							<c:choose>
+								<c:when test="${requestScope.info.usersNational == '북한' }">
+									<option selected>북한</option>
+								</c:when>
+								<c:otherwise>
+									<option>북한</option>
+								</c:otherwise>
+							</c:choose>
+					</select></td>
+					<td align="center"><input type="text" name="usersCurrentAddr" id="usersCurrentAddr" value="${requestScope.info.usersCurrentAddr }"/></td>
+					<td align="center"><input type="text" name="usersBornAddr" id="usersBornAddr" value="${requestScope.info.usersBornAddr }"/></td>
+					<td align="center"><input type="text" name="usersEnable" id="usersEnable" value="${requestScope.info.usersEnable }"/></td>
+					<td align="center"><input type="text" name="proUniversity" id="proUniversity" value="${requestScope.info.proUniversity }"/></td>
+				</tr>
+			</tbody>
+
+			<thead>
+				<tr>
+					<td align="center">졸업 대학원</td>
+					<td align="center">교수실 전화 번호</td>
+					<td align="center">연구실 전화 번호</td>
+					<td align="center">소속 학과</td>
+					<td align="center">교수실</td>
+					<td align="center">연구실</td>
+				</tr>
+			</thead>
+			<tbody id="infoTbody3">
+				<tr>
+					<td align="center"><input type="number" name="proGradSchool" id="proGradSchool" value="${requestScope.info.proGradSchool }"/></td>
+					<td align="center"><input type="text" name="proOfficePhoneNum" id="proOfficePhoneNum" value="${requestScope.info.proOfficePhoneNum }"/></td>
+					<td align="center"><input type="text" name="proLaboratoryPhoneNum" id="proLaboratoryPhoneNum" value="${requestScope.info.proLaboratoryPhoneNum }"/></td>
+					<td align="center"><select name="majorId" id="majorId">
+							<option>학과 선택</option>
+							<c:choose>
+								<c:when test="${requestScope.proMajor == null }">
+									<option value="0" selected>없음</option>
+								</c:when>
+								<c:otherwise>
+									<option value="0">없음</option>
+								</c:otherwise>
+							</c:choose>
+							<c:forEach var="list" items="${requestScope.majorList }">
+								<c:choose>
+									<c:when
+										test="${requestScope.proMajor.majorId == list.majorId }">
+										<option value=${list.majorId } selected>${list.majorName }</option>
+									</c:when>
+									<c:otherwise>
+										<option value=${list.majorId }>${list.majorName }</option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+					</select></td>
+					<td align="center"><select name="office" id="office">
+							<option>강의동 선택</option>
+							<c:choose>
+								<c:when test="${requestScope.office == null }">
+									<option value="0" selected>없음</option>
+								</c:when>
+								<c:otherwise>
+									<option value="0">없음</option>
+								</c:otherwise>
+							</c:choose>
+							<c:forEach var="list" items="${requestScope.building }">
+								<c:choose>
+									<c:when
+										test="${requestScope.office.buildingName == list.buildingName  }">
+										<option value=${list.buildingId } selected>${list.buildingName }</option>
+									</c:when>
+									<c:otherwise>
+										<option value=${list.buildingId }>${list.buildingName }</option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+					</select> <select name="proRoomOfficeId" id="proRoomOfficeId">
+							<c:choose>
+								<c:when test="${requestScope.office == null }">
+									<option value="0" selected>없음</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${requestScope.office.proRoomOfficeId }"
+										selected>${requestScope.office.officeName }</option>
+								</c:otherwise>
+							</c:choose>
+					</select></td>
+					<td align="center"><select name="buildingId" id="buildingId">
+							<option>강의동 선택</option>
+							<c:choose>
+								<c:when test="${requestScope.laboratory == null }">
+									<option value="0" selected>없음</option>
+								</c:when>
+								<c:otherwise>
+									<option value="0">없음</option>
+								</c:otherwise>
+							</c:choose>
+							<c:forEach var="list" items="${requestScope.building }">
+								<c:choose>
+									<c:when
+										test="${requestScope.laboratory.buildingName == list.buildingName  }">
+										<option value=${list.buildingId } selected>${list.buildingName }</option>
+									</c:when>
+									<c:otherwise>
+										<option value=${list.buildingId }>${list.buildingName }</option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+					</select> <select name="proRoomLaboratoryId" id="proRoomLaboratoryId">
+							<c:choose>
+								<c:when test="${requestScope.laboratory == null }">
+									<option value="0" selected>없음</option>
+								</c:when>
+								<c:otherwise>
+									<option value="${requestScope.office.proRoomLaboratoryId }"
+										selected>${requestScope.office.laboratoryName }</option>
+								</c:otherwise>
+							</c:choose>
+					</select></td>
+				</tr>
+			</tbody>
+		</table>
+			<input type="hidden" name="usersPassword" value="${requestScope.info.usersPassword }"/>
 			<input type="submit" value="수정">
+			<sec:csrfInput/>
 	</form>
 	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
 </body>

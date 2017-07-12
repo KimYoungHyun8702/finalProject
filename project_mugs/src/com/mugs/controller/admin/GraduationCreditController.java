@@ -38,6 +38,6 @@ public class GraduationCreditController {
 	@RequestMapping("/selectForUpdateByIdController")
 	public ModelAndView selectForUpdateByIdController(int majorId){
 		List<GraduationCredit> list = graduationCreditService.selectGraduationCreditByMajorId(majorId);
-		return new ModelAndView("contents/admin/graduationcredit/update_graduation_credit","list",list);
+		return new ModelAndView("admin/graduationcredit/update_graduation_credit.tiles","list",list);
 	}
 }

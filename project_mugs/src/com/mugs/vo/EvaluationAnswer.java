@@ -1,10 +1,3 @@
-/**
- * 
- */
-/**
- * @author Administrator
- *
- */
 package com.mugs.vo;
 
 import java.io.Serializable;
@@ -18,8 +11,55 @@ public class EvaluationAnswer implements Serializable {
 	private String stuId;
 	private int subjectId;
 	private Subject subject;
+	private Professor professor;
+	private Course course;
 	
+	
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public EvaluationAnswer(int evaluationAnswerId, String evaluationAnswerState, int evaluationAnswerYear,
+			String evaluationAnswerSemester, String stuId, int subjectId, Subject subject, Professor professor,
+			Course course) {
+		super();
+		this.evaluationAnswerId = evaluationAnswerId;
+		this.evaluationAnswerState = evaluationAnswerState;
+		this.evaluationAnswerYear = evaluationAnswerYear;
+		this.evaluationAnswerSemester = evaluationAnswerSemester;
+		this.stuId = stuId;
+		this.subjectId = subjectId;
+		this.subject = subject;
+		this.professor = professor;
+		this.course = course;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
 	public EvaluationAnswer() {
+	}
+
+	public EvaluationAnswer(int evaluationAnswerId, String evaluationAnswerState, int evaluationAnswerYear,
+			String evaluationAnswerSemester, String stuId, int subjectId, Subject subject, Professor professor) {
+		super();
+		this.evaluationAnswerId = evaluationAnswerId;
+		this.evaluationAnswerState = evaluationAnswerState;
+		this.evaluationAnswerYear = evaluationAnswerYear;
+		this.evaluationAnswerSemester = evaluationAnswerSemester;
+		this.stuId = stuId;
+		this.subjectId = subjectId;
+		this.subject = subject;
+		this.professor = professor;
 	}
 
 	public EvaluationAnswer(int evaluationAnswerId, String evaluationAnswerState, int evaluationAnswerYear,
@@ -104,17 +144,19 @@ public class EvaluationAnswer implements Serializable {
 		return "EvaluationAnswer [evaluationAnswerId=" + evaluationAnswerId + ", evaluationAnswerState="
 				+ evaluationAnswerState + ", evaluationAnswerYear=" + evaluationAnswerYear
 				+ ", evaluationAnswerSemester=" + evaluationAnswerSemester + ", stuId=" + stuId + ", subjectId="
-				+ subjectId + ", subject=" + subject + "]";
+				+ subjectId + ", subject=" + subject + ", professor=" + professor + ", course=" + course + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((course == null) ? 0 : course.hashCode());
 		result = prime * result + evaluationAnswerId;
 		result = prime * result + ((evaluationAnswerSemester == null) ? 0 : evaluationAnswerSemester.hashCode());
 		result = prime * result + ((evaluationAnswerState == null) ? 0 : evaluationAnswerState.hashCode());
 		result = prime * result + evaluationAnswerYear;
+		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
 		result = prime * result + ((stuId == null) ? 0 : stuId.hashCode());
 		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
 		result = prime * result + subjectId;
@@ -130,6 +172,11 @@ public class EvaluationAnswer implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		EvaluationAnswer other = (EvaluationAnswer) obj;
+		if (course == null) {
+			if (other.course != null)
+				return false;
+		} else if (!course.equals(other.course))
+			return false;
 		if (evaluationAnswerId != other.evaluationAnswerId)
 			return false;
 		if (evaluationAnswerSemester == null) {
@@ -143,6 +190,11 @@ public class EvaluationAnswer implements Serializable {
 		} else if (!evaluationAnswerState.equals(other.evaluationAnswerState))
 			return false;
 		if (evaluationAnswerYear != other.evaluationAnswerYear)
+			return false;
+		if (professor == null) {
+			if (other.professor != null)
+				return false;
+		} else if (!professor.equals(other.professor))
 			return false;
 		if (stuId == null) {
 			if (other.stuId != null)

@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/project_mugs/resource/jquery/jquery.js"></script>
+<script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function update_student(usersId){
 	location.href="${initParam.rootPath }/admin/selectStudentForUpdateController.do?usersId="+usersId
@@ -22,20 +22,36 @@ function info_student(stuId){
 		"url":"${initParam.rootPath }/admin/selectStudentInfoByIdController.do",
 		"data":"stuId="+stuId,
 		"success":function(result){
-			var txt = "";
-			var txtb = "";
+			var txt1 = "";
+			var txt2 = "";
+			var txt3 = "";
+			var txt4 = "";
+			var txt5 = "";
 			$.each(result,function(){
-			txt += "<tr><td align='center'>"+(this.info.usersPhoto==null?'':this.info.usersPhoto)+"</td><td align='center'>"+this.info.stuId+"</td><td align='center'>"+this.info.usersName+"</td><td align='center'>"+this.info.usersRRN+
-			"</td><td>"+this.info.usersEmail+"</td><td>"+this.info.usersPhoneNum+"</td><td>"+this.info.usersCellNum+"</td><td>"+this.info.usersNational+"</td><td>"+this.info.usersCurrentAddr+"</td><td>"+this.info.usersBornAddr+"</td><td align='center'>"+this.info.usersEnable+
-			"</td><td>"+this.info.stuCourse+"</td><td>"+(this.info.stuArmy==null?"":this.info.stuArmy)+"</td></tr>"
+			txt1 += "<tr><td align='center'>"+(this.info.usersPhoto==null?'':this.info.usersPhoto)+"</td><td align='center'>"+this.info.stuId+"</td><td align='center'>"
+					+this.info.usersName+"</td><td align='center'>"+this.info.usersEngName+"</td><td align='center'>"+this.info.usersRRN
+					+"</td><td>"+this.info.usersEmail+"</td></tr>"
 			
-			txtb += "<tr><td align='center'>"+this.stuAdmissionDate+"</td><td>"+(this.stuGraduationDate==null?"":this.stuGraduationDate)+"</td><td>"+this.info.stuRegisterState+"</td><td>"+this.info.stuStudentState+"</td><td>"+
-			this.info.stuGrade+"</td><td>"+this.info.stuGraduationExam+"</td><td>"+this.info.stuEarlyGraduation+"</td><td>"+this.info.stuSemester+"</td><td>"+(this.major.majorName == null?"":this.major.majorName)+"</td><td>"
-			+(this.majorDual == null?"":(this.majorDual.majorDualName==null?"":this.majorDaul.majorDaulName))+"</td><td>"+(this.majorMinor == null?"":(this.majorMinor.majorMinorName==null?"":this.majorMinor.majorMinorName))+"</td><td align='center'><button onclick='update_student("+this.info.usersId+")'>수정</button></td><td align='center'><button onclick='delete_student("+this.info.usersId+")'>삭제</button></td></tr>"
-
+			txt2 += "<tr><td align='center'>"+this.info.usersPhoneNum+"</td><td align='center'>"+this.info.usersCellNum+"</td><td align='center'>"+this.info.usersNational
+					+"</td><td align='center'>"+this.info.usersCurrentAddr+"</td><td align='center'>"+this.info.usersBornAddr+"</td><td align='center'>"+this.info.usersEnable
+					+"</td></tr>"
+			
+			txt3 += "<tr><td align='center'>"+this.info.stuCourse+"</td><td align='center'>"+(this.info.stuArmy==null?"":this.info.stuArmy)+"</td><td align='center'>"+this.stuAdmissionDate
+					+"</td><td align='center'>"+(this.stuGraduationDate==null?"":this.stuGraduationDate)+"</td><td align='center'>"+this.info.stuRegisterState
+					+"</td><td align='center'>"+this.info.stuStudentState+"</td></tr>"
+				
+			txt4 += "<tr><td align='center'>"+this.info.stuGrade+"</td><td align='center'>"+this.info.stuGraduationExam+"</td><td align='center'>"+this.info.stuEarlyGraduation+"</td><td align='center'>"+this.info.stuSemester
+					+"</td><td align='center'>"+(this.major.majorName == null?"":this.major.majorName)+"</td><td align='center'>"+(this.majorDual == null?"":(this.majorDual.majorDualName==null?"":this.majorDaul.majorDaulName))
+					+"</td></tr>"
+		
+			txt5 += "<tr><td align='center'>"+(this.majorMinor == null?"":(this.majorMinor.majorMinorName==null?"":this.majorMinor.majorMinorName))
+					+"</td><td align='center'><button onclick='update_student("+this.info.usersId+")'>수정</button></td><td align='center'><button onclick='delete_student("+this.info.usersId+")'>삭제</button></td></tr>"
 			})
-			$("#infoTbody").html(txt);
-			$("#infoTbodyb").html(txtb);
+			$("#infoTbody1").html(txt1);
+			$("#infoTbody2").html(txt2);
+			$("#infoTbody3").html(txt3);
+			$("#infoTbody4").html(txt4);
+			$("#infoTbody5").html(txt5);
 			$("#infoStudent").show();	
 			$("#hr").show();
 			$("h1").show();
@@ -47,9 +63,6 @@ $(document).ready(function(){
 	$("h1").hide();
 	$("#selectStudent").hide();	
 	$("#infoStudent").hide();	
-	if(updateMessage != ''	){
-		
-	}
 	$("#searchStudent").on("click",function(){
 		if($("#usersName").val() == ''){
 			alert("검색어를 입력하세요");
@@ -63,7 +76,7 @@ $(document).ready(function(){
 			"data":"usersName="+$("#usersName").val(),
 			"success":function(result){
 				if( result == '' ){
-					alert("조회할 내용이 없음");
+					alert("조회할 내용이 없습니다");
 					$("#hr").hide();	
 					$("h1").hide();
 					$("#selectStudent").hide();	
@@ -79,7 +92,6 @@ $(document).ready(function(){
 				}
 		}
 		});//end of ajax
-			
 		}
 	})
 });//end of document
@@ -87,11 +99,26 @@ $(document).ready(function(){
 </head>
 <body>
 <h2>학생 조회</h2>
+<c:if test="${sessionScope.insertMessage != null}">
+		<script type="text/javascript">
+			alert("등록되었습니다");
+		</script>
+		<% session.removeAttribute("insertMessage"); %>
+</c:if>
+<c:if test="${sessionScope.updateMessage != null}">
+		<script type="text/javascript">
+			alert("수정되었습니다");
+		</script>
+		<% session.removeAttribute("updateMessage"); %>
+</c:if>
+<c:if test="${sessionScope.deleteMessage != null}">
+		<script type="text/javascript">
+			alert("삭제되었습니다");
+		</script>
+		<% session.removeAttribute("deleteMessage"); %>
+</c:if>
 <hr>
-	
 	검색할 이름 <input type="text" name="usersName" id="usersName"/><button id="searchStudent">조회</button><br>
-	
-	
 	<table id="selectStudent" border="1">
 		<thead>
 			<tr>
@@ -112,38 +139,57 @@ $(document).ready(function(){
 				<td align="center">사진</td>
 				<td align="center">번호</td>
 				<td align="center">이름</td>
+				<td align="center">영문 이름</td>
 				<td align="center">주민 번호</td>
 				<td align="center">이메일</td>
+			</tr>
+		</thead>
+		<tbody id="infoTbody1"></tbody>
+		
+		<thead>
+			<tr>
 				<td align="center">집 전화번호</td>
 				<td align="center">핸드폰 번호 </td>
 				<td align="center">국적</td>
 				<td align="center">현 거주지 주소</td>
 				<td align="center">본적지 주소</td>
 				<td align="center">인증가능 상태</td>
-				<td align="center">과정 구분</td>
-				<td align="center">병영 구분</td>
-				</tr>
-				</thead>
-		<tbody id="infoTbody"></tbody>
+			</tr>
+		</thead>
+		<tbody id="infoTbody2"></tbody>
 		
 		<thead>
 			<tr>
+				<td align="center">과정 구분</td>
+				<td align="center">병영 구분</td>
 				<td align="center">입학 일자</td>
 				<td align="center">졸업 일자</td>
 				<td align="center">학적 구분</td>
 				<td align="center">학생 구분</td>
+			</tr>
+		</thead>
+		<tbody id="infoTbody3"></tbody>
+		
+		<thead>
+			<tr>
 				<td align="center">학년</td>
 				<td align="center">졸업시험 패스 여부</td>
 				<td align="center">조기졸업 대상 여부</td>
 				<td align="center">학기</td>
 				<td align="center">소속 학과</td>
 				<td align="center">복수 전공</td>
+			</tr>
+		</thead>
+		<tbody id="infoTbody4"></tbody>
+			
+		<thead>
+			<tr>
 				<td align="center">부전공</td>
 				<td align="center">수정</td>
 				<td align="center">삭제</td>
 			</tr>
-		</thead>
-			<tbody id="infoTbodyb"></tbody>
+		</thead>	
+		<tbody id="infoTbody5"></tbody>
 	</table>
 	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
 </body>

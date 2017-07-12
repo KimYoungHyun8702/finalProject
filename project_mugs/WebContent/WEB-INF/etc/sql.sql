@@ -1,7 +1,7 @@
 /* 1.사용자 */
 CREATE TABLE USERS (
    USERS_ID VARCHAR2(20) NOT NULL, /* 사용자 ID */
-   USERS_PASSWORD VARCHAR2(20) NOT NULL, /* 비밀번호 */
+   USERS_PASSWORD VARCHAR2(100) NOT NULL, /* 비밀번호 */
    USERS_NAME VARCHAR2(20) NOT NULL, /* 이름 */
    USERS_ENG_NAME VARCHAR2(20) NOT NULL, /* 영문성명 */
    USERS_RRN VARCHAR2(20) NOT NULL, /* 주민번호 */
@@ -428,8 +428,7 @@ DROP SEQUENCE COLLEGE_ID_SEQ; /* 대학(학부) 테이블의 기본키에 대한
 DROP SEQUENCE COURSE_ID_SEQ; /* 수강 테이블의 기본키에 대한 시퀀스 삭제 */
 DROP SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀스 삭제 */
 DROP SEQUENCE CREDIT_ID_SEQ;/* 방 테이블의 기본키에 대한 시퀀스 삭제 */
-
-
+DROP SEQUENCE ROOM_ID_SEQ;/* 방 테이블의 기본키에 대한 시퀀스 생성 */
 /*1.사용자*/
 
 INSERT INTO	USERS VALUES ('1','1111','백진현','aaaa','111101-111111','abc@abc.abc','031-111-1111', '010-1111-1111','한국','경기도성남시','경기도 수원시',0,'c:/java');
@@ -764,5 +763,5 @@ insert into ROOM values('5-103', 5);
 insert into ROOM values('5-104', 5);
 insert into ROOM values('5-105', 5);
 
-
-
+		
+		

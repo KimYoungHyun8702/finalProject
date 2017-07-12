@@ -3,14 +3,18 @@ package com.mugs.controller.admin;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mugs.service.admin.CollegeService;
 import com.mugs.service.admin.SubjectService;
-import com.mugs.vo.Building;
+import com.mugs.vo.College;
+import com.mugs.vo.Room;
 import com.mugs.vo.Subject;
 
 @Controller
@@ -19,11 +23,13 @@ public class SubjectController {
 	
 	@Autowired
 	private SubjectService subjectService;
+	@Autowired
+	private CollegeService collegeService;
 	
 	@RequestMapping("selectSubjectTypeController")
 	public ModelAndView selectSubjectType(){
 		List<String> list = subjectService.selectSubjectType();
-		return new ModelAndView("contents/admin/subject/select_subject","list",list);
+		return new ModelAndView("admin/subject/select_subject.tiles","list",list);
 	}
 	
 	@RequestMapping("selectCollegeIdBySubjectTypeController")
@@ -58,7 +64,7 @@ public class SubjectController {
 	public ModelAndView selectForInsertSubject(){
 		Map<String, Object> map = subjectService.selectForInsertSubject();
 		ModelAndView view = new ModelAndView();
-		view.setViewName("contents/admin/subject/insert_subject");
+		view.setViewName("admin/subject/insert_subject.tiles");
 		view.addObject("building",map.get("building"));
 		view.addObject("room",map.get("room"));
 		view.addObject("college",map.get("college"));
@@ -66,8 +72,19 @@ public class SubjectController {
 		return view;
 	}
 	
+	@RequestMapping("selectForInsertSubjectByTypeController")
+	@ResponseBody
+	public List<College> selectForInsertSubjectByType(){
+		List<College> list = collegeService.selectCollegeList();
+		return list;
+	}
+	
 	@RequestMapping("insertSubjectController")
-	public String insertSubjectController(Subject subject){
+	public String insertSubjectController(Subject subject, HttpSession session){
+		session.setAttribute("insertMessage", "");
+		if(subject.getLectureId() == 0){
+			subject.setLectureId(null);
+		}
 		subjectService.insertSubject(subject);
 		return "redirect:/admin/selectSubjectTypeController.do";
 	}
@@ -76,20 +93,22 @@ public class SubjectController {
 	public ModelAndView selectSubjectInfoBySubjectIdForUpdate(int subjectId){
 		Map<String, Object> map = subjectService.selectSubjectInfoBySubjectIdForUpdate(subjectId);
 		ModelAndView view = new ModelAndView();
-		view.setViewName("contents/admin/subject/update_subject");
+		view.setViewName("admin/subject/update_subject.tiles");
 		view.addObject("building",map.get("building"));
 		view.addObject("subject",map.get("subject"));
 		return view;
 	}
 	
 	@RequestMapping("updateSubjectContorller")
-	public String updateSubject(Subject subject){
+	public String updateSubject(Subject subject, HttpSession session){
+		session.setAttribute("updateMessage", "");
 		subjectService.updateSubject(subject);
 		return "redirect:/admin/selectSubjectTypeController.do";
 	}
 	
 	@RequestMapping("deleteSubjectBySubjectIdController")
-	public String deleteSubject(int subjectId){
+	public String deleteSubject(int subjectId, HttpSession session){
+		session.setAttribute("deleteMessage", "");
 		subjectService.deleteSubject(subjectId);
 		return "redirect:/admin/selectSubjectTypeController.do";
 	}
@@ -112,9 +131,15 @@ public class SubjectController {
 	public ModelAndView selectSubjectInfoBySubjectIdForMinorUpdate(int subjectId){
 		Map<String, Object> map = subjectService.selectSubjectInfoBySubjectIdForMinorUpdate(subjectId);
 		ModelAndView view = new ModelAndView();
-		view.setViewName("contents/admin/subject/update_subject");
+		view.setViewName("admin/subject/update_subject.tiles");
 		view.addObject("building",map.get("building"));
 		view.addObject("subject",map.get("subject"));
 		return view;
+	}
+	
+	@RequestMapping("selectForOverlapController")
+	@ResponseBody
+	public List<Room> selectForOverlap(String subjectTime, String subjectSemester, int buildingId){
+		return subjectService.selectForOverlap(subjectTime, subjectSemester, buildingId);
 	}
 }

@@ -6,7 +6,7 @@ public class AcademicProbation implements Serializable {
 	private int probationId;
 	private int probationYear;
 	private String probationSemester;
-	private int probationCreditAverage;
+	private double probationCreditAverage;
 	private String stuId;
 
 	private int count;
@@ -14,8 +14,8 @@ public class AcademicProbation implements Serializable {
 	public AcademicProbation() {
 	}
 
-	public AcademicProbation(int probationId, int probationYear, String probationSemester, int probationCreditAverage,
-			String stuId, int count) {
+	public AcademicProbation(int probationId, int probationYear, String probationSemester,
+			double probationCreditAverage, String stuId, int count) {
 		this.probationId = probationId;
 		this.probationYear = probationYear;
 		this.probationSemester = probationSemester;
@@ -24,8 +24,8 @@ public class AcademicProbation implements Serializable {
 		this.count = count;
 	}
 
-	public AcademicProbation(int probationId, int probationYear, String probationSemester, int probationCreditAverage,
-			String stuId) {
+	public AcademicProbation(int probationId, int probationYear, String probationSemester,
+			double probationCreditAverage, String stuId) {
 		this.probationId = probationId;
 		this.probationYear = probationYear;
 		this.probationSemester = probationSemester;
@@ -57,11 +57,11 @@ public class AcademicProbation implements Serializable {
 		this.probationSemester = probationSemester;
 	}
 
-	public int getProbationCreditAverage() {
+	public double getProbationCreditAverage() {
 		return probationCreditAverage;
 	}
 
-	public void setProbationCreditAverage(int probationCreditAverage) {
+	public void setProbationCreditAverage(double probationCreditAverage) {
 		this.probationCreditAverage = probationCreditAverage;
 	}
 
@@ -86,7 +86,9 @@ public class AcademicProbation implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + count;
-		result = prime * result + probationCreditAverage;
+		long temp;
+		temp = Double.doubleToLongBits(probationCreditAverage);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + probationId;
 		result = prime * result + ((probationSemester == null) ? 0 : probationSemester.hashCode());
 		result = prime * result + probationYear;
@@ -105,7 +107,7 @@ public class AcademicProbation implements Serializable {
 		AcademicProbation other = (AcademicProbation) obj;
 		if (count != other.count)
 			return false;
-		if (probationCreditAverage != other.probationCreditAverage)
+		if (Double.doubleToLongBits(probationCreditAverage) != Double.doubleToLongBits(other.probationCreditAverage))
 			return false;
 		if (probationId != other.probationId)
 			return false;

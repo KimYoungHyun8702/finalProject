@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mugs.dao.StudentDao;
 import com.mugs.vo.Student;
+import com.mugs.vo.Users;
 
 @Repository
 public class StudentDaoImpl implements StudentDao{
@@ -44,10 +45,11 @@ public class StudentDaoImpl implements StudentDao{
 	public List<Student> selectStudentList() {
 		return session.selectList(makeSql("selectStudentList"));
 	}
+	//병문 daoImpl
 
-	@Override //병문이꼬
-	public Student selectStudentMajorName() {
-		return session.selectOne(makeSql("selectStudentMajorName"));
+	@Override
+	public Student selectStudentAllInfoByJoin(Student stu) {
+		return session.selectOne(makeSql("selectStudentAllInfoByJoin"),stu);
 	}
 
 	@Override
@@ -75,5 +77,9 @@ public class StudentDaoImpl implements StudentDao{
 		return session.selectOne(makeSql("selectStudentInfoByJoin"),stuId);
 	}
 	
+	@Override
+	public String selectStuGraduationExam(String stuId) {
+		return session.selectOne(makeSql("selectStuGraduationExam"),stuId);
+	}
 	
 }

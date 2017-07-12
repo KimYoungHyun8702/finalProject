@@ -43,4 +43,12 @@ public interface UsersDao {
 	 * @return
 	 */
 	List<Users> selectUsersList();
+	
+	/**
+	 * 학생의 인적사항을 수정하는 메소드( id, 이름 등 관리자만 변경할 수 있는 부분 제외)
+	 * @author 병문
+	 * @return 변경된 행의 수
+	 */
+	int updateStudentHumanInfo(Users user);
+
 }

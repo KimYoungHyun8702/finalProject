@@ -14,7 +14,7 @@ public interface ProfessorService {
 	 * @param professor
 	 * @return
 	 */
-	int insertProfessor(Users users, Professor professor);
+	int insertProfessor(Users users, Professor professor, String role);
 	
 	/**
 	 * 교수 수정 메소드

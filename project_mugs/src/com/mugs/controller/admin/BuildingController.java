@@ -23,25 +23,25 @@ public class BuildingController {
 	@ResponseBody
 	public ModelAndView selectBuildingList(){
 		List<Building> list = buildingService.selectBuildingList();
-		return new ModelAndView("contents/admin/building/select_building","list",list);
+		return new ModelAndView("admin/building/select_building.tiles","list",list);
 	}
 	
 	@RequestMapping("/selectBuildingByIdController")
 	public ModelAndView selectBuildingById(int buildingId){
 		Building building = buildingService.selectBuildingById(buildingId);
-		return new ModelAndView("contents/admin/building/select_building_info","building",building);
+		return new ModelAndView("admin/building/select_building_info.tiles","building",building);
 	}
 	
 	@RequestMapping("/selectBuildingNameController")
 	public ModelAndView selectBuildingNameController(){
 		List<Building> list = buildingService.selectBuildingList();
-		return new ModelAndView("contents/admin/room/insert_room","list",list);
+		return new ModelAndView("admin/room/insert_room.tiles","list",list);
 	}
 	
 	@RequestMapping("/selectBuildingNameForUpdateController")
 	public ModelAndView selectBuildingNameForUpdateController(){
 		List<Building> list = buildingService.selectBuildingList();
-		return new ModelAndView("contents/admin/room/update_room","list",list);
+		return new ModelAndView("admin/room/update_room.tiles","list",list);
 	}
 	
 	@RequestMapping("/insertBuildingController")

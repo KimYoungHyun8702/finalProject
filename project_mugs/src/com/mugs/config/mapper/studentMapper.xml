@@ -38,6 +38,7 @@
 		<result column="major_name" property="majorName"/>
 		<result column="major_name" property="majorDualName"/>
 		<result column="major_name" property="majorMinorName"/>	
+
 	</resultMap>
 
 	<resultMap id="student-user-resultmap" type="student" extends="student-basic-resultmap">
@@ -113,21 +114,44 @@
 		<include refid="select-student"/>
 	</select>
 	
+	<!-- 병문 : studentMapper -->
 	<!-- 병문 : 학생- 학과 join mapper -->
-	
-	<resultMap type="student" id="student-major-resultmap" extends="student-basic-resultmap">
-		<!-- 학생:학과 == 1:1 참조관계-->
-		<!-- 학생의 주전공 -->	
-		<collection ofType="major" property="list" column="major_id">
-		<result column="major_name" property="majorName"/>		
-		</collection>
+	<resultMap type="student" id="student-major-resultmap" extends="student-basic-resultmap">		
 		
-	 	
+      	<result column="users_name" property="usersName" />
+      	<result column="users_eng_name" property="usersEngName" />
+      	<result column="users_rrn" property="usersRRN" />
+      	<result column="users_email" property="usersEmail" />
+      	<result column="users_phone_num" property="usersPhoneNum" />
+      	<result column="users_cell_num" property="usersCellNum" />
+      	<result column="users_national" property="usersNational" />
+      	<result column="users_current_addr" property="usersCurrentAddr" />
+      	<result column="users_born_addr" property="usersBornAddr" />
+      	<result column="users_enable" property="usersEnable" />
+      	<result column="users_photo" property="usersPhoto" />
+      	
+		<!-- 1:1 참조 , 결과값을 setMainMajor한다. -->
+		<!-- major_name 컬럼의 값을 javaType인 major 객체에 setMajorName한다.-->
+		<!--학생의 주전공-->
+		<association javaType="major" property="mainMajor">
+			<result column="mainMajorName" property="majorName"/>
+		</association>
+		
+		<!--학생의 복수전공 -->		
+		<association javaType="major" property="multiMajor">
+			<result column="subMajorName" property="majorName"/> 				
+		</association>
+		
+		<!--학생의 부전공-->
+		<association javaType="major" property="subMajor">
+		<result column="multiMajorName" property="majorName"/>
+		</association>
+			
 	</resultMap>
 	
-	<select id="selectStudentMajorName" resultMap="student-major-resultmap">
-		SELECT	   	s.stu_id,
-			       	s.stu_course,
+	<select id="selectStudentAllInfoByJoin" resultMap="student-major-resultmap" parameterType="student">
+		SELECT		s.stu_id,
+					s.stu_course,
 			   	   	s.stu_army,
 			    	s.stu_admission_date,
 			   		s.stu_graduation_date,
@@ -137,13 +161,44 @@
 				   	s.stu_graduation_exam,
 				   	s.stu_early_graduation,
 				   	s.stu_semester,
-				   	m.major_id,
-				   	m.major_name
-		FROM 		student s, major m
-		WHERE 		s.major_id = m.major_id(+)
+				   	s.major_id,
+				   	s.major_dual_id,
+				   	s.major_minor_id,
+				   	u.users_name,
+			   		u.users_eng_name,
+			   		u.users_rrn,
+			  		u.users_email,
+			   		u.users_phone_num,
+		       		u.users_cell_num,
+			   		u.users_national,
+			   		u.users_current_addr,
+			   		u.users_born_addr,
+			   		u.users_enable,
+			   		u.users_photo,
+				   	main.major_name mainMajorName,
+				   	sub.major_name subMajorName,
+				   	multi.major_name multiMajorName 				   	
+		FROM 		student s, 
+					major main , 
+					major sub , 
+					major multi , 
+					users u					
+		WHERE		s.major_id 		 = main.major_id
+		AND			s.major_dual_id  = multi.major_id(+)
+		AND			s.major_minor_id = sub.major_id(+)
+		AND			u.users_id = s.stu_id 
+		AND			u.users_id = #{stuId} 	
 	</select>
 
+	<select id="selectStuGraduationExam" resultType="string" parameterType="string">
+	SELECT 	stu_graduation_exam
+	FROM 	student
+	WHERE 	stu_id = #{stuId}
+	</select>
+	<!-- End BM -->
+		
 	<select id="selectStudentInfoByJoin" resultMap="student-user-resultmap" parameterType="String">
+
 	SELECT	   s.stu_id,
 		  	   s.stu_course,
 		  	   s.stu_army,
