@@ -126,9 +126,10 @@
 		WHERE subject_id= #{value}
 	</select>
 
-	<select id="selectSubjectType" resultType="string">
-		select distinct subject_type
-		from subject
+	<!-- By Baek.J.H -->
+	<select id="selectSubjectTypeList" resultType="string">
+		SELECT distinct subject_type
+		FROM subject
 	</select>
 	
 	<select id="selectCollegeIdBySubjectType" resultMap="subject-college-resultmap" parameterType="String">
@@ -251,5 +252,10 @@
 	<select id="selectSubjectInfoByJoin" resultMap="subject-professor-resultmap" >
 		
 	</select>
+	
+	<select id="selectSubjectType" resultType="string">
+      select distinct subject_type
+      from subject
+   </select>
 
 </mapper>

@@ -16,12 +16,22 @@
 	<mvc:view-controller path="/evaluationAnswerRegisteration.do" view-name="student/evaluationAnswer/evaluationAnswerRegisteration.tiles"/>
 	<mvc:view-controller path="/evaluationAnswerView.do" view-name="student/evaluationAnswer/evaluationAnswerView.tiles"/>
 	<mvc:view-controller path="/myTimeTableViewBeforeCategoryTab.do" view-name="student/timeTable/myTimeTableViewBeforeCategoryTab.tiles"/>
+
+	<mvc:view-controller path="/gradeInquiry.do" view-name="view/contents/student/gradeInquiry" />
 	
+	<!-- 백진현 -->
+	<mvc:view-controller path="/course.do" view-name="student/course.tiles"/>
+	<mvc:view-controller path="/graph.do" view-name="student/graph.tiles"/>
+	<mvc:view-controller path="/leaveReturnApplication.do" view-name="student/leaveReturnApplication.tiles"/>
+
+		
+
+
 	<!-- 김진광 - 성적조회 전체학기 성적조회. -->
 	<mvc:view-controller path="/student/gradeInquiry.do" view-name="student/credit/gradeInquiry.tiles" />
 	<mvc:view-controller path="/student/academicProbation.do" view-name="student/credit/academicProbationInquiry.tiles"/>
 
 		
-		<!-- 병문 view controller-->
+	<!-- 병문 view controller-->
 	<mvc:view-controller path="/student/graduationInfo.do" view-name="student/graduationInfo/graduationInfo.tiles"/>
 </beans>

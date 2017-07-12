@@ -67,13 +67,45 @@ public interface CourseDao {
 	 */
 	List<Course> selectMyCourseListByJoin(String loginId, int nowYear, String nowSemester);
 	
+
+	/**
+	 * 해당 연도, 학기에 해당하는 과목을 듣는 학생의 숫자를 구하는 메소드
+	 * 
+	 * @param semester
+	 * @param nowYear
+	 * @param subjectId
+	 * @return
+	 */
+	int selectStudentCount(String semester, int nowYear, int subjectId);
+
 	/** 영현이꼬
 	 * 	4개의 매개변수를 받은 ID값들과 일치하는 수강 Data 조회.
 	 * @param courseYear,courseSemester,subjectId
 	 * @return Course
 	 */
 	List<Course> selectCourseByThreeId(int courseYear, String courseSemester, int subjectId);
+
+	/**
+	 * 해당 연도, 학기에 해당하는 학생의 과목 정보를 구하는 메소드
+	 * 
+	 * @param stuId
+	 * @param nowYear
+	 * @param semester
+	 * @return
+	 */
+	List<Course> selectMyCourseList(String stuId, int nowYear, String semester);
 	
+	/**
+	 * 해당연도, 학기에 해당하는 학생의 과목을 삭제하는 메소드
+	 * 
+	 * @param stuId
+	 * @param nowYear
+	 * @param semester
+	 * @param subjectId
+	 * @return
+	 */
+	int deleteCourse(String stuId, int nowYear, String semester, int subjectId);
+
 	/** 영현이꼬
 	 * 	2개의 매개변수를 받은 ID값들과 일치하는 학생의수강 list 조회.
 	 * @param courseYear,courseSemester,subjectId

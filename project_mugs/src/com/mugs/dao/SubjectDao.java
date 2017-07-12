@@ -50,15 +50,29 @@ public interface SubjectDao {
 	/**
 	 * SubjectType 전체 조회 메소드. 
 	 * 
+	 * By Beak.J.H
+	 * 
+	 * @return
+	 */
+	List<String> selectSubjectTypeList();
+	
+	
+	
+	/**
+	 * SubjectType 전체 조회 메소드.
+	 * 
 	 * @return
 	 */
 	List<String> subjectTypeList();
-		
+	
+	
+	
 	/**
 	 * 매개변수로 subjectType를 받아 해당하는 college 조회 메소드
 	 * @param subjectType
 	 * @return
 	 */
+	
 	List<Subject> selectCollegeIdBySubjectType(String subjectType);
 	
 	/**
