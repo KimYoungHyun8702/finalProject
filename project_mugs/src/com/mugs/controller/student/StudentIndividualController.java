@@ -40,7 +40,8 @@ public class StudentIndividualController {
 	private PasswordEncoder passwordEncoder;	
 	//이수구분 선택 시 해당 과목들의 id를 넘긴다.
 	List<Integer> subIdList = new ArrayList<Integer>();
-	
+	String fileName= "";
+
 	@RequestMapping("moveUpdatePwd")
 	public ModelAndView moveUpdatePwd(){
 		Users stu = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();		
@@ -56,6 +57,8 @@ public class StudentIndividualController {
 		//요청한(로그인한) 사용자의 정보 조회
 		SecurityContext context = SecurityContextHolder.getContext();
 		Authentication authentication = context.getAuthentication();
+		
+		System.out.println(passwordEncoder.encode("1234"));
 		
 		//패스워드 체크				
 		if(!passwordEncoder.matches(oldUserPassword, ((Users)authentication.getPrincipal()).getUsersPassword())){ 
@@ -100,14 +103,15 @@ public class StudentIndividualController {
 		Users updateUser = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
 		if(upImage!=null && !upImage.isEmpty()){//Image로 넘어온게 없거나, 넘어왔는데 파일이 없으면
-			String fileName= upImage.getOriginalFilename();		
+			fileName= upImage.getOriginalFilename();
 			File dest = new File(req.getServletContext().getRealPath("/resource/up_image"),fileName);			
 			upImage.transferTo(dest);
 			updateUser.setUsersPhoto(fileName);
 			map.addAttribute("fileName",fileName);			
 		}else{
-			String fileName = upImage.getOriginalFilename();
-			fileName = null;
+			fileName="1.jpg";
+			File dest = new File(req.getServletContext().getRealPath("/resource/up_image"),fileName);
+			upImage.transferTo(dest);
 			updateUser.setUsersPhoto(fileName);
 			map.addAttribute("fileName", fileName);
 		}
@@ -116,12 +120,12 @@ public class StudentIndividualController {
 		updateUser.setUsersPhoneNum(usersPhoneNum);
 		updateUser.setUsersCellNum(usersCellNum);
 		updateUser.setUsersCurrentAddr(usersCurrentAddr);
-		updateUser.setUsersBornAddr(usersBornAddr);
-				
+		updateUser.setUsersBornAddr(usersBornAddr);				
 		service.updateStudentHumanInfo(updateUser);		
 		map.addAttribute("updateStu", service.findStudentInfoById(updateUser.getUsersId()));
 		return new ModelAndView ("student/IndividualInfo/stuInfo.tiles","reFormDateStu",service.findStudentInfoById(updateUser.getUsersId()));
 	}  
+	
 	
 	@RequestMapping("getStudentInfoById")
 	@ResponseBody
@@ -152,8 +156,7 @@ public class StudentIndividualController {
 					
 		//과목 리스트에는 전공 중복제거한 구문이 없기 때문에 StudentIndividualServiceImpl에서 따로 이수구분 추가함.
 		subjectAndsubTypeList.add(subjectList);	
-		subjectAndsubTypeList.add(subjectList.get(3));
-		
+		subjectAndsubTypeList.add(subjectList.get(3));		
 		return subjectAndsubTypeList;
 	}
 	
