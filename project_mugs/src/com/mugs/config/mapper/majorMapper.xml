@@ -1,84 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mugs.config.mapper.majorMapper">
-	
+   
 <resultMap type="major" id="major-basic-resultmap">
-		<id column="major_id" property="majorId"/>
-		<result column="major_name" property="majorName"/>
-		<result column="college_id" property="collegeId"/>
+      <id column="major_id" property="majorId"/>
+      <result column="major_name" property="majorName"/>
+      <result column="college_id" property="collegeId"/>
 </resultMap>
 
 <resultMap id="major-graduationcredit-resultmap" type="major" extends="major-basic-resultmap">
-		<!-- 
-			collection 태그 :List
-			ofType : List<Employee> - collection에 담을 VO객체의 타입
-			property : List<Employee> employeeList - Attribute 이름
-		 -->
-		<collection ofType="GraduationCredit" property="graduationCreditList">
-			<result column="major_id" property="majorId" />
-			<result column="graduation_credit_year" property="graduationCreditYear" />
-		<!-- 	<result column="graduation_credit_score" property="graduationCreditScore" /> -->
-		</collection>
-	</resultMap>
+      <!-- 
+         collection 태그 :List
+         ofType : List<Employee> - collection에 담을 VO객체의 타입
+         property : List<Employee> employeeList - Attribute 이름
+       -->
+      <collection ofType="GraduationCredit" property="graduationCreditList">
+         <result column="major_id" property="majorId" />
+         <result column="graduation_credit_year" property="graduationCreditYear" />
+         <result column="grad_vital_edu_credit" property="gradVitalEduCredit" />
+         <result column="grad_select_edu_credit" property="gradSelectEduCredit" />
+         <result column="grad_vital_major_credit" property="gradVitalMajorCredit" />
+         <result column="grad_select_major_credit" property="gradSelectMajorCredit" />
+      </collection>
+   </resultMap>
 
 <sql id="select-major">
-	SELECT		major_id,
-				major_name,
-				college_id
-	FROM 		major					
+   SELECT      major_id,
+            major_name,
+            college_id
+   FROM       major               
 </sql>
 
 <!-- insert -->
 <insert id="insertMajor" parameterType="major">
-	<selectKey resultType="int" keyProperty="majorId" order="BEFORE">
-		SELECT MAJOR_ID_SEQ.nextval FROM dual
-	</selectKey>
-	INSERT INTO major VALUES(#{majorId}, #{majorName}, #{collegeId})
+   <selectKey resultType="int" keyProperty="majorId" order="BEFORE">
+      SELECT MAJOR_ID_SEQ.nextval FROM dual
+   </selectKey>
+   INSERT INTO major VALUES(#{majorId}, #{majorName}, #{collegeId})
 </insert>
 
 <!-- update -->
 <update id="updateMajorById" parameterType="major">
-	UPDATE	major
-	SET		major_name=#{majorName},
-			college_id=#{collegeId}
-	WHERE	major_id=#{majorId}
+   UPDATE   major
+   SET      major_name=#{majorName},
+         college_id=#{collegeId}
+   WHERE   major_id=#{majorId}
 </update>
 
 <!-- delete -->
-	<delete id="deleteMajor" parameterType="int">
-		DELETE FROM major WHERE major_id=#{value}
-	</delete>
+   <delete id="deleteMajor" parameterType="int">
+      DELETE FROM major WHERE major_id=#{value}
+   </delete>
 
 <!-- select -->
 <select id="selectMajorList" resultMap="major-basic-resultmap">
-	<include refid="select-major"/>
+   <include refid="select-major"/>
+   ORDER by major_name
 </select>
 
 <select id="selectMajorById" resultMap="major-basic-resultmap" parameterType="int">
-	<include refid="select-major"/>
-	WHERE major_id=#{value}
+   <include refid="select-major"/>
+   WHERE major_id=#{value}
 </select>
 
 <select id="selectMajorByCollegeId" resultMap="major-basic-resultmap" parameterType="int">
-	<include refid="select-major"/>
-	where college_id=#{value}
+   <include refid="select-major"/>
+   where college_id=#{value}
 </select>
-
-
-<!-- 병문 majorMapper -->
-<select id="selectMajorListByMajorId" resultMap="major-basic-resultmap" parameterType="int">
-	SELECT		major_id ,
-				major_name,
-				college_id								
-	FROM 		major	
-	WHERE		college_id=#{collegeId}
-</select>
-<!-- end BM -->
 
 <select id="selectMajorGraduationCreditByMajorId" resultMap="major-graduationcredit-resultmap" parameterType="int">
-	SELECT m.major_id, m.major_name, m.college_id, g.major_id, g.graduation_credit_year, g.graduation_credit_score
-	FROM major m, graduation_credit g
-	WHERE m.major_id = g.major_id AND m.major_id = #{value}
+   SELECT m.major_id, m.major_name, m.college_id, g.major_id, g.graduation_credit_year, g.grad_vital_edu_credit, g.grad_select_edu_credit, g.grad_vital_major_credit, g.grad_select_major_credit
+   FROM major m, graduation_credit g
+   WHERE m.major_id = g.major_id AND m.major_id = #{value}
 </select>
 
 </mapper>

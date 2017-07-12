@@ -49,11 +49,16 @@ public class UsersDaoImpl implements UsersDao {
 	private String makeSqlId(String id) {
 		return "com.mugs.config.mapper.usersMapper." + id;
 	}
+	
 	//병문 DaoImpl
-
 	@Override
 	public int updateStudentHumanInfo(Users user) {
 		return session.update(makeSqlId("updateStudentHumanInfo"),user);
 	}
-	
+
+	@Override
+	public int updateStudentPassword(Users user) {
+		return session.update(makeSqlId("updateStudentPassword"), user);
+	}
+	//End BM
 }

@@ -196,7 +196,7 @@
 	<!-- End BM -->
 	
 		
-	<select id="selectStudentInfoByJoin" resultMap="student-user-resultmap">
+	<select id="selectStudentInfoByJoin" resultMap="student-user-resultmap" parameterType="string">
 	SELECT	   s.stu_id,
 		  	   s.stu_course,
 		  	   s.stu_army,

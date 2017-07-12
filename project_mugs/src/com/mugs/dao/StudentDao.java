@@ -59,4 +59,5 @@ public interface StudentDao {
 	 * @author 병문
 	 */
 	String selectStuGraduationExam(String stuId);
+	
 }

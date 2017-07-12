@@ -57,5 +57,4 @@ public class StudentDaoImpl implements StudentDao{
 		return session.selectOne(makeSql("selectStuGraduationExam"),stuId);
 	}
 
-
 }

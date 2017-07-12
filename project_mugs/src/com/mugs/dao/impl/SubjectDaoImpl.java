@@ -57,19 +57,6 @@ public class SubjectDaoImpl implements SubjectDao {
 		return session.selectList(makeSqlId("selectSubjectType"));
 	}
 
-	//병문 DaoImpl
-	@Override
-	public List<Subject> selectSubjectTypeByMajorId(int majorId) {
-		return session.selectList(makeSqlId("selectSubjectTypeByMajorId"),majorId);
-	}
-	
-	@Override
-	public List<Subject> selectSubjectBySubjectTypeAndMajorId(List<Object> typeAndMajorId) {
-		return session.selectList(makeSqlId("selectSubjectBySubjectTypeAndMajorId"),typeAndMajorId);
-	}
-	// End BM
-
-
 	@Override
 	public List<Subject> selectCollegeIdBySubjectType(String subjectType) {
 		return session.selectList(makeSqlId("selectCollegeIdBySubjectType"),subjectType);
@@ -119,5 +106,24 @@ public class SubjectDaoImpl implements SubjectDao {
 	public Subject selectSubjectInfoBySubjectIdForMinorUpdate(int subjectId) {
 		return session.selectOne(makeSqlId("selectSubjectInfoBySubjectIdForMinorUpdate"),subjectId);
 	}
+	
+	//병문 DaoImpl
+	@Override
+	public List<Subject> selectSubjectTypeByMajorId(int majorId) {
+		return session.selectList(makeSqlId("selectSubjectTypeByMajorId"),majorId);
+	}
+	
+	@Override
+	public List<Subject> selectSubjectBySubjectTypeAndMajorId(List<Object> typeAndMajorId) {
+		return session.selectList(makeSqlId("selectSubjectBySubjectTypeAndMajorId"),typeAndMajorId);
+	}
+	
+	@Override
+	public List<Subject> selectSubjectListByMajorIdForAllTime(int majorId) {
+		return session.selectList(makeSqlId("selectSubjectListByMajorIdForAllTime"), majorId);
+	}
+	// End BM
+
+
 	
 }

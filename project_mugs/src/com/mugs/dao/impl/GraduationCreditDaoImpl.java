@@ -56,7 +56,7 @@ public class GraduationCreditDaoImpl implements GraduationCreditDao{
 	}
 
 	@Override
-	public GraduationCredit selectGraduationCreditByMajorIdAndUsersId(int majorId, int year, String usersId) {
+	public GraduationCredit selectGraduationCreditByMajorIdAndUsersId(int majorId, String year, String usersId) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("majorId", majorId);
 		map.put("year", year);

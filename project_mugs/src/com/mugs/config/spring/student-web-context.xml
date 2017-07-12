@@ -23,6 +23,5 @@
 
 		
 		<!-- 병문 view controller-->
-	<mvc:view-controller path="/teststudentInfo.do" view-name="student/test.tiles"/>	
-	<mvc:view-controller path="/graduationInfo.do" view-name="contents/student/graduationInfo/graduationInfo"/>
+	<mvc:view-controller path="/student/graduationInfo.do" view-name="student/graduationInfo/graduationInfo.tiles"/>
 </beans>

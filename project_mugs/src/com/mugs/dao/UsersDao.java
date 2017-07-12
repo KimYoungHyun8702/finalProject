@@ -50,5 +50,12 @@ public interface UsersDao {
 	 * @return 변경된 행의 수
 	 */
 	int updateStudentHumanInfo(Users user);
+	
+	/**
+	 * 학생의 비밀번호를 변경하는 메소드
+	 * @param usersPassword
+	 * @return 변경된 행의 수
+	 */
+	int updateStudentPassword(Users user);
 
 }

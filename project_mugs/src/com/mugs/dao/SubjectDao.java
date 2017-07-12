@@ -53,23 +53,7 @@ public interface SubjectDao {
 	 * @return
 	 */
 	List<String> subjectTypeList();
-	
-	/**
-	 * 전공 id로 이수구분 확인
-	 * @return 이수구분 리스트
-	 * @param 해당 전공 id
-	 * @author 병문
-	 */
-	List<Subject> selectSubjectTypeByMajorId(int majorId);
-	
-	/**
-	 * 이수구분별 과목 리스트를 select하는 메소드
-	 * @param subjectType, majorId
-	 * @return 과목 리스트들
-	 * @author 병문
-	 */
-	List<Subject> selectSubjectBySubjectTypeAndMajorId(List<Object> typeAndMajorId);
-	
+		
 	/**
 	 * 매개변수로 subjectType를 받아 해당하는 college 조회 메소드
 	 * @param subjectType
@@ -126,4 +110,29 @@ public interface SubjectDao {
 	 * @return
 	 */
 	Subject selectSubjectInfoBySubjectIdForMinorUpdate(int subjectId);
+	
+	/**
+	 * 전공 id로 이수구분 확인
+	 * @return 이수구분 리스트
+	 * @param 해당 전공 id
+	 * @author 병문
+	 */
+	List<Subject> selectSubjectTypeByMajorId(int majorId);
+	
+	/**
+	 * 이수구분별 과목 리스트를 select하는 메소드
+	 * @param subjectType, majorId
+	 * @return 과목 리스트들
+	 * @author 병문
+	 */
+	List<Subject> selectSubjectBySubjectTypeAndMajorId(List<Object> typeAndMajorId);
+	
+	/**
+	 * 학과 id로 과목 리스트를 select하는 메소드
+	 * @param majorId
+	 * @return 과목 리스트들
+	 * @author 병문
+	 */
+	List<Subject> selectSubjectListByMajorIdForAllTime(int majorId);
+	
 }

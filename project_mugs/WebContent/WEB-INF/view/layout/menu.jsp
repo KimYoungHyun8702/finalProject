@@ -29,7 +29,10 @@
 <a href="${initParam.rootPath }/student/subjectType.do">수강신청</a><br>
 <a href="${initParam.rootPath }/student/gradeInquiry.do">성적 조회 -딘강</a><br>
 <a href="${initParam.rootPath }/student/currentGradeInquiry.do">당학기 성적조회 -딘강</a><br>
-<a href="${initParam.rootPath }/student/academicProbation.do">학사경고내역 조회-딘강</a>
+<a href="${initParam.rootPath }/student/academicProbation.do">학사경고내역 조회-딘강</a><br>
+<a href="${initParam.rootPath }/student/getStudentInfoById.do">학생정보페이지로 이동</a><br>
+<a href="${initParam.rootPath }/student/getAllTimeTable.do">강의시간표 조회</a><br>
+<a href="${initParam.rootPath }/student/graduationInfo.do">졸업정보 조회</a>
 </sec:authorize>
 
 <%--교수 메뉴--%>

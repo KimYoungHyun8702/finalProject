@@ -57,5 +57,5 @@ public interface GraduationCreditDao {
 	 * @return 졸업기준학점
 	 * @author 병문
 	 */
-	GraduationCredit selectGraduationCreditByMajorIdAndUsersId(int majorId, int year, String usersId);
+	GraduationCredit selectGraduationCreditByMajorIdAndUsersId(int majorId, String year, String usersId);
 }
