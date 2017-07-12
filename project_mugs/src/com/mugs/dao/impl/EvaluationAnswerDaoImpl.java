@@ -52,7 +52,7 @@ public class EvaluationAnswerDaoImpl implements EvaluationAnswerDao{
 		params.put("loginId", loginId);
 		params.put("nowYear", nowYear);
 		params.put("nowSemester", nowSemester);
-		System.out.printf("로그인아이디-%s, 년도:%d, 학기:%s%n", loginId, nowYear, nowSemester);
+	
 		return session.selectList(makeSql("selectEvaluationAnswerValueList"), params);
 	}
 
@@ -72,28 +72,20 @@ public class EvaluationAnswerDaoImpl implements EvaluationAnswerDao{
 		params.put("nowSemester", nowSemester);
 		params.put("loginId", loginId);
 		params.put("subjectId", subjectId);
-		System.out.println(nowYear);
-		System.out.println(nowSemester);
-		System.out.println(loginId);
-		System.out.println(subjectId);
+	
 	    session.update(makeSql("updateEvaluationAnswerState"), params);
-		System.out.println("업데이트확인");
+	
 		ArrayList<Object> list = new ArrayList<>();
 		list.add(nowYear);
 		list.add(nowSemester);
 		list.add(loginId);
 		list.add(subjectId);
-		System.out.println("=================");
-		System.out.println(list.get(0));
-		System.out.println(list.get(1));
-		System.out.println(list.get(2));
-		System.out.println(list.get(3));
+	
 		return list;
 	}
-
 	@Override
 	public List<EvaluationAnswer> selectEvaluationAnswerValue(int nYear, String nSemester, String nowId, int subjctId) {
-		System.out.println("!!매개변수확인 : " + nowId);
+		
 		HashMap params = new HashMap();
 		params.put("nowYear", nYear);
 		params.put("nowSemester", nSemester);
@@ -101,29 +93,5 @@ public class EvaluationAnswerDaoImpl implements EvaluationAnswerDao{
 		params.put("subejectId", subjctId);
 	    return session.selectOne(makeSql("selectEvaluationAnswerValue"), params);
 	}
-
-	/*@Override
-	public int insertEvaluationAnswerValue(int evaluationTaskPoint, int evaluationExamPoint, int evaluationReadyPoint, 
-										   int evaluationPassionPoint, int evaluationQuestionPoint ,int nowYear, 
-										   String nowSemester, String loginId, String subjectId, String proId) {
-		HashMap params = new HashMap();
-		params.put("evaluationTaskPoint", evaluationTaskPoint);
-		params.put("evaluationExamPoint", evaluationExamPoint);
-		params.put("evaluationReadyPoint", evaluationReadyPoint);
-		params.put("evaluationPassionPoint", evaluationPassionPoint);
-		params.put("evaluationQuestionPoint", evaluationQuestionPoint);
-		params.put("nowYear", nowYear);
-		params.put("nowYear", nowYear);
-		params.put("nowSemester", nowSemester);
-		params.put("loginId", loginId);
-		params.put("subjectId", subjectId);
-		params.put("proId", proId);
-		
-		return session.insert(makeSql("insertEvaluationAnswerValue"), params);
-		
-	}*/
-	
-	
-	
 
 }

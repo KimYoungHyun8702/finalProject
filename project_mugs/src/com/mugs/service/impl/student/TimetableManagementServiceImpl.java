@@ -28,7 +28,19 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
 		//ArrayList<Object> list = new ArrayList();
 		//ArrayList<Object> ygList = new ArrayList();
 		Date date = new Date();
-		String nowSemester = academicCalendarDaoImpl.selectCalendarName(date);
+		String nowSemester ="";
+		List<String> semesterList= academicCalendarDaoImpl.selectCalendarName(date);
+	
+	
+	
+		for(int i = 0; i < semesterList.size(); i++) {
+			if(semesterList.get(i).contains("학기") && semesterList.get(i).length() < 5) {
+				nowSemester = semesterList.get(i);
+					
+			}
+		}
+		
+		
 		int nowYear = date.getYear() + 1900;
 		//HashMap yAndG = new HashMap();
 		String firstYoYil = "";
@@ -48,8 +60,7 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
 
 		// daoImpl메소드 호출 -> 매퍼에서 써준 쿼리문을 실행해서 원하는 값을 갖게되는 메소드.(원하는 값 : 내 시간표정보)
 		List<Course> timeTableResult = courseDaoImpl.selectMyTimeTableByJoin(loginId, nowYear, nowSemester);
-		System.out.println(timeTableResult);
-		System.out.println(timeTableResult.get(0).getProfessor().getUsersName());
+	
 		for (int i = 0; i < timeTableResult.size(); i++) {
 
 			String yAndS = timeTableResult.get(i).getSubject().getSubjectTime();
@@ -91,16 +102,6 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
 			timeTableResult.get(i).getSubject().setYoYil2(secondYoYil);
 			timeTableResult.get(i).getSubject().setGyoShi1(firstGyoshi);
 			timeTableResult.get(i).getSubject().setGyoShi2(secondGyoshi);
-			
-			System.out.println("첫번째 요일 :" +timeTableResult.get(i).getSubject().getYoYil1());
-			System.out.println("두번째 요일 :" +timeTableResult.get(i).getSubject().getYoYil2());
-			System.out.println("첫번째 교시 :" +timeTableResult.get(i).getSubject().getGyoShi1());
-			System.out.println("두번째 교시 :" +timeTableResult.get(i).getSubject().getGyoShi2());
-			
-			//firstYG = firstYoil + firstGyoshi;
-			//secondYG = secondYoil + thirdGyoshi;
-			//System.out.println("각 인덱스에 해당하는 firstYG가 뭔데 : " + firstYG);
-			//System.out.println("각 인덱스에 해당하는 secondYG가 뭔데 : " + secondYG);
 	    }
 		return timeTableResult;
 	}

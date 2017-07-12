@@ -2,6 +2,7 @@ package com.mugs.service.impl.student;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,11 @@ import com.mugs.dao.AcademicCalendarDao;
 import com.mugs.dao.CourseDao;
 import com.mugs.dao.EvaluationAnswerDao;
 import com.mugs.dao.EvaluationDao;
+import com.mugs.dao.StudentDao;
 import com.mugs.service.student.EvaluationManagementService;
 import com.mugs.vo.Evaluation;
 import com.mugs.vo.EvaluationAnswer;
+import com.mugs.vo.Student;
 
 @Service
 public class EvaluationManagementServiceImpl implements EvaluationManagementService {
@@ -29,28 +32,10 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 	
 	@Autowired
 	private AcademicCalendarDao academicCalendarDaoImpl;
+	
+	@Autowired
+	private StudentDao studentDaoImpl;
 
-	//평가응답테이블
-	@Override
-	public List<EvaluationAnswer> getEvaluationValueList(String loginId) {
-		Date date = new Date();
-		String nowSemester = academicCalendarDaoImpl.selectCalendarName(date);
-		System.out.println("일정명 조회 : "+nowSemester);
-		System.out.println("로그인한 아이디 : " + loginId);
-		int nowYear = date.getYear() + 1900;
-		// int nowMonth = date.getMonth();//-1해줘야 함
-		//String nowSemester = "1학기";// 학기는 원래 여기서 해주지 않고 디비를 통해서 서비스에서 가져오는 건데 일단 이렇게
-
-		// 현재년도와 현재 월을 전달함으로써 몇학기인지가 조회되는 메소드 - 학사일정테이블 필요
-		// String nowSemester = courseDaoImpl.selectHackGiIlJung(nowMonth);
-		// String nowSemester = nowMonth+"학기";
-		
-		//평가응답리스트 조회하는 메소드
-		List<EvaluationAnswer> evaluationAnswerValueList = evaluationAnswerDaoImpl.selectEvaluationAnswerValueList(loginId, nowYear, nowSemester);
-
-		System.out.println("서비스임플확인 : " +evaluationAnswerValueList);
-		return evaluationAnswerValueList;
-	}
 
 	//평가테이블
 	@Override
@@ -66,7 +51,7 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 		// 현재년도와 현재 월을 전달함으로써 몇학기인지가 조회되는 메소드 - 학사일정테이블 필요
 		// String nowSemester = courseDaoImpl.selectHackGiIlJung(nowMonth);
 		// String nowSemester = nowMonth+"학기";
-		System.out.printf("설문응답점수주는 페이지-서비스임플에서 테스트 - 과제점수:%d, 년도:%d, 학기:%s, 로그인아이디:%s, 과목아이디:%s, 교수아이디:%s", evaluationTaskPoint, nowYear, nowSemester, loginId, subjectId, proId);
+
 		//evaluationDaoImpl.insertEvaluationAnswerValue(evaluationTaskPoint, evaluationExamPoint, evaluationReadyPoint, evaluationPassionPoint, evaluationQuestionPoint, nowYear, nowSemester, loginId, subjectId, proId);
 		
 		//평가테이블 - 평가정보 인서트
@@ -74,64 +59,70 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 		
 		//평가응답테이블, 평가응답상태(N->Y)로 update하는 dao메소드 호출 - 서비스에서 dao메소드 두개 호출이 가능함.
 		ArrayList<Object> evaluationAnswerState = evaluationAnswerDaoImpl.updateEvaluationAnswerState(nowYear, nowSemester, loginId, subjectId);
-		System.out.println("응답y로 업데이트 하고 매개변수4개 리스트로 들어왔나 확인 - 평가응답상태여부 조회하기 위해 필요한 매개변수임 : " + evaluationAnswerState);
+
 		
 		
 		List<EvaluationAnswer> evaluationAnswerValueList = evaluationAnswerDaoImpl.selectEvaluationAnswerValueList(loginId, nowYear, nowSemester);
 
-		System.out.println("서비스임플확인 : " +evaluationAnswerValueList);
 		return evaluationAnswerValueList;
-		
-		
-		
-		
-		
-		
-	/*	int nYear =  (int) evaluationAnswerState.get(0);
-		String nSemester = (String) evaluationAnswerState.get(1);
-		String nowId = (String) evaluationAnswerState.get(2);
-		int subjctId = (int) evaluationAnswerState.get(3);
-		HashMap params = new HashMap();
-		params.put("nowYear", evaluationAnswerState.get(0));
-		params.put("nowSemester", evaluationAnswerState.get(1));
-		params.put("loginId", evaluationAnswerState.get(2));
-		params.put("stuId", evaluationAnswerState.get(3));
-		
-		//평가응답상태여부 재 조회하기 위해 필요한 조회메소드임.
-		List<EvaluationAnswer> getReEvaluationAnswerValue = evaluationAnswerDaoImpl.selectEvaluationAnswerValue(nYear, nSemester, nowId, subjctId);
-		System.out.println("마지막셀렉트 : " + getReEvaluationAnswerValue);
-
-		
-		return getReEvaluationAnswerValue;*/
 	}
 
+	
 	@Override
-	public String getEvaluationPeriod() {
-		System.out.println("설문응답기간조회 서비스임플로 이동완료");
-		Date date = new Date();
-		System.out.println(date);
-		//일정명을 조회하는 dao메소드 호출 후, 일정명을 변수에 담음. 이 변수를 컨트롤러로 보내게 됨
-		String evaluationPeriodResult = academicCalendarDaoImpl.selectCalendarName(date);
-		System.out.println("설문응답기간을 위한 학사일정명 조회완료 - 조회한 학사일정명 :"+evaluationPeriodResult);
-		/*if(evaluationPeriodResult.equals("1학기 중간고사 설문응답기간")) {
-			System.out.println("1학기중간고사설문응답기간이라구");
-			//return "contents/student/evaluationAnswer/evaluationAnswerView";
-			return "/project_mugs/student/selectEvaluationAnswerValueList.do";
-		}
-		else if(evaluationPeriodResult.equals("1학기 기말고사 설문응답기간")) {
-			//return "contents/student/evaluationAnswer/evaluationAnswerView";
-			return "/project_mugs/student/selectEvaluationAnswerValueList.do";
-		}
-		else if(evaluationPeriodResult.equals("2학기 중간고사 설문응답기간")) {
-			//return "contents/student/evaluationAnswer/evaluationAnswerView";
-			return "student/selectEvaluationAnswerValueList.do";
-		}
-		else if(evaluationPeriodResult.equals("2학기 기말고사 설문응답기간")) {
-			//return "contents/student/evaluationAnswer/evaluationAnswerView";
-			return "student/selectEvaluationAnswerValueList.do";
-		}
-		System.out.println("왜 설문응답하는 jsp로 이동이안되지");*/
-		return evaluationPeriodResult;
-	}
+	public HashMap<String, Object> getEvaluationPeriod(String loginId) {
 
+		HashMap<String, Object> map = new HashMap<>();
+		Date nowDate = new Date();	// 오늘 날짜
+		Date date = new Date(System.currentTimeMillis() - 1000*60*60*24*15);	// 15일전 시간
+		
+		List<String> evaluationPeriodResult = 
+				academicCalendarDaoImpl.selectCalendarName(nowDate);	// 오늘 날짜를 기준으로 학사일정명을 뽑아온다.
+		
+		List<String> nowSemesterResult = 
+				academicCalendarDaoImpl.selectCalendarName(date); // 오늘로부터 15일전 날짜를 기준으로 학사일정명을 뽑아온다.(직전학기를 뽑아오기 위한것)
+		
+		
+		String msg = null;	// 메세지 담을 메소드
+		String nowSemester = null;	// 바로 직전학기 담을 메소드
+		Integer nowYear = new Date().getYear() + 1900;	// 현재 연도 추출
+		Student student = studentDaoImpl.selectStudentById(loginId); // 현재 로그인한 학생정보를 가져온다.
+		String stuRegister = student.getStuRegisterState();	// 지금 로그인한 학생의 재적상태를 담는 메소드
+		String term = null;	// 설문응답 학사일정명을 담을 변수명
+		
+		// 오늘 날짜기준으로 학사일정명을 뽑아온 리스트중에 설문응답 기간이 있으면 trem이라는 메소드에 담는다.
+		if(evaluationPeriodResult.size() != 0) {
+			for(int i = 0; i < evaluationPeriodResult.size(); i++) {
+				if(evaluationPeriodResult.get(i).contains("설문응답")) {
+					term = evaluationPeriodResult.get(i);
+				}
+			}
+		}
+		
+		// 직전학기를 담는다
+		if(nowSemesterResult.size() != 0) {
+			for(int i = 0; i < nowSemesterResult.size(); i++) {
+				if(nowSemesterResult.get(i).contains("학기") && nowSemesterResult.get(i).length() < 5) {
+					nowSemester = nowSemesterResult.get(i);
+				}
+			}
+		}
+		
+		
+		if(!stuRegister.equals("휴학") && !stuRegister.equals("군휴학")) {
+			if(term == null) {
+				// 만약 현재 로그인한 학생이 휴학, 군휴학 상태가 아닌 정상적인 재적상태라면에서 현재가 설문응답 기간이 아니면
+				// 설문응답이 아니라는 메시지를 담고 map 담는다.
+				msg = "지금은 설문응답기간이 아닙니다. 정해진 기간 내에 설문에 응하여 주시기 바랍니다.";
+				map.put("msg", msg);
+			} else {
+				map.put("evaluationAnswerValueListResult", evaluationAnswerDaoImpl.selectEvaluationAnswerValueList(loginId, nowYear, nowSemester));
+				map.put("msg", "");	// 현재 로그인한 학생이 재적상태도 정상적인 재적상태이고 현재가 설문 응담기간이면 msg "" 공백으로 map 담고
+									// 바로 윗줄에서는 설문응답 페이지에서 보여줄 설문응답 리스트를 담는다.
+			}
+		} else {
+			map.put("stuRegister", stuRegister); // 현재 재적 상태가 휴학 상태이거나, 군휴학 이면 map에 담는다.
+		}
+		return map;
+	}
 }
+

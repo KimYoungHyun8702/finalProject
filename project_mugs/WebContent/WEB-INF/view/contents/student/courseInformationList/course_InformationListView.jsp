@@ -18,6 +18,11 @@ td{
 }
 </style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery.js"></script>
+<script type="text/javascript">
+
+
+</script>
+
 
 <title>Insert title here</title>
 <style type="text/css">
@@ -52,18 +57,17 @@ td{
 		</tr>
 	</thead>
 	<tbody id="tbody">
-		<c:forEach items="${requestScope.myCourseListResult}" var="courseList">
-			<tr>
-				<td>${courseList.subjectId}</td>
-				<td>${courseList.subject.subjectName}</td>
-				<td>${courseList.subject.subjectType}</td>
-				<td>${courseList.subject.subjectCredit}</td>
-				<td>${courseList.professor.usersName}</td>
-				<td>${courseList.subject.subjectTime}</td>
-				<td>${courseList.subject.lectureId}</td>
-			</tr>
-		</c:forEach>
-
+			<c:forEach items="${requestScope.myCourseListResult}" var="courseList">
+				<tr>
+					<td>${courseList.subjectId}</td>
+					<td>${courseList.subject.subjectName}</td>
+					<td>${courseList.subject.subjectType}</td>
+					<td>${courseList.subject.subjectCredit}</td>
+					<td>${courseList.professor.usersName}</td>
+					<td>${courseList.subject.subjectTime}</td>
+					<td>${courseList.subject.lectureId}</td>
+				</tr>
+			</c:forEach>
 	</tbody>
 </table>
 <button onclick="location.href='${initParam.rootPath}/'">이전페이지로</button>
