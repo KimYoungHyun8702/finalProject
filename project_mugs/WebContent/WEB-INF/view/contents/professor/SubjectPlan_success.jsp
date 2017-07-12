@@ -39,7 +39,7 @@
 <button type="submit" id="deleteBtn">삭제</button>
 </form>
 </body>
-<script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	var openWin;
 	

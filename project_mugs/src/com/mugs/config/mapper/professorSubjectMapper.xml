@@ -78,7 +78,10 @@
 		AND	   p.pro_id= u.users_id
 	</select>
 
-	<!--(병문) 담당과목 테이블에서 교수id로 담당과목을 찾는다(과목 조인) -->
+	
+
+
+	<!-- 담당과목 테이블에서 교수id로 담당과목을 찾는다(과목 조인) -->
 	<select id="selectProfessorSubjectListJoinByProId" resultMap="professor_subject-subject-resultmap" parameterType="string">
 	SELECT 
 	ps.pro_subject_id,

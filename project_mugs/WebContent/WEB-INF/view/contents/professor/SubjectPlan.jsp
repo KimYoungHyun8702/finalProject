@@ -6,16 +6,18 @@
 <meta>
 <title>Insert title here</title>
 
-<script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){
 	$("#table").hide();
-	$("#searchBtn").on("click", function(){
+	searchSubjectListById();
+});	
+	function searchSubjectListById(){
 		$.ajax({
 			"url":"/project_mugs/professor/searchSubjectListById.do",
 			"type":"POST",
-			"data":{"proId":$("#id").val()},
+			"data":{${_csrf.parameterName}:'${_csrf.token}'},
 			"dataType":"json",
 			"success":function(list){
 				var txt = "";// undefined값
@@ -28,18 +30,21 @@ $(document).ready(function(){
 					+ "</td><td style='display: none'>" + this.subject.subjectType + "</td><td style='display: none'>" + this.subject.subjectGrade + "</td><td style='display: none'>" + this.subject.subjectCredit
 					+ "</td><td style='display: none'>" + this.subject.subjectTime + "</td><td style='display: none'>" + this.professor.usersId + "</td><td style='display: none'>" + this.professor.usersName 
 					+ "</td><td style='display: none'>" + this.professor.usersEngName + "</td><td style='display: none'>" + this.professor.usersCellNum + "</td><td style='display: none'>" + this.professor.usersEmail 
-					+ "</td><td>" + "<button id=" + "Btn>" + "강의계획서조회 </button>" + "</td><td>" + "<button id=" + "Btn2>" + "강의계획서등록 </button>"+"</td></tr>"
+					+ "</td><td>" + "<button class=" + "Btn>" + "강의계획서조회 </button>" + "</td><td>" + "<button class=" + "Btn2 style='display: none'>" + "강의계획서등록 </button>"+"</td></tr>"	
 				});
 				$("#tbody").html(txt);
 				$("#table").show();
 			},
 			"error":function(){
-				alert("에러발생");				
+				alert("에러발생");	
 			}
-		});
-	});
+		});//ajax
+	}//function(메소드)
+
 	
-	$(document).on("click", "#Btn", function() {
+$(document).on("click", ".Btn", function(){
+	var $this = $(this);
+	
 		var planYear = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
 		var planSemester = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
 		var proId = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
@@ -47,7 +52,7 @@ $(document).ready(function(){
 		$.ajax({
 		"url":"/project_mugs/professor/searchSubjectPlanByFourId.do",
 		"type":"POST",
-		"data":{"planYear":planYear, "planSemester":planSemester, "subjectId":subjectId, "proId":proId},
+		"data":{"planYear":planYear, "planSemester":planSemester, "subjectId":subjectId, "proId":proId, ${_csrf.parameterName}:"${_csrf.token}"},
 		"dataType":"json",
 		"success":function(obj){
 			alert('성공')
@@ -55,19 +60,21 @@ $(document).ready(function(){
 		},
 		"error":function(txt){	
 			alert('등록된 강의계획서가 없습니다');
+			//$(this).parent().next().find("input").attr("style","display: inline");
+			$this.parent().next().children().css("display", "inline");
+		/* 	console.log($this);
+			console.log($this.parent());
+			console.log($this.parent().next());
+			console.log($this.parent().next().children()); */
 		}
-		});
-	});
-});
+	});//ajax
+});//document(click);
 
 </script>
 
 </head>
 <body>
 안뇽안뇽
-
-ID<input type="text" id="id" name="id">
-<button type="button" id="searchBtn">검색</button>
 
 <table id="table" border="1">
 	<thead>
@@ -82,7 +89,7 @@ ID<input type="text" id="id" name="id">
 			<td>학년</td>
 			<td>학점</td>
 			<td>정원</td>
-		
+			
 			
 			<td style="display: none">연도</td>
 			<td style="display: none">학기</td>
@@ -178,7 +185,7 @@ ID<input type="text" id="id" name="id">
 			 + '</form>'; */
 		//openWin.document.write(html);
 	}
-	$(document).on("click", "#Btn2", function openchild2(){
+	$(document).on("click", ".Btn2", function openchild2(){
 		var proSubjectYear = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
 		var proSubjectSemester = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
 		var subjectId = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();

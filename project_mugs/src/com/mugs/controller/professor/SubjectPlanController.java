@@ -3,6 +3,7 @@ package com.mugs.controller.professor;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mugs.service.professor.SubjectPlanService;
 import com.mugs.vo.ProfessorSubject;
 import com.mugs.vo.SubjectPlan;
+import com.mugs.vo.Users;
 
 @Controller
 @RequestMapping("/professor/")
@@ -21,10 +23,11 @@ public class SubjectPlanController{
 	
 	@RequestMapping("searchSubjectListById") 
 	@ResponseBody
-	public List<ProfessorSubject> getProfessorSubjectList(String proId){
-		
+	public List<ProfessorSubject> getProfessorSubjectList(){
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String id = users.getUsersId();
 		//Business Logic 호출	
-		List<ProfessorSubject> list = service.getProfessorSubjectInfoByJoin(proId);
+		List<ProfessorSubject> list = service.getProfessorSubjectInfoByJoin(id);
 		for(int i=0;i<list.size();i++){
 			System.out.println(list.get(i));
 		}

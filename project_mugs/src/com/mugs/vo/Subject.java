@@ -107,20 +107,14 @@ public class Subject implements Serializable {
 		YoyilAndGyoshi = yoyilAndGyoshi;
 	}
 	
+	
+
 	public int getSubjectId() {
 		return subjectId;
 	}
 
 	public void setSubjectId(int subjectId) {
 		this.subjectId = subjectId;
-	}
-
-	public Professor getProfessor() {
-		return professor;
-	}
-
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
 	}
 
 	public String getSubjectName() {
@@ -211,7 +205,7 @@ public class Subject implements Serializable {
 		this.majorId = majorId;
 	}
 
-	public int getLectureId() {
+	public Integer getLectureId() {
 		return lectureId;
 	}
 
@@ -281,6 +275,14 @@ public class Subject implements Serializable {
 
 	public void setYoyilAndGyoshi(Map<String, String> yoyilAndGyoshi) {
 		YoyilAndGyoshi = yoyilAndGyoshi;
+	}
+
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 
 	@Override

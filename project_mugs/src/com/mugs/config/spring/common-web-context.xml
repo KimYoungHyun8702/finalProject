@@ -29,7 +29,10 @@
 			</list>
 		</property>
 	</bean>
-
+	
+	<!-- 파일업로드 관련 (병문이) -->
+	<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
 	<bean name="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" p:order="1"/>
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/" p:suffix=".jsp" p:order="2"/>
 </beans>

@@ -73,4 +73,11 @@ public interface CourseDao {
 	 * @return Course
 	 */
 	List<Course> selectCourseByThreeId(int courseYear, String courseSemester, int subjectId);
+	
+	/** 영현이꼬
+	 * 	2개의 매개변수를 받은 ID값들과 일치하는 학생의수강 list 조회.
+	 * @param courseYear,courseSemester,subjectId
+	 * @return Course
+	 */
+	List<Course> selectCourseByTwoId(int subjectId, String stuId);
 }
