@@ -2,7 +2,9 @@ package com.mugs.dao;
 
 import java.util.List;
 
+import com.mugs.vo.Major;
 import com.mugs.vo.Professor;
+import com.mugs.vo.Room;
 
 public interface ProfessorDao {
 	
@@ -25,7 +27,7 @@ public interface ProfessorDao {
 	 * @param proId
 	 * @return
 	 */
-	int deleteProfessor(String proId);
+	int deleteProfessor(String usersId);
 
 	/**
 	 * 교수전체를 조회하는 메소드
@@ -52,5 +54,51 @@ public interface ProfessorDao {
 	
 	/**------------진현이꼬-------------------*/
 	Professor selectFullInfoProfessorById(String proId);
-
+	
+	/** -----------동준이꼬-------------------
+	 * 매개변수로 proName를 받아 해당하는 교수 조회 메소드 
+	 * @param proName
+	 * @return
+	 */
+	List<Professor> selectProfessorByName(String usersName);
+	
+	/** -----------동준이꼬-------------------
+	 * 매개변수로 proId를 받아 해당하는 교수 조회 메소드
+	 * @param proId
+	 * @return
+	 */
+	Professor selectProfessorInfoById(String proId);
+	
+	/** -----------동준이꼬-------------------
+	 * 매개변수로 proId를 받아 해당하는 교수 학과 조회 메소드
+	 * @param proId
+	 * @return
+	 */
+	Professor selectProfessorInfoForMajorById(String proId);
+	
+	/** -----------동준이꼬-------------------
+	 * 매개변수로 proId를 받아 해당하는 교수실 조회 메소드
+	 * @param proId
+	 * @return
+	 */
+	Professor selectProfessorInfoForOfficeById(String proId);
+	
+	/** -----------동준이꼬-------------------
+	 * 매개변수로 proId를 받아 해당하는 연구실 조회 메소드
+	 * @param proId
+	 * @return
+	 */
+	Professor selectProfessorInfoForLaboratoryById(String proId);
+	
+	/**
+	 * 중복제거를 위한 교수실강의동 조회 메소드
+	 * @return
+	 */
+	List<Professor> selectProfessorOfficeForOverlap();
+	
+	/**
+	 * 중복제거를 위한 연구실강의동 조회 메소드
+	 * @return
+	 */
+	List<Professor> selectProfessorLabaratoryForoverlap();
 }

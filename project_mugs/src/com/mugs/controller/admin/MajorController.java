@@ -1,11 +1,11 @@
 package com.mugs.controller.admin;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,19 +26,19 @@ public class MajorController {
 	@RequestMapping("/selectMajorListController")
 	public ModelAndView selectMajorList(){
 		List<Major> list = majorService.selectMajorList();
-		return new ModelAndView("view/contents/admin/major/select_major","list",list);
+		return new ModelAndView("admin/major/select_major.tiles","list",list);
 	}
 	
 	@RequestMapping("/selectCollegeListForSelectController")
 	public ModelAndView selectCollegeListForSelect(){
 		List<College> list = collegeService.selectCollegeList();
-		return new ModelAndView("view/contents/admin/major/select_major","list",list);
+		return new ModelAndView("admin/major/select_major.tiles","list",list);
 	}
 	
 	@RequestMapping("/selectCollegeListForinsertController")
 	public ModelAndView selectCollegeListForinsert(){
 		List<College> list = collegeService.selectCollegeList();
-		return new ModelAndView("view/contents/admin/major/insert_major","list",list);
+		return new ModelAndView("admin/major/insert_major.tiles","list",list);
 	}
 	
 	@RequestMapping("/selectMajorByCollegeIdController")
@@ -50,14 +50,19 @@ public class MajorController {
 	
 	@RequestMapping("/selectMajorGraduationCreditByMajorIdController")
 	public ModelAndView selectMajorGraduationCreditByMajorId(int majorId){
-		List<Major> list = majorService.selectMajorGraduationCreditByMajorId(majorId);
-		return new ModelAndView("view/contents/admin/major/select_major_info", "list",list);
+		ModelAndView view = new ModelAndView();
+		view.setViewName("admin/major/select_major_info.tiles");
+		view.addObject("major",majorService.selectMajorGraduationCreditByMajorId(majorId).get("major"));
+		view.addObject("graduationcredit",majorService.selectMajorGraduationCreditByMajorId(majorId).get("graduationcredit"));
+		view.addObject("standard",majorService.selectMajorGraduationCreditByMajorId(majorId).get("standard"));
+		System.out.println(view);
+		return view;
 	}
 	
 	@RequestMapping("/selectMajorByMajorIdForUpdateController")
 	public ModelAndView selectMajorByMajorIdForUpdate(int majorId){
 		Major major = majorService.selectMajorById(majorId);
-		return new ModelAndView("view/contents/admin/major/update_major","major",major);
+		return new ModelAndView("admin/major/update_major.tiles","major",major);
 	}
 	
 	@RequestMapping("/insertMajorController")

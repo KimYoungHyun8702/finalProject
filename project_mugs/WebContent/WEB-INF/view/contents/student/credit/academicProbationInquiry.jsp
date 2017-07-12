@@ -14,7 +14,7 @@
 	function selectProbation(){
 		$.ajax({
 			url:"/project_mugs/student/academicProbationInquiry.do",
-			type:"post",
+			type:"GET",
 			dataType:"json",
 			data:{${_csrf.parameterName}:'${_csrf.token}'},
 			success:function(list){

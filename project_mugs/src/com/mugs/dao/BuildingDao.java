@@ -52,4 +52,16 @@ public interface BuildingDao {
 	 */
 	List<Building> selectBuildingList();
 	
+	/**
+	 * 교수실강의동 강의실 조회
+	 * @return
+	 */
+	List<Building> selectRoomListByOffice();
+	
+	/**
+	 * 연구실강의동 강의실 조회
+	 * @return
+	 */
+	List<Building> selectRoomListByLaboratory();
+	
 }

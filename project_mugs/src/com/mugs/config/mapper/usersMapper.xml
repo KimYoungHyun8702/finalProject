@@ -62,7 +62,10 @@
 		
 		WHERE users_id=#{usersId}
 	</update>
-
+	<update id="updatePassword" parameterType="map">
+		UPDATE users SET users_password=#{pw} WHERE users_id=#{id}
+	</update>
+	
 	<!-- delete -->
 	<delete id="deleteUsers" parameterType="string">
 		DELETE FROM users WHERE
@@ -78,19 +81,34 @@
 		<include refid="select-users" />
 		WHERE users_id=#{value}
 	</select>
+	
+	<select id ="selectUsersByNameRRN" resultMap="users-basic-resultmap" parameterType="map">
+		SELECT users_id FROM users WHERE users_name=#{name} AND users_rrn=#{rrn} 
+	</select>
+	
+	<select id ="selectUsersByIdNameRRN" resultMap="users-basic-resultmap" parameterType="map">
+		<include refid="select-users" />
+		WHERE users_name=#{name} AND users_rrn=#{rrn} AND users_id=#{id}
+	</select>
+	
 	<!-- 병문 유저Mapper -->
 	<!-- 학생의 인적정보를 수정한다.(id, 이름, 영문이름, 주민번호, 국적, 인증가능상태를 제외 -->
 	<update id="updateStudentHumanInfo" parameterType="users">
-	UPDATE users
-	SET
-			users_password=#{usersPassword},
-			users_email=#{usersEmail},
+	UPDATE 	users
+	SET		users_email=#{usersEmail},
 			users_phone_num=#{usersPhoneNum},
 			users_cell_num=#{usersCellNum},
 			users_current_addr=#{usersCurrentAddr},
 			users_born_addr=#{usersBornAddr},
 			users_photo=#{usersPhoto}		
-	WHERE users_id=#{usersId}
+	WHERE 	users_id=#{usersId}
 	</update>
-
+	<!-- 학생의 비밀번호를 수정한다. (인코더 사용시 필요함) -->	
+	<update id="updateStudentPassword" parameterType="users">
+	UPDATE users
+	SET	   users_password=#{usersPassword}
+	WHERE  users_id = #{usersId}
+	</update>
+	
+	<!-- BM End -->
 </mapper>

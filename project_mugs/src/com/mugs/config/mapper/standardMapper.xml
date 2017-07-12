@@ -3,14 +3,14 @@
 <mapper namespace="com.mugs.config.mapper.standardMapper">
 
 	<sql id="select-standard">
-		SELECT standard_year,
-			   major_id,
-			   standard_min_credit,
-		 	  standard_max_credit,
-		  	 standard_min_scholarship,
-		  	 standard_delay_min_credit,
-		  	 standard_delay_max_credit
-		FROM   STANDARD
+	SELECT standard_year,
+	major_id,
+	standard_min_credit,
+	standard_max_credit,
+	standard_min_scholarship,
+	standard_delay_min_credit,
+	standard_delay_max_credit
+	FROM STANDARD
 	</sql>
 
 	<resultMap type="standard" id="standard-basic-resultmap">
@@ -21,6 +21,7 @@
 		<result column="STANDARD_MIN_SCHOLARSHIP" property="standardMinScholarship"/>
 		<result column="STANDARD_DELAY_MIN_CREDIT" property="standardDelayMinCredit"/>
 		<result column="STANDARD_DELAY_MAX_CREDIT" property="standardDelayMaxCredit"/>
+		<result column="MAJOR_NAME" property="majorName"/>
 	</resultMap>
 	
 	
@@ -40,20 +41,22 @@
 
 	<update id="updateStandard" parameterType="standard">
 		UPDATE STANDARD
-		SET standard_year = #{standardYear}.
+		SET standard_year = #{standardYear},
 			major_id = #{majorId},
 			standard_min_credit = #{standardMinCredit},
 			standard_max_credit = #{standardMaxCredit},
 			standard_min_scholarship = #{standardMinScholarship},
 			standard_delay_min_credit = #{standardDelayMinCredit},
 			standard_delay_max_credit = #{standardDelayMaxCredit}
+		WHERE	major_id=#{majorId}
+		AND 	standard_year=#{standardYear}
 	</update>
 
 
 
 	<delete id="deleteStandard" parameterType="int">
 		DELETE FROM STANDARD
-		WHERE standard_year = #{standardYear},
+		WHERE standard_year = #{standardYear}
 		AND	  major_id = #{majorId}
 	</delete>
 
@@ -90,6 +93,20 @@
 		and    m.college_id = #{collegeId}
 		AND    d.major_id = #{majorId}
 		AND    d.standard_year = #{standardYear}		
+	</select>
+	
+	<select id="selectListByMajorId" parameterType="int" resultMap="standard-basic-resultmap">
+		SELECT s.standard_year,
+			   s.standard_min_credit,
+			   s.standard_max_credit,
+			   s.standard_min_scholarship,
+			   s.standard_delay_min_credit,
+			   s.standard_delay_max_credit,
+			   s.major_id,
+			   m.major_name
+		FROM standard s, major m
+		WHERE s.major_id = m.major_id AND 
+		m.major_id = #{value}
 	</select>
 
 </mapper>

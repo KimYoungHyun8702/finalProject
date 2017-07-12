@@ -1,11 +1,13 @@
 package com.mugs.service.impl.student;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mugs.dao.CollegeDao;
@@ -42,18 +44,32 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 	private ProfessorSubjectDao proSubDao;
 	@Autowired
 	private RoomDao roomDao;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	
 	@Override
 	public void updateStudentHumanInfo(Users users) {	
-	System.out.println(users);
 	userDao.updateStudentHumanInfo(users);	
 	}
-
+	
+	@Override
+	public void updateStudentPassword(Users user) {
+		user.setUsersPassword(passwordEncoder.encode(user.getUsersPassword()));
+		userDao.updateStudentPassword(user);
+	}
  
 	@Override
-	public Student findStudentInfoById(String stuId) {   		       
-	return stuDao.selectStudentAllInfoByJoin(stuDao.selectStudentById(stuId));
+	public Map findStudentInfoById(String stuId) {
+	      Map map = new HashMap();	      
+	      Student stuInfo = stuDao.selectStudentAllInfoByJoin(stuDao.selectStudentById(stuId));
+	      SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+	      if(stuInfo.getStuGraduationDate() != null){      
+		         map.put("stuGraduationDate", sd.format(stuInfo.getStuGraduationDate()));
+		      }
+		      map.put("stuAdmissionDate", sd.format(stuInfo.getStuAdmissionDate()));
+		      map.put("stuInfo", stuInfo);
+	return map;
 	}
 
 
@@ -69,8 +85,56 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 
 
 	@Override
-	public List<Subject> getSubjectTypeListByMajorId(int majorId) {
-		return subjectDao.selectSubjectTypeByMajorId(majorId);
+	public List<Object> getSubjectTypeListByMajorId(int majorId) {
+		List<String> proNameList = new ArrayList<String>();				
+		List<ProfessorSubject> proSubList = new ArrayList<ProfessorSubject>();
+		List<Object> resultSubList = new ArrayList<Object>(); 
+		List<Room> roomList = new ArrayList<Room>();
+		List<String> roomNameList = new ArrayList<String>();
+		
+		// 전공 id별 과목 List를 넣어준다.
+		List<Subject> subList = subjectDao.selectSubjectListByMajorIdForAllTime(majorId);
+				
+		// 해당 과목들의 강의실 id들을 넣어준다.
+		List<Integer> roomIdList = new ArrayList<Integer>();
+		for(Subject sub : subList){
+			roomIdList.add(sub.getLectureId());
+		}
+		
+		//  강의실리스트에 강의실 id에 맞는 강의실을 추가한다.
+		for(Integer i:roomIdList){
+			roomList.add(roomDao.selectRoomById(i));
+		}
+		
+		// 강의실에서 강의실 이름을 빼온다.
+		for(Room r : roomList){
+			roomNameList.add(r.getRoomName()); 
+		}
+		
+		// 과목 id들을 넣어준다.
+		List<Integer> subIdList = new ArrayList<Integer>();
+		for(Subject sub : subList){
+			subIdList.add(sub.getSubjectId());
+		}
+		
+		// 교수담당과목리스트에 해당 과목 id에 맞는 교수담당과목을 추가한다.
+		for(Integer i:subIdList){
+			proSubList.add(proSubDao.selectProfessorSubjectBySubId(i));
+		} 
+		   
+		// 교수담당 과목에서 교수들의 이름을 빼온다.
+		for(ProfessorSubject ps : proSubList){
+			proNameList.add(ps.getProfessor().getUsersName());
+		}
+		
+		//List에 넣어준다.
+		resultSubList.add(subList);
+		resultSubList.add(proNameList);
+		resultSubList.add(roomNameList);
+		resultSubList.add(subjectDao.subjectTypeList());
+		
+		return resultSubList;
+		
 	}
 
 
@@ -124,13 +188,12 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 		}
 		
 		//List에 넣어준다.
-		resultSubList.add(subList);
+		resultSubList.add(subList);		
 		resultSubList.add(proNameList);
 		resultSubList.add(roomNameList);
 		
-		return resultSubList;
 		
+		return resultSubList;		
 	}
-
 
 }

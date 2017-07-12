@@ -11,7 +11,7 @@ public interface UsersDao {
 	 * @param user
 	 * @return
 	 */
-	int insertUsers(Users user);
+	int insertUsers(Users users);
 
 	/**
 	 * 한 명의 사용자에 대한 데이터를 매개변수로 받은 Users 객체의 Id와 일치하는 사용자의 정보를 update하는 메소드.
@@ -19,7 +19,7 @@ public interface UsersDao {
 	 * @param user
 	 * @return
 	 */
-	int updateUsersById(Users user);
+	int updateUsersById(Users users);
 
 	/**
 	 * 매개변수로 받은 사용자Id와 일치하는 Data 삭제.
@@ -50,5 +50,32 @@ public interface UsersDao {
 	 * @return 변경된 행의 수
 	 */
 	int updateStudentHumanInfo(Users user);
+
+	
+	/**
+	 * 학생의 비밀번호를 변경하는 메소드
+	 * @param usersPassword
+	 * @return 변경된 행의 수
+	 */
+	int updateStudentPassword(Users user);
+
+
+	/**
+	 * 매개변수로 받은 이름과 주민등록번호로 사용자의 Data 조회.
+	 * @param id
+	 * @param rrn
+	 * @return
+	 */
+	Users selectUsersByInfo(String name, String rrn);
+	/**
+	 * 매개변수로 받은 id와 주민등록번호로 사용자의 Data 조회.
+	 * @param id
+	 * @return
+	 */
+	Users selectUsersByInfo(String id, String name, String rrn);
+	/*
+	 * 매개변수로 받은 id와 일치하는 사용자의 Data의 비밀번호만 변경.
+	 */
+	int updatePassword(String id, String pw);
 
 }

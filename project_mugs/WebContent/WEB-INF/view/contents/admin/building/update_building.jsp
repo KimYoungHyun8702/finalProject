@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,5 +11,6 @@
 			건물 이름 : <input type="text" name="buildingName" value="${param.buildingName }"/><br>
 			<input type="hidden" name="buildingId" value="${param.buildingId }"/>
 			<input type="submit" value="수정">
+			<sec:csrfInput/>
 	</form>
 </body>

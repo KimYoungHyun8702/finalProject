@@ -22,7 +22,7 @@ public interface StudentIndividualService {
 	 * @param studentId
 	 * @return 학생
 	 */
-	Student findStudentInfoById(String stuId);
+	Map findStudentInfoById(String stuId);
 	
 	/**
 	 * 학부 전체의 정보를 가져온다.
@@ -41,7 +41,7 @@ public interface StudentIndividualService {
 	 * @param majorId
 	 * @return 과목 리스트
 	 */
-	List<Subject> getSubjectTypeListByMajorId(int majorId);
+	List<Object> getSubjectTypeListByMajorId(int majorId);
 	
 	
 	/**
@@ -49,7 +49,11 @@ public interface StudentIndividualService {
 	 * @param subjectType
 	 * @return 과목 리스트
 	 */
-	List<Object> getSubjectBySubjectTypeAndMajorId(List<Object> subTypeAndMajorId);
+	List<Object> getSubjectBySubjectTypeAndMajorId(List<Object> param);	
 	
+	/**
+	 * @param 유저의 정보
+	 */
+	void updateStudentPassword(Users user);
 
 }

@@ -62,8 +62,14 @@ public class AcademicCalendarDaoImpl implements AcademicCalendarDao {
 	}
 
 	@Override
+	public List<AcademicCalendar> selectCalendarByDate(String date) {
+		// TODO Auto-generated method stub
+		return session.selectList(makeSql("selectAcademicCalendarByFormatDate"), date);
+	}
+
+
 	public List<String> selectCalendarName(Date date) {
-		System.out.println("서비스임플 학기일정이름 조회 전");
 		return session.selectList(makeSql("selectCalendarName"), date);
 	}
+
 }

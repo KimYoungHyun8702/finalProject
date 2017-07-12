@@ -103,14 +103,14 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 				// 만약 현재 로그인한 학생이 휴학, 군휴학 상태가 아닌 정상적인 재적상태라면에서 현재가 설문응답 기간이 아니면
 				// 설문응답이 아니라는 메시지를 담고 map 담는다.
 				msg = "지금은 설문응답기간이 아닙니다. 정해진 기간 내에 설문에 응하여 주시기 바랍니다.";
-				map.put("msg", msg);
+				map.put("alarm", msg);
 			} else {
 				map.put("evaluationAnswerValueListResult", evaluationAnswerDaoImpl.selectEvaluationAnswerValueList(loginId, nowYear, nowSemester));
-				map.put("msg", "");	// 현재 로그인한 학생이 재적상태도 정상적인 재적상태이고 현재가 설문 응담기간이면 msg "" 공백으로 map 담고
+				map.put("alarm", "");	// 현재 로그인한 학생이 재적상태도 정상적인 재적상태이고 현재가 설문 응담기간이면 msg "" 공백으로 map 담고
 									// 바로 윗줄에서는 설문응답 페이지에서 보여줄 설문응답 리스트를 담는다.
 			}
 		} else {
-			map.put("stuRegister", stuRegister); // 현재 재적 상태가 휴학 상태이거나, 군휴학 이면 map에 담는다.
+			map.put("studentState", stuRegister); // 현재 재적 상태가 휴학 상태이거나, 군휴학 이면 map에 담는다.
 		}
 		return map;
 	}

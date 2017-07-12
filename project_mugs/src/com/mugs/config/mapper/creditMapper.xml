@@ -47,7 +47,18 @@
 
 <!-- insert -->
 <insert id="insertCredit" parameterType="credit">
-	INSERT INTO credit VALUES(#{creditId}, #{creditYear}, #{creditSemester}, #{creditAcquire}, #{creditGrade}, #{creditScore}, #{creditRecource}, #{subjectId}, #{stuId})
+	INSERT INTO credit VALUES
+	(
+	#{creditId},
+	 #{creditYear},
+	 #{creditSemester},
+	 #{creditAcquire}, 
+	 #{creditGrade}, 
+	 #{creditScore}, 
+	 #{creditRecource}, 
+	 #{subjectId}, 
+	 #{stuId}
+	 )
 </insert>
 
 <!-- update -->
@@ -130,6 +141,13 @@
 	AND c.credit_year=#{year} AND s.subject_type=#{type}
 </select>
 
+<select id="selectCreditScoreBySubjectIdStuId" resultType="double" parameterType="map">
+	select credit_score
+	from credit
+	where subject_id=#{subjectId}
+	and stu_id=#{stuId}
+</select>
+
 <!-- 병문 Mapper -->
 <select id="selectCreditByYearSemesterAndUsersId" resultMap="credit-subject-resultmap" parameterType="map">
 	SELECT     			c.credit_year,
@@ -153,12 +171,6 @@
 	
 		
 </select>
-
-
-
-
-
-
 
 
 </mapper>

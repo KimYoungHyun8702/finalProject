@@ -109,5 +109,17 @@ public class BuildingServiceImpl implements BuildingService{
 	@Override
 	public Room selectById(int roomId) {
 		return roomDao.selectRoomById(roomId);
+	}
+
+	@Override
+	public List<Building> selectRoomListByOffice() {
+		return buildingDao.selectRoomListByOffice();
+	}
+
+	@Override
+	public List<Building> selectRoomListByLaboratory() {
+		return buildingDao.selectRoomListByLaboratory();
 	}	
+	
+	
 }

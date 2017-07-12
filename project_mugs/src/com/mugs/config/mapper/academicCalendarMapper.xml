@@ -8,7 +8,8 @@
 		   calendar_finish,
 		   calendar_year,
 		   calendar_name
-	FROM   ACADEMIC_CALENDAR
+	FROM   academic_calendar
+
 </sql>
 
 <resultMap type="academicCalendar" id="academicCalendar-basic-reresultmap">
@@ -19,17 +20,15 @@
 	<result column="calendar_name" property="calendarName"/>
 </resultMap>
 
-<!-- insert -->
 <insert id="insertAcademicCalendar" parameterType="academicCalendar">
 	<selectKey resultType="int" keyProperty="calendarId" order="BEFORE">
 		SELECT CALENDAR_ID_SEQ.nextval FROM dual
 	</selectKey>
-	INSERT INTO academiccalendar VALUES(#{calendarId},#{calendarStart}, #{calendarFinish}, #{calendarYear}, #{calendarName})
+	INSERT INTO academic_calendar VALUES(#{calendarId},#{calendarStart}, #{calendarFinsh}, #{calendarYear}, #{calendarName})
 </insert>
 
-<!-- update -->
 <update id="updateAcademicCalendarById" parameterType="academicCalendar">
-	UPDATE academiccalendar
+	UPDATE academic_calendar
 	   SET calendar_start=#{calendarStart},
 	   	   calendar_finish=#{calendarFinish},
 	   	   calendar_year=#{calendarYear},
@@ -37,12 +36,10 @@
 	 WHERE calendar_id=#{calendarId}  	   
 </update>
 
-<!-- delete -->
 <delete id="deleteAcademicCalendar" parameterType="int">
-	DELETE FROM academiccalendar WHERE calendar_id=#{value}
+	DELETE FROM academic_calendar WHERE calendar_id=#{value}
 </delete>
 
-<!-- select -->
 <select id="selectAcademicCalendarList" resultMap="academicCalendar-basic-reresultmap">
 	<include refid="select-academicCalendar"/>
 </select>
@@ -52,6 +49,11 @@
 	WHERE calendar_id=#{value}
 </select>
 
+<select id="selectAcademicCalendarByFormatDate" resultMap="academicCalendar-basic-reresultmap" parameterType="string">
+	<include refid="select-academicCalendar"/>
+	WHERE TO_DATE(#{value}, 'YYYY-MM-DD') BETWEEN calendar_start AND calendar_finish
+</select>
+ 
 <select id="selectCalendarName" resultType="String" parameterType="java.util.Date">
 	select	 calendar_name
 	from 	 ACADEMIC_CALENDAR
@@ -65,4 +67,3 @@
 </select>
 
 </mapper>
-
