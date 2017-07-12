@@ -20,7 +20,10 @@
 	<mvc:view-controller path="/login_form.do" view-name="login/login_form.tiles"/>
 	<!-- 회원 가입 폼 -->
 	<mvc:view-controller path="/join_member_form.do" view-name="member/join_member_form.tiles"/>
-	
+	<!-- 아이디 찾기 폼 -->
+	<mvc:view-controller path="/idFind.do" view-name="view/contents/login/id_find_form"/>
+	<!-- 비밀번호 찾기 폼 -->
+	<mvc:view-controller path="/pwFind.do" view-name="view/contents/login/pw_find_form"/>
 <!-- TilesConfigurer -->
 	<bean name="tilesConfig" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">

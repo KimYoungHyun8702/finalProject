@@ -57,6 +57,7 @@ public class CourseDaoImpl implements CourseDao{
 		params.put("loginId", loginId);
 		params.put("nowYear", nowYear);
 		params.put("nowSemester", nowSemester);
+		
 		return session.selectList(makeSql("selectMyTimeTableByJoin"), params);//매개변수들을 맵에 담아서 매퍼에 접근
 	}
 

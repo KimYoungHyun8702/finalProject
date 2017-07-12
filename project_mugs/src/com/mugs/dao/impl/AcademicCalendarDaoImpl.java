@@ -1,5 +1,6 @@
 package com.mugs.dao.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,4 +61,8 @@ public class AcademicCalendarDaoImpl implements AcademicCalendarDao {
 		return session.selectOne(makeSql("selectCalendarByYearCalName"), map);
 	}
 
+	@Override
+	public List<String> selectCalendarName(Date date) {
+		return session.selectList(makeSql("selectCalendarName"), date);
+	}
 }

@@ -43,7 +43,7 @@ public interface GraduationCreditService {
 	GraduationCredit selectGraduationCreditbyId(int majorId, int graduationCreditYear);
 	
 	/**
-	 * 매개변수로 majorId를 받아 해당하는 기준 학점 조회 메소드
+	 * 매개변수로 majorId를 받아 해당하는 졸업 학점 조회 메소드
 	 * @param majorId
 	 * @return
 	 */

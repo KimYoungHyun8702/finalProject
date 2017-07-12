@@ -3,6 +3,7 @@ package com.mugs.service.admin;
 import java.util.List;
 import java.util.Map;
 
+import com.mugs.vo.Room;
 import com.mugs.vo.Subject;
 
 public interface SubjectService {
@@ -109,4 +110,14 @@ public interface SubjectService {
 	 * @return
 	 */
 	Map<String,Object> selectSubjectInfoBySubjectIdForMinorUpdate(int subjectId);
+	
+	/**
+	 * 강의실 중복제거를 위한 조회 메소드
+	 * @param subjectTime
+	 * @param subjectSemester
+	 * @param lecureId
+	 * @param buildingId
+	 * @return
+	 */
+	List<Room> selectForOverlap(String subjectTime, String subjectSemester, int buildingId);
 }

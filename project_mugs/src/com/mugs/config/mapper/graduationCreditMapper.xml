@@ -81,4 +81,20 @@
 	AND g.major_id = #{majorId}
 </select>
 
+<select id="selectGraduationCreditByMajorIdAndUsersId" resultMap="graduationCreditJoinMajorName-basic-resultmap" parameterType="map">
+	SELECT		g.major_id,
+				g.graduation_credit_year,
+				g.grad_vital_edu_credit,
+				g.grad_select_edu_credit,
+				g.grad_vital_major_credit,
+				g.grad_select_major_credit
+	FROM 		graduation_credit g, users u, major m, student s
+	WHERE 		u.users_id = #{usersId}
+	AND			u.users_id = s.stu_id
+	AND			s.major_id = m.major_id
+	AND			m.major_id = g.major_id
+	AND			g.major_id = #{majorId}
+	AND 		g.graduation_credit_year = #{year}
+</select>
+
 </mapper>

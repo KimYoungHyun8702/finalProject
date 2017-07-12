@@ -82,14 +82,6 @@ public class Course implements Serializable {
 		this.studentList = studentList;
 	}
 
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-
 	public int getCourseId() {
 		return courseId;
 	}
@@ -160,6 +152,14 @@ public class Course implements Serializable {
 
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	public List<Student> getStudentList() {
@@ -278,8 +278,5 @@ public class Course implements Serializable {
 			return false;
 		return true;
 	}
-
-	
-
 
 }

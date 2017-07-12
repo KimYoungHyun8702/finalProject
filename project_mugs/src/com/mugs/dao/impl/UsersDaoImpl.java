@@ -1,6 +1,8 @@
 package com.mugs.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +18,15 @@ public class UsersDaoImpl implements UsersDao {
 	private SqlSessionTemplate session;
 
 	@Override
-	public int insertUsers(Users user) {
+	public int insertUsers(Users users) {
 		// TODO Auto-generated method stub
-		return session.insert(makeSqlId("insertUsers"), user);
+		return session.insert(makeSqlId("insertUsers"), users);
 	}
 
 	@Override
-	public int updateUsersById(Users user) {
+	public int updateUsersById(Users users) {
 		// TODO Auto-generated method stub
-		return session.update(makeSqlId("updateUsersById"), user);
+		return session.update(makeSqlId("updateUsersById"), users);
 	}
 
 	@Override
@@ -54,6 +56,35 @@ public class UsersDaoImpl implements UsersDao {
 	@Override
 	public int updateStudentHumanInfo(Users user) {
 		return session.update(makeSqlId("updateStudentHumanInfo"),user);
+	}
+
+	@Override
+	public Users selectUsersByInfo(String name, String rrn) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("name", name);
+		map.put("rrn", rrn);
+		return session.selectOne(makeSqlId("selectUsersByNameRRN"), map);
+	}
+
+	@Override
+	public Users selectUsersByInfo(String id, String name, String rrn) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("name", name);
+		map.put("rrn", rrn);
+		return session.selectOne(makeSqlId("selectUsersByIdNameRRN"), map);
+	}
+
+	@Override
+	public int updatePassword(String id, String pw) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<>();
+		System.out.println(id + pw);
+		map.put("id", id);
+		map.put("pw", pw);
+		return session.update(makeSqlId("updatePassword"), map);
 	}
 	
 }

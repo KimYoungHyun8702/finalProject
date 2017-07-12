@@ -1,14 +1,6 @@
 package com.mugs.etc;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.mugs.dao.StudentDao;
-import com.mugs.vo.Major;
-import com.mugs.vo.Student;
 
 public class BMtest {
 	public static void main(String[] args) {
@@ -16,8 +8,11 @@ public class BMtest {
 				new ClassPathXmlApplicationContext("com/mugs/config/spring/model-context.xml");
 		
 		*/
+
 		ArrayList<String> a = new ArrayList<>();
 		a.add("이병문");
 		System.out.println(a.get(0));
+
 	}
+	
 }

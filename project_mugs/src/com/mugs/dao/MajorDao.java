@@ -2,6 +2,7 @@ package com.mugs.dao;
 
 import java.util.List;
 
+import com.mugs.vo.GraduationCredit;
 import com.mugs.vo.Major;
 
 public interface MajorDao {

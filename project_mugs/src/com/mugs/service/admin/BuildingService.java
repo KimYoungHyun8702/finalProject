@@ -89,5 +89,16 @@ public interface BuildingService {
 	 */
 	Room selectById(int roomId);
 	
+	/**
+	 * 교수실강의동 강의실 조회 메소드
+	 * @return
+	 */
+	List<Building> selectRoomListByOffice();
+	
+	/**
+	 * 연구실강의동 강의실 조회 메소드
+	 * @return
+	 */
+	List<Building> selectRoomListByLaboratory();
 
 }

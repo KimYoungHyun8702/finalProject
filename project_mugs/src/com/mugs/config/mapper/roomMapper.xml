@@ -14,7 +14,6 @@
 		<result column="room_name" property="roomName"/>
 		<result column="building_id" property="buildingId"/>
 	</resultMap>
-
 	<insert id="insertRoom" parameterType="room">
 		<selectKey resultType="int" keyProperty="roomId" order="BEFORE">
 			SELECT room_id_seq.nextval FROM dual
@@ -49,5 +48,6 @@
 	<select id="selectRoomList" resultMap="room-basic-resultmap">
 		<include refid="select-room"/>
 	</select>
+	
 
 </mapper>

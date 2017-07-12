@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="${initParam.rootPath }/resource/jquery/jquery.js"></script>
+<script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 	<h2>건물 조회</h2>

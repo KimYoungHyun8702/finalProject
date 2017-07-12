@@ -221,6 +221,15 @@
 		WHERE s.lecture_id = r.room_id AND r.building_id = b.building_id AND s.subject_id = #{value}
 	</select>
 	
+	<select id="selectForOverlap" resultMap="subject-college-resultmap" parameterType="map">
+		SELECT s.subject_time, s.subject_semester, s.lecture_id, r.building_id
+		FROM subject s, room r
+		WHERE s.lecture_id = r.room_id(+) 
+		AND s.subject_time = #{subjectTime} 
+		AND s.subject_semester = #{subjectSemester} 
+		AND r.building_id = #{buildingId}
+	</select>
+	
 
 	<!-- 영현이꼬 -->
 	<select id="selectSubjectInfoByJoin" resultMap="subject-professor-resultmap" >

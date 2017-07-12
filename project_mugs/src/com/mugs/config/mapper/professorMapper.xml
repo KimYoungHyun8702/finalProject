@@ -16,13 +16,19 @@
 	
 	<resultMap id="professor-user-resultmap" type="professor">
       <id column="pro_id" property="proId" />
-	  <result column="pro_university" property="proUniversity" />
-	  <result column="pro_grad_school" property="proGradSchool" />
-	  <result column="pro_office_phone_num" property="proOfficePhoneNum" />
-	  <result column="pro_laboratory_phone_num" property="proLaboratoryPhoneNum" />
-	  <result column="major_id" property="majorId" />
-	  <result column="office_id" property="proRoomOfficeId" />
-	  <result column="laboratory_id" property="proRoomLaboratoryId" />
+
+      <result column="pro_university" property="proUniversity" />
+      <result column="pro_grad_school" property="proGradSchool" />
+      <result column="pro_office_phone_num" property="proOfficePhoneNum" />
+      <result column="pro_laboratory_phone_num" property="proLaboratoryPhoneNum" />
+      <result column="major_id" property="majorId" />
+      <result column="major_name" property="majorName" />
+      <result column="office_id" property="proRoomOfficeId" />
+      <result column="room_name" property="officeName" />
+      <result column="building_name" property="buildingName" />
+      <result column="laboratory_id" property="proRoomLaboratoryId" />
+      <result column="room_name" property="laboratoryName" />
+
       <result column="users_id" property="usersId" />
       <result column="users_password" property="usersPassword" />
       <result column="users_name" property="usersName" />
@@ -55,12 +61,13 @@
 
 	<insert id="insertProfessor" parameterType="professor">
 		INSERT INTO professor
-		VALUES(#{proId},#{proUniversity},#{proGradSchool},#{proOfficePhoneNum})
+		VALUES(#{proId},#{proUniversity},#{proGradSchool},#{proOfficePhoneNum},#{proLaboratoryPhoneNum},#{majorId},
+		#{proRoomOfficeId},#{proRoomLaboratoryId})
 	</insert>
 
 	<delete id="deleteProfessorById" parameterType="String">
-		DELETE FROM professor
-		WHERE pro_id = #{value}
+		DELETE FROM users
+		WHERE users_id = #{value}
 	</delete>
 
 	<update id="updateProfessor" parameterType="professor">
@@ -97,5 +104,97 @@
 		FROM   professor p, users u
 		WHERE  p.pro_id = u.users_id
 		AND    p.pro_id = #{value}
+	</select>
+	
+	<select id="selectProfessorInfoByName" resultMap="professor-user-resultmap">
+		SELECT p.pro_id,
+		  	   p.pro_university,
+		  	   p.pro_grad_school,
+		  	   p.pro_office_phone_num,
+		   	   u.users_id, 
+		  	   u.users_password, 
+		  	   u.users_name,
+		   	   u.users_eng_name,
+		   	   u.users_rrn,
+		   	   u.users_email,
+		   	   u.users_phone_num,
+		  	   u.users_cell_num,
+		  	   u.users_national,
+		  	   u.users_current_addr,
+		  	   u.users_born_addr,
+		       u.users_enable,
+	           u.users_photo
+		FROM   professor p, users u
+		WHERE  p.pro_id = u.users_id
+		AND    p.pro_id = #{value}
+	</select>
+	
+	<select id="selectProfessorByName" resultMap="professor-user-resultmap" parameterType="String">
+			SELECT p.pro_id,  	   
+		  	   u.users_name, u.users_rrn, u.users_email
+		FROM   professor p, users u
+		WHERE  p.pro_id = u.users_id 
+		AND    u.users_name Like '%'||#{value}||'%'
+	</select>
+	
+	<select id="selectProfessorInfoById" resultMap="professor-user-resultmap" parameterType="String">
+		SELECT p.pro_id,
+		  	   p.pro_university,
+		  	   p.pro_grad_school,
+		  	   p.pro_office_phone_num,
+		  	   p.pro_laboratory_phone_num,
+		   	   u.users_id, 
+		  	   u.users_password, 
+		  	   u.users_name,
+		   	   u.users_eng_name,
+		   	   u.users_rrn,
+		   	   u.users_email,
+		   	   u.users_phone_num,
+		  	   u.users_cell_num,
+		  	   u.users_national,
+		  	   u.users_current_addr,
+		  	   u.users_born_addr,
+		       u.users_enable,
+	           u.users_photo
+		FROM   professor p, users u
+		WHERE  p.pro_id = u.users_id
+		AND    p.pro_id = #{value}
+	</select>
+	
+	<select id="selectProfessorInfoForMajorById" resultMap="professor-user-resultmap" parameterType="String">
+		SELECT m.major_name, m.major_id
+		FROM   professor p, major m
+		WHERE  p.major_id = m.major_id
+		AND    p.pro_id = #{value}
+	</select>
+	
+	<select id="selectProfessorInfoForOfficeById" resultMap="professor-user-resultmap" parameterType="String">
+		SELECT r.room_name, b.building_name, p.office_id, b.building_id
+		FROM   professor p, room r, building b
+		WHERE  p.office_id = r.room_id AND b.building_id = r.building_id
+		AND    p.pro_id = #{value}
+	</select>
+	
+	<select id="selectProfessorInfoForLaboratoryById" resultMap="professor-user-resultmap" parameterType="String">
+		SELECT r.room_name, b.building_name, p.laboratory_id, b.building_id
+		FROM   professor p, room r, building b
+		WHERE  p.laboratory_id = r.room_id AND  b.building_id = r.building_id
+		AND    p.pro_id = #{value}
+	</select>
+	
+	<select id="selectProfessorOfficeForOverlap" resultMap="professor-user-resultmap">
+		SELECT r.room_name, b.building_name, p.office_id
+		FROM   professor p, room r, building b
+		WHERE  p.office_id = r.room_id 
+		AND b.building_id = r.building_id
+		AND b.building_name = '교수실강의동'
+	</select>
+	
+	<select id="selectProfessorLabaratoryForoverlap" resultMap="professor-user-resultmap">
+		SELECT r.room_name, b.building_name, p.laboratory_id
+		FROM   professor p, room r, building b
+		WHERE  p.laboratory_id = r.room_id 
+		AND b.building_id = r.building_id
+		AND b.building_name = '연구실강의동'
 	</select>
 </mapper>

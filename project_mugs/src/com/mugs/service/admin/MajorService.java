@@ -1,6 +1,7 @@
 package com.mugs.service.admin;
 
 import java.util.List;
+import java.util.Map;
 
 import com.mugs.vo.Major;
 
@@ -48,10 +49,10 @@ public interface MajorService {
 	List<Major> selectMajorBycollegeId(int collegeId);
 	
 	/**
-	 * 매개변수로 majorId를 받아 해당하는 학과 및 졸업학점 조회 메소드
+	 * 매개변수로 majorId를 받아 해당하는 학과 및 졸업학점 및 기준 학점 조회 메소드
 	 * @param majorId
 	 * @return
 	 */
-	List<Major> selectMajorGraduationCreditByMajorId(int majorId);
+	Map selectMajorGraduationCreditByMajorId(int majorId);
 	
 }

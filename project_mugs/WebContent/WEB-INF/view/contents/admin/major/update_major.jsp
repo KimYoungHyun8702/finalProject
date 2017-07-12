@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,5 +15,6 @@
 		<input type="hidden" name="collegeId" value="${requestScope.major.collegeId }"/>
 		<input type="hidden" name="majorId" value="${requestScope.major.majorId }"/>
 		<input type="submit" value="수정">
+		<sec:csrfInput/>
 	</form>
 </body>
