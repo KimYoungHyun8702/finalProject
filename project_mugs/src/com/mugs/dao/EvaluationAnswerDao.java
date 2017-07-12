@@ -1,7 +1,9 @@
 package com.mugs.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.mugs.vo.Evaluation;
 import com.mugs.vo.EvaluationAnswer;
 
 public interface EvaluationAnswerDao {
@@ -47,4 +49,23 @@ public interface EvaluationAnswerDao {
 	 * @return
 	 */
 	List<EvaluationAnswer> selectEvaluationAnswerValueList(String loginIn, int nowYear, String nowSemester);
+	
+	/**
+	 * 설문에 응답한 정보를 insert하는 메소드
+	 * @param nowYear
+	 * @param nowSemester
+	 * @param loginIn
+	 * @param subjectId
+	 * @param proId
+	 * @return
+	 */
+	int insertEvaluationAnswerValue(int evaluationTaskPoint, int evaluationExamPoint, int evaluationReadyPoint, 
+									int evaluationPassionPoint, int evaluationQuestionPoint ,int nowYear, 
+									String nowSemester, String loginId, int subjectId, String proId);
+	
+	
+	ArrayList<Object> updateEvaluationAnswerState(int nowYear, String nowSemester, String loginId, int subjectId);
+	
+	
+	List<EvaluationAnswer> selectEvaluationAnswerValue(int nowYear, String nowSemester, String loginId, int subjectId);
 }

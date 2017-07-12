@@ -37,7 +37,7 @@ public interface StandardDao {
 	 * @param majorId
 	 * @return
 	 */
-	int selectStandardById(int standardYear, int majorId);//매개변수가 2개라서 변수 선언해줄때 Map선언해주고 Map에 담아줘야 합니다.
+	Standard selectStandardById(int standardYear, int majorId);//매개변수가 2개라서 변수 선언해줄때 Map선언해주고 Map에 담아줘야 합니다.
 	
 	
 	/**
@@ -66,5 +66,12 @@ public interface StandardDao {
 	 * @return
 	 */
 	Standard selectStandardValue(int collegeId, int majorId, int standardYear);
+	
+	/**
+	 * 매개변수로 majorId를 받아 해당하는 기준학점 조회 메소드
+	 * @param majorId
+	 * @return
+	 */
+	List<Standard> selectListByMajorId(int majorId);
 	
 }

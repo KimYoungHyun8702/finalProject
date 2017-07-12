@@ -47,7 +47,18 @@
 
 <!-- insert -->
 <insert id="insertCredit" parameterType="credit">
-	INSERT INTO credit VALUES(#{creditId}, #{creditYear}, #{creditSemester}, #{creditAcquire}, #{creditGrade}, #{creditScore}, #{creditRecource}, #{subjectId}, #{stuId})
+	INSERT INTO credit VALUES
+	(
+	#{creditId},
+	 #{creditYear},
+	 #{creditSemester},
+	 #{creditAcquire}, 
+	 #{creditGrade}, 
+	 #{creditScore}, 
+	 #{creditRecource}, 
+	 #{subjectId}, 
+	 #{stuId}
+	 )
 </insert>
 
 <!-- update -->
@@ -153,12 +164,4 @@
 	
 		
 </select>
-
-
-
-
-
-
-
-
 </mapper>

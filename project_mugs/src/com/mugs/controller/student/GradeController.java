@@ -96,5 +96,4 @@ public class GradeController {
 		
 		return service.getAcademicProbationByStuId(id);
 	}
-
 }

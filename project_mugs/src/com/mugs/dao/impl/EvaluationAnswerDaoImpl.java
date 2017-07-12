@@ -1,5 +1,6 @@
 package com.mugs.dao.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -51,8 +52,46 @@ public class EvaluationAnswerDaoImpl implements EvaluationAnswerDao{
 		params.put("loginId", loginId);
 		params.put("nowYear", nowYear);
 		params.put("nowSemester", nowSemester);
+	
 		return session.selectList(makeSql("selectEvaluationAnswerValueList"), params);
 	}
+
+	@Override
+	public int insertEvaluationAnswerValue(int evaluationTaskPoint, int evaluationExamPoint, int evaluationReadyPoint,
+			int evaluationPassionPoint, int evaluationQuestionPoint, int nowYear, String nowSemester, String loginId,
+			int subjectId, String proId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public ArrayList<Object> updateEvaluationAnswerState(int nowYear, String nowSemester, String loginId, int subjectId) {
+		HashMap params = new HashMap();
+		params.put("nowYear", nowYear);
+		params.put("nowSemester", nowSemester);
+		params.put("loginId", loginId);
+		params.put("subjectId", subjectId);
 	
+	    session.update(makeSql("updateEvaluationAnswerState"), params);
+	
+		ArrayList<Object> list = new ArrayList<>();
+		list.add(nowYear);
+		list.add(nowSemester);
+		list.add(loginId);
+		list.add(subjectId);
+	
+		return list;
+	}
+	@Override
+	public List<EvaluationAnswer> selectEvaluationAnswerValue(int nYear, String nSemester, String nowId, int subjctId) {
+		
+		HashMap params = new HashMap();
+		params.put("nowYear", nYear);
+		params.put("nowSemester", nSemester);
+		params.put("loginId", nowId);
+		params.put("subejectId", subjctId);
+	    return session.selectOne(makeSql("selectEvaluationAnswerValue"), params);
+	}
 
 }

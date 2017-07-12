@@ -1,11 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/project_mugs/resource/jquery/jquery.js"></script>
+<script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function room_delete(roomId){
 	if(confirm("삭제하시겠습니까?")){
@@ -49,6 +50,7 @@ ${list.buildingName }
 변경된 이름 : <input type="text" name="roomName"/><br>
 <input type="submit" value="수정">
 <input type="button" id="delete" onclick="room_delete($('#roomId').val())" value="삭제"/>
+<sec:csrfInput/>
 </form>
 <button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
 </body>

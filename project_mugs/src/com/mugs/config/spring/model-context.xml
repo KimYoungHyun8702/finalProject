@@ -11,8 +11,10 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
+	<!-- dao와 service는 web과 security 모두에서 사용 -->
 	<context:component-scan base-package="com.mugs.dao.impl, com.mugs.service.impl" />
 	<context:annotation-config />
+
 	
 	<!-- mybatis 설정 -->
 	<bean name="dataSource" class="org.apache.tomcat.dbcp.dbcp2.BasicDataSource"
@@ -30,5 +32,4 @@
 	<bean name="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		p:dataSource-ref="dataSource" />
-
 </beans>

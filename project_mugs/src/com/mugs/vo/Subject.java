@@ -24,7 +24,8 @@ public class Subject implements Serializable {
 	private char subjectCloseClass;
 	private String subjectSemester;
 	private Integer majorId;
-	private int lectureId;
+	private Integer lectureId;
+	
 	private int remainNum;
 	private String recourse;
 	private SubjectPlan subjectPlan;
@@ -32,14 +33,23 @@ public class Subject implements Serializable {
 	private College college;
 	private Room room;
 	private Building building;
+
 	private Map<String, String> YoyilAndGyoshi;
 	
-	public Subject() {
-	}
+	/**------영현이꼬------------*/
+	private Professor professor;
+
+	private String gyoShi1;
+	private String gyoShi2;
+	private String yoYil1;
+	private String yoYil2;
+	
+	public Subject(){}
 
 	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
 			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass, char subjectCloseClass,
-			String subjectSemester, Integer majorId, int lectureId) {
+			String subjectSemester, Integer majorId, Integer lectureId) {
+		super();
 		this.subjectId = subjectId;
 		this.subjectName = subjectName;
 		this.subjectTime = subjectTime;
@@ -57,9 +67,11 @@ public class Subject implements Serializable {
 
 	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
 			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass, char subjectCloseClass,
-			String subjectSemester, Integer majorId, int lectureId, int remainNum, String recourse,
+			String subjectSemester, Integer majorId, Integer lectureId, int remainNum, String recourse,
 			SubjectPlan subjectPlan, Major major, College college, Room room, Building building,
-			Map<String, String> yoyilAndGyoshi) {
+			Map<String, String> yoyilAndGyoshi, Professor professor, String gyoShi1, String gyoShi2, String yoYil1,
+			String yoYil2) {
+		super();
 		this.subjectId = subjectId;
 		this.subjectName = subjectName;
 		this.subjectTime = subjectTime;
@@ -81,6 +93,11 @@ public class Subject implements Serializable {
 		this.room = room;
 		this.building = building;
 		YoyilAndGyoshi = yoyilAndGyoshi;
+		this.professor = professor;
+		this.gyoShi1 = gyoShi1;
+		this.gyoShi2 = gyoShi2;
+		this.yoYil1 = yoYil1;
+		this.yoYil2 = yoYil2;
 	}
 
 	public int getSubjectId() {
@@ -179,11 +196,11 @@ public class Subject implements Serializable {
 		this.majorId = majorId;
 	}
 
-	public int getLectureId() {
+	public Integer getLectureId() {
 		return lectureId;
 	}
 
-	public void setLectureId(int lectureId) {
+	public void setLectureId(Integer lectureId) {
 		this.lectureId = lectureId;
 	}
 
@@ -251,6 +268,46 @@ public class Subject implements Serializable {
 		YoyilAndGyoshi = yoyilAndGyoshi;
 	}
 
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
+	public String getGyoShi1() {
+		return gyoShi1;
+	}
+
+	public void setGyoShi1(String gyoShi1) {
+		this.gyoShi1 = gyoShi1;
+	}
+
+	public String getGyoShi2() {
+		return gyoShi2;
+	}
+
+	public void setGyoShi2(String gyoShi2) {
+		this.gyoShi2 = gyoShi2;
+	}
+
+	public String getYoYil1() {
+		return yoYil1;
+	}
+
+	public void setYoYil1(String yoYil1) {
+		this.yoYil1 = yoYil1;
+	}
+
+	public String getYoYil2() {
+		return yoYil2;
+	}
+
+	public void setYoYil2(String yoYil2) {
+		this.yoYil2 = yoYil2;
+	}
+
 	@Override
 	public String toString() {
 		return "Subject [subjectId=" + subjectId + ", subjectName=" + subjectName + ", subjectTime=" + subjectTime
@@ -259,7 +316,9 @@ public class Subject implements Serializable {
 				+ ", subjectClass=" + subjectClass + ", subjectCloseClass=" + subjectCloseClass + ", subjectSemester="
 				+ subjectSemester + ", majorId=" + majorId + ", lectureId=" + lectureId + ", remainNum=" + remainNum
 				+ ", recourse=" + recourse + ", subjectPlan=" + subjectPlan + ", major=" + major + ", college="
-				+ college + ", room=" + room + ", building=" + building + ", YoyilAndGyoshi=" + YoyilAndGyoshi + "]";
+				+ college + ", room=" + room + ", building=" + building + ", YoyilAndGyoshi=" + YoyilAndGyoshi
+				+ ", professor=" + professor + ", gyoShi1=" + gyoShi1 + ", gyoShi2=" + gyoShi2 + ", yoYil1=" + yoYil1
+				+ ", yoYil2=" + yoYil2 + "]";
 	}
 
 	@Override
@@ -269,9 +328,12 @@ public class Subject implements Serializable {
 		result = prime * result + ((YoyilAndGyoshi == null) ? 0 : YoyilAndGyoshi.hashCode());
 		result = prime * result + ((building == null) ? 0 : building.hashCode());
 		result = prime * result + ((college == null) ? 0 : college.hashCode());
-		result = prime * result + lectureId;
+		result = prime * result + ((gyoShi1 == null) ? 0 : gyoShi1.hashCode());
+		result = prime * result + ((gyoShi2 == null) ? 0 : gyoShi2.hashCode());
+		result = prime * result + ((lectureId == null) ? 0 : lectureId.hashCode());
 		result = prime * result + ((major == null) ? 0 : major.hashCode());
 		result = prime * result + ((majorId == null) ? 0 : majorId.hashCode());
+		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
 		result = prime * result + ((recourse == null) ? 0 : recourse.hashCode());
 		result = prime * result + remainNum;
 		result = prime * result + ((room == null) ? 0 : room.hashCode());
@@ -287,6 +349,8 @@ public class Subject implements Serializable {
 		result = prime * result + ((subjectSemester == null) ? 0 : subjectSemester.hashCode());
 		result = prime * result + ((subjectTime == null) ? 0 : subjectTime.hashCode());
 		result = prime * result + ((subjectType == null) ? 0 : subjectType.hashCode());
+		result = prime * result + ((yoYil1 == null) ? 0 : yoYil1.hashCode());
+		result = prime * result + ((yoYil2 == null) ? 0 : yoYil2.hashCode());
 		return result;
 	}
 
@@ -314,7 +378,20 @@ public class Subject implements Serializable {
 				return false;
 		} else if (!college.equals(other.college))
 			return false;
-		if (lectureId != other.lectureId)
+		if (gyoShi1 == null) {
+			if (other.gyoShi1 != null)
+				return false;
+		} else if (!gyoShi1.equals(other.gyoShi1))
+			return false;
+		if (gyoShi2 == null) {
+			if (other.gyoShi2 != null)
+				return false;
+		} else if (!gyoShi2.equals(other.gyoShi2))
+			return false;
+		if (lectureId == null) {
+			if (other.lectureId != null)
+				return false;
+		} else if (!lectureId.equals(other.lectureId))
 			return false;
 		if (major == null) {
 			if (other.major != null)
@@ -325,6 +402,11 @@ public class Subject implements Serializable {
 			if (other.majorId != null)
 				return false;
 		} else if (!majorId.equals(other.majorId))
+			return false;
+		if (professor == null) {
+			if (other.professor != null)
+				return false;
+		} else if (!professor.equals(other.professor))
 			return false;
 		if (recourse == null) {
 			if (other.recourse != null)
@@ -382,6 +464,16 @@ public class Subject implements Serializable {
 			if (other.subjectType != null)
 				return false;
 		} else if (!subjectType.equals(other.subjectType))
+			return false;
+		if (yoYil1 == null) {
+			if (other.yoYil1 != null)
+				return false;
+		} else if (!yoYil1.equals(other.yoYil1))
+			return false;
+		if (yoYil2 == null) {
+			if (other.yoYil2 != null)
+				return false;
+		} else if (!yoYil2.equals(other.yoYil2))
 			return false;
 		return true;
 	}

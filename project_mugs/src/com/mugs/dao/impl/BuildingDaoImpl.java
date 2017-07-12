@@ -52,4 +52,15 @@ public class BuildingDaoImpl implements BuildingDao{
 		return session.selectList(makeSql("selectBuildingList"));
 	}
 
+	@Override
+	public List<Building> selectRoomListByOffice() {
+		return session.selectList(makeSql("selectRoomListByOffice"));
+	}
+
+	@Override
+	public List<Building> selectRoomListByLaboratory() {
+		return session.selectList(makeSql("selectRoomListByLaboratory"));
+	}
+	
+	
 }

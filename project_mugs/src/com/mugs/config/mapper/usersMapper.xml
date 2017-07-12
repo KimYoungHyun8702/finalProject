@@ -62,7 +62,10 @@
 		
 		WHERE users_id=#{usersId}
 	</update>
-
+	<update id="updatePassword" parameterType="map">
+		UPDATE users SET users_password=#{pw} WHERE users_id=#{id}
+	</update>
+	
 	<!-- delete -->
 	<delete id="deleteUsers" parameterType="string">
 		DELETE FROM users WHERE
@@ -78,6 +81,16 @@
 		<include refid="select-users" />
 		WHERE users_id=#{value}
 	</select>
+	
+	<select id ="selectUsersByNameRRN" resultMap="users-basic-resultmap" parameterType="map">
+		SELECT users_id FROM users WHERE users_name=#{name} AND users_rrn=#{rrn} 
+	</select>
+	
+	<select id ="selectUsersByIdNameRRN" resultMap="users-basic-resultmap" parameterType="map">
+		<include refid="select-users" />
+		WHERE users_name=#{name} AND users_rrn=#{rrn} AND users_id=#{id}
+	</select>
+	
 	<!-- 병문 유저Mapper -->
 	<!-- 학생의 인적정보를 수정한다.(id, 이름, 영문이름, 주민번호, 국적, 인증가능상태를 제외 -->
 	<update id="updateStudentHumanInfo" parameterType="users">

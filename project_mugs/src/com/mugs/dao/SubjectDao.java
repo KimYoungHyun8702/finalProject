@@ -135,4 +135,13 @@ public interface SubjectDao {
 	 */
 	List<Subject> selectSubjectListByMajorIdForAllTime(int majorId);
 	
+	 /** 강의실 중복제거를 위한 조회 메소드
+	 * @param subjectTime
+	 * @param subjectSemester
+	 * @param lecureId
+	 * @param buildingId
+	 * @return
+	 */
+	Subject selectForOverlap(String subjectTime, String subjectSemester, int buildingId);
+
 }

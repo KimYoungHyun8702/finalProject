@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mugs.dao.AcademicCalendarDao;
 import com.mugs.dao.CollegeDao;
 import com.mugs.dao.CourseDao;
 import com.mugs.dao.MajorDao;
@@ -45,6 +46,9 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
 	
 	@Autowired
 	private StandardDao standardDaoImpl;
+	
+	@Autowired
+	private AcademicCalendarDao academicCalendarDaoImpl;
 
 	@Override
 	public List<College> getCollegeList() {
@@ -69,8 +73,16 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
 		// 여기서 년도랑 학기를 뽑아오는 메소드를 호출해서 지금년도, 지금학기와 비교하여... 해당학기, 해당년도를 조회한다.
 		Date date = new Date();
 		int nowYear = date.getYear() + 1900;
+		String nowSemester = "";
 		// int nowMonth = date.getMonth();
-		String nowSemester = "1학기";
+		
+		List<String> semesterList = academicCalendarDaoImpl.selectCalendarName(date);
+		for(int i = 0; i < semesterList.size(); i++) {
+			if(semesterList.get(i).contains("학기") && semesterList.get(i).length() < 5) {
+				nowSemester = semesterList.get(i);
+					
+			}
+		}
 
 		// 현재년도와 현재 월을 전달함으로써 몇학기인지가 조회되는 메소드
 		// String nowSemester = courseDao.selectHackGiIlJung(nowMonth);

@@ -10,13 +10,33 @@ package com.mugs.vo;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Notice implements Serializable {
 	
 	private int noticeId;
 	private String noticeContent;
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:SS")
 	private Date noticeDate;
 	private String usersId;
+	private String usersName;
 	
+	public String getUsersName() {
+		return usersName;
+	}
+
+	public void setUsersName(String usersName) {
+		this.usersName = usersName;
+	}
+
+	public Notice(int noticeId, String noticeContent, Date noticeDate, String usersId, String usersName) {
+		this.noticeId = noticeId;
+		this.noticeContent = noticeContent;
+		this.noticeDate = noticeDate;
+		this.usersId = usersId;
+		this.usersName = usersName;
+	}
+
 	public Notice() {
 	}
 
@@ -62,7 +82,7 @@ public class Notice implements Serializable {
 	@Override
 	public String toString() {
 		return "Notice [noticeId=" + noticeId + ", noticeContent=" + noticeContent + ", noticeDate=" + noticeDate
-				+ ", usersId=" + usersId + "]";
+				+ ", usersId=" + usersId + ", usersName=" + usersName + "]";
 	}
 
 	@Override
@@ -73,6 +93,7 @@ public class Notice implements Serializable {
 		result = prime * result + ((noticeDate == null) ? 0 : noticeDate.hashCode());
 		result = prime * result + noticeId;
 		result = prime * result + ((usersId == null) ? 0 : usersId.hashCode());
+		result = prime * result + ((usersName == null) ? 0 : usersName.hashCode());
 		return result;
 	}
 
@@ -101,6 +122,11 @@ public class Notice implements Serializable {
 			if (other.usersId != null)
 				return false;
 		} else if (!usersId.equals(other.usersId))
+			return false;
+		if (usersName == null) {
+			if (other.usersName != null)
+				return false;
+		} else if (!usersName.equals(other.usersName))
 			return false;
 		return true;
 	}

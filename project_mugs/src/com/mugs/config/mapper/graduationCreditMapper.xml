@@ -68,9 +68,17 @@
 	AND graduation_credit_year=#{graduationCreditYear}
 </select>
 
-<select id="selectGraduationCreditByMajorId" resultMap="graduationCredit-basic-resultmap" parameterType="int">
-	<include refid="select-graduationCredit"/>
-	WHERE major_id=#{majorId}
+<select id="selectGraduationCreditByMajorId" resultMap="graduationCreditJoinMajorName-basic-resultmap" parameterType="int">
+	SELECT 	m.major_name, 
+			g.major_id, 
+			g.graduation_credit_year, 
+			g.grad_vital_edu_credit,
+			g.grad_select_edu_credit,
+			g.grad_vital_major_credit,
+			g.grad_select_major_credit
+	FROM major m, graduation_credit g
+	WHERE m.major_id = g.major_id 
+	AND g.major_id = #{majorId}
 </select>
 
 <!-- 병문 Mapper -->

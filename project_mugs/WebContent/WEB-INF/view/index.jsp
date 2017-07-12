@@ -1,9 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ page import="java.util.*, java.util.Calendar,  java.util.Date, java.text.SimpleDateFormat"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" src="/project_mugs/resource/jquery/jquery.js"></script>
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -18,6 +21,7 @@
 <a href="${initParam.rootPath }/professorInfo.do">교수 개인 정보</a><br>
 <a href="${initParam.rootPath }/guidanceStudent.do">지도학생</a><br>
 <a href="${initParam.rootPath }/SubjectPlan.do">강의계획서</a><br>
+<a href="${initParam.rootPath }/addStudentGrade.do">성적주기</a><br>
 
 
 <h1>조새롬 학생</h1>
@@ -35,10 +39,10 @@
 <hr>
 <h1>현동준 관리자</h1>
 <hr>
-<a href="${initParam.rootPath }/admin/selectStudentController.do">학생 조회</a>
-<a href="insertStudent.do">학생 등록</a>
-<a href="selectProfessor.do">교수 조회</a>
-<a href="insertProfessor.do">교수 등록</a>
+<a href="${initParam.rootPath }/select_student.do">학생 조회</a>
+<a href="${initParam.rootPath }/admin/selectMajorForInsertController.do">학생 등록</a>
+<a href="${initParam.rootPath }/select_professor.do">교수 조회</a>
+<a href="${initParam.rootPath }/admin/selectForInsertProfessorController.do">교수 등록</a>
 <a href="${initParam.rootPath }/admin/selectSubjectTypeController.do">과목 조회</a>
 <a href="${initParam.rootPath }/admin/selectForInsertSubjectController.do">과목 등록</a>
 <a href="${initParam.rootPath }/admin/selectCollegeListForSelectController.do">학과 조회</a>
@@ -47,6 +51,8 @@
 <a href="${initParam.rootPath }/insert_college.do">단과대학 등록</a>
 <a href="${initParam.rootPath }/admin/selectBuildingListController.do">건물 조회</a>
 <a href="${initParam.rootPath }/insert_building.do">강의동 등록</a>
+<a href="${initParam.rootPath }/admin/selectNoticeController.do">공지사항 조회</a>
+<a href="${initParam.rootPath }/insert_notice.do">공지사항 등록</a>
 
 <hr>
 <h1>김진광 학생</h1>

@@ -7,7 +7,8 @@
 			   course_year,
 			   course_semester,
 			   subject_id,
-			   stu_id
+			   stu_id,
+			   pro_id
 		FROM   course	   
 	</sql>
 	
@@ -20,13 +21,30 @@
 		<result column="stu_id" 			property="stuId"/>
 	</resultMap>
 	
+		<resultMap type="course" 				id="course-count-resultmap">
+		<id column="course_id" 				property="courseId"/>
+		<result column="course_year" 		property="courseYear"/>
+		<result column="course_semester" 	property="courseSemester"/>
+		<result column="subject_id"		 	property="subjectId"/>
+		<result column="stu_id" 			property="stuId"/>
+		<result column="count" 				property="count"/>
+	</resultMap>
+	
 	
 	
 	<resultMap type="course" id="course-professor-subject-resultmap" extends="course-resultmap">
-		<association property="professor" javaType="com.mugs.vo.Professor" resultMap="com.mugs.config.mapper.professorMapper.professor-resultmap"/>
+		<association property="professor" javaType="com.mugs.vo.Professor" resultMap="com.mugs.config.mapper.professorMapper.professor-user-resultmap"/>
 		<association property="subject" javaType="com.mugs.vo.Subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-basic-resultmap"/>
+		<association property="building" javaType="com.mugs.vo.Building" resultMap="com.mugs.config.mapper.buildingMapper.building-basic-reresultmap"/>
+		<association property="room" javaType="com.mugs.vo.Room" resultMap="com.mugs.config.mapper.roomMapper.room-basic-resultmap"/>
+	
 	</resultMap>
 	
+	<!-- 영현이꼬 -->
+	<resultMap type="course" id="course-subject-student-users-resultmap" extends="course-count-resultmap">
+		<association property="subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-basic-resultmap"/>
+		<association property="student" resultMap="com.mugs.config.mapper.studentMapper.student-user-resultmap"/>
+	</resultMap>
 	
 	<!-- 시퀀스 조회 후 수강 id에 저장, 수강 등록 -->
 	<insert id="insertCourse" parameterType="course">
@@ -73,9 +91,12 @@
 	
 	<!-- 로그인한 id와 같은 행의 학기, 연도, 과목id, 교수id컬럼을 통해 2중조인하여 과목정보랑 교수정보 조회 -->
 	<select id="selectMyTimeTableByJoin" parameterType="map" resultMap="course-professor-subject-resultmap">
-		SELECT s.subject_name, s.subject_time, s.lecture_id, u.users_name
-		FROM   course c, subject s, professor p, users u
+		SELECT s.subject_name, s.subject_time, s.lecture_id, u.users_name, b.building_name, r.room_name
+		FROM   course c, subject s, professor p, users u, room r, building b
 		WHERE  c.subject_id = s.subject_id
+		and    s.lecture_id = r.room_id
+		and    r.building_id = b.building_id
+
 		AND    c.pro_id = p.pro_id
 		AND    p.pro_id = u.users_id
 		AND    c.course_year = #{nowYear}
@@ -90,11 +111,183 @@
 		SELECT s.subject_id, s.subject_name, s.subject_type, s.subject_credit, u.users_name, s.subject_time, s.lecture_id
 		FROM   subject s, professor p, course c, users u, professor_subject q
 		WHERE  c.subject_id = s.subject_id
-		AND    q.pro_id = p.pro_id
-		AND    p.pro_id = u.users_id
+		and    q.subject_id = c.subject_id
+		and    q.pro_id = p.pro_id
+		and    p.pro_id = u.users_id
 		AND    c.course_year = #{nowYear}
 		AND    c.course_semester = #{nowSemester}
 		AND    c.stu_id = #{loginId}
+	</select>
+
+	<!-- 영현이꼬  과목에 맞는 학생 리스트를 조회(매개변수 3개)-->
+	<select id="selectCourseByThreeId" resultMap="course-subject-student-users-resultmap">
+	   	   select
+			   c.course_id,
+			   c.course_year,
+			   c.course_semester,
+			   c.subject_id,
+			   c.stu_id,
+
+			   sb.subject_id,
+			   sb.subject_name,
+			   sb.subject_time,
+			   sb.subject_type,
+			   sb.subject_credit,
+			   sb.subject_capacity,
+			   sb.subject_request,
+			   sb.subject_grade,
+			   sb.subject_class,
+			   sb.subject_close_class,
+			   sb.subject_semester,
+			   sb.major_id,
+			   sb.lecture_id,
+
+			   s.stu_id,
+			   s.stu_course,
+			   s.stu_army,
+			   s.stu_admission_date,
+			   s.stu_graduation_date,
+			   s.stu_register_state,
+			   s.stu_student_state,
+			   s.stu_grade,
+			   s.stu_graduation_exam,
+			   s.stu_early_graduation,
+			   s.stu_semester,
+			   s.major_id,
+			   s.major_dual_id,
+			   s.major_minor_id,
+
+			   u.users_id, 
+			   u.users_password, 
+			   u.users_name,
+			   u.users_eng_name,
+			   u.users_rrn,
+			   u.users_email,
+			   u.users_phone_num,
+			   u.users_cell_num,
+			   u.users_national,
+			   u.users_current_addr,
+			   u.users_born_addr,
+			   u.users_enable,
+			   u.users_photo,
+			   count(c2.stu_id) count
+	   from course c, subject sb, student s, users u, course c2
+	   where c.stu_id = s.stu_id
+	   and s.stu_id = u.users_id
+	   and c.subject_id = sb.subject_id
+	   and c.course_year = #{courseYear}
+	   and c.course_semester = #{courseSemester}
+	   and c.subject_id = #{subjectId}
+	   and c.stu_id = c2.stu_id(+)
+	   and c.subject_id = c2.subject_id(+)
+	   group by c.course_id,
+			   c.course_year,
+			   c.course_semester,
+			   c.subject_id,
+			   c.stu_id,
+			   sb.subject_id,
+			   sb.subject_name,
+			   sb.subject_time,
+			   sb.subject_type,
+			   sb.subject_credit,
+			   sb.subject_capacity,
+			   sb.subject_request,
+			   sb.subject_grade,
+			   sb.subject_class,
+			   sb.subject_close_class,
+			   sb.subject_semester,
+			   sb.major_id,
+			   sb.lecture_id,
+			   s.stu_id,
+			   s.stu_course,
+			   s.stu_army,
+			   s.stu_admission_date,
+			   s.stu_graduation_date,
+			   s.stu_register_state,
+			   s.stu_student_state,
+			   s.stu_grade,
+			   s.stu_graduation_exam,
+			   s.stu_early_graduation,
+			   s.stu_semester,
+			   s.major_id,
+			   s.major_dual_id,
+			   s.major_minor_id,
+			   u.users_id, 
+			   u.users_password, 
+			   u.users_name,
+			   u.users_eng_name,
+			   u.users_rrn,
+			   u.users_email,
+			   u.users_phone_num,
+			   u.users_cell_num,
+			   u.users_national,
+			   u.users_current_addr,
+			   u.users_born_addr,
+			   u.users_enable,
+			   u.users_photo
+	
+	</select>
+	
+	
+	<!-- 영현이꼬  과목에 맞는 학생 리스트를 조회(매개변수 2개)-->
+	<select id="selectCourseByTwoId" resultMap="course-subject-student-users-resultmap">
+	   select
+			   c.course_id,
+			   c.course_year,
+			   c.course_semester,
+			   c.subject_id,
+			   c.stu_id,
+
+			   sb.subject_id,
+			   sb.subject_name,
+			   sb.subject_time,
+			   sb.subject_type,
+			   sb.subject_credit,
+			   sb.subject_capacity,
+			   sb.subject_request,
+			   sb.subject_grade,
+			   sb.subject_class,
+			   sb.subject_close_class,
+			   sb.subject_semester,
+			   sb.major_id,
+			   sb.lecture_id,
+
+			   s.stu_id,
+			   s.stu_course,
+			   s.stu_army,
+			   s.stu_admission_date,
+			   s.stu_graduation_date,
+			   s.stu_register_state,
+			   s.stu_student_state,
+			   s.stu_grade,
+			   s.stu_graduation_exam,
+			   s.stu_early_graduation,
+			   s.stu_semester,
+			   s.major_id,
+			   s.major_dual_id,
+			   s.major_minor_id,
+
+			   u.users_id, 
+			   u.users_password, 
+			   u.users_name,
+			   u.users_eng_name,
+			   u.users_rrn,
+			   u.users_email,
+			   u.users_phone_num,
+			   u.users_cell_num,
+			   u.users_national,
+			   u.users_current_addr,
+			   u.users_born_addr,
+			   u.users_enable,
+			   u.users_photo
+
+	   from course c, subject sb, student s, users u
+	   where c.stu_id = s.stu_id
+	   and s.stu_id = u.users_id
+	   and c.subject_id = sb.subject_id
+	   and c.subject_id = #{subjectId}
+	   and c.stu_id = #{stuId}
+	
 	</select>
 
 </mapper>

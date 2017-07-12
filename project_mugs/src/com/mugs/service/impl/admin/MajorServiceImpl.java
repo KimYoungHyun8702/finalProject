@@ -1,12 +1,15 @@
 package com.mugs.service.impl.admin;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mugs.dao.GraduationCreditDao;
 import com.mugs.dao.MajorDao;
+import com.mugs.dao.StandardDao;
 import com.mugs.service.admin.MajorService;
 import com.mugs.vo.Major;
 @Service
@@ -14,6 +17,10 @@ public class MajorServiceImpl implements MajorService {
 	
 	@Autowired
 	private MajorDao majorDao;
+	@Autowired
+	private StandardDao standardDao;
+	@Autowired
+	private GraduationCreditDao graduationCreditDao;
 	
 	@Override
 	public int insertMajor(Major major) {
@@ -58,14 +65,11 @@ public class MajorServiceImpl implements MajorService {
 	}
 
 	@Override
-	public List<Major> selectMajorGraduationCreditByMajorId(int majorId) {
-		if(majorDao.selectMajorGraduationCreditByMajorId(majorId).size() == 0 ){
-			List<Major> list = new ArrayList<>();
-			list.add(majorDao.selectMajorById(majorId));
-			return list;
-		}
-		return majorDao.selectMajorGraduationCreditByMajorId(majorId);
+	public Map selectMajorGraduationCreditByMajorId(int majorId) {
+		Map map = new HashMap();
+		map.put("major", majorDao.selectMajorById(majorId));
+		map.put("graduationcredit", graduationCreditDao.selectGraduationCreditByMajorId(majorId));
+		map.put("standard", standardDao.selectListByMajorId(majorId));
+		return map;
 	}
-	
-	
 }

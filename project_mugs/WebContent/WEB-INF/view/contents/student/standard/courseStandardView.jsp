@@ -14,7 +14,8 @@ $(document).ready(function(){
 		$.ajax({
 			"url":"/project_mugs/student/getMajorListByCollegeId.do",
 			"type":"post",
-			"data":"collegeId=" + $("#college").val(),
+			"data":{"collegeId":$("#college").val(), ${_csrf.parameterName}:'${_csrf.token}'},
+			//"data":{"collegeId=" + $("#college").val(), "${_csrf.parameterName}="+'${_csrf.token}'},
 			"dataType":"json",
 			"beforeSend":function(){
 				if(index == 0){
@@ -38,7 +39,8 @@ $(document).ready(function(){
 		$.ajax({
 			"url":"/project_mugs/student/getYearListByMajorId.do",
 			"type":"post",
-			"data":"majorId=" + $("#major").val(),
+			"data":{"majorId":$("#major").val(), ${_csrf.parameterName}:'${_csrf.token}'},
+			//"data":{"majorId=" + $("#major").val(), "${_csrf.parameterName}="+'${_csrf.token}'},
 			"dataType":"json",
 			"beforeSend":function(){
 				if(index == 0){
@@ -63,7 +65,7 @@ $(document).ready(function(){
 	      $.ajax({
 	         "url":"/project_mugs/student/getStandardValue.do",
 	         "type":"post",
-	         "data":({majorId:$("#major").val(), collegeId:$("#college").val(), standardYear:$("#year option:selected").text()}),
+	         "data":({"majorId":$("#major").val(), "collegeId":$("#college").val(), "standardYear":$("#year option:selected").text(), ${_csrf.parameterName}:'${_csrf.token}'}),
 	         "dataType":"json",
 	         "beforeSend":function(){
 	            if(index == 0){
@@ -72,18 +74,20 @@ $(document).ready(function(){
 	            }
 	         },
 	         "success":function(arr){
-	            alert("success함수 실행!");
+	            alert("조회 중 입니다. 잠시만 기다려주세요.");
 					var	tableHead = "<tr><td>최소학점</td><td>최대학점</td><td>장학금최소학점</td><td>장학금최소학점</td><td>장학금최대학점</td></tr>"
 					var tableBody = "<tr value="+arr.standardYear+"><td>"+arr.standardMinCredit+"</td><td>"+arr.standardMaxCredit+"</td><td>"+arr.standardMinScholarship+"</td><td>"+arr.standardDelayMinCredit+"</td><td>"+arr.standardDelayMaxCredit+"</td></tr>"
 			   		$("#thead").html(tableHead);
 					$("#tbody").html(tableBody);
 	         },       
 	         "error":function(){
-					alert("에러가 발생했습니다.")
+					alert("에러가 발생했습니다.");
 				}   
 	      });
 	});
 });
+
+
 </script>
 <style type="text/css">
 table, td{
@@ -134,5 +138,6 @@ select{
 	<thead id="thead"></thead>
 	<tbody id="tbody"></tbody>
 </table>
+<button onclick="location.href='${initParam.rootPath}/'">이전페이지로</button>
 </body>
 </html>
