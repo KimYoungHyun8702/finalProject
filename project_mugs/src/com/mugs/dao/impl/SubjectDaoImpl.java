@@ -124,15 +124,13 @@ public class SubjectDaoImpl implements SubjectDao {
 	public List<Subject> selectSubjectTypeByMajorId(int majorId) {
 		return session.selectList(makeSqlId("selectSubjectTypeByMajorId"),majorId);
 	}
-	
+
 	@Override
-	public List<Subject> selectSubjectBySubjectTypeAndMajorId(List<Object> typeAndMajorId) {
-		return session.selectList(makeSqlId("selectSubjectBySubjectTypeAndMajorId"),typeAndMajorId);
-	}
-	
-	@Override
-	public List<Subject> selectSubjectListByMajorIdForAllTime(int majorId) {
-		return session.selectList(makeSqlId("selectSubjectListByMajorIdForAllTime"), majorId);
+	public List<Subject> selectSubjectListByMajorIdForAllTime(int majorId,String semester) {
+		Map<String,Object> map = new HashMap();
+		map.put("majorId", majorId);
+		map.put("semester", semester);
+		return session.selectList(makeSqlId("selectSubjectListByMajorIdForAllTime"), map);
 	}
 	// End BM
 
@@ -140,6 +138,20 @@ public class SubjectDaoImpl implements SubjectDao {
 	public List<String> subjectTypeList() {
 		// TODO Auto-generated method stub
 		return session.selectList(makeSqlId("selectSubjectType"));
+	}
+
+	@Override
+	public List<Subject> selectSubjectBySubjectTypeAndMajorId(String semester, Integer majorId, String subjectType) {
+		Map map = new HashMap();
+		map.put("subjectType", subjectType);
+		map.put("majorId", majorId);
+		map.put("semester", semester);
+		return session.selectList(makeSqlId("selectSubjectBySubjectTypeAndMajorId"),map);
+	}
+
+	@Override
+	public List<Integer> selectSemesterInfo() {
+		return session.selectList(makeSqlId("selectSemesterInfo"));
 	}
 
 

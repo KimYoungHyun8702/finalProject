@@ -3,14 +3,15 @@ package com.mugs.controller.student;
 import java.io.File;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,7 +27,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mugs.service.student.StudentIndividualService;
 import com.mugs.vo.College;
 import com.mugs.vo.Major;
-import com.mugs.vo.Student;
 import com.mugs.vo.Users;
 
 
@@ -39,8 +39,8 @@ public class StudentIndividualController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;	
 	//이수구분 선택 시 해당 과목들의 id를 넘긴다.
-	List<Integer> subIdList = new ArrayList<Integer>();
-	String fileName= "";
+	private List<Integer> subIdList = new ArrayList<Integer>();
+	private String fileName= "";
 
 	@RequestMapping("moveUpdatePwd")
 	public ModelAndView moveUpdatePwd(){
@@ -57,15 +57,12 @@ public class StudentIndividualController {
 		//요청한(로그인한) 사용자의 정보 조회
 		SecurityContext context = SecurityContextHolder.getContext();
 		Authentication authentication = context.getAuthentication();
-		
-		System.out.println(passwordEncoder.encode("1234"));
-		
+				
 		//패스워드 체크				
 		if(!passwordEncoder.matches(oldUserPassword, ((Users)authentication.getPrincipal()).getUsersPassword())){ 
 			String errorMessage = "기존 비밀번호가 틀렸습니다.";		
 			return new ModelAndView("redirect:/student/moveUpdatePwd.do?errorMessage="+URLEncoder.encode(errorMessage,"UTF-8"));
-		}		 
-		  
+		}		 	  
 		//Business Logic 호출
 		acptUser.setUsersId(stuId);
 		service.updateStudentPassword(acptUser);
@@ -137,10 +134,19 @@ public class StudentIndividualController {
 	
 	@RequestMapping("getAllTimeTable")
 	public ModelAndView getAllTimeTable(){
-		 List<College> list = service.getCollegeList();
-		 return new ModelAndView("student/IndividualInfo/allTimeTable.tiles","list",list);
+		//처음에 학기리스트와 단과대학id를 같이 넘겨준다.
+		 List<Integer> semesterList = service.getSemesterInfo();
+		 return new ModelAndView("student/IndividualInfo/allTimeTable.tiles","semesterList",semesterList);
 	}
-	
+
+
+	@RequestMapping("getCollegeNameAndId")
+	@ResponseBody
+	public List<College> getCollegeNameAndId(){
+		List<College> collegeList = service.getCollegeList();
+		return collegeList;
+	}
+		
 	@RequestMapping("getMajorLists")
 	@ResponseBody
 	public List<Major> getMajorLists(int collegeId){
@@ -150,8 +156,8 @@ public class StudentIndividualController {
 	
 	@RequestMapping("getSubjectTypeList")
 	@ResponseBody
-	public List <Object> getSubjectTypeListByMajorId(int majorId){
-		List<Object> subjectList = service.getSubjectTypeListByMajorId(majorId);
+	public List <Object> getSubjectTypeListByMajorId(int majorId, String semester){
+		List<Object> subjectList = service.getSubjectTypeListByMajorId(majorId,semester);
 		List<Object> subjectAndsubTypeList = new ArrayList<Object>();
 					
 		//과목 리스트에는 전공 중복제거한 구문이 없기 때문에 StudentIndividualServiceImpl에서 따로 이수구분 추가함.
@@ -162,13 +168,10 @@ public class StudentIndividualController {
 	
 	@RequestMapping("getSubjectBySubjectType")
 	@ResponseBody
-	public List<Object> getSubjectBySubjectType(@RequestParam String majorId,
-												@RequestParam String subjectType){
-		List<Object> param = new ArrayList<Object>();
-		param.add(majorId); 
-		param.add(subjectType); 
-
-		List<Object> result = service.getSubjectBySubjectTypeAndMajorId(param);	
-		return result; 
+	public Map<String,Object> getSubjectBySubjectType(@RequestParam int majorId,
+												@RequestParam String subjectType,
+												@RequestParam String semester){
+		
+		return service.getSubjectBySubjectTypeAndMajorId(semester,majorId,subjectType);
 	} 
 }
