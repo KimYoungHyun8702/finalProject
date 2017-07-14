@@ -93,6 +93,7 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 			for(int i = 0; i < nowSemesterResult.size(); i++) {
 				if(nowSemesterResult.get(i).contains("학기") && nowSemesterResult.get(i).length() < 5) {
 					nowSemester = nowSemesterResult.get(i);
+					System.out.println(nowSemester);
 				}
 			}
 		}

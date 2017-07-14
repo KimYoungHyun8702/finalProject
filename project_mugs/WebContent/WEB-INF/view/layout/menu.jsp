@@ -233,10 +233,77 @@
 
 <%--교수 메뉴--%>
 <sec:authorize access="hasRole('ROLE_PROFESSOR')">
-<a href="${initParam.rootPath }/professorInfo.do" class="side-menu">교수 개인 정보</a><br>
-<a href="${initParam.rootPath }/guidanceStudent.do" class="side-menu">지도학생</a><br>
-<a href="${initParam.rootPath }/SubjectPlan.do" class="side-menu">강의계획서</a><br>
-<a href="${initParam.rootPath }/addStudentGrade.do" class="side-menu">성적주기</a><br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-md-3">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            </span>교수개인정보조회</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/professorInfo.do" class="side-menu">교수개인정보조회</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                     <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            </span>강의계획서</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/SubjectPlan.do" class="side-menu">강의계획서</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                     <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            </span>성적주기</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/addStudentGrade.do" class="side-menu">성적주기</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="javascript:logout()"><span class="glyphicon glyphicon-folder-close">
+                            </span>로그아웃</a>
+                        </h4>
+                    </div>
+                 </div>
+            </div>
+       </div>
+    </div>
+</div>
+                    
 </sec:authorize>
 
 <%--관리자 메뉴--%>

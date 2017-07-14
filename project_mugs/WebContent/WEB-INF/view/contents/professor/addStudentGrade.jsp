@@ -184,20 +184,24 @@ $(document).on("change", ".selectBtn1", function(){
 </script>
 </head>
 <body>
-<h2>성적주기</h2>
-<table id="table" border="1">
+
+<h3>성적주기</h3>
+<hr style="border: solid px black;">
+<div class="panel panel-primary filterable">
+
+	<table id="table" border="1">
 	<thead>
 		<tr>
-			<td>연도</td>
-			<td>학기</td>
-			<td>교수번호</td>
-			<td>과목번호</td>
-			<td>과목명</td>
-			<td>강의시간</td>
-			<td>이수구분</td>
-			<td>학년</td>
-			<td>학점</td>
-			<td>정원</td>
+			<th><input type="text" class="form-control" placeholder="연도" disabled></th>
+			<th><input type="text" class="form-control" placeholder="학기" disabled></th>
+			<th><input type="text" class="form-control" placeholder="교수번호" disabled></th>
+			<th><input type="text" class="form-control" placeholder="과목번호" disabled></th>
+			<th><input type="text" class="form-control" placeholder="과목명" disabled></th>
+			<th><input type="text" class="form-control" placeholder="강의시간" disabled></th>
+			<th><input type="text" class="form-control" placeholder="이수구분" disabled></th>
+			<th><input type="text" class="form-control" placeholder="학년" disabled></th>
+			<th><input type="text" class="form-control" placeholder="학점" disabled></th>
+			<th><input type="text" class="form-control" placeholder="정원" disabled></th>
 			
 			<td style="display: none">연도</td>
 			<td style="display: none">학기</td>
@@ -213,21 +217,26 @@ $(document).on("change", ".selectBtn1", function(){
 			<td style="display: none">핸드폰</td>
 			<td style="display: none">이메일</td>
 			
-			<td>학생리스트 보기</td>
+			<th><input type="text" class="form-control" placeholder="학생리스트보기" disabled></th>
 		</tr>
 	</thead>
 	<tbody id="tbody"></tbody>			
 </table><br>
 
-<table id="table2" border="1">
+
+<hr style="border: solid px black;">
+<div class="panel panel-primary filterable">
+
+	<table id="table2" border="1">
+
 	<thead>
 		<tr>
-			<td>총학생수</td> 
-			<td>정원</td> 
-			<td>A가능수</td> 
-			<td>B가능수</td> 
-			<td>C가능수</td> 
-			<td>D가능수</td> 
+			<th><input type="text" class="form-control" placeholder="총학생수" disabled></th>
+			<th><input type="text" class="form-control" placeholder="정원" disabled></th>
+			<th><input type="text" class="form-control" placeholder="A가능수" disabled></th>
+			<th><input type="text" class="form-control" placeholder="B가능수" disabled></th>
+			<th><input type="text" class="form-control" placeholder="C가능수" disabled></th>
+			<th><input type="text" class="form-control" placeholder="D가능수" disabled></th>
 		</tr>
 		
 		<tr>
@@ -242,20 +251,23 @@ $(document).on("change", ".selectBtn1", function(){
 	<tbody id="tbody2"></tbody>			
 </table><br>
 
-<table id="table3" border="1">
+<hr style="border: solid px black;">
+<div class="panel panel-primary filterable">
+
+	<table id="table3" border="1">
 	<thead>
 		<tr>
-			<td>시퀀스(c)</td>
-			<td>연도(c)</td>
-			<td>학기(c)</td>
-			<td>취득학점(c)</td>
-			<td>등급(c)</td>
-			<td>학점(c)</td>
-			<td>재수강여부(c)</td>
-			<td>과목ID(c)</td>
-			<td>학생ID(c)</td>
-			<td>학생성명</td>
-			<td>성적주기</td>
+			<th><input type="text" class="form-control" placeholder="시퀀스(c)" disabled></th>
+			<th><input type="text" class="form-control" placeholder="연도(c)" disabled></th>
+			<th><input type="text" class="form-control" placeholder="학기(c)" disabled></th>
+			<th><input type="text" class="form-control" placeholder="취득학점(c)" disabled></th>
+			<th><input type="text" class="form-control" placeholder="등급(c)" disabled></th>
+			<th><input type="text" class="form-control" placeholder="학점(c)" disabled></th>
+			<th><input type="text" class="form-control" placeholder="재수강여부(c)" disabled></th>
+			<th><input type="text" class="form-control" placeholder="과목ID(c)" disabled></th>
+			<th><input type="text" class="form-control" placeholder="학생ID(c)" disabled></th>
+			<th><input type="text" class="form-control" placeholder="학생성명" disabled></th>
+			<th><input type="text" class="form-control" placeholder="성적주기" disabled></th>
 		</tr>
 	</thead>
 	<tbody id="tbody3"></tbody>	

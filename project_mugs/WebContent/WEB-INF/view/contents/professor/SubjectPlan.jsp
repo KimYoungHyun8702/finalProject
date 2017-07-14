@@ -5,6 +5,23 @@
 <head>
 <meta>
 <title>Insert title here</title>
+<style type="text/css">
+table{
+	width:100px;
+	border-collapse: collapse;
+}
+td{
+	padding: 5px;
+	text-align:center;
+	border: 1px solid black;
+}
+th, input{
+	text-align:center;
+}
+h3, body{
+	font-family:돋움체;
+}
+</style>
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -74,21 +91,25 @@ $(document).on("click", ".Btn", function(){
 
 </head>
 <body>
-안뇽안뇽
+<h3>강의계획서~안뇽안뇽</h3>
+ <hr style="border: solid px black;">
 
-<table id="table" border="1">
-	<thead>
+    <div class="panel panel-primary filterable">
+
+	<table class="table" border="1">
+	<thead id="thead">
+		<tr class="filters">
 		<tr>
-			<td>연도</td>
-			<td>학기</td>
-			<td>교수번호</td>
-			<td>과목번호</td>
-			<td>과목명</td>
-			<td>강의시간</td>
-			<td>이수구분</td>
-			<td>학년</td>
-			<td>학점</td>
-			<td>정원</td>
+			<th><input type="text" width="20px" placeholder="연도ID" disabled></th>
+			<th width="70px"><input type="text" width="30px" placeholder="학기" disabled></th>
+			<th width="70px"><input type="text"  placeholder="교수번호" disabled></th>
+			<th width="20px"><input type="text"  placeholder="과목번호" disabled></th>
+			<th width="110px"><input type="text"  placeholder="과목명" disabled></th>
+			<th width="110px"><input type="text"  placeholder="강의시간" disabled></th>
+			<th width="70px"><input type="text"  placeholder="이수구분" disabled></th>
+			<th width="50px"><input type="text"  placeholder="학년" disabled></th>
+			<th width="50px"><input type="text"  placeholder="학점" disabled></th>
+			<th width="50px"><input type="text"  placeholder="정원" disabled></th>
 			
 			
 			<td style="display: none">연도</td>
@@ -105,10 +126,12 @@ $(document).on("click", ".Btn", function(){
 			<td style="display: none">핸드폰</td>
 			<td style="display: none">이메일</td>
 			
-			<td>강의계획서</td>
-			<td>강의계획서 등록</td>
+			<th width="120px"><input type="text"  placeholder="강의계획서" disabled></th>
+			<th width="120px"><input type="text"  placeholder="강의계획서 등록" disabled></th>
 		</tr>
 	</thead>
+	</table>
+	</div>
 	<tbody id="tbody"></tbody>			
 </table>
 

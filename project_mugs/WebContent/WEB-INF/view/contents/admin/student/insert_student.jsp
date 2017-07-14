@@ -141,13 +141,6 @@ h3{
 			</tr>
 		</thead>
 		<tbody>
-			<tr class="filters">
-				<td align="center"><input type="number" name="usersId" value="${requestScope.info.usersId }" id="usersId" readonly/></td>
-				<td align="center"><input type="text" name="usersName" value="${requestScope.info.usersName }" id="usersName"/></td>
-				<td align="center"><input type="text" name="usersEngName" value="${requestScope.info.usersEngName }" id="usersEngName"/></td>
-				<td align="center"><input type="text" name="usersRRN" value="${requestScope.info.usersRRN }" id="usersRRN"/></td>
-				<td align="center"><input type="email" name="usersEmail" value="${requestScope.info.usersEmail }" id="usersEmail"/></td>
-				<td align="center"><input type="text" name="usersPhoneNum" value="${requestScope.info.usersPhoneNum }" id="usersPhoneNum"/></td>
 			<tr>
 				<td align="center"><input type="number" name="usersId" id="usersId" value="${param.usersId }"/></td>
 				<td align="center"><input type="text" name="usersName" id="usersName" value="${param.usersName }"/></td>
