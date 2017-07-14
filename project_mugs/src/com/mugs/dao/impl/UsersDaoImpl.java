@@ -18,15 +18,15 @@ public class UsersDaoImpl implements UsersDao {
 	private SqlSessionTemplate session;
 
 	@Override
-	public int insertUsers(Users user) {
+	public int insertUsers(Users users) {
 		// TODO Auto-generated method stub
-		return session.insert(makeSqlId("insertUsers"), user);
+		return session.insert(makeSqlId("insertUsers"), users);
 	}
 
 	@Override
-	public int updateUsersById(Users user) {
+	public int updateUsersById(Users users) {
 		// TODO Auto-generated method stub
-		return session.update(makeSqlId("updateUsersById"), user);
+		return session.update(makeSqlId("updateUsersById"), users);
 	}
 
 	@Override
@@ -51,14 +51,19 @@ public class UsersDaoImpl implements UsersDao {
 	private String makeSqlId(String id) {
 		return "com.mugs.config.mapper.usersMapper." + id;
 	}
+	
 	//병문 DaoImpl
-
 	@Override
 	public int updateStudentHumanInfo(Users user) {
 		return session.update(makeSqlId("updateStudentHumanInfo"),user);
 	}
 
 	@Override
+	public int updateStudentPassword(Users user) {
+		return session.update(makeSqlId("updateStudentPassword"), user);
+	}
+	//End BM
+
 	public Users selectUsersByInfo(String name, String rrn) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<>();
@@ -86,5 +91,5 @@ public class UsersDaoImpl implements UsersDao {
 		map.put("pw", pw);
 		return session.update(makeSqlId("updatePassword"), map);
 	}
-	
+
 }

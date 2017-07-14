@@ -5,24 +5,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,inital-scale=1.0"/>
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#subjectType").change(function() {
-		var index = $("#subjectType option").index($("#subjectType option:selected"));
+	$("#subjectTypeList").change(function() {
+		var index = $("#subjectTypeList option").index($("#subjectTypeList option:selected"));
 		$.ajax({
-			"url":"/project_mugs/student/college.do",
+			"url":"/project_mugs/student/getCollegeListAjax.do",
 			"type":"post",
 			"dataType":"json",
+			"data":{${_csrf.parameterName}:'${_csrf.token}'},
 			"beforeSend":function(){
 				if(index == 0) {
 					alert("이수구분을 선택하세요.");
 					var txt = "<option>선택하세요.</option>"
-					$("#college").html(txt);
-					$("#major").html(txt);
-					$("#thead1").empty();
-					$("#tbody1").empty();
+					$("#collegeList").html(txt);
+					$("#majorList").html(txt);
+					$("#subjectThead").empty();
+					$("#subjectTbody").empty();
 					return false;
 				}
 			},
@@ -31,25 +33,25 @@ $(document).ready(function() {
 				$.each(list, function(){
 					txt += "<option value=" + this.collegeId + ">" + this.collegeName + "</option>";
 				});
-				$("#college").html(txt);
+				$("#collegeList").html(txt);
 			},
 		});
 	});
 	
-	$("#college").change(function() {
-		var index = $("#college option").index($("#college option:selected"));
+	$("#collegeList").change(function() {
+		var index = $("#collegeList option").index($("#collegeList option:selected"));
 		$.ajax({
-			"url":"/project_mugs/student/major.do",
+			"url":"/project_mugs/student/getMajorListByCollegeId.do",
 			"type":"post",
-			"data":"collegeId=" + $("#college").val(),
+			"data":{"collegeId":$("#collegeList").val(), ${_csrf.parameterName}:'${_csrf.token}'},
 			"dataType":"json",
 			"beforeSend":function() {
 				if(index == 0) {
 					alert("단과대학을 선택하세요.");
 					var txt = "<option>선택하세요.</option>"
-					$("#major").html(txt);
-					$("#thead1").empty();
-					$("#tbody1").empty();
+					$("#majorList").html(txt);
+					$("#subjectThead").empty();
+					$("#subjectTbody").empty();
 					return false;
 				}
 			},
@@ -58,208 +60,308 @@ $(document).ready(function() {
 				$.each(list, function(){
 					txt += "<option value=" + this.majorId + ">" + this.majorName + "</option>";
 				});
-				$("#major").html(txt);
+				$("#majorList").html(txt);
 			},
 		});
 	});
 	
-	$("#major").change(function() {
-		var index = $("#major option").index($("#major option:selected"));
-		var now = new Date();
-		var nowYear = now.getFullYear();
-		var nowMonth = (now.getMonth()+1);
+	$("#majorList").change(function() {
+		var index = $("#majorList option").index($("#majorList option:selected"));
 		$.ajax({
-			"url":"/project_mugs/student/subject.do",
+			"url":"/project_mugs/student/getSubjectListByJoin.do",
 			"type":"post",
 			"dataType":"json",
-			"data":({majorId:$("#major").val(), nowYear:nowYear, nowMonth:nowMonth}),
+			"data":({majorId:$("#majorList").val(), semester:$("#semester").val(), nowYear:$("#nowYear").val(), subjectType:$("#subjectTypeList").val(), ${_csrf.parameterName}:'${_csrf.token}'}),
 			"beforeSend":function() {
 				if(index == 0) {
 					alert("학과를 선택하세요.");
-					$("#thead1").empty();
-					$("#tbody1").empty();
+					$("#subjectThead").empty();
+					$("#subjectTbody").empty();
 					return false;
 				}
 			},
-			"success":function(list) {
-				var headTxt = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>정원</td><td>신청</td><td>여석</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>신청버튼</td></tr>";
-				var bodyTxt= "";
-				$.each(list, function(){
-					bodyTxt += "<tr><td>" + this.subject.subjectGrade +
+			"success":function(map) {
+				var subjectTbody = "";
+				var subjectThead = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>정원</td><td>신청</td><td>여석</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>재수강여부</td><td>신청버튼</td></tr>";
+				$.each(map.professorSubjectList, function(){
+					subjectTbody += "<tr><td>" + this.subject.subjectGrade +
 								"</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
-								"</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCapacity + "</td><td>" + this.subject.subjectRequest + "</td><td>" + this.subject.remainNum + "</td><td>" + this.subject.subjectCredit + 
-								"</td><td>" + this.subject.subjectTime + "</td><td>" + this.subject.lectureId + "</td><td>" + this.subject.majorId + "<input type='hidden' value=" + this.subjectId + ">" + "<input type='hidden' value=" + this.proId + ">" + "<input type='hidden' value=" + this.subject.majorId + ">" + "<input type='hidden' value=" + this.proSubjectSemester + ">" + "</td><td>" + "<button id=" + "btn1>" + "수강신청</button>" + "</td></tr>";
+								"</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCapacity + "</td><td>" + this.subject.subjectRequest + 
+								"</td><td>" + this.subject.remainNum + "</td><td>" + this.subject.subjectCredit + "</td><td>" + this.subject.subjectTime + 
+								"</td><td>" + this.subject.lectureId + "</td><td>" + this.subject.major.majorName + "</td><td>" + this.subject.recourse +
+								"</td><td>" + "<button id=" + "enrolment>" + "수강신청</button>" + "<input type='hidden' value=" + this.subjectId + ">" + 
+								"<input type='hidden' value=" + this.proId + ">" + "</td></tr>";
 				});
-				$("#thead1").html(headTxt);
-				$("#tbody1").html(bodyTxt);
+				$("#subjectThead").html(subjectThead);
+				$("#subjectTbody").html(subjectTbody);
 			},
 		});
 	});
 	
-	$(document).on("click", "#btn1", function() {
-		var subId = $(this).parent().prev().children().val();
-		var sms = $(this).parent().prev().children().next().next().next().val();
-		var pro = $(this).parent().prev().children().next().val();
-		var major = $(this).parent().prev().children().next().next().val();
-		var tbodySize = $("#tbody2 tr").length;
+	$(document).on("click", "#enrolment", function() {
+		var tbodySize = $("#tbodyMySubject tr").length;
 		$.ajax({
-			"url":"/project_mugs/student/getMySubject.do",
+			"url":"/project_mugs/student/addCourseMySubject.do",
 			"type":"post",
+			"data":({semester:$("#semester").val(), nowYear:$("#nowYear").val(), 
+				majorId:$("#majorList").val(), proId:$(this).next().next().val(), 
+				subjectType:$("#subjectTypeList").val(), subjectId:$(this).next().val(), 
+				recourse:$(this).parent().prev().text(), stuRegister:$("#stuRegister").val(), ${_csrf.parameterName}:'${_csrf.token}'}),
 			"dataType":"json",
-			"data":({subjectId:subId, semester:sms, proId:pro, majorId:major}),
-			"beforeSend":function(){
-				if(tbodySize != 0) {
-					for(var i = 0; i < tbodySize; i++) {
-						var value = $("#tbody2 tr").eq(i).children().eq(8).children().val();
-						if(value == subId) {
-							alert("이미 신청한 강좌입니다.");
-							return false;
-						}
-					}
-				}
-			},
-			"success":function(list) {
-				var bodyTxt= "";
-				$.each(list, function(){
-					bodyTxt += "<tr><td>" + this.subject.subjectGrade +
-					"</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
-					"</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCapacity + "</td><td>" + this.subject.subjectRequest + "</td><td>" + this.subject.remainNum + "</td><td>" + this.subject.subjectCredit + 
-					"</td><td>" + this.subject.subjectTime + "</td><td>" + this.subject.lectureId + "</td><td>" + this.subject.majorId + "<input type='hidden' value=" + this.subjectId + ">" + "<input type='hidden' value=" + this.proId + ">" +
-					"<input type='hidden' value=" + this.subject.majorId + ">" + "<input type='hidden' value=" + this.proSubjectSemester + ">" + "</td><td>" + "<button id=" + "btn1>" + "수강신청</button>" + "</td></tr>";
-				});
-				$("#tbody1").html(bodyTxt);
-				var headTxt = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>취소버튼</td></tr>";
-				var txt = "";
-				
-				$.each(list, function(){
-					if(this.subjectId == subId) {
-						txt += "<tr><td>" + this.subject.subjectGrade +
-						"</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
-						"</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCredit + "</td><td>" + this.subject.subjectTime + 
-						"</td><td>" + this.subject.lectureId + "</td><td>" + this.subject.majorId + "<input type='hidden' value=" + this.subjectId + ">" +
-						"<input type='hidden' value=" + this.proId + ">" + "<input type='hidden' value=" + this.subject.majorId + ">" + 
-						"<input type='hidden' value=" + this.proSubjectSemester + ">" + "</td><td>" + "<button id=" + "btn2>" + "수강취소</button>" + "</td></tr>";
-					}
-				});
-				
-				if(tbodySize == 0) {
-					$("#thead2").html(headTxt);
-					$("#tbody2").html(txt);
-					$("#course_info_layer").show();
-				} else {
-					$("#tbody2").append(txt);
-				}
-			},
-		});
-	});
-	
-	$(document).on("click", "#btn2", function() {
-		var subId = $(this).parent().prev().children().val();
-		var sms = $(this).parent().prev().children().next().next().next().val();
-		var pro = $(this).parent().prev().children().next().val();
-		var major = $(this).parent().prev().children().next().next().val();
-		var tbodySize = $("#tbody2 tr").length;
-		$.ajax({
-			"url":"/project_mugs/student/deleteMySubject.do",
-			"type":"post",
-			"dataType":"json",
-			"data":({subjectId:subId, semester:sms, proId:pro, majorId:major}),
 			"beforeSend":function() {
 				
 			},
-			"success":function(list) {
-				var head1Txt = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>정원</td><td>신청</td><td>여석</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>신청버튼</td></tr>";
-				var body1Txt = "";
-				var head2Txt = "";
-				var body2Txt = "";
-				$.each(list, function(){
-					body1Txt += "<tr><td>" + this.subject.subjectGrade +
-								"</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
-								"</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCapacity + "</td><td>" + this.subject.subjectRequest + "</td><td>" + this.subject.remainNum + "</td><td>" + this.subject.subjectCredit + 
-								"</td><td>" + this.subject.subjectTime + "</td><td>" + this.subject.lectureId + "</td><td>" + this.subject.majorId + "<input type='hidden' value=" + this.subjectId + ">" + "<input type='hidden' value=" + this.proId + ">" + "<input type='hidden' value=" + this.subject.majorId + ">" + "<input type='hidden' value=" + this.proSubjectSemester + ">" + "</td><td>" + "<button id=" + "btn1>" + "수강신청</button>" + "</td></tr>";
+			"success":function(map) {
+				if(map.msg) {
+					alert(map.msg);
+				} else {
+					alert("수강신청 완료")
+					var subjectThead = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>정원</td><td>신청</td><td>여석</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>재수강여부</td><td>신청버튼</td></tr>";
+					var subjectTbody = "";
+					$.each(map.professorSubjectList, function() {
+						subjectTbody += "<tr><td>" + this.subject.subjectGrade +
+									"</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
+									"</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCapacity + "</td><td>" + this.subject.subjectRequest + 
+									"</td><td>" + this.subject.remainNum + "</td><td>" + this.subject.subjectCredit + "</td><td>" + this.subject.subjectTime + 
+									"</td><td>" + this.subject.lectureId + "</td><td>" + this.subject.major.majorName + "</td><td>" + this.subject.recourse +
+									"</td><td>" + "<button id=" + "enrolment>" + "수강신청</button>" + "<input type='hidden' value=" + this.subjectId + ">" + 
+									"<input type='hidden' value=" + this.proId + ">" + "</td></tr>";
+					});
 					
-				});
-				
-				for(var i = 0; i < tbodySize; i++) {
-					var value = $("#tbody2 tr").eq(i).children().eq(8).children().val();
-					if(subId != list[i].subjectId && value == list[i].subjectId) {	
-						body2Txt += "<tr><td>" + list[i].subject.subjectGrade +
-						"</td><td>" + list[i].subject.subjectType + "</td><td>" + list[i].subject.subjectClass + "</td><td>" + list[i].subject.subjectName + 
-						"</td><td>" + list[i].professor.usersName + "</td><td>" + list[i].subject.subjectCredit + "</td><td>" + list[i].subject.subjectTime + 
-						"</td><td>" + list[i].subject.lectureId + "</td><td>" + list[i].subject.majorId + "<input type='hidden' value=" + list[i].subjectId + ">" +
-						"<input type='hidden' value=" + list[i].proId + ">" + "<input type='hidden' value=" + list[i].subject.majorId + ">" + 
-						"<input type='hidden' value=" + list[i].proSubjectSemester + ">" + "</td><td>" + "<button id=" + "btn2>" + "수강취소</button>" + "</td></tr>";
-					} 
+					var theadMySubject = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>취소버튼</td></tr>";
+					var tbodyMySubject = "";
+					$.each(map.courseSubjectList, function() {
+						tbodyMySubject += "<tr><td>" + this.subject.subjectGrade + "</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass +
+									"</td><td>" + this.subject.subjectName + "</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCredit + 
+									"</td><td>" + this.subject.subjectTime + "</td><td>" + this.subject.lectureId + "</td><td>" + this.subject.major.majorName + 
+									"</td><td>" + "<button id=" + "cancelCourse>" + "수강취소</button>" + "<input type='hidden' value=" + this.subjectId + ">" + 
+									"<input type='hidden' value=" + this.proId + ">" + "<input type='hidden' value=" + this.subject.majorId + ">" + "<input type='hidden' value=" + this.subject.subjectType + ">" + 
+									"</td></tr>"
+					});
+					$("#subjectThead").html(subjectThead);
+					$("#subjectTbody").html(subjectTbody);
+					$("#theadMySubject").html(theadMySubject);
+					$("#tbodyMySubject").html(tbodyMySubject);
 				}
-				$("#thead1").html(head1Txt);
-				$("#tbody1").html(body1Txt);
-				/* if() {
-					$("#thead2").html(head2Txt);
-				} */
-				$("#tbody2").html(body2Txt);
 			},
 		});
+	});
+	
+	$(document).on("click", "#cancelCourse", function() {
+		if(confirm("정말 취소하시겠습니까?") == true) {			
+			var subjectTbodySize = $("#subjectTbody tr").length;
+			$.ajax({
+				"url":"/project_mugs/student/removeMySubject.do",
+				"type":"post",
+				"dataType":"json",
+				"data":({majorId:$(this).next().next().next().val(), semester:$("#semester").val(), nowYear:$("#nowYear").val(), 
+					proId:$(this).next().next().val(), subjectId:$(this).next().val(), subjectType:$(this).next().next().next().next().val(), ${_csrf.parameterName}:'${_csrf.token}'}),
+				"beforeSend":function() {
+					
+				},
+				"success":function(map) {
+					alert("수강취소 완료");
+					if(subjectTbodySize != 0) {
+						var subjectThead = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>정원</td><td>신청</td><td>여석</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>재수강여부</td><td>신청버튼</td></tr>";
+						var subjectTbody = "";
+						$.each(map.professorSubjectList, function() {
+							subjectTbody += "<tr><td>" + this.subject.subjectGrade +
+										"</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
+										"</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCapacity + "</td><td>" + this.subject.subjectRequest + 
+										"</td><td>" + this.subject.remainNum + "</td><td>" + this.subject.subjectCredit + "</td><td>" + this.subject.subjectTime + 
+										"</td><td>" + this.subject.lectureId + "</td><td>" + this.subject.major.majorName + "</td><td>" + this.subject.recourse +
+										"</td><td>" + "<button id=" + "enrolment>" + "수강신청</button>" + "<input type='hidden' value=" + this.subjectId + ">" + 
+										"<input type='hidden' value=" + this.proId + ">" + "</td></tr>";
+						});
+						
+						var theadMySubject = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>취소버튼</td></tr>";
+						var tbodyMySubject = "";
+						$.each(map.courseSubjectList, function() {
+							tbodyMySubject += "<tr><td>" + this.subject.subjectGrade + "</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass +
+										"</td><td>" + this.subject.subjectName + "</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCredit + 
+										"</td><td>" + this.subject.subjectTime + "</td><td>" + this.subject.lectureId + "</td><td>" + this.subject.major.majorName + 
+										"</td><td>" + "<button id=" + "cancelCourse>" + "수강취소</button>" + "<input type='hidden' value=" + this.subjectId + ">" + 
+										"<input type='hidden' value=" + this.proId + ">" + "<input type='hidden' value=" + this.subject.majorId + ">" + "<input type='hidden' value=" + this.subject.subjectType + ">" + 
+										"</td></tr>"
+						});
+						$("#subjectThead").html(subjectThead);
+						$("#subjectTbody").html(subjectTbody);
+						$("#theadMySubject").html(theadMySubject);
+						$("#tbodyMySubject").html(tbodyMySubject);
+					} else {
+						var theadMySubject = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>취소버튼</td></tr>";
+						var tbodyMySubject = "";
+						$.each(map.courseSubjectList, function() {
+							tbodyMySubject += "<tr><td>" + this.subject.subjectGrade + "</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass +
+										"</td><td>" + this.subject.subjectName + "</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCredit + 
+										"</td><td>" + this.subject.subjectTime + "</td><td>" + this.subject.lectureId + "</td><td>" + this.subject.major.majorName + 
+										"</td><td>" + "<button id=" + "cancelCourse>" + "수강취소</button>" + "<input type='hidden' value=" + this.subjectId + ">" + 
+										"<input type='hidden' value=" + this.proId + ">" + "<input type='hidden' value=" + this.subject.majorId + ">" + "<input type='hidden' value=" + this.subject.subjectType + ">" + 
+										"</td></tr>"
+						});
+						$("#theadMySubject").html(theadMySubject);
+						$("#tbodyMySubject").html(tbodyMySubject);
+					}
+				}
+			});
+		} else {
+			return;
+		}
+	});
+	
+	$(document).on("click", "#completed", function() {
+		var tbodyMySubjectSize = $("#tbodyMySubject tr").length;
+		var myCourseCreditSum = 0;
+		var stuRegister = $("#stuRegister").val();	// 재적상태
+		var standardMinCredit = $("#standardMinCredit").val();	// 재학생 최저 인정가능 학점
+		var standardMinScholarship = $("#standardMinScholarship").val();	// 장학금 최저 인정가능 학점
+		var standardDelayMinCredit = $("#standardDelayMinCredit").val();	// 졸업유예자 최저 인정가능 학점
+				
+		for(var i = 0; i < tbodyMySubjectSize; i++) {
+			myCourseCreditSum += $("#tbodyMySubject tr").eq(i).children().eq(5).text()*1;
+		}
+		
+		if(stuRegister == "재학") {
+			if(myCourseCreditSum < standardMinCredit) {
+				if(confirm("신청학점이 최저 인정가능학점이 되지 않습니다, 그래도 수강신청을 완료하시겠습니까?") == true) {
+					location.href="${initParam.rootPath }";
+				} else {
+					return;
+				}
+			}
+			
+			if(myCourseCreditSum > standardMinCredit && myCourseCreditSum < standardMinScholarship) {
+				if(confirm("신청학점이 장학금 최저 인정가능학점이 되지 않습니다, 그래도 수강신청을 완료하시겠습니까?") == true) {
+					location.href="${initParam.rootPath }";
+				} else {
+					return;
+				}
+			}
+		} else {
+			if(myCourseCreditSum < standardDelayMinCredit) {
+				if(confirm("신청학점이 최저 인정가능학점이 되지 않습니다, 그래도 수강신청을 완료하시겠습니까?") == true) {
+					location.href="${initParam.rootPath }";
+				} else {
+					return;
+				}
+			}
+			
+			if(myCourseCreditSum > standardDelayMinCredit && myCourseCreditSum < standardMinScholarship) {
+				if(confirm("신청학점이 장학금 최저 인정가능학점이 되지 않습니다, 그래도 수강신청을 완료하시겠습니까?") == true) {
+					location.href="${initParam.rootPath }";
+				} else {
+					return;
+				}
+			}
+		}
 	});
 });
 </script>
 
 <style type="text/css">
-table, td{
-	border: 1px solid black;
-}
-table{
-	width:700px;
-	border-collapse: collapse;
-}
-td{
-	padding: 5px;
-}
-select{
-	width:150px;
-	height: 35px;
-	padding: 5px;
-}
-#course_info_layer{
-	display: none;/*최초 로딩시에는 안보이도록 처리*/
-}
-#tbody{
-	cursor: pointer;
-}
+	table, td{
+		border: 1px solid black;
+	}
+
+	table{
+		width:700px;
+		border-collapse: collapse;
+	}
+
+	td{
+		padding: 5px;
+	}
+
+	select{
+		width:150px;
+		height: 35px;
+		padding: 5px;
+	}
+	
+	#tbody{
+		cursor: pointer;
+	}
 </style>
 </head>
 <body>
-이수구분 : 
-<select name="subjectType" id="subjectType" >
-<option>선택하세요.</option>
-	<c:forEach items="${requestScope.subjectTypeList }" var="subjectType">
-		<option value="${subjectType }">${subjectType }</option>
-	</c:forEach>
-</select>
 
+<h2>
+	<input type="hidden" id="stuRegister" value="${stuRegister }">
+	<input type="hidden" id="semester" value="${semester }">
+	<input type="hidden" id="nowYear" value="${nowYear }">
+	<input type="hidden" id="standardMinCredit" value="${standard.standardMinCredit }">
+	<input type="hidden" id="standardMaxCredit" value="${standard.standardMaxCredit }">
+	<input type="hidden" id="standardMinScholarship" value="${standard.standardMinScholarship }">
+	<input type="hidden" id="standardDelayMinCredit" value="${standard.standardDelayMinCredit }">
+	<input type="hidden" id="standardDelayMaxCredit" value="${standard.standardDelayMaxCredit }">
+	${nowYear }연도 ${semester } 수강신청
+</h2>
+
+이수구분 : 
+<select name="subjectTypeList" id="subjectTypeList" >
+	<option>선택하세요.</option>
+		<c:forEach items="${requestScope.subjectTypeList }" var="subjectType">
+			<option>${subjectType }</option>
+		</c:forEach>
+</select>
+		 
 단과대학 : 
-<select id="college">
+<select id="collegeList">
 	<option>선택하세요.</option>
 </select>
 
 학과 : 
-<select id="major">
+<select id="majorList">
 	<option>선택하세요.</option>
 </select>
 
 
 <table>
-	<thead id="thead1"></thead>
-	<tbody id="tbody1"></tbody>
+	<thead id="subjectThead"></thead>
+	<tbody id="subjectTbody"></tbody>
 </table>
 
 <hr>
 <div id="course_info_layer">
-<h2>수강신청 내역</h2>
-<button id="btn3">저장하기</button>
-	<table>
-		<thead id="thead2"></thead>
-		<tbody id="tbody2"></tbody>
-	</table>
+	<h2>수강신청 내역</h2>
+		<button id="completed">수강신청완료</button>
+		<table>
+			<thead id="theadMySubject">
+				<tr>
+					<td>학년</td>
+					<td>이수구분</td>
+					<td>분반</td>
+					<td>강의명</td>
+					<td>담당교수</td>
+					<td>학점</td>
+					<td>강의시간</td>
+					<td>강의실</td>
+					<td>개설학과</td>
+					<td>취소버튼</td>
+				</tr>
+			</thead>
+			<tbody id="tbodyMySubject">
+				<c:forEach items="${requestScope.myCourseList }" var="course">
+					<tr>
+						<td>${course.subject.subjectGrade }</td>
+						<td>${course.subject.subjectType }</td>
+						<td>${course.subject.subjectClass }</td>
+						<td>${course.subject.subjectName }</td>
+						<td>${course.professor.usersName }</td>
+						<td>${course.subject.subjectCredit }</td>
+						<td>${course.subject.subjectTime }</td>
+						<td>${course.subject.lectureId }</td>
+						<td>${course.subject.major.majorName }</td>
+						<td><button id="cancelCourse">수강취소</button>
+						<input type="hidden" value="${course.subjectId }">
+						<input type="hidden" value="${course.proId }">
+						<input type="hidden" value="${course.subject.majorId }">
+						<input type="hidden" value="${course.subject.subjectType }">
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 </div>
 </body>
 </html>

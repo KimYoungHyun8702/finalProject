@@ -24,7 +24,7 @@
 	UPDATE authorities
 	   SET users_id=#{usersId},
 	   	   authorities_role=#{authoritiesRole}
-	 WHERE users_id=#{usersId}  	   
+	 WHERE users_id=#{usersId} 
 </update>
 
 <!-- delete -->

@@ -58,6 +58,5 @@ public interface ProfessorSubjectDao {
 
 	
 	/**---------------진현이꼬-----------*/
-	List<ProfessorSubject> selectProfessorSubjectList(int majorId, int nowYear, String subjectSemester);
-
+	List<ProfessorSubject> selectProfessorSubjectListByJoin(int majorId, int nowYear, String semester, String subjectType);
 }

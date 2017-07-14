@@ -13,7 +13,10 @@
 		<collection ofType="GraduationCredit" property="graduationCreditList">
 			<result column="major_id" property="majorId" />
 			<result column="graduation_credit_year" property="graduationCreditYear" />
-		<!-- 	<result column="graduation_credit_score" property="graduationCreditScore" /> -->
+			<result column="grad_vital_edu_credit" property="gradVitalEduCredit" />
+			<result column="grad_select_edu_credit" property="gradSelectEduCredit" />
+			<result column="grad_vital_major_credit" property="gradVitalMajorCredit" />
+			<result column="grad_select_major_credit" property="gradSelectMajorCredit" />
 		</collection>
 	</resultMap>
 
@@ -48,6 +51,7 @@
 <!-- select -->
 <select id="selectMajorList" resultMap="major-basic-resultmap">
 	<include refid="select-major"/>
+	ORDER by major_name
 </select>
 
 <select id="selectMajorById" resultMap="major-basic-resultmap" parameterType="int">
@@ -72,7 +76,7 @@
 <!-- end BM -->
 
 <select id="selectMajorGraduationCreditByMajorId" resultMap="major-graduationcredit-resultmap" parameterType="int">
-	SELECT m.major_id, m.major_name, m.college_id, g.major_id, g.graduation_credit_year, g.graduation_credit_score
+	SELECT m.major_id, m.major_name, m.college_id, g.major_id, g.graduation_credit_year, g.grad_vital_edu_credit, g.grad_select_edu_credit, g.grad_vital_major_credit, g.grad_select_major_credit
 	FROM major m, graduation_credit g
 	WHERE m.major_id = g.major_id AND m.major_id = #{value}
 </select>

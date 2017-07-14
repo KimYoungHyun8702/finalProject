@@ -9,6 +9,22 @@ public class Major implements Serializable {
 	private String majorName;
 	private int collegeId;
 	private List<GraduationCredit> graduationCreditList;
+	private List<Standard> standardList;
+	
+	public List<Standard> getStandardList() {
+		return standardList;
+	}
+	public void setStandardList(List<Standard> standardList) {
+		this.standardList = standardList;
+	}
+	public Major(int majorId, String majorName, int collegeId, List<GraduationCredit> graduationCreditList,
+			List<Standard> standardList) {
+		this.majorId = majorId;
+		this.majorName = majorName;
+		this.collegeId = collegeId;
+		this.graduationCreditList = graduationCreditList;
+		this.standardList = standardList;
+	}
 	public Major() {
 	}
 	public Major(int majorId, String majorName, int collegeId) {
@@ -54,6 +70,7 @@ public class Major implements Serializable {
 		result = prime * result + ((graduationCreditList == null) ? 0 : graduationCreditList.hashCode());
 		result = prime * result + majorId;
 		result = prime * result + ((majorName == null) ? 0 : majorName.hashCode());
+		result = prime * result + ((standardList == null) ? 0 : standardList.hashCode());
 		return result;
 	}
 	@Override
@@ -79,12 +96,17 @@ public class Major implements Serializable {
 				return false;
 		} else if (!majorName.equals(other.majorName))
 			return false;
+		if (standardList == null) {
+			if (other.standardList != null)
+				return false;
+		} else if (!standardList.equals(other.standardList))
+			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
 		return "Major [majorId=" + majorId + ", majorName=" + majorName + ", collegeId=" + collegeId
-				+ ", graduationCreditList=" + graduationCreditList + "]";
+				+ ", graduationCreditList=" + graduationCreditList + ", standardList=" + standardList + "]";
 	}
 	
 	

@@ -34,15 +34,28 @@
 		<result column="subject_id" property="subjectId" />
 	</resultMap>
 	
+	<resultMap type="subjectPlan" id="subjectPlan-subject-professor-users-resultmap" extends="subjectPlan-basic-resultmap">
+		<association property="professor" resultMap="com.mugs.config.mapper.professorMapper.professor-user-resultmap"/>
+		<association property="subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-basic-resultmap"> </association>
+	</resultMap>
+	
 	<!-- insert -->
-	<insert id="insertSubject" parameterType="subject">
+	<insert id="insertSubjectPlan" parameterType="subject">
 		INSERT INTO subject_plan
-		VALUES(#{planId}, #{planSummary}, #{planMarkingMethod},
+		VALUES(
+		#{planId}, 
+		#{planSummary}, 
+		#{planMarkingMethod},
 		#{planLessonGoal},
-		#{planWeekContent}, #{planBookinfo}, #{planBibliography},
+		#{planWeekContent}, 
+		#{planBookinfo}, 
+		#{planBibliography},
 		#{planYear},
-		#{planSemester}, #{planNote}, #{proId},
-		#{subjectId})
+		#{planSemester}, 
+		#{planNote}, 
+		#{proId},
+		#{subjectId}
+		)
 	</insert>
 
 	<!-- update -->
@@ -81,6 +94,65 @@
 		WHERE plan_id= #{value}
 	</select>
 
-
+	<!-- 영혀니꼬 -->
+	
+	<select id="selectSubjectPlanByFourId" resultMap="subjectPlan-subject-professor-users-resultmap" parameterType="map">
+		SELECT 	   
+			   sp.plan_id,	
+			   sp.plan_summary,
+			   sp.plan_marking_method,
+			   sp.plan_lesson_goal,
+			   sp.plan_week_content,
+			   sp.plan_bookinfo,
+			   sp.plan_bibliography,
+			   sp.plan_year,
+			   sp.plan_semester,
+			   sp.plan_note,
+			   sp.pro_id,
+			   sp.subject_id,
+			   s.subject_id,
+			   s.subject_name,
+			   s.subject_time,
+			   s.subject_type,
+			   s.subject_credit,
+			   s.subject_capacity,
+			   s.subject_request,
+			   s.subject_grade,
+			   s.subject_class,
+			   s.subject_close_class,
+			   s.subject_semester,
+			   s.major_id,
+			   s.lecture_id,	
+			   p.pro_id,
+		  	   p.pro_university,
+		  	   p.pro_grad_school,
+		  	   p.pro_office_phone_num,
+		  	   p.pro_laboratory_phone_num,
+		  	   p.major_id,
+		  	   p.office_id,
+		  	   p.laboratory_id,
+		   	   u.users_id, 
+		  	   u.users_password, 
+		  	   u.users_name,
+		   	   u.users_eng_name,
+		   	   u.users_rrn,
+		   	   u.users_email,
+		   	   u.users_phone_num,
+		  	   u.users_cell_num,
+		  	   u.users_national,
+		  	   u.users_current_addr,
+		  	   u.users_born_addr,
+		       u.users_enable,
+	           u.users_photo
+		FROM   professor p, users u, subject_plan sp,subject s
+		WHERE  sp.pro_id= p.pro_id
+		AND    p.pro_id= u.users_id
+		AND    s.subject_id = sp.subject_id	 	
+		AND	   sp.plan_year= #{planYear}
+		AND    sp.plan_semester= #{planSemester}
+		AND    sp.subject_id= #{subjectId}
+		AND    sp.pro_id= #{proId}
+		
+	</select>
 
  </mapper>

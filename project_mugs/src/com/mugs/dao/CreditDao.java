@@ -121,6 +121,15 @@ public interface CreditDao {
 	 */
 	List<Credit> selectCreditByYearType(int year, String type);
 	
+
+	/**
+	 * 과목ID와 로그인된 학생ID를 통해서 해당과목의 학점을 얻는 메소드
+	 * @param subjectId
+	 * @param stuId
+	 * @return
+	 */
+	List<Double> selectCreditScoreBySubjectIdStuId(int subjectId, String stuId);
+
 	/**
 	 * 해당 학생이 이수했던 과목들의 학점 조회 메소드
 	 * @param year

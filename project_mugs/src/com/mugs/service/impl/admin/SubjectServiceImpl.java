@@ -75,7 +75,7 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public List<String> selectSubjectType() {
-		return subjectDao.subjectTypeList();
+		return subjectDao.selectSubjectTypeList();
 	}
 
 	@Override
@@ -141,8 +141,20 @@ public class SubjectServiceImpl implements SubjectService {
 		map.put("building", building);
 		return map;
 	}
-	
-	
-	
-	
+
+	@Override
+	public List<Room> selectForOverlap(String subjectTime, String subjectSemester, int buildingId) {
+		Subject overlap = subjectDao.selectForOverlap(subjectTime, subjectSemester, buildingId);
+		List<Room> room = roomDao.selectRoomByReference(buildingId);
+		if(overlap == null){
+			return room;
+		}else{
+		for(int i = 0; i<room.size(); i++){
+			if(room.get(i).getRoomId() == overlap.getLectureId()){
+				room.remove(i);
+			}
+		}
+		return 	room;
+		}
+	}
 }

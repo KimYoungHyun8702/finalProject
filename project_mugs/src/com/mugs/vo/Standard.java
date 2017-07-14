@@ -11,7 +11,16 @@ public class Standard implements Serializable{
 	private int standardMinScholarship;
 	private int standardDelayMinCredit;
 	private int standardDelayMaxCredit;
+	private String majorName;
 	
+	public String getMajorName() {
+		return majorName;
+	}
+
+	public void setMajorName(String majorName) {
+		this.majorName = majorName;
+	}
+
 	public Standard() {
 	}
 
@@ -24,6 +33,18 @@ public class Standard implements Serializable{
 		this.standardMinScholarship = standardMinScholarship;
 		this.standardDelayMinCredit = standardDelayMinCredit;
 		this.standardDelayMaxCredit = standardDelayMaxCredit;
+	}
+
+	public Standard(int standardYear, int majorId, int standardMinCredit, int standardMaxCredit,
+			int standardMinScholarship, int standardDelayMinCredit, int standardDelayMaxCredit, String majorName) {
+		this.standardYear = standardYear;
+		this.majorId = majorId;
+		this.standardMinCredit = standardMinCredit;
+		this.standardMaxCredit = standardMaxCredit;
+		this.standardMinScholarship = standardMinScholarship;
+		this.standardDelayMinCredit = standardDelayMinCredit;
+		this.standardDelayMaxCredit = standardDelayMaxCredit;
+		this.majorName = majorName;
 	}
 
 	public int getStandardYear() {
@@ -87,7 +108,7 @@ public class Standard implements Serializable{
 		return "Standard [standardYear=" + standardYear + ", majorId=" + majorId + ", standardMinCredit="
 				+ standardMinCredit + ", standardMaxCredit=" + standardMaxCredit + ", standardMinScholarship="
 				+ standardMinScholarship + ", standardDelayMinCredit=" + standardDelayMinCredit
-				+ ", standardDelayMaxCredit=" + standardDelayMaxCredit + "]";
+				+ ", standardDelayMaxCredit=" + standardDelayMaxCredit + ", majorName=" + majorName + "]";
 	}
 
 	@Override
@@ -95,6 +116,7 @@ public class Standard implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + majorId;
+		result = prime * result + ((majorName == null) ? 0 : majorName.hashCode());
 		result = prime * result + standardDelayMaxCredit;
 		result = prime * result + standardDelayMinCredit;
 		result = prime * result + standardMaxCredit;
@@ -114,6 +136,11 @@ public class Standard implements Serializable{
 			return false;
 		Standard other = (Standard) obj;
 		if (majorId != other.majorId)
+			return false;
+		if (majorName == null) {
+			if (other.majorName != null)
+				return false;
+		} else if (!majorName.equals(other.majorName))
 			return false;
 		if (standardDelayMaxCredit != other.standardDelayMaxCredit)
 			return false;

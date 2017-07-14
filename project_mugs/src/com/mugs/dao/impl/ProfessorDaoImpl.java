@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mugs.dao.ProfessorDao;
+import com.mugs.vo.Major;
 import com.mugs.vo.Professor;
+import com.mugs.vo.Room;
 
 @Repository
 public class ProfessorDaoImpl implements ProfessorDao{
@@ -30,8 +32,8 @@ public class ProfessorDaoImpl implements ProfessorDao{
 	}
 
 	@Override
-	public int deleteProfessor(String proId) {
-		return session.delete(makeSqlId("deleteProfessorById"), proId);
+	public int deleteProfessor(String usersId) {
+		return session.delete(makeSqlId("deleteProfessorById"), usersId);
 	}
 
 	@Override
@@ -54,5 +56,43 @@ public class ProfessorDaoImpl implements ProfessorDao{
 	public Professor selectFullInfoProfessorById(String proId) {
 		// TODO Auto-generated method stub
 		return session.selectOne(makeSqlId("selectupdateProfessorUsers"), proId);
+	}
+
+	@Override
+	public List<Professor> selectProfessorByName(String usersName) {
+		return session.selectList(makeSqlId("selectProfessorByName"),usersName);
+	}
+
+	@Override
+	public Professor selectProfessorInfoById(String proId) {
+		return session.selectOne(makeSqlId("selectProfessorInfoById"),proId);
+	}
+
+	@Override
+	public Professor selectProfessorInfoForMajorById(String proId) {
+		return session.selectOne(makeSqlId("selectProfessorInfoForMajorById"),proId);
+	}
+
+	@Override
+	public Professor selectProfessorInfoForOfficeById(String proId) {
+		return session.selectOne(makeSqlId("selectProfessorInfoForOfficeById"),proId);
+	}
+
+	@Override
+	public Professor selectProfessorInfoForLaboratoryById(String proId) {
+		return session.selectOne(makeSqlId("selectProfessorInfoForLaboratoryById"),proId);
+	}
+
+	@Override
+	public List<Professor> selectProfessorOfficeForOverlap() {
+		return session.selectList(makeSqlId("selectProfessorOfficeForOverlap"));
+	}
+
+	@Override
+	public List<Professor> selectProfessorLabaratoryForoverlap() {
+		return session.selectList(makeSqlId("selectProfessorLabaratoryForoverlap"));
 	}			
+	
+	
+	
 }
