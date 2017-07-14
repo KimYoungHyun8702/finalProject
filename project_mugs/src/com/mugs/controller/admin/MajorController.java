@@ -55,13 +55,13 @@ public class MajorController {
 		view.addObject("major",majorService.selectMajorGraduationCreditByMajorId(majorId).get("major"));
 		view.addObject("graduationcredit",majorService.selectMajorGraduationCreditByMajorId(majorId).get("graduationcredit"));
 		view.addObject("standard",majorService.selectMajorGraduationCreditByMajorId(majorId).get("standard"));
-		System.out.println(view);
 		return view;
 	}
 	
 	@RequestMapping("/selectMajorByMajorIdForUpdateController")
 	public ModelAndView selectMajorByMajorIdForUpdate(int majorId){
 		Major major = majorService.selectMajorById(majorId);
+		System.out.println(major);
 		return new ModelAndView("admin/major/update_major.tiles","major",major);
 	}
 	

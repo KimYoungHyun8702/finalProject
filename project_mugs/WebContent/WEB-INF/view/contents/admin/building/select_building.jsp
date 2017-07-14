@@ -15,6 +15,7 @@
 			<tr>
 				<td align="center">건물 ID</td>
 				<td align="center">건물 이름</td>
+				<td align="center">건물 전화번호</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -22,6 +23,7 @@
 				<tr>
 					<td>${list.buildingId }</td>
 					<td><a href="${initParam.rootPath }/admin/selectBuildingByIdController.do?buildingId=${list.buildingId}">${list.buildingName }</a></td>
+					<td>${list.buildingPhoneNum }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

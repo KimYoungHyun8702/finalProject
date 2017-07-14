@@ -52,7 +52,7 @@ h3{
 			alert("학번을 입력하세요");
 			return false;
 		}else if($("#usersName").val() == "" || $("#usersName").val().trim() == 0 ){
-			alert("이름을를 입력하세요")
+			alert("이름을 입력하세요")
 			return false;
 		}else if($("#usersEngName").val() == "" || $("#usersEngName").val().trim() == 0){
 			alert("영어 이름을 입력하세요")
@@ -108,6 +108,12 @@ h3{
 		}else if($("#majorId").val() == "학과 선택"){
 			alert("소속 학과를 입력하세요")
 			return false;
+		}else if($("#majorDualId").val() == "학과 선택"){
+			alert("복수 전공를 입력하세요, 없을 경우 없음을 선택해주세요")
+			return false;
+		}else if($("#majorMinorId").val() == "학과 선택"){
+			alert("복수 전공를 입력하세요, 없을 경우 없음을 선택해주세요")
+			return false;
 		}else{
 			return confirm("등록하시겠습니까 ?")
 		}
@@ -116,6 +122,11 @@ h3{
 </head>
 <body>
 <h3>학생 등록</h3>
+<c:if test="${requestScope.error != null}">
+	<script type="text/javascript">
+		alert("학번이 중복되었습니다");
+	</script>
+</c:if>
 	<hr>
 	<form id="insertForm" action="${initParam.rootPath }/admin/insertStudentController.do" method="post" onsubmit="return check()">
 	<table id="infoStudent" border="1" class="table">
@@ -137,6 +148,13 @@ h3{
 				<td align="center"><input type="text" name="usersRRN" value="${requestScope.info.usersRRN }" id="usersRRN"/></td>
 				<td align="center"><input type="email" name="usersEmail" value="${requestScope.info.usersEmail }" id="usersEmail"/></td>
 				<td align="center"><input type="text" name="usersPhoneNum" value="${requestScope.info.usersPhoneNum }" id="usersPhoneNum"/></td>
+			<tr>
+				<td align="center"><input type="number" name="usersId" id="usersId" value="${param.usersId }"/></td>
+				<td align="center"><input type="text" name="usersName" id="usersName" value="${param.usersName }"/></td>
+				<td align="center"><input type="text" name="usersEngName" id="usersEngName" value="${param.usersEngName }"/></td>
+				<td align="center"><input type="text" name="usersRRN" id="usersRRN" value="${param.usersRRN }"/></td>
+				<td align="center"><input type="email" name="usersEmail" id="usersEmail" value="${param.usersEmail }"/></td>
+				<td align="center"><input type="text" name="usersPhoneNum" id="usersPhoneNum" value="${param.usersPhoneNum }"/></td>
 			</tr>
 		</tbody>
 	<thead id="thead">
@@ -163,6 +181,47 @@ h3{
 				<td align="center"><input type="text" name="usersBornAddr" id="usersBornAddr"/></td>
 				<td align="center"><input type="text" name="usersEnable" id="usersEnable"/></td>
 				<td align="center"><input type="text" name="stuCourse" id="stuCourse"/></td>
+			<tr>
+				<td align="center"><input type="text" name="usersCellNum" id="usersCellNum" value="${param.usersCellNum }"/></td>
+				<td align="center"><select name="usersNational" id="usersNational">
+									<option>국적</option>
+									<c:choose>
+										<c:when test="${param.usersNational == '한국' }">
+											<option selected>한국</option>
+										</c:when>
+										<c:otherwise>
+											<option>한국</option>
+										</c:otherwise>
+									</c:choose>
+									<c:choose>
+										<c:when test="${param.usersNational == '중국' }">
+											<option selected>중국</option>
+										</c:when>
+										<c:otherwise>
+											<option>중국</option>
+										</c:otherwise>
+									</c:choose>
+									<c:choose>
+										<c:when test="${param.usersNational == '일본' }">
+											<option selected>일본</option>
+										</c:when>
+										<c:otherwise>
+											<option>일본</option>
+										</c:otherwise>
+									</c:choose>
+									<c:choose>
+										<c:when test="${param.usersNational == '북한' }">
+											<option selected>북한</option>
+										</c:when>
+										<c:otherwise>
+											<option>북한</option>
+										</c:otherwise>
+									</c:choose>
+									</select></td>
+				<td align="center"><input type="text" name="usersCurrentAddr" id="usersCurrentAddr" value="${param.usersCurrentAddr }"/></td>
+				<td align="center"><input type="text" name="usersBornAddr" id="usersBornAddr" value="${param.usersBornAddr }"/></td>
+				<td align="center"><input type="text" name="usersEnable" id="usersEnable" value="${param.usersEnable }"/></td>
+				<td align="center"><input type="text" name="stuCourse" id="stuCourse" value="${param.stuCourse }"/></td>
 			</tr>
 		</tbody>
 		<thead id="thead">
@@ -183,6 +242,13 @@ h3{
 				<td align="center"><input type="text" name="stuStudentState" id="stuStudentState"/></td>
 				<td align="center"><input type="number" name="stuGrade" id="stuGrade"/></td>
 				<td align="center"><input type="text" name="stuGraduationExam" id="stuGraduationExam"/></td>
+			<tr>
+				<td align="center"><input type="text" name="stuArmy" id="stuArmy" value="${param.stuArmy }"/></td>
+				<td align="center"><input type="date" name="stuAdmissionDate" id="stuAdmissionDate" value="${param.stuAdmissionDate }"/></td>
+				<td align="center"><input type="text" name="stuRegisterState" id="stuRegisterState" value="${param.stuRegisterState }"/></td>
+				<td align="center"><input type="text" name="stuStudentState" id="stuStudentState" value="${param.stuStudentState }"/></td>
+				<td align="center"><input type="number" name="stuGrade" id="stuGrade" value="${param.stuGrade }"/></td>
+				<td align="center"><input type="text" name="stuGraduationExam" id="stuGraduationExam" value="${param.stuGraduationExam }"/></td>
 			</tr>
 		</tbody>
 		<thead id="thead">
@@ -198,24 +264,62 @@ h3{
 			<tr class="filters">
 				<td align="center"><input type="text" name="stuEarlyGraduation" id="stuEarlyGraduation"/></td>
 				<td align="center"><input type="text" name="stuSemester" id="stuSemester"/></td>
+			<tr>
+				<td align="center"><input type="text" name="stuEarlyGraduation" id="stuEarlyGraduation" value="${param.stuEarlyGraduation }"/></td>
+				<td align="center"><input type="text" name="stuSemester" id="stuSemester" value="${param.stuSemester }"/></td>
 				<td align="center"><select name="majorId" id="majorId">
 										<option>학과 선택</option>
 											<c:forEach var="list" items="${requestScope.major }">
-												<option value=${list.majorId }>${list.majorName }</option>
+												<c:choose>
+													<c:when test="${list.majorId == param.majorId }">
+														<option value=${list.majorId } selected>${list.majorName }</option>
+													</c:when>
+													<c:otherwise>
+														<option value=${list.majorId }>${list.majorName }</option>
+													</c:otherwise>
+												</c:choose>
 											</c:forEach>
 					    		   </select></td>
 				<td align="center"><select name="majorDualId" id="majorDualId">
 										<option>학과 선택</option>
-										<option value="0">없음</option>
+										<c:choose>
+											<c:when test="${param.majorDualId == 0 }">
+												<option value="0" selected>없음</option>
+											</c:when>
+											<c:otherwise>
+												<option value="0">없음</option>
+											</c:otherwise>
+										</c:choose>
 											<c:forEach var="list" items="${requestScope.majorDual }">
-												<option value=${list.majorId }>${list.majorName }</option>
+											<c:choose>
+												<c:when test="${list.majorId == param.majorDaulId }">
+													<option value=${list.majorId } selected>${list.majorName }</option>
+												</c:when>
+												<c:otherwise>
+													<option value=${list.majorId }>${list.majorName }</option>
+												</c:otherwise>
+											</c:choose>
 											</c:forEach>
-									</select> <br></td>
+									</select></td>
 				<td align="center"><select name="majorMinorId" id="majorMinorId">
 										<option>학과 선택</option>
-										<option value="0">없음</option>
+										<c:choose>
+											<c:when test="${param.majorMinorId == 0 }">
+												<option value="0" selected>없음</option>
+											</c:when>
+											<c:otherwise>
+												<option value="0">없음</option>
+											</c:otherwise>
+										</c:choose>
 											<c:forEach var="list" items="${requestScope.majorMinor }">
-												<option value=${list.majorId }>${list.majorName }</option>
+											<c:choose>
+												<c:when test="${list.majorId == param.majorMinorId }">
+													<option value=${list.majorId } selected>${list.majorName }</option>
+												</c:when>
+												<c:otherwise>
+													<option value=${list.majorId }>${list.majorName }</option>
+												</c:otherwise>
+											</c:choose>
 											</c:forEach>
 									</select> <br></td>
 			</tr>

@@ -8,7 +8,7 @@
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	function major_update(){
-		location.href="${initParam.rootPath }/admin/selectMajorByMajorIdForUpdateController.do?majorId="+$("td#majorId").text()
+		location.href="${initParam.rootPath }/admin/selectMajorByMajorIdForUpdateController.do?majorId="+$("tbody td:eq(0)").text()
 	};
 	function major_delete(){
 		if(confirm("삭제하시겠습니까?")){
@@ -91,7 +91,7 @@
 			<c:choose>
 				<c:when test="${ empty requestScope.standard }">
 					<tr>
-						<td id="majorId" align="center">${requestScope.major.majorId }</td>
+						<td align="center">${requestScope.major.majorId }</td>
 						<td align="center">${requestScope.major.majorName }</td>
 						<td></td>
 						<td></td>
@@ -104,7 +104,7 @@
 				<c:otherwise>
 					<c:forEach items="${requestScope.standard }" var="list">
 						<tr>
-							<td id="majorId" align="center">${list.majorId }</td>
+							<td align="center">${list.majorId }</td>
 							<td align="center">${list.majorName }</td>
 							<td align="center">${list.standardYear }</td>
 							<td align="center">${list.standardMinCredit }</td>

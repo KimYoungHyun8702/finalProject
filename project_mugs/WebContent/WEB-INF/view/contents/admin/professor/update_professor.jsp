@@ -10,10 +10,10 @@
 <script type="text/javascript">
 function check(){
 	if($("#usersId").val() == "" || $("#usersId").val().trim() == 0 ){
-		alert("학번을 입력하세요");
+		alert("교수 번호를 입력하세요");
 		return false;
 	}else if($("#usersName").val() == "" || $("#usersName").val().trim() == 0 ){
-		alert("이름을를 입력하세요")
+		alert("이름을 입력하세요")
 		return false;
 	}else if($("#usersEngName").val() == "" || $("#usersEngName").val().trim() == 0){
 		alert("영어 이름을 입력하세요")
@@ -48,8 +48,17 @@ function check(){
 	}else if($("#proGradSchool").val() == "" || $("#proGradSchool").val().trim() == 0){
 		alert("졸업 대학원을 입력하세요")
 		return false;
+	}else if($("#majorId").val() == "학과 선택"){
+		alert("학과를 선택하세요");
+		return false;
+	}else if($("#proRoomOfficeId").val() == "교수실 선택"){
+		alert("교수실을 선택하세요");
+		return false;
+	}else if($("#proRoomLaboratoryId").val() == "연구실 선택"){
+		alert("연구실을 선택하세요");
+		return false;
 	}else{
-		return confirm("등록하시겠습니까 ?")
+		return confirm("수정하시겠습니까 ?")
 	}
 };
 $(document).ready(function(){
@@ -212,40 +221,31 @@ $(document).ready(function(){
 								</c:choose>
 							</c:forEach>
 					</select></td>
-					<td align="center"><select name="office" id="office">
-							<option>강의동 선택</option>
+					<td align="center"><select name="proRoomOfficeId"
+						id="proRoomOfficeId">
 							<c:choose>
 								<c:when test="${requestScope.office == null }">
 									<option value="0" selected>없음</option>
 								</c:when>
 								<c:otherwise>
-									<option value="0">없음</option>
-								</c:otherwise>
-							</c:choose>
-							<c:forEach var="list" items="${requestScope.building }">
-								<c:choose>
-									<c:when
-										test="${requestScope.office.buildingName == list.buildingName  }">
-										<option value=${list.buildingId } selected>${list.buildingName }</option>
-									</c:when>
-									<c:otherwise>
-										<option value=${list.buildingId }>${list.buildingName }</option>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-					</select> <select name="proRoomOfficeId" id="proRoomOfficeId">
-							<c:choose>
-								<c:when test="${requestScope.office == null }">
 									<option value="0" selected>없음</option>
-								</c:when>
-								<c:otherwise>
-									<option value="${requestScope.office.proRoomOfficeId }"
-										selected>${requestScope.office.officeName }</option>
 								</c:otherwise>
 							</c:choose>
+									<c:forEach items="${requestScope.officeList }" var="list">
+										<c:forEach items="${list.roomList }" var="list">
+											<c:choose>
+												<c:when
+													test="${requestScope.office.proRoomOfficeId == list.roomId}">
+													<option value="${list.roomId }" selected>${list.roomName }</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${list.roomId }">${list.roomName }</option>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</c:forEach>
 					</select></td>
-					<td align="center"><select name="buildingId" id="buildingId">
-							<option>강의동 선택</option>
+					<td align="center"><select name="proRoomLaboratoryId" id="proRoomLaboratoryId">
 							<c:choose>
 								<c:when test="${requestScope.laboratory == null }">
 									<option value="0" selected>없음</option>
@@ -254,27 +254,19 @@ $(document).ready(function(){
 									<option value="0">없음</option>
 								</c:otherwise>
 							</c:choose>
-							<c:forEach var="list" items="${requestScope.building }">
-								<c:choose>
-									<c:when
-										test="${requestScope.laboratory.buildingName == list.buildingName  }">
-										<option value=${list.buildingId } selected>${list.buildingName }</option>
-									</c:when>
-									<c:otherwise>
-										<option value=${list.buildingId }>${list.buildingName }</option>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-					</select> <select name="proRoomLaboratoryId" id="proRoomLaboratoryId">
-							<c:choose>
-								<c:when test="${requestScope.laboratory == null }">
-									<option value="0" selected>없음</option>
-								</c:when>
-								<c:otherwise>
-									<option value="${requestScope.office.proRoomLaboratoryId }"
-										selected>${requestScope.office.laboratoryName }</option>
-								</c:otherwise>
-							</c:choose>
+									<c:forEach items="${requestScope.laboratoryList }" var="list">
+										<c:forEach items="${list.roomList }" var="list">
+											<c:choose>
+												<c:when
+													test="${requestScope.laboratory.proRoomLaboratoryId == list.roomId}">
+													<option value="${list.roomId }" selected>${list.roomName }</option>
+												</c:when>
+												<c:otherwise>
+													<option value="${list.roomId }">${list.roomName }</option>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</c:forEach>
 					</select></td>
 				</tr>
 			</tbody>

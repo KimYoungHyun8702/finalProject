@@ -51,7 +51,7 @@ function check(){
 		alert("학번을 입력하세요");
 		return false;
 	}else if($("#usersName").val() == "" || $("#usersName").val().trim() == 0 ){
-		alert("이름을를 입력하세요")
+		alert("이름을 입력하세요")
 		return false;
 	}else if($("#usersEngName").val() == "" || $("#usersEngName").val().trim() == 0){
 		alert("영어 이름을 입력하세요")

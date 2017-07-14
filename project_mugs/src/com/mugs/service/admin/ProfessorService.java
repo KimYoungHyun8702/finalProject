@@ -13,8 +13,9 @@ public interface ProfessorService {
 	 * @param users
 	 * @param professor
 	 * @return
+	 * @throws Exception 
 	 */
-	int insertProfessor(Users users, Professor professor, String role);
+	int insertProfessor(Users users, Professor professor, String role) throws Exception;
 	
 	/**
 	 * 교수 수정 메소드

@@ -35,7 +35,6 @@ public class GradeController {
 	public List<Credit> allCreditInquiry() {
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = users.getUsersId();
-		
 		List<Credit> list = service.getAllCredit(id);
 		return list;
 	}

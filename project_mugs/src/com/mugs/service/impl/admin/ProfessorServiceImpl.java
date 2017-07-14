@@ -14,7 +14,6 @@ import com.mugs.dao.BuildingDao;
 import com.mugs.dao.CollegeDao;
 import com.mugs.dao.MajorDao;
 import com.mugs.dao.ProfessorDao;
-import com.mugs.dao.RoomDao;
 import com.mugs.dao.UsersDao;
 import com.mugs.service.admin.ProfessorService;
 import com.mugs.vo.Authorities;
@@ -22,7 +21,6 @@ import com.mugs.vo.Building;
 import com.mugs.vo.College;
 import com.mugs.vo.Major;
 import com.mugs.vo.Professor;
-import com.mugs.vo.Room;
 import com.mugs.vo.Users;
 
 @Service
@@ -35,8 +33,6 @@ public class ProfessorServiceImpl implements ProfessorService {
 	@Autowired
 	private BuildingDao buildingDao;
 	@Autowired
-	private RoomDao roomDao;
-	@Autowired
 	private MajorDao majorDao;
 	@Autowired
 	private CollegeDao collegeDao;
@@ -47,7 +43,7 @@ public class ProfessorServiceImpl implements ProfessorService {
 	
 	@Override
 	@Transactional
-	public int insertProfessor(Users users, Professor professor, String role) {
+	public int insertProfessor(Users users, Professor professor, String role) throws Exception{
 		int index = users.getUsersRRN().indexOf("-");
 		users.setUsersPassword(users.getUsersRRN().substring(index+1));
 		users.setUsersPassword(passwordEncoder.encode(users.getUsersPassword()));
@@ -155,22 +151,70 @@ public class ProfessorServiceImpl implements ProfessorService {
 		Professor major = professorDao.selectProfessorInfoForMajorById(usersId);
 		Professor office = professorDao.selectProfessorInfoForOfficeById(usersId);
 		Professor laboratory = professorDao.selectProfessorInfoForLaboratoryById(usersId);
-		List<Building> building = buildingDao.selectBuildingList();
-		List<Room> room = roomDao.selectRoomList();
+		List<Building> laboratoryList = buildingDao.selectRoomListByLaboratory();
+		List<Professor> olapLaboratory = professorDao.selectProfessorLabaratoryForoverlap();
+		List<Professor> olapOffice = professorDao.selectProfessorOfficeForOverlap();
+		List<Building> officeList = buildingDao.selectRoomListByOffice();
 		List<College> college = collegeDao.selectCollegeList();
 		List<Major> majorList = majorDao.selectMajorList();
+		if (olapOffice == null) {
+			map.put("officeList", officeList);
+		} else {
+			if (office == null) {
+				for (int i = 0; i < officeList.size(); i++) {
+					for (int j = 0; j < olapOffice.size(); j++) {
+						if (officeList.get(i).getRoomList().get(i).getRoomId() == olapOffice.get(j)
+								.getProRoomOfficeId()) {
+							officeList.get(i).getRoomList().remove(i);
+						}
+					}
+				}
+				map.put("officeList", officeList);
+			} else {
+				for (int i = 0; i < officeList.size(); i++) {
+					for (int j = 0; j < olapOffice.size(); j++) {
+						if (officeList.get(i).getRoomList().get(i).getRoomId() == olapOffice.get(j).getProRoomOfficeId()
+								&& officeList.get(i).getRoomList().get(i).getRoomId() != office.getProRoomOfficeId()) {
+							officeList.get(i).getRoomList().remove(i);
+						}
+					}
+				}
+				map.put("officeList", officeList);
+			}
+		}
+		if (olapLaboratory == null) {
+			map.put("laboratoryList", laboratoryList);
+		} else {
+			if (laboratory == null) {
+				for (int i = 0; i < laboratoryList.size(); i++) {
+					for (int j = 0; j < olapLaboratory.size(); j++) {
+						if (laboratoryList.get(i).getRoomList().get(i).getRoomId() == olapLaboratory.get(j)
+								.getProRoomLaboratoryId()) {
+							laboratoryList.get(i).getRoomList().remove(i);
+						}
+					}
+				}
+				map.put("laboratoryList", laboratoryList);
+			} else {
+				for (int i = 0; i < laboratoryList.size(); i++) {
+					for (int j = 0; j < olapLaboratory.size(); j++) {
+						if (laboratoryList.get(i).getRoomList().get(i).getRoomId() == olapLaboratory.get(j)
+								.getProRoomLaboratoryId()
+								&& laboratoryList.get(i).getRoomList().get(i).getRoomId() != laboratory
+										.getProRoomLaboratoryId()) {
+							laboratoryList.get(i).getRoomList().remove(i);
+						}
+					}
+				}
+				map.put("laboratoryList", laboratoryList);
+			}
+		}
 		map.put("info", info);
 		map.put("major", major);
 		map.put("office", office);
 		map.put("laboratory", laboratory);
-		map.put("building", building);
-		map.put("room", room);
 		map.put("college", college);
 		map.put("majorList", majorList);
 		return map;
 	}
-	
-	
-
-	
 }
