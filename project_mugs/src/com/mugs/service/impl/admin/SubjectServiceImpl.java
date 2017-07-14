@@ -47,6 +47,9 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public int updateSubject(Subject subject) {
+		if(subject.getLectureId() == 0){
+			subject.setLectureId(null);
+		}
 		int cnt = subjectDao.updateSubjectById(subject);
 		if(cnt ==0 ){
 			return 0;
@@ -105,6 +108,14 @@ public class SubjectServiceImpl implements SubjectService {
 		List<Room> room = roomDao.selectRoomList();
 		List<College> college = collegeDao.selectCollegeList();
 		List<Major> major = majorDao.selectMajorList();
+		for(int i = 0; i<building.size(); i++){
+			if(building.get(i).getBuildingName().equals("교수실연구동")){
+				building.remove(i);
+			}
+			if(building.get(i).getBuildingName().equals("광교관")){
+				building.remove(i);
+			}
+		}
 		map.put("building", building);
 		map.put("room", room);
 		map.put("college", college);
@@ -116,7 +127,17 @@ public class SubjectServiceImpl implements SubjectService {
 	public Map<String,Object> selectSubjectInfoBySubjectIdForUpdate(int subjectId) {
 		Map<String,Object> map = new HashMap<>();
 		List<Building> building = buildingDao.selectBuildingList();
+		List<Room> room = roomDao.selectRoomList();
 		Subject subject = subjectDao.selectSubjectInfoBySubjectIdForUpdate(subjectId);
+		for(int i = 0; i<building.size(); i++){
+			if(building.get(i).getBuildingName().equals("교수실연구동")){
+				building.remove(i);
+			}
+			if(building.get(i).getBuildingName().equals("광교관")){
+				building.remove(i);
+			}
+		}
+		map.put("room", room);
 		map.put("subject",subject);
 		map.put("building", building);
 		return map;
@@ -136,7 +157,17 @@ public class SubjectServiceImpl implements SubjectService {
 	public Map<String,Object> selectSubjectInfoBySubjectIdForMinorUpdate(int subjectId) {
 		Map<String,Object> map = new HashMap<>();
 		List<Building> building = buildingDao.selectBuildingList();
+		List<Room> room = roomDao.selectRoomList();
 		Subject subject = subjectDao.selectSubjectInfoBySubjectIdForMinorUpdate(subjectId);
+		for(int i = 0; i<building.size(); i++){
+			if(building.get(i).getBuildingName().equals("교수실연구동")){
+				building.remove(i);
+			}
+			if(building.get(i).getBuildingName().equals("광교관")){
+				building.remove(i);
+			}
+		}
+		map.put("room", room);
 		map.put("subject",subject);
 		map.put("building", building);
 		return map;
@@ -144,17 +175,50 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public List<Room> selectForOverlap(String subjectTime, String subjectSemester, int buildingId) {
-		Subject overlap = subjectDao.selectForOverlap(subjectTime, subjectSemester, buildingId);
+		List<Subject> overlap = subjectDao.selectForOverlap(subjectTime, subjectSemester, buildingId);
 		List<Room> room = roomDao.selectRoomByReference(buildingId);
 		if(overlap == null){
 			return room;
 		}else{
 		for(int i = 0; i<room.size(); i++){
-			if(room.get(i).getRoomId() == overlap.getLectureId()){
-				room.remove(i);
+			for(int j =0; j<overlap.size(); j++){
+				if(room.get(i).getRoomId() == overlap.get(j).getLectureId()){
+					room.remove(i);
+				}
 			}
 		}
 		return 	room;
 		}
+	}
+	
+	@Override
+	public List<Room> selectForOverlapUpdate(String subjectTime, String subjectSemester, int buildingId, int subjectId) {
+		List<Subject> overlap = subjectDao.selectForOverlap(subjectTime, subjectSemester, buildingId);
+		List<Room> room = roomDao.selectRoomByReference(buildingId);
+		Subject subject = subjectDao.selectSubjectInfoBySubjectIdForMinorUpdate(subjectId);
+		if(overlap == null){
+			return room;
+		}else{
+			if(subject.getLectureId() == null){
+				for(int i = 0; i<room.size(); i++){
+					for(int j = 0; j<overlap.size(); j++){
+						if(room.get(i).getRoomId() == overlap.get(j).getLectureId()){
+							room.remove(i);
+						}
+					}
+				}
+				return room;
+			}else{
+				for(int i = 0; i<room.size(); i++){
+					for(int j =0; j<overlap.size(); j++){
+						if(room.get(i).getRoomId() == overlap.get(j).getLectureId() && 
+								subject.getLectureId() != room.get(i).getRoomId()){
+							room.remove(i);
+						}
+					}
+				}
+				return 	room;
+			}
+			}
 	}
 }

@@ -81,7 +81,7 @@ public class SubjectController {
 	
 	@RequestMapping("insertSubjectController")
 	public String insertSubjectController(Subject subject, HttpSession session){
-		session.setAttribute("insertMessage", "");
+		session.setAttribute("subinsertMessage", "");
 		if(subject.getLectureId() == 0){
 			subject.setLectureId(null);
 		}
@@ -94,6 +94,7 @@ public class SubjectController {
 		Map<String, Object> map = subjectService.selectSubjectInfoBySubjectIdForUpdate(subjectId);
 		ModelAndView view = new ModelAndView();
 		view.setViewName("admin/subject/update_subject.tiles");
+		view.addObject("room",map.get("room"));
 		view.addObject("building",map.get("building"));
 		view.addObject("subject",map.get("subject"));
 		return view;
@@ -101,14 +102,14 @@ public class SubjectController {
 	
 	@RequestMapping("updateSubjectContorller")
 	public String updateSubject(Subject subject, HttpSession session){
-		session.setAttribute("updateMessage", "");
+		session.setAttribute("subupdateMessage", "");
 		subjectService.updateSubject(subject);
 		return "redirect:/admin/selectSubjectTypeController.do";
 	}
 	
 	@RequestMapping("deleteSubjectBySubjectIdController")
 	public String deleteSubject(int subjectId, HttpSession session){
-		session.setAttribute("deleteMessage", "");
+		session.setAttribute("subdeleteMessage", "");
 		subjectService.deleteSubject(subjectId);
 		return "redirect:/admin/selectSubjectTypeController.do";
 	}
@@ -132,6 +133,7 @@ public class SubjectController {
 		Map<String, Object> map = subjectService.selectSubjectInfoBySubjectIdForMinorUpdate(subjectId);
 		ModelAndView view = new ModelAndView();
 		view.setViewName("admin/subject/update_subject.tiles");
+		view.addObject("room",map.get("room"));
 		view.addObject("building",map.get("building"));
 		view.addObject("subject",map.get("subject"));
 		return view;
@@ -141,5 +143,11 @@ public class SubjectController {
 	@ResponseBody
 	public List<Room> selectForOverlap(String subjectTime, String subjectSemester, int buildingId){
 		return subjectService.selectForOverlap(subjectTime, subjectSemester, buildingId);
+	}
+	
+	@RequestMapping("selectForOverlapUpdateController")
+	@ResponseBody
+	public List<Room> selectForOverlapUpdate(String subjectTime, String subjectSemester, int buildingId, int subjectId){
+		return subjectService.selectForOverlapUpdate(subjectTime, subjectSemester, buildingId, subjectId);
 	}
 }

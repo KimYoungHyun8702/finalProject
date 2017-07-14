@@ -71,8 +71,7 @@
 			<result column="building_name" property="buildingName"/>
 		</association>
 	</resultMap>
-	
-	
+   
 	<!-- insert -->
 	<insert id="insertSubject" parameterType="subject">
 	<selectKey resultType="int" keyProperty="subjectId" order="BEFORE">
@@ -176,7 +175,7 @@
 		s.subject_request, s.subject_grade, s.subject_class, s.subject_close_class, s.subject_semester, s.major_id, s.lecture_id,
 		c.college_name, m.major_name, r.room_name, b.building_name
 		FROM subject s, major m, college c, room r, building b
-		WHERE s.major_id = m.major_id AND m.college_id = c.college_id AND s.lecture_id = r.room_id AND r.building_id = b.building_id AND s.subject_id = #{value}
+		WHERE s.major_id = m.major_id AND m.college_id = c.college_id AND s.lecture_id = r.room_id(+) AND r.building_id = b.building_id(+) AND s.subject_id = #{value}
 	</select>
 	
 	<select id="selectSubjectForInsert" resultMap="subject-major-college-resultmap">
@@ -192,7 +191,7 @@
 		s.subject_request, s.subject_grade, s.subject_class, s.subject_close_class, s.subject_semester, s.major_id, s.lecture_id,
 		c.college_id, m.major_id, r.room_name, b.building_name, r.room_id, b.building_id
 		FROM subject s, major m, college c, room r, building b
-		WHERE s.major_id = m.major_id AND m.college_id = c.college_id AND s.lecture_id = r.room_id AND r.building_id = b.building_id AND s.subject_id = #{value}
+		WHERE s.major_id = m.major_id AND m.college_id = c.college_id AND s.lecture_id = r.room_id(+) AND r.building_id = b.building_id(+) AND s.subject_id = #{value}
 	</select>
 	
 	<select id="selectSubjectTimeBySubjectTypeMinor" resultMap="subject-college-resultmap" parameterType="String">
@@ -206,7 +205,7 @@
 		s.subject_request, s.subject_grade, s.subject_class, s.subject_close_class, s.subject_semester, s.lecture_id,
 		r.room_name, b.building_name
 		FROM subject s, room r, building b
-		WHERE s.lecture_id = r.room_id AND r.building_id = b.building_id AND s.subject_type = #{subjectType} AND s.subject_time = #{subjectTime}
+		WHERE s.lecture_id = r.room_id(+) AND r.building_id = b.building_id(+) AND s.subject_type = #{subjectType} AND s.subject_time = #{subjectTime}
 	</select>
 	
 	<select id="selectSubjectInfoBySubjectIdForMinorUpdate" resultMap="subject-major-college-resultmap" parameterType="int">
@@ -214,7 +213,7 @@
 		s.subject_request, s.subject_grade, s.subject_class, s.subject_close_class, s.subject_semester, s.lecture_id,
 		r.room_name, b.building_name, r.room_id, b.building_id
 		FROM subject s, room r, building b
-		WHERE s.lecture_id = r.room_id AND r.building_id = b.building_id AND s.subject_id = #{value}
+		WHERE s.lecture_id = r.room_id(+) AND r.building_id = b.building_id(+) AND s.subject_id = #{value}
 	</select>
 	
 	<select id="selectForOverlap" resultMap="subject-college-resultmap" parameterType="map">

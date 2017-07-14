@@ -34,6 +34,13 @@
 <a href="${initParam.rootPath }/student/mapByBuildingId.do">지도-딘강</a>
 </sec:authorize>
 
+<%--졸업자 메뉴 --%>
+<sec:authorize access="hasRole('ROLE_GRADUATION')">
+<a href="${initParam.rootPath }/student/getCollegeList.do">기준학점조회</a><br>
+<a href="${initParam.rootPath }/student/gradeInquiry.do">성적 조회 -딘강</a><br>
+<a href="${initParam.rootPath }/student/academicProbation.do">학사경고내역 조회-딘강</a>
+</sec:authorize>
+
 <%--교수 메뉴--%>
 <sec:authorize access="hasRole('ROLE_PROFESSOR')">
 <a href="${initParam.rootPath }/professorInfo.do">교수 개인 정보</a><br>
@@ -54,52 +61,30 @@
 <a href="${initParam.rootPath }/admin/selectCollegeListController.do">단과대학 조회</a><br>
 <a href="${initParam.rootPath }/insert_college.do">단과대학 등록</a><br>
 <a href="${initParam.rootPath }/admin/selectBuildingListController.do">건물 조회</a><br>
-<a href="${initParam.rootPath }/insert_building.do">강의동 등록</a><br>
+<a href="${initParam.rootPath }/insert_building.do">건물 등록</a><br>
 <a href="${initParam.rootPath }/admin/selectNoticeController.do">공지사항 조회</a><br>
 <a href="${initParam.rootPath }/insert_notice.do">공지사항 등록</a><br>
+<a href="${initParam.rootPath }/admin/selectCreditGiveUpListController.do">학점 포기 신청 현황 조회</a><br>
+<a href="${initParam.rootPath }/admin/selectLeaveReturnApplicationListController.do">휴.복학 신청 현황 조회</a><br>
 </sec:authorize>
 
 </ul>
 
 <script type="text/javascript">
-	function logout(){
-		document.getElementById("logoutForm").submit();
-	}
-
-	function popupOpen(url){
-		var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;"; 
-			window.open(url,"",popOption);
-		}
-	$(document).ready(function(){
-		var periodResult = "${evaluationPeriodResult}";
-		if(periodResult != "" ) {
-			if(periodResult == '1학기' || periodResult == '2학기') {
-			alert(periodResult + "11");
-			//window.location.href="<c:url value='${initParam.rootPath }/student/selectEvaluationAnswerValueList.do'/>";
-				window.location.href = '${initParam.rootPath }/student/selectEvaluationAnswerValueList.do';
-			}
-			else {
-				alert("지금은 설문응답기간이 아닙니다. 정해진 기간 내에 설문에 응하여 주시기 바랍니다.");
-				return false;
-			}
-	
-	
-	function logout(){
-		document.getElementById("logoutForm").submit();
-	}
-	
-	var  stuRegister = "${stuRegister}";
-	
-	if(stuRegister == '휴학' || stuRegister == '군휴학') {
-		alert(stuRegister + "학생은 설문응답을 할 수 없습니다.");
-	} else {
-		var msg = "${msg}";
-		if(msg != "") {
-			alert(msg);
-		}
-	})
-
-	}
+   function logout(){
+      document.getElementById("logoutForm").submit();
+   }
+   
+   var  stuRegister = "${stuRegister}";
+   
+   if(stuRegister == '휴학' || stuRegister == '군휴학') {
+      alert(stuRegister + "학생은 설문응답을 할 수 없습니다.");
+   } else {
+      var msg = "${msg}";
+      if(msg != "") {
+         alert(msg);
+      }
+   }
 </script>
 <form id="logoutForm" action="${initParam.rootPath }/logout.do" method="post" style="display:none">
     <sec:csrfInput/>

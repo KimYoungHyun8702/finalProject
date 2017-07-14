@@ -68,7 +68,7 @@
 		UPDATE professor
 		SET
 		pro_university = #{proUniversity}, pro_grad_school = #{proGradSchool}, 
-		pro_office_phone_num = #{proOfficePhoneNum}
+		pro_office_phone_num = #{proOfficePhoneNum}, major_id = #{majorId} ,office_id = #{proRoomOfficeId} ,laboratory_id = #{proRoomLaboratoryId}  
 		WHERE pro_id = #{proId}
 	</update>
 	
@@ -177,7 +177,7 @@
 		FROM   professor p, room r, building b
 		WHERE  p.office_id = r.room_id 
 		AND b.building_id = r.building_id
-		AND b.building_name = '교수실강의동'
+		AND b.building_name = '교수실연구동'
 	</select>
 	
 	<select id="selectProfessorLabaratoryForoverlap" resultMap="professor-user-resultmap">
@@ -185,6 +185,6 @@
 		FROM   professor p, room r, building b
 		WHERE  p.laboratory_id = r.room_id 
 		AND b.building_id = r.building_id
-		AND b.building_name = '연구실강의동'
+		AND b.building_name = '광교관'
 	</select>
 </mapper>

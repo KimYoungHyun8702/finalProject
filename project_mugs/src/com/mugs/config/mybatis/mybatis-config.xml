@@ -37,6 +37,8 @@
 		<mapper resource="com/mugs/config/mapper/subjectMapper.xml" />
 		<mapper resource="com/mugs/config/mapper/subjectPlanMapper.xml" />
 		<mapper resource="com/mugs/config/mapper/usersMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/leaveReturnApplicationMapper.xml" />
+		<mapper resource="com/mugs/config/mapper/creditGiveUpMapper.xml" />
 	</mappers>
 
 </configuration>

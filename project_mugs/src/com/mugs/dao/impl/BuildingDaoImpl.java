@@ -62,5 +62,11 @@ public class BuildingDaoImpl implements BuildingDao{
 		return session.selectList(makeSql("selectRoomListByLaboratory"));
 	}
 	
+	@Override
+	public Building selectBuildingByBuildingName(String buildingName) {
+		// TODO Auto-generated method stub
+		return session.selectOne(makeSql("selectBuildingByBuildingName"), buildingName);
+	}
+	
 	
 }

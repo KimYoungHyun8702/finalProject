@@ -99,23 +99,23 @@ $(document).ready(function(){
 </head>
 <body>
 <h2>학생 조회</h2>
-<c:if test="${sessionScope.insertMessage != null}">
+<c:if test="${sessionScope.stuinsertMessage != null}">
 		<script type="text/javascript">
 			alert("등록되었습니다");
 		</script>
-		<% session.removeAttribute("insertMessage"); %>
+		<% session.removeAttribute("stuinsertMessage"); %>
 </c:if>
-<c:if test="${sessionScope.updateMessage != null}">
+<c:if test="${sessionScope.stuupdateMessage != null}">
 		<script type="text/javascript">
 			alert("수정되었습니다");
 		</script>
-		<% session.removeAttribute("updateMessage"); %>
+		<% session.removeAttribute("stuupdateMessage"); %>
 </c:if>
-<c:if test="${sessionScope.deleteMessage != null}">
+<c:if test="${sessionScope.studeleteMessage != null}">
 		<script type="text/javascript">
 			alert("삭제되었습니다");
 		</script>
-		<% session.removeAttribute("deleteMessage"); %>
+		<% session.removeAttribute("studeleteMessage"); %>
 </c:if>
 <hr>
 	검색할 이름 <input type="text" name="usersName" id="usersName"/><button id="searchStudent">조회</button><br>

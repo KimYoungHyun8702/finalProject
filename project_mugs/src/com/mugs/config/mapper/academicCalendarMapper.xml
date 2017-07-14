@@ -27,7 +27,7 @@
 </insert>
 
 <update id="updateAcademicCalendarById" parameterType="academicCalendar">
-	UPDATE academiccalendar
+	UPDATE academic_calendar
 	   SET calendar_start=#{calendarStart},
 	   	   calendar_finish=#{calendarFinish},
 	   	   calendar_year=#{calendarYear},
@@ -36,7 +36,7 @@
 </update>
 
 <delete id="deleteAcademicCalendar" parameterType="int">
-	DELETE FROM academiccalendar WHERE calendar_id=#{value}
+	DELETE FROM academic_calendar WHERE calendar_id=#{value}
 </delete>
 
 <select id="selectAcademicCalendarList" resultMap="academicCalendar-basic-reresultmap">

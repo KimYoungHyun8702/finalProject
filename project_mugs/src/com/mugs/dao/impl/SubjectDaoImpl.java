@@ -121,14 +121,11 @@ public class SubjectDaoImpl implements SubjectDao {
 	}
 
 	@Override
-	public Subject selectForOverlap(String subjectTime, String subjectSemester, int buildingId) {
+	public List<Subject> selectForOverlap(String subjectTime, String subjectSemester, int buildingId) {
 		Map map = new HashMap();
 		map.put("subjectTime", subjectTime);
 		map.put("subjectSemester", subjectSemester);
 		map.put("buildingId", buildingId);
-		return session.selectOne(makeSqlId("selectForOverlap"),map);
+		return session.selectList(makeSqlId("selectForOverlap"),map);
 	}
-	
-	
-	
 }

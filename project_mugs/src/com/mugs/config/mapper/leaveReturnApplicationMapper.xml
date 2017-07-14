@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.leaveReturnApplicationMapper">
+
+<sql id="select-leaveReturnApplication">
+	SELECT LRAPPLICATION_ID,
+		   LRAPPLICATION_TYPE,
+		   LRAPPLICATION_START_DATE,
+		   LRAPPLICATION_FINISH_DATE,
+		   LRAPPLICATION_STATE,
+		   STU_ID
+	FROM   LEAVERETURNAPPLICATION
+</sql>
+
+<resultMap type="leaveReturnApplication" id="leaveReturnApplication-basic-reresultmap">
+	<id column="LRAPPLICATION_ID" property="LRApplicationId"/>
+	<result column="LRAPPLICATION_TYPE" property="LRApplicationType"/>
+	<result column="LRAPPLICATION_START_DATE" property="LRApplicationStartDate"/>
+	<result column="LRAPPLICATION_FINISH_DATE" property="LRApplicationFinishDate"/>
+	<result column="LRAPPLICATION_STATE" property="LRApplicationState"/>
+	<result column="STU_ID" property="stuId"/>
+</resultMap>
+
+<!-- insert -->
+<insert id="insertLeaveReturnApplication" parameterType="leaveReturnApplication">
+	<selectKey resultType="int" keyProperty="LRApplicationId" order="BEFORE">
+		SELECT LRAPPLICATION_ID_SEQ.nextval FROM dual
+	</selectKey>
+	INSERT INTO LEAVERETURNAPPLICATION VALUES(#{LRApplicationId}, #{LRApplicationType}, #{LRApplicationStartDate}, #{LRApplicationFinishDate}, #{LRApplicationState}, #{stuId})
+</insert>
+
+<!-- update -->
+<update id="updateLeaveReturnApplicationById" parameterType="leaveReturnApplication">
+	UPDATE LEAVERETURNAPPLICATION
+	   SET LRAPPLICATION_TYPE=#{LRApplicationType},
+	   	   LRAPPLICATION_START_DATE=#{LRApplicationStartDate},
+	   	   LRAPPLICATION_FINISH_DATE=#{LRApplicationFinishDate},
+	   	   LRAPPLICATION_STATE=#{LRApplicationState},
+	   	   STU_ID=#{stuId}
+	 WHERE LRAPPLICATION_ID=#{LRApplicationId}  	   
+</update>
+
+<!-- delete -->
+<delete id="deleteLeaveReturnApplication" parameterType="int">
+	DELETE FROM LEAVERETURNAPPLICATION WHERE LRAPPLICATION_ID=#{value}
+</delete>
+
+<!-- select -->
+<select id="selectLeaveReturnApplicationList" resultMap="leaveReturnApplication-basic-reresultmap">
+	<include refid="select-leaveReturnApplication"/>
+</select>
+
+<select id="selectLeaveReturnApplicationById" resultMap="leaveReturnApplication-basic-reresultmap" parameterType="int">
+	<include refid="select-leaveReturnApplication"/>
+	WHERE LRAPPLICATION_ID=#{value}
+</select>
+ 
+ 
+ 
+ <!-- 
+      By Baek.J.H
+	   현재 로그인된 학생ID를 이용해서 휴복학 내역을 select 한다. 
+  -->
+<select id="selectLeaveReturnApplicationListByStuId" resultMap="leaveReturnApplication-basic-reresultmap" parameterType="string">
+	<include refid="select-leaveReturnApplication"/>
+	where STU_ID=#{value}
+</select>
+
+
+
+</mapper>

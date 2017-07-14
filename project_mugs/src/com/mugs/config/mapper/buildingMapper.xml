@@ -5,12 +5,17 @@
 	<sql id="select-building">
 		SELECT building_id,
 		building_name,
-		building_url
+		building_img,
+		building_x,
+		building_y,
+		building_phone_num,
+		building_addr
+		
 		FROM building
 	</sql>
 
 	<resultMap type="Building" id="Building-Room-resultmap"
-		extends="building-basic-reresultmap">
+		extends="building-basic-resultmap">
 		<!-- collection 태그 :List ofType : List<Employee> - collection에 담을 VO객체의 
 			타입 property : List<Employee> employeeList - Attribute 이름 -->
 		<collection ofType="room" property="roomList">
@@ -19,10 +24,14 @@
 		</collection>
 	</resultMap>
 
-	<resultMap type="building" id="building-basic-reresultmap">
+	<resultMap type="building" id="building-basic-resultmap">
 		<id column="building_id" property="buildingId" />
 		<result column="building_name" property="buildingName" />
-		<result column="building_url" property="buildingURL" />
+		<result column="building_img" property="buildingImg" />
+		<result column="building_x" property="buildingX" />
+		<result column="building_y" property="buildingY" />
+		<result column="building_phone_num" property="buildingPhoneNum" />
+		<result column="building_addr" property="buildingAddr" />
 	</resultMap>
 
 	<!-- insert -->
@@ -30,8 +39,8 @@
 		<selectKey resultType="int" keyProperty="buildingId" order="BEFORE">
 			SELECT building_id_seq.nextval FROM dual
 		</selectKey>
-		INSERT INTO building VALUES(#{buildingId},#{buildingName},
-		#{buildingURL})
+		INSERT INTO building VALUES(#{buildingId},#{buildingName},#{buildingImg},
+		#{buildingX},#{buildingY},#{buildingPhoneNum},#{buildingAddr})
 	</insert>
 
 	<!-- update -->
@@ -39,7 +48,12 @@
 		UPDATE building
 		SET building_id=#{buildingId},
 		building_name=#{buildingName},
-		building_url=#{buildingURL}
+		building_img=#{buildingImg},
+		building_x=#{buildingX},
+		building_y=#{buildingY},
+		building_phone_num=#{buildingPhoneNum},
+		building_addr=#{buildingAddr}
+		
 		WHERE building_id=#{buildingId}
 	</update>
 
@@ -50,12 +64,12 @@
 	</delete>
 
 	<!-- select -->
-	<select id="selectBuildingList" resultMap="building-basic-reresultmap">
+	<select id="selectBuildingList" resultMap="building-basic-resultmap">
 		<include refid="select-building" />
 		ORDER BY building_id
 	</select>
 
-	<select id="selectBuildingById" resultMap="building-basic-reresultmap"
+	<select id="selectBuildingById" resultMap="building-basic-resultmap"
 		parameterType="int">
 		<include refid="select-building" />
 		WHERE BUILDING_ID = #{VALUE}
@@ -64,7 +78,10 @@
 	<select id="selectBuildingByIdJoin" resultMap="Building-Room-resultmap"
 		parameterType="int">
 		SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID,
-		R.ROOM_NAME
+		R.ROOM_NAME, B.BUILDING_PHONE_NUM, B.BUILDING_ADDR,
+		B.BUILDING_IMG,
+		B.BUILDING_X,
+		B.BUILDING_Y
 		FROM BUILDING B, ROOM R
 		WHERE B.BUILDING_ID = R.BUILDING_ID
 		AND B.BUILDING_ID = #{VALUE}
@@ -74,14 +91,19 @@
 		SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID, R.ROOM_NAME
 		FROM BUILDING B, ROOM R
 		WHERE b.building_id = r.building_id 
-		AND building_name = '교수실강의동'
+		AND building_name = '교수실연구동'
 	</select>
 	
 	<select id="selectRoomListByLaboratory" resultMap="Building-Room-resultmap">
 		SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID, R.ROOM_NAME
 		FROM BUILDING B, ROOM R
 		WHERE b.building_id = r.building_id 
-		AND building_name = '연구실강의동'
+		AND building_name = '광교관'
+	</select>
+	
+	<select id="selectBuildingByBuildingName" resultMap="building-basic-resultmap" parameterType="string">
+		<include refid="select-building"/>
+		WHERE BUILDING_NAME = #{VALUE}
 	</select>
 
 </mapper>

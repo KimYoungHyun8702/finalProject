@@ -8,7 +8,6 @@
 package com.mugs.vo;
 
 import java.io.Serializable;
-import java.util.Map;
 
 public class Subject implements Serializable {
 	
@@ -38,9 +37,7 @@ public class Subject implements Serializable {
 	private String yoYil1;
 	private String yoYil2;
 	
-	
 	public Subject(){}
-
 
 	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
 			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass, char subjectCloseClass,
