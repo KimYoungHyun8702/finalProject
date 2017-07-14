@@ -84,11 +84,13 @@ $(document).ready(function(){
  					$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>");
  					$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>");
  					$.each(list, function(index){
+ 						if(this.creditGrade!='포기'){
  						allCredit+=this.subject.subjectCredit;
  						acquireCredit+=this.creditAcquire;
  						score+=this.creditScore;
  			      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
  				             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+ 						}
  					})
  					
  					if(isNaN(score/count)){
@@ -149,12 +151,14 @@ $(document).ready(function(){
 					$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 					$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 					$.each(list, function(){
+						if(this.creditGrade!='포기'){
 						allCredit+=this.subject.subjectCredit;
 						acquireCredit+=this.creditAcquire;
  						score+=this.creditScore;
 			      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 				             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
-					})
+						}
+						})
 					if(isNaN(score/count)){
 						txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
 						
@@ -194,12 +198,14 @@ $(document).ready(function(){
 					$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 					$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 					$.each(list, function(){
+						if(this.creditGrade!='포기'){
 						allCredit+=this.subject.subjectCredit;
 						acquireCredit+=this.creditAcquire;
  						score+=this.creditScore;
 			      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 				             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
-					})
+						}
+						})
 					if(isNaN(score/count)){
 						txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
 						
@@ -232,11 +238,13 @@ $(document).ready(function(){
 				$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 				$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 				$.each(list, function(){
+					if(this.creditGrade!='포기'){
 					allCredit+=this.subject.subjectCredit;
 					acquireCredit+=this.creditAcquire;
 						score+=this.creditScore;
 		      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 			             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+					}
 				})
 				if(isNaN(score/count)){
 					txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
@@ -274,12 +282,14 @@ $(document).ready(function(){
 	 					$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 	 					$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 	 					$.each(list, function(index){
+	 						if(this.creditGrade!='포기'){
 	 						allCredit+=this.subject.subjectCredit;
 	 						acquireCredit+=this.creditAcquire;
 	 						score+=this.creditScore;
 	 			      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 	 				             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
-	 					})
+	 						}
+	 						})
 	 					
 	 					if(isNaN(score/count)){
 							txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
@@ -311,11 +321,13 @@ $(document).ready(function(){
 					$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 					$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 					$.each(list, function(){
+						if(this.creditGrade!='포기'){
 						allCredit+=this.subject.subjectCredit;
 						acquireCredit+=this.creditAcquire;
 						score+=this.creditScore;
 			      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 				             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+						}
 					})
 					if(isNaN(score/count)){
 						txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
@@ -353,12 +365,14 @@ $(document).ready(function(){
 							$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 							$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 							$.each(list, function(){
+								if(this.creditGrade!='포기'){
 								allCredit+=this.subject.subjectCredit;
 								acquireCredit+=this.creditAcquire;
 		 						score+=this.creditScore;
 					      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 						             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
-							})
+								}
+								})
 							if(isNaN(score/count)){
 								txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
 								
@@ -389,12 +403,14 @@ $(document).ready(function(){
 							$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 							$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 							$.each(list, function(){
+								if(this.creditGrade!='포기'){
 								allCredit+=this.subject.subjectCredit;
 								acquireCredit+=this.creditAcquire;
 								score+=this.creditScore;
 					      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 						             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
-							})
+								}
+								})
 							if(isNaN(score/count)){
 								txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
 								
@@ -428,12 +444,14 @@ $(document).ready(function(){
 							$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 							$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 							$.each(list, function(){
+								if(this.creditGrade!='포기'){
 								allCredit+=this.subject.subjectCredit;
 								acquireCredit+=this.creditAcquire;
 									score+=this.creditScore;
 					      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 						             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
-							})
+								}
+								})
 							if(isNaN(score/count)){
 								txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
 								
@@ -463,12 +481,14 @@ $(document).ready(function(){
 						$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 						$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 						$.each(list, function(){
+							if(this.creditGrade!='포기'){
 							allCredit+=this.subject.subjectCredit;
 							acquireCredit+=this.creditAcquire;
 							score+=this.creditScore;
 				      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 					             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
-						})
+							}
+							})
 						if(isNaN(score/count)){
 							txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
 							

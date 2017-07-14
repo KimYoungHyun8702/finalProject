@@ -134,7 +134,7 @@ AND stu_id = #{stuId}
 </select>
 
 <select id="selectYearByStuId" resultType="int" parameterType="string">
-	SELECT DISTINCT credit_year FROM credit WHERE stu_id =#{value}
+	SELECT DISTINCT credit_year FROM credit WHERE stu_id =#{value} ORDER BY credit_year DESC
 </select>
 
 <select id="selectSemesterByYear" resultType="string" parameterType="int">
