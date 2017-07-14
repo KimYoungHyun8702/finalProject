@@ -75,22 +75,22 @@ public class GraduationManagementServiceImpl implements GraduationManagementServ
 		String gradPass = "";
 
 		for(int i = 0; i<credits.size();i++){
-			if(credits.get(i).getSubject().getSubjectType().equals("전공필수")){
+			if(credits.get(i).getSubject().getSubjectType().equals("필수전공")){
 				mjrVitAc += credits.get(i).getCreditAcquire();
 				mjrVitAcNeed = gradCredit.getGradVitalMajorCredit()-mjrVitAc;
 				if(mjrVitAcNeed<0)mjrVitAcNeed=0;				
 			}
-			if(credits.get(i).getSubject().getSubjectType().equals("전공선택")){
+			if(credits.get(i).getSubject().getSubjectType().equals("선택전공")){
 				mjrSelAc += credits.get(i).getCreditAcquire();
 				mjrSelAcNeed = gradCredit.getGradSelectMajorCredit()-mjrSelAc;
 				if(mjrSelAcNeed<0)mjrSelAcNeed=0;
 			}
-			if(credits.get(i).getSubject().getSubjectType().equals("교양필수")){
+			if(credits.get(i).getSubject().getSubjectType().equals("필수교양")){
 				eduVitAc += credits.get(i).getCreditAcquire();
 				eduVitAcNeed = gradCredit.getGradVitalEduCredit()-eduVitAc;
 				if(eduVitAcNeed<0)eduVitAcNeed=0;			
 			}
-			if(credits.get(i).getSubject().getSubjectType().equals("교양선택")){
+			if(credits.get(i).getSubject().getSubjectType().equals("선택교양")){
 				eduSelAc += credits.get(i).getCreditAcquire();
 				eduSelAcNeed = gradCredit.getGradSelectEduCredit()-eduSelAc;
 				if(eduSelAcNeed<0)eduVitAcNeed=0;

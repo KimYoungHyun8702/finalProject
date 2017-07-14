@@ -39,4 +39,10 @@ public interface CreditGiveUpDao {
 	 * @return
 	 */
 	CreditGiveUp SelectCreditGiveUpById(int creditGiveUpId);
+	
+	/**
+	 * 학점 포기 현황 전체 조회 메소드
+	 * @return
+	 */
+	List<CreditGiveUp> selectCreditGiveUpJoin();
 }

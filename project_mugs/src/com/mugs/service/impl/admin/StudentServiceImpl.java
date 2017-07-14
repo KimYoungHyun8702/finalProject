@@ -11,11 +11,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mugs.dao.AuthoritiesDao;
+import com.mugs.dao.CreditGiveUpDao;
+import com.mugs.dao.LeaveReturnApplicationDao;
 import com.mugs.dao.MajorDao;
 import com.mugs.dao.StudentDao;
 import com.mugs.dao.UsersDao;
 import com.mugs.service.admin.StudentService;
 import com.mugs.vo.Authorities;
+import com.mugs.vo.CreditGiveUp;
+import com.mugs.vo.LeaveReturnApplication;
 import com.mugs.vo.Major;
 import com.mugs.vo.Student;
 import com.mugs.vo.Users;
@@ -32,12 +36,14 @@ public class StudentServiceImpl implements StudentService {
 	private AuthoritiesDao authoritiesDao;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-
-	
+	@Autowired
+	private CreditGiveUpDao creditGiveUpDao;
+	@Autowired
+	private LeaveReturnApplicationDao leaveReturnApplicationDao;
 	
 	@Override
 	@Transactional
-	public String insertStudent(Users users, Student student, String role) {
+	public String insertStudent(Users users, Student student, String role) throws Exception{
 		int index = users.getUsersRRN().indexOf("-");
 		users.setUsersPassword(users.getUsersRRN().substring(index+1));
 		users.setUsersPassword(passwordEncoder.encode(users.getUsersPassword()));
@@ -64,6 +70,10 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	@Transactional
 	public String updateStudent(Users users, Student student) {
+		if(student.getStuGraduationDate() != null){
+			authoritiesDao.updateAuthoritiesById(new Authorities(users.getUsersId(),"ROLE_GRADUATION"));
+			student.setStuRegisterState("졸업");
+		}
 		usersDao.updateUsersById(users);
 		student.setStuId(users.getUsersId());
 		if(student.getMajorMinorId() == 0){
@@ -152,5 +162,26 @@ public class StudentServiceImpl implements StudentService {
 		map.put("majorMinorList", majorMinorList);
 		map.put("majorDualList", majorDualList);
 		return map;
-	}	
+	}
+	
+	@Override
+	public List<Users> selectUsersList(String usersId){
+		List<Users> list = usersDao.selectUsersList();
+		for(int i = 0; i<list.size(); i++){
+			if(list.get(i).getUsersId().equals(usersId)){
+				return null;
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public List<CreditGiveUp> selectCreditGiveUpList() {
+		return creditGiveUpDao.selectCreditGiveUpJoin();
+	}
+
+	@Override
+	public List<LeaveReturnApplication> selectLeaveReturnApplicationList() {
+		return leaveReturnApplicationDao.selectLeaveReturnApplicationList();
+	}
 }

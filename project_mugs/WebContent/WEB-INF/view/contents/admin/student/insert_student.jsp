@@ -4,6 +4,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+input{
+	text-align:center;
+}
+table{
+	width:700px;
+	
+}
+th {
+	bgcolor:peru;
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
+}
+select{
+	width:150px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+.form-controler {
+	color:black;
+}
+h3{
+	font-family:돋움체;
+}
+
+
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
@@ -13,7 +52,7 @@
 			alert("학번을 입력하세요");
 			return false;
 		}else if($("#usersName").val() == "" || $("#usersName").val().trim() == 0 ){
-			alert("이름을를 입력하세요")
+			alert("이름을 입력하세요")
 			return false;
 		}else if($("#usersEngName").val() == "" || $("#usersEngName").val().trim() == 0){
 			alert("영어 이름을 입력하세요")
@@ -69,6 +108,12 @@
 		}else if($("#majorId").val() == "학과 선택"){
 			alert("소속 학과를 입력하세요")
 			return false;
+		}else if($("#majorDualId").val() == "학과 선택"){
+			alert("복수 전공를 입력하세요, 없을 경우 없음을 선택해주세요")
+			return false;
+		}else if($("#majorMinorId").val() == "학과 선택"){
+			alert("복수 전공를 입력하세요, 없을 경우 없음을 선택해주세요")
+			return false;
 		}else{
 			return confirm("등록하시겠습니까 ?")
 		}
@@ -76,42 +121,54 @@
 </script>
 </head>
 <body>
-<h2>학생 등록</h2>
+<h3>학생 등록</h3>
+<c:if test="${requestScope.error != null}">
+	<script type="text/javascript">
+		alert("학번이 중복되었습니다");
+	</script>
+</c:if>
 	<hr>
 	<form id="insertForm" action="${initParam.rootPath }/admin/insertStudentController.do" method="post" onsubmit="return check()">
-	<table id="infoStudent" border="1">
-		<thead>
-			<tr>
-				<td align="center">학번</td>
-				<td align="center">이름</td>
-				<td align="center">영문 이름</td>
-				<td align="center">주민 번호</td>
-				<td align="center">이메일</td>
-				<td align="center">집 전화번호</td>
+	<table id="infoStudent" border="1" class="table">
+		<thead id="thead">
+	   		<tr class="filters">
+	   			<th align="center"><input type="text" class="form-control" placeholder="학번" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="이름" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="영문 이름" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="주민 번호" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="이메일 번호" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="집 전화번호" disabled></th>
 			</tr>
 		</thead>
 		<tbody>
+			<tr class="filters">
+				<td align="center"><input type="number" name="usersId" value="${requestScope.info.usersId }" id="usersId" readonly/></td>
+				<td align="center"><input type="text" name="usersName" value="${requestScope.info.usersName }" id="usersName"/></td>
+				<td align="center"><input type="text" name="usersEngName" value="${requestScope.info.usersEngName }" id="usersEngName"/></td>
+				<td align="center"><input type="text" name="usersRRN" value="${requestScope.info.usersRRN }" id="usersRRN"/></td>
+				<td align="center"><input type="email" name="usersEmail" value="${requestScope.info.usersEmail }" id="usersEmail"/></td>
+				<td align="center"><input type="text" name="usersPhoneNum" value="${requestScope.info.usersPhoneNum }" id="usersPhoneNum"/></td>
 			<tr>
-				<td align="center"><input type="number" name="usersId" id="usersId"/></td>
-				<td align="center"><input type="text" name="usersName" id="usersName"/></td>
-				<td align="center"><input type="text" name="usersEngName" id="usersEngName"/></td>
-				<td align="center"><input type="text" name="usersRRN" id="usersRRN"/></td>
-				<td align="center"><input type="email" name="usersEmail" id="usersEmail"/></td>
-				<td align="center"><input type="text" name="usersPhoneNum" id="usersPhoneNum"/></td>
+				<td align="center"><input type="number" name="usersId" id="usersId" value="${param.usersId }"/></td>
+				<td align="center"><input type="text" name="usersName" id="usersName" value="${param.usersName }"/></td>
+				<td align="center"><input type="text" name="usersEngName" id="usersEngName" value="${param.usersEngName }"/></td>
+				<td align="center"><input type="text" name="usersRRN" id="usersRRN" value="${param.usersRRN }"/></td>
+				<td align="center"><input type="email" name="usersEmail" id="usersEmail" value="${param.usersEmail }"/></td>
+				<td align="center"><input type="text" name="usersPhoneNum" id="usersPhoneNum" value="${param.usersPhoneNum }"/></td>
 			</tr>
 		</tbody>
-		<thead>	
-			<tr>
-				<td align="center">핸드폰 번호 </td>
-				<td align="center">국적</td>
-				<td align="center">현 거주지 주소</td>
-				<td align="center">본적지 주소</td>
-				<td align="center">인증가능 상태</td>
-				<td align="center">과정 구분</td>
+	<thead id="thead">
+	   		<tr class="filters">
+				<th align="center"><input type="text" class="form-control" placeholder="핸드폰 번호" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="국적" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="현 거주지 주소" disabled></th>
+				<th align="center" ><input type="text" class="form-control" placeholder="본적지 주소" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="인증가능 상태" disabled></th>
+				<th align="center" ><input type="text" class="form-control" placeholder="과정 구분" disabled></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+			<tr class="filters">
 				<td align="center"><input type="text" name="usersCellNum" id="usersCellNum"/></td>
 				<td align="center"><select name="usersNational" id="usersNational" id="usersNational">
 										<option>국적</option>
@@ -124,66 +181,152 @@
 				<td align="center"><input type="text" name="usersBornAddr" id="usersBornAddr"/></td>
 				<td align="center"><input type="text" name="usersEnable" id="usersEnable"/></td>
 				<td align="center"><input type="text" name="stuCourse" id="stuCourse"/></td>
+			<tr>
+				<td align="center"><input type="text" name="usersCellNum" id="usersCellNum" value="${param.usersCellNum }"/></td>
+				<td align="center"><select name="usersNational" id="usersNational">
+									<option>국적</option>
+									<c:choose>
+										<c:when test="${param.usersNational == '한국' }">
+											<option selected>한국</option>
+										</c:when>
+										<c:otherwise>
+											<option>한국</option>
+										</c:otherwise>
+									</c:choose>
+									<c:choose>
+										<c:when test="${param.usersNational == '중국' }">
+											<option selected>중국</option>
+										</c:when>
+										<c:otherwise>
+											<option>중국</option>
+										</c:otherwise>
+									</c:choose>
+									<c:choose>
+										<c:when test="${param.usersNational == '일본' }">
+											<option selected>일본</option>
+										</c:when>
+										<c:otherwise>
+											<option>일본</option>
+										</c:otherwise>
+									</c:choose>
+									<c:choose>
+										<c:when test="${param.usersNational == '북한' }">
+											<option selected>북한</option>
+										</c:when>
+										<c:otherwise>
+											<option>북한</option>
+										</c:otherwise>
+									</c:choose>
+									</select></td>
+				<td align="center"><input type="text" name="usersCurrentAddr" id="usersCurrentAddr" value="${param.usersCurrentAddr }"/></td>
+				<td align="center"><input type="text" name="usersBornAddr" id="usersBornAddr" value="${param.usersBornAddr }"/></td>
+				<td align="center"><input type="text" name="usersEnable" id="usersEnable" value="${param.usersEnable }"/></td>
+				<td align="center"><input type="text" name="stuCourse" id="stuCourse" value="${param.stuCourse }"/></td>
 			</tr>
 		</tbody>
-		<thead>
-			<tr>
-				<td align="center">병영 구분</td>
-				<td align="center">입학 일자</td>
-				<td align="center">학적 구분</td>
-				<td align="center">학생 구분</td>
-				<td align="center">학년</td>
-				<td align="center">졸업시험 패스 여부</td>
+		<thead id="thead">
+			<tr class="filters">
+				<th align="center" ><input type="text" class="form-control" placeholder="병영 구분" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="입학 일자" disabled></th>
+								<th align="center"><input type="text" class="form-control" placeholder="학적 구분" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="학생 구분" disabled></th>
+				<th align="center" ><input type="text" class="form-control" placeholder="학년" disabled></th>
+								<th align="center"><input type="text" class="form-control" placeholder="졸업시험 패스여부" disabled></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+			<tr class="filters">
 				<td align="center"><input type="text" name="stuArmy" id="stuArmy"/></td>
 				<td align="center"><input type="date" name="stuAdmissionDate" id="stuAdmissionDate"/></td>
 				<td align="center"><input type="text" name="stuRegisterState" id="stuRegisterState"/></td>
 				<td align="center"><input type="text" name="stuStudentState" id="stuStudentState"/></td>
 				<td align="center"><input type="number" name="stuGrade" id="stuGrade"/></td>
 				<td align="center"><input type="text" name="stuGraduationExam" id="stuGraduationExam"/></td>
+			<tr>
+				<td align="center"><input type="text" name="stuArmy" id="stuArmy" value="${param.stuArmy }"/></td>
+				<td align="center"><input type="date" name="stuAdmissionDate" id="stuAdmissionDate" value="${param.stuAdmissionDate }"/></td>
+				<td align="center"><input type="text" name="stuRegisterState" id="stuRegisterState" value="${param.stuRegisterState }"/></td>
+				<td align="center"><input type="text" name="stuStudentState" id="stuStudentState" value="${param.stuStudentState }"/></td>
+				<td align="center"><input type="number" name="stuGrade" id="stuGrade" value="${param.stuGrade }"/></td>
+				<td align="center"><input type="text" name="stuGraduationExam" id="stuGraduationExam" value="${param.stuGraduationExam }"/></td>
 			</tr>
 		</tbody>
-		<thead>
-			<tr>
-				<td align="center">조기졸업 대상 여부</td>
-				<td align="center">학기</td>
-				<td align="center">소속 학과</td>
-				<td align="center">복수 전공</td>
-				<td align="center">부전공</td>
+		<thead id="thead">
+			<tr class="filters">
+				<th align="center"><input type="text" class="form-control" placeholder="조기졸업 대상 여부" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="학기" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="소속 학과" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="복수 전공" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="부전공" disabled></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+			<tr class="filters">
 				<td align="center"><input type="text" name="stuEarlyGraduation" id="stuEarlyGraduation"/></td>
 				<td align="center"><input type="text" name="stuSemester" id="stuSemester"/></td>
+			<tr>
+				<td align="center"><input type="text" name="stuEarlyGraduation" id="stuEarlyGraduation" value="${param.stuEarlyGraduation }"/></td>
+				<td align="center"><input type="text" name="stuSemester" id="stuSemester" value="${param.stuSemester }"/></td>
 				<td align="center"><select name="majorId" id="majorId">
 										<option>학과 선택</option>
 											<c:forEach var="list" items="${requestScope.major }">
-												<option value=${list.majorId }>${list.majorName }</option>
+												<c:choose>
+													<c:when test="${list.majorId == param.majorId }">
+														<option value=${list.majorId } selected>${list.majorName }</option>
+													</c:when>
+													<c:otherwise>
+														<option value=${list.majorId }>${list.majorName }</option>
+													</c:otherwise>
+												</c:choose>
 											</c:forEach>
 					    		   </select></td>
 				<td align="center"><select name="majorDualId" id="majorDualId">
 										<option>학과 선택</option>
-										<option value="0">없음</option>
+										<c:choose>
+											<c:when test="${param.majorDualId == 0 }">
+												<option value="0" selected>없음</option>
+											</c:when>
+											<c:otherwise>
+												<option value="0">없음</option>
+											</c:otherwise>
+										</c:choose>
 											<c:forEach var="list" items="${requestScope.majorDual }">
-												<option value=${list.majorId }>${list.majorName }</option>
+											<c:choose>
+												<c:when test="${list.majorId == param.majorDaulId }">
+													<option value=${list.majorId } selected>${list.majorName }</option>
+												</c:when>
+												<c:otherwise>
+													<option value=${list.majorId }>${list.majorName }</option>
+												</c:otherwise>
+											</c:choose>
 											</c:forEach>
-									</select> <br></td>
+									</select></td>
 				<td align="center"><select name="majorMinorId" id="majorMinorId">
 										<option>학과 선택</option>
-										<option value="0">없음</option>
+										<c:choose>
+											<c:when test="${param.majorMinorId == 0 }">
+												<option value="0" selected>없음</option>
+											</c:when>
+											<c:otherwise>
+												<option value="0">없음</option>
+											</c:otherwise>
+										</c:choose>
 											<c:forEach var="list" items="${requestScope.majorMinor }">
-												<option value=${list.majorId }>${list.majorName }</option>
+											<c:choose>
+												<c:when test="${list.majorId == param.majorMinorId }">
+													<option value=${list.majorId } selected>${list.majorName }</option>
+												</c:when>
+												<c:otherwise>
+													<option value=${list.majorId }>${list.majorName }</option>
+												</c:otherwise>
+											</c:choose>
 											</c:forEach>
 									</select> <br></td>
 			</tr>
 		</tbody>
-	</table>
-	<input type="submit" id="submit" value="등록">
+	</table><br>
+	<center><input type="submit" id="submit" value="등록"></center>
 			<sec:csrfInput/>
-	</form>
-	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
+	</form><br>
+	<center><button onclick="location.href='${initParam.rootPath }/'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 </body>

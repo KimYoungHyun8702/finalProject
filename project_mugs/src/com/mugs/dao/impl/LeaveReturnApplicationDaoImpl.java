@@ -38,15 +38,26 @@ public class LeaveReturnApplicationDaoImpl implements LeaveReturnApplicationDao 
 	}
 
 	@Override
-	public List<LeaveReturnApplication> SelectLeaveReturnApplicationList() {
+	public List<LeaveReturnApplication> selectLeaveReturnApplicationList() {
 		// TODO Auto-generated method stub
 		return session.selectList(makeSql("selectLeaveReturnApplicationList"));
 	}
 
 	@Override
-	public LeaveReturnApplication SelectLeaveReturnApplicationById(int LRApplicationId) {
+	public LeaveReturnApplication selectLeaveReturnApplicationById(int LRApplicationId) {
 		// TODO Auto-generated method stub
 		return session.selectOne(makeSql("selectLeaveReturnApplicationById"), LRApplicationId);
 	}
-
+	
+	/**
+	 * StuId를 매개변수로 받아 해당 학생의 휴복학 내역을 조회하는 메소드
+	 * 
+	 * By Baek.J.H
+	 * 
+	 */
+	@Override
+	public List<LeaveReturnApplication> selectLeaveReturnApplicationByStuId(String stuId) {
+		// TODO Auto-generated method stub
+		return session.selectList(makeSql("selectLeaveReturnApplicationListByStuId"), stuId);
+	}
 }

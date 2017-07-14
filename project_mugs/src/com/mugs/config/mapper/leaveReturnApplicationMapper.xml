@@ -55,4 +55,17 @@
 	WHERE LRAPPLICATION_ID=#{value}
 </select>
  
+ 
+ 
+ <!-- 
+      By Baek.J.H
+	   현재 로그인된 학생ID를 이용해서 휴복학 내역을 select 한다. 
+  -->
+<select id="selectLeaveReturnApplicationListByStuId" resultMap="leaveReturnApplication-basic-reresultmap" parameterType="string">
+	<include refid="select-leaveReturnApplication"/>
+	where STU_ID=#{value}
+</select>
+
+
+
 </mapper>

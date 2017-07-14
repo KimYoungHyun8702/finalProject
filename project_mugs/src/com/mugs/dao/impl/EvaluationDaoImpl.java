@@ -21,8 +21,6 @@ public class EvaluationDaoImpl implements EvaluationDao{
 	
 	@Override
 	public int insertEvaluation(Evaluation e) {
-		System.out.println("Dd@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		System.out.println(e);
 		return session.insert(makeSql("insertEvaluation"), e);
 	}
 

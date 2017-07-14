@@ -76,6 +76,7 @@
 	<resultMap id="subject-professor-resultmap" type="subject" extends="subject-basic-resultmap">
 		<association property="professor" resultMap="com.mugs.config.mapper.professorMapper.professor-resultmap"/>
 	</resultMap>
+
 	<!-- insert -->
 	<insert id="insertSubject" parameterType="subject">
 	<selectKey resultType="int" keyProperty="subjectId" order="BEFORE">
@@ -98,7 +99,7 @@
 		subject_time = #{subjectTime},
 		subject_type = #{subjectType},
 		subject_credit = #{subjectCredit},
-		subject_capacity = #{subjectCapacity},
+		subject_capacity = #{subjectCapacity}, 
 		subject_request = #{subjectRequest},
 		subject_grade = #{subjectGrade},
 		subject_class = #{subjectClass},
@@ -154,7 +155,7 @@
 		s.subject_request, s.subject_grade, s.subject_class, s.subject_close_class, s.subject_semester, s.major_id, s.lecture_id,
 		c.college_name, m.major_name, r.room_name, b.building_name
 		FROM subject s, major m, college c, room r, building b
-		WHERE s.major_id = m.major_id AND m.college_id = c.college_id AND s.lecture_id = r.room_id AND r.building_id = b.building_id AND s.subject_id = #{value}
+		WHERE s.major_id = m.major_id AND m.college_id = c.college_id AND s.lecture_id = r.room_id(+) AND r.building_id = b.building_id(+) AND s.subject_id = #{value}
 	</select>
 	
 	<select id="selectSubjectForInsert" resultMap="subject-major-college-resultmap">
@@ -170,7 +171,7 @@
 		s.subject_request, s.subject_grade, s.subject_class, s.subject_close_class, s.subject_semester, s.major_id, s.lecture_id,
 		c.college_id, m.major_id, r.room_name, b.building_name, r.room_id, b.building_id
 		FROM subject s, major m, college c, room r, building b
-		WHERE s.major_id = m.major_id AND m.college_id = c.college_id AND s.lecture_id = r.room_id AND r.building_id = b.building_id AND s.subject_id = #{value}
+		WHERE s.major_id = m.major_id AND m.college_id = c.college_id AND s.lecture_id = r.room_id(+) AND r.building_id = b.building_id(+) AND s.subject_id = #{value}
 	</select>
 	
 	<select id="selectSubjectTimeBySubjectTypeMinor" resultMap="subject-college-resultmap" parameterType="String">
@@ -187,37 +188,65 @@
 	</select>
 
 	<!-- 해당 과목의 id, 이수구분별 과목 리스트 조회 -->
-	<select id="selectSubjectBySubjectTypeAndMajorId" resultType="subject" parameterType="java.util.List">
-		SELECT 	subject_id subjectId,
-				subject_name subjectName,
-				subject_time subjectTime,
-				subject_type subjectType,
-				subject_credit subjectCredit,
-				subject_capacity subjectCapacity,
-				subject_grade subjectGrade,
-				subject_class subjectClass,
-				subject_semester subjectSemester,
-				lecture_id lectureId				
-		FROM    subject
-		WHERE   subject_type =#{list[1]}
-		AND		major_id =#{list[0]}
+	<select id="selectSubjectBySubjectTypeAndMajorId" resultType="subject" parameterType="map">
+		SELECT 	s.subject_id subjectId,
+				s.subject_name subjectName,
+				s.subject_time subjectTime,
+				s.subject_type subjectType,
+				s.subject_credit subjectCredit,
+				s.subject_capacity subjectCapacity,
+				s.subject_grade subjectGrade,
+				s.subject_class subjectClass,
+				s.subject_semester subjectSemester,
+				s.lecture_id lectureId				
+		FROM    subject s, major m		
+		<choose>
+			<when test="majorId!=null">	
+			WHERE   s.subject_type =#{subjectType}
+			AND		s.major_id = #{majorId}
+			AND		s.major_id = m.major_id(+)
+			AND		s.subject_semester = #{semester}
+			</when>
+			<otherwise>
+			WHERE   s.subject_type =#{subjectType}
+			AND		s.major_id is null
+			AND		s.major_id	= m.major_id(+)
+			AND		s.subject_semester = #{semester}
+			</otherwise>
+		</choose>
 	</select>
 	
-	<select id="selectSubjectListByMajorIdForAllTime" resultType="subject" parameterType="int">
-		SELECT 	subject_id subjectId,
-				subject_name subjectName,
-				subject_time subjectTime,
-				subject_type subjectType,
-				subject_credit subjectCredit,
-				subject_capacity subjectCapacity,
-				subject_grade subjectGrade,
-				subject_class subjectClass,
-				subject_semester subjectSemester,
-				lecture_id lectureId				
-		FROM    subject
-		WHERE   major_id =#{majorId}	
+	<!-- 학기 전체조회 -->
+	<select id="selectSemesterInfo" resultType="int">
+		SELECT 	distinct subject_semester
+		FROM 	subject
 	</select>
-	
+	<!-- 학기와 학과id로 과목조회 -->
+	<select id="selectSubjectListByMajorIdForAllTime" resultType="subject" parameterType="map">
+		SELECT 	s.subject_id subjectId,
+				s.subject_name subjectName,
+				s.subject_time subjectTime,
+				s.subject_type subjectType,
+				s.subject_credit subjectCredit,
+				s.subject_capacity subjectCapacity,
+				s.subject_grade subjectGrade,
+				s.subject_class subjectClass,
+				s.subject_semester subjectSemester,
+				s.lecture_id lectureId				
+		FROM    subject s, major m		
+		<choose>
+			<when test="majorId!=null">
+			WHERE	s.subject_semester = #{semester}
+			AND 	s.major_id = #{majorId}
+			AND		s.major_id= m.major_id(+)
+			</when>
+			<otherwise>
+			WHERE	s.subject_semester = #{semester}
+			AND		s.major_id is null
+			AND		s.major_id= m.major_id(+)
+			</otherwise>
+		</choose>	
+	</select>
 	<!-- End BM -->
 	
 	<select id="selectSubjectInfoBySubjectTime" resultMap="subject-major-college-resultmap" parameterType="map">
@@ -225,7 +254,7 @@
 		s.subject_request, s.subject_grade, s.subject_class, s.subject_close_class, s.subject_semester, s.lecture_id,
 		r.room_name, b.building_name
 		FROM subject s, room r, building b
-		WHERE s.lecture_id = r.room_id AND r.building_id = b.building_id AND s.subject_type = #{subjectType} AND s.subject_time = #{subjectTime}
+		WHERE s.lecture_id = r.room_id(+) AND r.building_id = b.building_id(+) AND s.subject_type = #{subjectType} AND s.subject_time = #{subjectTime}
 	</select>
 	
 	<select id="selectSubjectInfoBySubjectIdForMinorUpdate" resultMap="subject-major-college-resultmap" parameterType="int">
@@ -233,7 +262,7 @@
 		s.subject_request, s.subject_grade, s.subject_class, s.subject_close_class, s.subject_semester, s.lecture_id,
 		r.room_name, b.building_name, r.room_id, b.building_id
 		FROM subject s, room r, building b
-		WHERE s.lecture_id = r.room_id AND r.building_id = b.building_id AND s.subject_id = #{value}
+		WHERE s.lecture_id = r.room_id(+) AND r.building_id = b.building_id(+) AND s.subject_id = #{value}
 	</select>
 
 	
@@ -244,12 +273,6 @@
 		AND s.subject_time = #{subjectTime} 
 		AND s.subject_semester = #{subjectSemester} 
 		AND r.building_id = #{buildingId}
-	</select>
-	
-
-	<!-- 영현이꼬 -->
-	<select id="selectSubjectInfoByJoin" resultMap="subject-professor-resultmap" >
-		
 	</select>
 	
 	<select id="selectSubjectType" resultType="string">

@@ -1,3 +1,4 @@
+
 /* 1.사용자 */
 CREATE TABLE USERS (
    USERS_ID VARCHAR2(20) NOT NULL, /* 사용자 ID */
@@ -372,3 +373,4 @@ DROP SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀�
 DROP SEQUENCE ROOM_ID_SEQ;/* 방 테이블의 기본키에 대한 시퀀스 삭제*/
 DROP SEQUENCE LRAPPLICATION_ID_SEQ;
 DROP SEQUENCE CREDIT_GIVE_UP_ID_SEQ;
+

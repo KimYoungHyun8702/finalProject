@@ -109,39 +109,46 @@ public class SubjectDaoImpl implements SubjectDao {
 	}
 
 	@Override
-	public Subject selectForOverlap(String subjectTime, String subjectSemester, int buildingId) {
+	public List<Subject> selectForOverlap(String subjectTime, String subjectSemester, int buildingId) {
 		Map map = new HashMap();
 		map.put("subjectTime", subjectTime);
 		map.put("subjectSemester", subjectSemester);
 		map.put("buildingId", buildingId);
-		return session.selectOne(makeSqlId("selectForOverlap"),map);
+		return session.selectList(makeSqlId("selectForOverlap"),map);
 	}
-	
-	
 	
 	//병문 DaoImpl
 	@Override
 	public List<Subject> selectSubjectTypeByMajorId(int majorId) {
 		return session.selectList(makeSqlId("selectSubjectTypeByMajorId"),majorId);
 	}
-	
-	@Override
-	public List<Subject> selectSubjectBySubjectTypeAndMajorId(List<Object> typeAndMajorId) {
-		return session.selectList(makeSqlId("selectSubjectBySubjectTypeAndMajorId"),typeAndMajorId);
-	}
-	
-	@Override
-	public List<Subject> selectSubjectListByMajorIdForAllTime(int majorId) {
-		return session.selectList(makeSqlId("selectSubjectListByMajorIdForAllTime"), majorId);
-	}
-	// End BM
 
+	@Override
+	public List<Subject> selectSubjectListByMajorIdForAllTime(int majorId,String semester) {
+		Map<String,Object> map = new HashMap();
+		map.put("majorId", majorId);
+		map.put("semester", semester);
+		return session.selectList(makeSqlId("selectSubjectListByMajorIdForAllTime"), map);
+	}
+	
 	@Override
 	public List<String> subjectTypeList() {
 		// TODO Auto-generated method stub
 		return session.selectList(makeSqlId("selectSubjectType"));
 	}
 
+	@Override
+	public List<Subject> selectSubjectBySubjectTypeAndMajorId(String semester, Integer majorId, String subjectType) {
+		Map map = new HashMap();
+		map.put("subjectType", subjectType);
+		map.put("majorId", majorId);
+		map.put("semester", semester);
+		return session.selectList(makeSqlId("selectSubjectBySubjectTypeAndMajorId"),map);
+	}
 
-	
+	@Override
+	public List<Integer> selectSemesterInfo() {
+		return session.selectList(makeSqlId("selectSemesterInfo"));
+	}
+	// End BM
 }
