@@ -131,10 +131,9 @@ public class CourseRegistrationController {
 	public ModelAndView getMyCourseListByJoin() {
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String loginId = users.getUsersId();
-		//String loginId="1";//시큐리티설정 전에 테스트위해서 설정해준 값
 		List<Course> myCourseListResult = courseRegistrationService.findMyCourseListByJoin(loginId);
-		System.out.println(myCourseListResult);
 		return new ModelAndView("student/courseInformationList/course_InformationListView.tiles", "myCourseListResult", myCourseListResult);
+		
 	}
 
 	/** By Cho.S.R **/

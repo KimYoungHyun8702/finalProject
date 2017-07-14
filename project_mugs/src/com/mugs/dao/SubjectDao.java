@@ -139,7 +139,7 @@ public interface SubjectDao {
 	 * @return 과목 리스트들
 	 * @author 병문
 	 */
-	List<Subject> selectSubjectBySubjectTypeAndMajorId(List<Object> typeAndMajorId);
+	List<Subject> selectSubjectBySubjectTypeAndMajorId(String semester, Integer majorId, String subjectType);
 	
 	/**
 	 * 학과 id로 과목 리스트를 select하는 메소드
@@ -147,7 +147,13 @@ public interface SubjectDao {
 	 * @return 과목 리스트들
 	 * @author 병문
 	 */
-	List<Subject> selectSubjectListByMajorIdForAllTime(int majorId);
+	List<Subject> selectSubjectListByMajorIdForAllTime(int majorId,String subjectType);
+	
+	/**
+	 * 학기정보 리스트를 select하는 메소드
+	 * @return
+	 */
+	List<Integer> selectSemesterInfo();
 	
 	 /** 강의실 중복제거를 위한 조회 메소드
 	 * @param subjectTime
@@ -156,6 +162,5 @@ public interface SubjectDao {
 	 * @param buildingId
 	 * @return
 	 */
-	Subject selectForOverlap(String subjectTime, String subjectSemester, int buildingId);
-
+	List<Subject> selectForOverlap(String subjectTime, String subjectSemester, int buildingId);
 }

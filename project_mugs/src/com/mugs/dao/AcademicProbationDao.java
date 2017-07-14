@@ -28,6 +28,15 @@ public interface AcademicProbationDao {
 	int deleteAcademicProbation(int probationId);
 	
 	/**
+	 * 3개의 매개변수와 일치하는 학사경고 내역 삭제
+	 * @param probationYear
+	 * @param probationSemester
+	 * @param stuId
+	 * @return
+	 */
+	int deleteAcademicProbationByThreeId(int probationYear, String probationSemester, String stuId);
+	
+	/**
 	 * 매개변수로 학사경고id를 받아서 정보를 select하는 메소드
 	 * @param probationId
 	 * @return
@@ -45,4 +54,12 @@ public interface AcademicProbationDao {
 	 */
 	List<AcademicProbation> selectAcademicProbationByStuId(String stuId);
 	
+	/**
+	 * 3개의 매개변수와 일치하는 학사경고 내역 insert
+	 * @param probationYear
+	 * @param probationSemester
+	 * @param stuId
+	 * @return
+	 */
+	AcademicProbation selectAcademicProbationByThreeId(int probationYear, String probationSemester, String stuId);
 }

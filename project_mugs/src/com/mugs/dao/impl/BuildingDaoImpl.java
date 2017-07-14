@@ -64,5 +64,5 @@ public class BuildingDaoImpl implements BuildingDao {
 	public List<Building> selectRoomListByLaboratory() {
 		return session.selectList(makeSql("selectRoomListByLaboratory"));
 	}
-
+	
 }

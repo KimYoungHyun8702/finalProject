@@ -74,5 +74,6 @@ public interface BuildingDao {
 	 * @return
 	 */
 	List<Building> selectRoomListByLaboratory();
-
+	
+	
 }

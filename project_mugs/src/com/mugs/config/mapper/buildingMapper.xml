@@ -2,106 +2,106 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mugs.config.mapper.buildingMapper">
 
-	<sql id="select-building">
-		SELECT building_id,
-		building_name,
-		building_img,
-		building_x,
-		building_y,
-		building_phone_num,
-		building_addr
-		
-		FROM building
-	</sql>
+   <sql id="select-building">
+      SELECT building_id,
+      building_name,
+      building_img,
+      building_x,
+      building_y,
+      building_phone_num,
+      building_addr
+      
+      FROM building
+   </sql>
 
-	<resultMap type="Building" id="Building-Room-resultmap"
-		extends="building-basic-resultmap">
-		<!-- collection 태그 :List ofType : List<Employee> - collection에 담을 VO객체의 
-			타입 property : List<Employee> employeeList - Attribute 이름 -->
-		<collection ofType="room" property="roomList">
-			<result column="room_id" property="roomId" />
-			<result column="room_name" property="roomName" />
-		</collection>
-	</resultMap>
 
-	<resultMap type="building" id="building-basic-resultmap">
-		<id column="building_id" property="buildingId" />
-		<result column="building_name" property="buildingName" />
-		<result column="building_img" property="buildingImg" />
-		<result column="building_x" property="buildingX" />
-		<result column="building_y" property="buildingY" />
-		<result column="building_phone_num" property="buildingPhoneNum" />
-		<result column="building_addr" property="buildingAddr" />
-	</resultMap>
+   <resultMap type="building" id="building-basic-resultmap">
+      <id column="building_id" property="buildingId" />
+      <result column="building_name" property="buildingName" />
+      <result column="building_img" property="buildingImg" />
+      <result column="building_x" property="buildingX" />
+      <result column="building_y" property="buildingY" />
+      <result column="building_phone_num" property="buildingPhoneNum" />
+      <result column="building_addr" property="buildingAddr" />
+   </resultMap>
 
-	<!-- insert -->
-	<insert id="insertBuilding" parameterType="building">
-		<selectKey resultType="int" keyProperty="buildingId" order="BEFORE">
-			SELECT building_id_seq.nextval FROM dual
-		</selectKey>
-		INSERT INTO building VALUES(#{buildingId},#{buildingName},#{buildingImg},#{buildingX},#{buildingY},#{buildingPhoneNum},#{buildingAddr})
-	</insert>
+   <resultMap type="Building" id="Building-Room-resultmap"
+      extends="building-basic-resultmap">
+      <!-- collection 태그 :List ofType : List<Employee> - collection에 담을 VO객체의 
+         타입 property : List<Employee> employeeList - Attribute 이름 -->
+      <collection ofType="room" property="roomList">
+         <result column="room_id" property="roomId" />
+         <result column="room_name" property="roomName" />
+      </collection>
+   </resultMap>
+   
+   <!-- insert -->
+   <insert id="insertBuilding" parameterType="building">
+      <selectKey resultType="int" keyProperty="buildingId" order="BEFORE">
+         SELECT building_id_seq.nextval FROM dual
+      </selectKey>
+      INSERT INTO building VALUES(#{buildingId},#{buildingName},#{buildingImg},#{buildingX},#{buildingY},#{buildingPhoneNum},#{buildingAddr})
+   </insert>
 
-	<!-- update -->
-	<update id="updateBuildingById" parameterType="building">
-		UPDATE building
-		SET building_id=#{buildingId},
-		building_name=#{buildingName},
-		building_img=#{buildingImg},
-		building_x=#{buildingX},
-		building_y=#{buildingY},
-		building_phone_num=#{buildingPhoneNum},
-		building_addr=#{buildingAddr}
-		
-		WHERE building_id=#{buildingId}
-	</update>
+   <!-- update -->
+   <update id="updateBuildingById" parameterType="building">
+      UPDATE building
+      SET building_id=#{buildingId},
+      building_name=#{buildingName},
+      building_img=#{buildingImg},
+      building_x=#{buildingX},
+      building_y=#{buildingY},
+      building_phone_num=#{buildingPhoneNum},
+      building_addr=#{buildingAddr}
+      
+      WHERE building_id=#{buildingId}
+   </update>
 
-	<!-- delete -->
-	<delete id="deleteBuilding" parameterType="int">
-		DELETE FROM building
-		WHERE building_id=#{value}
-	</delete>
+   <!-- delete -->
+   <delete id="deleteBuilding" parameterType="int">
+      DELETE FROM building
+      WHERE building_id=#{value}
+   </delete>
 
-	<!-- select -->
-	<select id="selectBuildingList" resultMap="building-basic-resultmap">
-		<include refid="select-building" />
-		ORDER BY building_id
-	</select>
+   <!-- select -->
+   <select id="selectBuildingList" resultMap="building-basic-resultmap">
+      <include refid="select-building" />
+      ORDER BY building_id
+   </select>
 
-	<select id="selectBuildingById" resultMap="building-basic-resultmap"
-		parameterType="int">
-		<include refid="select-building" />
-		WHERE BUILDING_ID = #{VALUE}
-	</select>
+   <select id="selectBuildingById" resultMap="building-basic-resultmap"
+      parameterType="int">
+      <include refid="select-building" />
+      WHERE BUILDING_ID = #{VALUE}
+   </select>
 
-	<select id="selectBuildingByIdJoin" resultMap="Building-Room-resultmap"
-		parameterType="int">
-		SELECT B.BUILDING_ID, B.BUILDING_NAME, B.BUILDING_IMG, B.BUILDING_X,
-		B.BUILDING_Y, B.BUILDING_PHONE_NUM, B.BUILDING_YEAR R.ROOM_ID,
-		R.ROOM_NAME
-		FROM BUILDING B, ROOM R
-		WHERE B.BUILDING_ID = R.BUILDING_ID
-		AND B.BUILDING_ID = #{VALUE}
-	</select>
-	
-	<select id="selectBuildingByBuildingName" resultMap="building-basic-resultmap" parameterType="string">
-		<include refid="select-building"/>
-		WHERE BUILDING_NAME = #{VALUE}
-	</select>
-	
-	<select id="selectRoomListByOffice" resultMap="Building-Room-resultmap">
-		SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID, R.ROOM_NAME
-		FROM BUILDING B, ROOM R
-		WHERE b.building_id = r.building_id 
-		AND building_name = '교수실강의동'
-	</select>
-	
-	<select id="selectRoomListByLaboratory" resultMap="Building-Room-resultmap">
-		SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID, R.ROOM_NAME
-		FROM BUILDING B, ROOM R
-		WHERE b.building_id = r.building_id 
-		AND building_name = '연구실강의동'
-	</select>
+   <select id="selectBuildingByIdJoin" resultMap="Building-Room-resultmap"
+      parameterType="int">
+      SELECT B.BUILDING_ID, B.BUILDING_NAME, B.BUILDING_IMG, B.BUILDING_X,
+      B.BUILDING_Y, B.BUILDING_PHONE_NUM, B.BUILDING_YEAR R.ROOM_ID,
+      R.ROOM_NAME
+      FROM BUILDING B, ROOM R
+      WHERE B.BUILDING_ID = R.BUILDING_ID
+      AND B.BUILDING_ID = #{VALUE}
+   </select>
+   
+   <select id="selectBuildingByBuildingName" resultMap="building-basic-resultmap" parameterType="string">
+      <include refid="select-building"/>
+      WHERE BUILDING_NAME = #{VALUE}
+   </select>
+   
+   <select id="selectRoomListByOffice" resultMap="Building-Room-resultmap">
+      SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID, R.ROOM_NAME
+      FROM BUILDING B, ROOM R
+      WHERE b.building_id = r.building_id 
+      AND building_name = '교수실강의동'
+   </select>
+   
+   <select id="selectRoomListByLaboratory" resultMap="Building-Room-resultmap">
+      SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID, R.ROOM_NAME
+      FROM BUILDING B, ROOM R
+      WHERE b.building_id = r.building_id 
+      AND building_name = '연구실강의동'
+   </select>
 
 </mapper>
-

@@ -2,7 +2,6 @@ package com.mugs.controller.student;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,13 +52,4 @@ public class TimetableController {
       return model;
    }
    
-   @RequestMapping("getMapByBuildingName")
-	public ModelAndView getMapByBuildingName(String subjectName, String buildingName, String roomName){
-		Map<String , Object> map = new HashMap<>();
-		map.put("building", timeTableManagementServiceImpl.findBuildingByBuildingName(buildingName));
-		map.put("subjectName", subjectName);
-		map.put("roomName", roomName);
-		
-		return new ModelAndView("view/contents/student/timeTable/buildingMap", "map", map);
-	}
 }

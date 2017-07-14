@@ -32,7 +32,7 @@ function info_professor(proId){
 			
 			txt2 += "<tr><td align='center'>"+this.info.usersPhoneNum+"</td><td align='center>'"+this.info.usersCellNum+"</td><td align='center'>"+this.info.usersNational+"</td><td align='center'>"+this.info.usersCurrentAddr+"</td><td align='center'>"+this.info.usersBornAddr+"</td><td align='center'>"+this.info.usersEnable+"</td></tr>"
 			
-			txt3 += "<tr><td align='center'>"+this.info.proUniversity+"</td><td align='center'>"+this.info.proGradSchool+"</td><td align='center'>"+(this.info.proOfficePhoneNum == null?"":this.info.proOfficePhoneNum)+"</td><td align='center'>"+(this.info.prolaboratoryPhoneNum == null?"":this.info.proLaboratoryPhoneNum)+"</td><td align='center'>"+(this.major == null?"":this.major.majorName)+"</td><td align='center'>"
+			txt3 += "<tr><td align='center'>"+this.info.proUniversity+"</td><td align='center'>"+this.info.proGradSchool+"</td><td align='center'>"+(this.info.proOfficePhoneNum == null?"":this.info.proOfficePhoneNum)+"</td><td align='center'>"+(this.info.proLaboratoryPhoneNum == null?"":this.info.proLaboratoryPhoneNum)+"</td><td align='center'>"+(this.major == null?"":this.major.majorName)+"</td><td align='center'>"
 					+(this.office == null?"":this.office.buildingName+",")+(this.office == null?"":this.office.officeName)+"</td></tr>"
 			
 			txt4 +=	"<tr><td align='center'>"+(this.laboratory == null?"":this.laboratory.buildingName+",")+(this.laboratory == null?"":this.laboratory.laboratoryName)+"</td><td align='center'><button onclick='update_professor("+this.info.usersId+")'>수정</button></td><td align='center'><button onclick='delete_professor("+this.info.usersId+")'>삭제</button></td></tr>"
@@ -88,23 +88,23 @@ $(document).ready(function(){
 </head>
 <body>
 <h2>교수 조회</h2>
-<c:if test="${sessionScope.insertMessage != null}">
+<c:if test="${sessionScope.proinsertMessage != null}">
 		<script type="text/javascript">
 			alert("등록되었습니다");
 		</script>
-		<% session.removeAttribute("insertMessage"); %>
+		<% session.removeAttribute("proinsertMessage"); %>
 </c:if>
-<c:if test="${sessionScope.updateMessage != null}">
+<c:if test="${sessionScope.proupdateMessage != null}">
 		<script type="text/javascript">
 			alert("수정되었습니다");
 		</script>
-		<% session.removeAttribute("updateMessage"); %>
+		<% session.removeAttribute("proupdateMessage"); %>
 </c:if>
-<c:if test="${sessionScope.deleteMessage != null}">
+<c:if test="${sessionScope.prodeleteMessage != null}">
 		<script type="text/javascript">
 			alert("삭제되었습니다");
 		</script>
-		<% session.removeAttribute("deleteMessage"); %>
+		<% session.removeAttribute("prodeleteMessage"); %>
 </c:if>
 <hr>
 	

@@ -10,10 +10,10 @@
 <script type="text/javascript">
 function check(){
 	if($("#usersId").val() == "" || $("#usersId").val().trim() == 0 ){
-		alert("학번을 입력하세요");
+		alert("교수 번호를 입력하세요");
 		return false;
 	}else if($("#usersName").val() == "" || $("#usersName").val().trim() == 0 ){
-		alert("이름을를 입력하세요")
+		alert("이름을 입력하세요")
 		return false;
 	}else if($("#usersEngName").val() == "" || $("#usersEngName").val().trim() == 0){
 		alert("영어 이름을 입력하세요")
@@ -47,6 +47,15 @@ function check(){
 		return false;
 	}else if($("#proGradSchool").val() == "" || $("#proGradSchool").val().trim() == 0){
 		alert("졸업 대학원을 입력하세요")
+		return false;
+	}else if($("#majorId").val() == "학과 선택"){
+		alert("학과를 선택하세요");
+		return false;
+	}else if($("#proRoomOfficeId").val() == "교수실 선택"){
+		alert("교수실을 선택하세요");
+		return false;
+	}else if($("#proRoomLaboratoryId").val() == "연구실 선택"){
+		alert("연구실을 선택하세요");
 		return false;
 	}else{
 		return confirm("등록하시겠습니까 ?")
@@ -94,13 +103,18 @@ $(document).ready(function(){
 </head>
 <body>
 <h2>교수 등록</h2>
+<c:if test="${requestScope.error != null}">
+	<script type="text/javascript">
+		alert("교수 번호가 중복되었습니다");
+	</script>
+</c:if>
 	<hr>
 	<form id="insertForm" action="${initParam.rootPath }/admin/insertProfessorController.do" method="post" onsubmit="return check()">
 		<table id="infoProfessor" border="1">
 			<thead>
 				<tr>
-					<td align="center">번호</td>
-					<td align="center">이름</td>
+					<td align="center">교수 번호</td>
+					<td align="center">교수 이름</td>
 					<td align="center">영문 이름</td>
 					<td align="center">주민 번호</td>
 					<td align="center">이메일</td>
@@ -109,12 +123,12 @@ $(document).ready(function(){
 			</thead>
 			<tbody id="infoTbody1">
 				<tr>
-					<td align="center"><input type="number" name="usersId" id="usersId"/></td>
-					<td align="center"><input type="text" name="usersName" id="usersName"/></td>
-					<td align="center"><input type="text" name="usersEngName" id="usersEngName"/></td>
-					<td align="center"><input type="text" name="usersRRN" id="usersRRN"/></td>
-					<td align="center"><input type="email" name="usersEmail" id="usersEmail"/></td>
-					<td align="center"><input type="text" name="usersPhoneNum" id="usersPhoneNum"/></td>
+					<td align="center"><input type="number" name="usersId" id="usersId" value="${param.usersId }"/></td>
+					<td align="center"><input type="text" name="usersName" id="usersName" value="${param.usersName }"/></td>
+					<td align="center"><input type="text" name="usersEngName" id="usersEngName" value="${param.usersEngName }"/></td>
+					<td align="center"><input type="text" name="usersRRN" id="usersRRN" value="${param.usersRRN }"/></td>
+					<td align="center"><input type="email" name="usersEmail" id="usersEmail" value="${param.usersEmail }"/></td>
+					<td align="center"><input type="text" name="usersPhoneNum" id="usersPhoneNum" value="${param.usersPhoneNum }"/></td>
 				</tr>
 			</tbody>
 
@@ -131,18 +145,46 @@ $(document).ready(function(){
 
 			<tbody id="infoTbody2">
 				<tr>
-					<td align="center"><input type="number" name="usersCellNum" id="usersCellNum"/></td>
+					<td align="center"><input type="number" name="usersCellNum" id="usersCellNum" value="${param.usersCellNum }"/></td>
 					<td align="center"><select name="usersNational" id="usersNational">
-							<option>국적</option>
-							<option>한국</option>
-							<option>중국</option>
-							<option>일본</option>
-							<option>북한</option>
-					</select></td>
-					<td align="center"><input type="text" name="usersCurrentAddr" id="usersCurrentAddr"/></td>
-					<td align="center"><input type="text" name="usersBornAddr" id="usersBornAddr"/></td>
-					<td align="center"><input type="text" name="usersEnable" id="usersEnable"/></td>
-					<td align="center"><input type="text" name="proUniversity" id="proUniversity"/></td>
+									<option>국적</option>
+									<c:choose>
+										<c:when test="${param.usersNational == '한국' }">
+											<option selected>한국</option>
+										</c:when>
+										<c:otherwise>
+											<option>한국</option>
+										</c:otherwise>
+									</c:choose>
+									<c:choose>
+										<c:when test="${param.usersNational == '중국' }">
+											<option selected>중국</option>
+										</c:when>
+										<c:otherwise>
+											<option>중국</option>
+										</c:otherwise>
+									</c:choose>
+									<c:choose>
+										<c:when test="${param.usersNational == '일본' }">
+											<option selected>일본</option>
+										</c:when>
+										<c:otherwise>
+											<option>일본</option>
+										</c:otherwise>
+									</c:choose>
+									<c:choose>
+										<c:when test="${param.usersNational == '북한' }">
+											<option selected>북한</option>
+										</c:when>
+										<c:otherwise>
+											<option>북한</option>
+										</c:otherwise>
+									</c:choose>
+									</select></td>
+					<td align="center"><input type="text" name="usersCurrentAddr" id="usersCurrentAddr" value="${param.usersCurrentAddr }"/></td>
+					<td align="center"><input type="text" name="usersBornAddr" id="usersBornAddr" value="${param.usersBornAddr }"/></td>
+					<td align="center"><input type="text" name="usersEnable" id="usersEnable" value="${param.usersEnable }"/></td>
+					<td align="center"><input type="text" name="proUniversity" id="proUniversity" value="${param.proUniversity }"/></td>
 				</tr>
 			</tbody>
 
@@ -158,31 +200,77 @@ $(document).ready(function(){
 			</thead>
 			<tbody id="infoTbody3">
 				<tr>
-					<td align="center"><input type="number" name="proGradSchool" id="proGradSchool"/></td>
-					<td align="center"><input type="text" name="proOfficePhoneNum" id="proOfficePhoneNum"/></td>
-					<td align="center"><input type="text" name="proLaboratoryPhoneNum" id="proLaboratoryPhoneNum"/></td>
+					<td align="center"><input type="number" name="proGradSchool" id="proGradSchool" value="${param.proGradSchool }"/></td>
+					<td align="center"><input type="text" name="proOfficePhoneNum" id="proOfficePhoneNum" value="${param.proOfficePhoneNum }"/></td>
+					<td align="center"><input type="text" name="proLaboratoryPhoneNum" id="proLaboratoryPhoneNum" value="${param.proLaboratoryPhoneNum }"/></td>
 					<td align="center"><select name="majorId" id="majorId">
 							<option>학과 선택</option>
-							<option value="0">없음</option>
+							<c:choose>
+								<c:when test="${param.majorId == 0 }">
+									<option value="0" selected>없음</option>
+								</c:when>
+								<c:otherwise>
+									<option value="0">없음</option>
+								</c:otherwise>
+							</c:choose>
 							<c:forEach var="list" items="${requestScope.major }">
-								<option value=${list.majorId }>${list.majorName }</option>
+								
+								<c:choose>
+									<c:when test="${list.majorId == param.majorId }">
+										<option value=${list.majorId } selected>${list.majorName }</option>
+									</c:when>
+									<c:otherwise>
+										<option value=${list.majorId }>${list.majorName }</option>
+									</c:otherwise>
+								</c:choose>
 							</c:forEach>
+							
 					</select></td>
-					<td align="center"><select name="proRoomOfficeId" id="proRoomOfficeId">
+					<td align="center"><select name="proRoomOfficeId"
+						id="proRoomOfficeId">
 							<option>교수실 선택</option>
-							<option value="0">없음</option>
+							<c:choose>
+								<c:when test="${param.proRoomOfficeId == 0 }">
+									<option value="0" selected>없음</option>
+								</c:when>
+								<c:otherwise>
+									<option value="0">없음</option>
+								</c:otherwise>
+							</c:choose>
 							<c:forEach var="list" items="${requestScope.office }">
-								<c:forEach var="list" items="${list.roomList }">
-									<option value=${list.roomId }>${list.roomName }</option>
+								<c:forEach items="${list.roomList}" var="list">
+									<c:choose>
+										<c:when test="${list.roomId == param.proRoomOfficeId }">
+											<option value=${list.roomId } selected>${list.roomName }</option>
+										</c:when>
+										<c:otherwise>
+											<option value=${list.roomId }>${list.roomName }</option>
+										</c:otherwise>
+									</c:choose>
 								</c:forEach>
 							</c:forEach>
 					</select></td>
-					<td align="center"><select name="proRoomLaboratoryId" id="proRoomLaboratoryId">
+					<td align="center"><select name="proRoomLaboratoryId"
+						id="proRoomLaboratoryId">
 							<option>연구실 선택</option>
-							<option value="0">없음</option>
-								<c:forEach var="list" items="${requestScope.laboratory }">
-								<c:forEach var="list" items="${list.roomList }">
-									<option value=${list.roomId }>${list.roomName }</option>
+							<c:choose>
+								<c:when test="${param.proRoomLaboratoryId == 0 }">
+									<option value="0" selected>없음</option>
+								</c:when>
+								<c:otherwise>
+									<option value="0">없음</option>
+								</c:otherwise>
+							</c:choose>
+							<c:forEach var="list" items="${requestScope.laboratory }">
+								<c:forEach items="${list.roomList}" var="list">
+									<c:choose>
+										<c:when test="${list.roomId == param.proRoomLaboratoryId }">
+											<option value=${list.roomId } selected>${list.roomName }</option>
+										</c:when>
+										<c:otherwise>
+											<option value=${list.roomId }>${list.roomName }</option>
+										</c:otherwise>
+									</c:choose>
 								</c:forEach>
 							</c:forEach>
 					</select></td>

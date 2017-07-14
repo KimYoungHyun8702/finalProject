@@ -53,11 +53,15 @@ CREATE TABLE MAJOR (
 
 /* 6.건물 */
 CREATE TABLE BUILDING (
-	BUILDING_ID NUMBER NOT NULL, /* 건물 ID */
-	BUILDING_NAME VARCHAR2(50) NOT NULL, /* 건물이름 */
-	BUILDING_URL VARCHAR2(4000) NOT NULL, /* 건물 URL주소 */
-	PRIMARY KEY(BUILDING_ID) /* 기본키 설정 */
+   BUILDING_ID NUMBER PRIMARY KEY, /* 건물 ID *//* 기본키 설정 */
+   BUILDING_NAME VARCHAR2(50) UNIQUE NOT NULL, /* 건물이름 */
+   BUILDING_IMG VARCHAR2(4000) UNIQUE NOT NULL, /* 사진 URL경로 */
+   BUILDING_X NUMBER UNIQUE NOT NULL, /*건물 X좌표*/
+   BUILDING_Y NUMBER UNIQUE NOT NULL, /*건물 Y좌표*/
+   BUILDING_PHONE_NUM VARCHAR2(20) UNIQUE NOT NULL, /*건물 전화번호*/
+   BUILDING_ADDR VARCHAR2(300) UNIQUE NOT NULL /*건물 주소*/
 );
+
 
 /* 7.방 */
 CREATE TABLE ROOM (
@@ -117,7 +121,7 @@ CREATE TABLE STUDENT (
 	FOREIGN KEY (MAJOR_MINOR_ID) REFERENCES MAJOR(MAJOR_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
-/* 11.휴복학신청 */
+/* 11. 휴복학신청 */
 CREATE TABLE LEAVERETURNAPPLICATION (
    LRAPPLICATION_ID NUMBER NOT NULL, /* 휴복학신청ID */
    LRAPPLICATION_TYPE VARCHAR2(20) NOT NULL, /* 휴복학종류 */
@@ -246,6 +250,7 @@ CREATE TABLE CREDIT_GIVE_UP (
    CGU_SEMESTER VARCHAR2(20) NOT NULL, /* 신청 학기 */
    CGU_START_DATE DATE NOT NULL, /* 신청 일자 */
    CGU_FINISH_DATE DATE, /* 승인 일자 */
+   CGU_STATE VARCHAR2(20) NOT NULL, /* 신청 상태 */
    CREDIT_ID NUMBER NOT NULL, /* 학점 ID */
    PRIMARY KEY(CGU_ID), /* 기본키 설정 */
    FOREIGN KEY(CREDIT_ID) REFERENCES CREDIT(CREDIT_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
@@ -281,6 +286,8 @@ CREATE TABLE EVALUATION (
 	FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECT(SUBJECT_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
+
+
 /* 22.학사경고 */
 CREATE TABLE ACADEMIC_PROBATION(
 	PROBATION_ID NUMBER NOT NULL, --학사경고 ID
@@ -297,11 +304,13 @@ CREATE TABLE ACADEMIC_CALENDAR (
    CALENDAR_ID NUMBER NOT NULL, /* 학사일정 ID */
    CALENDAR_START DATE NOT NULL, /* 일정시작일 */
    CALENDAR_FINISH DATE NOT NULL, /* 일정종료일 */
-   CALENDAR_YEAR NUMBER NOT NULL, /* 학사일정 연도 */
    CALENDAR_NAME VARCHAR2(4000) NOT NULL, /* 학사일정명 */
    PRIMARY KEY(CALENDAR_ID) /* 기본키 설정 */
 );
 
+--학점포기는 학점 아래, 휴복학 신청은 학생테이블 아래에
+
+----시퀀스 생성 
 
 /* 각 테이블의 삭제 */
 DROP TABLE ACADEMIC_CALENDAR;
@@ -329,6 +338,10 @@ DROP TABLE AUTHORITIES;
 DROP TABLE USERS;
 
 
+
+
+
+
 /* 각 테이블의 기본키에 대한 필요 시퀀스 생성 */
 CREATE SEQUENCE EVALUATION_ANSWER_ID_SEQ; /* 평가응답 테이블의 기본키에 대한 시퀀스 생성 */
 CREATE SEQUENCE GUIDENCE_STUDENT_ID_SEQ; /* 지도학생 테이블의 기본키에 대한 시퀀스 생성 */
@@ -350,6 +363,7 @@ CREATE SEQUENCE CGU_ID_SEQ;
 
 
 /* 각 테이블의 기본키에 대한 필요 시퀀스 삭제 */
+
 DROP SEQUENCE EVALUATION_ANSWER_ID_SEQ; /* 평가응답 테이블의 기본키에 대한 시퀀스 삭제 */
 DROP SEQUENCE GUIDENCE_STUDENT_ID_SEQ; /* 지도학생 테이블의 기본키에 대한 시퀀스 삭제 */
 DROP SEQUENCE SUBJECT_ID_SEQ; /* 과목 테이블의 기본키에 대한 시퀀스 삭제 */
@@ -367,3 +381,4 @@ DROP SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀�
 DROP SEQUENCE ROOM_ID_SEQ;/* 방 테이블의 기본키에 대한 시퀀스 삭제*/
 DROP SEQUENCE LRAPPLICATION_ID_SEQ;
 DROP SEQUENCE CGU_ID_SEQ;
+
