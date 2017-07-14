@@ -182,7 +182,7 @@ $(document).ready(function(){
    <select name="semester" id="zero_category" >
       <option> 학기</option>
       <c:forEach var="i" items="${requestScope.semesterList}">
-         <option value="${i}">${i}학기</option>
+         <option value="${i}">${i}</option>
       </c:forEach>
    </select>
    <%--

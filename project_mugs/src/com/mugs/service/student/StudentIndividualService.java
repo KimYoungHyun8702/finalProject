@@ -59,6 +59,6 @@ public interface StudentIndividualService {
 	 * 학기 정보 가져옴
 	 * @return
 	 */
-	public List<Integer> getSemesterInfo();
+	public List<String> getSemesterInfo();
 
 }

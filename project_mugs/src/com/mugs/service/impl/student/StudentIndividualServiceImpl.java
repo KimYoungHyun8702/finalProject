@@ -72,7 +72,7 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 	return map;
 	}
 	
-	public List<Integer> getSemesterInfo(){
+	public List<String> getSemesterInfo(){
 		return subjectDao.selectSemesterInfo();
 	}
 
