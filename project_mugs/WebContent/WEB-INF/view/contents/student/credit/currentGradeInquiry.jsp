@@ -39,9 +39,8 @@ h3{
 					var acquireCredit=0;
 					var score=0;
 					var count =list.length;
-					<th><input type='text' class='form-control' placeholder='최소학점' disabled></th>
-				$("#thead").html("<th><input type='text' class='form-control' placeholder='년도' disabled></th><th><input type='text' class='form-control' placeholder='학기' disabled></th><th><input type='text' class='form-control' placeholder='과목번호' disabled></th><th><input type='text' class='form-control' placeholder='과목명' disabled></th><th><input type='text' class='form-control' placeholder='분반' disabled></th><th><input type='text' class='form-control' placeholder='이수구분' disabled></th><th><input type='text' class='form-control' placeholder='학점' disabled></th><th><input type='text' class='form-control' placeholder='등급' disabled></th><th><input type='text' class='form-control' placeholder='평점' disabled></th><th><input type='text' class='form-control' placeholder='재수강(대체)과목' disabled></th>");
-				$("#thead2").html("<th><input type='text' class='form-control' placeholder='신청학점' disabled></th><th><input type='text' class='form-control' placeholder='취득학점' disabled></th><th><input type='text' class='form-control' placeholder='평점평균' disabled></th>");
+				$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강(대체)과목</td></tr>")
+				$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 				$.each(list, function(){
 					allCredit+=this.subject.subjectCredit;
 					acquireCredit+=this.creditAcquire;
@@ -103,7 +102,6 @@ h3{
 		</c:when>
 		<c:otherwise>
 			<script>alert("성적조회기간이 아닙니다!!.");</script>
-			ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴ
 	</c:otherwise>
 	</c:choose>
 	
