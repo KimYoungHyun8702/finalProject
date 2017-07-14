@@ -153,7 +153,7 @@ public interface SubjectDao {
 	 * 학기정보 리스트를 select하는 메소드
 	 * @return
 	 */
-	List<Integer> selectSemesterInfo();
+	List<String> selectSemesterInfo();
 	
 	 /** 강의실 중복제거를 위한 조회 메소드
 	 * @param subjectTime

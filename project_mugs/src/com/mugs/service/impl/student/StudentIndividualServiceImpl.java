@@ -72,7 +72,7 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 	return map;
 	}
 	
-	public List<Integer> getSemesterInfo(){
+	public List<String> getSemesterInfo(){
 		return subjectDao.selectSemesterInfo();
 	}
 
@@ -95,9 +95,11 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 		List<Room> roomList = new ArrayList<Room>();
 		List<String> roomNameList = new ArrayList<String>();
 		
+
 		// 전공 id별 과목 List를 넣어준다.
 		List<Subject> subList = subjectDao.selectSubjectListByMajorIdForAllTime(majorId,semester);
-				
+
+		
 		// 해당 과목들의 강의실 id들을 넣어준다.
 		List<Integer> roomIdList = new ArrayList<Integer>();
 		for(Subject sub : subList){
@@ -119,12 +121,13 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 		for(Subject sub : subList){
 			subIdList.add(sub.getSubjectId());
 		}
-
+		
+		
 		// 교수담당과목리스트에 해당 과목 id에 맞는 교수담당과목을 추가한다.
 		for(Integer i:subIdList){
 			proSubList.add(proSubDao.selectProfessorSubjectBySubId(i));			
 			} 
-		  
+		System.out.println(proSubList);
 		// 교수담당 과목에서 교수들의 이름을 빼온다.
 		for(ProfessorSubject ps : proSubList){
 			proNameList.add(ps.getProfessor().getUsersName());

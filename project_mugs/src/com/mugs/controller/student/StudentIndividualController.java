@@ -135,7 +135,7 @@ public class StudentIndividualController {
 	@RequestMapping("getAllTimeTable")
 	public ModelAndView getAllTimeTable(){
 		//처음에 학기리스트와 단과대학id를 같이 넘겨준다.
-		 List<Integer> semesterList = service.getSemesterInfo();
+		 List<String> semesterList = service.getSemesterInfo();
 		 return new ModelAndView("student/IndividualInfo/allTimeTable.tiles","semesterList",semesterList);
 	}
 

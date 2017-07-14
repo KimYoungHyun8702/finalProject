@@ -181,7 +181,7 @@
 	</select>
 	
 	<!-- 병문 Mapper -->
-	<select id="selectSubjectTypeByMajorId" resultType="subject" parameterType="int">
+	<select id="selectSubjectTypeByMajorId" resultType="subject" parameterType="string">
 		select distinct subject_type subjectType
 		from subject
 		WHERE major_id=#{majorId}
@@ -217,7 +217,7 @@
 	</select>
 	
 	<!-- 학기 전체조회 -->
-	<select id="selectSemesterInfo" resultType="int">
+	<select id="selectSemesterInfo" resultType="string">
 		SELECT 	distinct subject_semester
 		FROM 	subject
 	</select>
