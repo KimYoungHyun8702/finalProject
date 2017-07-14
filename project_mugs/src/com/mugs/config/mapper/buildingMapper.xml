@@ -39,7 +39,7 @@
 		<selectKey resultType="int" keyProperty="buildingId" order="BEFORE">
 			SELECT building_id_seq.nextval FROM dual
 		</selectKey>
-		INSERT INTO building VALUES(#{buildingId},#{buildingName},#{building_img},#{building_x},#{building_y},#{building_phone_num},#{building_addr})
+		INSERT INTO building VALUES(#{buildingId},#{buildingName},#{buildingImg},#{buildingX},#{buildingY},#{buildingPhoneNum},#{buildingAddr})
 	</insert>
 
 	<!-- update -->
