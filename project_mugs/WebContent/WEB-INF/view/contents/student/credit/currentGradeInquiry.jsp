@@ -5,6 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+table{
+	width:700px;
+	border-collapse: collapse;
+}
+td{
+	padding: 5px;
+	text-align:center;
+	border: 1px solid black;
+}
+th, input{
+	text-align:center;
+}
+h3{
+	font-family:돋움체;
+}
+</style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -22,8 +39,9 @@
 					var acquireCredit=0;
 					var score=0;
 					var count =list.length;
-				$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강(대체)과목</td></tr>")
-				$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
+					<th><input type='text' class='form-control' placeholder='최소학점' disabled></th>
+				$("#thead").html("<th><input type='text' class='form-control' placeholder='년도' disabled></th><th><input type='text' class='form-control' placeholder='학기' disabled></th><th><input type='text' class='form-control' placeholder='과목번호' disabled></th><th><input type='text' class='form-control' placeholder='과목명' disabled></th><th><input type='text' class='form-control' placeholder='분반' disabled></th><th><input type='text' class='form-control' placeholder='이수구분' disabled></th><th><input type='text' class='form-control' placeholder='학점' disabled></th><th><input type='text' class='form-control' placeholder='등급' disabled></th><th><input type='text' class='form-control' placeholder='평점' disabled></th><th><input type='text' class='form-control' placeholder='재수강(대체)과목' disabled></th>");
+				$("#thead2").html("<th><input type='text' class='form-control' placeholder='신청학점' disabled></th><th><input type='text' class='form-control' placeholder='취득학점' disabled></th><th><input type='text' class='form-control' placeholder='평점평균' disabled></th>");
 				$.each(list, function(){
 					allCredit+=this.subject.subjectCredit;
 					acquireCredit+=this.creditAcquire;
@@ -51,9 +69,29 @@
 	<c:choose>
 		<c:when test="${map.message=='접근허용'}">
 			<script>selectCredit();</script>
-			<h2>당학기 성적조회</h2>
-			<hr>
-			<table id="table">
+			<h3>당학기 성적조회</h3>
+			<hr style="border: solid px black">
+			<div class="row">
+			<div class="panel panel-primary filterable">
+			<table class="table">
+				<thead id="thead"></thead>
+				   <tr class="filters"></tr>
+				<tbody id="tbody"></tbody>
+			</table>
+			</div>
+			</div>
+			<hr style="border: solid px black">
+				<div class="row">
+				<div class="panel panel-primary filterable">
+				<table class="table2">
+					<thead id="thead2"></thead>
+					   <tr class="filters"></tr>
+					<tbody id="tbody2"></tbody>
+				</table>
+				</div>
+				</div>
+				
+			<!-- <table id="table">
 				<thead id="thead"></thead>
 				<tbody id="tbody"></tbody>
 			</table>
@@ -61,7 +99,7 @@
 				<table id="table2">
 					<thead id="thead2"></thead>
 					<tbody id="tbody2"></tbody>
-				</table>
+				</table> -->
 		</c:when>
 		<c:otherwise>
 			<script>alert("성적조회기간이 아닙니다!!.");</script>

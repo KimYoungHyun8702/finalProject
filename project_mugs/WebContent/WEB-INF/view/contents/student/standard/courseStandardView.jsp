@@ -5,6 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link href="../first/dist/css/sb-admin-2.min.css" rel="stylesheet" media="screen"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -75,11 +79,11 @@ $(document).ready(function(){
 	         },
 	         "success":function(arr){
 	            alert("조회 중 입니다. 잠시만 기다려주세요.");
-					var	tableHead = "<tr><td>최소학점</td><td>최대학점</td><td>장학금최소학점</td><td>장학금최소학점</td><td>장학금최대학점</td></tr>"
-					var tableBody = "<tr value="+arr.standardYear+"><td>"+arr.standardMinCredit+"</td><td>"+arr.standardMaxCredit+"</td><td>"+arr.standardMinScholarship+"</td><td>"+arr.standardDelayMinCredit+"</td><td>"+arr.standardDelayMaxCredit+"</td></tr>"
+					var	tableHead = "<th><input type='text' class='form-control' placeholder='최소학점' disabled></th><th><input type='text' class='form-control' placeholder='최대학점' disabled></th><th><input type='text' class='form-control' placeholder='장학금최소학점' disabled></th><th><input type='text' class='form-control' placeholder='장학금최대학점' disabled></th>"
+					var tableBody = "<tr value="+arr.standardYear+"><td>"+arr.standardMinCredit+"</td><td>"+arr.standardMaxCredit+"</td><td>"+arr.standardMinScholarship+"</td><td>"+arr.standardDelayMaxCredit+"</td></tr>"
 			   		$("#thead").html(tableHead);
 					$("#tbody").html(tableBody);
-	         },       
+	         }, 
 	         "error":function(){
 					alert("에러가 발생했습니다.");
 				}   
@@ -90,15 +94,17 @@ $(document).ready(function(){
 
 </script>
 <style type="text/css">
-table, td{
-	border: 1px solid black;
+input{
+	text-align:center;
 }
 table{
-	width:700px;
-	border-collapse: collapse;
+	width:600px;
+	
 }
 td{
 	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
 }
 select{
 	width:150px;
@@ -114,11 +120,15 @@ select{
 #tbody{
 	cursor: pointer;
 }
+h3{
+	font-family:돋움체;
+}
 </style>
 <title>학부당 학과당 년도별 수강신청기준학점조회페이지</title>
 </head>
 <body>
-<h1>수강신청기준학점조회~~~~</h1>
+<h3>학부당 학과당 년도별 수강신청기준학점조회페이지</h3>
+<hr style="border: solid px black">
 학부선택 :
 <select name="college" id="college">
 	<option>학부선택</option>
@@ -133,11 +143,22 @@ select{
 년도선택 :
 <select name="year" id="year">
 	<option>년도선택</option>
-</select>
-<table>
+</select><br><br>
+
+<div class="panel panel-primary filterable">
+<table class="table">
 	<thead id="thead"></thead>
+	   <tr class="filters"></tr>
 	<tbody id="tbody"></tbody>
 </table>
-<button onclick="location.href='${initParam.rootPath}/'">이전페이지로</button>
+</div>
+
+<!-- <table>
+	<thead id="thead"></thead>
+	<tbody id="tbody"></tbody>
+</table><br><br><br><br> -->
+<center><button onclick="location.href='${initParam.rootPath}/'" type="button" class="btn btn-primary">이전페이지로</button></center>
+<script src="jquery-1.10.2.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
