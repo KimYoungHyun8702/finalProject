@@ -26,7 +26,7 @@ public class ProfessorInfoController {
 	
 	//Business Logic 호출	
 	service.updateProfessorInfo(users);
-	return "contents/professor/professorInfo"; //WEB-INF/view/contents/professor/professorInfo.jsp
+	return "professor/professorInfo.tiles"; //WEB-INF/view/contents/professor/professorInfo.jsp
 
 	}
 	

@@ -6,15 +6,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-table, td{
-	border: 1px solid black;
-}
+
 table{
 	width:700px;
 	border-collapse: collapse;
 }
 td{
 	padding: 5px;
+	text-align:center;
+}
+th, input{
+	text-align:center;
+}
+h3{
+	font-family:돋움체;
 }
 </style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery.js"></script>
@@ -54,38 +59,25 @@ $(document).ready(function(){
 </script>
 <title>Insert title here</title>
 <style type="text/css">
-table, td{
-	border: 1px solid black;
-}
-table{
-	width:700px;
-	border-collapse: collapse;
-}
-td{
-	padding: 5px;
-}
+
 </style>
 </head>
 <body>
-<h2>설문응답평가등록하는jsp</h2>
 
 <form action="${initParam.rootPath }/student/addEvaluationAnswerValue.do">
-<table>
+ <h3>설문응답평가 및 등록</h3>
+    <hr style="border: solid px black;">
+
+    <div class="panel panel-primary filterable">
+
+	<table class="table">
 	<thead id="thead">
-		<tr>
-			<td>설문&평가 번호</td>
-			<td>설문&평가 내용</td>
-			<td>평가점수</td>
+		<tr class="filters">
+			 <th width="70px"><input type="text" class="form-control" placeholder="설문&평가 번호" disabled></th>
+			 <th width="150px"><input type="text" class="form-control" placeholder="설문&평가 내용" disabled></th>
+			 <th width="100px"><input type="text" class="form-control" placeholder="평가점수" disabled></th>
 		</tr>
 	</thead>
-
-	<%=request.getParameter("nowYear")%>
-	<%=request.getParameter("nowSemester")%>
-	<%=request.getParameter("loginId")%>
-	<%=request.getParameter("subjectId")%>
-	<%=request.getParameter("proId")%><!--  값 한번 뽑아본거 -->
-
-
 		<input type="hidden" value="<%=request.getParameter("nowYear")%>" name="nowYear">
 		<input type="hidden" value="<%=request.getParameter("nowSemester")%>" name="nowSemester">
 		<input type="hidden" value="<%=request.getParameter("loginId")%>" name="loginId">
@@ -150,8 +142,9 @@ td{
 		</tbody>
 		
 </table>
-<input type="submit" value="제출" id="submit"/>
-<button onclick="location.href='${initParam.rootPath }/'" id="back">메인페이지로</button>
+</div>
+<center><input type="submit" value="제출" id="submit"/><br><br></center>
+<center><button onclick="location.href='${initParam.rootPath }/'" id="back" type="button" class="btn btn-primary">메인페이지로</button></center>
 <sec:csrfInput/><%-- csrf 토큰 --%>	
 </form>
 </body>

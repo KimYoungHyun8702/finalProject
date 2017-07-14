@@ -28,8 +28,13 @@
 		<selectKey resultType="int" keyProperty="probationId" order="BEFORE">
 			SELECT ACADEMIC_PROBATION_ID_SEQ.nextval FROM dual
 		</selectKey>
-		INSERT INTO academicprobation VALUES(#{probationId},#{probationYear},
-		#{probationSemester}, #{probationAverage}, #{stuId})
+		INSERT INTO academic_probation 
+		VALUES(
+		#{probationId},
+		#{probationYear},
+		#{probationSemester}, 
+		#{probationCreditAverage}, 
+		#{stuId})
 	</insert>
 	<!-- Update -->
 	<update id="updateAcademicCalendarById" parameterType="academicProbation">
@@ -43,7 +48,15 @@
 	
 	<!-- delete -->
 	<delete id="deleteAcademicProbation" parameterType="int">
-		DELETE FROM academicprobation WHERE probation_id=#{value}
+		DELETE FROM academic_probation WHERE probation_id=#{value}
+	</delete>
+
+	<!-- 영현이꼬 -->
+	<delete id="deleteAcademicProbationByThreeId" parameterType="map">
+		DELETE FROM academic_probation
+		 WHERE probation_year=#{probationYear}
+		 AND   probation_semester=#{probationSemester}
+		 AND   stu_id=#{stuId}
 	</delete>
 
 	<!-- select -->
@@ -62,4 +75,11 @@
 		 (SELECT count(stu_id) FROM academic_probation WHERE stu_id=#{value}) count FROM academic_probation WHERE stu_id=#{value}
 	</select> 
 
+	<!-- 영현이꼬 -->
+	<select id="selectAcademicProbationByThreeId" resultMap="academicProbation-basic-resultmap" parameterType="map">
+		<include refid="select-academicProbation" />
+		WHERE probation_year=#{probationYear}
+		AND   probation_semester=#{probationSemester}
+		AND   stu_id=#{stuId}
+	</select>
 </mapper>

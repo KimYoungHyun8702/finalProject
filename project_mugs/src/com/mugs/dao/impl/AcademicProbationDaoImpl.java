@@ -1,5 +1,6 @@
 package com.mugs.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -53,6 +54,24 @@ public class AcademicProbationDaoImpl implements AcademicProbationDao {
 		// TODO Auto-generated method stub
 		System.out.println("daoImpl / "+ stuId);
 		return session.selectList(makeSql("selectAcademicProbationByStuId"), stuId);
+	}
+
+	@Override
+	public int deleteAcademicProbationByThreeId(int probationYear, String probationSemester, String stuId) {
+		HashMap params = new HashMap();
+		params.put("probationYear", probationYear);
+		params.put("probationSemester", probationSemester);
+		params.put("stuId", stuId);
+		return session.delete(makeSql("deleteAcademicProbationByThreeId"),params);
+	}
+
+	@Override
+	public AcademicProbation selectAcademicProbationByThreeId(int probationYear, String probationSemester, String stuId) {
+		HashMap params = new HashMap();
+		params.put("probationYear", probationYear);
+		params.put("probationSemester", probationSemester);
+		params.put("stuId", stuId);
+		return session.selectOne(makeSql("selectAcademicProbationByThreeId"),params);
 	}
 	
 }

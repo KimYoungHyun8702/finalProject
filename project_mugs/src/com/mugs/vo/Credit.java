@@ -26,6 +26,8 @@ public class Credit implements Serializable {
 
 	private Subject subject;
 
+	private double avg;
+	
 	public Credit() {
 	}
 
@@ -54,6 +56,23 @@ public class Credit implements Serializable {
 		this.subjectId = subjectId;
 		this.stuId = stuId;
 		this.subject = subject;
+	}
+	
+
+	public Credit(int creditId, int creditYear, String creditSemester, int creditAcquire, String creditGrade,
+			double creditScore, String creditRecource, int subjectId, String stuId, Subject subject, double avg) {
+		super();
+		this.creditId = creditId;
+		this.creditYear = creditYear;
+		this.creditSemester = creditSemester;
+		this.creditAcquire = creditAcquire;
+		this.creditGrade = creditGrade;
+		this.creditScore = creditScore;
+		this.creditRecource = creditRecource;
+		this.subjectId = subjectId;
+		this.stuId = stuId;
+		this.subject = subject;
+		this.avg = avg;
 	}
 
 	public int getCreditId() {
@@ -136,15 +155,33 @@ public class Credit implements Serializable {
 		this.subject = subject;
 	}
 
+	public double getAvg() {
+		return avg;
+	}
+
+	public void setAvg(double avg) {
+		this.avg = avg;
+	}
+
+	@Override
+	public String toString() {
+		return "Credit [creditId=" + creditId + ", creditYear=" + creditYear + ", creditSemester=" + creditSemester
+				+ ", creditAcquire=" + creditAcquire + ", creditGrade=" + creditGrade + ", creditScore=" + creditScore
+				+ ", creditRecource=" + creditRecource + ", subjectId=" + subjectId + ", stuId=" + stuId + ", subject="
+				+ subject + ", avg=" + avg + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(avg);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + creditAcquire;
 		result = prime * result + ((creditGrade == null) ? 0 : creditGrade.hashCode());
 		result = prime * result + creditId;
 		result = prime * result + ((creditRecource == null) ? 0 : creditRecource.hashCode());
-		long temp;
 		temp = Double.doubleToLongBits(creditScore);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((creditSemester == null) ? 0 : creditSemester.hashCode());
@@ -164,6 +201,8 @@ public class Credit implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Credit other = (Credit) obj;
+		if (Double.doubleToLongBits(avg) != Double.doubleToLongBits(other.avg))
+			return false;
 		if (creditAcquire != other.creditAcquire)
 			return false;
 		if (creditGrade == null) {
@@ -202,12 +241,5 @@ public class Credit implements Serializable {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Credit [creditId=" + creditId + ", creditYear=" + creditYear + ", creditSemester=" + creditSemester
-				+ ", creditAcquire=" + creditAcquire + ", creditGrade=" + creditGrade + ", creditScore=" + creditScore
-				+ ", creditRecource=" + creditRecource + ", subjectId=" + subjectId + ", stuId=" + stuId + ", subject="
-				+ subject + "]";
-	}
-
+	
 }
