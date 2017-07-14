@@ -90,11 +90,11 @@ $(document).on("change", ".selectBtn1", function(){
 					if(this.count=="1"){
 					txt += "<tr><td>" + courseYear +"</td><td>" + courseSemester +"</td><td>" + Acquire + "</td><td id='change1'>" + select1  
 						+"</td><td>" + select2 +"</td><td id='change2'>" + 'N' + "</td><td>" + subjectId + "</td><td>" + this.student.usersId + "</td><td>" + this.student.usersName 
-						+ "</td><td>" + "<button id=" + "Btn2>" + "성적주기 </button>" + "</td></tr>"																		
+						+ "</td><td>" + "<button class=" + "Btn2>" + "성적주기 </button>" + "</td><td>" + "<button class=" + "Btn3 style='display: none'>" + "성적수정 </button>" + "</td></tr>"																		
 					}else{
 					txt += "<tr><td>" + courseYear +"</td><td>" + courseSemester +"</td><td>" + Acquire + "</td><td id='change1'>" + select3 
 						+"</td><td>" + select4 +"</td><td id='change2'>" + 'Y' + "</td><td>" + subjectId + "</td><td>" + this.student.usersId + "</td><td>" + this.student.usersName 
-						+ "</td><td>" + "<button id=" + "Btn2>" + "성적주기 </button>" + "</td></tr>"					
+						+ "</td><td>" + "<button class=" + "Btn2>" + "성적주기 </button>" + "</td><td >" + "<button class=" + "Btn3 style='display: none'>" + "성적수정 </button>" + "</td></tr>"					
 					}
 				});//each
 			$("#tbody3").html(txt);
@@ -150,7 +150,8 @@ $(document).on("change", ".selectBtn1", function(){
 		});
 	}
 	
-	$(document).on("click", "#Btn2", function(){		
+	$(document).on("click", ".Btn2", function(){		
+		var $this = $(this);
 		var creditYear = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
 		var creditSemester = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().text();
 		var creditAcquire = $(this).parent().prev().prev().prev().prev().prev().prev().prev().text();
@@ -173,10 +174,39 @@ $(document).on("change", ".selectBtn1", function(){
 			},//success
 			"error":function(){		
 				alert("이미 등록되었습니다.");
+				$this.parent().next().children().css("display", "inline");
 			}//error
 		});//ajax
 
 	
+	});//click 
+	
+	$(document).on("click", ".Btn3", function(){		
+		var $this = $(this);
+		var creditYear = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		var creditSemester = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		var creditAcquire = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		var creditGrade = $(this).parent().prev().prev().prev().prev().prev().prev().prev().children().val();
+		var creditScore = $(this).parent().prev().prev().prev().prev().prev().prev().children().val();
+		var creditRecource = $(this).parent().prev().prev().prev().prev().prev().text();
+		var subjectId = $(this).parent().prev().prev().prev().prev().text();
+		var stuId = $(this).parent().prev().prev().prev().text();
+		
+		$.ajax({
+			"url":"/project_mugs/professor/renewCredit.do",
+			"type":"POST",
+			"data":{"creditYear":creditYear,"creditSemester":creditSemester,
+				    "creditAcquire":creditAcquire,"creditGrade":creditGrade,"creditScore":creditScore,
+				    "creditRecource":creditRecource,"subjectId":subjectId,"stuId":stuId,
+				    ${_csrf.parameterName}:'${_csrf.token}'},
+			
+			"success":function(){
+				alert("성공");
+			},//success
+			"error":function(){		
+				alert("실패");				
+			}//error
+		});//ajax
 	});//click 
 	
 	
@@ -254,6 +284,7 @@ $(document).on("change", ".selectBtn1", function(){
 			<td>학생ID(c)</td>
 			<td>학생성명</td>
 			<td>성적주기</td>
+			<td>성적수정</td>
 		</tr>
 	</thead>
 	<tbody id="tbody3"></tbody>	

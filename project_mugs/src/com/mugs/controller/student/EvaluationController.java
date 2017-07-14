@@ -54,14 +54,14 @@ public class EvaluationController {
 		// map의 다음 키값이 있는지 없는지 확인하면서 작업 진행
 		while (iterator.hasNext()) {
 		   Entry entry = (Entry)iterator.next();
-		   if(entry.getKey().toString() == "stuRegister") {
+		   if(entry.getKey().toString() == "studentState") {
 			 
 			   if(entry.getValue().equals("휴학") || entry.getValue().equals("군휴학")) {
 				   model.setViewName("index.tiles");	
 				   model.addObject(entry.getKey().toString(), entry.getValue());	// 현재 휴학상태를 model에 담고 리턴
 				   return model;
 			   }
-		   } else if(entry.getKey().toString() == "msg" && !entry.getValue().equals("")) {
+		   } else if(entry.getKey().toString() == "alarm" && !entry.getValue().equals("")) {
 			  
 			   model.setViewName("index.tiles");	
 			   model.addObject(entry.getKey().toString(), entry.getValue()); // 지금 설문응답 기간아니라는 메세지 담아서 리턴

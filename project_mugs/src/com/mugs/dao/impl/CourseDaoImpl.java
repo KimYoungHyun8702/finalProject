@@ -71,6 +71,15 @@ public class CourseDaoImpl implements CourseDao{
 	}
 
 	@Override
+	public int selectStudentCount(String semester, int nowYear, int subjectId) {
+		// TODO Auto-generated method stub
+		HashMap map = new HashMap();
+		map.put("semester", semester);
+		map.put("nowYear", nowYear);
+		map.put("subjectId", subjectId);
+		return session.selectOne(makeSql("selectStudentCount"), map);
+	}
+	
 	public List<Course> selectCourseByThreeId(int courseYear, String courseSemester, int subjectId) {
 		HashMap params = new HashMap();
 		params.put("courseYear", courseYear);
@@ -88,4 +97,24 @@ public class CourseDaoImpl implements CourseDao{
 	}
 
 
+	@Override
+	public List<Course> selectMyCourseList(String stuId, int nowYear, String semester) {
+		// TODO Auto-generated method stub
+		HashMap map = new HashMap();
+		map.put("semester", semester);
+		map.put("nowYear", nowYear);
+		map.put("stuId", stuId);
+		return session.selectList(makeSql("selectMyCourseList"), map);
+	}
+
+	@Override
+	public int deleteCourse(String stuId, int nowYear, String semester, int subjectId) {
+		// TODO Auto-generated method stub
+		HashMap map = new HashMap();
+		map.put("semester", semester);
+		map.put("nowYear", nowYear);
+		map.put("stuId", stuId);
+		map.put("subjectId", subjectId);
+		return session.delete(makeSql("deleteCourse"), map);
+	}
 }

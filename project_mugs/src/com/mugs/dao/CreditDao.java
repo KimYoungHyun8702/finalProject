@@ -21,6 +21,23 @@ public interface CreditDao {
 	 */
 	int updateCreditById(Credit credit);
 
+	/** 영현이꼬
+	 * 한 학점의 데이터를 4개의 매개변수로 받은 Credit객체의 Id와 일치하는 학점의 정보를 update하는 메소드.
+	 * 
+	 * @param credit
+	 * @return
+	 */
+	int updateCreditByFourId(Credit credit);
+	
+	/** 영현이꼬
+	 * 한 학점의 데이터를 3개의 매개변수로 받은 Credit객체의 평균학점의 정보를 select하는 메소드.
+	 * 
+	 * @param credit
+	 * @return 
+	 */
+	double selectCreditAvgByThreeId(int creditYear, String creditSemester, String stuId);
+	
+	
 	/**
 	 * 매개변수로 받은 학점Id와 일치하는 Data 삭제.
 	 * 
@@ -37,6 +54,14 @@ public interface CreditDao {
 	 */
 	Credit selectCreditById(int id);
 
+	/**
+	 * 매개변수로 받은 학생Id와 일치하는 학점의 Data 조회.
+	 * 
+	 * @param stuId
+	 * @return
+	 */
+	Credit selectCreditByFourId(int creditYear, String creditSemester, String stuId, int subjectId);
+	
 	/**
 	 * 매개변수로 받은 학생Id와 일치하는 연도들을 조회.
 	 * 
@@ -121,6 +146,15 @@ public interface CreditDao {
 	 */
 	List<Credit> selectCreditByYearType(int year, String type);
 	
+
+	/**
+	 * 과목ID와 로그인된 학생ID를 통해서 해당과목의 학점을 얻는 메소드
+	 * @param subjectId
+	 * @param stuId
+	 * @return
+	 */
+	List<Double> selectCreditScoreBySubjectIdStuId(int subjectId, String stuId);
+
 	/**
 	 * 해당 학생이 이수했던 과목들의 학점 조회 메소드
 	 * @param year

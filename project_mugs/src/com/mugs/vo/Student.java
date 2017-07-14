@@ -3,10 +3,7 @@ package com.mugs.vo;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
-
 import org.springframework.format.annotation.DateTimeFormat;
-
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.mugs.etc.DateJSONSerializer;
 
@@ -16,12 +13,12 @@ public class Student extends Users implements Serializable {
 	private String stuId;
 	private String stuCourse;
 	private String stuArmy;
-
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonSerialize(using=DateJSONSerializer.class)
 	private Date stuAdmissionDate;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@JsonSerialize(using=DateJSONSerializer.class)
+
 	private Date stuGraduationDate;
 	
 	private String stuRegisterState;

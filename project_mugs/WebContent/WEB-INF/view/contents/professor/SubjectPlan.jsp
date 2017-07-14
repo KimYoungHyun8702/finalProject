@@ -60,12 +60,7 @@ $(document).on("click", ".Btn", function(){
 		},
 		"error":function(txt){	
 			alert('등록된 강의계획서가 없습니다');
-			//$(this).parent().next().find("input").attr("style","display: inline");
 			$this.parent().next().children().css("display", "inline");
-		/* 	console.log($this);
-			console.log($this.parent());
-			console.log($this.parent().next());
-			console.log($this.parent().next().children()); */
 		}
 	});//ajax
 });//document(click);

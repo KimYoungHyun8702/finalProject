@@ -352,6 +352,7 @@ CREATE SEQUENCE PROBATION_ID_SEQ;/* 학사경고 테이블의 기본키에 대�
 CREATE SEQUENCE CALENDAR_ID_SEQ; /* 학사일정 테이블의 기본키에 대한 시퀀스 생성 */
 CREATE SEQUENCE LRAPPLICATION_ID_SEQ;
 CREATE SEQUENCE CREDIT_GIVE_UP_ID_SEQ;
+CREATE SEQUENCE ACADEMIC_PROBATION_ID_SEQ
 /* 각 테이블의 기본키에 대한 필요 시퀀스 삭제 */
 
 DROP SEQUENCE EVALUATION_ANSWER_ID_SEQ; /* 평가응답 테이블의 기본키에 대한 시퀀스 삭제 */

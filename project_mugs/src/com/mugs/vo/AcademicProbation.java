@@ -14,6 +14,18 @@ public class AcademicProbation implements Serializable {
 	public AcademicProbation() {
 	}
 
+	
+	
+	public AcademicProbation(int probationYear, String probationSemester, double probationCreditAverage, String stuId) {
+		super();
+		this.probationYear = probationYear;
+		this.probationSemester = probationSemester;
+		this.probationCreditAverage = probationCreditAverage;
+		this.stuId = stuId;
+	}
+
+
+
 	public AcademicProbation(int probationId, int probationYear, String probationSemester,
 			double probationCreditAverage, String stuId, int count) {
 		this.probationId = probationId;
@@ -32,54 +44,78 @@ public class AcademicProbation implements Serializable {
 		this.probationCreditAverage = probationCreditAverage;
 		this.stuId = stuId;
 	}
-
+	
 	public int getProbationId() {
 		return probationId;
 	}
+
+
 
 	public void setProbationId(int probationId) {
 		this.probationId = probationId;
 	}
 
+
+
 	public int getProbationYear() {
 		return probationYear;
 	}
+
+
 
 	public void setProbationYear(int probationYear) {
 		this.probationYear = probationYear;
 	}
 
+
+
 	public String getProbationSemester() {
 		return probationSemester;
 	}
+
+
 
 	public void setProbationSemester(String probationSemester) {
 		this.probationSemester = probationSemester;
 	}
 
+
+
 	public double getProbationCreditAverage() {
 		return probationCreditAverage;
 	}
+
+
 
 	public void setProbationCreditAverage(double probationCreditAverage) {
 		this.probationCreditAverage = probationCreditAverage;
 	}
 
+
+
 	public String getStuId() {
 		return stuId;
 	}
+
+
 
 	public void setStuId(String stuId) {
 		this.stuId = stuId;
 	}
 
+
+
 	public int getCount() {
 		return count;
 	}
 
+
+
 	public void setCount(int count) {
 		this.count = count;
 	}
+
+
 
 	@Override
 	public int hashCode() {

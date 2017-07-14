@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mugs.config.mapper.creditGiveUpMapper">
+
+<sql id="select-creditGiveUp">
+	SELECT CGU_ID,
+		   CGU_YEAR,
+		   CGU_SEMESTER,
+		   CGU_START_DATE,
+		   CGU_FINISH_DATE,
+		   CGU_STATE,
+		   CREDIT_ID
+	FROM   CREDIT_GIVE_UP
+</sql>
+
+<resultMap type="creditGiveUp" id="creditGiveUp-basic-reresultmap">
+	<id column="CGU_ID" property="CGUId"/>
+	<result column="CGU_YEAR" property="CGUYear"/>
+	<result column="CGU_SEMESTER" property="CGUSemester"/>
+	<result column="CGU_START_DATE" property="CGUStartDate"/>
+	<result column="CGU_FINISH_DATE" property="CGUFinishDate"/>
+	<result column="CGU_STATE" property="CGUState"/>
+	<result column="CREDIT_ID" property="creditId"/>
+</resultMap>
+
+<!-- insert -->
+<insert id="insertCreditGiveUp" parameterType="creditGiveUp">
+	<selectKey resultType="int" keyProperty="creditGiveUpId" order="BEFORE">
+		SELECT CREDIT_GIVE_UP_ID_SEQ.nextval FROM dual
+	</selectKey>
+	INSERT INTO CREDIT_GIVE_UP VALUES(#{CGUId}, #{CGUYear}, #{CGUSemester}, #{CGUStartDate}, #{CGUFinishDate}, #{CGUState}, #{creditId})
+</insert>
+
+<!-- update -->
+<update id="updateCreditGiveUpById" parameterType="creditGiveUp">
+	UPDATE CREDIT_GIVE_UP
+	   SET CGU_YEAR=#{CGUYear},
+	   	   CGU_SEMESTER=#{CGUSemester},
+	   	   CGU_START_DATE=#{CGUStartDate},
+	   	   CGU_FINISH_DATE=#{CGUFinishDate},
+	   	   CGU_STATE=#{CGUState},
+	   	   CREDIT_ID=#{creditId}
+	 WHERE CGU_ID=#{CGUId}  	   
+</update>
+
+<!-- delete -->
+<delete id="deleteCreditGiveUp" parameterType="int">
+	DELETE FROM CREDIT_GIVE_UP WHERE CGU_ID=#{value}
+</delete>
+
+<!-- select -->
+<select id="selectCreditGiveUpList" resultMap="creditGiveUp-basic-reresultmap">
+	<include refid="select-creditGiveUp"/>
+</select>
+
+<select id="selectCreditGiveUpById" resultMap="creditGiveUp-basic-reresultmap" parameterType="int">
+	<include refid="select-creditGiveUp"/>
+	WHERE CGU_ID=#{value}
+</select>
+ 
+</mapper>

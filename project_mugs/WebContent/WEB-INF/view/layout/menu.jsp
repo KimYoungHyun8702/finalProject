@@ -27,11 +27,16 @@
 <a href="${initParam.rootPath }/student/getMyTimeTable.do">나의 시간표 조회</a><br>
 <a href="${initParam.rootPath }/student/getMyCourseListByJoin.do">수강신청내역조회 클릭기기</a><br>
 <a href="${initParam.rootPath }/student/compareEvaluationPeriod.do">설문응답평가조회-기간설정까지해준것</a><br>
-<a href="${initParam.rootPath }/student/subjectType.do">수강신청</a><br>
+<a href="${initParam.rootPath }/student/subjectTypeList.do">수강신청</a><br>
+<a href="#">휴복학신청</a><br>
+<a href="#">과목평가그래프</a><br>
 <a href="${initParam.rootPath }/student/gradeInquiry.do">성적 조회 -딘강</a><br>
 <a href="${initParam.rootPath }/student/currentGradeInquiry.do">당학기 성적조회 -딘강</a><br>
-<a href="${initParam.rootPath }/student/academicProbation.do">학사경고내역 조회-딘강</a>
-<a href="${initParam.rootPath }/student/mapByBuildingId.do">지도-딘강</a>
+<a href="${initParam.rootPath }/student/academicProbation.do">학사경고내역 조회-딘강</a><br>
+<a href="${initParam.rootPath }/student/getStudentInfoById.do">학생정보페이지로 이동</a><br>
+<a href="${initParam.rootPath }/student/getAllTimeTable.do">강의시간표 조회</a><br>
+<a href="${initParam.rootPath }/student/graduationInfo.do">졸업정보 조회</a><br>
+<a href="${initParam.rootPath }/student/mapByBuildingId.do">지도-딘강</a><br>
 </sec:authorize>
 
 <%--교수 메뉴--%>
@@ -67,16 +72,38 @@
       document.getElementById("logoutForm").submit();
    }
    
-   var  stuRegister = "${stuRegister}";
+    var  studentState = "${studentState}";
    
-   if(stuRegister == '휴학' || stuRegister == '군휴학') {
-      alert(stuRegister + "학생은 설문응답을 할 수 없습니다.");
+   if(studentState == '휴학' || studentState == '군휴학') {
+      alert(studentState + "학생은 설문응답을 할 수 없습니다.");
    } else {
-      var msg = "${msg}";
-      if(msg != "") {
-         alert(msg);
+      var alarm = "${alarm}";
+      if(alarm != "") {
+         alert(alarm);
       }
-   }
+   } 
+   
+	var  stuRegister = "${stuRegister}";
+	
+	if(stuRegister == '휴학' || stuRegister == '군휴학') {
+		alert(stuRegister + "학생은 수강신청을 할 수 없습니다.");
+	} else {
+		var msg = "${msg}";
+		if(msg != "") {
+			alert(msg);
+		}
+	} 
+	
+	var  stuRegisterTimeTable = "${stuRegisterTimeTable}";
+	
+	if(stuRegisterTimeTable == '휴학' || stuRegisterTimeTable == '군휴학') {
+		alert(stuRegisterTimeTable + "학생은 시간표를 볼수 없습니다.");
+	} else {
+		var message = "${message}";
+		if(message != "") {
+			alert(message);
+		}
+	}
 </script>
 <form id="logoutForm" action="${initParam.rootPath }/logout.do" method="post" style="display:none">
     <sec:csrfInput/>
