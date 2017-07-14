@@ -1,3 +1,13 @@
+SELECT ps.pro_subject_id ,
+			   ps.pro_subject_semester ,
+			   ps.pro_subject_year ,
+			   ps.pro_id,
+			   u.users_name professorName
+		FROM   professor_subject ps, professor p, users u
+		WHERE  ps.subject_id= '1'
+		AND	   ps.pro_id = p.pro_id
+		AND	   p.pro_id= u.users_id
+
 UPDATE credit
 
 SET		
@@ -20,6 +30,15 @@ FROM CREDIT
 WHERE credit_year = '2017'
 AND credit_semester = '1학기'
 AND stu_id = '3'
+SELECT ps.pro_subject_id ,
+			   ps.pro_subject_semester ,
+			   ps.pro_subject_year ,
+			   ps.pro_id,
+			   u.users_name professorName
+		FROM   professor_subject ps, professor p, users u
+		WHERE  ps.subject_id= #{subId}
+		AND	   ps.pro_id = p.pro_id
+		AND	   p.pro_id= u.users_id
 	
 		INSERT INTO academic_probation 
 		VALUES(
