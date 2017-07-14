@@ -25,7 +25,7 @@ $(document).ready(function(){
 	
 	
  	$("#year").on("change", function(){
- 		$("#type").html("<option>이수구분</option><option>전체</option><option>전필</option><option>전선</option><option>교필</option><option>교선</option>");
+ 		$("#type").html("<option>이수구분</option><option>전체</option><option>필수전공</option><option>선택전공</option><option>필수교양</option><option>선택교양</option>");
  		
  		if ($("#year").val()=="전체") {
  			$("#type").val("전체").prop("selected", true);

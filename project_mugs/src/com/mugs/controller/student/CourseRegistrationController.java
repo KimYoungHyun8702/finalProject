@@ -135,7 +135,6 @@ public class CourseRegistrationController {
 		List<Course> myCourseListResult = courseRegistrationService.findMyCourseListByJoin(loginId);
 		System.out.println(myCourseListResult);
 		return new ModelAndView("student/courseInformationList/course_InformationListView.tiles", "myCourseListResult", myCourseListResult);
-		//return new ModelAndView("contents/student/courseInformationList/course_InformationListView", "myCourseListResult", myCourseListResult);
 	}
 
 	/** By Cho.S.R **/
@@ -143,7 +142,6 @@ public class CourseRegistrationController {
 	public ModelAndView getMajorList() {
 		List<String> majorListResult = graduationManagementServiceImpl.getMajorList();
 		return new ModelAndView("student/standard/courseStandardView,.tiles", "majorListResult", majorListResult);
-		//return new ModelAndView("contents/student/standard/courseStandardView", "majorListResult", majorListResult);
 	}
 	
 	/** By Cho.S.R **/

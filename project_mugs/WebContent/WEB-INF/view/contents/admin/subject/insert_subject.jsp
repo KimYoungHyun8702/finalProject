@@ -96,10 +96,11 @@ $(document).ready(function(){
 			alert("학기를 입력하세요");
 			return false;
 		}else if($("#buildingId").val() == "강의동 선택"){
-			alert("강의동을 선택하세요");
+			$("#lectureId").empty().append("<option>강의실 선택</option>");
 			return false;
 		}else if($("#buildingId").val() == "없음"){
-			$("#lectureId").empty().append("<option value=0>없음</option>");
+			$("#lectureId").empty().append("<option value='0'>없음</option>");
+			return false;
 		}else{
 			$.ajax({
 				"url":"${initParam.rootPath }/admin/selectForOverlapController.do",

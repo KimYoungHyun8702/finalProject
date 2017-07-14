@@ -43,7 +43,7 @@
 	<resultMap type="course" id="course-professor-subject-resultmap" extends="course-resultmap">
 		<association property="professor" javaType="com.mugs.vo.Professor" resultMap="com.mugs.config.mapper.professorMapper.professor-user-resultmap"/>
 		<association property="subject" javaType="com.mugs.vo.Subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-basic-resultmap"/>
-		<association property="building" javaType="com.mugs.vo.Building" resultMap="com.mugs.config.mapper.buildingMapper.building-basic-reresultmap"/>
+		<association property="building" javaType="com.mugs.vo.Building" resultMap="com.mugs.config.mapper.buildingMapper.building-basic-resultmap"/>
 		<association property="room" javaType="com.mugs.vo.Room" resultMap="com.mugs.config.mapper.roomMapper.room-basic-resultmap"/>
 	
 	</resultMap>

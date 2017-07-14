@@ -17,6 +17,9 @@ public class CreditGiveUp implements Serializable {
 	private int creditId;
 	
 	private Credit credit;
+	private String majorName;
+	private String usersId;
+	private String usersName;
 	
 	public CreditGiveUp() {
 	}
@@ -172,8 +175,4 @@ public class CreditGiveUp implements Serializable {
 				+ ", CGUStartDate=" + CGUStartDate + ", CGUFinishDate=" + CGUFinishDate + ", CGUState=" + CGUState
 				+ ", creditId=" + creditId + ", credit=" + credit + "]";
 	}
-	
-	
-	
-	
 }

@@ -133,7 +133,7 @@ $(document).ready(function(){
 					$.each(result,function(){
 					txt += "<tr><td align='center'>"+this.subjectId+"</td><td align='center'>"+this.subjectName+"</td><td align='center'>"+this.subjectTime+"</td><td align='center'>"+this.subjectType+"</td><td align='center'>"+this.subjectCredit+"</td><td align='center'>"
 							+this.subjectCapacity+"</td><td align='center'>"+this.subjectRequest+"</td><td align='center'>"+this.subjectGrade+"</td><td align='center'>"+this.subjectClass+"</td><td align='center'>"+this.subjectCloseClass+"</td><td align='center'>"+this.subjectSemester+"</td><td align='center'>"
-							+"</td><td align='center'>"+this.building.buildingName+"</td><td align='center'>"+this.room.roomName+"</td><td align='center'><button onclick='update_minor_subject("+this.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+this.subjectId+")'>삭제</button></td></tr>"
+							+"</td><td align='center'>"+(this.building == null?"":this.building.buildingName)+"</td><td align='center'>"+(this.room == null?"":this.room.roomName)+"</td><td align='center'><button onclick='update_minor_subject("+this.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+this.subjectId+")'>삭제</button></td></tr>"
 					})
 					$("#tbody").html(txt);
 					$("#selectSubject").show();			
@@ -152,7 +152,7 @@ $(document).ready(function(){
 					var txt = "";
 						txt += "<tr><td align='center'>"+result.subjectId+"</td><td align='center'>"+result.subjectName+"</td><td align='center'>"+result.subjectTime+"</td><td align='center'>"+result.subjectType+"</td><td align='center'>"+result.subjectCredit+"</td><td align='center'>"
 								+result.subjectCapacity+"</td><td align='center'>"+result.subjectRequest+"</td><td align='center'>"+result.subjectGrade+"</td><td align='center'>"+result.subjectClass+"</td><td align='center'>"+result.subjectCloseClass+"</td><td align='center'>"+result.subjectSemester+"</td><td align='center'>"
-								+result.major.majorName+"</td><td align='center'>"+result.building.buildingName+"</td><td align='center'>"+result.room.roomName+"</td><td align='center'><button onclick='update_subject("+result.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+result.subjectId+")'>삭제</button></td></tr>"
+								+(result.major == null?"":result.major.majorName)+"</td><td align='center'>"+(result.building == null?"":result.building.buildingName)+"</td><td align='center'>"+(result.room == null?"":result.room.roomName)+"</td><td align='center'><button onclick='update_subject("+result.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+result.subjectId+")'>삭제</button></td></tr>"
 					$("#tbody").html(txt);
 					$("#selectSubject").show();
 			}
@@ -165,23 +165,23 @@ $(document).ready(function(){
 </head>
 <body>
 	<h2>과목 조회</h2>
-	<c:if test="${sessionScope.insertMessage != null}">
+	<c:if test="${sessionScope.subinsertMessage != null}">
 		<script type="text/javascript">
 			alert("등록되었습니다");
 		</script>
-		<% session.removeAttribute("insertMessage"); %>
+		<% session.removeAttribute("subinsertMessage"); %>
 </c:if>
-<c:if test="${sessionScope.updateMessage != null}">
+<c:if test="${sessionScope.subupdateMessage != null}">
 		<script type="text/javascript">
 			alert("수정되었습니다");
 		</script>
-		<% session.removeAttribute("updateMessage"); %>
+		<% session.removeAttribute("subupdateMessage"); %>
 </c:if>
-<c:if test="${sessionScope.deleteMessage != null}">
+<c:if test="${sessionScope.subdeleteMessage != null}">
 		<script type="text/javascript">
 			alert("삭제되었습니다");
 		</script>
-		<% session.removeAttribute("deleteMessage"); %>
+		<% session.removeAttribute("subdeleteMessage"); %>
 </c:if>
 	<hr>
 	<select name="subjectType" id="subjectType">

@@ -35,7 +35,7 @@ public class Subject implements Serializable {
    private Building building;
 
    private Map<String, String> YoyilAndGyoshi;
-   
+
    /**------영현이꼬------------*/
    private Professor professor;
 

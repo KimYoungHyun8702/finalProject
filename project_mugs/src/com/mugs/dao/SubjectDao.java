@@ -162,6 +162,5 @@ public interface SubjectDao {
 	 * @param buildingId
 	 * @return
 	 */
-	Subject selectForOverlap(String subjectTime, String subjectSemester, int buildingId);
-
+	List<Subject> selectForOverlap(String subjectTime, String subjectSemester, int buildingId);
 }

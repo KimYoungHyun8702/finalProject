@@ -65,6 +65,7 @@
 		</c:when>
 		<c:otherwise>
 			<script>alert("성적조회기간이 아닙니다!!.");</script>
+			ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴ
 	</c:otherwise>
 	</c:choose>
 	

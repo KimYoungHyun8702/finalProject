@@ -84,7 +84,6 @@ public class GradeServiceImpl implements GradeService {
 		int year = cal.get(cal.YEAR);
 		int month = cal.get(cal.MONTH) + 1;
 		
-		System.out.println(month);
 		if (month >= 3 && month <= 6) {
 			calName = "1학기성적조회";
 			semester = "1";
@@ -108,7 +107,6 @@ public class GradeServiceImpl implements GradeService {
 			message = "접근불가";
 		}
 		
-		System.out.println(message);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("message", message);
 		map.put("year", year);
