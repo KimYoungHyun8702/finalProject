@@ -120,4 +120,16 @@ public class StudentController {
 		List<LeaveReturnApplication> list = studentService.selectLeaveReturnApplicationList();
 		return  new ModelAndView("admin/student/select_leave_return_application.tiles","list",list);
 	}
+	
+	@RequestMapping("approvalCreditGiveUpController")
+	public String approvalCreditGiveUp(int creditGiveUpId){
+		studentService.approvalCreditGiveUp(creditGiveUpId);
+		return "redirect:/admin/selectCreditGiveUpListController.do";
+	}
+	
+	@RequestMapping("refuseCreditGiveUpController")
+	public String refuseCreditGiveUp(int creditGiveUpId){
+		studentService.refuseCreditGiveUp(creditGiveUpId);
+		return "redirect:/admin/selectCreditGiveUpListController.do";
+	}
 }

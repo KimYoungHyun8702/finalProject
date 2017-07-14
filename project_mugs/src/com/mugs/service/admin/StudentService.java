@@ -74,9 +74,21 @@ public interface StudentService {
 	List<CreditGiveUp> selectCreditGiveUpList();
 	
 	/**
-	 * 휴.복학 신청 현황 전체 조회 리스
+	 * 휴.복학 신청 현황 전체 조회 리스트
 	 * @return
 	 */
 	List<LeaveReturnApplication> selectLeaveReturnApplicationList();
 	
+	/**
+	 * 학점 포기 승인하는 메소드
+	 * @param creditGiveUp
+	 * @return
+	 */
+	void approvalCreditGiveUp(int creditGiveUpId);
+	
+	/**
+	 * 학점 포기 거절하는 메소드
+	 * @param creditGiveUpId
+	 */
+	void refuseCreditGiveUp(int creditGiveUpId);
 }

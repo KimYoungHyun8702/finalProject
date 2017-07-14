@@ -13,6 +13,16 @@
 		
 		FROM building
 	</sql>
+	
+	<resultMap type="building" id="building-basic-resultmap">
+		<id column="building_id" property="buildingId" />
+		<result column="building_name" property="buildingName" />
+		<result column="building_img" property="buildingImg" />
+		<result column="building_x" property="buildingX" />
+		<result column="building_y" property="buildingY" />
+		<result column="building_phone_num" property="buildingPhoneNum" />
+		<result column="building_addr" property="buildingAddr" />
+	</resultMap>
 
 	<resultMap type="Building" id="Building-Room-resultmap"
 		extends="building-basic-resultmap">
@@ -24,15 +34,6 @@
 		</collection>
 	</resultMap>
 
-	<resultMap type="building" id="building-basic-resultmap">
-		<id column="building_id" property="buildingId" />
-		<result column="building_name" property="buildingName" />
-		<result column="building_img" property="buildingImg" />
-		<result column="building_x" property="buildingX" />
-		<result column="building_y" property="buildingY" />
-		<result column="building_phone_num" property="buildingPhoneNum" />
-		<result column="building_addr" property="buildingAddr" />
-	</resultMap>
 
 	<!-- insert -->
 	<insert id="insertBuilding" parameterType="building">
@@ -106,10 +107,5 @@
 		AND building_name = '광교관'
 	</select>
 	
-	<select id="selectBuildingByBuildingName" resultMap="building-basic-resultmap" parameterType="string">
-		<include refid="select-building"/>
-		WHERE BUILDING_NAME = #{VALUE}
-	</select>
-
 </mapper>
 

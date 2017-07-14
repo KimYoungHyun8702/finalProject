@@ -1,6 +1,7 @@
 package com.mugs.service.impl.admin;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mugs.dao.AuthoritiesDao;
+import com.mugs.dao.CreditDao;
 import com.mugs.dao.CreditGiveUpDao;
 import com.mugs.dao.LeaveReturnApplicationDao;
 import com.mugs.dao.MajorDao;
@@ -18,6 +20,7 @@ import com.mugs.dao.StudentDao;
 import com.mugs.dao.UsersDao;
 import com.mugs.service.admin.StudentService;
 import com.mugs.vo.Authorities;
+import com.mugs.vo.Credit;
 import com.mugs.vo.CreditGiveUp;
 import com.mugs.vo.LeaveReturnApplication;
 import com.mugs.vo.Major;
@@ -40,6 +43,8 @@ public class StudentServiceImpl implements StudentService {
 	private CreditGiveUpDao creditGiveUpDao;
 	@Autowired
 	private LeaveReturnApplicationDao leaveReturnApplicationDao;
+	@Autowired
+	private CreditDao creditDao;
 	
 	@Override
 	@Transactional
@@ -184,4 +189,26 @@ public class StudentServiceImpl implements StudentService {
 	public List<LeaveReturnApplication> selectLeaveReturnApplicationList() {
 		return leaveReturnApplicationDao.selectLeaveReturnApplicationList();
 	}
+
+	@Override
+	@Transactional
+	public void approvalCreditGiveUp(int creditGiveUpId){
+		CreditGiveUp creditGiveUp = creditGiveUpDao.SelectCreditGiveUpById(creditGiveUpId);
+		int id = creditGiveUp.getCreditId();
+		creditGiveUp.setCGUState("승인");
+		System.out.println(creditGiveUp);
+		creditGiveUpDao.updateCreditGiveUp(creditGiveUp);
+		Credit credit = creditDao.selectCreditById(id);
+		credit.setCreditGrade("포기");
+		creditDao.updateCreditById(credit);
+	}
+
+	@Override
+	public void refuseCreditGiveUp(int creditGiveUpId) {
+		CreditGiveUp creditGiveUp = creditGiveUpDao.SelectCreditGiveUpById(creditGiveUpId);
+		creditGiveUp.setCGUState("반려");
+		creditGiveUpDao.updateCreditGiveUp(creditGiveUp);
+	}	
+	
+	
 }

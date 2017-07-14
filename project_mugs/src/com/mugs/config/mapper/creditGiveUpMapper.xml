@@ -46,7 +46,7 @@
 	<selectKey resultType="int" keyProperty="creditGiveUpId" order="BEFORE">
 		SELECT CREDIT_GIVE_UP_ID_SEQ.nextval FROM dual
 	</selectKey>
-	INSERT INTO CREDIT_GIVE_UP VALUES(#{CGUId}, #{CGUYear}, #{CGUSemester}, #{CGUStartDate}, #{CGUFinishDate}, #{CGUState}, #{creditId})
+	INSERT INTO CREDIT_GIVE_UP VALUES(#{CGUId}, #{CGUYear}, #{CGUSemester}, TO_DATE(#{CGUStartDate}, 'YYYY-MM-DD'), #{CGUFinishDate}, #{CGUState}, #{creditId})
 </insert>
 
 <!-- update -->
@@ -55,7 +55,7 @@
 	   SET CGU_YEAR=#{CGUYear},
 	   	   CGU_SEMESTER=#{CGUSemester},
 	   	   CGU_START_DATE=#{CGUStartDate},
-	   	   CGU_FINISH_DATE=#{CGUFinishDate},
+	   	   CGU_FINISH_DATE= (SELECT TRUNC(SYSDATE) FROM DUAL),
 	   	   CGU_STATE=#{CGUState},
 	   	   CREDIT_ID=#{creditId}
 	 WHERE CGU_ID=#{CGUId}  	   
@@ -84,6 +84,7 @@
 	AND t.stu_id = s.stu_id
 	AND s.stu_id = u.users_id
 	AND s.major_id = m.major_id
+	AND c.cgu_state = '대기'
 </select>
  
 </mapper>

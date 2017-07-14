@@ -147,7 +147,6 @@
 			alert(message);
 		}
 	}
->>>>>>> branch 'master' of https://github.com/KimYoungHyun8702/finalProject.git
 </script>
 <form id="logoutForm" action="${initParam.rootPath }/logout.do"
 	method="post" style="display: none">

@@ -7,6 +7,20 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
+function approval(creditGiveUpId){
+	if(confirm("승인하시겠습니까?")){
+		location.href="${initParam.rootPath }/admin/approvalCreditGiveUpController.do?creditGiveUpId="+creditGiveUpId
+	}else{
+		return false;
+	}
+}
+function refuse(creditGiveUpId){
+	if(confirm("거절하시겠습니까?")){
+		location.href="${initParam.rootPath }/admin/refuseCreditGiveUpController.do?creditGiveUpId="+creditGiveUpId
+	}else{
+		return false;
+	}
+}
 </script>
 </head>
 <body>
@@ -36,8 +50,8 @@
 				<td>${list.CGUSemester }</td>
 				<td>${list.CGUStartDate }</td>
 				<td>${list.CGUState }</td>
-				<td><button>승인</button></td>
-				<td><button>거절</button></td>
+				<td><button onclick="approval('${list.CGUId }')">승인</button></td>
+				<td><button onclick="refuse('${list.CGUId }')">거절</button></td>
 			</tr>
 			</c:forEach>
 		</tbody>
