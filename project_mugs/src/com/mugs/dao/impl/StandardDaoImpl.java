@@ -44,7 +44,7 @@ public class StandardDaoImpl implements StandardDao {
 		HashMap<String, Integer> param = new HashMap<>();
 		param.put("standardYear", standardYear);
 		param.put("majorId", majorId);
-		return session.selectOne(makeSql("selectStandardById"),param);
+		return session.selectOne(makeSql("selectStandardById"), param);
 	}
 
 

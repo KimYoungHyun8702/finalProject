@@ -50,6 +50,16 @@ public interface UsersDao {
 	 * @return 변경된 행의 수
 	 */
 	int updateStudentHumanInfo(Users user);
+
+	
+	/**
+	 * 학생의 비밀번호를 변경하는 메소드
+	 * @param usersPassword
+	 * @return 변경된 행의 수
+	 */
+	int updateStudentPassword(Users user);
+
+
 	/**
 	 * 매개변수로 받은 이름과 주민등록번호로 사용자의 Data 조회.
 	 * @param id
@@ -67,4 +77,5 @@ public interface UsersDao {
 	 * 매개변수로 받은 id와 일치하는 사용자의 Data의 비밀번호만 변경.
 	 */
 	int updatePassword(String id, String pw);
+
 }

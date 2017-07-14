@@ -10,18 +10,16 @@ import com.mugs.dao.BuildingDao;
 import com.mugs.vo.Building;
 
 @Repository
-public class BuildingDaoImpl implements BuildingDao{
+public class BuildingDaoImpl implements BuildingDao {
 
-	
-
-	//Spring Container에서 SqlSessionTemplate을 주입받아서 instance변수로 대입
+	// Spring Container에서 SqlSessionTemplate을 주입받아서 instance변수로 대입
 	@Autowired
 	private SqlSessionTemplate session;
-	
-	private String makeSql(String tagId){
-		return "com.mugs.config.mapper.buildingMapper."+tagId;
+
+	private String makeSql(String tagId) {
+		return "com.mugs.config.mapper.buildingMapper." + tagId;
 	}
-	
+
 	@Override
 	public int insertBuilding(Building building) {
 		return session.insert(makeSql("insertBuilding"), building);
@@ -41,7 +39,7 @@ public class BuildingDaoImpl implements BuildingDao{
 	public Building selectBuildingById(int buildingId) {
 		return session.selectOne(makeSql("selectBuildingById"), buildingId);
 	}
-	
+
 	@Override
 	public Building selectBuildingByIdJoin(int buildingId) {
 		return session.selectOne(makeSql("selectBuildingByIdJoin"), buildingId);
@@ -53,6 +51,11 @@ public class BuildingDaoImpl implements BuildingDao{
 	}
 
 	@Override
+	public Building selectBuildingByBuildingName(String buildingName) {
+		// TODO Auto-generated method stub
+		return session.selectOne(makeSql("selectBuildingByBuildingName"), buildingName);
+	}
+
 	public List<Building> selectRoomListByOffice() {
 		return session.selectList(makeSql("selectRoomListByOffice"));
 	}
@@ -61,12 +64,5 @@ public class BuildingDaoImpl implements BuildingDao{
 	public List<Building> selectRoomListByLaboratory() {
 		return session.selectList(makeSql("selectRoomListByLaboratory"));
 	}
-	
-	@Override
-	public Building selectBuildingByBuildingName(String buildingName) {
-		// TODO Auto-generated method stub
-		return session.selectOne(makeSql("selectBuildingByBuildingName"), buildingName);
-	}
-	
 	
 }

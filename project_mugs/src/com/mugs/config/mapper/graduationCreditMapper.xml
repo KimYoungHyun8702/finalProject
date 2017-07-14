@@ -68,7 +68,6 @@
 	AND graduation_credit_year=#{graduationCreditYear}
 </select>
 
-
 <select id="selectGraduationCreditByMajorId" resultMap="graduationCreditJoinMajorName-basic-resultmap" parameterType="int">
 	SELECT 	m.major_name, 
 			g.major_id, 
@@ -82,6 +81,7 @@
 	AND g.major_id = #{majorId}
 </select>
 
+<!-- 병문 Mapper -->
 <select id="selectGraduationCreditByMajorIdAndUsersId" resultMap="graduationCreditJoinMajorName-basic-resultmap" parameterType="map">
 	SELECT		g.major_id,
 				g.graduation_credit_year,
@@ -95,7 +95,8 @@
 	AND			s.major_id = m.major_id
 	AND			m.major_id = g.major_id
 	AND			g.major_id = #{majorId}
-	AND 		g.graduation_credit_year = #{year}
+	AND 		g.graduation_credit_year like #{year}
 </select>
+<!-- End BM -->
 
 </mapper>

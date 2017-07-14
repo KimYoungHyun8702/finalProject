@@ -55,6 +55,18 @@ public interface AcademicCalendarDao {
 	 */
 	AcademicCalendar selectCalendarByYearCalName(int year, String calName);
 	
+
+	
+	/**
+	 * 매개변수로 날짜를 이용하여 매개변수의 날짜에 해당하는 학사정보 select하는 메소드.
+	 * 
+	 * @param date
+	 * @return
+	 */
+	List<AcademicCalendar> selectCalendarByDate(String date);
+	
+	
+	
 	/**
 	 * 현재날짜를 받아서 학사일정명을 조회하는 메소드
 	 * @param date

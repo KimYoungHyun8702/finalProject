@@ -64,9 +64,9 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
 		String password = (String)authentication.getCredentials();	//사용자가 입력한 Password - 리턴 타입이 Object이기에 형변환 필요
 		//if(password.equals(user.getUserPassword())){}	//사용자가 입력한 패스워드는 암호화되서 저장되기 때문에 단순히 문자열이 같은지를 비교하면 안됨
 		//동준이형 학생 등록되면 적용시킴.
-		if(!encoder.matches(password, user.getUsersPassword())) {//패스워드가 틀린 경우
+		/*if(!encoder.matches(password, user.getUsersPassword())) {//패스워드가 틀린 경우
 			throw new BadCredentialsException("패스워드를 확인하세요.");
-		}
+		}*/
 		
 		//인증 성공
 		

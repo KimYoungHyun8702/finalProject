@@ -53,7 +53,4 @@ public class CreditGiveUpDaoImpl implements CreditGiveUpDao {
 	public List<CreditGiveUp> selectCreditGiveUpJoin() {
 		return session.selectList(makeSql("selectCreditGiveUpJoin"));
 	}
-	
-	
-
 }

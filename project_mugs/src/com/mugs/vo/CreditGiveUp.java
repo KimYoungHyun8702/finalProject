@@ -35,9 +35,8 @@ public class CreditGiveUp implements Serializable {
 		this.creditId = creditId;
 	}
 
-
 	public CreditGiveUp(int cGUId, int cGUYear, String cGUSemester, Date cGUStartDate, Date cGUFinishDate,
-			String cGUState, int creditId, Credit credit, String majorName, String usersId, String usersName) {
+			String cGUState, int creditId, Credit credit) {
 		CGUId = cGUId;
 		CGUYear = cGUYear;
 		CGUSemester = cGUSemester;
@@ -46,9 +45,6 @@ public class CreditGiveUp implements Serializable {
 		CGUState = cGUState;
 		this.creditId = creditId;
 		this.credit = credit;
-		this.majorName = majorName;
-		this.usersId = usersId;
-		this.usersName = usersName;
 	}
 
 	public int getCGUId() {
@@ -115,30 +111,6 @@ public class CreditGiveUp implements Serializable {
 		this.credit = credit;
 	}
 
-	public String getMajorName() {
-		return majorName;
-	}
-
-	public void setMajorName(String majorName) {
-		this.majorName = majorName;
-	}
-
-	public String getUsersId() {
-		return usersId;
-	}
-
-	public void setUsersId(String usersId) {
-		this.usersId = usersId;
-	}
-
-	public String getUsersName() {
-		return usersName;
-	}
-
-	public void setUsersName(String usersName) {
-		this.usersName = usersName;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -151,9 +123,6 @@ public class CreditGiveUp implements Serializable {
 		result = prime * result + CGUYear;
 		result = prime * result + ((credit == null) ? 0 : credit.hashCode());
 		result = prime * result + creditId;
-		result = prime * result + ((majorName == null) ? 0 : majorName.hashCode());
-		result = prime * result + ((usersId == null) ? 0 : usersId.hashCode());
-		result = prime * result + ((usersName == null) ? 0 : usersName.hashCode());
 		return result;
 	}
 
@@ -197,21 +166,6 @@ public class CreditGiveUp implements Serializable {
 			return false;
 		if (creditId != other.creditId)
 			return false;
-		if (majorName == null) {
-			if (other.majorName != null)
-				return false;
-		} else if (!majorName.equals(other.majorName))
-			return false;
-		if (usersId == null) {
-			if (other.usersId != null)
-				return false;
-		} else if (!usersId.equals(other.usersId))
-			return false;
-		if (usersName == null) {
-			if (other.usersName != null)
-				return false;
-		} else if (!usersName.equals(other.usersName))
-			return false;
 		return true;
 	}
 
@@ -219,11 +173,6 @@ public class CreditGiveUp implements Serializable {
 	public String toString() {
 		return "CreditGiveUp [CGUId=" + CGUId + ", CGUYear=" + CGUYear + ", CGUSemester=" + CGUSemester
 				+ ", CGUStartDate=" + CGUStartDate + ", CGUFinishDate=" + CGUFinishDate + ", CGUState=" + CGUState
-				+ ", creditId=" + creditId + ", credit=" + credit + ", majorName=" + majorName + ", usersId=" + usersId
-				+ ", usersName=" + usersName + "]";
+				+ ", creditId=" + creditId + ", credit=" + credit + "]";
 	}
-	
-	
-	
-	
 }

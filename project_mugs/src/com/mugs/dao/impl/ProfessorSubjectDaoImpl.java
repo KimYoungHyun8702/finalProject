@@ -56,12 +56,14 @@ public class ProfessorSubjectDaoImpl implements ProfessorSubjectDao{
 	}
 
 	/**----- 진현이꼬 --------------*/
-	public List<ProfessorSubject> selectProfessorSubjectList(int majorId, int nowYear, String subjectSemester) {
+	public List<ProfessorSubject> selectProfessorSubjectListByJoin(int majorId, int nowYear, String semester, String subjectType) {
 		// TODO Auto-generated method stub
 		HashMap map = new HashMap();
 		map.put("majorId", majorId);
 		map.put("nowYear", nowYear);
-		map.put("subjectSemester", subjectSemester);
-		return session.selectList(makeSqlId("selectSubject"), map);
+		map.put("semester", semester);
+		map.put("subjectType", subjectType);
+		return session.selectList(makeSqlId("selectProfessorSubjectListByJoin"), map);
 	}
+
 }

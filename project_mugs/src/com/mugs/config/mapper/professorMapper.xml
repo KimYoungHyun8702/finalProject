@@ -3,7 +3,11 @@
 <mapper namespace="com.mugs.config.mapper.professorMapper">
 
 	<resultMap id="professor-resultmap" type="professor">
-		<result column="pro_laboratory_phone_num" property="proOfficePhoneNum" />
+		<id column="pro_id" property="proId" />
+		<result column="pro_university" property="proUniversity" />
+		<result column="pro_grad_school" property="proGradSchool" />
+		<result column="pro_office_phone_num" property="proOfficePhoneNum" />
+		<result column="pro_laboratory_phone_num" property="proLaboratoryPhoneNum" />
 		<result column="major_id" property="majorId" />
 		<result column="office_id" property="proRoomOfficeId" />
 		<result column="laboratory_id" property="proRoomLaboratoryId" />
@@ -12,6 +16,7 @@
 	
 	<resultMap id="professor-user-resultmap" type="professor">
       <id column="pro_id" property="proId" />
+
       <result column="pro_university" property="proUniversity" />
       <result column="pro_grad_school" property="proGradSchool" />
       <result column="pro_office_phone_num" property="proOfficePhoneNum" />
@@ -23,6 +28,7 @@
       <result column="building_name" property="buildingName" />
       <result column="laboratory_id" property="proRoomLaboratoryId" />
       <result column="room_name" property="laboratoryName" />
+
       <result column="users_id" property="usersId" />
       <result column="users_password" property="usersPassword" />
       <result column="users_name" property="usersName" />
@@ -78,6 +84,10 @@
 		  	   p.pro_university,
 		  	   p.pro_grad_school,
 		  	   p.pro_office_phone_num,
+		  	   p.pro_laboratory_phone_num,
+		  	   p.major_id,
+		  	   p.office_id,
+		  	   p.laboratory_id,
 		   	   u.users_id, 
 		  	   u.users_password, 
 		  	   u.users_name,

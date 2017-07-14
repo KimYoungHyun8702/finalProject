@@ -45,6 +45,7 @@
 	<mvc:view-controller view-name="admin/room/insert_room.tiles" path="insert_room.do"/>
 	<mvc:view-controller view-name="admin/room/update_room.tiles" path="update_room.do"/>
 	
+
 	<!--졸업학점 관리  -->
 	<mvc:view-controller view-name="admin/graduationcredit/insert_graduation_credit.tiles" path="insert_graduation_credit.do"/>
 	<mvc:view-controller view-name="admin/graduationcredit/update_graduation_credit.tiles" path="update_graduation_credit.do"/>
