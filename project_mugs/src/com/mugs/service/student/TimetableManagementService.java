@@ -2,7 +2,7 @@ package com.mugs.service.student;
 
 import java.util.List;
 
-
+import com.mugs.vo.Building;
 import com.mugs.vo.Course;
 
 
@@ -21,6 +21,10 @@ public interface TimetableManagementService {
 	 * @return
 	 */
 	public List<Course> findMyTimeTableByJoin(String loginId);
-	
-
+	/**
+	 * 매개변수로 빌딩 이름을 받아 그에 맞는 빌딩 정보 조회.
+	 * @param buildingName
+	 * @return
+	 */
+	public Building findBuildingByBuildingName(String buildingName);
 }

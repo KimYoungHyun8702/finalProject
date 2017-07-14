@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mugs.dao.AcademicCalendarDao;
+import com.mugs.dao.BuildingDao;
 import com.mugs.dao.CourseDao;
+import com.mugs.dao.impl.BuildingDaoImpl;
 import com.mugs.service.student.TimetableManagementService;
+import com.mugs.vo.Building;
 import com.mugs.vo.Course;
 
 @Service
@@ -18,10 +21,10 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
 
 	@Autowired
 	private CourseDao courseDaoImpl;
-	
 	@Autowired
 	private AcademicCalendarDao academicCalendarDaoImpl;
-
+	@Autowired
+	private BuildingDaoImpl buildingDao;
 	// 내 강의시간표 조회해주는 메소드(findMyTimeTableByJoin)
 	@Override
 	public List<Course> findMyTimeTableByJoin(String loginId) {
@@ -30,7 +33,6 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
 		Date date = new Date();
 		String nowSemester ="";
 		List<String> semesterList= academicCalendarDaoImpl.selectCalendarName(date);
-	
 	
 	
 		for(int i = 0; i < semesterList.size(); i++) {
@@ -103,5 +105,11 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
 			timeTableResult.get(i).getSubject().setGyoShi2(secondGyoshi);
 	    }
 		return timeTableResult;
+	}
+
+	@Override
+	public Building findBuildingByBuildingName(String buildingName) {
+		// TODO Auto-generated method stub
+		return buildingDao.selectBuildingByBuildingName(buildingName);
 	}
 }

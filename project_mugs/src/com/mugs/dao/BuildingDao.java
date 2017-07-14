@@ -51,5 +51,10 @@ public interface BuildingDao {
 	 * @return
 	 */
 	List<Building> selectBuildingList();
-	
+	/**
+	 * 매개변수로 받은 buildingName과 일치하는 building data SELECT.
+	 * @param buildingName
+	 * @return
+	 */
+	Building selectBuildingByBuildingName(String buildingName);
 }

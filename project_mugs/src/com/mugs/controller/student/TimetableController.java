@@ -1,6 +1,8 @@
 package com.mugs.controller.student;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,7 +32,15 @@ public class TimetableController {
 		//2.비즈니스로직처리(서비스메소드 호출)
 		List<Course> myTimeTableResult = timeTableManagementServiceImpl.findMyTimeTableByJoin(loginId);//내 시간표정보를 가져오는 서비스메소드
 		return new ModelAndView("student/timeTable/myTimeTableView.tiles", "myTimeTableResult", myTimeTableResult);
-		
+	}
 	
+	@RequestMapping("getMapByBuildingName")
+	public ModelAndView getMapByBuildingName(String subjectName, String buildingName, String roomName){
+		Map<String , Object> map = new HashMap<>();
+		map.put("building", timeTableManagementServiceImpl.findBuildingByBuildingName(buildingName));
+		map.put("subjectName", subjectName);
+		map.put("roomName", roomName);
+		
+		return new ModelAndView("view/contents/student/timeTable/buildingMap", "map", map);
 	}
 }

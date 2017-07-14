@@ -24,7 +24,7 @@ public class Subject implements Serializable {
 	private char subjectCloseClass;
 	private String subjectSemester;
 	private Integer majorId;
-	private int lectureId;
+	private Integer lectureId;
 	private int remainNum;
 	private String recourse;
 	private SubjectPlan subjectPlan;
@@ -43,7 +43,7 @@ public class Subject implements Serializable {
 
 	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
 			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass, char subjectCloseClass,
-			String subjectSemester, Integer majorId, int lectureId, int remainNum, String recourse,
+			String subjectSemester, Integer majorId, Integer lectureId, int remainNum, String recourse,
 			SubjectPlan subjectPlan, Major major, College college, Room room, Building building, String gyoShi1,
 			String gyoShi2, String yoYil1, String yoYil2) {
 		super();
@@ -76,7 +76,7 @@ public class Subject implements Serializable {
 
 	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
 			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass, char subjectCloseClass,
-			String subjectSemester, Integer majorId, int lectureId, int remainNum, String recourse,
+			String subjectSemester, Integer majorId, Integer lectureId, int remainNum, String recourse,
 			SubjectPlan subjectPlan, Major major, College college, Room room, Building building) {
 		super();
 		this.subjectId = subjectId;
@@ -379,12 +379,12 @@ public class Subject implements Serializable {
 	}
 
 
-	public int getLectureId() {
+	public Integer getLectureId() {
 		return lectureId;
 	}
 
 
-	public void setLectureId(int lectureId) {
+	public void setLectureId(Integer lectureId) {
 		this.lectureId = lectureId;
 	}
 
