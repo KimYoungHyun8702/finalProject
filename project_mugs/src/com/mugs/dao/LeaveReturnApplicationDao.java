@@ -31,12 +31,21 @@ public interface LeaveReturnApplicationDao {
 	 * 휴복학 내역 전체 조회하는 메소드
 	 * @return
 	 */
-	List<LeaveReturnApplication> SelectLeaveReturnApplicationList();
+	List<LeaveReturnApplication> selectLeaveReturnApplicationList();
 	
 	/**
 	 * 매개변수로 LRApplicationId를 받아 해당되는 휴복학 내역 조회하는 메소드
 	 * @param LRApplicationId
 	 * @return
 	 */
-	LeaveReturnApplication SelectLeaveReturnApplicationById(int LRApplicationId);
+	LeaveReturnApplication selectLeaveReturnApplicationById(int LRApplicationId);
+	
+	/**
+	 * 매개변수로 StuId를 받아서 해당 학생의 휴복학 내역 조회하는 메소드
+	 * 
+	 * By Baek.J.H
+	 * @param StuId
+	 * @return
+	 */
+	List<LeaveReturnApplication> selectLeaveReturnApplicationByStuId(String stuId);
 }

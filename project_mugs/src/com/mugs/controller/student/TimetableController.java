@@ -44,7 +44,7 @@ public class TimetableController {
 				   return model;
 			   }
 		   } else if(entry.getKey().toString() == "message" && !entry.getValue().equals("")) {
-			   model.setViewName("index.tiles");	
+			   model.setViewName("index.tiles");
 			   model.addObject(entry.getKey().toString(), entry.getValue()); // 지금 수강하고있는 과목이 없다는 메세지 담아서 리턴
 			   return model;
 		   }

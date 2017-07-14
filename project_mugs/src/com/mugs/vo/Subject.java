@@ -8,8 +8,6 @@
 package com.mugs.vo;
 
 import java.io.Serializable;
-import java.util.Map;
-
 
 public class Subject implements Serializable {
 	
@@ -27,6 +25,7 @@ public class Subject implements Serializable {
 	private Integer majorId;
 	private Integer lectureId;
    
+	private Professor professor;
 	private int remainNum;
 	private String recourse;
 	private SubjectPlan subjectPlan;
@@ -61,9 +60,9 @@ public class Subject implements Serializable {
 
 	public Subject(int subjectId, String subjectName, String subjectTime, String subjectType, int subjectCredit,
 			int subjectCapacity, int subjectRequest, Integer subjectGrade, String subjectClass, char subjectCloseClass,
-			String subjectSemester, Integer majorId, Integer lectureId, int remainNum, String recourse,
-			SubjectPlan subjectPlan, Major major, College college, Room room, Building building, String gyoShi1,
-			String gyoShi2, String yoYil1, String yoYil2) {
+			String subjectSemester, Integer majorId, Integer lectureId, Professor professor, int remainNum,
+			String recourse, SubjectPlan subjectPlan, Major major, College college, Room room, Building building,
+			String gyoShi1, String gyoShi2, String yoYil1, String yoYil2) {
 		this.subjectId = subjectId;
 		this.subjectName = subjectName;
 		this.subjectTime = subjectTime;
@@ -77,6 +76,7 @@ public class Subject implements Serializable {
 		this.subjectSemester = subjectSemester;
 		this.majorId = majorId;
 		this.lectureId = lectureId;
+		this.professor = professor;
 		this.remainNum = remainNum;
 		this.recourse = recourse;
 		this.subjectPlan = subjectPlan;
@@ -194,6 +194,14 @@ public class Subject implements Serializable {
 		this.lectureId = lectureId;
 	}
 
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
 	public int getRemainNum() {
 		return remainNum;
 	}
@@ -288,10 +296,10 @@ public class Subject implements Serializable {
 				+ ", subjectType=" + subjectType + ", subjectCredit=" + subjectCredit + ", subjectCapacity="
 				+ subjectCapacity + ", subjectRequest=" + subjectRequest + ", subjectGrade=" + subjectGrade
 				+ ", subjectClass=" + subjectClass + ", subjectCloseClass=" + subjectCloseClass + ", subjectSemester="
-				+ subjectSemester + ", majorId=" + majorId + ", lectureId=" + lectureId + ", remainNum=" + remainNum
-				+ ", recourse=" + recourse + ", subjectPlan=" + subjectPlan + ", major=" + major + ", college="
-				+ college + ", room=" + room + ", building=" + building + ", gyoShi1=" + gyoShi1 + ", gyoShi2="
-				+ gyoShi2 + ", yoYil1=" + yoYil1 + ", yoYil2=" + yoYil2 + "]";
+				+ subjectSemester + ", majorId=" + majorId + ", lectureId=" + lectureId + ", professor=" + professor
+				+ ", remainNum=" + remainNum + ", recourse=" + recourse + ", subjectPlan=" + subjectPlan + ", major="
+				+ major + ", college=" + college + ", room=" + room + ", building=" + building + ", gyoShi1=" + gyoShi1
+				+ ", gyoShi2=" + gyoShi2 + ", yoYil1=" + yoYil1 + ", yoYil2=" + yoYil2 + "]";
 	}
 
 	@Override
@@ -305,6 +313,7 @@ public class Subject implements Serializable {
 		result = prime * result + ((lectureId == null) ? 0 : lectureId.hashCode());
 		result = prime * result + ((major == null) ? 0 : major.hashCode());
 		result = prime * result + ((majorId == null) ? 0 : majorId.hashCode());
+		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
 		result = prime * result + ((recourse == null) ? 0 : recourse.hashCode());
 		result = prime * result + remainNum;
 		result = prime * result + ((room == null) ? 0 : room.hashCode());
@@ -368,6 +377,11 @@ public class Subject implements Serializable {
 			if (other.majorId != null)
 				return false;
 		} else if (!majorId.equals(other.majorId))
+			return false;
+		if (professor == null) {
+			if (other.professor != null)
+				return false;
+		} else if (!professor.equals(other.professor))
 			return false;
 		if (recourse == null) {
 			if (other.recourse != null)

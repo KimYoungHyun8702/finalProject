@@ -3,11 +3,11 @@
 <%-- Spring Security 커스텀 태그 --%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+
 <%--
 	sec:authorize access="Spring Security EL" : EL 표현식의 인증/권한 상태의 사용자에게만 보여질 태그의 content로 넣는다.
 												=> 권한에 따라 나타나는 메뉴 다르게 설정
  --%>
-
 <ul class="nav nav-stacked">
 <%--인증 안된(로그인 안한) 사용자 메뉴  (!isAuthenticated()) : 인증되면 안보여야 하는 메뉴 --%>
 <sec:authorize access="!isAuthenticated()">	
@@ -28,7 +28,7 @@
 <a href="${initParam.rootPath }/student/getMyCourseListByJoin.do">수강신청내역조회 클릭기기</a><br>
 <a href="${initParam.rootPath }/student/compareEvaluationPeriod.do">설문응답평가조회-기간설정까지해준것</a><br>
 <a href="${initParam.rootPath }/student/subjectTypeList.do">수강신청</a><br>
-<a href="#">휴복학신청</a><br>
+<a href="${initParam.rootPath }/student/getLeaveReturnApplicationListByStuId.do">휴복학신청</a><br>
 <a href="#">과목평가그래프</a><br>
 <a href="${initParam.rootPath }/student/gradeInquiry.do">성적 조회 -딘강</a><br>
 <a href="${initParam.rootPath }/student/currentGradeInquiry.do">당학기 성적조회 -딘강</a><br>
