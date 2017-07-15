@@ -1,13 +1,6 @@
 package com.mugs.service.student;
 
 import java.util.HashMap;
-import java.util.List;
-
-
-import com.mugs.vo.Course;
-
-
-
 
 public interface TimetableManagementService {
 	
@@ -18,8 +11,5 @@ public interface TimetableManagementService {
 	 * @param nowSemester
 	 * @return
 	 */
-	
 	HashMap<String, Object> findMyTimeTableByJoin(String loginId);
-	
-
 }

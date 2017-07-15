@@ -28,7 +28,8 @@
 <a href="${initParam.rootPath }/student/getMyCourseListByJoin.do">수강신청내역조회 클릭기기</a><br>
 <a href="${initParam.rootPath }/student/compareEvaluationPeriod.do">설문응답평가조회-기간설정까지해준것</a><br>
 <a href="${initParam.rootPath }/student/subjectTypeList.do">수강신청</a><br>
-<a href="${initParam.rootPath }/student/getLeaveReturnApplicationListByStuId.do">휴복학신청</a><br>
+<a href="${initParam.rootPath }/student/getLeaveReturnApplicationListByStuId.do">휴복학신청 및 조회</a><br>
+<a href="${initParam.rootPath }/student/getCreditGiveUpListByStuId.do">학점포기신청 및 조회</a><br>
 <a href="#">과목평가그래프</a><br>
 <a href="${initParam.rootPath }/student/gradeInquiry.do">성적 조회 -딘강</a><br>
 <a href="${initParam.rootPath }/student/currentGradeInquiry.do">당학기 성적조회 -딘강</a><br>

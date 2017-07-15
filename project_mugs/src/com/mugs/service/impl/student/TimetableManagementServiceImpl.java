@@ -68,8 +68,6 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
 				String secondGyoshi = "";
 				String thirdGyoshi = "";
 				String fourthGyoshi = "";
-				String firstYG = "";
-				String secondYG = "";
 				
 				for (int i = 0; i < timeTableResult.size(); i++) {
 
@@ -112,16 +110,6 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
 					timeTableResult.get(i).getSubject().setYoYil2(secondYoYil);
 					timeTableResult.get(i).getSubject().setGyoShi1(firstGyoshi);
 					timeTableResult.get(i).getSubject().setGyoShi2(secondGyoshi);
-					
-					System.out.println("첫번째 요일 :" +timeTableResult.get(i).getSubject().getYoYil1());
-					System.out.println("두번째 요일 :" +timeTableResult.get(i).getSubject().getYoYil2());
-					System.out.println("첫번째 교시 :" +timeTableResult.get(i).getSubject().getGyoShi1());
-					System.out.println("두번째 교시 :" +timeTableResult.get(i).getSubject().getGyoShi2());
-					
-					//firstYG = firstYoil + firstGyoshi;
-					//secondYG = secondYoil + thirdGyoshi;
-					//System.out.println("각 인덱스에 해당하는 firstYG가 뭔데 : " + firstYG);
-					//System.out.println("각 인덱스에 해당하는 secondYG가 뭔데 : " + secondYG);
 			    }
 				
 				map.put("myTimeTableResult", timeTableResult);
@@ -133,5 +121,4 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
 		}
 		return map;
 	}
-	
 }

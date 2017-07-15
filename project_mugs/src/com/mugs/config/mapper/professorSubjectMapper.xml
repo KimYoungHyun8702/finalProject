@@ -153,4 +153,24 @@
 		and s.subject_type=#{subjectType}
 	</select>
 	
+	<!-- ㅁㄴㅇㅁㄴ -->
+	<select id="selectProfessorSubjectListByJoinMajorNull" resultMap="professorSubject-subject-professor-resultmap" parameterType="map">
+		SELECT ps.pro_subject_id, ps.pro_subject_semester, ps.pro_subject_year, ps.pro_id, ps.subject_id,
+			   p.pro_id, p.pro_university, p.pro_grad_school, p.pro_office_phone_num, 
+			   u.users_id, u.users_password, u.users_name, u.users_eng_name,
+			   u.users_rrn, u.users_email, u.users_phone_num, u.users_cell_num,
+			   u.users_national, u.users_current_addr, u.users_born_addr, u.users_enable, u.users_photo,
+			   s.subject_id, s.subject_name, s.subject_time, s.subject_type, s.subject_credit,
+			   s.subject_capacity, s.subject_request, s.subject_grade, s.subject_class,
+			   s.subject_close_class, s.subject_semester, s.major_id, s.lecture_id,
+			   (s.subject_capacity-s.subject_request) cnt
+		from professor_subject ps, professor p, users u, subject s
+		where ps.pro_id = p.pro_id
+		and ps.subject_id = s.subject_id
+		and p.pro_id = u.users_id
+		and ps.pro_subject_semester=#{semester}
+		and ps.pro_subject_year=#{nowYear}
+		and s.major_id is null
+		and s.subject_type=#{subjectType}
+	</select>
 </mapper>
