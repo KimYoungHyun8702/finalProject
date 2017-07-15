@@ -76,15 +76,14 @@ function check(){
 	<hr style="border: solid px black">
 	<h3>성명, 주민번호, 학번, 학적정보 등 기존 사항은 수정할 수 없습니다.</h3>
 	<hr style="border: solid px black">
-    <div class="panel panel-primary filterable">
-	<table border="2" style="border-color: black" class="table"> 
+	<table border="2" style="border-color: black"> 
 	<tr align="center" class="filters"> 
-		<td bgcolor="palegoldenrod">성명</td>    
-		<td bgcolor="palegoldenrod">학번</td>
-		<td bgcolor=palegoldenrod>주민번호</td>
-		<td bgcolor="palegoldenrod">이메일</td>
-		<td bgcolor="palegoldenrod">전화번호</td>
-		<td bgcolor="palegoldenrod">핸드폰번호</td>		
+		<th><input type="text" class="form-control" placeholder="성명" disabled></th>
+		<th><input type="text" class="form-control" placeholder="학번" disabled></th>
+		<th><input type="text" class="form-control" placeholder="주민번호" disabled></th>
+		<th><input type="text" class="form-control" placeholder="이메일" disabled></th>
+		<th><input type="text" class="form-control" placeholder="전화번호" disabled></th>
+		<th><input type="text" class="form-control" placeholder="핸드폰번호" disabled></th>	
 	</tr>
 	<tr align="center" class="filters">  
 		<td>${requestScope.reFormDateStu.stuInfo.usersName}</td>
@@ -101,10 +100,10 @@ function check(){
 		</td>
 	</tr>
 	<tr align="center" class="filters">
-		<td bgcolor="palegoldenrod">영문성명</td>
-		<td bgcolor="palegoldenrod">국적</td>
-		<td colspan="2" bgcolor="palegoldenrod">본적지</td>
-		<td colspan="2" bgcolor="palegoldenrod">현주소</td>
+		<th><input type="text" class="form-control" placeholder="영문성명" disabled></th>
+		<th><input type="text" class="form-control" placeholder="국적" disabled></th>
+		<th colspan="2"><input type="text" class="form-control" placeholder="본적지" disabled></th>
+		<th colspan="2"><input type="text" class="form-control" placeholder="현주소" disabled></th>
 	</tr>
 	<tr align="center" class="filters">
 		<td>${requestScope.reFormDateStu.stuInfo.usersEngName}</td>
@@ -117,18 +116,16 @@ function check(){
 		</td>
 	</tr>
 </table>
-</div>
 <p>
 
-<div class="panel panel-primary filterable">
-<table border="2" style="border-color: black" class="table2"> 
+<table border="2" style="border-color: black" "> 
 	<tr align="center" class="filters"> 
-		<td bgcolor="palegoldenrod">학년</td>    
-		<td bgcolor="palegoldenrod" width="120px">학기</td>
-		<td bgcolor="palegoldenrod">주전공</td>
-		<td bgcolor="palegoldenrod">부전공</td>
-		<td bgcolor="palegoldenrod" width="150px">입학일자</td>
-		<td bgcolor="palegoldenrod">졸업일자</td>		
+		<th><input type="text" class="form-control" placeholder="학년" disabled></th>   
+		<th><input type="text" class="form-control" placeholder="학기" disabled></th>
+		<th><input type="text" class="form-control" placeholder="주전공" disabled></th>
+		<th><input type="text" class="form-control" placeholder="부전공" disabled></th>
+		<th><input type="text" class="form-control" placeholder="입학일자" disabled></th>
+		<th><input type="text" class="form-control" placeholder="졸업일자" disabled></th>
 	</tr>
 	<tr align="center" class="filters">   
 		<td>${requestScope.reFormDateStu.stuInfo.stuGrade}</td><!-- 학년 -->
@@ -139,12 +136,12 @@ function check(){
 		<td>${requestScope.reFormDateStu.stuGraduationDate}</td><!-- 졸업일자 -->
 	</tr>
 	<tr align="center" class="filters">
-		<td bgcolor="palegoldenrod">과정구분</td>
-		<td bgcolor="palegoldenrod" width="120px">병영구분</td>
-		<td bgcolor="palegoldenrod">학적구분</td>
-		<td bgcolor="palegoldenrod">학생구분</td>
-		<td bgcolor="palegoldenrod" width="150px">조기졸업<br>대상여부</td>
-		<td bgcolor="palegoldenrod">복수전공</td>
+		<th><input type="text" class="form-control" placeholder="과정구분" disabled></th>
+		<th><input type="text" class="form-control" placeholder="병영구분" disabled></th>
+		<th><input type="text" class="form-control" placeholder="학적구분" disabled></th>
+		<th><input type="text" class="form-control" placeholder="학생구분" disabled></th>
+		<th><input type="text" class="form-control" placeholder="조기졸업대상여부" disabled></th>
+		<th><input type="text" class="form-control" placeholder="복수전공" disabled></th>
 	</tr>
 	<tr align="center" class="filters">
 		<td>${requestScope.reFormDateStu.stuInfo.stuCourse}</td>
@@ -156,7 +153,6 @@ function check(){
 		<td>${requestScope.reFormDateStu.stuInfo.multiMajor.majorName}</td>
 	</tr>
 </table>
-</div>
 	<p>
 <div class="panel panel-primary filterable">
 	<table border="1" style="float: left">
@@ -169,9 +165,10 @@ function check(){
 	</table>
 	</div>
 	<br>
-	<center><button onclick="location.href='${initParam.rootPath}/student/moveUpdatePwd.do'" type="button" class="btn btn-primary">비밀번호 변경 페이지로 이동</button></center>
-	<input type="hidden" name="usersPassword" value="${requestScope.reFormDateStu.stuInfo.usersPassword}"><br>
-	<center><input type="submit" id="upBtn" value="수정"></center>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<center><input type="submit" id="upBtn" value="수정">&nbsp;&nbsp;</center>
+	<input type="hidden" name="usersPassword" value="${requestScope.reFormDateStu.stuInfo.usersPassword}"></center><br>
+    <center><button onclick="location.href='${initParam.rootPath}/student/moveUpdatePwd.do'" type="button" class="btn btn-primary">비밀번호 변경 페이지로 이동</button></center>
 	</form> 
 
 </body>

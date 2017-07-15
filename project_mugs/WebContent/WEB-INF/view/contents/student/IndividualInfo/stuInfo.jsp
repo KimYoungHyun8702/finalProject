@@ -38,6 +38,9 @@ select{
 h3{
 	font-family:돋움체;
 }
+input {
+	font-color:black;
+}
 </style>
 </head>
 <body>
@@ -54,15 +57,14 @@ h3{
 		</c:otherwise>
 	</c:choose>	
 	
-<div class="panel panel-primary filterable">
 <table border="2"  style="border-color: black" class="table1"> 
 	<tr align="center" class="filters"> 
-		<td bgcolor="bisque">성명</td>    
-		<td bgcolor="bisque">학번</td>
-		<td bgcolor="bisque">주민번호</td>
-		<td bgcolor="bisque">이메일</td>
-		<td bgcolor="bisque">전화번호</td>
-		<td bgcolor="bisque">핸드폰번호</td>		
+		<th><input type="text" class="form-control" placeholder="성명" disabled></th>
+		<th><input type="text" class="form-control" placeholder="학번" disabled></th>
+		<th><input type="text" class="form-control" placeholder="주민번호" disabled></th>
+		<th><input type="text" class="form-control" placeholder="이메일" disabled></th>
+		<th><input type="text" class="form-control" placeholder="전화번호" disabled></th>
+		<th><input type="text" class="form-control" placeholder="핸드폰번호" disabled></th>	
 	</tr>
 	<tr align="center" class="filters">  
 		<td>${requestScope.reFormDateStu.stuInfo.usersName}</td><!-- 성명 -->
@@ -73,10 +75,10 @@ h3{
 		<td>${requestScope.reFormDateStu.stuInfo.usersCellNum}</td><!-- 핸드폰번호 -->
 	</tr>
 	<tr align="center" class="filters">
-		<td bgcolor="bisque">영문성명</td>
-		<td bgcolor="bisque">국적</td>
-		<td colspan="2" bgcolor="lightgray">본적지</td>
-		<td colspan="2" bgcolor="lightgray">현주소</td>
+		<th><input type="text" class="form-control" placeholder="영문성명" disabled></th>
+		<th><input type="text" class="form-control" placeholder="국적" disabled></th>
+		<th colspan="2"><input type="text" class="form-control" placeholder="본적지" disabled></th>
+		<th colspan="2"><input type="text" class="form-control" placeholder="현주소" disabled></th>
 	</tr>
 	<tr align="center" class="filters">
 		<td>${requestScope.reFormDateStu.stuInfo.usersEngName}</td>
@@ -85,17 +87,15 @@ h3{
 		<td colspan="2">${requestScope.reFormDateStu.stuInfo.usersCurrentAddr}</td>
 	</tr>
 </table>
-</div>
 <p>
-<div class="panel panel-primary filterable">
 <table border="2" style="border-color: black" class="table2"> 
 	<tr align="center" class="filters"> 
-		<td bgcolor="palegoldenrod">학년</td>    
-		<td bgcolor="palegoldenrod" width="120px">학기</td>
-		<td bgcolor="palegoldenrod">주전공</td>
-		<td bgcolor="palegoldenrod">부전공</td>
-		<td bgcolor="palegoldenrod" width="150px">입학일자</td>
-		<td bgcolor="palegoldenrod">졸업일자</td>		
+		<th><input type="text" class="form-control" placeholder="학년" disabled></th>   
+		<th><input type="text" class="form-control" placeholder="학기" disabled></th>
+		<th><input type="text" class="form-control" placeholder="주전공" disabled></th>
+		<th><input type="text" class="form-control" placeholder="부전공" disabled></th>
+		<th><input type="text" class="form-control" placeholder="입학일자" disabled></th>
+		<th><input type="text" class="form-control" placeholder="졸업일자" disabled></th>
 	</tr>
 	<tr align="center" class="filters">  
 		<td>${requestScope.reFormDateStu.stuInfo.stuGrade}</td><!-- 학년 -->
@@ -106,12 +106,12 @@ h3{
 		<td>${requestScope.reFormDateStu.stuGraduationDate}</td><!-- 졸업일자 -->
 	</tr>
 	<tr align="center" class="filters">
-		<td bgcolor="lightcyan">과정구분</td>
-		<td bgcolor="lightcyan" width="120px">병영구분</td>
-		<td bgcolor="lavender">학적구분</td>
-		<td bgcolor="lavender">학생구분</td>
-		<td bgcolor="peachpuff" width="150px">조기졸업<br>대상여부</td>
-		<td bgcolor="peachpuff">복수전공</td>
+		<th><input type="text" class="form-control" placeholder="과정구분" disabled></th>
+		<th><input type="text" class="form-control" placeholder="병영구분" disabled></th>
+		<th><input type="text" class="form-control" placeholder="학적구분" disabled></th>
+		<th><input type="text" class="form-control" placeholder="학생구분" disabled></th>
+		<th><input type="text" class="form-control" placeholder="조기졸업대상여부" disabled></th>
+		<th><input type="text" class="form-control" placeholder="복수전공" disabled></th>
 	</tr>
 	<tr align="center" class="filters">
 		<td>${requestScope.reFormDateStu.stuInfo.stuCourse}</td>
@@ -122,9 +122,8 @@ h3{
 		<td>${requestScope.reFormDateStu.stuInfo.multiMajor.majorName}</td>
 	</tr>
 </table>
-</div>
 <br>
-<form action="/project_mugs/student/moveUpdateForm.do" method="get">
+<form action="/project_mugs/student/moveUpdateForm.do" method="get"><br>
 <center><input type="submit" id="stuUpdateBtn" value="수정 페이지로"  type="button" class="btn btn-primary"></center>
 <sec:csrfInput/>
 </form>

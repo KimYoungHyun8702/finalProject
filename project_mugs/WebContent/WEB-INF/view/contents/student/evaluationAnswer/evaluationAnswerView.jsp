@@ -6,9 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-theme.min.css">
+	<link href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="${initParam.rootPath }/resource/bootstrap/css/style.css" rel="stylesheet">
+ 
 <style type="text/css">
 table{
-	width:700px;
+	width:100%;
 	border-collapse: collapse;
 }
 td{
@@ -23,7 +28,9 @@ h3{
 	font-family:돋움체;
 }
 </style>
-<script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
+
+
+<script type="text/javascript" src="/project_mugs/resource/jquery/jquery.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -62,9 +69,8 @@ $(document).ready(function(){
  <h3>설문응답평가 조회</h3>
     <hr style="border: solid px black;">
 
-    <div class="panel panel-primary filterable">
 
-	<table class="table">
+	<table border="1">
 	<thead id="thead">
 		<tr class="filters">
 			<th width="70px"><input type="text" class="form-control" placeholder="과목ID" disabled></th>
@@ -95,8 +101,7 @@ $(document).ready(function(){
 			</tr>
 		</c:forEach>  
 	</tbody>
-</table>
-</div>
-<center><button onclick="location.href='${initParam.rootPath}/'" type="button" class="btn btn-primary">이전페이지로</button></center>
+</table><br>
+<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" class="btn btn-primary">이전페이지로</button></center>
 </body>
 </html>

@@ -53,6 +53,7 @@ $(document).ready(function(){
 				$("#proUniversity").val(obj.proUniversity);
 				$("#proGradSchool").val(obj.proGradSchool);
 				$("#proOfficePhoneNum").val(obj.proOfficePhoneNum);
+				$("#proLaboratoryPhoneNum").val(obj.proLaboratoryPhoneNum);
 				var x = obj;
 			},
 			"error":function(){
@@ -91,6 +92,18 @@ $(document).on("click", "#updateBtn", function(){
 뭐더라.. : <input type="text" id="usersEnable" name="usersEnable" value=""><br>
 사진주소 : <input type="text" id="usersPhoto" name="usersPhoto" value="">&nbsp;
 
+<div>
+	<c:choose>
+		<c:when test="${requestScope.reFormDateStu.stuInfo.usersPhoto!=null}">
+			<img src ="${initParam.rootPath}/resource/up_image/${requestScope.reFormDateStu.stuInfo.usersPhoto}" width="100px" height="100px">							
+		</c:when> 
+		<c:otherwise>
+			사진 미등록   
+		</c:otherwise>
+	</c:choose>	
+</div>
+
+
 <div id="professorRegiste">
 졸업대학 : <input type="text" id="proUniversity" name="proUniversity" value="" readonly="readonly" placeholder="졸업대학" disabled><br>
 졸업대학원:<input type="text" id="proGradSchool" name="proGradSchool" value="" readonly="readonly" placeholder="졸업대학원" disabled><br>
@@ -120,9 +133,10 @@ $(document).on("click", "#updateBtn", function(){
         	openWin.document.getElementById("usersBornAddr").value = document.getElementById("usersBornAddr").value;
         	openWin.document.getElementById("usersEnable").value = document.getElementById("usersEnable").value;
         	openWin.document.getElementById("usersPhoto").value = document.getElementById("usersPhoto").value;
-        	openWin.document.getElementById("proUniversity").value = document.getElementById("proUniversity").value;
-        	openWin.document.getElementById("proGradSchool").value = document.getElementById("proGradSchool").value;
-        	openWin.document.getElementById("proOfficePhoneNum").value = document.getElementById("proOfficePhoneNum").value;
+        	openWin.document.getElementById("proUniversity").innerText = document.getElementById("proUniversity").value;
+        	openWin.document.getElementById("proGradSchool").innerText = document.getElementById("proGradSchool").value;
+        	openWin.document.getElementById("proOfficePhoneNum").innerText = document.getElementById("proOfficePhoneNum").value;
+        	openWin.document.getElementById("proLaboratoryPhoneNum").innerText = document.getElementById("proLaboratoryPhoneNum").value;       	
         }, 1000);                
 	}
 </script>

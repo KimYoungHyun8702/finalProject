@@ -27,6 +27,7 @@ public class GradeController {
 		String id = users.getUsersId();
 		
 		List<Integer> list = service.getYear(id);
+		System.out.println(list);
 		return list;
 	}
 
@@ -56,6 +57,7 @@ public class GradeController {
 	@RequestMapping("creditByYearSemester")
 	@ResponseBody
 	public List<Credit> creditByYearSemester(int year, String semester) {
+		System.out.println(year+semester+"###");
 		List<Credit> list = service.getCreditByYearSemester(year, semester);
 		return list;
 	}

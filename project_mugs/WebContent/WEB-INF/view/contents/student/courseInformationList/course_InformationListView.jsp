@@ -16,7 +16,22 @@ td, th, input {
 h3{
 	font-family:돋움체;
 }
+table{
+	width:100%;
+	
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
+}
 
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
 </style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
@@ -33,9 +48,8 @@ h3{
     <h3>수강목록조회</h3>
     <hr style="border: solid px black">
 
-    <div class="panel panel-primary filterable">
 
-	<table class="table">
+	<table border="1">
 	<thead id="thead">
 	
 		 <tr class="filters">
@@ -62,9 +76,8 @@ h3{
 			</c:forEach>
 	</tbody>
 </table>
-</div>
 <br>
-    <center><button onclick="location.href='${initParam.rootPath}/'" type="button" class="btn btn-primary">이전페이지로</button></center>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">이전페이지로</button></center>
 </body>
 <%-- <body>
 <h2>수강정보목록조회하는 jsp</h2>

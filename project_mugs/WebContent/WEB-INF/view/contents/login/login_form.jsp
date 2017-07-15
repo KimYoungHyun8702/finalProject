@@ -3,7 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <style type="text/css">
 .container {
-	width:90%;
+	width:75%;
 }
 
 </style>

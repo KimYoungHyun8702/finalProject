@@ -4,20 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="../first/dist/css/sb-admin-2.min.css" rel="stylesheet" media="screen"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 <style type="text/css">
 input{
 	text-align:center;
 }
 table{
-	width:700px;
+	width:100%;
 	
 }
-th {
-	bgcolor:peru;
-}
+
 td{
 	padding: 5px;
 	border: 1px solid black;
@@ -99,7 +95,7 @@ function info_student(stuId){
 } 
 $(document).ready(function(){
 	$("#hr").hide();	
-	$("h1").hide();
+	$("#h1").hide();
 	$("#selectStudent").hide();	
 	$("#infoStudent").hide();	
 	$("#searchStudent").on("click",function(){
@@ -157,13 +153,12 @@ $(document).ready(function(){
 		<% session.removeAttribute("studeleteMessage"); %>
 </c:if>
 <hr>
-	검색할 이름 <input type="text" name="usersName" id="usersName"/><button id="searchStudent">조회</button><br>
+	검색할 이름 <input type="text" name="usersName" id="usersName"/>&nbsp;&nbsp;<button id="searchStudent">조회</button><br>
 	<br>
-<div class="row">
-	<div class="panel panel-primary filterable">
-	<table id="selectStudent" border="1" class="table">
+
+	<table id="selectStudent" border="1">
 		<thead id="thead">
-			<tr class="filters">
+			<tr>
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 번호" disabled></th>
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 이름" disabled></th>
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 주민 번호" disabled></th>
@@ -173,15 +168,14 @@ $(document).ready(function(){
 		</thead>
 		<tbody id="selectTbody"></tbody>
 	</table>
-	</div>
-</div>
+
 	<hr id="hr"/>
 	<h3>학생 상세 정보</h3>
-	<div class="row">
-	<div class="panel panel-primary filterable">
-	<table id="infoStudent" border="1" class="table">
+	
+	
+	<table id="infoStudent" border="1" >
 		<thead id="thead">
-			<tr class="filters">
+			<tr >
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="사진" disabled></th>
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="번호" disabled></th>
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="이름" disabled></th>
@@ -193,7 +187,7 @@ $(document).ready(function(){
 		<tbody id="infoTbody1"></tbody>
 		
 		<thead id="thead">
-			<tr class="filters">
+			<tr >
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="집 전화번호" disabled></th>
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="핸드폰 번호" disabled></th>
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="국적" disabled></th>
@@ -205,7 +199,7 @@ $(document).ready(function(){
 		<tbody id="infoTbody2"></tbody>
 		
 		<thead id="thead">
-			<tr class="filters">
+			<tr >
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="과정 구분" disabled></th>
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="병영 구분" disabled></th>
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="입학 일자" disabled></th>
@@ -217,7 +211,7 @@ $(document).ready(function(){
 		<tbody id="infoTbody3"></tbody>
 		
 		<thead id="thead">
-			<tr class="filters">		
+			<tr >	
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학년" disabled></th>
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="졸업시험 패스 여부" disabled></th>
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="조기졸업 대상 여부" disabled></th>
@@ -229,7 +223,7 @@ $(document).ready(function(){
 		<tbody id="infoTbody4"></tbody>
 			
 		<thead id="thead">
-			<tr class="filters">	
+			<tr >
 				<th align="center"  bgcolor="peru"><input type="text" class="form-control" placeholder="부전공" disabled></th>
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="수정" disabled></th>
 				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="삭제" disabled></th>
@@ -237,6 +231,6 @@ $(document).ready(function(){
 		</thead>	
 		<tbody id="infoTbody5"></tbody>
 		</table>
-	</div>
-</div><br>
-	<center><button onclick="location.href='${initParam.rootPath }/'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+	
+<br>
+	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>

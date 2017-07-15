@@ -4,6 +4,44 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+input{
+	text-align:center;
+}
+table{
+	width:100%;
+	
+}
+th {
+	bgcolor:peru;
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
+}
+select{
+	width:150px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+.form-controler {
+	color:black;
+}
+h3{
+	font-family:돋움체;
+}
+
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
@@ -106,18 +144,18 @@ $(document).ready(function(){
 	<hr>
 	<form id="insertForm" action="${initParam.rootPath }/admin/updateProfessorController.do" method="post" onsubmit="return check()">
 	       <table id="infoProfessor" border="1">
-			<thead>
-				<tr>
-					<td align="center">번호</td>
-					<td align="center">이름</td>
-					<td align="center">영문 이름</td>
-					<td align="center">주민 번호</td>
-					<td align="center">이메일</td>
-					<td align="center">집 전화번호</td>
+			<thead id="thead">
+	   			<tr class="filters">
+					<th align="center"><input type="text" class="form-control" placeholder="번호" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="이름" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="영문이름" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="주민번호" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="이메일" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="집 전화번호" disabled></th>
 				</tr>
 			</thead>
 			<tbody id="infoTbody1">
-				<tr>
+				<tr class="filters">
 					<td align="center"><input type="number" name="usersId" id="usersId" value="${requestScope.info.usersId }" readonly/></td>
 					<td align="center"><input type="text" name="usersName" id="usersName" value="${requestScope.info.usersName }"/></td>
 					<td align="center"><input type="text" name="usersEngName" id="usersEngName" value="${requestScope.info.usersEngName }"/></td>
@@ -128,18 +166,18 @@ $(document).ready(function(){
 			</tbody>
 
 			<thead>
-				<tr>
-					<td align="center">핸드폰 번호</td>
-					<td align="center">국적</td>
-					<td align="center">현 거주지 주소</td>
-					<td align="center">본적지 주소</td>
-					<td align="center">인증가능 상태</td>
-					<td align="center">졸업 대학</td>
+				<tr class="filters">
+					<th align="center"><input type="text" class="form-control" placeholder="핸드폰번호" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="국적" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="현 거주지 주소" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="본 거주지 주소" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="인증 가능상태" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="졸업 대학" disabled></th>
 				</tr>
 			</thead>
 
 			<tbody id="infoTbody2">
-				<tr>
+				<tr class="filters">
 					<td align="center"><input type="number" name="usersCellNum" id="usersCellNum" value="${requestScope.info.usersCellNum }"/></td>
 					<td align="center"><select name="usersNational"
 						id="usersNational">
@@ -185,17 +223,17 @@ $(document).ready(function(){
 			</tbody>
 
 			<thead>
-				<tr>
-					<td align="center">졸업 대학원</td>
-					<td align="center">교수실 전화 번호</td>
-					<td align="center">연구실 전화 번호</td>
-					<td align="center">소속 학과</td>
-					<td align="center">교수실</td>
-					<td align="center">연구실</td>
+				<tr class="filters">
+					<th align="center"><input type="text" class="form-control" placeholder="졸업 대학원" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="교수실 전화번호" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="연구실 전화번호" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="소속학과" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="교수실" disabled></th>
+					<th align="center"><input type="text" class="form-control" placeholder="연구실" disabled></th>
 				</tr>
 			</thead>
 			<tbody id="infoTbody3">
-				<tr>
+				<tr class="filters">
 					<td align="center"><input type="number" name="proGradSchool" id="proGradSchool" value="${requestScope.info.proGradSchool }"/></td>
 					<td align="center"><input type="text" name="proOfficePhoneNum" id="proOfficePhoneNum" value="${requestScope.info.proOfficePhoneNum }"/></td>
 					<td align="center"><input type="text" name="proLaboratoryPhoneNum" id="proLaboratoryPhoneNum" value="${requestScope.info.proLaboratoryPhoneNum }"/></td>
@@ -271,9 +309,9 @@ $(document).ready(function(){
 				</tr>
 			</tbody>
 		</table>
-			<input type="hidden" name="usersPassword" value="${requestScope.info.usersPassword }"/>
-			<input type="submit" value="수정">
+			<input type="hidden" name="usersPassword" value="${requestScope.info.usersPassword }"/><br>
+			<center><input type="submit" value="수정"></center><br>
 			<sec:csrfInput/>
 	</form>
-	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
+	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 </body>

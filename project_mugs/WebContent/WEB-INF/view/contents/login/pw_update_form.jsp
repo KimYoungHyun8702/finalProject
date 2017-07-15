@@ -21,8 +21,8 @@
 </c:if>
 <form action="${initParam.rootPath}/admin/pwChange.do" method="post">
 		<input name="id" type="hidden" value="${user.usersId }">
-		새로운비밀번호 : <input type="text" name="pw"><br>
-		비밀번호 재입력 : <input type="text" name="chkPw"><br>
+		<center>새로운비밀번호 : <input type="text" name="pw" class="form-control"><br></center>
+		비밀번호 재입력 : <input type="text" name="chkPw" class="form-control"><br>
 	<sec:csrfInput/>
 	<button type="submit">확인</button>
 </form>

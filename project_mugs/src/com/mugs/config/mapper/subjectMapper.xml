@@ -76,7 +76,7 @@
 	<resultMap id="subject-professor-resultmap" type="subject" extends="subject-basic-resultmap">
 		<association property="professor" resultMap="com.mugs.config.mapper.professorMapper.professor-resultmap"/>
 	</resultMap>
- 
+
 	<!-- insert -->
 	<insert id="insertSubject" parameterType="subject">
 	<selectKey resultType="int" keyProperty="subjectId" order="BEFORE">
@@ -217,7 +217,7 @@
 	</select>
 	
 	<!-- 학기 전체조회 -->
-	<select id="selectSemesterInfo" resultType="int">
+	<select id="selectSemesterInfo" resultType="string">
 		SELECT 	distinct subject_semester
 		FROM 	subject
 	</select>

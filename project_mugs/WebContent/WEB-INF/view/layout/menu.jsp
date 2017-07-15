@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <%-- Spring Security 커스텀 태그 --%>
 <!DOCTYPE html>
 <html>
@@ -9,16 +10,24 @@
 			color:black;
 		}
 		
-		div{
-			
+		td {
+			height:17px;
 		}
 	</style>
 	  <meta charset="utf-8">
 	  <meta name="description" content="">
     <meta name="author" content="">
     <title>Bootstrap 101 Template</title>
- 
+    <script src="${initParam.rootPath }/resource/bootstrap/js/bootstrap.min.js"></script>
+<script src="${initParam.rootPath }/resource/jquery/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap.min.css">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/_bootstrap.min.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/_bootstrap.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/simple-sidebar.css" rel="stylesheet">
+  <!--  <link href="https://bootswatch.com/solar/bootstrap.css" rel="stylesheet"> -->
     
+
     <script type="text/javascript">
    function logout(){
       document.getElementById("logoutForm").submit();
@@ -77,14 +86,15 @@
 
 <%--인증된(로그인한) 사용자 메뉴  (isAuthenticated()) : 인증 안 된 상태에서 안보여야 하는 메뉴 --%>
 <sec:authorize access="isAuthenticated()">
-	<li class="side-menu"><a href="javascript:logout()">로그아웃</a></li>
+   <li class="side-menu"><a href="javascript:logout()">로그아웃</a></li>
 </sec:authorize>
+
 
 <%--학생 메뉴--%>
 <sec:authorize access="hasRole('ROLE_STU')">
 <div class="container">
     <div class="row">
-        <div class="col-sm-3 col-md-3">
+        <div class="col-sm-2 col-md-3">
             <div class="panel-group" id="accordion">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -96,7 +106,7 @@
                     <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
-                                <tr>
+                                <tr style="height:20px">
                                     <td>
                                         <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/student/getCollegeList.do">기준학점조회</a>
                                     </td>
@@ -122,11 +132,11 @@
 					
 					<div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2"><span class="glyphicon glyphicon-folder-close">
                             </span>신청마당</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne2" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -155,11 +165,11 @@
 					
 					 <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne3"><span class="glyphicon glyphicon-folder-close">
                             </span>성적조회</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne3" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -177,22 +187,17 @@
                                         <span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/academicProbation.do" class="side-menu">학고내역조회</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="${initParam.rootPath }/student/mapByBuildingId.do" class="side-menu">지도</a>
-                                    </td>
-                                </tr>
                             </table>
                         </div>
                     </div>
 					
 					<div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne4"><span class="glyphicon glyphicon-folder-close">
                             </span>학생정보</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne4" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -259,11 +264,11 @@
                     
                      <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2"><span class="glyphicon glyphicon-folder-close">
                             </span>강의계획서</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne2" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -277,11 +282,11 @@
                     
                      <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne3"><span class="glyphicon glyphicon-folder-close">
                             </span>성적주기</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne3" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -338,11 +343,11 @@
 					
 					<div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2"><span class="glyphicon glyphicon-folder-close">
                             </span>교수관련</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne2" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -362,11 +367,11 @@
 					
 					 <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne3"><span class="glyphicon glyphicon-folder-close">
                             </span>과목관련</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne3" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -385,11 +390,11 @@
 					
 					<div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne4"><span class="glyphicon glyphicon-folder-close">
                             </span>학과관련</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne4" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -409,11 +414,11 @@
 					
 					 <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne5"><span class="glyphicon glyphicon-folder-close">
                             </span>단과대학관련</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne5" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -433,11 +438,11 @@
 					
 					 <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne6"><span class="glyphicon glyphicon-folder-close">
                             </span>건물관련</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne6" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -457,11 +462,11 @@
 					
 					 <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne7"><span class="glyphicon glyphicon-folder-close">
                             </span>공지사항관련</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne7" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>

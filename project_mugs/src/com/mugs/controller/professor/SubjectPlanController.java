@@ -57,6 +57,7 @@ public class SubjectPlanController{
 	@ResponseBody
 	public String reNewSubjectPlan(@ModelAttribute SubjectPlan sp){
 		//비지니스로직
+		System.out.println(sp);
 		service.setSubjectPlan(sp);
 	return "contents/professor/SubjectPlan_update"; //WEB-INF/view/contents/professor/SubjectPlan_update.jsp
 	}

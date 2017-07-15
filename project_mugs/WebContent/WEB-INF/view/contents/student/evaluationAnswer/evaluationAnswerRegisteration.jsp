@@ -5,6 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-theme.min.css">
+	<link href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="${initParam.rootPath }/resource/bootstrap/css/style.css" rel="stylesheet">
+ 
 <style type="text/css">
 
 table{
@@ -144,7 +149,7 @@ $(document).ready(function(){
 </table>
 </div>
 <center><input type="submit" value="제출" id="submit"/><br><br></center>
-<center><button onclick="location.href='${initParam.rootPath }/'" id="back" type="button" class="btn btn-primary">메인페이지로</button></center>
+<center><button onclick="location.href='${initParam.rootPath }/index.do'" id="back" type="button" class="btn btn-primary">메인페이지로</button></center>
 <sec:csrfInput/><%-- csrf 토큰 --%>	
 </form>
 </body>

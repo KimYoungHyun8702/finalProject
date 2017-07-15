@@ -15,6 +15,10 @@ td{
 	height:80px;
 	text-align:center;
 	border: 1px solid black;
+	width:100px;
+}
+tbody tr td {
+	width:100px;
 }
 th{
 	height:60px;
@@ -38,7 +42,6 @@ function popupOpen(subjectName, buildingName, roomName) {
 
 $(document).ready(function(){
 		var text="";
-	   
 			<c:forEach items="${requestScope.myTimeTableResult}" var="result">
 				<c:choose>			
 					<c:when test="${result.subject.gyoShi1 == '1'}">
@@ -46,16 +49,12 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '월'}">
 								$("#tbody tr").eq(0).children().eq(1).css("background-color", "pink");
 								$("#tbody tr").eq(1).children().eq(1).css("background-color", "pink");
-								$("#tbody tr").eq(0).children().eq(1).html("${result.subject.subjectName}"+"<br>"+"${result.professor.usersName}"+"<br>"+"${result.subject.lectureId}"+"<br>"+"${result.building.buildingName}"+"<br>"+"${result.room.roomName}");
-								$("#tbody tr").eq(1).children().eq(1).html("${result.subject.subjectName}"+"<br>"+"${result.professor.usersName}"+"<br>"+"${result.subject.lectureId}"+"<br>"+"${result.building.buildingName}"+"<br>"+"${result.room.roomName}");
 								$("#tbody tr").eq(0).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								$("#tbody tr").eq(1).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
-									
 										<c:choose>
 											<c:when test="${result.subject.yoYil2=='월'}">
-											
 												$("#tbody tr").eq(0).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(0).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
@@ -88,10 +87,8 @@ $(document).ready(function(){
 										</c:choose>
 									</c:when>
 									<c:when test="${result.subject.gyoShi2=='3'}">
-									
 										<c:choose>
 											<c:when test="${result.subject.yoYil2=='월'}">
-										
 												$("#tbody tr").eq(2).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(2).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
@@ -104,14 +101,8 @@ $(document).ready(function(){
 												$("#tbody tr").eq(3).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
-											
 												$("#tbody tr").eq(2).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(3).css("background-color", "cyan");
-											
-												$("#tbody tr").eq(2).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												
-												$("#tbody tr").eq(3).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												
 												$("#tbody tr").eq(2).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 												$("#tbody tr").eq(3).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
@@ -3086,7 +3077,6 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-
  <div class="container">
     
         <h3>나의 시간표</h3>
@@ -3191,129 +3181,5 @@ $(document).ready(function(){
         	</table>
         </div>
 	</div>
-   
-	 <!--  <table width="700" border="0" cellpadding="1" cellspacing="1" bgcolor="#c5e2cc">
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">요일/교시</td>
-          <td width="107" class="schedule">월</td>
-          <td width="107" class="schedule">화</td>
-          <td width="107" class="schedule">수</td>
-          <td width="107" class="schedule">목</td>
-          <td width="107" class="schedule">금</td>
-          <td width="107" class="schedule">토</td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">1</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">2</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">3</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">4</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">5</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">6</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">7</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">8</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">9</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">10</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>  
-      </table> -->
 </body>
 </html>

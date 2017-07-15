@@ -1,9 +1,32 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta>
 <title>Insert title here</title>
+<style>
+input{
+	text-align:center;
+	width:200px;
+	height:25px;
+}
+
+button {
+	height:27px;
+	font-size:12pt;
+}
+body {
+	font-family:돋움체;
+	align:center;
+}
+
+</style>
 </head>
 <body>
 

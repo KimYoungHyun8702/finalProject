@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 table{
-	width:100px;
+	width:100%;
 	border-collapse: collapse;
 }
 td{
@@ -77,12 +77,7 @@ $(document).on("click", ".Btn", function(){
 		},
 		"error":function(txt){	
 			alert('등록된 강의계획서가 없습니다');
-			//$(this).parent().next().find("input").attr("style","display: inline");
 			$this.parent().next().children().css("display", "inline");
-		/* 	console.log($this);
-			console.log($this.parent());
-			console.log($this.parent().next());
-			console.log($this.parent().next().children()); */
 		}
 	});//ajax
 });//document(click);
@@ -94,9 +89,8 @@ $(document).on("click", ".Btn", function(){
 <h3>강의계획서~안뇽안뇽</h3>
  <hr style="border: solid px black;">
 
-    <div class="panel panel-primary filterable">
 
-	<table class="table" border="1">
+	<table border="1">
 	<thead id="thead">
 		<tr class="filters">
 		<tr>
@@ -130,33 +124,8 @@ $(document).on("click", ".Btn", function(){
 			<th width="120px"><input type="text"  placeholder="강의계획서 등록" disabled></th>
 		</tr>
 	</thead>
-	</table>
-	</div>
 	<tbody id="tbody"></tbody>			
 </table>
-
-<!-- <form id="form">
-연도(sp)<input id="planYear" value=""><br>
-학기(sp)<input id="planSemester" value=""><br>
-교과목개요(sp)<input id="planSummary" value=""><br>
-학습목표(sp)<input id="planLessonGoal" value=""><br>
-주차별강의내용(sp)<input id="planWeekContent" value=""><br>
-채점방식(sp)<input id="planMarkingMethod" value=""><br>
-교재(sp)<input id="planBookinfo" value=""><br>
-참고문헌(sp)<input id="planBibliography" value=""><br>
-과목명(s)<input id="subjectName" value=""><br>
-이수구분(s)<input id="subjectType" value=""><br>
-학년(s)<input id="subjectGrade" value=""><br>
-학점(s)<input id="subjectCredit" value=""><br>
-강의시간(s)<input id="subjectTime" value=""><br>
-교수ID(p)<input id="proId" value=""><br>
-교수실ID(p)<input id="proRoomOfficeId" value=""><br>
-이름(u)<input id="usersName" value=""><br>
-영문성명(u)<input id="usersEngName" value=""><br>
-이메일(u)<input id="usersEmail" value=""><br>
-핸드폰번호(u)<input id="usersCellNum" value=""><br>
-국적(u)<input id="usersNational" value=""><br>
-</form> -->
 </body>
 <script type="text/javascript">
 	var openWin;

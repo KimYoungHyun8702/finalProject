@@ -5,6 +5,37 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+input{
+	text-align:center;
+}
+table{
+	width:100%;
+	
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
+}
+select{
+	width:150px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+h3{
+	font-family:돋움체;
+}
+</style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function check(){
@@ -39,9 +70,9 @@ function check(){
 			<table border="1">
 				<thead>
 					<tr>
-						<td align="center">건물 이름</td>
-						<td align="center">건물 사진</td>
-						<td align="center">건물 X좌표</td>
+						<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="건물이름" disabled></th>
+						<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder=건물사진 disabled></th>
+						<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="건물X좌표" disabled></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -53,9 +84,9 @@ function check(){
 				</tbody>
 				<thead>
 					<tr>
-						<td align="center">건물 Y좌표</td>
-						<td align="center">건물 전화번호</td>
-						<td align="center">건물 주소</td>
+						<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="건물 Y좌표" disabled></th>
+						<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="건물 전화번호" disabled></th>
+						<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="건물 주소" disabled></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -65,8 +96,8 @@ function check(){
 						<td align="center"><input type="text" name="buildingAddr" id="buildingAddr"/></td>
 					</tr>
 				</tbody>
-			</table>
-			<input type="submit" value="등록">
+			</table><br>
+			<center><input type="submit" value="등록"></center>
 			<sec:csrfInput/>
 	</form>
 </body>

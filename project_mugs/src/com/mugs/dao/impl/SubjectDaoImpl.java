@@ -147,7 +147,7 @@ public class SubjectDaoImpl implements SubjectDao {
 	}
 
 	@Override
-	public List<Integer> selectSemesterInfo() {
+	public List<String> selectSemesterInfo() {
 		return session.selectList(makeSqlId("selectSemesterInfo"));
 	}
 	// End BM

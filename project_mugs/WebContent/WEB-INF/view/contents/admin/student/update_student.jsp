@@ -11,7 +11,7 @@ input{
 	text-align:center;
 }
 table{
-	width:700px;
+	width:100%;
 	
 }
 th {
@@ -118,9 +118,9 @@ function check(){
 	<hr>
 	<form id="insertForm" action="${initParam.rootPath }/admin/updateStudentController.do" method="post" onsubmit="return check()">
 	
-	<table id="infoStudent" border="1" class="table">
+	<table id="infoStudent" border="1">
 		<thead id="thead">
-	   		<tr class="filters">
+	   		<tr>
 	   			<th align="center"><input type="text" class="form-control" placeholder="학번" disabled></th>
 				<th align="center"><input type="text" class="form-control" placeholder="이름" disabled></th>
 				<th align="center"><input type="text" class="form-control" placeholder="영문 이름" disabled></th>
@@ -130,7 +130,7 @@ function check(){
 			</tr>
 		</thead>
 		<tbody>
-			<tr class="filters">
+			<tr>
 				<td align="center"><input type="number" name="usersId" value="${requestScope.info.usersId }" id="usersId" readonly/></td>
 				<td align="center"><input type="text" name="usersName" value="${requestScope.info.usersName }" id="usersName"/></td>
 				<td align="center"><input type="text" name="usersEngName" value="${requestScope.info.usersEngName }" id="usersEngName"/></td>
@@ -140,7 +140,7 @@ function check(){
 			</tr>
 		</tbody>
 		<thead id="thead">
-	   		<tr class="filters">
+	   		<tr>
 				<th align="center"><input type="text" class="form-control" placeholder="핸드폰 번호" disabled></th>
 				<th align="center"><input type="text" class="form-control" placeholder="국적" disabled></th>
 				<th align="center"><input type="text" class="form-control" placeholder="현 거주지 주소" disabled></th>
@@ -150,7 +150,7 @@ function check(){
 			</tr>
 		</thead>
 		<tbody>
-			<tr class="filters">
+			<tr>
 				<td align="center"><input type="text" name="usersCellNum" value="${requestScope.info.usersCellNum }" id="usersCellNum"/></td>
 				<td align="center"><select name="usersNational" id="usersNational ">
 									<c:choose>
@@ -193,7 +193,7 @@ function check(){
 			</tr>
 		</tbody>
 		<thead id="thead">
-	   		<tr class="filters">
+	   		<tr>
 				<th align="center" ><input type="text" class="form-control" placeholder="병영 구분" disabled></th>
 				<th align="center"><input type="text" class="form-control" placeholder="입학 일자" disabled></th>
 				<th align="center"><input type="text" class="form-control" placeholder="졸업 일자" disabled></th>
@@ -203,7 +203,7 @@ function check(){
 			</tr>
 		</thead>
 		<tbody>
-			<tr class="filters">
+			<tr>
 				
 				<td align="center"><input type="text" name="stuArmy" value="${requestScope.info.stuArmy }" id="stuArmy"/></td>
 				<td align="center"><input type="date" name="stuAdmissionDate" value="${requestScope.stuAdmissionDate }" id="stuAdmissionDate"/></td>
@@ -214,7 +214,7 @@ function check(){
 			</tr>
 		</tbody>
 		<thead id="thead">
-	   		<tr class="filters">
+	   		<tr>
 				<th align="center"><input type="text" class="form-control" placeholder="졸업시험 패스 여부" disabled></th>
 				<th align="center"><input type="text" class="form-control" placeholder="조기졸업 대상 여부" disabled></th>
 				<th align="center"><input type="text" class="form-control" placeholder="학기" disabled></th>
@@ -224,7 +224,7 @@ function check(){
 			</tr>
 		</thead>
 		<tbody>
-			<tr class="filters">
+			<tr>
 				<td align="center"><input type="text" name="stuGraduationExam" value="${requestScope.info.stuGraduationExam }" id="stuGraduationExam"/></td>
 				<td align="center"><input type="text" name="stuEarlyGraduation" value="${requestScope.info.stuEarlyGraduation }" id="stuEarlyGraduation"/></td>
 				<td align="center"><input type="text" name="stuSemester" value="${requestScope.info.stuSemester }" id="stuSemester"/></td>
@@ -300,5 +300,5 @@ function check(){
 			<center><input type="submit" value="수정"></center><br><br>
 			<sec:csrfInput/>
 	</form>
-	<center><button onclick="location.href='${initParam.rootPath }/'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 </body>
