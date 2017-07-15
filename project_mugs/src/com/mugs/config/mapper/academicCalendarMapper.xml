@@ -24,7 +24,7 @@
 	<selectKey resultType="int" keyProperty="calendarId" order="BEFORE">
 		SELECT CALENDAR_ID_SEQ.nextval FROM dual
 	</selectKey>
-	INSERT INTO academic_calendar VALUES(#{calendarId},#{calendarStart}, #{calendarFinsh}, #{calendarYear}, #{calendarName})
+	INSERT INTO academic_calendar VALUES(#{calendarId},#{calendarStart}, #{calendarFinish}, #{calendarYear}, #{calendarName})
 </insert>
 
 <update id="updateAcademicCalendarById" parameterType="academicCalendar">

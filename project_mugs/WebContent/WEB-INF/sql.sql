@@ -301,7 +301,6 @@ CREATE TABLE ACADEMIC_PROBATION(
 
 /* 23.학사일정 */
 CREATE TABLE ACADEMIC_CALENDAR (
-   CALENDAR_YEAR NUMBER NOT NULL, /* 학사연도 */
    CALENDAR_ID NUMBER NOT NULL, /* 학사일정 ID */
    CALENDAR_START DATE NOT NULL, /* 일정시작일 */
    CALENDAR_FINISH DATE NOT NULL, /* 일정종료일 */
@@ -311,7 +310,7 @@ CREATE TABLE ACADEMIC_CALENDAR (
 
 --학점포기는 학점 아래, 휴복학 신청은 학생테이블 아래에
 
-
+----시퀀스 생성 
 
 /* 각 테이블의 삭제 */
 DROP TABLE ACADEMIC_CALENDAR;
@@ -344,23 +343,24 @@ DROP TABLE USERS;
 
 
 /* 각 테이블의 기본키에 대한 필요 시퀀스 생성 */
-CREATE SEQUENCE EVALUATION_ANSWER_ID_SEQ; /* 평가응답 테이블의 기본키에 대한 시퀀스 삭제 */
-CREATE SEQUENCE GUIDENCE_STUDENT_ID_SEQ; /* 지도학생 테이블의 기본키에 대한 시퀀스 삭제 */
-CREATE SEQUENCE SUBJECT_ID_SEQ; /* 과목 테이블의 기본키에 대한 시퀀스 삭제 */
-CREATE SEQUENCE PLAN_ID_SEQ; /* 강의계획서 테이블의 기본키에 대한 시퀀스 삭제 */
-CREATE SEQUENCE NOTICE_ID_SEQ; /* 공지사항 테이블의 기본키에 대한 시퀀스 삭제 */
-CREATE SEQUENCE PRO_SUBJECT_ID_SEQ; /* 교수담당과목 테이블의 기본키에 대한 시퀀스 삭제 */
-CREATE SEQUENCE EVALUATION_ID_SEQ; /* 평가 테이블의 기본키에 대한 시퀀스 삭제 */
-CREATE SEQUENCE MAJOR_ID_SEQ; /* 학과 테이블의 기본키에 대한 시퀀스 삭제 */
-CREATE SEQUENCE COLLEGE_ID_SEQ; /* 대학(학부) 테이블의 기본키에 대한 시퀀스 삭제 */
-CREATE SEQUENCE COURSE_ID_SEQ; /* 수강 테이블의 기본키에 대한 시퀀스 삭제 */
-CREATE SEQUENCE CREDIT_ID_SEQ;/* 학점 테이블의 기본키에 대한 시퀀스 삭제 */
-CREATE SEQUENCE PROBATION_ID_SEQ;/* 학사경고 테이블의 기본키에 대한 시퀀스 삭제 */
-CREATE SEQUENCE CALENDAR_ID_SEQ;/* 학사일정 테이블의 기본키에 대한 시퀀스 삭제 */
-CREATE SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀스 삭제 */
-CREATE SEQUENCE ROOM_ID_SEQ;/* 방 테이블의 기본키에 대한 시퀀스 삭제*/
+CREATE SEQUENCE EVALUATION_ANSWER_ID_SEQ; /* 평가응답 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE GUIDENCE_STUDENT_ID_SEQ; /* 지도학생 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE SUBJECT_ID_SEQ; /* 과목 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE PLAN_ID_SEQ; /* 강의계획서 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE NOTICE_ID_SEQ; /* 공지사항 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE PRO_SUBJECT_ID_SEQ; /* 교수담당과목 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE EVALUATION_ID_SEQ; /* 평가 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE MAJOR_ID_SEQ; /* 학과 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE COLLEGE_ID_SEQ; /* 대학(학부) 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE COURSE_ID_SEQ; /* 수강 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE CREDIT_ID_SEQ; /* 학점 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE ROOM_ID_SEQ;/* 방 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE PROBATION_ID_SEQ;/* 학사경고 테이블의 기본키에 대한 시퀀스 생성 */
+CREATE SEQUENCE CALENDAR_ID_SEQ; /* 학사일정 테이블의 기본키에 대한 시퀀스 생성 */
 CREATE SEQUENCE LRAPPLICATION_ID_SEQ;
 CREATE SEQUENCE CGU_ID_SEQ;
+
 
 /* 각 테이블의 기본키에 대한 필요 시퀀스 삭제 */
 
@@ -381,3 +381,4 @@ DROP SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀�
 DROP SEQUENCE ROOM_ID_SEQ;/* 방 테이블의 기본키에 대한 시퀀스 삭제*/
 DROP SEQUENCE LRAPPLICATION_ID_SEQ;
 DROP SEQUENCE CGU_ID_SEQ;
+

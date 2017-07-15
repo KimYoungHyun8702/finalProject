@@ -60,4 +60,10 @@ public interface CreditGiveUpDao {
 	 * @return
 	 */
 	List<CreditGiveUp> selectCreditGiveUpByStuIdYearSemester(String stuId, int nowYear, String semester);
+	
+	/**
+	 * 학점 포기 현황 전체 조회 메소드
+	 * @return
+	 */
+	List<CreditGiveUp> selectCreditGiveUpJoin();
 }

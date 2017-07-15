@@ -120,4 +120,13 @@ public interface SubjectService {
 	 * @return
 	 */
 	List<Room> selectForOverlap(String subjectTime, String subjectSemester, int buildingId);
+	
+	/**
+	 * 수정할 경우 강의실 중복 제거를 위한 조회 메소드
+	 * @param subjectTime
+	 * @param subjectSemester
+	 * @param buildingId
+	 * @return
+	 */
+	List<Room> selectForOverlapUpdate(String subjectTime, String subjectSemester, int buildingId, int subjectId);
 }

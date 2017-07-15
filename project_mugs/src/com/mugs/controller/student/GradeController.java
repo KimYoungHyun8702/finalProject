@@ -27,6 +27,7 @@ public class GradeController {
 		String id = users.getUsersId();
 		
 		List<Integer> list = service.getYear(id);
+		System.out.println(list);
 		return list;
 	}
 
@@ -35,7 +36,6 @@ public class GradeController {
 	public List<Credit> allCreditInquiry() {
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String id = users.getUsersId();
-		
 		List<Credit> list = service.getAllCredit(id);
 		return list;
 	}
@@ -57,6 +57,7 @@ public class GradeController {
 	@RequestMapping("creditByYearSemester")
 	@ResponseBody
 	public List<Credit> creditByYearSemester(int year, String semester) {
+		System.out.println(year+semester+"###");
 		List<Credit> list = service.getCreditByYearSemester(year, semester);
 		return list;
 	}

@@ -27,6 +27,24 @@
 	<association property="credit" resultMap="com.mugs.config.mapper.creditMapper.credit-subject-join-resultmap"/>
 </resultMap>
 
+<resultMap type="creditGiveUp" id="creditGiveUp-credit-reresultmap" extends="creditGiveUp-basic-reresultmap">
+<!--association 태그  : preperty - instance변수명, javaType - instance변수 타입-->
+		<id column="major_name" property="majorName"/>
+		<result column="users_id" property="usersId"/>
+		<result column="users_name" property="usersName"/>
+		<association property="credit" javaType ="com.mugs.vo.Credit">
+			<result column="credit_id" property="creditId"/>
+			<result column="credit_year" property="creditYear"/>
+			<result column="credit_semester" property="creditSemester"/>
+			<result column="credit_acquire" property="creditAcquire"/>
+			<result column="credit_grade" property="creditGrade"/>
+			<result column="credit_score" property="creditScore"/>
+			<result column="credit_recource" property="creditRecource"/>
+			<result column="subject_id" property="subjectId"/>
+			<result column="stu_id" property="stuId"/>
+		</association>
+</resultMap>
+
 <!-- insert -->
 <insert id="insertCreditGiveUp" parameterType="creditGiveUp">
    <selectKey resultType="int" keyProperty="creditGiveUpId" order="BEFORE">
@@ -98,5 +116,15 @@
     and    cg.CGU_YEAR=#{nowYear}
     and    cg.CGU_SEMESTER=#{semester}
  </select>
- 
+
+<select id="selectCreditGiveUpJoin" resultMap="creditGiveUp-basic-reresultmap">
+	SELECT c.cgu_id, c.cgu_year, c.cgu_semester, c.cgu_start_date, c.cgu_finish_date,
+		   c.cgu_state, c.credit_id, m.major_name, u.users_id, u.users_name
+	FROM credit_give_up c, credit t, student s, users u, major m
+	WHERE c.credit_id = t.credit_id 
+	AND t.stu_id = s.stu_id
+	AND s.stu_id = u.users_id
+	AND s.major_id = m.major_id
+</select>
+
 </mapper>

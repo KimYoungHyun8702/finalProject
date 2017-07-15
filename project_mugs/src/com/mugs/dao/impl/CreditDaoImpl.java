@@ -146,4 +146,27 @@ public class CreditDaoImpl implements CreditDao {
 		map.put("stuId", stuId);
 		return session.selectList(makeSqlId("selectCreditScoreBySubjectIdStuId"), map);
 	}
+	
+	public Credit selectCreditByFourId(int creditYear, String creditSemester, String stuId, int subjectId) {
+		HashMap params = new HashMap();
+		params.put("creditYear", creditYear);
+		params.put("creditSemester", creditSemester);
+		params.put("stuId", stuId);
+		params.put("subjectId", subjectId);
+		return session.selectOne(makeSqlId("selectCreditByFourId"),params);
+	}
+
+	@Override
+	public int updateCreditByFourId(Credit credit) {
+		return session.update(makeSqlId("updateCreditByFourId"),credit);
+	}
+
+	@Override
+	public double selectCreditAvgByThreeId(int creditYear, String creditSemester, String stuId) {
+		HashMap params = new HashMap();
+		params.put("creditYear", creditYear);
+		params.put("creditSemester", creditSemester);
+		params.put("stuId", stuId);
+		return session.selectOne(makeSqlId("selectCreditAvgByThreeId"),params);
+	}
 }

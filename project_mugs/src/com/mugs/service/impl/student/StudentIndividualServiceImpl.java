@@ -71,7 +71,10 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 		      map.put("stuInfo", stuInfo);
 	return map;
 	}
-
+	
+	public List<String> getSemesterInfo(){
+		return subjectDao.selectSemesterInfo();
+	}
 
 	@Override
 	public List<College> getCollegeList(){
@@ -85,7 +88,7 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 
 
 	@Override
-	public List<Object> getSubjectTypeListByMajorId(int majorId) {
+	public List<Object> getSubjectTypeListByMajorId(int majorId,String semester) {
 		List<String> proNameList = new ArrayList<String>();				
 		List<ProfessorSubject> proSubList = new ArrayList<ProfessorSubject>();
 		List<Object> resultSubList = new ArrayList<Object>(); 
@@ -93,7 +96,7 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 		List<String> roomNameList = new ArrayList<String>();
 		
 		// 전공 id별 과목 List를 넣어준다.
-		List<Subject> subList = subjectDao.selectSubjectListByMajorIdForAllTime(majorId);
+		List<Subject> subList = subjectDao.selectSubjectListByMajorIdForAllTime(majorId,semester);
 				
 		// 해당 과목들의 강의실 id들을 넣어준다.
 		List<Integer> roomIdList = new ArrayList<Integer>();
@@ -116,12 +119,12 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 		for(Subject sub : subList){
 			subIdList.add(sub.getSubjectId());
 		}
-		
+
 		// 교수담당과목리스트에 해당 과목 id에 맞는 교수담당과목을 추가한다.
 		for(Integer i:subIdList){
-			proSubList.add(proSubDao.selectProfessorSubjectBySubId(i));
-		} 
-		   
+			proSubList.add(proSubDao.selectProfessorSubjectBySubId(i));			
+			} 
+		  
 		// 교수담당 과목에서 교수들의 이름을 빼온다.
 		for(ProfessorSubject ps : proSubList){
 			proNameList.add(ps.getProfessor().getUsersName());
@@ -139,7 +142,7 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 
 
 	@Override
-	public List<Object> getSubjectBySubjectTypeAndMajorId(List<Object> subTypeAndMajorId) {
+	public Map<String,Object> getSubjectBySubjectTypeAndMajorId(String semester, Integer majorId, String subjectType) {
 		/**
 		 * 1. 해당 단과대학 -> 전공 -> 이수구분 을 가지고 있는 과목들을 가져온다.
 		 * 2. 1번에 해당하는 강의실 이름과 교수 이름을 가져온다. 
@@ -148,14 +151,20 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 		 */
 		List<String> proNameList = new ArrayList<String>();				
 		List<ProfessorSubject> proSubList = new ArrayList<ProfessorSubject>();
-		List<Object> resultSubList = new ArrayList<Object>(); 
+		Map<String,Object> resultSubMap = new HashMap<>(); 
 		List<Room> roomList = new ArrayList<Room>();
 		List<String> roomNameList = new ArrayList<String>();
+		List<Subject> subList = new ArrayList<Subject>();
+		
 		
 		// 전공 id, 이수구분별 과목 List를 넣어준다.
-		List<Subject> subList = subjectDao.selectSubjectBySubjectTypeAndMajorId(subTypeAndMajorId);
-				
-		// 해당 과목들의 강의실 id들을 넣어준다.
+		if(subjectType.equals("선택교양") || subjectType.equals("필수교양")){
+		majorId = null;		
+		subList = subjectDao.selectSubjectBySubjectTypeAndMajorId(semester,majorId,subjectType);
+		}else{
+		subList = subjectDao.selectSubjectBySubjectTypeAndMajorId(semester,majorId,subjectType);
+		}
+		// 해당 과목들의 강의실 id들을 넣어준다. 
 		List<Integer> roomIdList = new ArrayList<Integer>();
 		for(Subject sub : subList){
 			roomIdList.add(sub.getLectureId());
@@ -176,7 +185,6 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 		for(Subject sub : subList){
 			subIdList.add(sub.getSubjectId());
 		}
-		
 		// 교수담당과목리스트에 해당 과목 id에 맞는 교수담당과목을 추가한다.
 		for(Integer i:subIdList){
 			proSubList.add(proSubDao.selectProfessorSubjectBySubId(i));
@@ -188,12 +196,12 @@ public class StudentIndividualServiceImpl implements StudentIndividualService {
 		}
 		
 		//List에 넣어준다.
-		resultSubList.add(subList);		
-		resultSubList.add(proNameList);
-		resultSubList.add(roomNameList);
+		resultSubMap.put("subList", subList);
+		resultSubMap.put("proNameList", proNameList);
+		resultSubMap.put("roomNameList", roomNameList);
 		
 		
-		return resultSubList;		
+		return resultSubMap;
 	}
 
 }

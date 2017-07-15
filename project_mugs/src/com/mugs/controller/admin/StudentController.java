@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mugs.service.admin.StudentService;
+import com.mugs.vo.CreditGiveUp;
+import com.mugs.vo.LeaveReturnApplication;
 import com.mugs.vo.Student;
 import com.mugs.vo.Users;
 
@@ -36,10 +38,21 @@ public class StudentController {
 		return view;
 	}
 	@RequestMapping("insertStudentController")
-	public ModelAndView insertStudent(Users users,Student student, HttpSession session){
-		session.setAttribute("insertMessage", "");
+	public ModelAndView insertStudent(Users users,Student student, HttpSession session) throws Exception{
 		student.setStuId(users.getUsersId());
-		studentService.insertStudent(users, student,"ROLE_STUDENT");
+		try{
+			studentService.insertStudent(users, student,"ROLE_STU");
+		}catch(Exception error){
+			ModelAndView view = new ModelAndView();
+			Map map = studentService.selectForInsertStudent();
+			view.setViewName("admin/student/insert_student.tiles");
+			view.addObject("error","1");
+			view.addObject("major",map.get("major"));
+			view.addObject("majorDual",map.get("majorDual"));
+			view.addObject("majorMinor",map.get("majorMinor"));
+			return view;
+		}
+		session.setAttribute("stuinsertMessage", "");
 		return new ModelAndView("redirect:/select_student.do");
 	}
 	
@@ -60,14 +73,14 @@ public class StudentController {
 	
 	@RequestMapping("deleteStudentController")
 	public ModelAndView deleteStudent(String usersId, HttpSession session){
-		session.setAttribute("deleteMessage", "");
+		session.setAttribute("studeleteMessage", "");
 		studentService.deleteStudent(usersId);
 		return new ModelAndView("redirect:/select_student.do","delete","delete");
 	}
 	
 	@RequestMapping("updateStudentController")
 	public ModelAndView updateStudent(Users users, Student student,  HttpSession session){
-		session.setAttribute("updateMessage", "");
+		session.setAttribute("stuupdateMessage", "");
 		studentService.updateStudent(users, student);
 		return new ModelAndView("redirect:/select_student.do","update","update");
 	}
@@ -86,7 +99,25 @@ public class StudentController {
 		view.addObject("majorList", map.get("majorList"));
 		view.addObject("majorMinorList", map.get("majorMinorList"));
 		view.addObject("majorDualList", map.get("majorDualList"));
-		System.out.println(view);
 		return view;
+	}
+	
+	@RequestMapping("selectUsersListController")
+	@ResponseBody
+	public List<Users> selectUsersList(String usersId){
+		List<Users> list = studentService.selectUsersList(usersId);
+		return list;
+	}
+	
+	@RequestMapping("selectCreditGiveUpListController")
+	public ModelAndView selectCreditGiveUpList(){
+		List<CreditGiveUp> list = studentService.selectCreditGiveUpList();
+		return new ModelAndView("admin/student/select_credit_give_up.tiles","list",list);
+	}
+	
+	@RequestMapping("selectLeaveReturnApplicationListController")
+	public ModelAndView selectLeaveReturnApplicationList(){
+		List<LeaveReturnApplication> list = studentService.selectLeaveReturnApplicationList();
+		return  new ModelAndView("admin/student/select_leave_return_application.tiles","list",list);
 	}
 }

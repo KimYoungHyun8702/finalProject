@@ -48,6 +48,5 @@
 	<select id="selectRoomList" resultMap="room-basic-resultmap">
 		<include refid="select-room"/>
 	</select>
-	
 
 </mapper>

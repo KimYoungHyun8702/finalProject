@@ -65,4 +65,10 @@ public class CreditGiveUpDaoImpl implements CreditGiveUpDao {
 		map.put("semester", semester);
 		return session.selectList(makeSql("selectCreditGiveUpByYearStuIdSemester"), map);
 	}
+
+	public List<CreditGiveUp> selectCreditGiveUpJoin() {
+		return session.selectList(makeSql("selectCreditGiveUpJoin"));
+	}
+
+
 }

@@ -4,7 +4,46 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="../first/dist/css/sb-admin-2.min.css" rel="stylesheet" media="screen"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+<style type="text/css">
+input{
+	text-align:center;
+}
+table{
+	width:700px;
+	
+}
+th {
+	bgcolor:peru;
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
+}
+select{
+	width:150px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+h3{
+	font-family:돋움체;
+}
+</style>
 <title>Insert title here</title>
+<script src="jquery-1.10.2.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function update_student(usersId){
@@ -99,97 +138,105 @@ $(document).ready(function(){
 </head>
 <body>
 <h2>학생 조회</h2>
-<c:if test="${sessionScope.insertMessage != null}">
+<c:if test="${sessionScope.stuinsertMessage != null}">
 		<script type="text/javascript">
 			alert("등록되었습니다");
 		</script>
-		<% session.removeAttribute("insertMessage"); %>
+		<% session.removeAttribute("stuinsertMessage"); %>
 </c:if>
-<c:if test="${sessionScope.updateMessage != null}">
+<c:if test="${sessionScope.stuupdateMessage != null}">
 		<script type="text/javascript">
 			alert("수정되었습니다");
 		</script>
-		<% session.removeAttribute("updateMessage"); %>
+		<% session.removeAttribute("stuupdateMessage"); %>
 </c:if>
-<c:if test="${sessionScope.deleteMessage != null}">
+<c:if test="${sessionScope.studeleteMessage != null}">
 		<script type="text/javascript">
 			alert("삭제되었습니다");
 		</script>
-		<% session.removeAttribute("deleteMessage"); %>
+		<% session.removeAttribute("studeleteMessage"); %>
 </c:if>
 <hr>
 	검색할 이름 <input type="text" name="usersName" id="usersName"/><button id="searchStudent">조회</button><br>
-	<table id="selectStudent" border="1">
-		<thead>
-			<tr>
-				<td align="center">학생 번호</td>
-				<td align="center">학생 이름</td>
-				<td align="center">학생 주민 번호</td>
-				<td align="center">학생 이메일</td>
-				<td align="center">상세 정보 보기</td>
+	<br>
+<div class="row">
+	<div class="panel panel-primary filterable">
+	<table id="selectStudent" border="1" class="table">
+		<thead id="thead">
+			<tr class="filters">
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 번호" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 이름" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 주민 번호" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 이메일" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="상세 정보 보기" disabled></th>
 			</tr>
 		</thead>
 		<tbody id="selectTbody"></tbody>
 	</table>
+	</div>
+</div>
 	<hr id="hr"/>
-	<h1>학생 상세 정보</h1>
-	<table id="infoStudent" border="1">
-		<thead>
-			<tr>
-				<td align="center">사진</td>
-				<td align="center">번호</td>
-				<td align="center">이름</td>
-				<td align="center">영문 이름</td>
-				<td align="center">주민 번호</td>
-				<td align="center">이메일</td>
+	<h3>학생 상세 정보</h3>
+	<div class="row">
+	<div class="panel panel-primary filterable">
+	<table id="infoStudent" border="1" class="table">
+		<thead id="thead">
+			<tr class="filters">
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="사진" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="번호" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="이름" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="영문 이름" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="주민 번호" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="이메일" disabled></th>
 			</tr>
 		</thead>
 		<tbody id="infoTbody1"></tbody>
 		
-		<thead>
-			<tr>
-				<td align="center">집 전화번호</td>
-				<td align="center">핸드폰 번호 </td>
-				<td align="center">국적</td>
-				<td align="center">현 거주지 주소</td>
-				<td align="center">본적지 주소</td>
-				<td align="center">인증가능 상태</td>
+		<thead id="thead">
+			<tr class="filters">
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="집 전화번호" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="핸드폰 번호" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="국적" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="현 거주지 주소" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="본적지 주소" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="인증가능 상태" disabled></th>
 			</tr>
 		</thead>
 		<tbody id="infoTbody2"></tbody>
 		
-		<thead>
-			<tr>
-				<td align="center">과정 구분</td>
-				<td align="center">병영 구분</td>
-				<td align="center">입학 일자</td>
-				<td align="center">졸업 일자</td>
-				<td align="center">학적 구분</td>
-				<td align="center">학생 구분</td>
+		<thead id="thead">
+			<tr class="filters">
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="과정 구분" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="병영 구분" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="입학 일자" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="졸업 일자" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학적 구분" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 구분" disabled></th>
 			</tr>
 		</thead>
 		<tbody id="infoTbody3"></tbody>
 		
-		<thead>
-			<tr>
-				<td align="center">학년</td>
-				<td align="center">졸업시험 패스 여부</td>
-				<td align="center">조기졸업 대상 여부</td>
-				<td align="center">학기</td>
-				<td align="center">소속 학과</td>
-				<td align="center">복수 전공</td>
+		<thead id="thead">
+			<tr class="filters">		
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학년" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="졸업시험 패스 여부" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="조기졸업 대상 여부" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학기" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="소속 학과" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="복수 전공" disabled></th>
 			</tr>
 		</thead>
 		<tbody id="infoTbody4"></tbody>
 			
-		<thead>
-			<tr>
-				<td align="center">부전공</td>
-				<td align="center">수정</td>
-				<td align="center">삭제</td>
+		<thead id="thead">
+			<tr class="filters">	
+				<th align="center"  bgcolor="peru"><input type="text" class="form-control" placeholder="부전공" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="수정" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="삭제" disabled></th>
 			</tr>
 		</thead>	
 		<tbody id="infoTbody5"></tbody>
-	</table>
-	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
-</body>
+		</table>
+	</div>
+</div><br>
+	<center><button onclick="location.href='${initParam.rootPath }/'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>

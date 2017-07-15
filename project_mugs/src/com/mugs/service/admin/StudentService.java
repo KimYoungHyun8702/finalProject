@@ -3,7 +3,8 @@ package com.mugs.service.admin;
 import java.util.List;
 import java.util.Map;
 
-import com.mugs.vo.Major;
+import com.mugs.vo.CreditGiveUp;
+import com.mugs.vo.LeaveReturnApplication;
 import com.mugs.vo.Student;
 import com.mugs.vo.Users;
 
@@ -14,8 +15,9 @@ public interface StudentService {
 	 * @param users
 	 * @param student
 	 * @return
+	 * @throws Exception 
 	 */
-	String insertStudent(Users users, Student student, String role);
+	String insertStudent(Users users, Student student, String role) throws Exception;
 	
 	/**
 	 * 학생 수정 메소드
@@ -59,6 +61,22 @@ public interface StudentService {
 	 */
 	Map selectStudentForupdate(String usersId);
 	
+	/**
+	 * 학번 중복 검사를 위한 Users전체 조회 리스트
+	 * @return
+	 */
+	List<Users> selectUsersList(String usersId);
 	
+	/**
+	 * 학점 포기 현황 전체 조회 리스트
+	 * @return
+	 */
+	List<CreditGiveUp> selectCreditGiveUpList();
+	
+	/**
+	 * 휴.복학 신청 현황 전체 조회 리스
+	 * @return
+	 */
+	List<LeaveReturnApplication> selectLeaveReturnApplicationList();
 	
 }

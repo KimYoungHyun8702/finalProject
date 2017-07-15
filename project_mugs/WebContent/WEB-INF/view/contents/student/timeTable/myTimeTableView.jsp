@@ -7,24 +7,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-table, td{
-	border: 1px solid black;
-}
+
 table{
-	width:700px;
-	border-collapse: collapse;
+	width:110%;
 }
 td{
-	padding: 5px;
+	height:80px;
+	text-align:center;
+	border: 1px solid black;
 }
-
+th{
+	height:60px;
+	text-align:center;
+	font-family:돋움체;
+}
+#tbody tr {
+	font-size:15px; font-family:돋움체;
+	line-height:15px;
+}
+h3{
+	font-family:돋움체;
+}
 </style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
+function popupOpen(subjectName, buildingName, roomName) {
+	var popOption = "width=470, height=470, resizable=no, scrollbars=no, status=no;";
+	window.open("getMapByBuildingName.do?subjectName="+subjectName+"&buildingName="+buildingName+"&roomName="+roomName,"map", popOption);
+}
+
 $(document).ready(function(){
 		var text="";
-	    alert("ddd");
-		alert("${myTimeTableResult.size()}");
 			<c:forEach items="${requestScope.myTimeTableResult}" var="result">
 				<c:choose>			
 					<c:when test="${result.subject.gyoShi1 == '1'}">
@@ -32,84 +45,74 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '월'}">
 								$("#tbody tr").eq(0).children().eq(1).css("background-color", "pink");
 								$("#tbody tr").eq(1).children().eq(1).css("background-color", "pink");
-								$("#tbody tr").eq(0).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}${result.room.roomName}${result.building.buildingName}");
-								$("#tbody tr").eq(1).children().eq(1).html("${result.subject.subjectName}"+"<br>"+"${result.professor.usersName}"+"<br>"+"${result.subject.lectureId}"+"<br>"+"${result.building.buildingName}"+"<br>"+"${result.room.roomName}");
+								$("#tbody tr").eq(0).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(1).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
-									alert("g3333f");
 										<c:choose>
 											<c:when test="${result.subject.yoYil2=='월'}">
-											alert("gfff");
 												$("#tbody tr").eq(0).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(0).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(2).css("background-color","cyan");
-												$("#tbody tr").eq(0).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(0).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(0).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(0).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>									
 										</c:choose>
 									</c:when>
 									<c:when test="${result.subject.gyoShi2=='3'}">
-									alert("39399");
 										<c:choose>
 											<c:when test="${result.subject.yoYil2=='월'}">
-											alert("123123");
 												$("#tbody tr").eq(2).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(2).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
-											alert("00000");
 												$("#tbody tr").eq(2).children().eq(3).css("background-color", "cyan");
-												alert("1");
 												$("#tbody tr").eq(3).children().eq(3).css("background-color", "cyan");
-												alert("2");
-												$("#tbody tr").eq(2).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												alert("3");
-												$("#tbody tr").eq(3).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												alert("4");
+												$("#tbody tr").eq(2).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
-											alert("454545");
 												$("#tbody tr").eq(2).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(2).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>									
 									</c:when>
@@ -118,32 +121,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(4).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(4).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(4).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(4).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(4).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>		
 									</c:when>								
@@ -152,32 +155,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(6).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(6).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(6).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(6).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(6).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>	
 									</c:when>
@@ -186,32 +189,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(8).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(8).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(8).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(8).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(8).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>	
 									</c:when>
@@ -221,40 +224,40 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '화'}">
 								$("#tbody tr").eq(0).children().eq(2).css("background-color", "pink");
 								$("#tbody tr").eq(1).children().eq(2).css("background-color", "pink");
-								$("#tbody tr").eq(0).children().eq(2).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(1).children().eq(2).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(0).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(1).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(0).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(0).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(2).css("background-color","cyan");
-												$("#tbody tr").eq(0).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(0).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(0).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(0).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>									
 										</c:choose>
 									</c:when>
@@ -263,32 +266,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(2).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(2).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(2).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(2).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(2).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>									
 									</c:when>
@@ -298,32 +301,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(4).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(4).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(4).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(4).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(4).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>		
 									</c:when>					
@@ -332,32 +335,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(6).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(6).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(6).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(6).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(6).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>	
 									</c:when>
@@ -366,32 +369,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(8).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(8).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(8).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(8).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(8).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>	
 									</c:when>
@@ -401,40 +404,40 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '수'}">
 								$("#tbody tr").eq(0).children().eq(3).css("background-color", "pink");
 								$("#tbody tr").eq(1).children().eq(3).css("background-color", "pink");
-								$("#tbody tr").eq(0).children().eq(3).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(1).children().eq(3).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(0).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(1).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(0).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(0).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(2).css("background-color","cyan");
-												$("#tbody tr").eq(0).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(0).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil=='목'}">
 												$("#tbody tr").eq(0).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(0).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>									
 										</c:choose>
 									</c:when>
@@ -443,32 +446,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(2).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(2).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(2).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(2).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(2).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>									
 									</c:when>
@@ -478,32 +481,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(4).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(4).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(4).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(4).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(4).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>		
 									</c:when>							
@@ -512,32 +515,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(6).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(6).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(6).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(6).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(6).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>	
 									</c:when>
@@ -546,32 +549,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(8).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(8).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(8).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(8).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(8).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>	
 									</c:when>
@@ -580,40 +583,40 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '목'}">
 								$("#tbody tr").eq(0).children().eq(4).css("background-color", "pink");
 								$("#tbody tr").eq(1).children().eq(4).css("background-color", "pink");
-								$("#tbody tr").eq(0).children().eq(4).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(1).children().eq(4).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(0).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(1).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(0).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(0).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(2).css("background-color","cyan");
-												$("#tbody tr").eq(0).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(0).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil=='목'}">
 												$("#tbody tr").eq(0).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(0).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(1).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(0).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(1).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(0).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(1).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>									
 										</c:choose>
 									</c:when>
@@ -622,32 +625,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(2).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(2).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(2).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(2).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(2).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(3).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(2).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(3).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(2).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(3).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>									
 									</c:when>
@@ -657,32 +660,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(4).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(4).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(4).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(4).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(4).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(5).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(4).children().eq(5).html("${result.subject.subjectName}<a href=''>링크요</a>${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(5).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(4).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(5).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>		
 									</c:when>							
@@ -691,32 +694,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(6).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(6).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(6).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(6).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(6).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(7).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(6).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(7).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(6).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(7).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>	
 									</c:when>
@@ -725,32 +728,32 @@ $(document).ready(function(){
 											<c:when test="${result.subject.yoYil2=='월'}">
 												$("#tbody tr").eq(8).children().eq(1).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(1).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(1).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='화'}">
 												$("#tbody tr").eq(8).children().eq(2).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(2).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(2).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='수'}">
 												$("#tbody tr").eq(8).children().eq(3).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(3).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(3).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='목'}">
 												$("#tbody tr").eq(8).children().eq(4).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(4).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(4).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 											<c:when test="${result.subject.yoYil2=='금'}">
 												$("#tbody tr").eq(8).children().eq(5).css("background-color", "cyan");
 												$("#tbody tr").eq(9).children().eq(5).css("background-color", "cyan");
-												$("#tbody tr").eq(8).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-												$("#tbody tr").eq(9).children().eq(5).html("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+												$("#tbody tr").eq(8).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+												$("#tbody tr").eq(9).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 											</c:when>
 										</c:choose>	
 									</c:when>
@@ -759,8 +762,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '금'}">
 								$("#tbody tr").eq(0).children().eq(5).css("background-color", "pink");
 								$("#tbody tr").eq(1).children().eq(5).css("background-color", "pink");
-								$("#tbody tr").eq(0).children().eq(5).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(1).children().eq(5).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(0).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(1).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -872,8 +875,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '월'}">
 								$("#tbody tr").eq(2).children().eq(1).css("background-color", "pink");
 								$("#tbody tr").eq(3).children().eq(1).css("background-color", "pink");
-								$("#tbody tr").eq(2).children().eq(1).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(3).children().eq(1).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(2).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(3).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -981,8 +984,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '화'}">
 								$("#tbody tr").eq(2).children().eq(2).css("background-color", "pink");
 								$("#tbody tr").eq(3).children().eq(2).css("background-color", "pink");
-								$("#tbody tr").eq(2).children().eq(2).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(3).children().eq(2).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(2).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(3).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -1090,8 +1093,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '수'}">
 								$("#tbody tr").eq(2).children().eq(3).css("background-color", "pink");
 								$("#tbody tr").eq(3).children().eq(3).css("background-color", "pink");
-								$("#tbody tr").eq(2).children().eq(3).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(3).children().eq(3).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(2).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(3).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -1199,8 +1202,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '목'}">
 								$("#tbody tr").eq(2).children().eq(4).css("background-color", "pink");
 								$("#tbody tr").eq(3).children().eq(4).css("background-color", "pink");
-								$("#tbody tr").eq(2).children().eq(4).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(3).children().eq(4).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(2).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(3).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -1308,8 +1311,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '금'}">
 								$("#tbody tr").eq(2).children().eq(5).css("background-color", "pink");
 								$("#tbody tr").eq(3).children().eq(5).css("background-color", "pink");
-								$("#tbody tr").eq(2).children().eq(5).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(3).children().eq(5).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(2).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(3).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -1421,8 +1424,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '월'}">
 								$("#tbody tr").eq(4).children().eq(1).css("background-color", "pink");
 								$("#tbody tr").eq(5).children().eq(1).css("background-color", "pink");
-								$("#tbody tr").eq(4).children().eq(1).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(5).children().eq(1).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(4).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(5).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -1530,8 +1533,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '화'}">
 								$("#tbody tr").eq(4).children().eq(2).css("background-color", "pink");
 								$("#tbody tr").eq(5).children().eq(2).css("background-color", "pink");
-								$("#tbody tr").eq(4).children().eq(2).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(5).children().eq(2).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(4).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(5).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -1639,8 +1642,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '수'}">
 								$("#tbody tr").eq(4).children().eq(3).css("background-color", "pink");
 								$("#tbody tr").eq(5).children().eq(3).css("background-color", "pink");
-								$("#tbody tr").eq(4).children().eq(3).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(5).children().eq(3).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(4).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(5).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -1748,8 +1751,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '목'}">
 								$("#tbody tr").eq(4).children().eq(4).css("background-color", "pink");
 								$("#tbody tr").eq(5).children().eq(4).css("background-color", "pink");
-								$("#tbody tr").eq(4).children().eq(4).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(5).children().eq(4).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(4).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(5).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -1857,8 +1860,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '금'}">
 								$("#tbody tr").eq(4).children().eq(5).css("background-color", "pink");
 								$("#tbody tr").eq(5).children().eq(5).css("background-color", "pink");
-								$("#tbody tr").eq(4).children().eq(5).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(5).children().eq(5).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(4).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(5).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -1970,8 +1973,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '월'}">
 								$("#tbody tr").eq(6).children().eq(1).css("background-color", "pink");
 								$("#tbody tr").eq(7).children().eq(1).css("background-color", "pink");
-								$("#tbody tr").eq(6).children().eq(1).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(7).children().eq(1).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(6).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(7).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -2079,8 +2082,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '화'}">
 								$("#tbody tr").eq(6).children().eq(2).css("background-color", "pink");
 								$("#tbody tr").eq(7).children().eq(2).css("background-color", "pink");
-								$("#tbody tr").eq(6).children().eq(2).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(7).children().eq(2).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(6).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(7).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -2188,8 +2191,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '수'}">
 								$("#tbody tr").eq(6).children().eq(3).css("background-color", "pink");
 								$("#tbody tr").eq(7).children().eq(3).css("background-color", "pink");
-								$("#tbody tr").eq(6).children().eq(3).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(7).children().eq(3).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(6).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(7).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -2297,8 +2300,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '목'}">
 								$("#tbody tr").eq(6).children().eq(4).css("background-color", "pink");
 								$("#tbody tr").eq(7).children().eq(4).css("background-color", "pink");
-								$("#tbody tr").eq(6).children().eq(4).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(7).children().eq(4).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(6).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(7).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -2406,8 +2409,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '금'}">
 								$("#tbody tr").eq(6).children().eq(5).css("background-color", "pink");
 								$("#tbody tr").eq(7).children().eq(5).css("background-color", "pink");
-								$("#tbody tr").eq(6).children().eq(5).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(7).children().eq(5).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(6).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(7).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -2519,8 +2522,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '월'}">
 								$("#tbody tr").eq(8).children().eq(1).css("background-color", "pink");
 								$("#tbody tr").eq(9).children().eq(1).css("background-color", "pink");
-								$("#tbody tr").eq(8).children().eq(1).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(9).children().eq(1).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(8).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(9).children().eq(1).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -2628,8 +2631,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '화'}">
 								$("#tbody tr").eq(8).children().eq(2).css("background-color", "pink");
 								$("#tbody tr").eq(9).children().eq(2).css("background-color", "pink");
-								$("#tbody tr").eq(8).children().eq(2).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(9).children().eq(2).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(8).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(9).children().eq(2).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -2737,8 +2740,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '수'}">
 								$("#tbody tr").eq(8).children().eq(3).css("background-color", "pink");
 								$("#tbody tr").eq(9).children().eq(3).css("background-color", "pink");
-								$("#tbody tr").eq(8).children().eq(3).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(9).children().eq(3).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(8).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(9).children().eq(3).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -2846,8 +2849,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '목'}">
 								$("#tbody tr").eq(8).children().eq(4).css("background-color", "pink");
 								$("#tbody tr").eq(9).children().eq(4).css("background-color", "pink");
-								$("#tbody tr").eq(8).children().eq(4).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(9).children().eq(4).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(8).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(9).children().eq(4).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -2955,8 +2958,8 @@ $(document).ready(function(){
 							<c:when test="${result.subject.yoYil1 == '금'}">
 								$("#tbody tr").eq(8).children().eq(5).css("background-color", "pink");
 								$("#tbody tr").eq(9).children().eq(5).css("background-color", "pink");
-								$("#tbody tr").eq(8).children().eq(5).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
-								$("#tbody tr").eq(9).children().eq(5).text("${result.subject.subjectName}${result.professor.usersName}${result.subject.lectureId}");
+								$("#tbody tr").eq(8).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
+								$("#tbody tr").eq(9).children().eq(5).html("${result.subject.subjectName}<br>${result.professor.usersName}<br><a href='javascript:popupOpen(\"${result.subject.subjectName}\", \"${result.building.buildingName}\", \"${result.room.roomName}\");'>${result.building.buildingName}&nbsp;${result.room.roomName}</a>");
 								<c:choose>
 									<c:when test="${result.subject.gyoShi2=='1'}">
 										<c:choose>
@@ -3187,128 +3190,5 @@ $(document).ready(function(){
 		</tr>
 	</tbody>
   </table> 
-	 <!--  <table width="700" border="0" cellpadding="1" cellspacing="1" bgcolor="#c5e2cc">
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">요일/교시</td>
-          <td width="107" class="schedule">월</td>
-          <td width="107" class="schedule">화</td>
-          <td width="107" class="schedule">수</td>
-          <td width="107" class="schedule">목</td>
-          <td width="107" class="schedule">금</td>
-          <td width="107" class="schedule">토</td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">1</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">2</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">3</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">4</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">5</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">6</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">7</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">8</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">9</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">10</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>  
-      </table> -->
 </body>
 </html>

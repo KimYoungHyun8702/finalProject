@@ -43,17 +43,7 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 										 int evaluationPassionPoint, int evaluationQuestionPoint ,int nowYear, 
 										 String nowSemester, String loginId, int subjectId, String proId) {
 		Evaluation evaluation = new Evaluation(0, nowYear, nowSemester, evaluationTaskPoint, evaluationExamPoint, evaluationReadyPoint, evaluationPassionPoint, evaluationQuestionPoint, proId, subjectId);
-		
-		//int nowYear = date.getYear() + 1900;
-		// int nowMonth = date.getMonth();//-1해줘야 함
-		//String nowSemester = "1학기";// 학기는 원래 여기서 해주지 않고 디비를 통해서 서비스에서 가져오는 건데 일단 이렇게
-
-		// 현재년도와 현재 월을 전달함으로써 몇학기인지가 조회되는 메소드 - 학사일정테이블 필요
-		// String nowSemester = courseDaoImpl.selectHackGiIlJung(nowMonth);
-		// String nowSemester = nowMonth+"학기";
-
-		//evaluationDaoImpl.insertEvaluationAnswerValue(evaluationTaskPoint, evaluationExamPoint, evaluationReadyPoint, evaluationPassionPoint, evaluationQuestionPoint, nowYear, nowSemester, loginId, subjectId, proId);
-		
+				
 		//평가테이블 - 평가정보 인서트
 		evaluationDaoImpl.insertEvaluation(evaluation);		
 		
@@ -73,13 +63,13 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 
 		HashMap<String, Object> map = new HashMap<>();
 		Date nowDate = new Date();	// 오늘 날짜
-		Date date = new Date(System.currentTimeMillis() - 1000*60*60*24*15);	// 15일전 시간
+		// Date date = new Date(System.currentTimeMillis() - 1000*60*60*24*15);	// 15일전 시간
 		
 		List<String> evaluationPeriodResult = 
 				academicCalendarDaoImpl.selectCalendarName(nowDate);	// 오늘 날짜를 기준으로 학사일정명을 뽑아온다.
 		
-		List<String> nowSemesterResult = 
-				academicCalendarDaoImpl.selectCalendarName(date); // 오늘로부터 15일전 날짜를 기준으로 학사일정명을 뽑아온다.(직전학기를 뽑아오기 위한것)
+		// List<String> nowSemesterResult = 
+				// academicCalendarDaoImpl.selectCalendarName(date); // 오늘로부터 15일전 날짜를 기준으로 학사일정명을 뽑아온다.(직전학기를 뽑아오기 위한것)
 		
 		
 		String msg = null;	// 메세지 담을 메소드
@@ -95,17 +85,22 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 				if(evaluationPeriodResult.get(i).contains("설문응답")) {
 					term = evaluationPeriodResult.get(i);
 				}
+				
+				if(evaluationPeriodResult.get(i).contains("학기") && 
+						evaluationPeriodResult.get(i).length() < 5) {
+					nowSemester = evaluationPeriodResult.get(i);
+				}
 			}
 		}
 		
 		// 직전학기를 담는다
-		if(nowSemesterResult.size() != 0) {
+		/*if(nowSemesterResult.size() != 0) {
 			for(int i = 0; i < nowSemesterResult.size(); i++) {
 				if(nowSemesterResult.get(i).contains("학기") && nowSemesterResult.get(i).length() < 5) {
 					nowSemester = nowSemesterResult.get(i);
 				}
 			}
-		}
+		}*/
 		
 		
 		if(!stuRegister.equals("휴학") && !stuRegister.equals("군휴학")) {

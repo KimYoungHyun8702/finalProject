@@ -36,6 +36,7 @@ $(document).ready(function(){
 				$("#proUniversity").val(obj.proUniversity);
 				$("#proGradSchool").val(obj.proGradSchool);
 				$("#proOfficePhoneNum").val(obj.proOfficePhoneNum);
+				$("#proLaboratoryPhoneNum").val(obj.proLaboratoryPhoneNum);
 				var x = obj;
 			},
 			"error":function(){
@@ -61,19 +62,31 @@ $(document).on("click", "#updateBtn", function(){
 <body>
 교수개인정보~~~<br>
 
+<div>
+	<c:choose>
+		<c:when test="${requestScope.reFormDateStu.stuInfo.usersPhoto!=null}">
+			<img src ="${initParam.rootPath}/resource/up_image/${requestScope.reFormDateStu.stuInfo.usersPhoto}" width="100px" height="100px">							
+		</c:when> 
+		<c:otherwise>
+			사진 미등록   
+		</c:otherwise>
+	</c:choose>	
+</div>
+
+
 아이디<input type="text" id="usersId" name="usersId" value="" readonly="readonly"><br>
 비밀번호<input type="text" id="usersPassword" name="usersPassword" value="" readonly="readonly"><br>
-성명<input type="text" id="usersName" name="usersName" value=""><br>
-영문성명<input type="text" id="usersEngName" name="usersEngName" value=""><br>
-주민번호<input type="text" id="usersRRN" name="usersRRN" value=""><br>
-이메일<input type="text" id="usersEmail" name="usersEmail" value=""><br>
-전화번호<input type="text" id="usersPhoneNum" name="usersPhoneNum" value=""><br>
-핸드폰번호<input type="text" id="usersCellNum" name="usersCellNum" value=""><br>
-국적<input type="text" id="usersNational" name="usersNational" value=""><br>
-현주소<input type="text" id="usersCurrentAddr" name="usersCurrentAddr" value=""><br>
-본적지<input type="text" id="usersBornAddr" name="usersBornAddr" value=""><br>
-뭐더라..<input type="text" id="usersEnable" name="usersEnable" value=""><br>
-사진주소<input type="text" id="usersPhoto" name="usersPhoto" value=""><br>
+성명<input type="text" id="usersName" name="usersName" value="" readonly="readonly"><br>
+영문성명<input type="text" id="usersEngName" name="usersEngName" value="" readonly="readonly"><br>
+주민번호<input type="text" id="usersRRN" name="usersRRN" value="" readonly="readonly"><br>
+국적<input type="text" id="usersNational" name="usersNational" value="" readonly="readonly"><br>
+이메일<input type="text" id="usersEmail" name="usersEmail" value="" readonly="readonly"><br>
+전화번호<input type="text" id="usersPhoneNum" name="usersPhoneNum" value="" readonly="readonly"><br>
+핸드폰번호<input type="text" id="usersCellNum" name="usersCellNum" value="" readonly="readonly"><br>
+현주소<input type="text" id="usersCurrentAddr" name="usersCurrentAddr" value="" readonly="readonly"><br>
+본적지<input type="text" id="usersBornAddr" name="usersBornAddr" value="" readonly="readonly"><br>
+<input type="text" id="usersEnable" name="usersEnable" value="" style="display: none;">
+사진주소<input type="text" id="usersPhoto" name="usersPhoto" value="" readonly="readonly"><br>
 
 <button type="submit" id="updateBtn">수정</button>
 
@@ -82,6 +95,8 @@ $(document).on("click", "#updateBtn", function(){
 졸업대학<input type="text" id="proUniversity" name="proUniversity" value="" readonly="readonly"><br>
 졸업대학원<input type="text" id="proGradSchool" name="proGradSchool" value="" readonly="readonly"><br>
 교수실전화번호<input type="text" id="proOfficePhoneNum" name="proOfficePhoneNum" value="" readonly="readonly"><br>
+연구실전화번호<input type="text" id="proLaboratoryPhoneNum" name="proLaboratoryPhoneNum" value="" readonly="readonly"><br>
+
 </div>
 </body>
 <script type="text/javascript">
@@ -106,9 +121,10 @@ $(document).on("click", "#updateBtn", function(){
         	openWin.document.getElementById("usersBornAddr").value = document.getElementById("usersBornAddr").value;
         	openWin.document.getElementById("usersEnable").value = document.getElementById("usersEnable").value;
         	openWin.document.getElementById("usersPhoto").value = document.getElementById("usersPhoto").value;
-        	openWin.document.getElementById("proUniversity").value = document.getElementById("proUniversity").value;
-        	openWin.document.getElementById("proGradSchool").value = document.getElementById("proGradSchool").value;
-        	openWin.document.getElementById("proOfficePhoneNum").value = document.getElementById("proOfficePhoneNum").value;
+        	openWin.document.getElementById("proUniversity").innerText = document.getElementById("proUniversity").value;
+        	openWin.document.getElementById("proGradSchool").innerText = document.getElementById("proGradSchool").value;
+        	openWin.document.getElementById("proOfficePhoneNum").innerText = document.getElementById("proOfficePhoneNum").value;
+        	openWin.document.getElementById("proLaboratoryPhoneNum").innerText = document.getElementById("proLaboratoryPhoneNum").value;       	
         }, 1000);                
 	}
 </script>

@@ -41,6 +41,9 @@
 	
 	<!-- insert -->
 	<insert id="insertSubjectPlan" parameterType="subject">
+		<selectKey resultType="int" keyProperty="planId" order="BEFORE">
+			SELECT plan_id_seq.nextval FROM dual
+		</selectKey>
 		INSERT INTO subject_plan
 		VALUES(
 		#{planId}, 

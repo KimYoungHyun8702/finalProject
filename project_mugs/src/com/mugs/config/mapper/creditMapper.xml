@@ -51,6 +51,9 @@
 
 <!-- insert -->
 <insert id="insertCredit" parameterType="credit">
+		<selectKey resultType="int" keyProperty="creditId" order="BEFORE">
+			SELECT credit_id_seq.nextval FROM dual   
+		</selectKey>
 	INSERT INTO credit VALUES
 	(
 	#{creditId},
@@ -81,6 +84,26 @@
 	   
 </update>
 
+<!-- 영현이꼬 -->
+<update id="updateCreditByFourId" parameterType="credit">
+UPDATE credit
+
+SET		
+credit_year= #{creditYear},
+credit_semester= #{creditSemester},
+credit_acquire= #{creditAcquire},
+credit_grade= #{creditGrade},
+credit_score= #{creditScore},
+credit_recource= #{creditRecource},
+subject_id= #{subjectId},
+stu_id= #{stuId}
+
+WHERE credit_year= #{creditYear}
+AND credit_semester= #{creditSemester}
+AND subject_id = #{subjectId}
+AND stu_id = #{stuId}
+</update>
+
 <!-- delete -->
 	<delete id="deleteCredit" parameterType="int">
 		DELETE FROM credit WHERE credut_id = #{value}
@@ -96,8 +119,26 @@
 	WHERE credit_id= #{value}
 </select>
 
+<!-- 영현이꼬 -->
+<select id="selectCreditByFourId" resultMap="credit-basic-resultmap" parameterType="map">
+	<include refid="select-credit"/>
+	WHERE credit_year = #{creditYear}
+	AND credit_semester = #{creditSemester}
+	AND stu_id = #{stuId}
+	AND subject_id = #{subjectId}
+</select>
+
+<!-- 영현이꼬(평점구하는 쿼리문... 시바...) -->
+<select id="selectCreditAvgByThreeId" resultType="double" parameterType="map">
+SELECT AVG(credit_score)
+FROM CREDIT
+WHERE credit_year = #{creditYear}
+AND credit_semester = #{creditSemester}
+AND stu_id = #{stuId}
+</select>
+
 <select id="selectYearByStuId" resultType="int" parameterType="string">
-	SELECT DISTINCT credit_year FROM credit WHERE stu_id =#{value}
+	SELECT DISTINCT credit_year FROM credit WHERE stu_id =#{value} ORDER BY credit_year DESC
 </select>
 
 <select id="selectSemesterByYear" resultType="string" parameterType="int">

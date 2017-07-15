@@ -60,7 +60,6 @@ public class EvaluationAnswerDaoImpl implements EvaluationAnswerDao{
 	public int insertEvaluationAnswerValue(int evaluationTaskPoint, int evaluationExamPoint, int evaluationReadyPoint,
 			int evaluationPassionPoint, int evaluationQuestionPoint, int nowYear, String nowSemester, String loginId,
 			int subjectId, String proId) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
