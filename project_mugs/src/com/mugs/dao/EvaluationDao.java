@@ -35,4 +35,8 @@ public interface EvaluationDao {
 	 */
 	List<Evaluation> selectEvaluationAll();
 	
+	
+	
+	List<Evaluation> selectEvaluationByYearProIdSubjectId(String proId, int subjectId, int beforeYear);
+	
 }

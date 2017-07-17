@@ -151,6 +151,11 @@
                                         <span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/getCreditGiveUpListByStuId.do">학점포기신청 및 조회</a>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/getEvaluationGraphSubjectTypeList.do">평가 그래프</a>
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                     </div>

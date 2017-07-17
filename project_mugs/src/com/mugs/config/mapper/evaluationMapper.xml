@@ -84,6 +84,11 @@
 		<include refid="select-evaluation-sql"/>
 		WHERE evaluation_id = #{evaluationId}
 	</select>
-
-
+	
+	<select id="selectEvaluationByYearProIdSubjectId" parameterType="map" resultMap="evaluation-resultMap">
+		<include refid="select-evaluation-sql"/>
+		where evaluation_year=#{beforeYear}
+		and   pro_id=#{proId}
+		and   subject_id=#{subjectId}
+	</select>
 </mapper>
