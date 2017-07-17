@@ -319,7 +319,6 @@
 <a href="${initParam.rootPath }/student/getCollegeList.do">기준학점조회</a><br>
 <a href="${initParam.rootPath }/student/gradeInquiry.do">성적 조회 -딘강</a><br>
 <a href="${initParam.rootPath }/student/academicProbation.do">학사경고내역 조회-딘강</a>
->>>>>>> branch 'master' of https://github.com/KimYoungHyun8702/finalProject.git
 </sec:authorize>
 
 <%--관리자 메뉴--%>
