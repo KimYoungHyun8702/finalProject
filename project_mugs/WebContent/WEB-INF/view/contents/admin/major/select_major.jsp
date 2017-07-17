@@ -5,6 +5,40 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+input{
+	text-align:center;
+}
+table{
+	width:100%;
+	
+}
+th, tbody td{
+	height:35px;
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
+}
+select{
+	width:150px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+h3{
+	font-family:돋움체;
+}
+</style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){	
@@ -27,7 +61,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<h2>학과 조회</h2>
+	<h3>학과 조회</h3>
 	<c:if test="${sessionScope.majordeleteMessage != null}">
 	<script type="text/javascript">
 		alert("삭제되었습니다");
@@ -35,21 +69,23 @@ $(document).ready(function(){
 	<% session.removeAttribute("majordeleteMessage"); %>
 </c:if>
 	<hr>
+	단과대학선택:
 	<select name="collegeId" id="collegeId">
 		<option>단과대학 선택</option>
 		<c:forEach var="list" items="${requestScope.list }">
 			<option value=${list.collegeId }>${list.collegeName }</option>
 		</c:forEach>
-	</select>
-	
+	</select><br><br>
+	<br>
 	<table id="selectMajor" border="1">
 		<thead>
-			<tr>
-				<td align="center">학과 ID</td>
-				<td align="center">학과 이름</td>
+			<tr class="filters">
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="학과ID" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="학과이름" disabled></th>
 			</tr>
 		</thead>
 		<tbody id="tbody"></tbody>
 	</table>
-	<button onclick="location.href='${initParam.rootPath }/'">메인화면으로 가기</button>
+	<br>
+	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 </body>

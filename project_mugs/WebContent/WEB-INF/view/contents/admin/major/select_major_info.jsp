@@ -5,6 +5,40 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+input{
+	text-align:center;
+}
+table{
+	width:700px;
+	
+}
+th {
+	bgcolor:peru;
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
+}
+select{
+	width:150px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+h3{
+	font-family:돋움체;
+}
+</style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	function major_update(majorId){
@@ -96,13 +130,13 @@
 	<table border="1">
 		<thead>
 			<tr>
-				<td align="center">학과 ID</td>
-				<td align="center">학과 이름</td>
-				<td align="center">적용 연도</td>
-				<td align="center">교양필수 졸업학점</td>
-				<td align="center">교양선택 졸업학점</td>
-				<td align="center">전공필수 졸업학점</td>
-				<td align="center">전공선택 졸업학점</td>
+				<th align="center" ><input type="text" class="form-control" placeholder="학과ID" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="학과이름" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="적용연도" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="교양필수 졸업학점" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="교양선택 필수학점" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="전공필수 졸업학점" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="졸업선택 필수학점" disabled></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -135,14 +169,14 @@
 		</tbody>
 		<thead>
 			<tr>
-				<td align="center">학과 ID</td>
-				<td align="center">학과 이름</td>
-				<td align="center">적용 연도</td>
-				<td align="center">수강 최소 학점</td>
-				<td align="center">수강 최대학점</td>
-				<td align="center">수강 장학금 최소학점</td>
-				<td align="center">수강 유예자 최소학점</td>
-				<td align="center">수강 유예자 최대학점</td>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="학과ID" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="학과이름" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="적용연도" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="수강 최소학점" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="수강 최대학점" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="수강 장학금 최소학점" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="수강 유예자 최소학점" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="수강 유예자 최대학점" disabled></th>
 			</tr>
 		</thead>
 		<tbody>

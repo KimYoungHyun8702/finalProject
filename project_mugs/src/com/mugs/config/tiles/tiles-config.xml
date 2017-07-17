@@ -7,7 +7,9 @@
 	<definition name="template" template="/WEB-INF/view/layout/template.jsp">
 		<put-attribute name="menu" value="/WEB-INF/view/layout/menu.jsp"/>
 	</definition>
-	
+	<!-- <definition name="head" template="/WEB-INF/view/layout/head.jsp">
+		<put-attribute name="head" value="/WEB-INF/view/layout/head.jsp"/>
+	</definition> -->
 	<definition name="index.tiles" extends="template">
 		<put-attribute name="content" value="/WEB-INF/view/index.jsp"/>
 	</definition>

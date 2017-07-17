@@ -8,266 +8,232 @@
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function update_subject(subjectId){
-	location.href="${initParam.rootPath }/admin/selectSubjectInfoBySubjectIdForUpdateController.do?subjectId="+subjectId
+   location.href="${initParam.rootPath }/admin/selectSubjectInfoBySubjectIdForUpdateController.do?subjectId="+subjectId
 };
 function update_minor_subject(subjectId){
-	location.href="${initParam.rootPath }/admin/selectSubjectInfoBySubjectIdForMinorUpdateController.do?subjectId="+subjectId
+   location.href="${initParam.rootPath }/admin/selectSubjectInfoBySubjectIdForMinorUpdateController.do?subjectId="+subjectId
 };
 function delete_subject(subjectId){
-	if(confirm("삭제하시겠습니까?")){
-		location.href="${initParam.rootPath }/admin/deleteSubjectBySubjectIdController.do?subjectId="+subjectId
-	}else{
-		return false;
-	}
+   if(confirm("삭제하시겠습니까?")){
+      location.href="${initParam.rootPath }/admin/deleteSubjectBySubjectIdController.do?subjectId="+subjectId
+   }else{
+      return false;
+   }
 };
-$(document).ready(function(){	
-	$("#college").hide();
-	$("#major").hide();
-	$("#subject").hide();
-	$("#time").hide();
-	$("#majorButton").hide();
-	$("#minorButton").hide();
-	$("#selectSubject").hide();
-	$("#subjectType").on("change",function(){
-		$("#selectSubject").hide();
-		if($("#subjectType").val() == "선택전공" || $("#subjectType").val() == "필수전공"){
-			$("#college").show();
-			$("#major").show();
-			$("#subject").show();
-			$("#time").hide();
-			$("#minorButton").hide();
-		$.ajax({
-			"url":"${initParam.rootPath }/admin/selectCollegeIdBySubjectTypeController.do",
-			"data":"subjectType="+$("#subjectType").val(),
-			"success":function(result){
-				$("#college").empty().append("<option>단과대학 선택</option>");
-				$.each(result,function(){
-					$("#college").append($("<option value="+this.college.collegeId+">").append(this.college.collegeName));
-				})
-			}
-		});//end of ajax
-	}else if($("#subjectType").val() == "선택교양" || $("#subjectType").val() == "필수교양"){
-			$("#selectSubject").hide();
-			$("#time").show();
-			$("#college").hide();
-			$("#major").hide();
-			$("#subject").hide();
-			$("#majorButton").hide();
-		$.ajax({
-			"url":"${initParam.rootPath }/admin/selectCollegeIdBySubjectTypeMinorController.do",
-			"data":"subjectType="+$("#subjectType").val(),
-			"success":function(result){
-				$("#time").empty().append("<option>시간표 선택</option>");
-				$.each(result,function(){
-					$("#minorButton").show();
-					$("#time").append($("<option>").append(this.subjectTime));
-				})
-			}
-		});//end of ajax 
-	}else{
-		alert("이수구분을 선택하세요");
-		$("#selectSubject").hide();
-		$("#college").hide();
-		$("#major").hide();
-		$("#subject").hide();
-		$("#time").hide();
-		$("#majorButton").hide();
-		$("#minorButton").hide();
-		$("#college").empty().append("<option>단과대학 선택</option>");
-		$("#major").empty().append("<option>학과 선택</option>");
-		$("#subject").empty().append("<option>과목 선택</option>");
-		$("#time").empty().append("<option>시간표 선택</option>");
-	};
-	})//end of subjectType
-	$("#college").on("change",function(){
-		$("#selectSubject").hide();
-		if($("#college").val() == "단과대학 선택"){
-			$("#majorButton").hide();
-			alert("단과대학을 선택하세요");
-			$("#major").empty().append("<option>학과 선택</option>");
-			$("#subject").empty().append("<option>과목 선택</option>");
-		}else{
-		$.ajax({
-			"url":"${initParam.rootPath }/admin/selectMajorIdByCollegeIdController.do", 
-			"data":({collegeId:$("#college").val(),subjectType:$("#subjectType").val()}),
-			"success":function(result){
-				$("#major").show();
-				$("#major").empty().append("<option>학과 선택</option>");
-				$.each(result,function(){
-					$("#major").append($("<option value="+this.major.majorId+">").append(this.major.majorName));
-				})
-			}
-		})//end of ajax
-		};
-	});//end of college
-	$("#major").on("change",function(){
-		$("#selectSubject").hide();
-		if($("#major").val() == "학과 선택"){
-			$("#majorButton").hide();
-			alert("학과를 선택하세요");
-			$("#subject").empty().append("<option>과목 선택</option>");
-		}else{
-		$.ajax({
-			"url":"${initParam.rootPath }/admin/selectSubjectByMajorIdController.do", 
-			"data":({majorId:$("#major").val(),collegeId:$("#college").val(),subjectType:$("#subjectType").val()}),
-			"success":function(result){
-				$("#subject").show();
-				$("#majorButton").show();
-				$("#subject").empty().append("<option>과목 선택</option>");
-				$.each(result,function(){
-					$("#subject").append($("<option value="+this.subjectId+">").append(this.subjectName));
-				})
-			}
-		})//end of ajax
-		};
-	});//end of major
-	 $("#minorButton").on("click",function(){
-		if($("#time").val() == '시간표 선택'){
-			alert("시간표를 선택해주세요");
-		}else{
-			$.ajax({
-				"url":"${initParam.rootPath }/admin/selectSubjectInfoBySubjectTimeController.do", 
-				"data":({subjectTime:$("#time").val(),subjectType:$("#subjectType").val()}),
-				"success":function(result){
-					var txt1 = "";
-					var txt2 = "";
-					var txt3 = "";
-					var txt4 = "";
-					$.each(result,function(){
-					txt1 += "<tr><td align='center'>"+this.subjectId+"</td><td align='center'>"+this.subjectName+"</td><td align='center'>"+this.subjectTime+"</td><td align='center'>"+this.subjectType+"</td></tr>"
-							
-					txt2 += "<tr><td align='center'>"+this.subjectCredit+"</td><td align='center'>"	+this.subjectCapacity+"</td><td align='center'>"+this.subjectRequest+"</td><td align='center'>"+this.subjectGrade+"</td></tr>"
-						
-					txt3 += "<tr><td align='center'>"+this.subjectClass+"</td><td align='center'>"+this.subjectCloseClass+"</td><td align='center'>"+this.subjectSemester+"</td><td align='center'></td></tr>"
-						
-					txt4 += "<tr><td align='center'>"+(this.building == null?"":this.building.buildingName)+"</td><td align='center'>"+(this.room == null?"":this.room.roomName)+"</td><td align='center'><button onclick='update_minor_subject("+this.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+this.subjectId+")'>삭제</button></td></tr>"
-					})
-					$("#tbody1").html(txt1);
-					$("#tbody2").html(txt2);
-					$("#tbody3").html(txt3);
-					$("#tbody4").html(txt4);
-					$("#selectSubject").show();			
-				}
-			})//end of ajax
-		}
-	})//end of time 
-	$("#majorButton").on("click",function(){
-		if($("#subject").val() == "과목 선택"){
-			alert("과목을 선택하세요");
-		}else{
-		$.ajax({
-			"url":"${initParam.rootPath }/admin/selectSubjectInfoBySubjectNameController.do",
-			"data":"subjectId="+$("#subject").val(),
-			"success":function(result){
-					var txt1 = "";
-					var txt2 = "";
-					var txt3 = "";
-					var txt4 = "";
-					txt1 += "<tr><td align='center'>"+result.subjectId+"</td><td align='center'>"+result.subjectName+"</td><td align='center'>"+result.subjectTime+"</td><td align='center'>"+result.subjectType+"</td></tr>"
-								
-					txt2 += "<tr><td align='center'>"+result.subjectCredit+"</td><td align='center'>"+result.subjectCapacity+"</td><td align='center'>"+result.subjectRequest+"</td><td align='center'>"+result.subjectGrade+"</td></tr>"
-						
-					txt3 += "<tr><td align='center'>"+result.subjectClass+"</td><td align='center'>"+result.subjectCloseClass+"</td><td align='center'>"+result.subjectSemester+"</td><td align='center'>"+(result.major == null?"":result.major.majorName)+"</td></tr>"
-						
-					txt4 +=	"<tr><td align='center'>"+(result.building == null?"":result.building.buildingName)+"</td><td align='center'>"+(result.room == null?"":result.room.roomName)+"</td><td align='center'><button onclick='update_subject("+result.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+result.subjectId+")'>삭제</button></td></tr>"
-					$("#tbody1").html(txt1);
-					$("#tbody2").html(txt2);
-					$("#tbody3").html(txt3);
-					$("#tbody4").html(txt4);
-					$("#selectSubject").show();
-			}
-		})//end of ajax
-		}
-	});//end of majorButton
-	
+$(document).ready(function(){   
+   $("#college").hide();
+   $("#major").hide();
+   $("#subject").hide();
+   $("#time").hide();
+   $("#majorButton").hide();
+   $("#minorButton").hide();
+   $("#selectSubject").hide();
+   $("#subjectType").on("change",function(){
+      $("#selectSubject").hide();
+      if($("#subjectType").val() == "선택전공" || $("#subjectType").val() == "필수전공"){
+         $("#college").show();
+         $("#major").show();
+         $("#subject").show();
+         $("#time").hide();
+         $("#minorButton").hide();
+      $.ajax({
+         "url":"${initParam.rootPath }/admin/selectCollegeIdBySubjectTypeController.do",
+         "data":"subjectType="+$("#subjectType").val(),
+         "success":function(result){
+            $("#college").empty().append("<option>단과대학 선택</option>");
+            $.each(result,function(){
+               $("#college").append($("<option value="+this.college.collegeId+">").append(this.college.collegeName));
+            })
+         }
+      });//end of ajax
+   }else if($("#subjectType").val() == "선택교양" || $("#subjectType").val() == "필수교양"){
+         $("#selectSubject").hide();
+         $("#time").show();
+         $("#college").hide();
+         $("#major").hide();
+         $("#subject").hide();
+         $("#majorButton").hide();
+      $.ajax({
+         "url":"${initParam.rootPath }/admin/selectCollegeIdBySubjectTypeMinorController.do",
+         "data":"subjectType="+$("#subjectType").val(),
+         "success":function(result){
+            $("#time").empty().append("<option>시간표 선택</option>");
+            $.each(result,function(){
+               $("#minorButton").show();
+               $("#time").append($("<option>").append(this.subjectTime));
+            })
+         }
+      });//end of ajax 
+   }else{
+      alert("이수구분을 선택하세요");
+      $("#selectSubject").hide();
+      $("#college").hide();
+      $("#major").hide();
+      $("#subject").hide();
+      $("#time").hide();
+      $("#majorButton").hide();
+      $("#minorButton").hide();
+      $("#college").empty().append("<option>단과대학 선택</option>");
+      $("#major").empty().append("<option>학과 선택</option>");
+      $("#subject").empty().append("<option>과목 선택</option>");
+      $("#time").empty().append("<option>시간표 선택</option>");
+   };
+   })//end of subjectType
+   $("#college").on("change",function(){
+      $("#selectSubject").hide();
+      if($("#college").val() == "단과대학 선택"){
+         $("#majorButton").hide();
+         alert("단과대학을 선택하세요");
+         $("#major").empty().append("<option>학과 선택</option>");
+         $("#subject").empty().append("<option>과목 선택</option>");
+      }else{
+      $.ajax({
+         "url":"${initParam.rootPath }/admin/selectMajorIdByCollegeIdController.do", 
+         "data":({collegeId:$("#college").val(),subjectType:$("#subjectType").val()}),
+         "success":function(result){
+            $("#major").show();
+            $("#major").empty().append("<option>학과 선택</option>");
+            $.each(result,function(){
+               $("#major").append($("<option value="+this.major.majorId+">").append(this.major.majorName));
+            })
+         }
+      })//end of ajax
+      };
+   });//end of college
+   $("#major").on("change",function(){
+      $("#selectSubject").hide();
+      if($("#major").val() == "학과 선택"){
+         $("#majorButton").hide();
+         alert("학과를 선택하세요");
+         $("#subject").empty().append("<option>과목 선택</option>");
+      }else{
+      $.ajax({
+         "url":"${initParam.rootPath }/admin/selectSubjectByMajorIdController.do", 
+         "data":({majorId:$("#major").val(),collegeId:$("#college").val(),subjectType:$("#subjectType").val()}),
+         "success":function(result){
+            $("#subject").show();
+            $("#majorButton").show();
+            $("#subject").empty().append("<option>과목 선택</option>");
+            $.each(result,function(){
+               $("#subject").append($("<option value="+this.subjectId+">").append(this.subjectName));
+            })
+         }
+      })//end of ajax
+      };
+   });//end of major
+    $("#minorButton").on("click",function(){
+      if($("#time").val() == '시간표 선택'){
+         alert("시간표를 선택해주세요");
+      }else{
+         $.ajax({
+            "url":"${initParam.rootPath }/admin/selectSubjectInfoBySubjectTimeController.do", 
+            "data":({subjectTime:$("#time").val(),subjectType:$("#subjectType").val()}),
+            "success":function(result){
+               var txt1 = "";
+               $.each(result,function(){
+               txt1 += "<tr><td align='center'>"+this.subjectId+"</td><td align='center'>"+this.subjectName+"</td><td align='center'>"+this.subjectTime+"</td><td align='center'>"+this.subjectType+"</td><td align='center'>"
+                      +this.subjectCredit+"</td><td align='center'>"   +this.subjectCapacity+"</td><td align='center'>"+this.subjectRequest+"</td><td align='center'>"+this.subjectGrade+"</td><td align='center'>"
+                     +this.subjectClass+"</td><td align='center'>"+this.subjectCloseClass+"</td><td align='center'>"+this.subjectSemester+"</td><td align='center'></td><td align='center'>"
+                     +(this.building == null?"":this.building.buildingName)+"</td><td align='center'>"+(this.room == null?"":this.room.roomName)+"</td><td align='center'><button onclick='update_minor_subject("+this.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+this.subjectId+")'>삭제</button></td></tr>"
+               })
+               $("#tbody1").html(txt1);
+               $("#selectSubject").show();         
+            }
+         })//end of ajax
+      }
+   })//end of time 
+   $("#majorButton").on("click",function(){
+      if($("#subject").val() == "과목 선택"){
+         alert("과목을 선택하세요");
+      }else{
+      $.ajax({
+         "url":"${initParam.rootPath }/admin/selectSubjectInfoBySubjectNameController.do",
+         "data":"subjectId="+$("#subject").val(),
+         "success":function(result){
+               var txt1 = "";
+               txt1 += "<tr><td align='center'>"+result.subjectId+"</td><td align='center'>"+result.subjectName+"</td><td align='center'>"+result.subjectTime+"</td><td align='center'>"+result.subjectType+"</td><td align='center'>"
+                     +result.subjectCredit+"</td><td align='center'>"+result.subjectCapacity+"</td><td align='center'>"+result.subjectRequest+"</td><td align='center'>"+result.subjectGrade+"</td><td align='center'>"
+                     +result.subjectClass+"</td><td align='center'>"+result.subjectCloseClass+"</td><td align='center'>"+result.subjectSemester+"</td><td align='center'>"+(result.major == null?"":result.major.majorName)+"</td><td align='center'>"
+                     +(result.building == null?"":result.building.buildingName)+"</td><td align='center'>"+(result.room == null?"":result.room.roomName)+"</td><td align='center'><button onclick='update_subject("+result.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+result.subjectId+")'>삭제</button></td></tr>"
+               $("#tbody1").html(txt1);
+               $("#selectSubject").show();
+         }
+      })//end of ajax
+      }
+   });//end of majorButton
 });
 </script>
 </head>
 <body>
-	<h2>과목 조회</h2>
-	<c:if test="${sessionScope.subinsertMessage != null}">
-		<script type="text/javascript">
-			alert("등록되었습니다");
-		</script>
-		<% session.removeAttribute("subinsertMessage"); %>
+   <h2>과목 조회</h2>
+   <c:if test="${sessionScope.subinsertMessage != null}">
+      <script type="text/javascript">
+         alert("등록되었습니다");
+      </script>
+      <% session.removeAttribute("subinsertMessage"); %>
 </c:if>
 <c:if test="${sessionScope.subupdateMessage != null}">
-		<script type="text/javascript">
-			alert("수정되었습니다");
-		</script>
-		<% session.removeAttribute("subupdateMessage"); %>
+      <script type="text/javascript">
+         alert("수정되었습니다");
+      </script>
+      <% session.removeAttribute("subupdateMessage"); %>
 </c:if>
 <c:if test="${sessionScope.subdeleteMessage != null}">
-		<script type="text/javascript">
-			alert("삭제되었습니다");
-		</script>
-		<% session.removeAttribute("subdeleteMessage"); %>
+      <script type="text/javascript">
+         alert("삭제되었습니다");
+      </script>
+      <% session.removeAttribute("subdeleteMessage"); %>
 </c:if>
-	<hr>
-	<select name="subjectType" id="subjectType">
-		<option>이수 구분 선택</option>
-		<c:forEach var="list" items="${requestScope.list }">
-			<option value=${list }>${list }</option>
-		</c:forEach>
-	</select>
-	
-	<select id="college">
-	<option>단과 대학 선택</option>
-	</select>
-	
-	<select id="major">
-	<option>학과 선택</option>
-	</select>
-	
-	<select id="subject">
-	<option>과목 선택</option>
-	</select>
-	
-	<select id="time">
-	<option>시간표 선택</option>
-	</select>
-	
-	
-	<button id="majorButton">조회</button>
-	<button id="minorButton">조회</button>
-	
-	<table id="selectSubject" border="1">
-		<thead>
-			<tr>
-				<td align="center">과목 ID</td>
-				<td align="center">과목 이름</td>
-				<td align="center">강의 시간</td>
-				<td align="center">이수 구분</td>
-			</tr>
-		</thead>
-		<tbody id="tbody1"></tbody>
-		<thead>
-			<tr>
-				<td align="center">학점</td>
-				<td align="center">정원</td>
-				<td align="center">신청인원</td>
-				<td align="center">학년</td>
-			</tr>
-		</thead>
-		<tbody id="tbody2"></tbody>
-		<thead>
-			<tr>
-				<td align="center">분반</td>
-				<td align="center">폐강 여부</td>
-				<td align="center">학기</td>
-				<td align="center">학과</td>
-			</tr>
-		</thead>
-		<tbody id="tbody3"></tbody>
-		<thead>
-			<tr>
-				<td align="center">강의동</td>
-				<td align="center">강의실</td>
-				<td align="center">수정</td>
-				<td align="center">삭제</td>
-			</tr>
-		</thead>
-		<tbody id="tbody4"></tbody>
-	</table>
-	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
+   <hr>
+   <select name="subjectType" id="subjectType">
+      <option>이수 구분 선택</option>
+      <c:forEach var="list" items="${requestScope.list }">
+         <option value=${list }>${list }</option>
+      </c:forEach>
+   </select>
+   
+   <select id="college">
+   <option>단과 대학 선택</option>
+   </select>
+   
+   <select id="major">
+   <option>학과 선택</option>
+   </select>
+   
+   <select id="subject">
+   <option>과목 선택</option>
+   </select>
+   
+   <select id="time">
+   <option>시간표 선택</option>
+   </select>
+   
+   
+   <button id="majorButton">조회</button>
+   <button id="minorButton">조회</button>
+   
+   <table id="selectSubject" border="1">
+      <thead>
+         <tr>
+            <td align="center">과목 ID</td>
+            <td align="center">과목 이름</td>
+            <td align="center">강의 시간</td>
+            <td align="center">이수 구분</td>
+            <td align="center">학점</td>
+            <td align="center">정원</td>
+            <td align="center">신청인원</td>
+            <td align="center">학년</td>
+            <td align="center">분반</td>
+            <td align="center">폐강 여부</td>
+            <td align="center">학기</td>
+            <td align="center">학과</td>
+            <td align="center">강의동</td>
+            <td align="center">강의실</td>
+            <td align="center">수정</td>
+            <td align="center">삭제</td>
+         </tr>
+      </thead>
+      <tbody id="tbody1"></tbody>
+   </table>
+   <button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
 </body>

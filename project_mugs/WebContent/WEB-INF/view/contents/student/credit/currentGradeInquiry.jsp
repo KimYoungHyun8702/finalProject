@@ -84,14 +84,12 @@ h3{
 			</div>
 			</div>
 			<hr style="border: solid px black">
-				<div class="row">
 				<div class="panel panel-primary filterable">
 				<table class="table2">
 					<thead id="thead2"></thead>
 					   <tr class="filters"></tr>
 					<tbody id="tbody2"></tbody>
 				</table>
-				</div>
 				</div>
 				
 			<!-- <table id="table">

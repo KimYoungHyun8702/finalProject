@@ -10,14 +10,11 @@
 input{
    text-align:center;
 }
-.table{
-   width:150%;
-   
-}
+
 #thead {
    width:100px;
 }
-.table2{
+table{
    width:100%;
    
 }
@@ -547,22 +544,18 @@ $(document).ready(function(){
 이수구분선택 : <select id="type">
 <option>이수구분</option>
 </select><br><br>
-<div class="panel panel-primary filterable">
-<table class="table" id="table">
+<table border="1" >
    <thead id="thead"></thead>
       <tr class="filters"></tr>
    <tbody id="tbody"></tbody>
 </table>
-</div>
 <hr>
 <div>
-<div class="panel panel-primary filterable">
-<table class="table2" id="table2">
+<table class="table2" border="1">
    <thead id="thead2"></thead>
       <tr class="filters"></tr>
    <tbody id="tbody2"></tbody>
 </table>
-</div>
 </div>
 </body>
 </html>
