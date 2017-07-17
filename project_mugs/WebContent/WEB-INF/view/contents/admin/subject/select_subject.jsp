@@ -129,13 +129,23 @@ $(document).ready(function(){
 				"url":"${initParam.rootPath }/admin/selectSubjectInfoBySubjectTimeController.do", 
 				"data":({subjectTime:$("#time").val(),subjectType:$("#subjectType").val()}),
 				"success":function(result){
-					var txt = "";
+					var txt1 = "";
+					var txt2 = "";
+					var txt3 = "";
+					var txt4 = "";
 					$.each(result,function(){
-					txt += "<tr><td align='center'>"+this.subjectId+"</td><td align='center'>"+this.subjectName+"</td><td align='center'>"+this.subjectTime+"</td><td align='center'>"+this.subjectType+"</td><td align='center'>"+this.subjectCredit+"</td><td align='center'>"
-							+this.subjectCapacity+"</td><td align='center'>"+this.subjectRequest+"</td><td align='center'>"+this.subjectGrade+"</td><td align='center'>"+this.subjectClass+"</td><td align='center'>"+this.subjectCloseClass+"</td><td align='center'>"+this.subjectSemester+"</td><td align='center'>"
-							+"</td><td align='center'>"+(this.building == null?"":this.building.buildingName)+"</td><td align='center'>"+(this.room == null?"":this.room.roomName)+"</td><td align='center'><button onclick='update_minor_subject("+this.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+this.subjectId+")'>삭제</button></td></tr>"
+					txt1 += "<tr><td align='center'>"+this.subjectId+"</td><td align='center'>"+this.subjectName+"</td><td align='center'>"+this.subjectTime+"</td><td align='center'>"+this.subjectType+"</td></tr>"
+							
+					txt2 += "<tr><td align='center'>"+this.subjectCredit+"</td><td align='center'>"	+this.subjectCapacity+"</td><td align='center'>"+this.subjectRequest+"</td><td align='center'>"+this.subjectGrade+"</td></tr>"
+						
+					txt3 += "<tr><td align='center'>"+this.subjectClass+"</td><td align='center'>"+this.subjectCloseClass+"</td><td align='center'>"+this.subjectSemester+"</td><td align='center'></td></tr>"
+						
+					txt4 += "<tr><td align='center'>"+(this.building == null?"":this.building.buildingName)+"</td><td align='center'>"+(this.room == null?"":this.room.roomName)+"</td><td align='center'><button onclick='update_minor_subject("+this.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+this.subjectId+")'>삭제</button></td></tr>"
 					})
-					$("#tbody").html(txt);
+					$("#tbody1").html(txt1);
+					$("#tbody2").html(txt2);
+					$("#tbody3").html(txt3);
+					$("#tbody4").html(txt4);
 					$("#selectSubject").show();			
 				}
 			})//end of ajax
@@ -149,11 +159,21 @@ $(document).ready(function(){
 			"url":"${initParam.rootPath }/admin/selectSubjectInfoBySubjectNameController.do",
 			"data":"subjectId="+$("#subject").val(),
 			"success":function(result){
-					var txt = "";
-						txt += "<tr><td align='center'>"+result.subjectId+"</td><td align='center'>"+result.subjectName+"</td><td align='center'>"+result.subjectTime+"</td><td align='center'>"+result.subjectType+"</td><td align='center'>"+result.subjectCredit+"</td><td align='center'>"
-								+result.subjectCapacity+"</td><td align='center'>"+result.subjectRequest+"</td><td align='center'>"+result.subjectGrade+"</td><td align='center'>"+result.subjectClass+"</td><td align='center'>"+result.subjectCloseClass+"</td><td align='center'>"+result.subjectSemester+"</td><td align='center'>"
-								+(result.major == null?"":result.major.majorName)+"</td><td align='center'>"+(result.building == null?"":result.building.buildingName)+"</td><td align='center'>"+(result.room == null?"":result.room.roomName)+"</td><td align='center'><button onclick='update_subject("+result.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+result.subjectId+")'>삭제</button></td></tr>"
-					$("#tbody").html(txt);
+					var txt1 = "";
+					var txt2 = "";
+					var txt3 = "";
+					var txt4 = "";
+					txt1 += "<tr><td align='center'>"+result.subjectId+"</td><td align='center'>"+result.subjectName+"</td><td align='center'>"+result.subjectTime+"</td><td align='center'>"+result.subjectType+"</td></tr>"
+								
+					txt2 += "<tr><td align='center'>"+result.subjectCredit+"</td><td align='center'>"+result.subjectCapacity+"</td><td align='center'>"+result.subjectRequest+"</td><td align='center'>"+result.subjectGrade+"</td></tr>"
+						
+					txt3 += "<tr><td align='center'>"+result.subjectClass+"</td><td align='center'>"+result.subjectCloseClass+"</td><td align='center'>"+result.subjectSemester+"</td><td align='center'>"+(result.major == null?"":result.major.majorName)+"</td></tr>"
+						
+					txt4 +=	"<tr><td align='center'>"+(result.building == null?"":result.building.buildingName)+"</td><td align='center'>"+(result.room == null?"":result.room.roomName)+"</td><td align='center'><button onclick='update_subject("+result.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+result.subjectId+")'>삭제</button></td></tr>"
+					$("#tbody1").html(txt1);
+					$("#tbody2").html(txt2);
+					$("#tbody3").html(txt3);
+					$("#tbody4").html(txt4);
 					$("#selectSubject").show();
 			}
 		})//end of ajax
@@ -218,21 +238,36 @@ $(document).ready(function(){
 				<td align="center">과목 이름</td>
 				<td align="center">강의 시간</td>
 				<td align="center">이수 구분</td>
+			</tr>
+		</thead>
+		<tbody id="tbody1"></tbody>
+		<thead>
+			<tr>
 				<td align="center">학점</td>
 				<td align="center">정원</td>
 				<td align="center">신청인원</td>
 				<td align="center">학년</td>
+			</tr>
+		</thead>
+		<tbody id="tbody2"></tbody>
+		<thead>
+			<tr>
 				<td align="center">분반</td>
 				<td align="center">폐강 여부</td>
 				<td align="center">학기</td>
 				<td align="center">학과</td>
+			</tr>
+		</thead>
+		<tbody id="tbody3"></tbody>
+		<thead>
+			<tr>
 				<td align="center">강의동</td>
 				<td align="center">강의실</td>
 				<td align="center">수정</td>
 				<td align="center">삭제</td>
 			</tr>
 		</thead>
-		<tbody id="tbody"></tbody>
+		<tbody id="tbody4"></tbody>
 	</table>
 	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
 </body>

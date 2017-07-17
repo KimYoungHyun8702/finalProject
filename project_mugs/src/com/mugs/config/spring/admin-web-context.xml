@@ -62,4 +62,6 @@
 	<!--신청 현황 관리  -->
 	<mvc:view-controller view-name="admin/student/select_credit_give_up.tiles" path="select_credit_give_up.do"/>
 	<mvc:view-controller view-name="admin/student/select_leave_return_application.tiles" path="select_leave_return_application.do"/>
+	<mvc:view-controller view-name="admin/student/select_academic_probation.tiles" path="select_academic_probation.do"/>
+	
 </beans>

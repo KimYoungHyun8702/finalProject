@@ -17,7 +17,6 @@
 	<mvc:view-controller path="/SubjectPlan_success.do" view-name="professor/SubjectPlan_success.tiles"/>
 	<mvc:view-controller path="/SubjectPlan_insert.do" view-name="professor/SubjectPlan_insert.tiles"/>
 	<mvc:view-controller path="/SubjectPlan_update.do" view-name="professor/SubjectPlan_update.tiles"/>
-	<mvc:view-controller path="/addStudentGrade.do" view-name="professor/addStudentGrade.tiles"/>
 
 
 

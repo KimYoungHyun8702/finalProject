@@ -54,9 +54,13 @@ public class CreditDaoImpl implements CreditDao {
 	}
 
 	@Override
-	public List<String> selectSemesterByYear(int year) {
+	public List<String> selectSemesterByYear(String id, int year) {
 		// TODO Auto-generated method stub
-		return session.selectList(makeSqlId("selectSemesterByYear"), year);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("year", year);
+		System.out.println(id+"--"+year);
+		return session.selectList(makeSqlId("selectSemesterByYear"), map);
 	}
 
 	@Override
@@ -66,21 +70,28 @@ public class CreditDaoImpl implements CreditDao {
 	}
 
 	@Override
-	public List<Credit> selectCreditByYear(int year) {
-		// TODO Auto-generated method stub
-		return session.selectList(makeSqlId("selectCreditByYear"), year);
-	}
-
-	@Override
-	public List<Credit> selectCreditBySemester(String semester) {
-		// TODO Auto-generated method stub
-		return session.selectList(makeSqlId("selectCreditBySemester"), semester);
-	}
-
-	@Override
-	public List<Credit> selectCreditByType(int year, String semester, String type) {
+	public List<Credit> selectCreditByYear(String id, int year) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("year", year);
+		return session.selectList(makeSqlId("selectCreditByYear"), map);
+	}
+
+	@Override
+	public List<Credit> selectCreditBySemester(String id, String semester) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("semester", semester);
+		return session.selectList(makeSqlId("selectCreditBySemester"), map);
+	}
+
+	@Override
+	public List<Credit> selectCreditByType(String id, int year, String semester, String type) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
 		map.put("year", year);
 		map.put("semester", semester);
 		map.put("type", type);
@@ -88,15 +99,19 @@ public class CreditDaoImpl implements CreditDao {
 	}
 
 	@Override
-	public List<Credit> selectCreditByOneType(String type) {
+	public List<Credit> selectCreditByOneType(String id, String type) {
 		// TODO Auto-generated method stub
-		return session.selectList(makeSqlId("selectCreditByOneType"), type);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("type", type);
+		return session.selectList(makeSqlId("selectCreditByOneType"), map);
 	}
 
 	@Override
-	public List<Credit> selectCreditByYearAndSemester(int year, String semester) {
+	public List<Credit> selectCreditByYearAndSemester(String id, int year, String semester) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
 		map.put("year", year);
 		map.put("semester", semester);
 
@@ -108,9 +123,10 @@ public class CreditDaoImpl implements CreditDao {
 	}
 
 	@Override
-	public List<Credit> selectCreditByYearType(int year, String type) {
+	public List<Credit> selectCreditByYearType(String id, int year, String type) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
 		map.put("year", year);
 		map.put("type", type);
 		
@@ -138,6 +154,15 @@ public class CreditDaoImpl implements CreditDao {
 	}
 
 	@Override
+	public List<Credit> selectCreditByYearSemesterStdId(int nowYear, String semester, String stuId) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("nowYear", nowYear);
+		map.put("semester", semester);
+		map.put("stuId", stuId);
+		return session.selectList(makeSqlId("selectCreditScoreBySubjectIdStuId"), map);
+	}
+	
 	public Credit selectCreditByFourId(int creditYear, String creditSemester, String stuId, int subjectId) {
 		HashMap params = new HashMap();
 		params.put("creditYear", creditYear);

@@ -21,7 +21,7 @@
 	<tbody align="center">
 		<tr>
 			<td rowspan="2">교양</td> 
-			<td>교양필수</td>
+			<td>필수교양</td>
 			<td>${requestScope.map.gradCredit.gradVitalEduCredit}</td>
 			<td>${requestScope.map.eduVitAc}</td>
 			<td>${requestScope.map.eduVitAcNeed}</td>
@@ -29,20 +29,20 @@
 			<td rowspan="4">${requestScope.map.gradPass}</td> 		
 		</tr>
 		<tr>
-			<td>교양선택</td>
+			<td>선택교양</td>
 			<td>${requestScope.map.gradCredit.gradSelectEduCredit}</td>
 			<td>${requestScope.map.eduSelAc}</td>
 			<td>${requestScope.map.eduSelAcNeed}</td> 
 		</tr>
 		<tr>
 			<td rowspan="2">전공</td>
-			<td>전공필수</td>
+			<td>필수전공</td>
 			<td>${requestScope.map.gradCredit.gradVitalMajorCredit}</td>
 			<td>${requestScope.map.mjrVitAc}</td>
 			<td>${requestScope.map.mjrVitAcNeed}</td>
 		</tr>
 		<tr>
-			<td>전공선택</td>
+			<td>선택전공</td>
 			<td>${requestScope.map.gradCredit.gradSelectMajorCredit}</td>
 			<td>${requestScope.map.mjrSelAc}</td>			
 			<td>${requestScope.map.mjrSelAcNeed}</td>

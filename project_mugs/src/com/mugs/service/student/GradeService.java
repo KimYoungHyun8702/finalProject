@@ -18,7 +18,7 @@ public interface GradeService {
 	 * @param year
 	 * @return
 	 */
-	List<String> getSemester(int year);
+	List<String> getSemester(String id, int year);
 	/**
 	 * 매개변수로 학생Id을 받아 모든 연도에 학점을 조회한다.
 	 * @param id
@@ -30,20 +30,20 @@ public interface GradeService {
 	 * @param year
 	 * @return
 	 */
-	List<Credit> getCreditByYear(int year);
+	List<Credit> getCreditByYear(String id, int year);
 	/**
 	 * 매개변수로 연도와 학기를 받아 학점테이블에서 그에 맞는 성적을 조회한다.
 	 * @param year
 	 * @param semester
 	 * @return
 	 */
-	List<Credit> getCreditByYearSemester(int year, String semester);
+	List<Credit> getCreditByYearSemester(String id, int year, String semester);
 	/**
 	 * 매개변수로 이수구분을 받아 모든 성적리스트에서 이수구분으로 성적을 조회한다.
 	 * @param type
 	 * @return
 	 */
-	List<Credit> getCreditByOneType(String type);
+	List<Credit> getCreditByOneType(String id, String type);
 	/**
 	 * 매개변수로 연도와 학기 이수구분을 받아 그에 맞는 성적을 조회한다.
 	 * @param year
@@ -51,14 +51,14 @@ public interface GradeService {
 	 * @param type
 	 * @return
 	 */
-	List<Credit> getCreditByType(int year, String semester, String type);
+	List<Credit> getCreditByType(String id, int year, String semester, String type);
 	/**
 	 * 매개변수로 연도와 이수구분을 받아 그에 맞는 성적을 조회한다.
 	 * @param year
 	 * @param type
 	 * @return
 	 */
-	List<Credit> getCreditByYearType(int year, String type);
+	List<Credit> getCreditByYearType(String id, int year, String type);
 	/**
 	 * 연도와 학사일정명으로 그에 맞는 학사일정 조회 여부를 체크한다.
 	 * @return

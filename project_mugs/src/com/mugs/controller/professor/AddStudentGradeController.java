@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.mugs.service.professor.AddStudentGradeService;
 import com.mugs.service.professor.SubjectPlanService;
@@ -15,7 +16,6 @@ import com.mugs.vo.AcademicProbation;
 import com.mugs.vo.Course;
 import com.mugs.vo.Credit;
 import com.mugs.vo.ProfessorSubject;
-import com.mugs.vo.SubjectPlan;
 import com.mugs.vo.Users;
 
 @Controller
@@ -137,5 +137,9 @@ public class AddStudentGradeController{
 		}
 		
 		return "professor/addStudentGrade.tiles";
+	}
+	@RequestMapping("addStudentGrade")
+	public ModelAndView addStudentGrade(){
+		return new ModelAndView("professor/addStudentGrade.tiles","check",service2.getCalendarCheck());
 	}
 }

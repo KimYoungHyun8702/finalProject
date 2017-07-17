@@ -23,7 +23,8 @@
 			<tr>
 				<td align="center">단과대학 ID</td>
 				<td align="center">단과대학 이름</td>
-				<td align="center"></td>
+				<td align="center">수정</td>
+				<td align="center">삭제</td>
 			</tr>
 		</thead>
 		<tbody>

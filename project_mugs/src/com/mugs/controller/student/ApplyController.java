@@ -1,7 +1,5 @@
 package com.mugs.controller.student;
 
-
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -49,17 +47,88 @@ public class ApplyController {
 	 * @param LRApplicationType
 	 * @return
 	 */
-	@RequestMapping(value="addLeaveReturnApplication", produces="text/html;charset=utf-8")
+	@RequestMapping("addLeaveReturnApplication")
 	@ResponseBody 
 	public HashMap<String, Object> addLeaveReturnApplication(String LRApplicationType) {
 		
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String stuId = users.getUsersId();
 		
-		HashMap map = applyServiceImpl.addLeaveReturnApplication(stuId, LRApplicationType);
+		return applyServiceImpl.addLeaveReturnApplication(stuId, LRApplicationType);
+	}
+	
+	/**
+	 * LRApplicationId를 매개변수로 받아서 해당 휴복학신청을 delete한다.
+	 * 
+	 * By Baek.J.H
+	 * @param LRApplicationId
+	 * @return
+	 */
+	@RequestMapping("cancelLeaveReturnApplication")
+	@ResponseBody
+	public HashMap<String, Object> cancelLeaveReturnApplication(int LRApplicationId) {
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String stuId = users.getUsersId();
+		return applyServiceImpl.deleteLeaveReturnApplicationById(stuId, LRApplicationId);
+	}
+	
+	/**
+	 * 로그인한 해당 학생의 학점포기신청 내역 및 학점포기 신청 가능 여부를 메세지로 리턴
+	 * 
+	 * By Baek.J.H
+	 * @return
+	 */
+	@RequestMapping("getCreditGiveUpListByStuId")
+	public ModelAndView getCreditGiveUpListByStuId() {
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String stuId = users.getUsersId();
+		
+		ModelAndView model = new ModelAndView();
+		model.setViewName("student/creditGiveUp.tiles");
+		
+		HashMap<String, Object> map = applyServiceImpl.findCreditGiveUpList(stuId);
 		
 		Iterator iterator = map.entrySet().iterator();
 		
+		while (iterator.hasNext()) {
+			Entry entry = (Entry)iterator.next();
+			model.addObject(entry.getKey().toString(), entry.getValue());
+		}
+		return model;
+	}
+	
+	/**
+	 * 로그인한 해당 학생의 학점포기 신청하는 메소드 학점포기가 불가능한 조건이면
+	 * 메세지 리턴
+	 * 
+	 * By Baek.J.H
+	 * @param creditId
+	 * @return
+	 */
+	@RequestMapping("addCreditGiveUp")
+	@ResponseBody
+	public HashMap<String, Object> addCreditGiveUp(int creditId) {
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String stuId = users.getUsersId();
+		
+		return applyServiceImpl.addCreditGiveUp(creditId, stuId);
+	}
+	
+	/**
+	 * 학점포기 신청한 신청내역에서 대기중인 학점포기 신청을 취소하는 메소드
+	 * 
+	 * By Baek.J.H
+	 * @param CGUId
+	 * @return
+	 */
+	@RequestMapping("deleteCreditGiveUp")
+	@ResponseBody
+	public HashMap<String, Object> deleteCreditGiveUp(int CGUId) {
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String stuId = users.getUsersId();
+		
 		return null;
 	}
+	
+	
 }                    

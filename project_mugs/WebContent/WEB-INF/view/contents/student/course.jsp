@@ -16,7 +16,7 @@ $(document).ready(function() {
 			"url":"/project_mugs/student/getCollegeListAjax.do",
 			"type":"post",
 			"dataType":"json",
-			"data":{${_csrf.parameterName}:'${_csrf.token}'},
+			"data":({subjectType:$("#subjectTypeList option:selected").text(), ${_csrf.parameterName}:'${_csrf.token}'}),
 			"beforeSend":function(){
 				if(index == 0) {
 					alert("이수구분을 선택하세요.");
@@ -28,12 +28,30 @@ $(document).ready(function() {
 					return false;
 				}
 			},
-			"success":function(list) {
-				var txt = "<option>선택하세요.</option>";
-				$.each(list, function(){
-					txt += "<option value=" + this.collegeId + ">" + this.collegeName + "</option>";
-				});
-				$("#collegeList").html(txt);
+			"success":function(map) {
+				if(map.collegeList) {
+					var txt = "<option>선택하세요.</option>";
+					$.each(map.collegeList, function(){
+						txt += "<option value=" + this.collegeId + ">" + this.collegeName + "</option>";
+					});
+					$("#collegeList").html(txt);
+				} else {
+					//$("#collegeList").empty();
+					//$("#majorList").empty();
+					var subjectTbody = "";
+					var subjectThead = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>정원</td><td>신청</td><td>여석</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>재수강여부</td><td>신청버튼</td></tr>";
+					$.each(map.professorSubjectList, function(){
+						subjectTbody += "<tr><td>" + this.subject.subjectGrade +
+									"</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
+									"</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCapacity + "</td><td>" + this.subject.subjectRequest + 
+									"</td><td>" + this.subject.remainNum + "</td><td>" + this.subject.subjectCredit + "</td><td>" + this.subject.subjectTime + 
+									"</td><td>" + this.subject.lectureId + "</td><td>" + "</td><td>" + this.subject.recourse +
+									"</td><td>" + "<button id=" + "enrolment>" + "수강신청</button>" + "<input type='hidden' value=" + this.subjectId + ">" + 
+									"<input type='hidden' value=" + this.proId + ">" + "</td></tr>";
+					});
+					$("#subjectThead").html(subjectThead);
+					$("#subjectTbody").html(subjectTbody);
+				}
 			},
 		});
 	});

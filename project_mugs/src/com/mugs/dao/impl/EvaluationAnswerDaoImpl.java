@@ -3,6 +3,7 @@ package com.mugs.dao.impl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,6 @@ public class EvaluationAnswerDaoImpl implements EvaluationAnswerDao{
 		params.put("loginId", loginId);
 		params.put("nowYear", nowYear);
 		params.put("nowSemester", nowSemester);
-	
 		return session.selectList(makeSql("selectEvaluationAnswerValueList"), params);
 	}
 

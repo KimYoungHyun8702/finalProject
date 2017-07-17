@@ -28,6 +28,12 @@ $(document).ready(function(){
 </head>
 <body>
 	<h2>학과 조회</h2>
+	<c:if test="${sessionScope.majordeleteMessage != null}">
+	<script type="text/javascript">
+		alert("삭제되었습니다");
+	</script>
+	<% session.removeAttribute("majordeleteMessage"); %>
+</c:if>
 	<hr>
 	<select name="collegeId" id="collegeId">
 		<option>단과대학 선택</option>
