@@ -49,7 +49,7 @@ function showUpImg(){
 </script>
 </head>
 <body>
-
+<%-- ${initParam.rootPath}/resource/up_image/1.jpg --%>
 	<h1>학생정보조회</h1>
 	<h3>성명, 주민번호, 학번, 학적정보 등 기존 사항은 수정할 수 없습니다.</h3>
 	<p>
@@ -58,14 +58,14 @@ function showUpImg(){
 	<tr> 		
 		<td id="imageSpace">
 		<c:choose>
-		<c:when test="${requestScope.reFormDateStu.stuInfo.usersPhoto != null}">
-			<img src ="${initParam.rootPath}/resource/up_image/${requestScope.reFormDateStu.stuInfo.usersPhoto}" id="imageSpace" width="138px" height="100px">
+		<c:when test="${sessionScope.professor.usersPhoto != null}">
+			<img src ="${initParam.rootPath}/resource/up_image/${sessionScope.professor.usersPhoto}" id="imageSpace" width="138px" height="100px">
 		</c:when>
 		<c:otherwise>
 			<img src ="${initParam.rootPath}/resource/up_image/1.jpg" width="138px" height="100px">
 		</c:otherwise>
 		</c:choose>
-		</td>							
+		</td>								
 	</tr>  
 	<tr>
 		<td><input type="button" value="이미지변경 " id="updateImg" onclick="showUpImg();">
@@ -86,13 +86,13 @@ function showUpImg(){
 		<td bgcolor="lightgray">집전화번호</td>		
 	</tr>
 	<tr align="center">  
-		<td><input type="text" id="usersId" name="usersId" value="" readonly="readonly"></td>
-	        <input type="text" id="usersPassword" name="usersPassword" value="" readonly="readonly" style="display: none;">
-		<td><input type="text" id="usersName" name="usersName" value="" readonly="readonly"></td>
-		<td><input type="text" id="usersEngName" name="usersEngName" value="" readonly="readonly"></td>
-		<td><input type="text" id="usersRRN" name="usersRRN" value="" readonly="readonly"></td>
-		<td><input type="text" name ="usersEmail" id="usersEmail" value="" ></td>
-		<td><input type="text" name ="usersPhoneNum" id="usersPhoneNum" value=""></td>
+		<td><input type="text" id="usersId" name="usersId" value="${sessionScope.professor.usersId}" readonly="readonly"></td>
+	   <%--  <input type="text" id="usersPassword" name="usersPassword" value="${sessionScope.professor.usersPassword}" readonly="readonly" style="display: none;"> --%>
+		<td><input type="text" id="usersName" name="usersName" value="${sessionScope.professor.usersName}" readonly="readonly"></td>
+		<td><input type="text" id="usersEngName" name="usersEngName" value="${sessionScope.professor.usersEngName}" readonly="readonly"></td>		
+		<td><input type="text" id="usersRRN" name="usersRRN" value="${sessionScope.professor.usersRRN}" readonly="readonly"></td>
+		<td><input type="text" name ="usersEmail" id="usersEmail" value="${sessionScope.professor.usersEmail}" readonly="readonly"></td>
+		<td><input type="text" name ="usersPhoneNum" id="usersPhoneNum" value="${sessionScope.professor.usersPhoneNum}" readonly="readonly"></td>
 	</tr>
 	<tr align="center">
 		<td bgcolor="lightgray">핸드폰번호</td>
@@ -101,10 +101,11 @@ function showUpImg(){
 		<td colspan="2" bgcolor="lightgray">현주소</td>
 	</tr>
 	<tr align="center">
-	    <td><input type="text" name ="usersCellNum" id="usersCellNum" value=""></td>
-		<td><input type="text" id="usersNational" name="usersNational" value="" readonly="readonly"></td>
-		<td colspan="2"><input type="text" id="usersBornAddr" name="usersBornAddr" value=""></td>
-		<td colspan="2"><input type="text" id="usersCurrentAddr" name="usersCurrentAddr" value=""></td>
+	    <td><input type="text" name ="usersCellNum" id="usersCellNum" value="${sessionScope.professor.usersCellNum}" readonly="readonly"></td>
+		<td><input type="text" id="usersNational" name="usersNational" value="${sessionScope.professor.usersNational}" readonly="readonly"></td>
+		<td colspan="2"><input type="text" id="usersBornAddr" name="usersBornAddr" value="${sessionScope.professor.usersBornAddr}"></td>
+		<td colspan="2"><input type="text" id="usersCurrentAddr" name="usersCurrentAddr" value="${sessionScope.professor.usersCurrentAddr}"></td>
+	
 	</tr>
 </table>
 
@@ -116,14 +117,14 @@ function showUpImg(){
 		<td bgcolor="lightgray">연구실전화번호</td>	
 	</tr>
 	<tr align="center">  
-		<td id ="proUniversity"></td>
-		<td id ="proGradSchool"></td>
-		<td id ="proOfficePhoneNum"></td>
-		<td id ="proLaboratoryPhoneNum"></td>
+	<td id ="proUniversity">${sessionScope.professor.proUniversity}</td>
+		<td id ="proGradSchool">${sessionScope.professor.proGradSchool}</td>
+		<td id ="proOfficePhoneNum">${sessionScope.professor.proOfficePhoneNum}</td>
+		<td id ="proLaboratoryPhoneNum">${sessionScope.professor.proLaboratoryPhoneNum}</td>
 	</tr>
 </table>
-
-	<input type="text" id="usersEnable" name="usersEnable" value="" style="display: none;">
+    <input type="text" id="usersEnable" name="usersEnable" value="${sessionScope.professor.usersId}" style="display: none;">
+	<%-- <input type="text" id="usersPhoto" name="usersPhoto" value="${sessionScope.professor.usersPhoto}" style="display: none;"> --%>
 
 	<table border="2" id="showUpdateImg">
 		<tr>
@@ -134,7 +135,7 @@ function showUpImg(){
 		</tr>
 	</table>
 	<br>
-	
+	<input type="hidden" name="usersPassword" value="${sessionScope.professor.usersPassword}">
 	<button type="submit" id="updateBtn">수정</button>
 </form>	
 

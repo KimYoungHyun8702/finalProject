@@ -233,7 +233,7 @@
 
 <%--교수 메뉴--%>
 <sec:authorize access="hasRole('ROLE_PROFESSOR')">
-<a href="${initParam.rootPath }/professorInfo.do" class="side-menu">교수 개인 정보</a><br>
+<a href="${initParam.rootPath }/professor/professorInfo.do" class="side-menu">교수 개인 정보</a><br>
 <a href="${initParam.rootPath }/guidanceStudent.do" class="side-menu">지도학생</a><br>
 <a href="${initParam.rootPath }/SubjectPlan.do" class="side-menu">강의계획서</a><br>
 <a href="${initParam.rootPath }/addStudentGrade.do" class="side-menu">성적주기</a><br>
