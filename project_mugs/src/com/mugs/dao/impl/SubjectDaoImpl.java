@@ -54,7 +54,6 @@ public class SubjectDaoImpl implements SubjectDao {
 	@Override
 	public List<String> selectSubjectTypeList() {
 		// TODO Auto-generated method stub
-
 		return session.selectList(makeSqlId("selectSubjectTypeList"));
 	}
 	
@@ -124,10 +123,11 @@ public class SubjectDaoImpl implements SubjectDao {
 	}
 
 	@Override
-	public List<Subject> selectSubjectListByMajorIdForAllTime(int majorId,String semester) {
+	public List<Subject> selectSubjectListByMajorIdForAllTime(int majorId,String semester, int year) {
 		Map<String,Object> map = new HashMap();
 		map.put("majorId", majorId);
 		map.put("semester", semester);
+		map.put("year", year);
 		return session.selectList(makeSqlId("selectSubjectListByMajorIdForAllTime"), map);
 	}
 	
@@ -138,11 +138,12 @@ public class SubjectDaoImpl implements SubjectDao {
 	}
 
 	@Override
-	public List<Subject> selectSubjectBySubjectTypeAndMajorId(String semester, Integer majorId, String subjectType) {
+	public List<Subject> selectSubjectBySubjectTypeAndMajorId(String semester, Integer majorId, String subjectType, int year) {
 		Map map = new HashMap();
 		map.put("subjectType", subjectType);
 		map.put("majorId", majorId);
 		map.put("semester", semester);
+		map.put("year", year);
 		return session.selectList(makeSqlId("selectSubjectBySubjectTypeAndMajorId"),map);
 	}
 

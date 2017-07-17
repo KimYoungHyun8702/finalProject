@@ -154,6 +154,15 @@ public class CreditDaoImpl implements CreditDao {
 	}
 
 	@Override
+	public List<Credit> selectCreditByYearSemesterStdId(int nowYear, String semester, String stuId) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("nowYear", nowYear);
+		map.put("semester", semester);
+		map.put("stuId", stuId);
+		return session.selectList(makeSqlId("selectCreditScoreBySubjectIdStuId"), map);
+	}
+	
 	public Credit selectCreditByFourId(int creditYear, String creditSemester, String stuId, int subjectId) {
 		HashMap params = new HashMap();
 		params.put("creditYear", creditYear);

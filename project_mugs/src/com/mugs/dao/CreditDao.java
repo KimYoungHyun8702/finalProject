@@ -163,4 +163,15 @@ public interface CreditDao {
 	 * @author 병문
 	 */
 	List<Credit> selectCreditByYearSemesterAndUsersId(int year, String semester,String usersId);
+	
+	/**
+	 * 해당 학생이 이수했던 과목들 중 학점 포기된 과목과 학점포기 대기중이 과목을 제외하고 조회하는 메소드
+	 * 
+	 * By Baek.J.H
+	 * @param nowYear
+	 * @param semester
+	 * @param usersId
+	 * @return
+	 */
+	List<Credit> selectCreditByYearSemesterStdId(int nowYear, String semester, String stuId);
 }

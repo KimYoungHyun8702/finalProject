@@ -3,24 +3,28 @@
 <mapper namespace="com.mugs.config.mapper.creditGiveUpMapper">
 
 <sql id="select-creditGiveUp">
-	SELECT CGU_ID,
-		   CGU_YEAR,
-		   CGU_SEMESTER,
-		   CGU_START_DATE,
-		   CGU_FINISH_DATE,
-		   CGU_STATE,
-		   CREDIT_ID
-	FROM   CREDIT_GIVE_UP
+   SELECT CGU_ID,
+          CGU_YEAR,
+          CGU_SEMESTER,
+          CGU_START_DATE,
+          CGU_FINISH_DATE,
+          CGU_STATE,
+          CREDIT_ID
+   FROM   CREDIT_GIVE_UP
 </sql>
 
 <resultMap type="creditGiveUp" id="creditGiveUp-basic-reresultmap">
-	<id column="CGU_ID" property="CGUId"/>
-	<result column="CGU_YEAR" property="CGUYear"/>
-	<result column="CGU_SEMESTER" property="CGUSemester"/>
-	<result column="CGU_START_DATE" property="CGUStartDate"/>
-	<result column="CGU_FINISH_DATE" property="CGUFinishDate"/>
-	<result column="CGU_STATE" property="CGUState"/>
-	<result column="CREDIT_ID" property="creditId"/>
+   <id column="CGU_ID" property="CGUId"/>
+   <result column="CGU_YEAR" property="CGUYear"/>
+   <result column="CGU_SEMESTER" property="CGUSemester"/>
+   <result column="CGU_START_DATE" property="CGUStartDate"/>
+   <result column="CGU_FINISH_DATE" property="CGUFinishDate"/>
+   <result column="CGU_STATE" property="CGUState"/>
+   <result column="CREDIT_ID" property="creditId"/>
+</resultMap>
+
+<resultMap type="creditGiveUp" id="creditGiveUp-credit-subject-reresultmap" extends="creditGiveUp-basic-reresultmap">
+	<association property="credit" resultMap="com.mugs.config.mapper.creditMapper.credit-subject-join-resultmap"/>
 </resultMap>
 
 <resultMap type="creditGiveUp" id="creditGiveUp-credit-reresultmap" extends="creditGiveUp-basic-reresultmap">
@@ -28,6 +32,7 @@
 		<id column="major_name" property="majorName"/>
 		<result column="users_id" property="usersId"/>
 		<result column="users_name" property="usersName"/>
+		<result column="subject_name" property="subjectName"/>
 		<association property="credit" javaType ="com.mugs.vo.Credit">
 			<result column="credit_id" property="creditId"/>
 			<result column="credit_year" property="creditYear"/>
@@ -43,10 +48,10 @@
 
 <!-- insert -->
 <insert id="insertCreditGiveUp" parameterType="creditGiveUp">
-	<selectKey resultType="int" keyProperty="creditGiveUpId" order="BEFORE">
-		SELECT CREDIT_GIVE_UP_ID_SEQ.nextval FROM dual
-	</selectKey>
-	INSERT INTO CREDIT_GIVE_UP VALUES(#{CGUId}, #{CGUYear}, #{CGUSemester}, #{CGUStartDate}, #{CGUFinishDate}, #{CGUState}, #{creditId})
+   <selectKey resultType="int" keyProperty="creditGiveUpId" order="BEFORE">
+      SELECT CGU_ID_SEQ.nextval FROM dual
+   </selectKey>
+   INSERT INTO CREDIT_GIVE_UP VALUES(#{CGUId}, #{CGUYear}, #{CGUSemester}, TO_DATE(#{CGUStartDate}, 'YYYY-MM-DD'), #{CGUFinishDate}, #{CGUState}, #{creditId})
 </insert>
 
 <!-- update -->
@@ -55,11 +60,12 @@
 	   SET CGU_YEAR=#{CGUYear},
 	   	   CGU_SEMESTER=#{CGUSemester},
 	   	   CGU_START_DATE=#{CGUStartDate},
-	   	   CGU_FINISH_DATE=#{CGUFinishDate},
+	   	   CGU_FINISH_DATE= (SELECT TRUNC(SYSDATE) FROM DUAL),
 	   	   CGU_STATE=#{CGUState},
 	   	   CREDIT_ID=#{creditId}
 	 WHERE CGU_ID=#{CGUId}  	   
 </update>
+
 
 <!-- delete -->
 <delete id="deleteCreditGiveUp" parameterType="int">
@@ -76,14 +82,52 @@
 	WHERE CGU_ID=#{value}
 </select>
 
+<!-- 
+	학생 ID를 이용해서 해당 학생의 학적포기 신청내역을 select
+	By Baek.J.H
+ -->
+ <select id="selectCreditGiveUpByStuId" resultMap="creditGiveUp-credit-subject-reresultmap" parameterType="string">
+ 	select cg.CGU_ID, cg.CGU_YEAR, cg.CGU_SEMESTER, cg.CGU_START_DATE, cg.CGU_FINISH_DATE, cg.CGU_STATE, cg.CREDIT_ID,
+    	   c.credit_id, c.credit_year, c.credit_semester, c.credit_acquire, c.credit_grade, c.credit_score, 
+    	   c.credit_recource, c.subject_id, c.stu_id,
+    	   s.subject_id, s.subject_name, s.subject_time, s.subject_type, s.subject_credit,
+		   s.subject_capacity, s.subject_request, s.subject_grade, s.subject_class,
+		   s.subject_close_class, s.subject_semester, s.major_id, s.lecture_id
+	from   CREDIT_GIVE_UP cg, credit c, subject s
+    where  cg.CREDIT_ID = c.credit_id
+    and    c.subject_id = s.subject_id
+    and    c.stu_id = #{value}
+ </select>
+ 
+ <!-- 
+ 	현재연도, 학기, 학생 ID를 이용해서 해당 학생 현재연도, 현재학기의 학적포기 신청내역을 select
+	By Baek.J.H
+  -->
+ <select id="selectCreditGiveUpByYearStuIdSemester" resultMap="creditGiveUp-credit-subject-reresultmap" parameterType="string">
+ 	select cg.CGU_ID, cg.CGU_YEAR, cg.CGU_SEMESTER, cg.CGU_START_DATE, cg.CGU_FINISH_DATE, cg.CGU_STATE, cg.CREDIT_ID,
+    	   c.credit_id, c.credit_year, c.credit_semester, c.credit_acquire, c.credit_grade, c.credit_score, 
+    	   c.credit_recource, c.subject_id, c.stu_id,
+    	   s.subject_id, s.subject_name, s.subject_time, s.subject_type, s.subject_credit,
+		   s.subject_capacity, s.subject_request, s.subject_grade, s.subject_class,
+		   s.subject_close_class, s.subject_semester, s.major_id, s.lecture_id
+	from   CREDIT_GIVE_UP cg, credit c, subject s
+    where  cg.CREDIT_ID = c.credit_id
+    and    c.subject_id = s.subject_id
+    and    c.stu_id = #{stuId}
+    and    cg.CGU_YEAR=#{nowYear}
+    and    cg.CGU_SEMESTER=#{semester}
+ </select>
+
 <select id="selectCreditGiveUpJoin" resultMap="creditGiveUp-basic-reresultmap">
 	SELECT c.cgu_id, c.cgu_year, c.cgu_semester, c.cgu_start_date, c.cgu_finish_date,
-		   c.cgu_state, c.credit_id, m.major_name, u.users_id, u.users_name
-	FROM credit_give_up c, credit t, student s, users u, major m
-	WHERE c.credit_id = t.credit_id 
+		   c.cgu_state, c.credit_id, m.major_name, u.users_id, u.users_name, su.subject_name
+	FROM credit_give_up c, credit t, student s, users u, major m, subject su
+	WHERE c.credit_id = t.credit_id
 	AND t.stu_id = s.stu_id
 	AND s.stu_id = u.users_id
 	AND s.major_id = m.major_id
+	AND t.subject_id = su.subject_id
+	AND c.cgu_state = '대기'
 </select>
- 
+
 </mapper>

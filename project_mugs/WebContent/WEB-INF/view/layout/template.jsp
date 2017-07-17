@@ -7,13 +7,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>학사종합정보시스템_MUGS</title>
-<script src="${initParam.rootPath }/resource/bootstrap/js/bootstrap.min.js"></script>
-<script src="${initParam.rootPath }/resource/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="${initParam.rootPath }/resource/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="${initParam.rootPath }/resource/bootstrap/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-theme.min.css">
-<link href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-<link href="${initParam.rootPath }/resource/bootstrap/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-responsive.css" >
+<link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/style.css" >
 
 
 

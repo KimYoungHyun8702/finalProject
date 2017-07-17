@@ -1,4 +1,3 @@
-
 /* 1.사용자 */
 CREATE TABLE USERS (
    USERS_ID VARCHAR2(20) NOT NULL, /* 사용자 ID */
@@ -54,11 +53,15 @@ CREATE TABLE MAJOR (
 
 /* 6.건물 */
 CREATE TABLE BUILDING (
-	BUILDING_ID NUMBER NOT NULL, /* 건물 ID */
-	BUILDING_NAME VARCHAR2(50) NOT NULL, /* 건물이름 */
-	BUILDING_URL VARCHAR2(4000) NOT NULL, /* 건물 URL주소 */
-	PRIMARY KEY(BUILDING_ID) /* 기본키 설정 */
+   BUILDING_ID NUMBER PRIMARY KEY, /* 건물 ID *//* 기본키 설정 */
+   BUILDING_NAME VARCHAR2(50) UNIQUE NOT NULL, /* 건물이름 */
+   BUILDING_IMG VARCHAR2(4000) UNIQUE NOT NULL, /* 사진 URL경로 */
+   BUILDING_X NUMBER UNIQUE NOT NULL, /*건물 X좌표*/
+   BUILDING_Y NUMBER UNIQUE NOT NULL, /*건물 Y좌표*/
+   BUILDING_PHONE_NUM VARCHAR2(20) UNIQUE NOT NULL, /*건물 전화번호*/
+   BUILDING_ADDR VARCHAR2(300) UNIQUE NOT NULL /*건물 주소*/
 );
+
 
 /* 7.방 */
 CREATE TABLE ROOM (
@@ -118,7 +121,7 @@ CREATE TABLE STUDENT (
 	FOREIGN KEY (MAJOR_MINOR_ID) REFERENCES MAJOR(MAJOR_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
-/* 휴복학신청 */
+/* 11. 휴복학신청 */
 CREATE TABLE LEAVERETURNAPPLICATION (
    LRAPPLICATION_ID NUMBER NOT NULL, /* 휴복학신청ID */
    LRAPPLICATION_TYPE VARCHAR2(20) NOT NULL, /* 휴복학종류 */
@@ -130,7 +133,7 @@ CREATE TABLE LEAVERETURNAPPLICATION (
    FOREIGN KEY(STU_ID) REFERENCES STUDENT(STU_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
-/* 11.교수 */
+/* 12.교수 */
 CREATE TABLE PROFESSOR (
 	PRO_ID VARCHAR2(20) NOT NULL, /* 교수 ID */
 	PRO_UNIVERSITY VARCHAR2(50) NOT NULL, /* 졸업대학 */
@@ -147,7 +150,7 @@ CREATE TABLE PROFESSOR (
 	FOREIGN KEY (LABORATORY_ID) REFERENCES ROOM(ROOM_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
-/* 12.과목 */
+/* 13.과목 */
 CREATE TABLE SUBJECT (
 	SUBJECT_ID NUMBER NOT NULL, /* 과목 ID */
 	SUBJECT_NAME VARCHAR2(50) NOT NULL, /* 과목이름 */
@@ -167,7 +170,7 @@ CREATE TABLE SUBJECT (
 	FOREIGN KEY (LECTURE_ID) REFERENCES ROOM(ROOM_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
-/* 13.교수담당과목 */
+/* 14.교수담당과목 */
 CREATE TABLE PROFESSOR_SUBJECT (
 	PRO_SUBJECT_ID NUMBER NOT NULL, /* 교수담당과목 ID */
 	PRO_SUBJECT_SEMESTER VARCHAR2(20) NOT NULL, /* 학기 */
@@ -179,7 +182,7 @@ CREATE TABLE PROFESSOR_SUBJECT (
 	FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECT(SUBJECT_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
-/* 14.강의계획서 */
+/* 15.강의계획서 */
 CREATE TABLE SUBJECT_PLAN (
 	PLAN_ID NUMBER NOT NULL, /* 강의계획서 ID */
 	PLAN_SUMMARY VARCHAR2(100) NOT NULL, /* 교과목개요 */
@@ -198,7 +201,7 @@ CREATE TABLE SUBJECT_PLAN (
 	FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECT(SUBJECT_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
-/* 15.지도학생 */
+/* 16.지도학생 */
 CREATE TABLE GUIDANCE_STUDENT (
 	GUIDANCE_STUDENT_ID NUMBER NOT NULL, /* 지도학생 ID */
 	CONSULTANT_CONTENT VARCHAR2(4000), /* 상담내용 */
@@ -210,7 +213,7 @@ CREATE TABLE GUIDANCE_STUDENT (
 	FOREIGN KEY (STU_ID) REFERENCES STUDENT(STU_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
-/* 16.수강 */
+/* 17.수강 */
 CREATE TABLE COURSE (
 	COURSE_ID NUMBER NOT NULL, /* 수강 ID */
 	COURSE_YEAR NUMBER NOT NULL, /* 연도 */
@@ -224,7 +227,7 @@ CREATE TABLE COURSE (
 	FOREIGN KEY (STU_ID) REFERENCES STUDENT(STU_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
-/* 17.학점 */
+/* 18.학점 */
 CREATE TABLE CREDIT (
 	CREDIT_ID NUMBER NOT NULL, /* 학점 ID */
 	CREDIT_YEAR NUMBER NOT NULL, /* 연도 */
@@ -240,17 +243,20 @@ CREATE TABLE CREDIT (
 	FOREIGN KEY (STU_ID) REFERENCES STUDENT(STU_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
-/* 학점포기 */
+/* 19.학점포기 */
 CREATE TABLE CREDIT_GIVE_UP (
-   CREDIT_GIVE_UP_ID NUMBER NOT NULL, /* 학점 포기 ID */
-   CREDIT_GIVE_UP_YEAR NUMBER NOT NULL, /* 신청 연도 */
-   CREDIT_GIVE_UP_SEMESTER VARCHAR2(20) NOT NULL, /* 신청 학기 */
+   CGU_ID NUMBER NOT NULL, /* 학점 포기 ID */
+   CGU_YEAR NUMBER NOT NULL, /* 신청 연도 */
+   CGU_SEMESTER VARCHAR2(20) NOT NULL, /* 신청 학기 */
+   CGU_START_DATE DATE NOT NULL, /* 신청 일자 */
+   CGU_FINISH_DATE DATE, /* 승인 일자 */
+   CGU_STATE VARCHAR2(20) NOT NULL, /* 신청 상태 */
    CREDIT_ID NUMBER NOT NULL, /* 학점 ID */
-   PRIMARY KEY(CREDIT_GIVE_UP_ID), /* 기본키 설정 */
+   PRIMARY KEY(CGU_ID), /* 기본키 설정 */  
    FOREIGN KEY(CREDIT_ID) REFERENCES CREDIT(CREDIT_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
-/* 18.평가응답 */
+/* 20.평가응답 */
 CREATE TABLE EVALUATION_ANSWER (
 	EVALUATION_ANSWER_ID NUMBER NOT NULL, /* 평가응답 ID */
 	EVALUATION_ANSWER_STATE CHAR(1) NOT NULL, /* 평가응답여부 */
@@ -263,7 +269,7 @@ CREATE TABLE EVALUATION_ANSWER (
 	FOREIGN KEY (SUBJECT_ID) REFERENCES SUBJECT(SUBJECT_ID) ON DELETE CASCADE /* 외래키 제약조건 및 DELETE 제약조건 설정 */
 );
 
-/* 19.평가 */
+/* 21.평가 */
 CREATE TABLE EVALUATION (
 	EVALUATION_ID NUMBER NOT NULL, /* 평가 ID */
 	EVALUATION_YEAR NUMBER NOT NULL, /* 연도 */
@@ -282,9 +288,7 @@ CREATE TABLE EVALUATION (
 
 
 
-
-
-/* 20.학사경고 */
+/* 22.학사경고 */
 CREATE TABLE ACADEMIC_PROBATION(
 	PROBATION_ID NUMBER NOT NULL, --학사경고 ID
 	PROBATION_YEAR NUMBER NOT NULL, -- 학사경고 받은 연도
@@ -295,8 +299,9 @@ CREATE TABLE ACADEMIC_PROBATION(
 	FOREIGN KEY(STU_ID) REFERENCES STUDENT(STU_ID) ON DELETE CASCADE
 );
 
-/* 21.학사일정 */
+/* 23.학사일정 */
 CREATE TABLE ACADEMIC_CALENDAR (
+   CALENDAR_YEAR NUMBER NOT NULL, /* 학사연도 */
    CALENDAR_ID NUMBER NOT NULL, /* 학사일정 ID */
    CALENDAR_START DATE NOT NULL, /* 일정시작일 */
    CALENDAR_FINISH DATE NOT NULL, /* 일정종료일 */
@@ -306,12 +311,14 @@ CREATE TABLE ACADEMIC_CALENDAR (
 
 --학점포기는 학점 아래, 휴복학 신청은 학생테이블 아래에
 
-----시퀀스 생성 
+
 
 /* 각 테이블의 삭제 */
-
+DROP TABLE ACADEMIC_CALENDAR;
+DROP TABLE ACADEMIC_PROBATION;
 DROP TABLE EVALUATION;
 DROP TABLE EVALUATION_ANSWER;
+DROP TABLE CREDIT_GIVE_UP;
 DROP TABLE CREDIT;
 DROP TABLE COURSE;
 DROP TABLE GUIDANCE_STUDENT;
@@ -319,6 +326,7 @@ DROP TABLE SUBJECT_PLAN;
 DROP TABLE PROFESSOR_SUBJECT;
 DROP TABLE SUBJECT;
 DROP TABLE PROFESSOR;
+DROP TABLE LEAVERETURNAPPLICATION;
 DROP TABLE STUDENT;
 DROP TABLE STANDARD;
 DROP TABLE GRADUATION_CREDIT;
@@ -329,31 +337,32 @@ DROP TABLE COLLEGE;
 DROP TABLE NOTICE;
 DROP TABLE AUTHORITIES;
 DROP TABLE USERS;
-DROP TABLE ACADEMIC_CALENDAR;
-DROP TABLE ACADEMIC_PROBATION;
+
+
 
 
 
 
 /* 각 테이블의 기본키에 대한 필요 시퀀스 생성 */
-CREATE SEQUENCE EVALUATION_ANSWER_ID_SEQ; /* 평가응답 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE GUIDENCE_STUDENT_ID_SEQ; /* 지도학생 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE SUBJECT_ID_SEQ; /* 과목 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE PLAN_ID_SEQ; /* 강의계획서 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE NOTICE_ID_SEQ; /* 공지사항 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE PRO_SUBJECT_ID_SEQ; /* 교수담당과목 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE EVALUATION_ID_SEQ; /* 평가 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE MAJOR_ID_SEQ; /* 학과 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE COLLEGE_ID_SEQ; /* 대학(학부) 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE COURSE_ID_SEQ; /* 수강 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE CREDIT_ID_SEQ; /* 학점 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE ROOM_ID_SEQ;/* 방 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE PROBATION_ID_SEQ;/* 학사경고 테이블의 기본키에 대한 시퀀스 생성 */
-CREATE SEQUENCE CALENDAR_ID_SEQ; /* 학사일정 테이블의 기본키에 대한 시퀀스 생성 */
+
+CREATE SEQUENCE EVALUATION_ANSWER_ID_SEQ; /* 평가응답 테이블의 기본키에 대한 시퀀스 삭제 */
+CREATE SEQUENCE GUIDENCE_STUDENT_ID_SEQ; /* 지도학생 테이블의 기본키에 대한 시퀀스 삭제 */
+CREATE SEQUENCE SUBJECT_ID_SEQ; /* 과목 테이블의 기본키에 대한 시퀀스 삭제 */
+CREATE SEQUENCE PLAN_ID_SEQ; /* 강의계획서 테이블의 기본키에 대한 시퀀스 삭제 */
+CREATE SEQUENCE NOTICE_ID_SEQ; /* 공지사항 테이블의 기본키에 대한 시퀀스 삭제 */
+CREATE SEQUENCE PRO_SUBJECT_ID_SEQ; /* 교수담당과목 테이블의 기본키에 대한 시퀀스 삭제 */
+CREATE SEQUENCE EVALUATION_ID_SEQ; /* 평가 테이블의 기본키에 대한 시퀀스 삭제 */
+CREATE SEQUENCE MAJOR_ID_SEQ; /* 학과 테이블의 기본키에 대한 시퀀스 삭제 */
+CREATE SEQUENCE COLLEGE_ID_SEQ; /* 대학(학부) 테이블의 기본키에 대한 시퀀스 삭제 */
+CREATE SEQUENCE COURSE_ID_SEQ; /* 수강 테이블의 기본키에 대한 시퀀스 삭제 */
+CREATE SEQUENCE CREDIT_ID_SEQ;/* 학점 테이블의 기본키에 대한 시퀀스 삭제 */
+CREATE SEQUENCE PROBATION_ID_SEQ;/* 학사경고 테이블의 기본키에 대한 시퀀스 삭제 */
+CREATE SEQUENCE CALENDAR_ID_SEQ;/* 학사일정 테이블의 기본키에 대한 시퀀스 삭제 */
+CREATE SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀스 삭제 */
+CREATE SEQUENCE ROOM_ID_SEQ;/* 방 테이블의 기본키에 대한 시퀀스 삭제*/
 CREATE SEQUENCE LRAPPLICATION_ID_SEQ;
-CREATE SEQUENCE CREDIT_GIVE_UP_ID_SEQ;
-CREATE SEQUENCE ACADEMIC_PROBATION_ID_SEQ
+CREATE SEQUENCE CGU_ID_SEQ;
+
 /* 각 테이블의 기본키에 대한 필요 시퀀스 삭제 */
 
 DROP SEQUENCE EVALUATION_ANSWER_ID_SEQ; /* 평가응답 테이블의 기본키에 대한 시퀀스 삭제 */
@@ -372,5 +381,4 @@ DROP SEQUENCE CALENDAR_ID_SEQ;/* 학사일정 테이블의 기본키에 대한 �
 DROP SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀스 삭제 */
 DROP SEQUENCE ROOM_ID_SEQ;/* 방 테이블의 기본키에 대한 시퀀스 삭제*/
 DROP SEQUENCE LRAPPLICATION_ID_SEQ;
-DROP SEQUENCE CREDIT_GIVE_UP_ID_SEQ;
-
+DROP SEQUENCE CGU_ID_SEQ;

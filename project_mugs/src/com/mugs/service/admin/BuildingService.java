@@ -12,14 +12,14 @@ public interface BuildingService {
 	 * @param building
 	 * @return
 	 */
-	String insertBuilding(Building building);
+	int insertBuilding(Building building);
 	
 	/**
 	 * 하나의 건물 수정하는 메소드
 	 * @param building
 	 * @return
 	 */
-	String updateBuildingById(Building building);
+	int updateBuildingById(Building building);
 	
 	/**
 	 * 매개변수로 buildingId를 받아 해당하는 건물 삭제하는 메소드

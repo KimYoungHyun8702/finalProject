@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mugs.service.admin.StudentService;
 import com.mugs.vo.CreditGiveUp;
@@ -115,9 +113,55 @@ public class StudentController {
 		return new ModelAndView("admin/student/select_credit_give_up.tiles","list",list);
 	}
 	
-	@RequestMapping("selectLeaveReturnApplicationListController")
+	@RequestMapping("selectLeaveReturnApplicationJoinController")
 	public ModelAndView selectLeaveReturnApplicationList(){
 		List<LeaveReturnApplication> list = studentService.selectLeaveReturnApplicationList();
 		return  new ModelAndView("admin/student/select_leave_return_application.tiles","list",list);
 	}
+	
+	@RequestMapping("approveCreditGiveUpController")
+	public String approveCreditGiveUp(int creditGiveUpId, HttpSession session){
+		session.setAttribute("cguApproveMessage", "1");
+		studentService.approveCreditGiveUp(creditGiveUpId);
+		return "redirect:/admin/selectCreditGiveUpListController.do";
+	}
+	
+	@RequestMapping("refuseCreditGiveUpController")
+	public String refuseCreditGiveUp(int creditGiveUpId, HttpSession session){
+		session.setAttribute("cguRefuseMessage", "1");
+		studentService.refuseCreditGiveUp(creditGiveUpId);
+		return "redirect:/admin/selectCreditGiveUpListController.do";
+	}
+	
+	@RequestMapping("approveLeaveReturnApplicationController")
+	public String approveLeaveReturnApplication(int LRApplicationId, HttpSession session){
+		session.setAttribute("lrApproveMessage", "1");
+		studentService.approveLeaveReturnApplication(LRApplicationId);
+		return "redirect:/admin/selectLeaveReturnApplicationJoinController.do";
+	}
+	
+	@RequestMapping("refuseLeaveReturnApplicationController")
+	public String refuseLeaveReturnApplication(int LRApplicationId, HttpSession session){
+		session.setAttribute("lrRefuseMessage", "1");
+		studentService.refuseLeaveReturnApplication(LRApplicationId);
+		return "redirect:/admin/selectLeaveReturnApplicationJoinController.do";
+	}
+	
+	@RequestMapping("selectForExpelController")
+	public ModelAndView selectForExpel(){
+		Map map = studentService.selectForExpel();
+		ModelAndView view = new ModelAndView();
+		view.setViewName("admin/student/select_academic_probation.tiles");
+		view.addObject("list",map.get("list"));
+		view.addObject("year",map.get("year"));
+		return view;
+	}
+	
+	@RequestMapping("expelProbationController")
+	public String expelProbation(String usersId, HttpSession session){
+		session.setAttribute("expelMessage", "1");
+		studentService.expelProbation(usersId);
+		return "redirect:/admin/selectForExpelController.do";
+	}
+	
 }

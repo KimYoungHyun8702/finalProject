@@ -109,7 +109,7 @@ public class SubjectServiceImpl implements SubjectService {
 		List<College> college = collegeDao.selectCollegeList();
 		List<Major> major = majorDao.selectMajorList();
 		for(int i = 0; i<building.size(); i++){
-			if(building.get(i).getBuildingName().equals("교수실연구동")){
+			if(building.get(i).getBuildingName().equals("교수연구동")){
 				building.remove(i);
 			}
 			if(building.get(i).getBuildingName().equals("광교관")){
@@ -130,7 +130,7 @@ public class SubjectServiceImpl implements SubjectService {
 		List<Room> room = roomDao.selectRoomList();
 		Subject subject = subjectDao.selectSubjectInfoBySubjectIdForUpdate(subjectId);
 		for(int i = 0; i<building.size(); i++){
-			if(building.get(i).getBuildingName().equals("교수실연구동")){
+			if(building.get(i).getBuildingName().equals("교수연구동")){
 				building.remove(i);
 			}
 			if(building.get(i).getBuildingName().equals("광교관")){
@@ -160,7 +160,7 @@ public class SubjectServiceImpl implements SubjectService {
 		List<Room> room = roomDao.selectRoomList();
 		Subject subject = subjectDao.selectSubjectInfoBySubjectIdForMinorUpdate(subjectId);
 		for(int i = 0; i<building.size(); i++){
-			if(building.get(i).getBuildingName().equals("교수실연구동")){
+			if(building.get(i).getBuildingName().equals("교수연구동")){
 				building.remove(i);
 			}
 			if(building.get(i).getBuildingName().equals("광교관")){

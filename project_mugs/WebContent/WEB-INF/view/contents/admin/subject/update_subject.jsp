@@ -92,7 +92,6 @@ $(document).ready(function(){
 				<td align="center">강의 시간</td>
 				<td align="center">이수 구분</td>
 				<td align="center">학점</td>
-				<td align="center">정원</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -135,24 +134,33 @@ $(document).ready(function(){
 							</c:choose>
 					</select></td>
 				<td align="center"><input type="number" name="subjectCredit" id="subjectCredit" max="3" min="1" value="${requestScope.subject.subjectCredit }"/></td>
-				<td align="center"><input type="number" name="subjectCapacity" id="subjectCapacity" value="${requestScope.subject.subjectCapacity }"/></td>
 			</tr>
 		</tbody>
 		
 		<thead>
 			<tr>
+				<td align="center">정원</td>
 				<td align="center">학년</td>
 				<td align="center">분반</td>
 				<td align="center">폐강 여부</td>
-				<td align="center">학기</td>
-				<td align="center">강의실</td>
 			</tr>
 		</thead>
 		<tbody id="tbody">
 			<tr>
+				<td align="center"><input type="number" name="subjectCapacity" id="subjectCapacity" value="${requestScope.subject.subjectCapacity }"/></td>
 				<td align="center"><input type="number" name="subjectGrade" max="4" min="1" id="subjectGrade" value="${requestScope.subject.subjectGrade }"/></td>
 				<td align="center"><input type="text" name="subjectClass" id="subjectClass" value="${requestScope.subject.subjectClass }"/></td>
 				<td align="center"><input type="text" name="subjectCloseClass" id="subjectCloseClass" value="${requestScope.subject.subjectCloseClass }"/></td>
+			</tr>
+		</tbody>
+		<thead>
+			<tr>
+				<td align="center">학기</td>
+				<td align="center">강의실</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
 				<td align="center"><input type="text" name="subjectSemester" id="subjectSemester" value="${requestScope.subject.subjectSemester }"/></td>
 				<td align="center"><select name="buildingId" id="buildingId">
 							<option>강의동 선택</option>

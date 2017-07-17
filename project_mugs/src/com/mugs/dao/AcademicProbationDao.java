@@ -62,4 +62,16 @@ public interface AcademicProbationDao {
 	 * @return
 	 */
 	AcademicProbation selectAcademicProbationByThreeId(int probationYear, String probationSemester, String stuId);
+	
+	/**
+	 * 학사경고 3번 이상 받은 학생 연도 학기 조회 메소드
+	 * @return
+	 */
+	List<AcademicProbation> selectForExpel(String stuId);
+	
+	/**
+	 * 학사경고 3번 이상 받은 학생 정보 조회 메소드
+	 * @return
+	 */
+	List<AcademicProbation> selectForExpelStudentInfo();
 }

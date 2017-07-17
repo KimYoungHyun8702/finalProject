@@ -48,4 +48,6 @@ public interface GraduationCreditService {
 	 * @return
 	 */
 	List<GraduationCredit> selectGraduationCreditByMajorId(int majorId);
+	
+	
 }

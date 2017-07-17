@@ -45,6 +45,10 @@
 	<collection property="subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-basic-resultmap"/>
 </resultMap>
 
+<resultMap type="credit" id="credit-subject-join-resultmap" extends="credit-basic-resultmap">
+	<association property="subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-basic-resultmap"/>
+</resultMap>
+
 <!-- insert -->
 <insert id="insertCredit" parameterType="credit">
 		<selectKey resultType="int" keyProperty="creditId" order="BEFORE">
@@ -75,7 +79,7 @@
 					credit_score=#{creditScore},
 					credit_recource=#{creditRecource},
 					subject_id=#{subjectId},
-					stu_id=#{stuId},
+					stu_id=#{stuId}
 	   WHERE		credit_id=#{creditId}
 	   
 </update>
@@ -216,5 +220,19 @@ AND stu_id = #{stuId}
 		
 </select>
 
+<select id="selectCreditByYearSemesterStuId" resultMap="credit-subject-resultmap" parameterType="map">
+	select c.credit_id, c.credit_year, c.credit_semester, c.credit_acquire,
+		   c.credit_grade, c.credit_score, c.credit_recource, c.subject_id,
+		   c.stu_id, s.subject_id, s.subject_name, s.subject_time, s.subject_type,
+		   s.subject_credit, s.subject_capacity, s.subject_request, s.subject_grade,
+		   s.subject_class, s.subject_close_class, s.subject_semester, s.major_id,
+		   s.lecture_id
+    FROM   credit c, subject s
+    where  c.subject_id = s.subject_id
+    and    c.credit_id not in(select credit_id from CREDIT_GIVE_UP where CGU_STATE=대기 or CGU_STATE=승인)
+    and    c.credit_year=#{nowYear}
+    and    c.credit_semester=#{semester}
+    and    c.stu_id=#{stuId}
+</select>
 
 </mapper>

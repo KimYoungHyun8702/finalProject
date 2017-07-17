@@ -3,6 +3,7 @@ package com.mugs.service.admin;
 import java.util.List;
 import java.util.Map;
 
+import com.mugs.vo.AcademicProbation;
 import com.mugs.vo.CreditGiveUp;
 import com.mugs.vo.LeaveReturnApplication;
 import com.mugs.vo.Student;
@@ -74,9 +75,47 @@ public interface StudentService {
 	List<CreditGiveUp> selectCreditGiveUpList();
 	
 	/**
-	 * 휴.복학 신청 현황 전체 조회 리스
+	 * 휴.복학 신청 현황 전체 조회 리스트
 	 * @return
 	 */
 	List<LeaveReturnApplication> selectLeaveReturnApplicationList();
+	
+	/**
+	 * 학점 포기 승인하는 메소드
+	 * @param creditGiveUp
+	 * @return
+	 */
+	void approveCreditGiveUp(int creditGiveUpId);
+	
+	/**
+	 * 학점 포기 거절하는 메소드
+	 * @param creditGiveUpId
+	 */
+	void refuseCreditGiveUp(int creditGiveUpId);
+	
+	/**
+	 * 휴.복학 신청 승인 메소드
+	 * @param LRApplicationId
+	 */
+	void approveLeaveReturnApplication(int LRApplicationId);
+	
+	/**
+	 * 휴.복학 신청 거절 메소드
+	 * @param LRApplicationId
+	 */
+	void refuseLeaveReturnApplication(int LRApplicationId);
+	
+	/**
+	 * 학사경고 3번 이상 받은 학생 조회 메소드
+	 * @param stuId
+	 * @return
+	 */
+	Map selectForExpel();
+	
+	/**
+	 * 제적 처리하는 메소드
+	 * @param usersId
+	 */
+	void expelProbation(String usersId);
 	
 }

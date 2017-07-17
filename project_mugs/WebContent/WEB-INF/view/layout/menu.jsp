@@ -1,24 +1,33 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <%-- Spring Security 커스텀 태그 --%>
 <!DOCTYPE html>
 <html>
   <head>
-	<style>
-		a {
-			color:black;
-		}
-		
-		div{
-			
-		}
-	</style>
-	  <meta charset="utf-8">
-	  <meta name="description" content="">
+   <style>
+      a {
+         color:black;
+      }
+      
+      td {
+         height:20px;
+      }
+   </style>
+     <meta charset="utf-8">
+     <meta name="description" content="">
     <meta name="author" content="">
     <title>Bootstrap 101 Template</title>
- 
+    <script src="${initParam.rootPath }/resource/bootstrap/js/bootstrap.min.js"></script>
+<script src="${initParam.rootPath }/resource/jquery/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap.min.css">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/_bootstrap.min.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/_bootstrap.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/simple-sidebar.css" rel="stylesheet">
+  <!--  <link href="https://bootswatch.com/solar/bootstrap.css" rel="stylesheet"> -->
     
+
     <script type="text/javascript">
     
     function popupOpen(url){
@@ -41,56 +50,54 @@
       }
    } 
    
-	var  stuRegister = "${stuRegister}";
-	
-	if(stuRegister == '휴학' || stuRegister == '군휴학') {
-		alert(stuRegister + "학생은 수강신청을 할 수 없습니다.");
-	} else {
-		var msg = "${msg}";
-		if(msg != "") {
-			alert(msg);
-		}
-	} 
-	
-	var  stuRegisterTimeTable = "${stuRegisterTimeTable}";
-	
-	if(stuRegisterTimeTable == '휴학' || stuRegisterTimeTable == '군휴학') {
-		alert(stuRegisterTimeTable + "학생은 시간표를 볼수 없습니다.");
-	} else {
-		var message = "${message}";
-		if(message != "") {
-			alert(message);
-		}
-	}
+   var  stuRegister = "${stuRegister}";
+   
+   if(stuRegister == '휴학' || stuRegister == '군휴학') {
+      alert(stuRegister + "학생은 수강신청을 할 수 없습니다.");
+   } else {
+      var msg = "${msg}";
+      if(msg != "") {
+         alert(msg);
+      }
+   } 
+   
+   var  stuRegisterTimeTable = "${stuRegisterTimeTable}";
+   
+   if(stuRegisterTimeTable == '휴학' || stuRegisterTimeTable == '군휴학') {
+      alert(stuRegisterTimeTable + "학생은 시간표를 볼수 없습니다.");
+   } else {
+      var message = "${message}";
+      if(message != "") {
+         alert(message);
+      }
+   }
 </script>
 
-	
+   
   </head>
 <body>
 
 <%--
-	sec:authorize access="Spring Security EL" : EL 표현식의 인증/권한 상태의 사용자에게만 보여질 태그의 content로 넣는다.
-												=> 권한에 따라 나타나는 메뉴 다르게 설정
+   sec:authorize access="Spring Security EL" : EL 표현식의 인증/권한 상태의 사용자에게만 보여질 태그의 content로 넣는다.
+                                    => 권한에 따라 나타나는 메뉴 다르게 설정
  --%>
 
 <ul class="nav nav-stacked">
 <%--인증 안된(로그인 안한) 사용자 메뉴  (!isAuthenticated()) : 인증되면 안보여야 하는 메뉴 --%>
-<sec:authorize access="!isAuthenticated()">	
-	<li class="side-menu"><a href="${initParam.rootPath }/login_form.do">로그인</a></li>
-	<li class="side-menu"><a href="javascript:popupOpen('${initParam.rootPath }/idFind.do');">아이디 찾기</a></li>
-	<li class="side-menu"><a href="javascript:popupOpen('${initParam.rootPath }/pwFind.do');">비밀번호 찾기</a></li>
+<sec:authorize access="!isAuthenticated()">   
+   <li class="side-menu"><a href="${initParam.rootPath }/login_form.do">로그인</a></li>
+   <li class="side-menu"><a href="javascript:popupOpen('${initParam.rootPath }/idFind.do');">아이디 찾기</a></li>
+   <li class="side-menu"><a href="javascript:popupOpen('${initParam.rootPath }/pwFind.do');">비밀번호 찾기</a></li>
 </sec:authorize>
 
 <%--인증된(로그인한) 사용자 메뉴  (isAuthenticated()) : 인증 안 된 상태에서 안보여야 하는 메뉴 --%>
-<sec:authorize access="isAuthenticated()">
-	<li class="side-menu"><a href="javascript:logout()">로그아웃</a></li>
-</sec:authorize>
+
 
 <%--학생 메뉴--%>
 <sec:authorize access="hasRole('ROLE_STU')">
 <div class="container">
     <div class="row">
-        <div class="col-sm-3 col-md-3">
+        <div class="col-sm-2 col-md-3">
             <div class="panel-group" id="accordion">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -102,7 +109,7 @@
                     <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
-                                <tr>
+                                <tr style="height:20px">
                                     <td>
                                         <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/student/getCollegeList.do">기준학점조회</a>
                                     </td>
@@ -125,47 +132,47 @@
                             </table>
                         </div>
                     </div>
-					
-					<div class="panel-heading">
+               
+               <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2"><span class="glyphicon glyphicon-folder-close">
                             </span>신청마당</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne2" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="#">수강신청</a>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/student/subjectTypeList.do">수강신청</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="#">휴복학신청</a>
+                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/student/getLeaveReturnApplicationListByStuId.do">휴복학신청 및 조회</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/getMyCourseListByJoin.do">과목평가그래프</a>
+                                        <span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/getCreditGiveUpListByStuId.do">학점포기신청 및 조회</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="${initParam.rootPath }/student/compareEvaluationPeriod.do">과목평가그래프</a>
+                                        <span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/getEvaluationGraphSubjectTypeList.do">평가 그래프</a>
                                     </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
-					
-					 <div class="panel-heading">
+               
+                <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne3"><span class="glyphicon glyphicon-folder-close">
                             </span>성적조회</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne3" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -186,14 +193,14 @@
                             </table>
                         </div>
                     </div>
-					
-					<div class="panel-heading">
+               
+               <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne4"><span class="glyphicon glyphicon-folder-close">
                             </span>학생정보</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne4" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -226,18 +233,93 @@
                         </h4>
                     </div>
                 </div>
-			</div>
-		</div>
-	</div>
+         </div>
+      </div>
+   </div>
 </div>
 </sec:authorize>
 
 <%--교수 메뉴--%>
 <sec:authorize access="hasRole('ROLE_PROFESSOR')">
-<a href="${initParam.rootPath }/professorInfo.do" class="side-menu">교수 개인 정보</a><br>
-<a href="${initParam.rootPath }/guidanceStudent.do" class="side-menu">지도학생</a><br>
-<a href="${initParam.rootPath }/SubjectPlan.do" class="side-menu">강의계획서</a><br>
-<a href="${initParam.rootPath }/professor/addStudentGrade.do" class="side-menu">성적주기</a><br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-md-3">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            </span>교수개인정보조회</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/professorInfo.do" class="side-menu">교수개인정보조회</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                     <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2"><span class="glyphicon glyphicon-folder-close">
+                            </span>강의계획서</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne2" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/SubjectPlan.do" class="side-menu">강의계획서</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                     <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne3"><span class="glyphicon glyphicon-folder-close">
+                            </span>성적주기</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne3" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/addStudentGrade.do" class="side-menu">성적주기</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="javascript:logout()"><span class="glyphicon glyphicon-folder-close">
+                            </span>로그아웃</a>
+                        </h4>
+                    </div>
+                 </div>
+            </div>
+       </div>
+    </div>
+</div>
+                    
+</sec:authorize>
+
+<%--졸업자 메뉴 --%>
+<sec:authorize access="hasRole('ROLE_GRADUATION')">
+<a href="${initParam.rootPath }/student/getCollegeList.do">기준학점조회</a><br>
+<a href="${initParam.rootPath }/student/gradeInquiry.do">성적 조회 -딘강</a><br>
+<a href="${initParam.rootPath }/student/academicProbation.do">학사경고내역 조회-딘강</a>
+>>>>>>> branch 'master' of https://github.com/KimYoungHyun8702/finalProject.git
 </sec:authorize>
 
 <%--관리자 메뉴--%>
@@ -269,14 +351,14 @@
                             </table>
                         </div>
                     </div>
-					
-					<div class="panel-heading">
+               
+               <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne2"><span class="glyphicon glyphicon-folder-close">
                             </span>교수관련</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne2" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -293,14 +375,14 @@
                             </table>
                         </div>
                     </div>
-					
-					 <div class="panel-heading">
+               
+                <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne3"><span class="glyphicon glyphicon-folder-close">
                             </span>과목관련</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne3" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -316,14 +398,14 @@
                             </table>
                         </div>
                     </div>
-					
-					<div class="panel-heading">
+               
+               <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne4"><span class="glyphicon glyphicon-folder-close">
                             </span>학과관련</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne4" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -340,14 +422,14 @@
                             </table>
                         </div>
                     </div>
-					
-					 <div class="panel-heading">
+               
+                <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne5"><span class="glyphicon glyphicon-folder-close">
                             </span>단과대학관련</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne5" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -364,14 +446,14 @@
                             </table>
                         </div>
                     </div>
-					
-					 <div class="panel-heading">
+               
+                <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne6"><span class="glyphicon glyphicon-folder-close">
                             </span>건물관련</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne6" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -388,14 +470,14 @@
                             </table>
                         </div>
                     </div>
-					
-					 <div class="panel-heading">
+               
+                <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne7"><span class="glyphicon glyphicon-folder-close">
                             </span>공지사항관련</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne7" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <table class="table">
                                 <tr>
@@ -419,10 +501,13 @@
                         </h4>
                     </div>
                 </div>
-			</div>
-		</div>
-	</div>
+         </div>
+      </div>
+   </div>
 </div>
+<a href="${initParam.rootPath }/admin/selectCreditGiveUpListController.do">학점 포기 신청 현황 조회</a><br>
+<a href="${initParam.rootPath }/admin/selectLeaveReturnApplicationJoinController.do">휴.복학 신청 현황 조회</a><br>
+<a href="${initParam.rootPath }/admin/selectForExpelController.do">학사 경고 현황 조회</a><br>
 </sec:authorize>
 
 </ul>
@@ -431,8 +516,6 @@
 <form id="logoutForm" action="${initParam.rootPath }/logout.do" method="post" style="display:none">
     <sec:csrfInput/>
 </form>
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
 
 </body>
 </html>
