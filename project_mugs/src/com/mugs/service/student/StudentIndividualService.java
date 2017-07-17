@@ -41,7 +41,7 @@ public interface StudentIndividualService {
 	 * @param majorId
 	 * @return 과목 리스트
 	 */
-	List<Object> getSubjectTypeListByMajorId(int majorId,String semester);
+	List<Object> getSubjectTypeListByMajorId(int majorId,String semester,int year);
 	
 	
 	/**
@@ -49,7 +49,7 @@ public interface StudentIndividualService {
 	 * @param subjectType
 	 * @return 과목 리스트
 	 */
-	Map<String,Object> getSubjectBySubjectTypeAndMajorId(String semester, Integer majorId, String subjectType);	
+	Map<String,Object> getSubjectBySubjectTypeAndMajorId(String semester, Integer majorId, String subjectType,int year);	
 	
 	/**
 	 * @param 유저의 정보

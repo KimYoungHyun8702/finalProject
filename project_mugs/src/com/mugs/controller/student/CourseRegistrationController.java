@@ -43,8 +43,11 @@ public class CourseRegistrationController {
 	 **/
 	@RequestMapping("getCollegeListAjax")
 	@ResponseBody
-	public List<College> getCollegeListAjax() {
-		return courseRegistrationService.findCollegeList();
+	public HashMap<String, Object> getCollegeListAjax(String subjectType) {
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String stuId = users.getUsersId();
+		
+		return courseRegistrationService.findCollegeList(subjectType, stuId);
 	}
 	
 	
@@ -140,7 +143,7 @@ public class CourseRegistrationController {
 	@RequestMapping("getMajorList")
 	public ModelAndView getMajorList() {
 		List<String> majorListResult = graduationManagementServiceImpl.getMajorList();
-		return new ModelAndView("student/standard/courseStandardView,.tiles", "majorListResult", majorListResult);
+		return new ModelAndView("student/standard/courseStandardView.tiles", "majorListResult", majorListResult);
 	}
 	
 	/** By Cho.S.R **/

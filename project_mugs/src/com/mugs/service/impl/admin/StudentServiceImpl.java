@@ -196,7 +196,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	@Transactional
 	public void approveCreditGiveUp(int creditGiveUpId){
-		CreditGiveUp creditGiveUp = creditGiveUpDao.SelectCreditGiveUpById(creditGiveUpId);
+		CreditGiveUp creditGiveUp = creditGiveUpDao.selectCreditGiveUpById(creditGiveUpId);
 		int id = creditGiveUp.getCreditId();
 		creditGiveUp.setCGUState("승인");
 		creditGiveUpDao.updateCreditGiveUp(creditGiveUp);
@@ -207,7 +207,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void refuseCreditGiveUp(int creditGiveUpId) {
-		CreditGiveUp creditGiveUp = creditGiveUpDao.SelectCreditGiveUpById(creditGiveUpId);
+		CreditGiveUp creditGiveUp = creditGiveUpDao.selectCreditGiveUpById(creditGiveUpId);
 		creditGiveUp.setCGUState("반려");
 		creditGiveUpDao.updateCreditGiveUp(creditGiveUp);
 	}

@@ -21,7 +21,7 @@ public class CreditGiveUp implements Serializable {
 	private String usersId;
 	private String usersName;
 	private String subjectName;
-	
+
 	public CreditGiveUp() {
 	}
 
@@ -238,6 +238,8 @@ public class CreditGiveUp implements Serializable {
 				+ ", creditId=" + creditId + ", credit=" + credit + ", majorName=" + majorName + ", usersId=" + usersId
 				+ ", usersName=" + usersName + ", subjectName=" + subjectName + "]";
 	}
-
+	
+	
+	
 	
 }

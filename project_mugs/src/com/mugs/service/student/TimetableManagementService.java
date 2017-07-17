@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.mugs.vo.Building;
 
+
 public interface TimetableManagementService {
 
 	/**
@@ -14,7 +15,6 @@ public interface TimetableManagementService {
 	 * @param nowSemester
 	 * @return
 	 */
-
 	HashMap<String, Object> findMyTimeTableByJoin(String loginId);
 
 	/**

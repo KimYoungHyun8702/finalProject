@@ -16,9 +16,9 @@ public interface CourseRegistrationService {
 	 * 학부리스트를 조회하는 메소드
 	 * 
 	 * By Baek.J.H
-	 * @return List<College>
+	 * @return HashMap<String, Object>
 	 */
-	List<College> findCollegeList();
+	HashMap<String, Object> findCollegeList(String subjectType, String stuId);
 	
 	
 	

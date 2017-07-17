@@ -1,5 +1,7 @@
 package com.mugs.dao.impl;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -67,4 +69,13 @@ public class LeaveReturnApplicationDaoImpl implements LeaveReturnApplicationDao 
 	}
 	
 	
+	public List<LeaveReturnApplication> selectLeaveReturnApplicationByDate(Date startDate, Date finishDate,
+			String stuId) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("startDate", startDate);
+		map.put("finishDate", finishDate);
+		map.put("stuId", stuId);
+		return session.selectList(makeSql("selectLeaveReturnApplicationListByDate"), map);
+	}
 }
