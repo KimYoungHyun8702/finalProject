@@ -8,6 +8,12 @@
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 </head>
 <body>
+<c:if test="${sessionScope.buideleteMessage != null}">
+		<script type="text/javascript">
+			alert("삭제되었습니다");
+		</script>
+		<% session.removeAttribute("buideleteMessage"); %>
+</c:if>
 	<h2>건물 조회</h2>
 	<hr>
 	<table border="1">

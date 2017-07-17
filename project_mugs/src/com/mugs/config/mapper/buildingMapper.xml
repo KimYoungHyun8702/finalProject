@@ -2,28 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mugs.config.mapper.buildingMapper">
 
-   <sql id="select-building">
-      SELECT building_id,
-      building_name,
-      building_img,
-      building_x,
-      building_y,
-      building_phone_num,
-      building_addr
-      
-      FROM building
-   </sql>
-
-
-   <resultMap type="building" id="building-basic-resultmap">
-      <id column="building_id" property="buildingId" />
-      <result column="building_name" property="buildingName" />
-      <result column="building_img" property="buildingImg" />
-      <result column="building_x" property="buildingX" />
-      <result column="building_y" property="buildingY" />
-      <result column="building_phone_num" property="buildingPhoneNum" />
-      <result column="building_addr" property="buildingAddr" />
-   </resultMap>
+	<sql id="select-building">
+		SELECT building_id,
+		building_name,
+		building_img,
+		building_x,
+		building_y,
+		building_phone_num,
+		building_addr
+		
+		FROM building
+	</sql>
+	
+	<resultMap type="building" id="building-basic-resultmap">
+		<id column="building_id" property="buildingId" />
+		<result column="building_name" property="buildingName" />
+		<result column="building_img" property="buildingImg" />
+		<result column="building_x" property="buildingX" />
+		<result column="building_y" property="buildingY" />
+		<result column="building_phone_num" property="buildingPhoneNum" />
+		<result column="building_addr" property="buildingAddr" />
+	</resultMap>
 
    <resultMap type="Building" id="Building-Room-resultmap"
       extends="building-basic-resultmap">
@@ -75,33 +74,35 @@
       WHERE BUILDING_ID = #{VALUE}
    </select>
 
-   <select id="selectBuildingByIdJoin" resultMap="Building-Room-resultmap"
-      parameterType="int">
-      SELECT B.BUILDING_ID, B.BUILDING_NAME, B.BUILDING_IMG, B.BUILDING_X,
-      B.BUILDING_Y, B.BUILDING_PHONE_NUM, B.BUILDING_YEAR R.ROOM_ID,
-      R.ROOM_NAME
-      FROM BUILDING B, ROOM R
-      WHERE B.BUILDING_ID = R.BUILDING_ID
-      AND B.BUILDING_ID = #{VALUE}
-   </select>
-   
-   <select id="selectBuildingByBuildingName" resultMap="building-basic-resultmap" parameterType="string">
-      <include refid="select-building"/>
-      WHERE BUILDING_NAME = #{VALUE}
-   </select>
-   
-   <select id="selectRoomListByOffice" resultMap="Building-Room-resultmap">
-      SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID, R.ROOM_NAME
-      FROM BUILDING B, ROOM R
-      WHERE b.building_id = r.building_id 
-      AND building_name = '교수실강의동'
-   </select>
-   
-   <select id="selectRoomListByLaboratory" resultMap="Building-Room-resultmap">
-      SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID, R.ROOM_NAME
-      FROM BUILDING B, ROOM R
-      WHERE b.building_id = r.building_id 
-      AND building_name = '연구실강의동'
-   </select>
-
+	<select id="selectBuildingByIdJoin" resultMap="Building-Room-resultmap"
+		parameterType="int">
+		SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID,
+		R.ROOM_NAME, B.BUILDING_PHONE_NUM, B.BUILDING_ADDR,
+		B.BUILDING_IMG,
+		B.BUILDING_X,
+		B.BUILDING_Y
+		FROM BUILDING B, ROOM R
+		WHERE B.BUILDING_ID = R.BUILDING_ID
+		AND B.BUILDING_ID = #{VALUE}
+	</select>
+	
+	<select id="selectBuildingByBuildingName" resultMap="building-basic-resultmap" parameterType="string">
+		<include refid="select-building"/>
+		WHERE BUILDING_NAME = #{VALUE}
+	</select>
+	
+	<select id="selectRoomListByOffice" resultMap="Building-Room-resultmap">
+		SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID, R.ROOM_NAME
+		FROM BUILDING B, ROOM R
+		WHERE b.building_id = r.building_id 
+		AND building_name = '교수연구동'
+	</select>
+	
+	<select id="selectRoomListByLaboratory" resultMap="Building-Room-resultmap">
+		SELECT B.BUILDING_ID, B.BUILDING_NAME, R.ROOM_ID, R.ROOM_NAME
+		FROM BUILDING B, ROOM R
+		WHERE b.building_id = r.building_id 
+		AND building_name = '광교관'
+	</select>
+	
 </mapper>

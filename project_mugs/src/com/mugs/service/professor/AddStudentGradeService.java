@@ -85,4 +85,7 @@ public interface AddStudentGradeService {
 	 * @return
 	 */
 	AcademicProbation getAcademicProbationByThreeId(int probationYear, String probationSemester, String stuId);
+	
+	String getCalendarCheck();
+	
 }

@@ -90,6 +90,7 @@ function showUpImg(){
 	</tr> 
 	</table></center>
 <br><br>
+
 <form action="/project_mugs/professor/updateProfile.do" method="post">
 <sec:csrfInput/>
 	
@@ -145,6 +146,7 @@ function showUpImg(){
 
 	
 	<center><table border="1" id="showUpdateImg" style="width:600px">
+
 		<tr>
 			<td align="center">프로필 사진 변경</td>
 		</tr> 
@@ -155,6 +157,7 @@ function showUpImg(){
 	<br>
 	<input type="hidden" name="usersPassword" value="${sessionScope.professor.usersPassword}">
 	<center><button type="submit" id="updateBtn">수정</button></center>
+
 </form>	
 
 

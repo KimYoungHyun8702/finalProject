@@ -122,6 +122,7 @@ $(document).on("click", "#updateBtn", function(){
 	</tr>
 </table></center>
 
+
 	<input type="text" id="usersEnable" name="usersEnable" value="${sessionScope.professor.usersId}" style="display: none;">
 	<form action="/project_mugs/professor/professorInfoUpdate.do" method="get"><br>
 	<center><input type="submit" id="UpdateBtn" value="수정 페이지로"></center>

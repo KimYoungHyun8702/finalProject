@@ -51,6 +51,12 @@ public interface LeaveReturnApplicationDao {
 	List<LeaveReturnApplication> selectLeaveReturnApplicationByStuId(String stuId);
 	
 	/**
+	 * 휴복학 전체 조회 메소드
+	 * @return
+	 */
+	List<LeaveReturnApplication> selectLeaveReturnApplicationJoin();
+	
+	/**
 	 * 매개변수로 휴복학신청기간 시작일자, 종료일자, 학생ID를 받아서 그안에 신청한 휴복한신청 내역을 조회하는 메소드 
 	 * 
 	 * By Baek.J.H

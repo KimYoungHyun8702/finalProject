@@ -15,8 +15,8 @@
     <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 
 <title>학사종합정보시스템_MUGS</title>
-<script src="${initParam.rootPath }/resource/bootstrap/js/bootstrap.min.js"></script>
-<script src="${initParam.rootPath }/resource/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="${initParam.rootPath }/resource/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="${initParam.rootPath }/resource/bootstrap/js/bootstrap.min.js"></script>
 
  <link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap.min.css">
 	<link href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
@@ -25,6 +25,9 @@
     <link href="${initParam.rootPath }/resource/bootstrap/css/_bootstrap.css" rel="stylesheet">
     <link href="${initParam.rootPath }/resource/bootstrap/css/simple-sidebar.css" rel="stylesheet">
    <link href="${initParam.rootPath }/resource/bootstrap/css/style.css" rel="stylesheet"> 
+
+
+
 <style type="text/css">
 .whole {
 	height: 100%;
@@ -66,7 +69,7 @@ div>.page-header{
 
 <div class="container-fluid">
 	<div class="page-header text-center">
-		<h1 style="font-family:돋움체; color="black">학사종합정보시스템 - MUGS</h1>
+		<h1 style="font-family:돋움체; color:black">학사종합정보시스템 - MUGS</h1>
 	</div>
   <%--메인 body --%>
    <div class="row whole">

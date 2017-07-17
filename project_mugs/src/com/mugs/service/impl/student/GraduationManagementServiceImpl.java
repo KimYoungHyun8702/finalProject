@@ -27,8 +27,6 @@ public class GraduationManagementServiceImpl implements GraduationManagementServ
 	@Autowired
 	StudentDao stuDao;
 	
-	//지역변수로 사용 불가능함.
-	private List<Credit> credits;
 	
 	@Override
 	public List<String> getMajorList() {
@@ -46,20 +44,17 @@ public class GraduationManagementServiceImpl implements GraduationManagementServ
 		
 		// 로그인된 학생의 학점들을 조회.
 		List<Credit> creditForGetYearAndSemester = creditDao.selectAllCreditByStuId(stuId);
+					System.out.println("----------------------------------------------------");
+					System.out.println("모든 학점들의 데이터의 길이["+creditForGetYearAndSemester.size()+"]");
+					
 		
-		for(int i = 0; i<creditForGetYearAndSemester.size(); i++){		
-		// 위 학점들의 학기정보, 연도를 가져온다.			
-			credits = 		creditDao.selectCreditByYearSemesterAndUsersId(
-							creditForGetYearAndSemester.get(i).getCreditYear(),
-							creditForGetYearAndSemester.get(i).getCreditSemester(), stuId
-							);			
-		}
 		//학생의 입학연도를 알아온다. 
 		GraduationCredit gradCredit = 	graCreditDao.selectGraduationCreditByMajorIdAndUsersId(
+										
 										stuDao.selectStudentById(stuId).getMajorId(),
 										//Date 데이터를 SimpleDateFormat을 이용해서 yyyy-MM-dd형식으로 변환, 입학연도를 비교한다.
 										sd.format((stuDao.selectStudentById(stuId).getStuAdmissionDate())).substring(0,4), stuId);
-		
+
 		String gradExamPass = stuDao.selectStuGraduationExam(stuId);
 	
 		int eduVitAc = 0; //교양필수 이수학점
@@ -74,24 +69,24 @@ public class GraduationManagementServiceImpl implements GraduationManagementServ
 		
 		String gradPass = "";
 
-		for(int i = 0; i<credits.size();i++){
-			if(credits.get(i).getSubject().getSubjectType().equals("필수전공")){
-				mjrVitAc += credits.get(i).getCreditAcquire();
+		for(int i = 0; i<creditForGetYearAndSemester.size();i++){
+			if(creditForGetYearAndSemester.get(i).getSubject().getSubjectType().equals("필수전공")){
+				mjrVitAc += creditForGetYearAndSemester.get(i).getCreditAcquire();
 				mjrVitAcNeed = gradCredit.getGradVitalMajorCredit()-mjrVitAc;
 				if(mjrVitAcNeed<0)mjrVitAcNeed=0;				
 			}
-			if(credits.get(i).getSubject().getSubjectType().equals("선택전공")){
-				mjrSelAc += credits.get(i).getCreditAcquire();
+			if(creditForGetYearAndSemester.get(i).getSubject().getSubjectType().equals("선택전공")){
+				mjrSelAc += creditForGetYearAndSemester.get(i).getCreditAcquire();
 				mjrSelAcNeed = gradCredit.getGradSelectMajorCredit()-mjrSelAc;
 				if(mjrSelAcNeed<0)mjrSelAcNeed=0;
 			}
-			if(credits.get(i).getSubject().getSubjectType().equals("필수교양")){
-				eduVitAc += credits.get(i).getCreditAcquire();
+			if(creditForGetYearAndSemester.get(i).getSubject().getSubjectType().equals("필수교양")){
+				eduVitAc += creditForGetYearAndSemester.get(i).getCreditAcquire();
 				eduVitAcNeed = gradCredit.getGradVitalEduCredit()-eduVitAc;
 				if(eduVitAcNeed<0)eduVitAcNeed=0;			
 			}
-			if(credits.get(i).getSubject().getSubjectType().equals("선택교양")){
-				eduSelAc += credits.get(i).getCreditAcquire();
+			if(creditForGetYearAndSemester.get(i).getSubject().getSubjectType().equals("선택교양")){
+				eduSelAc += creditForGetYearAndSemester.get(i).getCreditAcquire();
 				eduSelAcNeed = gradCredit.getGradSelectEduCredit()-eduSelAc;
 				if(eduSelAcNeed<0)eduVitAcNeed=0;
 			}			

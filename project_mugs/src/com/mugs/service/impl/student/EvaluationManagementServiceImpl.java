@@ -1,5 +1,6 @@
 package com.mugs.service.impl.student;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,13 +10,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mugs.dao.AcademicCalendarDao;
+import com.mugs.dao.CollegeDao;
 import com.mugs.dao.CourseDao;
 import com.mugs.dao.EvaluationAnswerDao;
 import com.mugs.dao.EvaluationDao;
+import com.mugs.dao.MajorDao;
+import com.mugs.dao.ProfessorSubjectDao;
 import com.mugs.dao.StudentDao;
+import com.mugs.dao.SubjectDao;
 import com.mugs.service.student.EvaluationManagementService;
+import com.mugs.vo.AcademicCalendar;
+import com.mugs.vo.College;
+import com.mugs.vo.Credit;
 import com.mugs.vo.Evaluation;
 import com.mugs.vo.EvaluationAnswer;
+import com.mugs.vo.Major;
+import com.mugs.vo.ProfessorSubject;
 import com.mugs.vo.Student;
 
 @Service
@@ -36,7 +46,18 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 	@Autowired
 	private StudentDao studentDaoImpl;
 
-
+	@Autowired
+	private SubjectDao subjectDaoImpl;
+	
+	@Autowired
+	private ProfessorSubjectDao professorSubjectDaoImpl;
+	
+	@Autowired
+	private CollegeDao collegeDaoImpl;
+	
+	@Autowired
+	private MajorDao majorDaoImpl;
+	
 	//평가테이블
 	@Override
 	public List<EvaluationAnswer> addEvaluationAnswerValue(int evaluationTaskPoint, int evaluationExamPoint, int evaluationReadyPoint, 
@@ -67,10 +88,6 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 		
 		List<String> evaluationPeriodResult = 
 				academicCalendarDaoImpl.selectCalendarName(nowDate);	// 오늘 날짜를 기준으로 학사일정명을 뽑아온다.
-		
-		// List<String> nowSemesterResult = 
-				// academicCalendarDaoImpl.selectCalendarName(date); // 오늘로부터 15일전 날짜를 기준으로 학사일정명을 뽑아온다.(직전학기를 뽑아오기 위한것)
-		
 		
 		String msg = null;	// 메세지 담을 메소드
 		String nowSemester = null;	// 바로 직전학기 담을 메소드
@@ -119,6 +136,118 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 			map.put("studentState", stuRegister); // 현재 재적 상태가 휴학 상태이거나, 군휴학 이면 map에 담는다.
 		}
 		return map;
+	}
+
+	/**
+	 * 이제 주석달기도 귀찮다...Baek
+	 */
+	@Override
+	public List<String> getSubjectTypeList() {
+		// TODO Auto-generated method stub
+		return subjectDaoImpl.selectSubjectTypeList();
+	}
+
+
+	@Override
+	public HashMap<String, Object> findCollegeList(String subjectType) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");
+		int nowYear = new Date().getYear() + 1900;
+		String dateStr = dataFormat.format(new Date());
+		
+		String semester = null;
+		
+		if(subjectType.equals("선택교양")) {
+			List<AcademicCalendar> academicCalendarList = 
+					academicCalendarDaoImpl.selectCalendarByDate(dateStr);
+			for(int i = 0; i < academicCalendarList.size(); i++) {
+				if(academicCalendarList.get(i).getCalendarName().contains("학기") && 
+						academicCalendarList.get(i).getCalendarName().length() < 5) {
+					semester = academicCalendarList.get(i).getCalendarName();
+				}
+			}
+			
+			List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoinMajorNull(null, nowYear, semester, subjectType);
+			
+			map.put("professorSubjectList", professorSubjectList);
+			return map;
+		}
+		
+		List<College> collegeList = collegeDaoImpl.selectCollegeList();
+		map.put("collegeList", collegeList);
+		return map;
+	}
+
+
+	@Override
+	public List<Major> findMajorListByCollegeId(int collegeId) {
+		// TODO Auto-generated method stub
+		return majorDaoImpl.selectMajorByCollegeId(collegeId);
+	}
+
+
+	@Override
+	public HashMap<String, Object> findSubjectListByJoin(int majorId, String subjectType) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		
+		 Date date = new Date();
+	     int nowYear = date.getYear() + 1900;
+	     String semester = "";
+	      
+	     List<String> semesterList = academicCalendarDaoImpl.selectCalendarName(date);
+	     for(int i = 0; i < semesterList.size(); i++) {
+	        if(semesterList.get(i).contains("학기") && semesterList.get(i).length() < 5) {
+	           semester = semesterList.get(i);
+	               
+	        }
+	     }
+		
+		
+	     List<ProfessorSubject> professorSubjectList = 
+	           professorSubjectDaoImpl.selectProfessorSubjectListByJoin(majorId, nowYear, semester, subjectType);
+
+	     map.put("professorSubjectList", professorSubjectList);
+
+	     return map;
+	}
+
+
+	@Override
+	public HashMap<String, Object> getEvaluationGraph(int subjectId, String proId) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		Date date = new Date();
+	    int beforeYear = date.getYear() + 1900 -1;
+	    String msg = null;
+	    int questionSum = 0;
+	    int taskSum = 0;
+	    int examSum = 0;
+	    int readySum = 0;
+	    int passionSum = 0;
+	    
+	    List<Evaluation> evaluationList = evaluationDaoImpl.selectEvaluationByYearProIdSubjectId(proId, subjectId, beforeYear);
+	    
+	    if(evaluationList.size() != 0) {
+	    	for(int i = 0; i < evaluationList.size(); i++) {
+	    		questionSum += evaluationList.get(i).getEvaluationQuestion();
+	    		taskSum += evaluationList.get(i).getEvaluationTask();
+	    		examSum += evaluationList.get(i).getEvaluationExam();
+	    		readySum += evaluationList.get(i).getEvaluationReady();
+	    		passionSum += evaluationList.get(i).getEvaluationPassion();
+	    	}
+	    	map.put("questionAvg", questionSum * 1.0 / evaluationList.size());
+	    	map.put("taskAvg", taskSum * 1.0 / evaluationList.size());
+	    	map.put("examAvg", examSum * 1.0 / evaluationList.size());
+	    	map.put("readyAvg", readySum * 1.0 / evaluationList.size());
+	    	map.put("passionAvg", passionSum * 1.0 / evaluationList.size());
+	    	return map;
+	    } else {
+	    	msg = "해당과목은 작년에 교수가 다르다?뭐라해야 되냐?이거";
+	    	map.put("msg", msg);
+	    	return map;
+	    }
 	}
 }
 

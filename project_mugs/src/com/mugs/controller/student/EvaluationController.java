@@ -11,10 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mugs.service.student.EvaluationManagementService;
+import com.mugs.vo.Evaluation;
 import com.mugs.vo.EvaluationAnswer;
+import com.mugs.vo.Major;
 import com.mugs.vo.Users;
 
 @Controller
@@ -22,7 +25,7 @@ import com.mugs.vo.Users;
 public class EvaluationController {
 	
 	@Autowired
-	EvaluationManagementService evaluationServiceImpl;
+	private EvaluationManagementService evaluationServiceImpl;
 
 
 	@RequestMapping("addEvaluationAnswerValue")
@@ -75,5 +78,50 @@ public class EvaluationController {
 		System.out.println("모델담기완료");
 		return model;
 	}
-}
+	
+	@RequestMapping("getEvaluationGraphSubjectTypeList")
+	public ModelAndView getEvaluationGraphSubjectTypeList() {
+		
+		return new ModelAndView("student/evaluationGraph.tiles", "subjectTypeList", evaluationServiceImpl.getSubjectTypeList());
+	}
+	
+	@RequestMapping("getEvaluationGraphCollegeList")
+	@ResponseBody
+	public HashMap<String, Object> getEvaluationGraphCollegeList(String subjectType) {
+		return evaluationServiceImpl.findCollegeList(subjectType);
+	}
+	
+	@RequestMapping("getEvaluationGraphMajorListByCollegeId")
+	@ResponseBody
+	public List<Major> getMajorListByCollegeId(int collegeId) {
 
+		return evaluationServiceImpl.findMajorListByCollegeId(collegeId);
+	}
+	
+	/** 
+	 * ....
+	 * 
+	 * By Baek.J.H 
+	 *
+	 **/
+	@RequestMapping("getEvaluationGraphSubjectListByJoin")
+	@ResponseBody
+	public HashMap<String, Object> getEvaluationGraphSubjectListByJoin(int majorId, String subjectType) {
+
+		return evaluationServiceImpl.findSubjectListByJoin(majorId, subjectType);
+	}
+	
+	/** 
+	 * ....
+	 * 
+	 * By Baek.J.H 
+	 *
+	 **/
+	@RequestMapping("getEvaluationGraph")
+	@ResponseBody
+	public HashMap<String, Object> getEvaluationGraph(String proId, int subjectId) {
+		return evaluationServiceImpl.getEvaluationGraph(subjectId, proId);
+	}
+	
+	
+}

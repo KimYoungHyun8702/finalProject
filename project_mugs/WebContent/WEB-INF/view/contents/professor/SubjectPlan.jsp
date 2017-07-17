@@ -150,6 +150,7 @@ $(document).on("click", ".Btn", function(){
         	openWin.document.getElementById("planNote").value = obj.planNote;
         	openWin.document.getElementById("subjectId").value = obj.subject.subjectId;
         	openWin.document.getElementById("subjectName").value = obj.subject.subjectName;
+        	openWin.document.getElementById("subjectName1").value = obj.subject.subjectName;
         	openWin.document.getElementById("subjectType").value = obj.subject.subjectType;
         	openWin.document.getElementById("subjectGrade").value = obj.subject.subjectGrade;
         	openWin.document.getElementById("subjectCredit").value = obj.subject.subjectCredit;
@@ -161,7 +162,7 @@ $(document).on("click", ".Btn", function(){
         	openWin.document.getElementById("usersEmail").value = obj.professor.usersEmail;
         	openWin.document.getElementById("usersCellNum").value = obj.professor.usersCellNum;
         	openWin.document.getElementById("usersNational").value = obj.professor.usersNational;
-        }, 1000);                
+        }, 2000);                
       /*   var html = "";
 		
 		html += '<form id="form"> '
@@ -192,7 +193,7 @@ $(document).on("click", ".Btn", function(){
 		var usersCellNum = $(this).parent().prev().prev().prev().text();
 		var usersEmail = $(this).parent().prev().prev().text();
 		window.name = "parentForm";
-		openWin = window.open("/project_mugs/SubjectPlan_insert.do", "강의계획서등록", "width=500, height=400 resizable=no");
+		openWin = window.open("/project_mugs/SubjectPlan_insert.do", "강의계획서등록", "width=700, height=500 resizable=no");
 		setTimeout(function() {
 			openWin.document.getElementById("planYear").value = proSubjectYear
 			openWin.document.getElementById("planSemester").value = proSubjectSemester

@@ -38,10 +38,13 @@
 <!-- <link href="https://bootswatch.com/readable/bootstrap.css" rel="stylesheet"> -->
 <!-- <link href="https://bootswatch.com/united/bootstrap.css" rel="stylesheet"> -->
 
- 
-<!-- <link href="https://bootswatch.com/cerulean/bootstrap.css" rel="stylesheet">  -->
-<!-- <link href="https://bootswatch.com/journal/bootstrap.css" rel="stylesheet">  -->
- <script type="text/javascript">
+    <script type="text/javascript">
+    
+    function popupOpen(url){
+		var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;"; 
+			window.open(url,"",popOption);
+		}
+    
    function logout(){
       document.getElementById("logoutForm").submit();
    }
@@ -172,7 +175,11 @@
                                          <center><span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/getCreditGiveUpListByStuId.do">학점포기신청및내역조회</a></center>
                                     </td>
                                 </tr>
-
+                                <tr>
+                                    <td>
+                                        <span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/getEvaluationGraphSubjectTypeList.do">평가 그래프</a>
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -240,7 +247,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                         	<sec:authorize access="isAuthenticated()">
-								 <a data-toggle="collapse" data-parent="#accordion" href="javascript:logout()"><span class="glyphicon glyphicon-folder-close">
+								 <a href="javascript:logout()"><span class="glyphicon glyphicon-folder-close">
                             	 </span>로그아웃</a>
                             </sec:authorize>
                         </h4>
@@ -271,7 +278,7 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/professorInfo.do" class="side-menu">교수개인정보조회</a></center>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/professor/professorInfo.do" class="side-menu">교수개인정보조회</a></center>
                                     </td>
                                 </tr>
                             </table>
@@ -307,7 +314,7 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/addStudentGrade.do" class="side-menu">성적주기</a>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/professor/addStudentGrade.do" class="side-menu">성적주기</a>
                                     </td>
                                 </tr>
                             </table>
@@ -315,7 +322,7 @@
                     </div>
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="javascript:logout()"><span class="glyphicon glyphicon-folder-close">
+                            <a href="javascript:logout()"><span class="glyphicon glyphicon-folder-close">
                             </span>로그아웃</a>
                         </h4>
                     </div>
@@ -325,6 +332,13 @@
     </div>
 </div>
                     
+</sec:authorize>
+
+<%--졸업자 메뉴 --%>
+<sec:authorize access="hasRole('ROLE_GRADUATION')">
+<a href="${initParam.rootPath }/student/getCollegeList.do">기준학점조회</a><br>
+<a href="${initParam.rootPath }/student/gradeInquiry.do">성적 조회 -딘강</a><br>
+<a href="${initParam.rootPath }/student/academicProbation.do">학사경고내역 조회-딘강</a>
 </sec:authorize>
 
 <%--관리자 메뉴--%>
@@ -501,7 +515,7 @@
                     </div>
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="javascript:logout()"><span class="glyphicon glyphicon-folder-close">
+                            <a href="javascript:logout()"><span class="glyphicon glyphicon-folder-close">
                             </span>로그아웃</a>
                         </h4>
                     </div>
@@ -510,16 +524,18 @@
 		</div>
 	</div>
 </div>
+<a href="${initParam.rootPath }/admin/selectCreditGiveUpListController.do">학점 포기 신청 현황 조회</a><br>
+<a href="${initParam.rootPath }/admin/selectLeaveReturnApplicationJoinController.do">휴.복학 신청 현황 조회</a><br>
+<a href="${initParam.rootPath }/admin/selectForExpelController.do">학사 경고 현황 조회</a><br>
 </sec:authorize>
 
 </ul>
 
 
 <form id="logoutForm" action="${initParam.rootPath }/logout.do" method="post" style="display:none">
+
     <sec:csrfInput/>
 </form>
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootstrap.min.js"></script>
 
 </body>
 </html>

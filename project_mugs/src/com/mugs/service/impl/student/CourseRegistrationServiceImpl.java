@@ -73,7 +73,6 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
 	 */
 	@Override
 	public HashMap<String, Object> findCollegeList(String subjectType, String stuId) {
-		System.out.println(subjectType);
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<>();
 		SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");

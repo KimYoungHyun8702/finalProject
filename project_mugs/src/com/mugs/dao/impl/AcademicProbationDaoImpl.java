@@ -73,5 +73,17 @@ public class AcademicProbationDaoImpl implements AcademicProbationDao {
 		params.put("stuId", stuId);
 		return session.selectOne(makeSql("selectAcademicProbationByThreeId"),params);
 	}
+
+	@Override
+	public List<AcademicProbation> selectForExpel(String stuId) {
+		return session.selectList(makeSql("selectForExpel"),stuId);
+	}
+
+	@Override
+	public List<AcademicProbation> selectForExpelStudentInfo() {
+		return session.selectList(makeSql("selectForExpelStudentInfo"));
+	}
+	
+	
 	
 }

@@ -143,7 +143,7 @@ public class CourseRegistrationController {
 	@RequestMapping("getMajorList")
 	public ModelAndView getMajorList() {
 		List<String> majorListResult = graduationManagementServiceImpl.getMajorList();
-		return new ModelAndView("student/standard/courseStandardView,.tiles", "majorListResult", majorListResult);
+		return new ModelAndView("student/standard/courseStandardView.tiles", "majorListResult", majorListResult);
 	}
 	
 	/** By Cho.S.R **/

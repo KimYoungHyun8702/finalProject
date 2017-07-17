@@ -78,9 +78,6 @@ h3{
       }else if($("#usersBornAddr").val() == "" || $("#usersBornAddr").val().trim() == 0){
          alert("본적지 주소를 입력하세요")
          return false;
-      }else if($("#usersEnable").val() == "" || $("#usersEnable").val().trim() == 0){
-         alert("인증가능 상태를 입력하세요")
-         return false;
       }else if($("#stuCourse").val() == "" || $("#stuCourse").val().trim() == 0){
          alert("과정 구분를 입력하세요")
          return false;
@@ -129,19 +126,19 @@ h3{
 </c:if>
    <hr>
    <form id="insertForm" action="${initParam.rootPath }/admin/insertStudentController.do" method="post" onsubmit="return check()">
-   <center><table id="infoStudent" border="1">
+   <table id="infoStudent" border="1" class="table">
       <thead id="thead">
-            <tr>
-            <th align="center"><input type="text" class="form-control" placeholder="학번" disabled></th>
+            <tr class="filters">
+               <th align="center"><input type="text" class="form-control" placeholder="학번" disabled></th>
             <th align="center"><input type="text" class="form-control" placeholder="이름" disabled></th>
             <th align="center"><input type="text" class="form-control" placeholder="영문 이름" disabled></th>
             <th align="center"><input type="text" class="form-control" placeholder="주민 번호" disabled></th>
             <th align="center"><input type="text" class="form-control" placeholder="이메일 번호" disabled></th>
-            <th align="center"><input type="text" class="form-control" placeholder="집 전화번호" disabled></th>
+               <th align="center"><input type="text" class="form-control" placeholder="집 전화번호" disabled></th>
          </tr>
       </thead>
       <tbody>
-         <tr>
+         <tr class="filters">
             <td align="center"><input type="number" name="usersId" id="usersId" value="${param.usersId }"/></td>
             <td align="center"><input type="text" name="usersName" id="usersName" value="${param.usersName }"/></td>
             <td align="center"><input type="text" name="usersEngName" id="usersEngName" value="${param.usersEngName }"/></td>
@@ -156,8 +153,8 @@ h3{
             <th align="center"><input type="text" class="form-control" placeholder="국적" disabled></th>
             <th align="center"><input type="text" class="form-control" placeholder="현 거주지 주소" disabled></th>
             <th align="center" ><input type="text" class="form-control" placeholder="본적지 주소" disabled></th>
-            <th align="center"><input type="text" class="form-control" placeholder="인증가능 상태" disabled></th>
             <th align="center" ><input type="text" class="form-control" placeholder="과정 구분" disabled></th>
+            <th align="center" ><input type="text" class="form-control" placeholder="병영 구분" disabled></th>
          </tr>
       </thead>
       <tbody>
@@ -200,33 +197,32 @@ h3{
                            </select></td>
             <td align="center"><input type="text" name="usersCurrentAddr" id="usersCurrentAddr" value="${param.usersCurrentAddr }"/></td>
             <td align="center"><input type="text" name="usersBornAddr" id="usersBornAddr" value="${param.usersBornAddr }"/></td>
-            <td align="center"><input type="text" name="usersEnable" id="usersEnable" value="${param.usersEnable }"/></td>
             <td align="center"><input type="text" name="stuCourse" id="stuCourse" value="${param.stuCourse }"/></td>
+            <td align="center"><input type="text" name="stuArmy" id="stuArmy" value="${param.stuArmy }"/></td>
          </tr>
       </tbody>
       <thead id="thead">
          <tr class="filters">
-            <th align="center" ><input type="text" class="form-control" placeholder="병영 구분" disabled></th>
             <th align="center"><input type="text" class="form-control" placeholder="입학 일자" disabled></th>
             <th align="center"><input type="text" class="form-control" placeholder="학적 구분" disabled></th>
             <th align="center"><input type="text" class="form-control" placeholder="학생 구분" disabled></th>
             <th align="center" ><input type="text" class="form-control" placeholder="학년" disabled></th>
             <th align="center"><input type="text" class="form-control" placeholder="졸업시험 패스여부" disabled></th>
+            <th align="center"><input type="text" class="form-control" placeholder="조기졸업 대상 여부" disabled></th>
          </tr>
       </thead>
       <tbody>
          <tr class="filters">
-            <td align="center"><input type="text" name="stuArmy" id="stuArmy" value="${param.stuArmy }"/></td>
             <td align="center"><input type="date" name="stuAdmissionDate" id="stuAdmissionDate" value="${param.stuAdmissionDate }"/></td>
             <td align="center"><input type="text" name="stuRegisterState" id="stuRegisterState" value="${param.stuRegisterState }"/></td>
             <td align="center"><input type="text" name="stuStudentState" id="stuStudentState" value="${param.stuStudentState }"/></td>
             <td align="center"><input type="number" name="stuGrade" id="stuGrade" value="${param.stuGrade }"/></td>
             <td align="center"><input type="text" name="stuGraduationExam" id="stuGraduationExam" value="${param.stuGraduationExam }"/></td>
+            <td align="center"><input type="text" name="stuEarlyGraduation" id="stuEarlyGraduation" value="${param.stuEarlyGraduation }"/></td>
          </tr>
       </tbody>
       <thead id="thead">
          <tr class="filters">
-            <th align="center"><input type="text" class="form-control" placeholder="조기졸업 대상 여부" disabled></th>
             <th align="center"><input type="text" class="form-control" placeholder="학기" disabled></th>
             <th align="center"><input type="text" class="form-control" placeholder="소속 학과" disabled></th>
             <th align="center"><input type="text" class="form-control" placeholder="복수 전공" disabled></th>
@@ -235,7 +231,6 @@ h3{
       </thead>
       <tbody>
          <tr class="filters">
-            <td align="center"><input type="text" name="stuEarlyGraduation" id="stuEarlyGraduation" value="${param.stuEarlyGraduation }"/></td>
             <td align="center"><input type="text" name="stuSemester" id="stuSemester" value="${param.stuSemester }"/></td>
             <td align="center"><select name="majorId" id="majorId">
                               <option>학과 선택</option>
@@ -293,10 +288,10 @@ h3{
                                  </c:forEach>
                            </select> <br></td>
          </tr>
-      </tbody>
-   </table></center><br><br>
+   </table><br>
+   <input type="hidden" name="usersEnable" id="usersEnable" value="1"/>
    <center><input type="submit" id="submit" value="등록"></center>
          <sec:csrfInput/>
-   </form><br><br>
-   <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+   </form><br>
+   <center><button onclick="location.href='${initParam.rootPath }/'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 </body>

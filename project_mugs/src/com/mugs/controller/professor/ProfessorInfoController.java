@@ -21,6 +21,7 @@ public class ProfessorInfoController {
 	@Autowired
 	private ProfessorInfoService service;
 	private String fileName= "";
+
 	
 	@RequestMapping("updateProfile")
 	public String updateProfessorProfile(@ModelAttribute Users users){
@@ -40,15 +41,8 @@ public class ProfessorInfoController {
 	      System.out.println(professor);
 	      session.setAttribute("professor", professor);
 	      return "professor/professorInfo.tiles";
-	/*public Professor getProfessorRegisterByJoin(){
-		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String id = users.getUsersId();
-	Professor professor = service.getProfessorInfoByJoin(id);
-	System.out.println(professor);
-	return professor;	*/
-
 	}
-	
+		
 		@RequestMapping("professorInfoUpdate")
 	public String getProfessorInfoByJoin(HttpSession session){
 		 Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

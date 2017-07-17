@@ -2,6 +2,7 @@ package com.mugs.dao.impl;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +47,11 @@ public class ProfessorSubjectDaoImpl implements ProfessorSubjectDao{
 	}
 	//병문 DaoImpl
 	@Override
-	public ProfessorSubject selectProfessorSubjectBySubId(int subjectId) {
-		return session.selectOne(makeSqlId("selectProfessorSubjectBySubId"),subjectId);
+	public ProfessorSubject selectProfessorSubjectBySubId(int subjectId,int year) {
+		Map map = new HashMap<>();
+		map.put("subId", subjectId);
+		map.put("year", year);
+		return session.selectOne(makeSqlId("selectProfessorSubjectBySubId"),map);
 	}
 
 	@Override
