@@ -67,10 +67,10 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 		
 		List<String> evaluationPeriodResult = 
 				academicCalendarDaoImpl.selectCalendarName(nowDate);	// 오늘 날짜를 기준으로 학사일정명을 뽑아온다.
-		
+		System.out.println(evaluationPeriodResult);
 		List<String> nowSemesterResult = 
 				academicCalendarDaoImpl.selectCalendarName(date); // 오늘로부터 15일전 날짜를 기준으로 학사일정명을 뽑아온다.(직전학기를 뽑아오기 위한것)
-		
+		System.out.println(evaluationPeriodResult);
 		
 		String msg = null;	// 메세지 담을 메소드
 		String nowSemester = null;	// 바로 직전학기 담을 메소드
@@ -93,6 +93,7 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 			for(int i = 0; i < nowSemesterResult.size(); i++) {
 				if(nowSemesterResult.get(i).contains("학기") && nowSemesterResult.get(i).length() < 5) {
 					nowSemester = nowSemesterResult.get(i);
+					System.out.println(nowSemester);
 				}
 			}
 		}

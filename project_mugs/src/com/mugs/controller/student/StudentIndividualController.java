@@ -38,8 +38,7 @@ public class StudentIndividualController {
    private StudentIndividualService service;   
    @Autowired
    private PasswordEncoder passwordEncoder;   
-   //이수구분 선택 시 해당 과목들의 id를 넘긴다.
-   private List<Integer> subIdList = new ArrayList<Integer>();
+
    private String fileName= "";
 
    @RequestMapping("moveUpdatePwd")
@@ -57,7 +56,20 @@ public class StudentIndividualController {
       //요청한(로그인한) 사용자의 정보 조회
       SecurityContext context = SecurityContextHolder.getContext();
       Authentication authentication = context.getAuthentication();
-            
+      
+      System.out.println(passwordEncoder.encode("1111"));
+      System.out.println(passwordEncoder.encode("1111"));
+      System.out.println(passwordEncoder.encode("1111"));
+      System.out.println(passwordEncoder.encode("1111"));
+      System.out.println(passwordEncoder.encode("1111"));
+      System.out.println(passwordEncoder.encode("1111"));
+      System.out.println(passwordEncoder.encode("1111"));
+      System.out.println(passwordEncoder.encode("1111"));
+      System.out.println(passwordEncoder.encode("1111"));
+      System.out.println(passwordEncoder.encode("1111"));
+      System.out.println(passwordEncoder.encode("1111"));
+      System.out.println(passwordEncoder.encode("1111"));
+      
       //패스워드 체크            
       if(!passwordEncoder.matches(oldUserPassword, ((Users)authentication.getPrincipal()).getUsersPassword())){ 
          String errorMessage = "기존 비밀번호가 틀렸습니다.";      
@@ -157,8 +169,9 @@ public class StudentIndividualController {
    
    @RequestMapping("getSubjectTypeList")
    @ResponseBody
-   public List <Object> getSubjectTypeListByMajorId(int majorId, String semester){
-      List<Object> subjectList = service.getSubjectTypeListByMajorId(majorId,semester);
+   public List <Object> getSubjectTypeListByMajorId(int majorId, String semester, int year){
+	   
+      List<Object> subjectList = service.getSubjectTypeListByMajorId(majorId,semester, year);
       List<Object> subjectAndsubTypeList = new ArrayList<Object>();
                
       //과목 리스트에는 전공 중복제거한 구문이 없기 때문에 StudentIndividualServiceImpl에서 따로 이수구분 추가함.
@@ -171,8 +184,8 @@ public class StudentIndividualController {
    @ResponseBody
    public Map<String,Object> getSubjectBySubjectType(@RequestParam int majorId,
                                     @RequestParam String subjectType,
-                                    @RequestParam String semester){
-      
-      return service.getSubjectBySubjectTypeAndMajorId(semester,majorId,subjectType);
+                                    @RequestParam String semester, int year){
+	  
+      return service.getSubjectBySubjectTypeAndMajorId(semester,majorId,subjectType,year);
    } 
 }

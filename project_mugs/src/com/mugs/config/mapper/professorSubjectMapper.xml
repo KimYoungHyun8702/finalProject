@@ -66,7 +66,7 @@
 	    
 	</resultMap>
 	
-	<select id="selectProfessorSubjectBySubId" resultMap="professor-proName-resultMap" parameterType="int">
+	<select id="selectProfessorSubjectBySubId" resultMap="professor-proName-resultMap" parameterType="map">
 		SELECT ps.pro_subject_id ,
 			   ps.pro_subject_semester ,
 			   ps.pro_subject_year ,
@@ -74,6 +74,7 @@
 			   u.users_name professorName
 		FROM   professor_subject ps, professor p, users u
 		WHERE  ps.subject_id= #{subId}
+		AND    ps.pro_subject_year = #{year}
 		AND	   ps.pro_id = p.pro_id
 		AND	   p.pro_id= u.users_id
 	</select>

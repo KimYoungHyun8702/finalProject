@@ -139,7 +139,7 @@ public interface SubjectDao {
 	 * @return 과목 리스트들
 	 * @author 병문
 	 */
-	List<Subject> selectSubjectBySubjectTypeAndMajorId(String semester, Integer majorId, String subjectType);
+	List<Subject> selectSubjectBySubjectTypeAndMajorId(String semester, Integer majorId, String subjectType, int year);
 	
 	/**
 	 * 학과 id로 과목 리스트를 select하는 메소드
@@ -147,7 +147,7 @@ public interface SubjectDao {
 	 * @return 과목 리스트들
 	 * @author 병문
 	 */
-	List<Subject> selectSubjectListByMajorIdForAllTime(int majorId,String subjectType);
+	List<Subject> selectSubjectListByMajorIdForAllTime(int majorId,String subjectType, int year);
 	
 	/**
 	 * 학기정보 리스트를 select하는 메소드

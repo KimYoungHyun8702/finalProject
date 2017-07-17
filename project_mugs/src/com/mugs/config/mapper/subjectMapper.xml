@@ -199,19 +199,23 @@
 				s.subject_class subjectClass,
 				s.subject_semester subjectSemester,
 				s.lecture_id lectureId				
-		FROM    subject s, major m		
+		FROM    subject s, major m, professor_subject ps
 		<choose>
 			<when test="majorId!=null">	
 			WHERE   s.subject_type =#{subjectType}
 			AND		s.major_id = #{majorId}
 			AND		s.major_id = m.major_id(+)
 			AND		s.subject_semester = #{semester}
+			AND		ps.pro_subject_year = #{year}
+			AND		s.subject_id = ps.subject_id(+)
 			</when>
 			<otherwise>
 			WHERE   s.subject_type =#{subjectType}
 			AND		s.major_id is null
 			AND		s.major_id	= m.major_id(+)
 			AND		s.subject_semester = #{semester}
+			AND		ps.pro_subject_year = #{year}
+			AND		s.subject_id = ps.subject_id(+)
 			</otherwise>
 		</choose>
 	</select>
@@ -233,17 +237,21 @@
 				s.subject_class subjectClass,
 				s.subject_semester subjectSemester,
 				s.lecture_id lectureId				
-		FROM    subject s, major m		
+		FROM    subject s, major m, professor_subject ps		
 		<choose>
 			<when test="majorId!=null">
 			WHERE	s.subject_semester = #{semester}
 			AND 	s.major_id = #{majorId}
 			AND		s.major_id= m.major_id(+)
+			AND		ps.pro_subject_year= #{year}
+			AND		s.subject_id = ps.subject_id(+)
 			</when>
 			<otherwise>
 			WHERE	s.subject_semester = #{semester}
 			AND		s.major_id is null
 			AND		s.major_id= m.major_id(+)
+			AND		ps.pro_subject_year=#{year}
+			AND		s.subject_id = ps.subject_id(+)
 			</otherwise>
 		</choose>	
 	</select>

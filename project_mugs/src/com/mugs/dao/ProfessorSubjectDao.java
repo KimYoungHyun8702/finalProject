@@ -46,7 +46,7 @@ public interface ProfessorSubjectDao {
 	 * @param proSubjectId
 	 * @return 교수담당과목
 	 */
-	ProfessorSubject selectProfessorSubjectBySubId(int subjectId);
+	ProfessorSubject selectProfessorSubjectBySubId(int subjectId, int year);
 
 
 	/**

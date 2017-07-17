@@ -78,7 +78,7 @@ $(document).ready(function(){
       $.ajax({
          type:"POST",
          url:"${initParam.rootPath}/student/getSubjectTypeList.do",
-         data:{"majorId":$("#second_category").val(), ${_csrf.parameterName}:'${_csrf.token}',"semester":$("#zero_category").val()},
+         data:{"majorId":$("#second_category").val(), ${_csrf.parameterName}:'${_csrf.token}',"semester":$("#zero_category").val(),"year":$("#year").val()},
          dataType:"JSON",
          beforeSend:function(){
             if($("#second_category option").index($("#second_category option:selected"))==0){
@@ -134,7 +134,7 @@ $(document).ready(function(){
       $.ajax({
          type:"POST", 
          url:"${initParam.rootPath}/student/getSubjectBySubjectType.do",
-         data:{"majorId":$("#second_category").val(),"subjectType":$("#third_category").val(),"semester":$("#zero_category").val(), ${_csrf.parameterName}:'${_csrf.token}'},
+         data:{"majorId":$("#second_category").val(),"subjectType":$("#third_category").val(),"semester":$("#zero_category").val(), ${_csrf.parameterName}:'${_csrf.token}',"year":$("#year").val()},
          dataType:"JSON",
          beforeSend:function(){
             if($("#third_category option").index($("#third_category option:selected"))==0){
@@ -173,6 +173,14 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+	<select id="year">
+	<option>연도</option>
+	<option value="2013">2013</option>
+	<option value="2014">2014</option>
+	<option value="2015">2015</option>
+	<option value="2016">2016</option>
+	<option value="2017">2017</option>
+	</select>
 	<select name="semester" id="zero_category" >
 		<option> 학기</option>
 		<c:forEach var="i" items="${requestScope.semesterList}">
