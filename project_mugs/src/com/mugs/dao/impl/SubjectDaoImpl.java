@@ -54,7 +54,6 @@ public class SubjectDaoImpl implements SubjectDao {
 	@Override
 	public List<String> selectSubjectTypeList() {
 		// TODO Auto-generated method stub
-
 		return session.selectList(makeSqlId("selectSubjectTypeList"));
 	}
 	

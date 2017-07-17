@@ -1,5 +1,6 @@
 package com.mugs.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -43,6 +44,18 @@ public class EvaluationDaoImpl implements EvaluationDao{
 	public List<Evaluation> selectEvaluationAll() {
 		return session.selectList(makeSql("selectEvaluationAll"));
 	}
+
+	@Override
+	public List<Evaluation> selectEvaluationByYearProIdSubjectId(String proId, int subjectId, int beforeYear) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("proId", proId);
+		map.put("subjectId", subjectId);
+		map.put("beforeYear", beforeYear);
+		return session.selectList(makeSql("selectEvaluationByYearProIdSubjectId"), map);
+	}
+
+	
 
 	
 

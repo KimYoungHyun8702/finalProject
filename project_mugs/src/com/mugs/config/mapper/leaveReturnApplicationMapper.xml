@@ -66,6 +66,18 @@
 	where STU_ID=#{value}
 </select>
 
-
+<!-- 
+	By Baek.J.H
+	현재 로그인된 학생ID, 휴복학 신청기간의 시작일자, 종료일자를 매개변수로 해당학생의 기간동안의
+	휴복학 내역을 select한다.
+ -->
+ <select id="selectLeaveReturnApplicationListByDate" resultMap="leaveReturnApplication-basic-reresultmap" parameterType="map">
+ 	<include refid="select-leaveReturnApplication"/>
+ 	<![CDATA[
+ 		where LRAPPLICATION_START_DATE >= #{startDate}
+ 		AND LRAPPLICATION_START_DATE <= #{finishDate}
+ 		AND STU_ID=#{stuId}
+ 	]]> 
+ </select>
 
 </mapper>

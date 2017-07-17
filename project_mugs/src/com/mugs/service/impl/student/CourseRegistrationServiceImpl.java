@@ -44,40 +44,81 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
 
    @Autowired
    private CourseDao courseDaoImpl;
-   
+	
    @Autowired
    private ProfessorDao professorDaoImpl;
-   
+	
    @Autowired
    private ProfessorSubjectDao professorSubjectDaoImpl;
-   
+	
    @Autowired
    private StandardDao standardDaoImpl;
-   
+	
    @Autowired
    private StudentDao studentDaoImpl;
-   
+	
    @Autowired
    private CreditDao creditDaoImpl;
-   
+	
    @Autowired
    private AcademicCalendarDao academicCalendarDaoImpl;
-   
-   
-   
-   /**
-    * 현재 대학교에 존재하는 모든 단과대학(학부)
-    * 의 정보를 리트스테 담아서 리턴하는 역할을 하는 메소드
-    * 
-    * By Beak.J.H
-    */
-   @Override
-   public List<College> findCollegeList() {
-      // TODO Auto-generated method stub
-      return collegeDaoImpl.selectCollegeList();
-   }
+	
+	
+	
+	/**
+	 * 현재 대학교에 존재하는 모든 단과대학(학부)
+	 * 의 정보를 리트스테 담아서 리턴하는 역할을 하는 메소드
+	 * 
+	 * By Beak.J.H
+	 */
+	@Override
+	public HashMap<String, Object> findCollegeList(String subjectType, String stuId) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd");
+		int nowYear = new Date().getYear() + 1900;
+		String dateStr = dataFormat.format(new Date());
+		
+		String semester = null;
+		
+		if(subjectType.equals("선택교양")) {
+			List<AcademicCalendar> academicCalendarList = 
+					academicCalendarDaoImpl.selectCalendarByDate(dateStr);
+			for(int i = 0; i < academicCalendarList.size(); i++) {
+				if(academicCalendarList.get(i).getCalendarName().contains("학기") && 
+						academicCalendarList.get(i).getCalendarName().length() < 5) {
+					semester = academicCalendarList.get(i).getCalendarName();
+				}
+			}
+			
+			List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoinMajorNull(null, nowYear, semester, subjectType);
+			
+			List<Credit> myCourseList = creditDaoImpl.selectAllCreditByStuId(stuId);
+			
+			for(int i = 0; i < professorSubjectList.size(); i++) {
+				if(myCourseList.size() == 0) {
+					professorSubjectList.get(i).getSubject().setRecourse("N");
+				} else {
+					for(int j = 0; j < myCourseList.size(); j++) {
+						if(professorSubjectList.get(i).getSubjectId() == myCourseList.get(j).getSubjectId()) {
+							professorSubjectList.get(i).getSubject().setRecourse("Y");
+						} else {
+							professorSubjectList.get(i).getSubject().setRecourse("N");
+						}
+					}
+				}
+			}
+			
+			map.put("professorSubjectList", professorSubjectList);
+			return map;
+		}
+		
+		List<College> collegeList = collegeDaoImpl.selectCollegeList();
+		map.put("collegeList", collegeList);
+		return map;
+	}
 
-   
+
    
    
    /**
@@ -334,9 +375,6 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
    
    
    
-   /**
-    * 
-    */
    
       /**
        * 
