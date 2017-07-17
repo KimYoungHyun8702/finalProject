@@ -7,7 +7,23 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 $(document).ready(function(){
-   $("#wholeTimeThead").hide();
+  
+	$("#wholeTimeThead").hide();
+   
+   $("#year").on("change",function(){
+	   var idx = this.selectedIndex;
+	   var txt = "<option> 학기</option><c:forEach var='i' items='${requestScope.semesterList}'><option value='${i}'>${i}</option></c:forEach>"; 
+	   if(idx==0){
+		   $("#zero_category").empty().append("<option>학기</option>");
+		   $("#first_category").empty().append("<option>단과대학</option>");
+           $("#second_category").empty().append("<option>학과</option>");
+           $("#third_category").empty().append("<option>이수구분</option>");
+           $("#wholeTimeThead").hide();
+           $("#wholeTimeTbody").empty();            
+	   }else{
+		  $("#zero_category").html(txt); 
+	   } 
+   })
    
    $("#zero_category").on("change",function(){
       var idx = this.selectedIndex;
