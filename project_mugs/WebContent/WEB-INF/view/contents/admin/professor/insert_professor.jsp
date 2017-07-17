@@ -114,6 +114,8 @@ $(document).ready(function(){
 					<td align="center">교수 이름</td>
 					<td align="center">영문 이름</td>
 					<td align="center">주민 번호</td>
+					<td align="center">이메일</td>
+					<td align="center">집 전화번호</td>
 				</tr>
 			</thead>
 			<tbody id="infoTbody1">
@@ -122,20 +124,22 @@ $(document).ready(function(){
 					<td align="center"><input type="text" name="usersName" id="usersName" value="${param.usersName }"/></td>
 					<td align="center"><input type="text" name="usersEngName" id="usersEngName" value="${param.usersEngName }"/></td>
 					<td align="center"><input type="text" name="usersRRN" id="usersRRN" value="${param.usersRRN }"/></td>
+					<td align="center"><input type="email" name="usersEmail" id="usersEmail" value="${param.usersEmail }"/></td>
+					<td align="center"><input type="text" name="usersPhoneNum" id="usersPhoneNum" value="${param.usersPhoneNum }"/></td>
 				</tr>
 			</tbody>
 			<thead>
 				<tr>
-					<td align="center">이메일</td>
-					<td align="center">집 전화번호</td>
 					<td align="center">핸드폰 번호</td>
 					<td align="center">국적</td>
+					<td align="center">현 거주지 주소</td>
+					<td align="center">본적지 주소</td>
+					<td align="center">졸업 대학</td>
+					<td align="center">졸업 대학원</td>
 				</tr>
 			</thead>
 			<tbody id="infoTbody2">
 				<tr>
-					<td align="center"><input type="email" name="usersEmail" id="usersEmail" value="${param.usersEmail }"/></td>
-					<td align="center"><input type="text" name="usersPhoneNum" id="usersPhoneNum" value="${param.usersPhoneNum }"/></td>
 					<td align="center"><input type="number" name="usersCellNum" id="usersCellNum" value="${param.usersCellNum }"/></td>
 					<td align="center"><select name="usersNational" id="usersNational">
 									<option>국적</option>
@@ -172,24 +176,10 @@ $(document).ready(function(){
 										</c:otherwise>
 									</c:choose>
 									</select></td>
-				</tr>
-			</tbody>
-			<thead>
-				<tr>
-					<td align="center">현 거주지 주소</td>
-					<td align="center">본적지 주소</td>
-					<td align="center">졸업 대학</td>
-					<td align="center">졸업 대학원</td>
-				
-				</tr>
-			</thead>
-			<tbody id="infoTbody3">
-				<tr>
 					<td align="center"><input type="text" name="usersCurrentAddr" id="usersCurrentAddr" value="${param.usersCurrentAddr }"/></td>
 					<td align="center"><input type="text" name="usersBornAddr" id="usersBornAddr" value="${param.usersBornAddr }"/></td>
 					<td align="center"><input type="text" name="proUniversity" id="proUniversity" value="${param.proUniversity }"/></td>
 					<td align="center"><input type="number" name="proGradSchool" id="proGradSchool" value="${param.proGradSchool }"/></td>
-					
 				</tr>
 			</tbody>
 			<thead>
@@ -198,9 +188,10 @@ $(document).ready(function(){
 					<td align="center">연구실 전화 번호</td>
 					<td align="center">소속 학과</td>
 					<td align="center">교수실</td>
+					<td align="center">연구실</td>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="infoTbody3">
 				<tr>
 					<td align="center"><input type="text" name="proOfficePhoneNum" id="proOfficePhoneNum" value="${param.proOfficePhoneNum }"/></td>
 					<td align="center"><input type="text" name="proLaboratoryPhoneNum" id="proLaboratoryPhoneNum" value="${param.proLaboratoryPhoneNum }"/></td>
@@ -250,15 +241,6 @@ $(document).ready(function(){
 								</c:forEach>
 							</c:forEach>
 					</select></td>
-				</tr>
-			</tbody>
-			<thead>
-				<tr>
-					<td align="center">연구실</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
 					<td align="center"><select name="proRoomLaboratoryId"
 						id="proRoomLaboratoryId">
 							<option>연구실 선택</option>

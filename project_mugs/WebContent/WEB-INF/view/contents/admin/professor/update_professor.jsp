@@ -109,6 +109,8 @@ $(document).ready(function(){
 					<td align="center">이름</td>
 					<td align="center">영문 이름</td>
 					<td align="center">주민 번호</td>
+					<td align="center">이메일</td>
+					<td align="center">집 전화번호</td>
 				</tr>
 			</thead>
 			<tbody id="infoTbody1">
@@ -117,22 +119,24 @@ $(document).ready(function(){
 					<td align="center"><input type="text" name="usersName" id="usersName" value="${requestScope.info.usersName }"/></td>
 					<td align="center"><input type="text" name="usersEngName" id="usersEngName" value="${requestScope.info.usersEngName }"/></td>
 					<td align="center"><input type="text" name="usersRRN" id="usersRRN" value="${requestScope.info.usersRRN }"/></td>
+					<td align="center"><input type="email" name="usersEmail" id="usersEmail" value="${requestScope.info.usersEmail }"/></td>
+					<td align="center"><input type="text" name="usersPhoneNum" id="usersPhoneNum" value="${requestScope.info.usersPhoneNum }"/></td>
 				</tr>
 			</tbody>
 
 			<thead>
 				<tr>
-					<td align="center">이메일</td>
-					<td align="center">집 전화번호</td>
 					<td align="center">핸드폰 번호</td>
 					<td align="center">국적</td>
+					<td align="center">현 거주지 주소</td>
+					<td align="center">본적지 주소</td>
+					<td align="center">졸업 대학</td>
+					<td align="center">졸업 대학원</td>
 				</tr>
 			</thead>
 
 			<tbody id="infoTbody2">
 				<tr>
-					<td align="center"><input type="email" name="usersEmail" id="usersEmail" value="${requestScope.info.usersEmail }"/></td>
-					<td align="center"><input type="text" name="usersPhoneNum" id="usersPhoneNum" value="${requestScope.info.usersPhoneNum }"/></td>
 					<td align="center"><input type="number" name="usersCellNum" id="usersCellNum" value="${requestScope.info.usersCellNum }"/></td>
 					<td align="center"><select name="usersNational"
 						id="usersNational">
@@ -170,34 +174,23 @@ $(document).ready(function(){
 								</c:otherwise>
 							</c:choose>
 					</select></td>
-				</tr>
-			</tbody>
-
-			<thead>
-				<tr>
-					<td align="center">현 거주지 주소</td>
-					<td align="center">본적지 주소</td>
-					<td align="center">졸업 대학</td>
-					<td align="center">졸업 대학원</td>
-				</tr>
-			</thead>
-			<tbody id="infoTbody3">
-				<tr>
 					<td align="center"><input type="text" name="usersCurrentAddr" id="usersCurrentAddr" value="${requestScope.info.usersCurrentAddr }"/></td>
 					<td align="center"><input type="text" name="usersBornAddr" id="usersBornAddr" value="${requestScope.info.usersBornAddr }"/></td>
 					<td align="center"><input type="text" name="proUniversity" id="proUniversity" value="${requestScope.info.proUniversity }"/></td>
 					<td align="center"><input type="number" name="proGradSchool" id="proGradSchool" value="${requestScope.info.proGradSchool }"/></td>
 				</tr>
 			</tbody>
+
 			<thead>
 				<tr>
 					<td align="center">교수실 전화 번호</td>
 					<td align="center">연구실 전화 번호</td>
 					<td align="center">소속 학과</td>
 					<td align="center">교수실</td>
+					<td align="center">연구실</td>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="infoTbody3">
 				<tr>
 					<td align="center"><input type="text" name="proOfficePhoneNum" id="proOfficePhoneNum" value="${requestScope.info.proOfficePhoneNum }"/></td>
 					<td align="center"><input type="text" name="proLaboratoryPhoneNum" id="proLaboratoryPhoneNum" value="${requestScope.info.proLaboratoryPhoneNum }"/></td>
@@ -247,15 +240,6 @@ $(document).ready(function(){
 										</c:forEach>
 									</c:forEach>
 					</select></td>
-				</tr>
-			</tbody>
-			<thead>
-				<tr>
-					<td align="center">연구실</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
 					<td align="center"><select name="proRoomLaboratoryId" id="proRoomLaboratoryId">
 							<c:choose>
 								<c:when test="${requestScope.laboratory == null }">
