@@ -19,7 +19,7 @@
 }
 
 #wrapper.toggled {
-    padding-left: 250px;
+    padding-left: 100px;
 }
 
 #sidebar-wrapper {
@@ -38,7 +38,7 @@
 }
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
+    width: 100px;
 }
 
 #page-content-wrapper {
@@ -114,7 +114,7 @@
     }
 
     #wrapper.toggled #sidebar-wrapper {
-        width: 250px;
+        width: 100px;
     }
 
     #page-content-wrapper {

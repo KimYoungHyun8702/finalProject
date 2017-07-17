@@ -152,7 +152,7 @@ $(document).ready(function(){
 </c:if>
 	<hr>
 	<form id="insertForm" action="${initParam.rootPath }/admin/insertProfessorController.do" method="post" onsubmit="return check()">
-		<table id="infoProfessor" border="1">
+		<center><table id="infoProfessor" border="1">
 			<thead>
 				<tr class="filters">
 					<th align="center"><input type="text" class="form-control" placeholder="교수번호" disabled></th>
@@ -319,9 +319,9 @@ $(document).ready(function(){
 					</select></td>
 				</tr>
 			</tbody>
-		</table><br>
+		</table></center><br><br>
 		 <center><input type="submit" id="submit" value="등록"></center>
          <sec:csrfInput/>
-   </form><br>
+   </form><br><br>
    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 </body>

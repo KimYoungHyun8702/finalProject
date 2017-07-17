@@ -129,7 +129,7 @@ h3{
 </c:if>
    <hr>
    <form id="insertForm" action="${initParam.rootPath }/admin/insertStudentController.do" method="post" onsubmit="return check()">
-   <table id="infoStudent" border="1">
+   <center><table id="infoStudent" border="1">
       <thead id="thead">
             <tr>
             <th align="center"><input type="text" class="form-control" placeholder="학번" disabled></th>
@@ -294,9 +294,9 @@ h3{
                            </select> <br></td>
          </tr>
       </tbody>
-   </table><br>
+   </table></center><br><br>
    <center><input type="submit" id="submit" value="등록"></center>
          <sec:csrfInput/>
-   </form><br>
+   </form><br><br>
    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 </body>

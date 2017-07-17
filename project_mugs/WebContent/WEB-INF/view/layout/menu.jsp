@@ -13,22 +13,35 @@
 		td {
 			height:17px;
 		}
+		.side {
+	font-family:돋움체;
+ 	background:url('https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-landing-page/6e8727895ac632cd3d8a62db2742f208b9083198/img/intro-bg.jpg'); 
+	background-size: 100% auto;
+	width:100%;
+	
+}
 	</style>
 	  <meta charset="utf-8">
 	  <meta name="description" content="">
     <meta name="author" content="">
-    <title>Bootstrap 101 Template</title>
     <script src="${initParam.rootPath }/resource/bootstrap/js/bootstrap.min.js"></script>
 <script src="${initParam.rootPath }/resource/jquery/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap.min.css">
     <link href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="${initParam.rootPath }/resource/bootstrap/css/_bootstrap.min.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/creative.css" rel="stylesheet"> 
     <link href="${initParam.rootPath }/resource/bootstrap/css/_bootstrap.css" rel="stylesheet">
     <link href="${initParam.rootPath }/resource/bootstrap/css/simple-sidebar.css" rel="stylesheet">
-  <!--  <link href="https://bootswatch.com/solar/bootstrap.css" rel="stylesheet"> -->
-    
+    <link href="${initParam.rootPath }/resource/bootstrap/css/style.css" rel="stylesheet"> 
+<!--  <link href="https://bootswatch.com/yeti/bootstrap.css" rel="stylesheet">  --> 
+<!--  <link href="https://bootswatch.com/spacelab/bootstrap.css" rel="stylesheet"> -->
+<!-- <link href="https://bootswatch.com/readable/bootstrap.css" rel="stylesheet"> -->
+<!-- <link href="https://bootswatch.com/united/bootstrap.css" rel="stylesheet"> -->
 
-    <script type="text/javascript">
+ 
+<!-- <link href="https://bootswatch.com/cerulean/bootstrap.css" rel="stylesheet">  -->
+<!-- <link href="https://bootswatch.com/journal/bootstrap.css" rel="stylesheet">  -->
+ <script type="text/javascript">
    function logout(){
       document.getElementById("logoutForm").submit();
    }
@@ -85,8 +98,8 @@
 </sec:authorize>
 
 <%--인증된(로그인한) 사용자 메뉴  (isAuthenticated()) : 인증 안 된 상태에서 안보여야 하는 메뉴 --%>
-<sec:authorize access="isAuthenticated()">
-   <li class="side-menu"><a href="javascript:logout()">로그아웃</a></li>
+<br><sec:authorize access="isAuthenticated()">
+   <li class="side-menu"><center><a href="javascript:logout()">로그아웃</a></li><br></center>
 </sec:authorize>
 
 
@@ -99,7 +112,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
                             </span>나의 수강정보</a>
                         </h4>
                     </div>
@@ -108,22 +121,27 @@
                             <table class="table">
                                 <tr style="height:20px">
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/student/getCollegeList.do">기준학점조회</a>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/student/getCollegeList.do">기준학점조회</a></center>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr style="height:20px">
                                     <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/student/getMyTimeTable.do">나의시간표조회</a>
+                                        <center><span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/student/getMyTimeTable.do">나의시간표조회</a></center>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr style="height:20px">
                                     <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/getMyCourseListByJoin.do">수강목록조회</a>
+                                        <center><span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/getMyCourseListByJoin.do">수강목록조회</a></center>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr style="height:20px">
                                     <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="${initParam.rootPath }/student/compareEvaluationPeriod.do">설문응답평가</a>
+                                        <center><span class="glyphicon glyphicon-comment text-success"></span><a href="${initParam.rootPath }/student/compareEvaluationPeriod.do">설문응답평가</a></center>
+                                    </td>
+                                </tr>
+                                <tr style="height:20px">
+                                    <td>
+                                        <center><span class="glyphicon glyphicon-comment text-success"></span><a href="#">과목평가그래프</a></center>
                                     </td>
                                 </tr>
                             </table>
@@ -141,24 +159,20 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="#">수강신청</a>
+                                         <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/student/subjectTypeList.do">수강신청</a></center>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="#">휴복학신청</a>
+                                         <center><span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/student/getLeaveReturnApplicationListByStuId.do">휴복학신청및내역조회</a></center>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/getMyCourseListByJoin.do">과목평가그래프</a>
+                                         <center><span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/getCreditGiveUpListByStuId.do">학점포기신청및내역조회</a></center>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="${initParam.rootPath }/student/compareEvaluationPeriod.do">과목평가그래프</a>
-                                    </td>
-                                </tr>
+
                             </table>
                         </div>
                     </div>
@@ -174,17 +188,17 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/student/gradeInquiry.do" class="side-menu">전체성적조회</a>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/student/gradeInquiry.do" class="side-menu">전체성적조회</a></center>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/student/currentGradeInquiry.do" class="side-menu">당학기성적조회</a>
+                                        <center><span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/student/currentGradeInquiry.do" class="side-menu">당학기성적조회</a></center>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/academicProbation.do" class="side-menu">학고내역조회</a>
+                                        <center><span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/academicProbation.do" class="side-menu">학고내역조회</a></center>
                                     </td>
                                 </tr>
                             </table>
@@ -202,22 +216,22 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/student/getStudentInfoById.do" class="side-menu">내정보조회</a>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/student/getStudentInfoById.do" class="side-menu">내정보조회</a></center>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/student/getAllTimeTable.do" class="side-menu">전체강의시간표조회</a>
+                                        <center><span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/student/getAllTimeTable.do" class="side-menu">전체강의시간표조회</a></center>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/graduationInfo.do" class="side-menu">졸업여부조회</a>
+                                        <center><span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/graduationInfo.do" class="side-menu">졸업여부조회</a></center>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="${initParam.rootPath }/student/compareEvaluationPeriod.do">졸업여부조회</a>
+                                        <center><span class="glyphicon glyphicon-comment text-success"></span><a href="${initParam.rootPath }/student/compareEvaluationPeriod.do">졸업여부조회</a></center>
                                     </td>
                                 </tr>
                             </table>
@@ -225,8 +239,10 @@
                     </div>
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="javascript:logout()"><span class="glyphicon glyphicon-folder-close">
-                            </span>로그아웃</a>
+                        	<sec:authorize access="isAuthenticated()">
+								 <a data-toggle="collapse" data-parent="#accordion" href="javascript:logout()"><span class="glyphicon glyphicon-folder-close">
+                            	 </span>로그아웃</a>
+                            </sec:authorize>
                         </h4>
                     </div>
                 </div>
@@ -255,7 +271,7 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/professorInfo.do" class="side-menu">교수개인정보조회</a>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/professorInfo.do" class="side-menu">교수개인정보조회</a></center>
                                     </td>
                                 </tr>
                             </table>
@@ -273,7 +289,7 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/SubjectPlan.do" class="side-menu">강의계획서</a>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/SubjectPlan.do" class="side-menu">강의계획서</a></center>
                                     </td>
                                 </tr>
                             </table>
@@ -291,7 +307,7 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/addStudentGrade.do" class="side-menu">성적주기</a>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/addStudentGrade.do" class="side-menu">성적주기</a>
                                     </td>
                                 </tr>
                             </table>
@@ -329,12 +345,12 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/select_student.do" class="side-menu">학생조회</a>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/select_student.do" class="side-menu">학생조회</a></center>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/admin/selectMajorForInsertController.do" class="side-menu">학생등록</a>
+                                        <center><span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/admin/selectMajorForInsertController.do" class="side-menu">학생등록</a></center>
                                     </td>
                                 </tr>           
                             </table>
@@ -352,12 +368,12 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/select_professor.do" class="side-menu">교수조회</a>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/select_professor.do" class="side-menu">교수조회</a></center>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/admin/selectForInsertProfessorController.do" class="side-menu">교수등록</a>
+                                        <center><span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/admin/selectForInsertProfessorController.do" class="side-menu">교수등록</a></center>
                                     </td>
                                 </tr>
                                
@@ -376,12 +392,12 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/admin/selectSubjectTypeController.do" class="side-menu">과목조회</a>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/admin/selectSubjectTypeController.do" class="side-menu">과목조회</a></center>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/admin/selectForInsertSubjectController.do" class="side-menu">과목등록</a>
+                                        <center><span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/admin/selectForInsertSubjectController.do" class="side-menu">과목등록</a></center>
                                     </td>
                                 </tr>
                             </table>
@@ -399,12 +415,12 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/admin/selectCollegeListForSelectController.do" class="side-menu">학과조회</a>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/admin/selectCollegeListForSelectController.do" class="side-menu">학과조회</a></center>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/admin/selectCollegeListForinsertController.do" class="side-menu">학과등록</a>
+                                        <center><span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/admin/selectCollegeListForinsertController.do" class="side-menu">학과등록</a></center>
                                     </td>
                                 </tr>
                                
@@ -423,12 +439,12 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/admin/selectCollegeListController.do" class="side-menu">단과대학조회</a>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/admin/selectCollegeListController.do" class="side-menu">단과대학조회</a></center>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/insert_college.do" class="side-menu">단과대학등록</a>
+                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/insert_college.do" class="side-menu">단과대학등록</a></center>
                                     </td>
                                 </tr>
                                
@@ -447,12 +463,12 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/admin/selectBuildingListController.do" class="side-menu">건물조회</a>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/admin/selectBuildingListController.do" class="side-menu">건물조회</a></center>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/insert_building.do" class="side-menu">건물등록</a>
+                                        <center><span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/insert_building.do" class="side-menu">건물등록</a></center>
                                     </td>
                                 </tr>
                                
@@ -471,12 +487,12 @@
                             <table class="table">
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/admin/selectNoticeController.do" class="side-menu">공지사항조회</a>
+                                        <center><span class="glyphicon glyphicon-pencil text-primary"></span><a href="${initParam.rootPath }/admin/selectNoticeController.do" class="side-menu">공지사항조회</a></center>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/insert_notice.do" class="side-menu">공지사항등록</a>
+                                        <center><span class="glyphicon glyphicon-flash text-success"></span><a href="${initParam.rootPath }/insert_notice.do" class="side-menu">공지사항등록</a></center>
                                     </td>
                                 </tr>
                                

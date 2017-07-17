@@ -143,7 +143,7 @@ $(document).ready(function(){
 <h2>교수 수정</h2>
 	<hr>
 	<form id="insertForm" action="${initParam.rootPath }/admin/updateProfessorController.do" method="post" onsubmit="return check()">
-	       <table id="infoProfessor" border="1">
+	     <center><table id="infoProfessor" border="1">
 			<thead id="thead">
 	   			<tr class="filters">
 					<th align="center"><input type="text" class="form-control" placeholder="번호" disabled></th>
@@ -308,10 +308,10 @@ $(document).ready(function(){
 					</select></td>
 				</tr>
 			</tbody>
-		</table>
-			<input type="hidden" name="usersPassword" value="${requestScope.info.usersPassword }"/><br>
+		</table></center>
+			<input type="hidden" name="usersPassword" value="${requestScope.info.usersPassword }"/><br><br>
 			<center><input type="submit" value="수정"></center><br>
 			<sec:csrfInput/>
-	</form>
+	</form><br>
 	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 </body>

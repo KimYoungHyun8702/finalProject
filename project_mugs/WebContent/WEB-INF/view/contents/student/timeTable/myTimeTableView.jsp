@@ -9,7 +9,7 @@
 <style type="text/css">
 
 table{
-	width:110%;
+	width:100%;
 }
 td{
 	height:80px;

@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>Insert title here</title>
 <style type="text/css">
 input{
 	text-align:center;
 }
 table{
-	width:900px;
+	width:700px;
 	
 }
 th {
@@ -34,11 +35,15 @@ select{
 #tbody{
 	cursor: pointer;
 }
+.form-controler {
+	color:black;
+}
 h3{
 	font-family:돋움체;
 }
+
+
 </style>
-<title>Insert title here</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function update_subject(subjectId){
@@ -163,13 +168,23 @@ $(document).ready(function(){
 				"url":"${initParam.rootPath }/admin/selectSubjectInfoBySubjectTimeController.do", 
 				"data":({subjectTime:$("#time").val(),subjectType:$("#subjectType").val()}),
 				"success":function(result){
-					var txt = "";
+					var txt1 = "";
+					var txt2 = "";
+					var txt3 = "";
+					var txt4 = "";
 					$.each(result,function(){
-					txt += "<tr><td align='center'>"+this.subjectId+"</td><td align='center'>"+this.subjectName+"</td><td align='center'>"+this.subjectTime+"</td><td align='center'>"+this.subjectType+"</td><td align='center'>"+this.subjectCredit+"</td><td align='center'>"
-							+this.subjectCapacity+"</td><td align='center'>"+this.subjectRequest+"</td><td align='center'>"+this.subjectGrade+"</td><td align='center'>"+this.subjectClass+"</td><td align='center'>"+this.subjectCloseClass+"</td><td align='center'>"+this.subjectSemester+"</td><td align='center'>"
-							+"</td><td align='center'>"+(this.building == null?"":this.building.buildingName)+"</td><td align='center'>"+(this.room == null?"":this.room.roomName)+"</td><td align='center'><button onclick='update_minor_subject("+this.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+this.subjectId+")'>삭제</button></td></tr>"
+					txt1 += "<tr><td align='center'>"+this.subjectId+"</td><td align='center'>"+this.subjectName+"</td><td align='center'>"+this.subjectTime+"</td><td align='center'>"+this.subjectType+"</td></tr>"
+							
+					txt2 += "<tr><td align='center'>"+this.subjectCredit+"</td><td align='center'>"	+this.subjectCapacity+"</td><td align='center'>"+this.subjectRequest+"</td><td align='center'>"+this.subjectGrade+"</td></tr>"
+						
+					txt3 += "<tr><td align='center'>"+this.subjectClass+"</td><td align='center'>"+this.subjectCloseClass+"</td><td align='center'>"+this.subjectSemester+"</td><td align='center'></td></tr>"
+						
+					txt4 += "<tr><td align='center'>"+(this.building == null?"":this.building.buildingName)+"</td><td align='center'>"+(this.room == null?"":this.room.roomName)+"</td><td align='center'><button onclick='update_minor_subject("+this.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+this.subjectId+")'>삭제</button></td></tr>"
 					})
-					$("#tbody").html(txt);
+					$("#tbody1").html(txt1);
+					$("#tbody2").html(txt2);
+					$("#tbody3").html(txt3);
+					$("#tbody4").html(txt4);
 					$("#selectSubject").show();			
 				}
 			})//end of ajax
@@ -183,11 +198,21 @@ $(document).ready(function(){
 			"url":"${initParam.rootPath }/admin/selectSubjectInfoBySubjectNameController.do",
 			"data":"subjectId="+$("#subject").val(),
 			"success":function(result){
-					var txt = "";
-						txt += "<tr><td align='center'>"+result.subjectId+"</td><td align='center'>"+result.subjectName+"</td><td align='center'>"+result.subjectTime+"</td><td align='center'>"+result.subjectType+"</td><td align='center'>"+result.subjectCredit+"</td><td align='center'>"
-								+result.subjectCapacity+"</td><td align='center'>"+result.subjectRequest+"</td><td align='center'>"+result.subjectGrade+"</td><td align='center'>"+result.subjectClass+"</td><td align='center'>"+result.subjectCloseClass+"</td><td align='center'>"+result.subjectSemester+"</td><td align='center'>"
-								+(result.major == null?"":result.major.majorName)+"</td><td align='center'>"+(result.building == null?"":result.building.buildingName)+"</td><td align='center'>"+(result.room == null?"":result.room.roomName)+"</td><td align='center'><button onclick='update_subject("+result.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+result.subjectId+")'>삭제</button></td></tr>"
-					$("#tbody").html(txt);
+					var txt1 = "";
+					var txt2 = "";
+					var txt3 = "";
+					var txt4 = "";
+					txt1 += "<tr><td align='center'>"+result.subjectId+"</td><td align='center'>"+result.subjectName+"</td><td align='center'>"+result.subjectTime+"</td><td align='center'>"+result.subjectType+"</td></tr>"
+								
+					txt2 += "<tr><td align='center'>"+result.subjectCredit+"</td><td align='center'>"+result.subjectCapacity+"</td><td align='center'>"+result.subjectRequest+"</td><td align='center'>"+result.subjectGrade+"</td></tr>"
+						
+					txt3 += "<tr><td align='center'>"+result.subjectClass+"</td><td align='center'>"+result.subjectCloseClass+"</td><td align='center'>"+result.subjectSemester+"</td><td align='center'>"+(result.major == null?"":result.major.majorName)+"</td></tr>"
+						
+					txt4 +=	"<tr><td align='center'>"+(result.building == null?"":result.building.buildingName)+"</td><td align='center'>"+(result.room == null?"":result.room.roomName)+"</td><td align='center'><button onclick='update_subject("+result.subjectId+")'>수정</button></td><td align='center'><button onclick='delete_subject("+result.subjectId+")'>삭제</button></td></tr>"
+					$("#tbody1").html(txt1);
+					$("#tbody2").html(txt2);
+					$("#tbody3").html(txt3);
+					$("#tbody4").html(txt4);
 					$("#selectSubject").show();
 			}
 		})//end of ajax
@@ -218,12 +243,14 @@ $(document).ready(function(){
 		<% session.removeAttribute("subdeleteMessage"); %>
 </c:if>
 	<hr>
+
 	<select name="subjectType" id="subjectType">
-		이수구분 선택:<option>이수 구분 선택</option>
+		<option>이수 구분 선택</option>
 		<c:forEach var="list" items="${requestScope.list }">
 			<option value=${list }>${list }</option>
 		</c:forEach>
 	</select>
+	
 	
 	<select id="college">
 	<option>단과 대학 선택</option>
@@ -232,42 +259,56 @@ $(document).ready(function(){
 	<select id="major">
 	<option>학과 선택</option>
 	</select>
-	
+
 	<select id="subject">
 	<option>과목 선택</option>
 	</select>
 	
 	<select id="time">
 	<option>시간표 선택</option>
-	</select>
+	</select><br><br><br>
 	
 	
 	<button id="majorButton">조회</button>
-	<button id="minorButton">조회</button><br><br>
-	
-	<table id="selectSubject" border="1">
+	<button id="minorButton">조회</button><br>
+
+	<center><table id="selectSubject" border="1">
 		<thead>
-			<tr class="filters">
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="과목ID" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="과목이름" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="강의시간" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="이수구분" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학점" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="정원" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="신청인원" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학년" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="분반" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="폐강여부" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학기" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학과" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="강의동" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="강의실" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="수정" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="삭제" disabled" disabled></th>
+			<tr>
+				<th align="center"><input type="text" class="form-control" placeholder="과목ID" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="과목이름" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="강의시간" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="이수구분" disabled></th>
 			</tr>
 		</thead>
-		<tbody id="tbody"></tbody>
-	</table>
-	<br>	
+		<tbody id="tbody1"></tbody>
+		<thead>
+			<tr>
+				<th align="center"><input type="text" class="form-control" placeholder="학점" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="정원" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="신청인원" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="학년" disabled></th>
+			</tr>
+		</thead>
+		<tbody id="tbody2"></tbody>
+		<thead>
+			<tr>
+				<th align="center"><input type="text" class="form-control" placeholder="분반" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="폐강여부" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="학기" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="학과" disabled></th>
+			</tr>
+		</thead>
+		<tbody id="tbody3"></tbody>
+		<thead>
+			<tr>
+				<th align="center"><input type="text" class="form-control" placeholder="강의동" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="강의실" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="수정" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="삭제" disabled></th>
+			</tr>
+		</thead>
+		<tbody id="tbody4"></tbody>
+	</table></center><br><br>
 	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 </body>

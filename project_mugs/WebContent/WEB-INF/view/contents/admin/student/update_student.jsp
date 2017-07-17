@@ -115,7 +115,7 @@ function check(){
 </head>
 <body>
 <h3>학생 등록</h3>
-	<hr>
+	<hr><br><br>
 	<form id="insertForm" action="${initParam.rootPath }/admin/updateStudentController.do" method="post" onsubmit="return check()">
 	
 	<table id="infoStudent" border="1">
@@ -297,7 +297,7 @@ function check(){
 
 
 			<input type="hidden" name="usersPassword" value="${requestScope.info.usersPassword }"/>
-			<center><input type="submit" value="수정"></center><br><br>
+			<br><br><center><input type="submit" value="수정"></center><br><br>
 			<sec:csrfInput/>
 	</form>
 	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>

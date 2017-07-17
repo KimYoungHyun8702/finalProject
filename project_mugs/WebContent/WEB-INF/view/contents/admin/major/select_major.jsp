@@ -67,9 +67,9 @@ $(document).ready(function(){
 	<select name="collegeId" id="collegeId">
 		<option>단과대학 선택</option>
 		<c:forEach var="list" items="${requestScope.list }">
-			<option value=${list.collegeId }>${list.collegeName }</option><br>
+			<option value=${list.collegeId }>${list.collegeName }</option>
 		</c:forEach>
-	</select>
+	</select><br><br>
 	<br>
 	<table id="selectMajor" border="1">
 		<thead>

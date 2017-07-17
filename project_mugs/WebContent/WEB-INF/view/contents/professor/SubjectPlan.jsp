@@ -94,16 +94,16 @@ $(document).on("click", ".Btn", function(){
 	<thead id="thead">
 		<tr class="filters">
 		<tr>
-			<th><input type="text" width="20px" placeholder="연도ID" disabled></th>
-			<th width="70px"><input type="text" width="30px" placeholder="학기" disabled></th>
-			<th width="70px"><input type="text"  placeholder="교수번호" disabled></th>
-			<th width="20px"><input type="text"  placeholder="과목번호" disabled></th>
-			<th width="110px"><input type="text"  placeholder="과목명" disabled></th>
-			<th width="110px"><input type="text"  placeholder="강의시간" disabled></th>
-			<th width="70px"><input type="text"  placeholder="이수구분" disabled></th>
-			<th width="50px"><input type="text"  placeholder="학년" disabled></th>
-			<th width="50px"><input type="text"  placeholder="학점" disabled></th>
-			<th width="50px"><input type="text"  placeholder="정원" disabled></th>
+			<th style="width:50px"><input type="text" placeholder="연도ID" disabled></th>
+			<th style="width:50px"><input type="text" width="30px" placeholder="학기" disabled></th>
+			<th style="width:50px"><input type="text"  placeholder="교수번호" disabled></th>
+			<th style="width:50px"><input type="text"  placeholder="과목번호" disabled></th>
+			<th style="width:50px"><input type="text"  placeholder="과목명" disabled></th>
+			<th style="width:50px"><input type="text"  placeholder="강의시간" disabled></th>
+			<th style="width:50px"><input type="text"  placeholder="이수구분" disabled></th>
+			<th style="width:50px"><input type="text"  placeholder="학년" disabled></th>
+			<th style="width:50px"><input type="text"  placeholder="학점" disabled></th>
+			<th style="width:50px"><input type="text"  placeholder="정원" disabled></th>
 			
 			
 			<td style="display: none">연도</td>

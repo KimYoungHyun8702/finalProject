@@ -3,8 +3,173 @@
 * Documentation
 * Author: MoxDesign - http://www.moxdesign.com
 **/
+<!-- 새로운 로그인 폼 적용. creative에다가 안하고 여기다가 함 -->
+/* 
+.login2background{    
+    background-image: url(https://s13.postimg.org/8xs7irifb/education2.png);
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.loginbox{  
+    background: white;
+    color: black;    
+    margin-top: 30%;
+    left: 0;
+    padding: 20px;   
+    box-shadow: 0 8px 50px -2px #000;
+    border-radius:5px;
+
+}
+.logo{
+    width: 130px; 
+    height: 55px;
+    margin-left: 10%;
+}
+@media (max-width:767px) {
+    .loginbox{ 
+        margin-top: 10%;
+    }    
+}
+
+.loginbox_content{
+    padding:5% 11% 5% 11%;
+
+}
+
+.singtext{
+    font-family: "Open Sans",sans-serif;
+    font-size: 27px;  
+    color: #82C226;
+    float: right;
+    padding-right: 25%;
+}
+
+.submit-btn{
+    float: right;
+    margin-right: 28%;
+}
+
+.forgotpassword{
+    padding-left: 10%;
+}
+@media (max-width:800px) {
+    .submit-btn{
+        
+        margin-right: 23%;
+    }
+
+   
+} */
+
+ @import url('https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=latin-ext');
 
 
+#playground-container {
+    height: 500px;
+    overflow: hidden !important;
+    
+}
+.main{margin-top:70px; 
+-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+padding:0px;
+background:#2196f3;
+
+}
+.fb:focus, .fb:hover{color:FFF !important;}
+body{
+font-family: 'Raleway', sans-serif;
+}
+/* .login2background{
+font-family: 'Raleway', sans-serif;
+background-image:url('https://cdn.pixabay.com/photo/2016/05/18/11/25/library-1400312_960_720.jpg');
+} */
+.image {
+	position:relative;
+	
+}
+.image.loginbox{
+	position:absolute;
+	top:100px;
+	left:200px;
+	
+}
+.left-side{
+	padding:0px 0px 0px;
+	
+	background-size:cover;
+}
+.left-side h3{
+	font-size: 30px;
+    font-weight: 900;
+	color:#FFF;
+	padding: 50px 10px 00px 26px;
+	}
+	
+	.left-side p{
+    font-weight:600;
+	color:#FFF;
+	padding:10px 10px 10px 26px;
+	}
+
+	
+	.fb{background: #2d6bb7;
+    color: #FFF;
+    padding: 10px 15px;
+    border-radius: 18px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 15px;
+	margin-left:26px;-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);}
+	.tw{background: #20c1ed;
+    color: #FFF;
+    padding: 10px 15px;
+    border-radius: 18px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 15px;-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);}
+	
+	.right-side{
+	padding:0px 0px 0px;
+	background:#FFF;
+	background-size:cover;
+	min-height:514px;
+}
+	.right-side h3{
+	font-size: 30px;
+    font-weight: 700;
+	color:#000;
+	padding: 50px 10px 00px 50px;
+	}
+	.right-side p{
+    font-weight:600;
+	color:#000;
+	padding:10px 50px 10px 50px;
+	}
+	.form{padding:10px 50px 10px 50px;}
+    .form-control{box-shadow: none !important;
+    border-radius: 0px !important;
+    border-bottom: 1px solid #2196f3 !important;
+    border-top: 1px !important;
+    border-left: none !important;
+    border-right: none !important;}
+	.btn-deep-purple {
+    background: #2196f3;
+    border-radius: 18px;
+    padding: 5px 19px;
+    color: #FFF;
+    font-weight: 600;
+    float: right;
+	-webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+-moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+}
 
 
 
@@ -29,13 +194,13 @@ html, body {
 }
 body {
 	height:100%;
-	font-family: "godik";
+	font-family: "돋움체";
 	font-weight: 300;
 	padding:0;
 	margin:0;
 	font-size:16px;
 	line-height: 28px;
-	color: #777; 
+	color: black; 
 	background: #fff;
 	overflow-x:hidden;
 	position: relative;
@@ -391,138 +556,10 @@ a:hover {
 
 
 <!-- 로그인 폼 -->
-/*
- * Specific styles of signin component
- */
-/*
- * General styles
- */
-body, html {
-    height: 100%;
-    background-repeat: no-repeat;
-    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
-}
 
-.card-container.card {
-    max-width: 350px;
-    padding: 40px 40px;
-}
-
-.btn {
-    font-weight: 700;
-    height: 36px;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    cursor: default;
-}
-
-/*
- * Card component
- */
-.card {
-    background-color: #F7F7F7;
-    /* just in case there no content*/
-    padding: 20px 25px 30px;
-    margin: 0 auto 25px;
-    margin-top: 50px;
-    /* shadows and rounded borders */
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-.profile-img-card {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
-    display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}
-
-/*
- * Form styles
- */
-.profile-name-card {
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    margin: 10px 0 0;
-    min-height: 1em;
-}
-
-
-
-.form-signin #inputEmail,
-.form-signin #inputPassword {
-    direction: ltr;
-    height: 44px;
-    font-size: 16px;
-}
-
-
-.form-signin input[type=password],
-.form-signin input[type=text],
-.form-signin button {
-    width: 100%;
-    display: block;
-    margin-bottom: 10px;
-    z-index: 1;
-    position: relative;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.form-signin .form-control:focus {
-    border-color: rgb(104, 145, 162);
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-}
-
-.btn.btn-signin {
-    /*background-color: #4d90fe; */
-    background-color: rgb(104, 145, 162);
-    /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
-    padding: 0px;
-    font-weight: 700;
-    font-size: 14px;
-    height: 36px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    border: none;
-    -o-transition: all 0.218s;
-    -moz-transition: all 0.218s;
-    -webkit-transition: all 0.218s;
-    transition: all 0.218s;
-}
-
-.btn.btn-signin:hover,
-.btn.btn-signin:active,
-.btn.btn-signin:focus {
-    background-color: rgb(12, 97, 33);
-}
-
-.forgot-password {
-    color: rgb(104, 145, 162);
-}
-
-.forgot-password:hover,
-.forgot-password:active,
-.forgot-password:focus{
-    color: rgb(12, 97, 33);
-}
-  
 <!-- 새로운 사이드바 css -->
 body{margin-top:50px;}
-.glyphicon { margin-right:10px; }
+.glyphicon { margin-right:0px; }
 .panel-body { padding:0px; }
 .panel-body table tr td { padding-left: 15px }
 .panel-body .table {margin-bottom: 0px; }

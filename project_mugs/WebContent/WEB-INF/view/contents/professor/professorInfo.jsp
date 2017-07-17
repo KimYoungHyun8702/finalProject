@@ -1,66 +1,51 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<!DOCTYPE html>
 <html>
-<style>
-
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
 input{
 	text-align:center;
-	width:200px;
-	height:25px;
 }
-
-button {
-	height:27px;
-	font-size:12pt;
+table{
+	width:700px;
+	
 }
-body {
+th {
+	bgcolor:peru;
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
+}
+select{
+	width:150px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+h3{
 	font-family:돋움체;
-	align:center;
 }
 </style>
-
-<head>
-<meta>
-<title>Insert title here</title>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 var x = "";
-$(document).ready(function(){
-	searchByJoin();
-});
-	function searchByJoin(){
-		$.ajax({
-			"url":"/project_mugs/professor/searchByJoin.do",
-			"type":"POST",
-			"data":{${_csrf.parameterName}:'${_csrf.token}'},
-			"dataType":"json",
-			"success":function(obj){
-				$("#usersId").val(obj.usersId);
-				$("#usersPassword").val(obj.usersPassword);
-				$("#usersName").val(obj.usersName);
-				$("#usersEngName").val(obj.usersEngName);
-				$("#usersRRN").val(obj.usersRRN);
-				$("#usersEmail").val(obj.usersEmail);
-				$("#usersPhoneNum").val(obj.usersPhoneNum);
-				$("#usersCellNum").val(obj.usersCellNum);
-				$("#usersNational").val(obj.usersNational);
-				$("#usersCurrentAddr").val(obj.usersCurrentAddr);
-				$("#usersBornAddr").val(obj.usersBornAddr);
-				$("#usersEnable").val(obj.usersEnable);
-				$("#usersPhoto").val(obj.usersPhoto);
-				
-				$("#proUniversity").val(obj.proUniversity);
-				$("#proGradSchool").val(obj.proGradSchool);
-				$("#proOfficePhoneNum").val(obj.proOfficePhoneNum);
-				$("#proLaboratoryPhoneNum").val(obj.proLaboratoryPhoneNum);
-				var x = obj;
-			},
-			"error":function(){
-				alert("에러발생");
-			}
-		});//ajax
-	} 
 
 $(document).on("click", "#updateBtn", function(){
 	$.ajax({
@@ -76,49 +61,83 @@ $(document).on("click", "#updateBtn", function(){
 </script>
 
 </head>
+
 <body>
 교수개인정보~~~<br>
-아이디 : &nbsp;&nbsp;<input type="text" id="usersId" name="usersId" value="" readonly="readonly" placeholder="ID" disabled><br>
-비밀번호 : <input type="text" id="usersPassword" name="usersPassword" value="" readonly="readonly"  placeholder="비밀번호" disabled><br>
-성명 : &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="usersName" name="usersName" value="" ><br>
-영문성명 : <input type="text" id="usersEngName" name="usersEngName" value="" ><br>
-주민번호 : <input type="text" id="usersRRN" name="usersRRN" value="" ><br>
-이메일 : &nbsp;&nbsp;<input type="text" id="usersEmail" name="usersEmail" value="" ><br>
-전화번호 : <input type="text" id="usersPhoneNum" name="usersPhoneNum" value=""><br>
-핸드폰번호:<input type="text" id="usersCellNum" name="usersCellNum" value=""><br>
-국적 : &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="usersNational" name="usersNational" value=""><br>
-현주소 : &nbsp;&nbsp;<input type="text" id="usersCurrentAddr" name="usersCurrentAddr"><br>
-본적지 : &nbsp;&nbsp;<input type="text" id="usersBornAddr" name="usersBornAddr" value=""><br>
-뭐더라.. : <input type="text" id="usersEnable" name="usersEnable" value=""><br>
-사진주소 : <input type="text" id="usersPhoto" name="usersPhoto" value="">&nbsp;
 
-<div>
 	<c:choose>
-		<c:when test="${requestScope.reFormDateStu.stuInfo.usersPhoto!=null}">
-			<img src ="${initParam.rootPath}/resource/up_image/${requestScope.reFormDateStu.stuInfo.usersPhoto}" width="100px" height="100px">							
-		</c:when> 
-		<c:otherwise>
-			사진 미등록   
+		<c:when test="${sessionScope.professor.usersPhoto != null}">
+			<img src ="${initParam.rootPath}/resource/up_image/${sessionScope.professor.usersPhoto}" id="imageSpace" width="110px" height="100px">
+		</c:when>
+	<c:otherwise>
+			<img src ="${initParam.rootPath}/resource/up_image/1.jpg" width="110px" height="100px">
 		</c:otherwise>
-	</c:choose>	
-</div>
+	</c:choose>
+	<br><br>
+	
+	<center><table border="2" style="width: 300px; border-color: black"> 
+	<tr align="center">
+		<th><input type="text" class="form-control" placeholder="교수번호" disabled></th>
+		<th><input type="text" class="form-control" placeholder="성명" disabled></th>
+		<th><input type="text" class="form-control" placeholder="영문성명" disabled></th>
+		<th><input type="text" class="form-control" placeholder="주민번호" disabled></th>
+		<th><input type="text" class="form-control" placeholder="이메일" disabled></th>
+		<th><input type="text" class="form-control" placeholder="집 전화번호" disabled></th>
+	</tr>
+	<tr align="center">  
+		<td><input type="text" id="usersId" name="usersId" value="${sessionScope.professor.usersId}" readonly="readonly"></td>
+	    <input type="text" id="usersPassword" name="usersPassword" value="${sessionScope.professor.usersPassword}" readonly="readonly" style="display: none;">
+		<td><input type="text" id="usersName" name="usersName" value="${sessionScope.professor.usersName}" readonly="readonly"></td>
+		<td><input type="text" id="usersEngName" name="usersEngName" value="${sessionScope.professor.usersEngName}" readonly="readonly"></td>		
+		<td><input type="text" id="usersRRN" name="usersRRN" value="${sessionScope.professor.usersRRN}" readonly="readonly"></td>
+		<td><input type="text" name ="usersEmail" id="usersEmail" value="${sessionScope.professor.usersEmail}" readonly="readonly"></td>
+		<td><input type="text" name ="usersPhoneNum" id="usersPhoneNum" value="${sessionScope.professor.usersPhoneNum}" readonly="readonly"></td>
+	</tr>
+	<tr align="center">
+		<th><input type="text" class="form-control" placeholder="핸드폰번호" disabled></th>
+		<th><input type="text" class="form-control" placeholder="국적" disabled></th>
+		<th colspan='2'><input type="text" class="form-control" placeholder="본적지" disabled></th>
+		<th colspan='2'><input type="text" class="form-control" placeholder="현주소" disabled></th>
+	</tr>
+	<tr align="center">
+	    <td><input type="text" name ="usersCellNum" id="usersCellNum" value="${sessionScope.professor.usersCellNum}" readonly="readonly"></td>
+		<td><input type="text" id="usersNational" name="usersNational" value="${sessionScope.professor.usersNational}" readonly="readonly"></td>
+		<td colspan="2"><input type="text" id="usersBornAddr" name="usersBornAddr" value="${sessionScope.professor.usersBornAddr}"></td>
+		<td colspan="2"><input type="text" id="usersCurrentAddr" name="usersCurrentAddr" value="${sessionScope.professor.usersCurrentAddr}"></td>
+	</tr>
+</table></center>
+<br><br>
+<center><table border="2" style="width: 500px; border-color: black"> 
+	<tr align="center"> 
+		<th><input type="text" class="form-control" placeholder="졸업대학교" disabled></th>
+		<th><input type="text" class="form-control" placeholder="졸업대학원" disabled></th>
+		<th><input type="text" class="form-control" placeholder="교수실전화번호" disabled></th>
+		<th><input type="text" class="form-control" placeholder="연구실전화번호" disabled></th>	
+	</tr>
+	<tr align="center">  
+		<td id ="proUniversity">${sessionScope.professor.proUniversity}</td>
+		<td id ="proGradSchool">${sessionScope.professor.proGradSchool}</td>
+		<td id ="proOfficePhoneNum">${sessionScope.professor.proOfficePhoneNum}</td>
+		<td id ="proLaboratoryPhoneNum">${sessionScope.professor.proLaboratoryPhoneNum}</td>
+	</tr>
+</table></center>
 
+	<input type="text" id="usersEnable" name="usersEnable" value="${sessionScope.professor.usersId}" style="display: none;">
+	<form action="/project_mugs/professor/professorInfoUpdate.do" method="get"><br>
+	<center><input type="submit" id="UpdateBtn" value="수정 페이지로"></center>
+	<sec:csrfInput/>
+	</form>
 
-<div id="professorRegiste">
-졸업대학 : <input type="text" id="proUniversity" name="proUniversity" value="" readonly="readonly" placeholder="졸업대학" disabled><br>
-졸업대학원:<input type="text" id="proGradSchool" name="proGradSchool" value="" readonly="readonly" placeholder="졸업대학원" disabled><br>
-교수실전화번호:<input type="text" id="proOfficePhoneNum" name="proOfficePhoneNum" value="" readonly="readonly" placeholder="교수실전화번호" disabled><br>
-</div><br>
-<center><button type="submit" id="updateBtn" type="button" class="btn btn-primary">수정</button></center>
 </body>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	var openWin;
 	
 	function openchild(obj){
+		alert("${initParam.rootPath}"+"/resource/up_image/"+"${sessionScope.professor.usersPhoto}");
 		// window.name = "부모창 이름"; planId
         window.name = "parentForm";
         // window.open("open할 window", "자식창 이름", "팝업창 옵션");          
-        openWin = window.open("/project_mugs/professorInfoUpdate.do", "강의계획서수정", "width=500, height=400 resizable=no");
+        openWin = window.open("/project_mugs/professorInfoUpdate.do", "교수정보수정", "width=500, height=400 resizable=no");
         setTimeout(function(){
         	openWin.document.getElementById("usersId").value = document.getElementById("usersId").value;
         	openWin.document.getElementById("usersPassword").value = document.getElementById("usersPassword").value;
@@ -132,13 +151,14 @@ $(document).on("click", "#updateBtn", function(){
         	openWin.document.getElementById("usersCurrentAddr").value = document.getElementById("usersCurrentAddr").value;
         	openWin.document.getElementById("usersBornAddr").value = document.getElementById("usersBornAddr").value;
         	openWin.document.getElementById("usersEnable").value = document.getElementById("usersEnable").value;
-        	openWin.document.getElementById("usersPhoto").value = document.getElementById("usersPhoto").value;
+        	//openWin.document.getElementById("usersPhoto").value = document.getElementById("usersPhoto").value;
         	openWin.document.getElementById("proUniversity").innerText = document.getElementById("proUniversity").value;
         	openWin.document.getElementById("proGradSchool").innerText = document.getElementById("proGradSchool").value;
         	openWin.document.getElementById("proOfficePhoneNum").innerText = document.getElementById("proOfficePhoneNum").value;
-        	openWin.document.getElementById("proLaboratoryPhoneNum").innerText = document.getElementById("proLaboratoryPhoneNum").value;       	
+        	openWin.document.getElementById("proLaboratoryPhoneNum").innerHTML = document.getElementById("proLaboratoryPhoneNum").value;  
+        	openWin.document.getElementById("imageSpace").setAttribute("src","${initParam.rootPath}"+"/resource/up_image/"+"${sessionScope.professor.usersPhoto}");
         }, 1000);                
 	}
-</script>
+</script> -->
 </html>
 

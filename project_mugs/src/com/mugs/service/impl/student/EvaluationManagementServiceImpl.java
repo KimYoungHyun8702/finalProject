@@ -63,13 +63,13 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 
 		HashMap<String, Object> map = new HashMap<>();
 		Date nowDate = new Date();	// 오늘 날짜
-		Date date = new Date(System.currentTimeMillis() - 1000*60*60*24*15);	// 15일전 시간
+		// Date date = new Date(System.currentTimeMillis() - 1000*60*60*24*15);	// 15일전 시간
 		
 		List<String> evaluationPeriodResult = 
 				academicCalendarDaoImpl.selectCalendarName(nowDate);	// 오늘 날짜를 기준으로 학사일정명을 뽑아온다.
 		
-		List<String> nowSemesterResult = 
-				academicCalendarDaoImpl.selectCalendarName(date); // 오늘로부터 15일전 날짜를 기준으로 학사일정명을 뽑아온다.(직전학기를 뽑아오기 위한것)
+		// List<String> nowSemesterResult = 
+				// academicCalendarDaoImpl.selectCalendarName(date); // 오늘로부터 15일전 날짜를 기준으로 학사일정명을 뽑아온다.(직전학기를 뽑아오기 위한것)
 		
 		
 		String msg = null;	// 메세지 담을 메소드
@@ -85,18 +85,23 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 				if(evaluationPeriodResult.get(i).contains("설문응답")) {
 					term = evaluationPeriodResult.get(i);
 				}
+				
+				if(evaluationPeriodResult.get(i).contains("학기") && 
+						evaluationPeriodResult.get(i).length() < 5) {
+					nowSemester = evaluationPeriodResult.get(i);
+				}
 			}
 		}
 		
 		// 직전학기를 담는다
-		if(nowSemesterResult.size() != 0) {
+		/*if(nowSemesterResult.size() != 0) {
 			for(int i = 0; i < nowSemesterResult.size(); i++) {
 				if(nowSemesterResult.get(i).contains("학기") && nowSemesterResult.get(i).length() < 5) {
 					nowSemester = nowSemesterResult.get(i);
 					System.out.println(nowSemester);
 				}
 			}
-		}
+		}*/
 		
 		
 		if(!stuRegister.equals("휴학") && !stuRegister.equals("군휴학")) {

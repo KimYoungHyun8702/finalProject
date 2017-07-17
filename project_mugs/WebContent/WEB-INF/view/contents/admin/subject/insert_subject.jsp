@@ -6,6 +6,45 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+input{
+	text-align:center;
+}
+table{
+	width:700px;
+	
+}
+th {
+	bgcolor:peru;
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
+}
+select{
+	width:150px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+.form-controler {
+	color:black;
+}
+h3{
+	font-family:돋움체;
+}
+
+
+</style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function check(){
@@ -121,15 +160,13 @@ $(document).ready(function(){
 <h2>과목 등록</h2>
 	<hr>
 	<form id="insertForm" action="${initParam.rootPath }/admin/insertSubjectController.do" method="post" onsubmit="return check()">
-	 <table id="selectSubject" border="1">
+	 <center><table id="selectSubject" border="1">
 		<thead>
 			<tr>
-				<td align="center">과목 이름</td>
-				<td align="center">강의 시간</td>
-				<td align="center">이수 구분</td>
-				<td align="center">학점</td>
-				<td align="center">정원</td>
-				<td align="center">학년</td>
+				<th align="center"><input type="text" class="form-control" placeholder="과목이름" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="강의시간" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="이수구분" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="학점" disabled></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -144,24 +181,34 @@ $(document).ready(function(){
 							<option>필수교양</option>
 					</select></td>
 				<td align="center"><input type="number" name="subjectCredit" max="3" min="1" id="subjectCredit"/></td>
-				<td align="center"><input type="number" name="subjectCapacity" id="subjectCapacity"/></td>
-				<td align="center"><input type="number" name="subjectGrade" max="4" min="1" id="subjectGrade"/></td>
 			</tr>
 		</tbody>
 		
 		<thead>
 			<tr>
-				<td align="center">분반</td>
-				<td align="center">폐강 여부</td>
-				<td align="center">학기</td>
-				<td align="center">학과</td>
-				<td align="center">강의실</td>
+				<th align="center"><input type="text" class="form-control" placeholder="정원" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="학년" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="분반" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="폐강여부" disabled></th>
 			</tr>
 		</thead>
 		<tbody id="tbody">
 			<tr>
+				<td align="center"><input type="number" name="subjectCapacity" id="subjectCapacity"/></td>
+				<td align="center"><input type="number" name="subjectGrade" max="4" min="1" id="subjectGrade"/></td>
 				<td align="center"><input type="text" name="subjectClass" id="subjectClass"/></td>
 				<td align="center"><input type="text" name="subjectCloseClass" id="subjectCloseClass"/></td>
+			</tr>
+		</tbody>
+		<thead>
+			<tr>
+				<th align="center"><input type="text" class="form-control" placeholder="학기" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="학과" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="강의실" disabled></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
 				<td align="center"><input type="text" name="subjectSemester" id="subjectSemester"/></td>
 				<td align="center"><select name="collegeId" id="collegeId">
 							<option>단과대학 선택</option>
@@ -182,10 +229,10 @@ $(document).ready(function(){
 					</select></td>
 			</tr>
 		</tbody>
-	</table>
+	</table></center><br>
 				<input type="hidden" name="subjectRequest" value="0"/>
-				<input id="submit" type="submit" value="등록">
+				<center><input id="submit" type="submit" value="등록"><br></center>
 	      <sec:csrfInput/>
-	</form>
-	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
+	</form><br>
+	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 </body>

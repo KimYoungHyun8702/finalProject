@@ -4,39 +4,46 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
+<title>Insert title here</title>
+<style type="text/css">
 input{
-   text-align:center;
+	text-align:center;
 }
 table{
-   width:100%;
-   
+	width:100%;
+	
 }
-
+th {
+	bgcolor:peru;
+}
 td{
-   padding: 5px;
-   border: 1px solid black;
-   text-align:center;
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
 }
 select{
-   width:95px;
-   height: 35px;
-   padding: 5px;
+	width:100px;
+	height: 35px;
+	padding: 5px;
 }
 #product_info_layer{
-   width:700px;
-   border: 1px solid gray;
-   padding:5px;
-   display: none;/*최초 로딩시에는 안보이도록 처리*/
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
 }
 #tbody{
-   cursor: pointer;
+	cursor: pointer;
+}
+.form-controler {
+	color:black;
 }
 h3{
 	font-family:돋움체;
 }
+
+
 </style>
-<title>Insert title here</title>
 <script type="text/javascript">
 $(document).ready(function(){
    $("#wholeTimeThead").hide();
@@ -110,7 +117,7 @@ $(document).ready(function(){
       $.ajax({
          type:"POST",
          url:"${initParam.rootPath}/student/getSubjectTypeList.do",
-         data:{"majorId":$("#second_category").val(), ${_csrf.parameterName}:'${_csrf.token}',"semester":$("#zero_category").val()},
+         data:{"majorId":$("#second_category").val(), ${_csrf.parameterName}:'${_csrf.token}',"semester":$("#zero_category").val(),"year":$("#year").val()},
          dataType:"JSON",
          beforeSend:function(){
             if($("#second_category option").index($("#second_category option:selected"))==0){
@@ -166,7 +173,7 @@ $(document).ready(function(){
       $.ajax({
          type:"POST", 
          url:"${initParam.rootPath}/student/getSubjectBySubjectType.do",
-         data:{"majorId":$("#second_category").val(),"subjectType":$("#third_category").val(),"semester":$("#zero_category").val(), ${_csrf.parameterName}:'${_csrf.token}'},
+         data:{"majorId":$("#second_category").val(),"subjectType":$("#third_category").val(),"semester":$("#zero_category").val(), ${_csrf.parameterName}:'${_csrf.token}',"year":$("#year").val()},
          dataType:"JSON",
          beforeSend:function(){
             if($("#third_category option").index($("#third_category option:selected"))==0){
@@ -201,44 +208,45 @@ $(document).ready(function(){
    });//on.change
 });//document
 
-/* function showCollege(){
-   $("#college").html("<c:forEach var='i' items='${requestScope.colAndSemMap.collegeList }'>"+
-                  "<option value='${i.collegeId}'>${i.collegeName}</option>"+
-                  "</c:forEach>");
-} */
-
 
 </script>
 </head>
 <body>
-<h3>전체 강의시간표 조회</h3>
- <hr style="border: solid px black">
- 학기선택: 
-   <select name="semester" id="zero_category" >
-      <option> 학기</option>
-      <c:forEach var="i" items="${requestScope.semesterList}">
-         <option value="${i}">${i}</option>
-      </c:forEach>
-   </select>&nbsp;
-   <%--
-   단과 대학 조회 select 
- --%>
-   단과대학선택: 
-   <select name="collegeName" id="first_category">
+<br><br><br>
+	연도선택:<select id="year">
+	<option>연도</option>
+	<option value="2013">2013</option>
+	<option value="2014">2014</option>
+	<option value="2015">2015</option>
+	<option value="2016">2016</option>
+	<option value="2017">2017</option>
+	</select>
+	
+	학기선택:<select name="semester" id="zero_category" >
+		<option> 학기</option>
+		<c:forEach var="i" items="${requestScope.semesterList}">
+			<option value="${i}">${i}</option>
+		</c:forEach>
+	</select>
+
+
+   단과대학선택:<select name="collegeName" id="first_category">
       <option id="college">단과대학</option>      
-   </select>&nbsp;
+   </select>
    <%-- -------------------------------------------- 
    학과 select 
 ------------------------------------------------- --%>
+
    학과선택:
    <select id="second_category">
       <option>학과</option>
-   </select>&nbsp;
+   </select>
 
    <%-- -------------------------------------------- 
    이수구분
 ------------------------------------------------- --%>
- 이수구분선택: 
+
+   이수구분선택:
    <select id="third_category">
       <option>이수구분</option>
    </select><br><br>
@@ -246,7 +254,7 @@ $(document).ready(function(){
    <%--
    과목조회 Table
  --%>
-   <table id="wholeTimeTable" border="1" height="12px" >
+   <table id="wholeTimeTable" border="1" height="12px">
       <thead id="wholeTimeThead">
          <tr class="filters">
             <th width='110px'><input type='text' class='form-control' placeholder='이수구분' disabled></th>
@@ -262,7 +270,6 @@ $(document).ready(function(){
          </tr>
       </thead>
       <tbody id="wholeTimeTbody">
-
       </tbody>
 
    </table>

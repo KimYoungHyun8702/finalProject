@@ -25,6 +25,7 @@ function check(){
 console.log('${param.errorMessage}');
 </script> 
 <body>
+<h3>비밀번호 수정</h3>
 <br><br><br><br><br><br><br>
 <form action="${initParam.rootPath}/student/updatePassword.do" method="post" onsubmit="return check();">
 <center>기존 비밀번호를 입력하세요 <input type="password" name="oldUserPassword" id="oldUserPassword"></center>
