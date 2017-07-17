@@ -137,8 +137,8 @@ AND stu_id = #{stuId}
 	SELECT DISTINCT credit_year FROM credit WHERE stu_id =#{value} ORDER BY credit_year DESC
 </select>
 
-<select id="selectSemesterByYear" resultType="string" parameterType="int">
-	SELECT DISTINCT credit_semester FROM credit WHERE credit_year=#{value}
+<select id="selectSemesterByYear" resultType="string" parameterType="map">
+	SELECT DISTINCT credit_semester FROM credit WHERE credit_year=#{year} AND stu_id=#{id} 
 </select>
 
 <select id="selectAllCreditByStuId" resultMap="credit-subject-resultmap" parameterType="string">
@@ -146,40 +146,43 @@ AND stu_id = #{stuId}
 	WHERE c.subject_id = s.subject_id(+)
 	AND	c.stu_id=#{value}
 </select>
-<select id="selectCreditByYear" resultMap="credit-subject-resultmap" parameterType="int">
+<select id="selectCreditByYear" resultMap="credit-subject-resultmap" parameterType="map">
 	<include refid="select-credit-subject-join"/>
 	WHERE	c.subject_id = s.subject_id(+)
-	AND 		c.credit_year=#{value}
+	AND 		c.credit_year=#{year}
+	AND 	c.stu_id=#{id}
 </select>
 
-<select id="selectCreditBySemester" resultMap="credit-subject-resultmap" parameterType="string">
+<select id="selectCreditBySemester" resultMap="credit-subject-resultmap" parameterType="map">
 	<include refid="select-credit-subject-join"/>
 	WHERE c.subject_id = s.subject_id(+)
-	AND	c.credit_semester=#{value}
+	AND	c.credit_semester=#{semester}
+	AND c.stu_id=#{id}
 </select>
 
 <select id="selectCreditByType" resultMap="credit-subject-resultmap" parameterType="map">
 		<include refid="select-credit-subject-join"/>
 	WHERE c.subject_id = s.subject_id(+)
-	AND c.credit_year=#{year} AND c.credit_semester=#{semester} AND s.subject_type=#{type}
+	AND c.credit_year=#{year} AND c.credit_semester=#{semester} AND s.subject_type=#{type} AND c.stu_id=#{id}
 </select>
 
-<select id="selectCreditByOneType" resultMap="credit-subject-resultmap" parameterType="string">
+<select id="selectCreditByOneType" resultMap="credit-subject-resultmap" parameterType="map">
 		<include refid="select-credit-subject-join"/>
 	WHERE c.subject_id = s.subject_id(+)
 	AND s.subject_type=#{type}
+	AND c.stu_id=#{id}
 </select>
 
 <select id="selectCreditByYearAndSemester" resultMap="credit-subject-resultmap" parameterType="map">
 	<include refid="select-credit-subject-join"/>
 	WHERE c.subject_id = s.subject_id(+)
-	AND c.credit_year=#{year} AND c.credit_semester=#{semester}
+	AND c.credit_year=#{year} AND c.credit_semester=#{semester} AND c.stu_id=#{id}
 </select>
 
 <select id="selectCreditByYearType" resultMap="credit-subject-resultmap" parameterType="map">
 	<include refid="select-credit-subject-join"/>
 	WHERE c.subject_id = s.subject_id(+)
-	AND c.credit_year=#{year} AND s.subject_type=#{type}
+	AND c.credit_year=#{year} AND s.subject_type=#{type} AND c.stu_id=#{id}
 </select>
 
 <select id="selectCreditScoreBySubjectIdStuId" resultType="double" parameterType="map">

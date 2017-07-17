@@ -19,15 +19,12 @@ import com.mugs.vo.Users;
 public class GradeController {
 	@Autowired
 	private GradeService service;
-
+	
 	@RequestMapping("yearInquiry")
 	@ResponseBody
 	public List<Integer> yearInquiry() {
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String id = users.getUsersId();
-		
-		List<Integer> list = service.getYear(id);
-		System.out.println(list);
+		List<Integer> list = service.getYear(users.getUsersId());
 		return list;
 	}
 
@@ -35,51 +32,56 @@ public class GradeController {
 	@ResponseBody
 	public List<Credit> allCreditInquiry() {
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String id = users.getUsersId();
-		List<Credit> list = service.getAllCredit(id);
+		List<Credit> list = service.getAllCredit(users.getUsersId());
 		return list;
 	}
 
 	@RequestMapping("semesterInquiry")
 	@ResponseBody
 	public List<String> semesterInquiry(int year) {
-		List<String> list = service.getSemester(year);
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		System.out.println(users.getUsersId()+year+"###########");
+		List<String> list = service.getSemester(users.getUsersId(), year);
 		return list;
 	}
 
 	@RequestMapping("creditByYear")
 	@ResponseBody
 	public List<Credit> creditByYear(int year) {
-		List<Credit> list = service.getCreditByYear(year);
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Credit> list = service.getCreditByYear(users.getUsersId(), year);
 		return list;
 	}
 
 	@RequestMapping("creditByYearSemester")
 	@ResponseBody
 	public List<Credit> creditByYearSemester(int year, String semester) {
-		System.out.println(year+semester+"###");
-		List<Credit> list = service.getCreditByYearSemester(year, semester);
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Credit> list = service.getCreditByYearSemester(users.getUsersId(), year, semester);
 		return list;
 	}
 
 	@RequestMapping("creditByType")
 	@ResponseBody
 	public List<Credit> creditByType(int year, String semester, String type) {
-		List<Credit> list = service.getCreditByType(year, semester, type);
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Credit> list = service.getCreditByType(users.getUsersId(), year, semester, type);
 		return list;
 	}
 
 	@RequestMapping("creditByOneType")
 	@ResponseBody
 	public List<Credit> creditByOneType(String type) {
-		List<Credit> list = service.getCreditByOneType(type);
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Credit> list = service.getCreditByOneType(users.getUsersId(), type);
 		return list;
 	}
 
 	@RequestMapping("creditByYearType")
 	@ResponseBody
 	public List<Credit> creditByYearType(int year, String type) {
-		List<Credit> list = service.getCreditByYearType(year, type);
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Credit> list = service.getCreditByYearType(users.getUsersId(), year, type);
 		return list;
 	}
 

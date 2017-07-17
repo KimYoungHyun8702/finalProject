@@ -20,6 +20,12 @@
  
     
     <script type="text/javascript">
+    
+    function popupOpen(url){
+		var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;"; 
+			window.open(url,"",popOption);
+		}
+    
    function logout(){
       document.getElementById("logoutForm").submit();
    }
@@ -177,11 +183,6 @@
                                         <span class="glyphicon glyphicon-file text-info"></span><a href="${initParam.rootPath }/student/academicProbation.do" class="side-menu">학고내역조회</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <span class="glyphicon glyphicon-comment text-success"></span><a href="${initParam.rootPath }/student/mapByBuildingId.do" class="side-menu">지도</a>
-                                    </td>
-                                </tr>
                             </table>
                         </div>
                     </div>
@@ -236,7 +237,7 @@
 <a href="${initParam.rootPath }/professorInfo.do" class="side-menu">교수 개인 정보</a><br>
 <a href="${initParam.rootPath }/guidanceStudent.do" class="side-menu">지도학생</a><br>
 <a href="${initParam.rootPath }/SubjectPlan.do" class="side-menu">강의계획서</a><br>
-<a href="${initParam.rootPath }/addStudentGrade.do" class="side-menu">성적주기</a><br>
+<a href="${initParam.rootPath }/professor/addStudentGrade.do" class="side-menu">성적주기</a><br>
 </sec:authorize>
 
 <%--관리자 메뉴--%>
