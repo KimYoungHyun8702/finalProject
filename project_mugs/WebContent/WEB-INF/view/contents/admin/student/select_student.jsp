@@ -4,7 +4,46 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="../first/dist/css/sb-admin-2.min.css" rel="stylesheet" media="screen"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+<style type="text/css">
+input{
+	text-align:center;
+}
+table{
+	width:700px;
+	
+}
+th {
+	bgcolor:peru;
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
+}
+select{
+	width:150px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+h3{
+	font-family:돋움체;
+}
+</style>
 <title>Insert title here</title>
+<script src="jquery-1.10.2.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function update_student(usersId){
@@ -22,31 +61,35 @@ function info_student(stuId){
 		"url":"${initParam.rootPath }/admin/selectStudentInfoByIdController.do",
 		"data":"stuId="+stuId,
 		"success":function(result){
+			var photo = "";
 			var txt1 = "";
 			var txt2 = "";
 			var txt3 = "";
 			var txt4 = "";
 			var txt5 = "";
 			$.each(result,function(){
-			txt1 += "<tr><td align='center'>"+(this.info.usersPhoto==null?'':this.info.usersPhoto)+"</td><td align='center'>"+this.info.stuId+"</td><td align='center'>"
-					+this.info.usersName+"</td><td align='center'>"+this.info.usersEngName+"</td><td align='center'>"+this.info.usersRRN
-					+"</td><td>"+this.info.usersEmail+"</td></tr>"
+			if(this.info.usersPhoto == null){
+				photo += "<img src ='${initParam.rootPath}/resource/up_image/1.jpg' width='110px' height='100px'>"
+			}else{
+				photo += "<img src ='${initParam.rootPath}/resource/up_image/"+this.info.usersPhoto+"' width='110px' height='100px'>"
+			}
+
+			txt1 += "<tr><td align='center'>"+this.info.stuId+"</td><td align='center'>"+this.info.usersName+"</td><td align='center'>"+this.info.usersEngName+"</td><td align='center'>"+this.info.usersRRN
+					+"</td><td>"+this.info.usersEmail+"</td><td align='center'>"+this.info.usersPhoneNum+"</td></tr>"
 			
-			txt2 += "<tr><td align='center'>"+this.info.usersPhoneNum+"</td><td align='center'>"+this.info.usersCellNum+"</td><td align='center'>"+this.info.usersNational
-					+"</td><td align='center'>"+this.info.usersCurrentAddr+"</td><td align='center'>"+this.info.usersBornAddr+"</td><td align='center'>"+this.info.usersEnable
-					+"</td></tr>"
+			txt2 += "<tr><td align='center'>"+this.info.usersCellNum+"</td><td align='center'>"+this.info.usersNational+"</td><td align='center'>"+this.info.usersCurrentAddr+"</td><td align='center'>"+this.info.usersBornAddr
+					+"</td><td align='center'>"+this.info.usersEnable+"</td><td align='center'>"+this.info.stuCourse+"</td></tr>"
 			
-			txt3 += "<tr><td align='center'>"+this.info.stuCourse+"</td><td align='center'>"+(this.info.stuArmy==null?"":this.info.stuArmy)+"</td><td align='center'>"+this.stuAdmissionDate
-					+"</td><td align='center'>"+(this.stuGraduationDate==null?"":this.stuGraduationDate)+"</td><td align='center'>"+this.info.stuRegisterState
-					+"</td><td align='center'>"+this.info.stuStudentState+"</td></tr>"
+			txt3 += "<tr><td align='center'>"+(this.info.stuArmy==null?"":this.info.stuArmy)+"</td><td align='center'>"+this.stuAdmissionDate+"</td><td align='center'>"+(this.stuGraduationDate==null?"":this.stuGraduationDate)
+					+"</td><td align='center'>"+this.info.stuRegisterState+"</td><td align='center'>"+this.info.stuStudentState+"</td><td align='center'>"+this.info.stuGrade+"</td></tr>"
 				
-			txt4 += "<tr><td align='center'>"+this.info.stuGrade+"</td><td align='center'>"+this.info.stuGraduationExam+"</td><td align='center'>"+this.info.stuEarlyGraduation+"</td><td align='center'>"+this.info.stuSemester
-					+"</td><td align='center'>"+(this.major.majorName == null?"":this.major.majorName)+"</td><td align='center'>"+(this.majorDual == null?"":(this.majorDual.majorDualName==null?"":this.majorDaul.majorDaulName))
-					+"</td></tr>"
+			txt4 += "<tr><td align='center'>"+this.info.stuGraduationExam+"</td><td align='center'>"+this.info.stuEarlyGraduation+"</td><td align='center'>"+this.info.stuSemester
+					+"</td><td align='center'>"+(this.major.majorName == null?"":this.major.majorName)+"</td><td align='center'>"+(this.majorDual == null?"":(this.majorDual.majorDualName==null?"":this.majorDual.majorDualName))
+					+"</td><td align='center'>"+(this.majorMinor == null?"":(this.majorMinor.majorMinorName==null?"":this.majorMinor.majorMinorName))+"</td></tr>"
 		
-			txt5 += "<tr><td align='center'>"+(this.majorMinor == null?"":(this.majorMinor.majorMinorName==null?"":this.majorMinor.majorMinorName))
-					+"</td><td align='center'><button onclick='update_student("+this.info.usersId+")'>수정</button></td><td align='center'><button onclick='delete_student("+this.info.usersId+")'>삭제</button></td></tr>"
+			txt5 += "<tr><td align='center'><button onclick='update_student("+this.info.usersId+")'>수정</button></td><td align='center'><button onclick='delete_student("+this.info.usersId+")'>삭제</button></td></tr>"
 			})
+			$("#p").html(photo);
 			$("#infoTbody1").html(txt1);
 			$("#infoTbody2").html(txt2);
 			$("#infoTbody3").html(txt3);
@@ -54,20 +97,23 @@ function info_student(stuId){
 			$("#infoTbody5").html(txt5);
 			$("#infoStudent").show();	
 			$("#hr").show();
-			$("h1").show();
+			$("#h1").show();
+			$("#p").show();
 		}
 	})//end of ajax
 } 
 $(document).ready(function(){
 	$("#hr").hide();	
-	$("h1").hide();
+	$("#h1").hide();
 	$("#selectStudent").hide();	
-	$("#infoStudent").hide();	
+	$("#infoStudent").hide();
+	$("#p").hide();
 	$("#searchStudent").on("click",function(){
 		if($("#usersName").val() == ''){
 			alert("검색어를 입력하세요");
 			$("#hr").hide();	
-			$("h1").hide();
+			$("#h1").hide();
+			$("#p").hide();
 			$("#selectStudent").hide();	
 			$("#infoStudent").hide();	
 		}else{
@@ -78,7 +124,8 @@ $(document).ready(function(){
 				if( result == '' ){
 					alert("조회할 내용이 없습니다");
 					$("#hr").hide();	
-					$("h1").hide();
+					$("#h1").hide();
+					$("#p").hide();
 					$("#selectStudent").hide();	
 					$("#infoStudent").hide();	
 				}else{
@@ -88,6 +135,7 @@ $(document).ready(function(){
 				"</td><td align='center'><button onclick='info_student("+this.stuId+")'>상세정보보기</button></td></tr>"
 				})
 				$("#selectTbody").html(txt);
+				$("#hr").show();	
 				$("#selectStudent").show();					
 				}
 		}
@@ -117,79 +165,85 @@ $(document).ready(function(){
 		</script>
 		<% session.removeAttribute("studeleteMessage"); %>
 </c:if>
-<hr>
 	검색할 이름 <input type="text" name="usersName" id="usersName"/><button id="searchStudent">조회</button><br>
-	<table id="selectStudent" border="1">
-		<thead>
-			<tr>
-				<td align="center">학생 번호</td>
-				<td align="center">학생 이름</td>
-				<td align="center">학생 주민 번호</td>
-				<td align="center">학생 이메일</td>
-				<td align="center">상세 정보 보기</td>
+	<br>
+<div id="hr" class="row">
+	<div class="panel panel-primary filterable" id="hr">
+	<table id="selectStudent" border="1" class="table">
+		<thead id="thead">
+			<tr class="filters">
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 번호" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 이름" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 주민 번호" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 이메일" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="상세 정보 보기" disabled></th>
 			</tr>
 		</thead>
 		<tbody id="selectTbody"></tbody>
 	</table>
-	<hr id="hr"/>
-	<h1>학생 상세 정보</h1>
-	<table id="infoStudent" border="1">
-		<thead>
-			<tr>
-				<td align="center">사진</td>
-				<td align="center">번호</td>
-				<td align="center">이름</td>
-				<td align="center">영문 이름</td>
-				<td align="center">주민 번호</td>
-				<td align="center">이메일</td>
+	</div>
+</div>
+	<h3 id="h1">학생 상세 정보</h3>
+	<p id="p">
+	<div id="hr" class="row" >
+	<div class="panel panel-primary filterable" id="hr">
+	<table id="infoStudent" border="1" class="table" >
+		<thead id="thead">
+			<tr class="filters">
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="번호" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="이름" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="영문 이름" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="주민 번호" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="이메일" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="집 전화번호" disabled></th>
 			</tr>
 		</thead>
 		<tbody id="infoTbody1"></tbody>
 		
-		<thead>
-			<tr>
-				<td align="center">집 전화번호</td>
-				<td align="center">핸드폰 번호 </td>
-				<td align="center">국적</td>
-				<td align="center">현 거주지 주소</td>
-				<td align="center">본적지 주소</td>
-				<td align="center">인증가능 상태</td>
+		<thead id="thead">
+			<tr class="filters">
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="핸드폰 번호" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="국적" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="현 거주지 주소" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="본적지 주소" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="인증가능 상태" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="과정 구분" disabled></th>
 			</tr>
 		</thead>
 		<tbody id="infoTbody2"></tbody>
 		
-		<thead>
-			<tr>
-				<td align="center">과정 구분</td>
-				<td align="center">병영 구분</td>
-				<td align="center">입학 일자</td>
-				<td align="center">졸업 일자</td>
-				<td align="center">학적 구분</td>
-				<td align="center">학생 구분</td>
+		<thead id="thead">
+			<tr class="filters">
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="병영 구분" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="입학 일자" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="졸업 일자" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학적 구분" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 구분" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학년" disabled></th>
 			</tr>
 		</thead>
 		<tbody id="infoTbody3"></tbody>
 		
-		<thead>
-			<tr>
-				<td align="center">학년</td>
-				<td align="center">졸업시험 패스 여부</td>
-				<td align="center">조기졸업 대상 여부</td>
-				<td align="center">학기</td>
-				<td align="center">소속 학과</td>
-				<td align="center">복수 전공</td>
+		<thead id="thead">
+			<tr class="filters">		
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="졸업시험 패스 여부" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="조기졸업 대상 여부" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학기" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="소속 학과" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="복수 전공" disabled></th>
+				<th align="center"  bgcolor="peru"><input type="text" class="form-control" placeholder="부전공" disabled></th>
 			</tr>
 		</thead>
 		<tbody id="infoTbody4"></tbody>
 			
-		<thead>
-			<tr>
-				<td align="center">부전공</td>
-				<td align="center">수정</td>
-				<td align="center">삭제</td>
+		<thead id="thead">
+			<tr class="filters">	
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="수정" disabled></th>
+				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="삭제" disabled></th>
 			</tr>
 		</thead>	
 		<tbody id="infoTbody5"></tbody>
-	</table>
-	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
-</body>
+		</table>
+	</div>
+</div><br>
+	<center><button onclick="location.href='${initParam.rootPath }/'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>

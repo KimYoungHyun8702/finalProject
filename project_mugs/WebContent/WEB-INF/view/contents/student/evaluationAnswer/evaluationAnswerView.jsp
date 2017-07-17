@@ -7,32 +7,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-table, td{
-	border: 1px solid black;
-}
 table{
 	width:700px;
 	border-collapse: collapse;
 }
 td{
 	padding: 5px;
+	text-align:center;
+	border: 1px solid black;
+}
+th, input{
+	text-align:center;
+}
+h3{
+	font-family:돋움체;
 }
 </style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery.js"></script>
 
-<title>Insert title here</title>
-<style type="text/css">
-table, td{
-	border: 1px solid black;
-}
-table{
-	width:700px;
-	border-collapse: collapse;
-}
-td{
-	padding: 5px;
-}
-</style>
+
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery.js"></script>
 <script type="text/javascript">
 
@@ -69,17 +62,18 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h2>설문응답조회하는 jsp</h2>
+ <h3>설문응답평가 조회</h3>
+    <hr style="border: solid px black;">
 
+    <div class="panel panel-primary filterable">
 
-
-<table>
+	<table class="table">
 	<thead id="thead">
-		<tr>
-			<td>과목ID</td>
-			<td>과목명</td>
-			<td>담당교수</td>
-			<td>설문응답여부</td>
+		<tr class="filters">
+			<th width="70px"><input type="text" class="form-control" placeholder="과목ID" disabled></th>
+			<th><input type="text" class="form-control" placeholder="과목명" disabled></th>
+			<th><input type="text" class="form-control" placeholder="담당교수" disabled></th>
+			<th><input type="text" class="form-control" placeholder="설문응답여부" disabled></th>
 		</tr>
 	</thead>
 	<tbody id="tbody">
@@ -105,6 +99,7 @@ $(document).ready(function(){
 		</c:forEach>  
 	</tbody>
 </table>
-<button onclick="location.href='${initParam.rootPath}/'">이전페이지로</button>
+</div>
+<center><button onclick="location.href='${initParam.rootPath}/'" type="button" class="btn btn-primary">이전페이지로</button></center>
 </body>
 </html>

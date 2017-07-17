@@ -7,17 +7,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-table, td{
-	border: 1px solid black;
-}
+
 table{
-	width:700px;
-	border-collapse: collapse;
+	width:110%;
 }
 td{
-	padding: 5px;
+	height:80px;
+	text-align:center;
+	border: 1px solid black;
 }
-
+th{
+	height:60px;
+	text-align:center;
+	font-family:돋움체;
+}
+#tbody tr {
+	font-size:15px; font-family:돋움체;
+	line-height:15px;
+}
+h3{
+	font-family:돋움체;
+}
 </style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
@@ -3180,128 +3190,5 @@ $(document).ready(function(){
 		</tr>
 	</tbody>
   </table> 
-	 <!--  <table width="700" border="0" cellpadding="1" cellspacing="1" bgcolor="#c5e2cc">
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">요일/교시</td>
-          <td width="107" class="schedule">월</td>
-          <td width="107" class="schedule">화</td>
-          <td width="107" class="schedule">수</td>
-          <td width="107" class="schedule">목</td>
-          <td width="107" class="schedule">금</td>
-          <td width="107" class="schedule">토</td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">1</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">2</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">3</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">4</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">5</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">6</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">7</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">8</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">9</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>
-  
-        <tr bgcolor="#f3fdf8" height="40">
-          <td width="52" align="center" bgcolor="#daf3e0">10</td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="107" class="schedule"></td>
-          <td width="84" bgcolor="#dff1db" class="schedule"></td>
-        </tr>  
-      </table> -->
 </body>
 </html>

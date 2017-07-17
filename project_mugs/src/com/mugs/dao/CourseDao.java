@@ -79,7 +79,7 @@ public interface CourseDao {
 	int selectStudentCount(String semester, int nowYear, int subjectId);
 
 	/** 영현이꼬
-	 * 	4개의 매개변수를 받은 ID값들과 일치하는 수강 Data 조회.
+	 * 	3개의 매개변수를 받은 ID값들과 일치하는 수강 Data 조회.
 	 * @param courseYear,courseSemester,subjectId
 	 * @return Course
 	 */

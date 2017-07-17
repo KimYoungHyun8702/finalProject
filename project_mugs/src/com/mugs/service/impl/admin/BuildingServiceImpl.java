@@ -20,21 +20,21 @@ public class BuildingServiceImpl implements BuildingService{
 	private RoomDao	roomDao;
 	
 	@Override
-	public String insertBuilding(Building building) {
+	public int insertBuilding(Building building) {
 		int cnt = buildingDao.insertBuilding(building);
 		if (cnt == 0) {
-			return "실패";
+			return 0;
 		}
-		return "성공";
+		return building.getBuildingId();
 	}
 
 	@Override
-	public String updateBuildingById(Building building) {
+	public int updateBuildingById(Building building) {
 		int cnt = buildingDao.updateBuildingById(building);
 		if(cnt == 0 ){
-			return "실패";
+			return 0;
 		}
-		return "성공";
+		return building.getBuildingId();
 	}
 
 	@Override

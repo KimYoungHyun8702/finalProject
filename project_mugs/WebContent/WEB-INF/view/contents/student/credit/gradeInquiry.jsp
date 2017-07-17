@@ -5,8 +5,45 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>성적조회</title>
+<style>
+input{
+   text-align:center;
+}
+.table{
+   width:150%;
+   
+}
+#thead {
+   width:100px;
+}
+.table2{
+   width:100%;
+   
+}
+td{
+   padding: 5px;
+   border: 1px solid black;
+   text-align:center;
+}
+select{
+   width:120px;
+   height: 35px;
+   padding: 5px;
+}
+#product_info_layer{
+   width:700px;
+   border: 1px solid gray;
+   padding:5px;
+   display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+   cursor: pointer;
+}
+h3{
+	font-family:돋움체;
+}
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -47,11 +84,13 @@ $(document).ready(function(){
  					$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>");
  					$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>");
  					$.each(list, function(index){
+ 						if(this.creditGrade!='포기'){
  						allCredit+=this.subject.subjectCredit;
  						acquireCredit+=this.creditAcquire;
  						score+=this.creditScore;
  			      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
  				             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+ 						}
  					})
  					
  					if(isNaN(score/count)){
@@ -112,12 +151,14 @@ $(document).ready(function(){
 					$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 					$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 					$.each(list, function(){
+						if(this.creditGrade!='포기'){
 						allCredit+=this.subject.subjectCredit;
 						acquireCredit+=this.creditAcquire;
  						score+=this.creditScore;
 			      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 				             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
-					})
+						}
+						})
 					if(isNaN(score/count)){
 						txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
 						
@@ -157,12 +198,14 @@ $(document).ready(function(){
 					$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 					$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 					$.each(list, function(){
+						if(this.creditGrade!='포기'){
 						allCredit+=this.subject.subjectCredit;
 						acquireCredit+=this.creditAcquire;
  						score+=this.creditScore;
 			      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 				             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
-					})
+						}
+						})
 					if(isNaN(score/count)){
 						txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
 						
@@ -195,11 +238,13 @@ $(document).ready(function(){
 				$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 				$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 				$.each(list, function(){
+					if(this.creditGrade!='포기'){
 					allCredit+=this.subject.subjectCredit;
 					acquireCredit+=this.creditAcquire;
 						score+=this.creditScore;
 		      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 			             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+					}
 				})
 				if(isNaN(score/count)){
 					txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
@@ -237,12 +282,14 @@ $(document).ready(function(){
 	 					$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 	 					$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 	 					$.each(list, function(index){
+	 						if(this.creditGrade!='포기'){
 	 						allCredit+=this.subject.subjectCredit;
 	 						acquireCredit+=this.creditAcquire;
 	 						score+=this.creditScore;
 	 			      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 	 				             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
-	 					})
+	 						}
+	 						})
 	 					
 	 					if(isNaN(score/count)){
 							txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
@@ -274,11 +321,13 @@ $(document).ready(function(){
 					$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 					$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 					$.each(list, function(){
+						if(this.creditGrade!='포기'){
 						allCredit+=this.subject.subjectCredit;
 						acquireCredit+=this.creditAcquire;
 						score+=this.creditScore;
 			      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 				             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+						}
 					})
 					if(isNaN(score/count)){
 						txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
@@ -316,12 +365,14 @@ $(document).ready(function(){
 							$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 							$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 							$.each(list, function(){
+								if(this.creditGrade!='포기'){
 								allCredit+=this.subject.subjectCredit;
 								acquireCredit+=this.creditAcquire;
 		 						score+=this.creditScore;
 					      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 						             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
-							})
+								}
+								})
 							if(isNaN(score/count)){
 								txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
 								
@@ -352,12 +403,14 @@ $(document).ready(function(){
 							$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 							$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 							$.each(list, function(){
+								if(this.creditGrade!='포기'){
 								allCredit+=this.subject.subjectCredit;
 								acquireCredit+=this.creditAcquire;
 								score+=this.creditScore;
 					      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 						             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
-							})
+								}
+								})
 							if(isNaN(score/count)){
 								txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
 								
@@ -391,12 +444,14 @@ $(document).ready(function(){
 							$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 							$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 							$.each(list, function(){
+								if(this.creditGrade!='포기'){
 								allCredit+=this.subject.subjectCredit;
 								acquireCredit+=this.creditAcquire;
 									score+=this.creditScore;
 					      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 						             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
-							})
+								}
+								})
 							if(isNaN(score/count)){
 								txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
 								
@@ -426,12 +481,14 @@ $(document).ready(function(){
 						$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강여부</td></tr>")
 						$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 						$.each(list, function(){
+							if(this.creditGrade!='포기'){
 							allCredit+=this.subject.subjectCredit;
 							acquireCredit+=this.creditAcquire;
 							score+=this.creditScore;
 				      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 					             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
-						})
+							}
+							})
 						if(isNaN(score/count)){
 							txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
 							
@@ -457,26 +514,33 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h2>성적조회</h2>
-<hr>
-<select id="year">
+<h3>성적조회</h3>
+<hr style="border: solid px black">
+연도선택 : <select id="year">
 </select>
+학기선택 : 
 <select id="semester">
 <option>학기</option>
 </select>
-<select id="type">
+이수구분선택 : <select id="type">
 <option>이수구분</option>
-</select>
-<table id="table">
-	<thead id="thead"></thead>
-	<tbody id="tbody"></tbody>
+</select><br><br>
+<div class="panel panel-primary filterable">
+<table class="table">
+   <thead id="thead"></thead>
+      <tr class="filters"></tr>
+   <tbody id="tbody"></tbody>
 </table>
+</div>
 <hr>
 <div>
-<table id="table2">
-	<thead id="thead2"></thead>
-	<tbody id="tbody2"></tbody>
+<div class="panel panel-primary filterable">
+<table class="table2">
+   <thead id="thead2"></thead>
+      <tr class="filters"></tr>
+   <tbody id="tbody2"></tbody>
 </table>
+</div>
 </div>
 </body>
 </html>

@@ -60,4 +60,11 @@ public class LeaveReturnApplicationDaoImpl implements LeaveReturnApplicationDao 
 		// TODO Auto-generated method stub
 		return session.selectList(makeSql("selectLeaveReturnApplicationListByStuId"), stuId);
 	}
+
+	@Override
+	public List<LeaveReturnApplication> selectLeaveReturnApplicationJoin() {
+		return session.selectList(makeSql("selectLeaveReturnApplicationJoin"));
+	}
+	
+	
 }

@@ -2,6 +2,8 @@ package com.mugs.controller.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,25 +47,29 @@ public class BuildingController {
 	}
 	
 	@RequestMapping("/insertBuildingController")
-	public String insertBuilding(Building building){
-		buildingService.insertBuilding(building);
-		return "redirect:/admin/selectBuildingListController.do";
+	public ModelAndView insertBuilding(Building building, HttpSession session){
+		session.setAttribute("buiinsertMessage", "1");
+		int buildingId = buildingService.insertBuilding(building);
+		return new ModelAndView("redirect:/admin/selectBuildingByIdController.do","buildingId",buildingId);
 	}
 	
 	@RequestMapping("/updateBuildingController")
-	public String updateBuilding(Building building){
-		buildingService.updateBuildingById(building);
-		return "redirect:/admin/selectBuildingListController.do";
+	public ModelAndView updateBuilding(Building building, HttpSession session){
+		session.setAttribute("buiupdateMessage", "1");
+		int buildingId = buildingService.updateBuildingById(building);
+		return new ModelAndView("redirect:/admin/selectBuildingByIdController.do","buildingId",buildingId);
 	}
 	
 	@RequestMapping("/deleteBuildingController")
-	public String deleteBuilding(int buildingId){
+	public String deleteBuilding(int buildingId, HttpSession session){
+		session.setAttribute("buideleteMessage", "1");
 		buildingService.deleteBuilding(buildingId);
 		return "redirect:/admin/selectBuildingListController.do";
 	}
 	
 	@RequestMapping("/insertRoomController")
-	public ModelAndView insertRoom(Room room){
+	public ModelAndView insertRoom(Room room, HttpSession session){
+		session.setAttribute("roominsertMessage", "1");
 		int buildingId = buildingService.insertRoom(room);
 		return new ModelAndView ("redirect:/admin/selectBuildingByIdController.do","buildingId",buildingId);
 	}
@@ -83,13 +89,15 @@ public class BuildingController {
 	}
 	
 	@RequestMapping("/updateRoomController")
-	public ModelAndView updateRoom(Room room){
+	public ModelAndView updateRoom(Room room, HttpSession session){
+		session.setAttribute("roomupdateMessage", "1");
 		int buildingId = buildingService.updateRoom(room);
 		return new ModelAndView ("redirect:/admin/selectBuildingByIdController.do","buildingId",buildingId);
 	}
 	
 	@RequestMapping("/deleteRoomController")
-	public ModelAndView deleteRoom(int roomId){
+	public ModelAndView deleteRoom(int roomId, HttpSession session){
+		session.setAttribute("roomdeleteMessage", "1");
 		int buildingId = buildingService.deleteRoom(roomId);
 		return new ModelAndView ("redirect:/admin/selectBuildingByIdController.do","buildingId",buildingId);
 	}

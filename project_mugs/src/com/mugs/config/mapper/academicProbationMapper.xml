@@ -23,13 +23,25 @@
 		<result column="count" property="count" />
 	</resultMap>
 	
+	<resultMap type="academicProbation" id="academicProbation-expel-resultmap" extends="academicProbation-basic-resultmap">
+		<id column="users_id" property="usersId" />
+		<result column="users_name" property="usersName" />
+		<result column="major_name" property="majorName" />
+		<result column="users_enable" property="usersEnable" />
+	</resultMap>
+	
 	<!-- Insert -->
 	<insert id="insertAcademicProbation" parameterType="academicProbation">
 		<selectKey resultType="int" keyProperty="probationId" order="BEFORE">
 			SELECT ACADEMIC_PROBATION_ID_SEQ.nextval FROM dual
 		</selectKey>
-		INSERT INTO academicprobation VALUES(#{probationId},#{probationYear},
-		#{probationSemester}, #{probationAverage}, #{stuId})
+		INSERT INTO academic_probation 
+		VALUES(
+		#{probationId},
+		#{probationYear},
+		#{probationSemester}, 
+		#{probationCreditAverage}, 
+		#{stuId})
 	</insert>
 	<!-- Update -->
 	<update id="updateAcademicCalendarById" parameterType="academicProbation">
@@ -43,7 +55,15 @@
 	
 	<!-- delete -->
 	<delete id="deleteAcademicProbation" parameterType="int">
-		DELETE FROM academicprobation WHERE probation_id=#{value}
+		DELETE FROM academic_probation WHERE probation_id=#{value}
+	</delete>
+
+	<!-- 영현이꼬 -->
+	<delete id="deleteAcademicProbationByThreeId" parameterType="map">
+		DELETE FROM academic_probation
+		 WHERE probation_year=#{probationYear}
+		 AND   probation_semester=#{probationSemester}
+		 AND   stu_id=#{stuId}
 	</delete>
 
 	<!-- select -->
@@ -62,4 +82,37 @@
 		 (SELECT count(stu_id) FROM academic_probation WHERE stu_id=#{value}) count FROM academic_probation WHERE stu_id=#{value}
 	</select> 
 
+	<!-- 영현이꼬 -->
+	<select id="selectAcademicProbationByThreeId" resultMap="academicProbation-basic-resultmap" parameterType="map">
+		<include refid="select-academicProbation" />
+		WHERE probation_year=#{probationYear}
+		AND   probation_semester=#{probationSemester}
+		AND   stu_id=#{stuId}
+	</select>
+	
+	<select id="selectForExpel"	resultMap="academicProbation-expel-resultmap" parameterType="String">
+		<![CDATA[
+		SELECT a.probation_year, a.probation_semester
+			FROM academic_probation a, student s, users u, major m
+			WHERE a.stu_id = s.stu_id
+			AND s.stu_id = u.users_id
+			AND s.major_id = m.major_id
+			AND a.stu_id =#{value}
+		]]>
+	</select>
+	
+	<select id="selectForExpelStudentInfo"	resultMap="academicProbation-expel-resultmap">
+		<![CDATA[
+			SELECT distinct a.stu_id, u.users_id, u.users_name, m.major_name, u.users_enable
+			FROM academic_probation a, student s, users u, major m
+			WHERE a.stu_id = s.stu_id
+			AND s.stu_id = u.users_id
+			AND s.major_id = m.major_id
+			AND a.stu_id IN(SELECT stu_id
+  							FROM academic_probation
+ 							GROUP BY stu_id
+							HAVING count(stu_id) >= 3)
+		]]>
+	</select>
+	
 </mapper>

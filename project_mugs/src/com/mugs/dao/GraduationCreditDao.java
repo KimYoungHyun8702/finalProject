@@ -58,4 +58,5 @@ public interface GraduationCreditDao {
 	 * @author 병문
 	 */
 	GraduationCredit selectGraduationCreditByMajorIdAndUsersId(int majorId, String year, String usersId);
+	
 }

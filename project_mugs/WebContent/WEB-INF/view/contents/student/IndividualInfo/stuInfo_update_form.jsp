@@ -8,12 +8,16 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#upBtn").on("click",function(){
-		if($("#upImage").val()==null){
-			alert('기존 사진을 사용합니다.');
-		};
-	});		
-});
+	$("#showUpdateImg").hide();
+})
+
+function deleteImg(){		
+		$("#imageSpace").html('<img src ="${initParam.rootPath}/resource/up_image/1.jpg" width="138px" height="100px">');		
+} 
+  
+function showUpImg(){
+		$("#showUpdateImg").toggle();
+};
 
 function check(){
     if($("#usersEmail").val() == "" || $("#usersEmail").val().trim() == 0){
@@ -32,7 +36,9 @@ function check(){
        alert("본적지 주소를 입력하세요")
        return false;
     }else{
-       return confirm("등록하시겠습니까 ?")
+       
+       
+    	return confirm("등록하시겠습니까 ?")
     }
  };
 
@@ -43,9 +49,37 @@ function check(){
 	<form action="${initParam.rootPath}/student/updateStuAndSelect.do?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data"  onsubmit="return check();">
 	<sec:csrfInput/>
 	<h1>학생정보조회</h1>
-	<h3>성명, 주민번호, 학번, 학적정보 등 기존 사항은 수정할 수 없습니다.</h3>
+	<h5>성명, 주민번호, 학번, 학적정보 등 기존 사항은 수정할 수 없습니다.</h5>
 	<p>
+	<table border="1">
+	<tr> 		
+		<td id="imageSpace">
+		<c:choose>
+		<c:when test="${requestScope.reFormDateStu.stuInfo.usersPhoto != null}">
+			<img src ="${initParam.rootPath}/resource/up_image/${requestScope.reFormDateStu.stuInfo.usersPhoto}" id="imageSpace" width="138px" height="100px">
+		</c:when>
+		<c:otherwise>
+			<img src ="${initParam.rootPath}/resource/up_image/1.jpg" width="138px" height="100px">
+		</c:otherwise>
+		</c:choose>
+		</td>							
+	</tr>  
+	<tr>
+		<td><input type="button" value="이미지변경 " id="updateImg" onclick="showUpImg();">
+			<input type="button" value="삭제" onclick="deleteImg();"></td> 
+	</tr> 
+	</table>
+	<br>
+	<table border="2" id="showUpdateImg">
+		<tr>
+			<td align="center">프로필 사진 변경</td>
+		</tr> 
+		<tr> 
+			<td><input type="file" id="upImage" name ="upImage"></td>
+		</tr>
+	</table>
 	
+	<br>
 	<table border="2" style="width: 600px; border-color: black"> 
 	<tr align="center"> 
 		<td bgcolor="lightgray">성명</td>    
@@ -125,18 +159,11 @@ function check(){
 	</tr>
 </table>
 	<p>
-	<table border="1" style="float: left">
-		<tr>
-			<td align="center">프로필 사진 변경</td>
-		</tr> 
-		<tr> 
-			<td><input type="file" id="upImage" name ="upImage" ></td>
-		</tr>
-	</table>
+	
 	<a href = "${initParam.rootPath}/student/moveUpdatePwd.do" >비밀번호 변경 페이지로 이동</a>
 	<br>
 	<input type="hidden" name="usersPassword" value="${requestScope.reFormDateStu.stuInfo.usersPassword}">
-	<input type="submit" id="upBtn" value="수정"><br>
+	<input type="submit" id="upBtn" value="수정" ><br>
 	</form> 
 	
 </body>

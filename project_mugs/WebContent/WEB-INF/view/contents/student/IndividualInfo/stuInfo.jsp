@@ -14,15 +14,15 @@
 <h1>학생정보조회</h1>
 <body>
 	<p>
-	
-	<c:choose>
-		<c:when test="${requestScope.reFormDateStu.stuInfo.usersPhoto!=null}">
-			<img src ="${initParam.rootPath}/resource/up_image/${requestScope.reFormDateStu.stuInfo.usersPhoto}" width="100px" height="100px">							
-		</c:when> 
-		<c:otherwise>
-			사진 미등록   
-		</c:otherwise>
-	</c:choose>	
+		<c:choose>
+			<c:when test="${requestScope.reFormDateStu.stuInfo.usersPhoto != null}">
+				<img src ="${initParam.rootPath}/resource/up_image/${requestScope.reFormDateStu.stuInfo.usersPhoto}" id="imageSpace" width="110px" height="100px">
+			</c:when>
+			<c:otherwise>
+				<img src ="${initParam.rootPath}/resource/up_image/1.jpg" width="110px" height="100px">
+			</c:otherwise>
+		</c:choose>
+
 <table border="2" style="width: 600px; border-color: black"> 
 	<tr align="center"> 
 		<td bgcolor="lightgray">성명</td>    

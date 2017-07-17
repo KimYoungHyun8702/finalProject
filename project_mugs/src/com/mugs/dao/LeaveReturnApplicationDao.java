@@ -48,4 +48,10 @@ public interface LeaveReturnApplicationDao {
 	 * @return
 	 */
 	List<LeaveReturnApplication> selectLeaveReturnApplicationByStuId(String stuId);
+	
+	/**
+	 * 휴복학 전체 조회 메소드
+	 * @return
+	 */
+	List<LeaveReturnApplication> selectLeaveReturnApplicationJoin();
 }

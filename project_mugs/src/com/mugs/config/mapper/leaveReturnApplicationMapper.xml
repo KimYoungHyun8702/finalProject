@@ -21,6 +21,12 @@
 	<result column="STU_ID" property="stuId"/>
 </resultMap>
 
+<resultMap type="leaveReturnApplication" id="leaveReturnApplication-student-reresultmap" extends="leaveReturnApplication-basic-reresultmap">
+	<id column="users_id" property="usersId"/>
+	<result column="users_name" property="usersName"/>
+	<result column="major_name" property="majorName"/>
+</resultMap>
+
 <!-- insert -->
 <insert id="insertLeaveReturnApplication" parameterType="leaveReturnApplication">
 	<selectKey resultType="int" keyProperty="LRApplicationId" order="BEFORE">
@@ -34,7 +40,7 @@
 	UPDATE LEAVERETURNAPPLICATION
 	   SET LRAPPLICATION_TYPE=#{LRApplicationType},
 	   	   LRAPPLICATION_START_DATE=#{LRApplicationStartDate},
-	   	   LRAPPLICATION_FINISH_DATE=#{LRApplicationFinishDate},
+	   	   LRAPPLICATION_FINISH_DATE= (SELECT TRUNC(SYSDATE) FROM DUAL),
 	   	   LRAPPLICATION_STATE=#{LRApplicationState},
 	   	   STU_ID=#{stuId}
 	 WHERE LRAPPLICATION_ID=#{LRApplicationId}  	   
@@ -66,6 +72,15 @@
 	where STU_ID=#{value}
 </select>
 
-
+<select id="selectLeaveReturnApplicationJoin" resultMap="leaveReturnApplication-student-reresultmap">
+	SELECT l.LRAPPLICATION_ID, l.LRAPPLICATION_TYPE, l.LRAPPLICATION_START_DATE,
+		   l.LRAPPLICATION_STATE, u.users_name, u.users_id, m.major_name
+	FROM leavereturnapplication l, users u, student s, major m
+	WHERE l.stu_id = s.stu_id
+	AND s.stu_id = u.users_id
+	AND s.major_id = m.major_id
+	AND l.LRAPPLICATION_STATE = '대기'
+	ORDER BY l.LRAPPLICATION_START_DATE
+</select>
 
 </mapper>

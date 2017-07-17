@@ -28,6 +28,7 @@
 		<id column="major_name" property="majorName"/>
 		<result column="users_id" property="usersId"/>
 		<result column="users_name" property="usersName"/>
+		<result column="subject_name" property="subjectName"/>
 		<association property="credit" javaType ="com.mugs.vo.Credit">
 			<result column="credit_id" property="creditId"/>
 			<result column="credit_year" property="creditYear"/>
@@ -76,14 +77,15 @@
 	WHERE CGU_ID=#{value}
 </select>
 
-<select id="selectCreditGiveUpJoin" resultMap="creditGiveUp-basic-reresultmap">
+<select id="selectCreditGiveUpJoin" resultMap="creditGiveUp-credit-reresultmap">
 	SELECT c.cgu_id, c.cgu_year, c.cgu_semester, c.cgu_start_date, c.cgu_finish_date,
-		   c.cgu_state, c.credit_id, m.major_name, u.users_id, u.users_name
-	FROM credit_give_up c, credit t, student s, users u, major m
-	WHERE c.credit_id = t.credit_id 
+		   c.cgu_state, c.credit_id, m.major_name, u.users_id, u.users_name, su.subject_name
+	FROM credit_give_up c, credit t, student s, users u, major m, subject su
+	WHERE c.credit_id = t.credit_id
 	AND t.stu_id = s.stu_id
 	AND s.stu_id = u.users_id
 	AND s.major_id = m.major_id
+	AND t.subject_id = su.subject_id
 	AND c.cgu_state = '대기'
 </select>
  

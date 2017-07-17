@@ -128,8 +128,6 @@ $(document).ready(function(){
 				<td align="center">강의 시간</td>
 				<td align="center">이수 구분</td>
 				<td align="center">학점</td>
-				<td align="center">정원</td>
-				<td align="center">학년</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -144,24 +142,34 @@ $(document).ready(function(){
 							<option>필수교양</option>
 					</select></td>
 				<td align="center"><input type="number" name="subjectCredit" max="3" min="1" id="subjectCredit"/></td>
-				<td align="center"><input type="number" name="subjectCapacity" id="subjectCapacity"/></td>
-				<td align="center"><input type="number" name="subjectGrade" max="4" min="1" id="subjectGrade"/></td>
 			</tr>
 		</tbody>
 		
 		<thead>
 			<tr>
+				<td align="center">정원</td>
+				<td align="center">학년</td>
 				<td align="center">분반</td>
 				<td align="center">폐강 여부</td>
+			</tr>
+		</thead>
+		<tbody id="tbody">
+			<tr>
+				<td align="center"><input type="number" name="subjectCapacity" id="subjectCapacity"/></td>
+				<td align="center"><input type="number" name="subjectGrade" max="4" min="1" id="subjectGrade"/></td>
+				<td align="center"><input type="text" name="subjectClass" id="subjectClass"/></td>
+				<td align="center"><input type="text" name="subjectCloseClass" id="subjectCloseClass"/></td>
+			</tr>
+		</tbody>
+		<thead>
+			<tr>
 				<td align="center">학기</td>
 				<td align="center">학과</td>
 				<td align="center">강의실</td>
 			</tr>
 		</thead>
-		<tbody id="tbody">
+		<tbody>
 			<tr>
-				<td align="center"><input type="text" name="subjectClass" id="subjectClass"/></td>
-				<td align="center"><input type="text" name="subjectCloseClass" id="subjectCloseClass"/></td>
 				<td align="center"><input type="text" name="subjectSemester" id="subjectSemester"/></td>
 				<td align="center"><select name="collegeId" id="collegeId">
 							<option>단과대학 선택</option>

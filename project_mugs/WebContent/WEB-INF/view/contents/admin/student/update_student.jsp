@@ -6,6 +6,44 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+input{
+	text-align:center;
+}
+table{
+	width:700px;
+	
+}
+th {
+	bgcolor:peru;
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
+}
+select{
+	width:150px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+.form-controler {
+	color:black;
+}
+h3{
+	font-family:돋움체;
+}
+
+</style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function check(){
@@ -39,9 +77,6 @@ function check(){
 	}else if($("#usersBornAddr").val() == "" || $("#usersBornAddr").val().trim() == 0){
 		alert("본적지 주소를 입력하세요")
 		return false;
-	}else if($("#usersEnable").val() == "" || $("#usersEnable").val().trim() == 0){
-		alert("인증가능 상태를 입력하세요")
-		return false;
 	}else if($("#stuCourse").val() == "" || $("#stuCourse").val().trim() == 0){
 		alert("과정 구분를 입력하세요")
 		return false;
@@ -70,48 +105,46 @@ function check(){
 		alert("소속 학과를 입력하세요")
 		return false;
 	}else{
-		return confirm("등록하시겠습니까 ?")
+		return confirm("수정하시겠습니까 ?")
 	}
 };
 </script>
 </head>
 <body>
-<h2>학생 등록</h2>
+<h3>학생 등록</h3>
 	<hr>
 	<form id="insertForm" action="${initParam.rootPath }/admin/updateStudentController.do" method="post" onsubmit="return check()">
-	<table id="infoStudent" border="1">
-		<thead>
-			<tr>
-				<td align="center">번호</td>
-				<td align="center">이름</td>
-				<td align="center">영문 이름</td>
-				<td align="center">주민 번호</td>
-				<td align="center">이메일</td>
-				<td align="center">집 전화번호</td>
+	
+	<table id="infoStudent" border="1" class="table">
+		<thead id="thead">
+	   		<tr class="filters">
+	   			<th align="center"><input type="text" class="form-control" placeholder="학번" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="이름" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="영문 이름" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="주민 번호" disabled></th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+			<tr class="filters">
 				<td align="center"><input type="number" name="usersId" value="${requestScope.info.usersId }" id="usersId" readonly/></td>
 				<td align="center"><input type="text" name="usersName" value="${requestScope.info.usersName }" id="usersName"/></td>
 				<td align="center"><input type="text" name="usersEngName" value="${requestScope.info.usersEngName }" id="usersEngName"/></td>
 				<td align="center"><input type="text" name="usersRRN" value="${requestScope.info.usersRRN }" id="usersRRN"/></td>
-				<td align="center"><input type="email" name="usersEmail" value="${requestScope.info.usersEmail }" id="usersEmail"/></td>
-				<td align="center"><input type="text" name="usersPhoneNum" value="${requestScope.info.usersPhoneNum }" id="usersPhoneNum"/></td>
 			</tr>
 		</tbody>
-		<thead>	
-			<tr>
-				<td align="center">핸드폰 번호 </td>
-				<td align="center">국적</td>
-				<td align="center">현 거주지 주소</td>
-				<td align="center">본적지 주소</td>
-				<td align="center">인증가능 상태</td>
-				<td align="center">과정 구분</td>
+		<thead id="thead">
+	   		<tr class="filters">
+	   			<th align="center"><input type="text" class="form-control" placeholder="이메일 번호" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="집 전화번호" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="핸드폰 번호" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="국적" disabled></th>
+			
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+			<tr class="filters">
+				<td align="center"><input type="email" name="usersEmail" value="${requestScope.info.usersEmail }" id="usersEmail"/></td>
+				<td align="center"><input type="text" name="usersPhoneNum" value="${requestScope.info.usersPhoneNum }" id="usersPhoneNum"/></td>
 				<td align="center"><input type="text" name="usersCellNum" value="${requestScope.info.usersCellNum }" id="usersCellNum"/></td>
 				<td align="center"><select name="usersNational" id="usersNational ">
 									<c:choose>
@@ -147,48 +180,66 @@ function check(){
 										</c:otherwise>
 									</c:choose>
 								</select><br></td>
-				<td align="center"><input type="text" name="usersCurrentAddr" value="${requestScope.info.usersCurrentAddr }" id="usersCurrentAddr"/></td>
-				<td align="center"><input type="text" name="usersBornAddr" value="${requestScope.info.usersBornAddr }" id="usersBornAddr"/></td>
-				<td align="center"><input type="text" name="usersEnable" value="${requestScope.info.usersEnable }" id="usersEnable"/></td>
-				<td align="center"><input type="text" name="stuCourse" value="${requestScope.info.stuCourse }" id="stuCourse"/></td>
 			</tr>
 		</tbody>
-		<thead>
-			<tr>
-				<td align="center">병영 구분</td>
-				<td align="center">입학 일자</td>
-				<td align="center">졸업 일자</td>
-				<td align="center">학적 구분</td>
-				<td align="center">학생 구분</td>
-				<td align="center">학년</td>
+		<thead id="thead">
+	   		<tr class="filters">
+	   			<th align="center"><input type="text" class="form-control" placeholder="현 거주지 주소" disabled></th>
+				<th align="center" ><input type="text" class="form-control" placeholder="본적지 주소" disabled></th>
+				<th align="center" ><input type="text" class="form-control" placeholder="과정 구분" disabled></th>
+				<th align="center" ><input type="text" class="form-control" placeholder="병영 구분" disabled></th>
+			
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				
+			<tr class="filters">
+				<td align="center"><input type="text" name="usersCurrentAddr" value="${requestScope.info.usersCurrentAddr }" id="usersCurrentAddr"/></td>
+				<td align="center"><input type="text" name="usersBornAddr" value="${requestScope.info.usersBornAddr }" id="usersBornAddr"/></td>
+				<td align="center"><input type="text" name="stuCourse" value="${requestScope.info.stuCourse }" id="stuCourse"/></td>
 				<td align="center"><input type="text" name="stuArmy" value="${requestScope.info.stuArmy }" id="stuArmy"/></td>
+			</tr>
+		</tbody>
+		<thead id="thead">
+	   		<tr class="filters">
+	   			<th align="center"><input type="text" class="form-control" placeholder="입학 일자" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="졸업 일자" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="학적 구분" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="학생 구분" disabled></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="filters">
 				<td align="center"><input type="date" name="stuAdmissionDate" value="${requestScope.stuAdmissionDate }" id="stuAdmissionDate"/></td>
 				<td align="center"><input type="date" name="stuGraduationDate" value="${requestScope.stuGraduationDate }" id="stuGraduationDate"/></td>
 				<td align="center"><input type="text" name="stuRegisterState" value="${requestScope.info.stuRegisterState }" id="stuRegisterState"/></td>
 				<td align="center"><input type="text" name="stuStudentState" value="${requestScope.info.stuStudentState }" id="stuStudentState"/></td>
-				<td align="center"><input type="number" name="stuGrade" value="${requestScope.info.stuGrade }" id="stuGrade"/></td>
 			</tr>
 		</tbody>
 		<thead>
 			<tr>
-				<td align="center">졸업시험 패스 여부</td>
-				<td align="center">조기졸업 대상 여부</td>
-				<td align="center">학기</td>
-				<td align="center">소속 학과</td>
-				<td align="center">복수 전공</td>
-				<td align="center">부전공</td>
+				<th align="center" ><input type="text" class="form-control" placeholder="학년" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="졸업시험 패스 여부" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="조기졸업 대상 여부" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="학기" disabled></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
+				<td align="center"><input type="number" name="stuGrade" value="${requestScope.info.stuGrade }" id="stuGrade"/></td>
 				<td align="center"><input type="text" name="stuGraduationExam" value="${requestScope.info.stuGraduationExam }" id="stuGraduationExam"/></td>
 				<td align="center"><input type="text" name="stuEarlyGraduation" value="${requestScope.info.stuEarlyGraduation }" id="stuEarlyGraduation"/></td>
 				<td align="center"><input type="text" name="stuSemester" value="${requestScope.info.stuSemester }" id="stuSemester"/></td>
+			</tr>
+		</tbody>
+		<thead>
+			<tr>
+				<th align="center"><input type="text" class="form-control" placeholder="소속 학과" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="복수 전공" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="부전공" disabled></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
 				<td align="center"><select name="majorId" id="majorId">
 									<option>학과 선택</option>
 									<c:choose>
@@ -255,9 +306,10 @@ function check(){
 			</tr>
 		</tbody>
 	</table>
+			<input type="hidden" name="usersEnable" value="${requestScope.info.usersEnable }"/>
 			<input type="hidden" name="usersPassword" value="${requestScope.info.usersPassword }"/>
-			<input type="submit" value="수정">
+			<center><input type="submit" value="수정"></center><br><br>
 			<sec:csrfInput/>
 	</form>
-	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
+	<center><button onclick="location.href='${initParam.rootPath }/'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 </body>

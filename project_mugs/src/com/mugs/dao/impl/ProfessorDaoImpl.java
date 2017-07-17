@@ -65,6 +65,7 @@ public class ProfessorDaoImpl implements ProfessorDao{
 
 	@Override
 	public Professor selectProfessorInfoById(String proId) {
+		System.out.println(proId);
 		return session.selectOne(makeSqlId("selectProfessorInfoById"),proId);
 	}
 

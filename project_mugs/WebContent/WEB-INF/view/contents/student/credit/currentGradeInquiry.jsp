@@ -5,6 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+table{
+	width:700px;
+	border-collapse: collapse;
+}
+td{
+	padding: 5px;
+	text-align:center;
+	border: 1px solid black;
+}
+th, input{
+	text-align:center;
+}
+h3{
+	font-family:돋움체;
+}
+</style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -51,9 +68,29 @@
 	<c:choose>
 		<c:when test="${map.message=='접근허용'}">
 			<script>selectCredit();</script>
-			<h2>당학기 성적조회</h2>
-			<hr>
-			<table id="table">
+			<h3>당학기 성적조회</h3>
+			<hr style="border: solid px black">
+			<div class="row">
+			<div class="panel panel-primary filterable">
+			<table class="table">
+				<thead id="thead"></thead>
+				   <tr class="filters"></tr>
+				<tbody id="tbody"></tbody>
+			</table>
+			</div>
+			</div>
+			<hr style="border: solid px black">
+				<div class="row">
+				<div class="panel panel-primary filterable">
+				<table class="table2">
+					<thead id="thead2"></thead>
+					   <tr class="filters"></tr>
+					<tbody id="tbody2"></tbody>
+				</table>
+				</div>
+				</div>
+				
+			<!-- <table id="table">
 				<thead id="thead"></thead>
 				<tbody id="tbody"></tbody>
 			</table>
@@ -61,11 +98,10 @@
 				<table id="table2">
 					<thead id="thead2"></thead>
 					<tbody id="tbody2"></tbody>
-				</table>
+				</table> -->
 		</c:when>
 		<c:otherwise>
 			<script>alert("성적조회기간이 아닙니다!!.");</script>
-			ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅁㄴ
 	</c:otherwise>
 	</c:choose>
 	

@@ -53,7 +53,7 @@ public class TimetableController {
       return model;
    }
    
-   @RequestMapping("getMapByBuildingName")
+	@RequestMapping("getMapByBuildingName")
 	public ModelAndView getMapByBuildingName(String subjectName, String buildingName, String roomName){
 		Map<String , Object> map = new HashMap<>();
 		map.put("building", timeTableManagementServiceImpl.findBuildingByBuildingName(buildingName));
