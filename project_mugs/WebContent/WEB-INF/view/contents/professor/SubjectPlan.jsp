@@ -47,7 +47,7 @@ $(document).ready(function(){
 					+ "</td><td style='display: none'>" + this.subject.subjectType + "</td><td style='display: none'>" + this.subject.subjectGrade + "</td><td style='display: none'>" + this.subject.subjectCredit
 					+ "</td><td style='display: none'>" + this.subject.subjectTime + "</td><td style='display: none'>" + this.professor.usersId + "</td><td style='display: none'>" + this.professor.usersName 
 					+ "</td><td style='display: none'>" + this.professor.usersEngName + "</td><td style='display: none'>" + this.professor.usersCellNum + "</td><td style='display: none'>" + this.professor.usersEmail 
-					+ "</td><td>" + "<button class=" + "Btn>" + "강의계획서조회 </button>" + "</td><td>" + "<button class=" + "Btn2 style='display: none'>" + "강의계획서등록 </button>"+"</td></tr>"	
+					+ "</td><td>" + "<button class=" + "Btn>" + "강의계획서조회 </button>" + "</td><td>" + "<button class=" + "Btn3>" + "강의계획서수정 </button>"+"</td><td>" + "<button class=" + "Btn2 style='display: none'>" + "강의계획서등록 </button>"+ "</td></tr>"	
 				});
 				$("#tbody").html(txt);
 				$("#table").show();
@@ -77,11 +77,32 @@ $(document).on("click", ".Btn", function(){
 		},
 		"error":function(txt){	
 			alert('등록된 강의계획서가 없습니다');
-			$this.parent().next().children().css("display", "inline");
+			$this.parent().next().next().children().css("display", "inline");
 		}
 	});//ajax
 });//document(click);
 
+$(document).on("click", ".Btn3", function(){
+	var $this = $(this);
+	
+		var planYear = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		var planSemester = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		var proId = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		var subjectId = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		$.ajax({
+		"url":"/project_mugs/professor/searchSubjectPlanByFourId.do",
+		"type":"POST",
+		"data":{"planYear":planYear, "planSemester":planSemester, "subjectId":subjectId, "proId":proId, ${_csrf.parameterName}:"${_csrf.token}"},
+		"dataType":"json",
+		"success":function(obj){
+			alert('성공')
+			openchild3(obj);
+		},
+		"error":function(txt){	
+			alert('등록된 강의계획서가 없습니다');
+		}
+	});//ajax
+});//document(click);
 </script>
 
 </head>
@@ -121,6 +142,7 @@ $(document).on("click", ".Btn", function(){
 			<td style="display: none">이메일</td>
 			
 			<th width="120px"><input type="text"  placeholder="강의계획서" disabled></th>
+			<th width="120px"><input type="text"  placeholder="강의계획서 수정" disabled></th>
 			<th width="120px"><input type="text"  placeholder="강의계획서 등록" disabled></th>
 		</tr>
 	</thead>
@@ -163,35 +185,22 @@ $(document).on("click", ".Btn", function(){
         	openWin.document.getElementById("usersCellNum").value = obj.professor.usersCellNum;
         	openWin.document.getElementById("usersNational").value = obj.professor.usersNational;
         }, 2000);                
-      /*   var html = "";
-		
-		html += '<form id="form"> '
-			 + '교과목개요<input type="text" id="planSummary" value="' + obj.planSummary + '"><br>'
-			 + '학습목표<input type="text" id="planLessonGoal" value=""><br>'
-			 + '주차별강의내용<input type="text" id="planWeekContent" value=""><br>'
-			 + '채점방식<input type="text" id="planMarkingMethod" value=""><br>'
-			 + '교재<input type="text" id="planBookinfo" value=""><br>'
-			 + '연도<input type="text" id="planYear" value=""><br>'
-			 + '학기<input type="text" id="planSemester" value=""><br>'
-			 + '비고<input type="text" id="planNote" value=""><br>'
-			 + '참고문헌<input type="text" id="planBibliography" value=""><br>'
-			 + '</form>'; */
-		//openWin.document.write(html);
 	}
+	
 	$(document).on("click", ".Btn2", function openchild2(){
-		var proSubjectYear = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
-		var proSubjectSemester = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
-		var subjectId = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
-		var subjectName = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
-		var subjectType = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
-		var subjectGrade = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
-		var subjectCredit = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().text();
-		var subjectTime = $(this).parent().prev().prev().prev().prev().prev().prev().prev().text();
-		var usersId = $(this).parent().prev().prev().prev().prev().prev().prev().text();
-		var usersName = $(this).parent().prev().prev().prev().prev().prev().text();
-		var usersEngName = $(this).parent().prev().prev().prev().prev().text();
-		var usersCellNum = $(this).parent().prev().prev().prev().text();
-		var usersEmail = $(this).parent().prev().prev().text();
+		var proSubjectYear = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		var proSubjectSemester = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		var subjectId = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		var subjectName = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		var subjectType = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		var subjectGrade = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		var subjectCredit = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		var subjectTime = $(this).parent().prev().prev().prev().prev().prev().prev().prev().prev().text();
+		var usersId = $(this).parent().prev().prev().prev().prev().prev().prev().prev().text();
+		var usersName = $(this).parent().prev().prev().prev().prev().prev().prev().text();
+		var usersEngName = $(this).parent().prev().prev().prev().prev().prev().text();
+		var usersCellNum = $(this).parent().prev().prev().prev().prev().text();
+		var usersEmail = $(this).parent().prev().prev().prev().text();
 		window.name = "parentForm";
 		openWin = window.open("/project_mugs/SubjectPlan_insert.do", "강의계획서등록", "width=700, height=500 resizable=no");
 		setTimeout(function() {
@@ -199,6 +208,7 @@ $(document).on("click", ".Btn", function(){
 			openWin.document.getElementById("planSemester").value = proSubjectSemester
 			openWin.document.getElementById("subjectId").value = subjectId
 			openWin.document.getElementById("subjectName").value = subjectName
+			openWin.document.getElementById("subjectName1").value = subjectName
 			openWin.document.getElementById("subjectType").value = subjectType
 			openWin.document.getElementById("subjectGrade").value = subjectGrade
 			openWin.document.getElementById("subjectCredit").value = subjectCredit
@@ -210,5 +220,40 @@ $(document).on("click", ".Btn", function(){
 			openWin.document.getElementById("usersEmail").value = usersEmail
          }, 1000);               
 	});
+	
+	function openchild3(obj){
+		// window.name = "부모창 이름"; planId
+        window.name = "parentForm";
+        // window.open("open할 window", "자식창 이름", "팝업창 옵션");          
+        openWin = window.open("/project_mugs/SubjectPlan_update.do", "강의계획서수정", "width=500, height=400 resizable=no");
+        
+        setTimeout(function(){
+        	openWin.document.getElementById("planId").value = obj.planId;
+        	openWin.document.getElementById("planId2").value = obj.planId;
+        	openWin.document.getElementById("planYear").value = obj.planYear;
+        	openWin.document.getElementById("planSemester").value = obj.planSemester;
+        	openWin.document.getElementById("planSummary").value = obj.planSummary;
+        	openWin.document.getElementById("planLessonGoal").value = obj.planLessonGoal;
+        	openWin.document.getElementById("planWeekContent").value = obj.planWeekContent;
+        	openWin.document.getElementById("planMarkingMethod").value = obj.planMarkingMethod;
+        	openWin.document.getElementById("planBookinfo").value = obj.planBookinfo;
+        	openWin.document.getElementById("planBibliography").value = obj.planBibliography;
+        	openWin.document.getElementById("planNote").value = obj.planNote;
+        	openWin.document.getElementById("subjectId").value = obj.subject.subjectId;
+        	openWin.document.getElementById("subjectName").value = obj.subject.subjectName;
+        	openWin.document.getElementById("subjectName1").value = obj.subject.subjectName;
+        	openWin.document.getElementById("subjectType").value = obj.subject.subjectType;
+        	openWin.document.getElementById("subjectGrade").value = obj.subject.subjectGrade;
+        	openWin.document.getElementById("subjectCredit").value = obj.subject.subjectCredit;
+        	openWin.document.getElementById("subjectTime").value = obj.subject.subjectTime;
+        	openWin.document.getElementById("proId").value = obj.professor.proId;
+        	openWin.document.getElementById("proRoomOfficeId").value = obj.professor.proRoomOfficeId;
+        	openWin.document.getElementById("usersName").value = obj.professor.usersName;
+        	openWin.document.getElementById("usersEngName").value = obj.professor.usersEngName;
+        	openWin.document.getElementById("usersEmail").value = obj.professor.usersEmail;
+        	openWin.document.getElementById("usersCellNum").value = obj.professor.usersCellNum;
+        	openWin.document.getElementById("usersNational").value = obj.professor.usersNational;
+        }, 2000);                
+	}
 </script>
 </html>
