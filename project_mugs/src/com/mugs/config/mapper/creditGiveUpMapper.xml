@@ -32,6 +32,7 @@
 		<id column="major_name" property="majorName"/>
 		<result column="users_id" property="usersId"/>
 		<result column="users_name" property="usersName"/>
+		<result column="subject_name" property="subjectName"/>
 		<association property="credit" javaType ="com.mugs.vo.Credit">
 			<result column="credit_id" property="creditId"/>
 			<result column="credit_year" property="creditYear"/>
@@ -48,21 +49,21 @@
 <!-- insert -->
 <insert id="insertCreditGiveUp" parameterType="creditGiveUp">
    <selectKey resultType="int" keyProperty="creditGiveUpId" order="BEFORE">
-      SELECT CREDIT_GIVE_UP_ID_SEQ.nextval FROM dual
+      SELECT CGU_ID_SEQ.nextval FROM dual
    </selectKey>
    INSERT INTO CREDIT_GIVE_UP VALUES(#{CGUId}, #{CGUYear}, #{CGUSemester}, TO_DATE(#{CGUStartDate}, 'YYYY-MM-DD'), #{CGUFinishDate}, #{CGUState}, #{creditId})
 </insert>
 
 <!-- update -->
 <update id="updateCreditGiveUpById" parameterType="creditGiveUp">
-   UPDATE CREDIT_GIVE_UP
-      SET CGU_YEAR=#{CGUYear},
-            CGU_SEMESTER=#{CGUSemester},
-            CGU_START_DATE=#{CGUStartDate},
-            CGU_FINISH_DATE= (SELECT TRUNC(SYSDATE) FROM DUAL),
-            CGU_STATE=#{CGUState},
-            CREDIT_ID=#{creditId}
-    WHERE CGU_ID=#{CGUId}        
+	UPDATE CREDIT_GIVE_UP
+	   SET CGU_YEAR=#{CGUYear},
+	   	   CGU_SEMESTER=#{CGUSemester},
+	   	   CGU_START_DATE=#{CGUStartDate},
+	   	   CGU_FINISH_DATE= (SELECT TRUNC(SYSDATE) FROM DUAL),
+	   	   CGU_STATE=#{CGUState},
+	   	   CREDIT_ID=#{creditId}
+	 WHERE CGU_ID=#{CGUId}  	   
 </update>
 
 
@@ -119,12 +120,14 @@
 
 <select id="selectCreditGiveUpJoin" resultMap="creditGiveUp-basic-reresultmap">
 	SELECT c.cgu_id, c.cgu_year, c.cgu_semester, c.cgu_start_date, c.cgu_finish_date,
-		   c.cgu_state, c.credit_id, m.major_name, u.users_id, u.users_name
-	FROM credit_give_up c, credit t, student s, users u, major m
-	WHERE c.credit_id = t.credit_id 
+		   c.cgu_state, c.credit_id, m.major_name, u.users_id, u.users_name, su.subject_name
+	FROM credit_give_up c, credit t, student s, users u, major m, subject su
+	WHERE c.credit_id = t.credit_id
 	AND t.stu_id = s.stu_id
 	AND s.stu_id = u.users_id
 	AND s.major_id = m.major_id
+	AND t.subject_id = su.subject_id
+	AND c.cgu_state = '대기'
 </select>
 
 </mapper>

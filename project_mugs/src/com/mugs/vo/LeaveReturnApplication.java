@@ -15,6 +15,10 @@ public class LeaveReturnApplication implements Serializable {
 	private String LRApplicationState;
 	private String stuId;
 	
+	private String usersName;
+	private String usersId;
+	private String majorName;
+	
 	public LeaveReturnApplication() {
 	}
 
@@ -26,6 +30,20 @@ public class LeaveReturnApplication implements Serializable {
 		LRApplicationFinishDate = lRApplicationFinishDate;
 		LRApplicationState = lRApplicationState;
 		this.stuId = stuId;
+	}
+
+	public LeaveReturnApplication(int lRApplicationId, String lRApplicationType, Date lRApplicationStartDate,
+			Date lRApplicationFinishDate, String lRApplicationState, String stuId, String usersName, String usersId,
+			String majorName) {
+		LRApplicationId = lRApplicationId;
+		LRApplicationType = lRApplicationType;
+		LRApplicationStartDate = lRApplicationStartDate;
+		LRApplicationFinishDate = lRApplicationFinishDate;
+		LRApplicationState = lRApplicationState;
+		this.stuId = stuId;
+		this.usersName = usersName;
+		this.usersId = usersId;
+		this.majorName = majorName;
 	}
 
 	public int getLRApplicationId() {
@@ -76,11 +94,28 @@ public class LeaveReturnApplication implements Serializable {
 		this.stuId = stuId;
 	}
 
-	@Override
-	public String toString() {
-		return "LeaveReturnApplication [LRApplicationId=" + LRApplicationId + ", LRApplicationType=" + LRApplicationType
-				+ ", LRApplicationStartDate=" + LRApplicationStartDate + ", LRApplicationFinishDate="
-				+ LRApplicationFinishDate + ", LRApplicationState=" + LRApplicationState + ", stuId=" + stuId + "]";
+	public String getUsersName() {
+		return usersName;
+	}
+
+	public void setUsersName(String usersName) {
+		this.usersName = usersName;
+	}
+
+	public String getUsersId() {
+		return usersId;
+	}
+
+	public void setUsersId(String usersId) {
+		this.usersId = usersId;
+	}
+
+	public String getMajorName() {
+		return majorName;
+	}
+
+	public void setMajorName(String majorName) {
+		this.majorName = majorName;
 	}
 
 	@Override
@@ -92,7 +127,10 @@ public class LeaveReturnApplication implements Serializable {
 		result = prime * result + ((LRApplicationStartDate == null) ? 0 : LRApplicationStartDate.hashCode());
 		result = prime * result + ((LRApplicationState == null) ? 0 : LRApplicationState.hashCode());
 		result = prime * result + ((LRApplicationType == null) ? 0 : LRApplicationType.hashCode());
+		result = prime * result + ((majorName == null) ? 0 : majorName.hashCode());
 		result = prime * result + ((stuId == null) ? 0 : stuId.hashCode());
+		result = prime * result + ((usersId == null) ? 0 : usersId.hashCode());
+		result = prime * result + ((usersName == null) ? 0 : usersName.hashCode());
 		return result;
 	}
 
@@ -127,11 +165,36 @@ public class LeaveReturnApplication implements Serializable {
 				return false;
 		} else if (!LRApplicationType.equals(other.LRApplicationType))
 			return false;
+		if (majorName == null) {
+			if (other.majorName != null)
+				return false;
+		} else if (!majorName.equals(other.majorName))
+			return false;
 		if (stuId == null) {
 			if (other.stuId != null)
 				return false;
 		} else if (!stuId.equals(other.stuId))
 			return false;
+		if (usersId == null) {
+			if (other.usersId != null)
+				return false;
+		} else if (!usersId.equals(other.usersId))
+			return false;
+		if (usersName == null) {
+			if (other.usersName != null)
+				return false;
+		} else if (!usersName.equals(other.usersName))
+			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "LeaveReturnApplication [LRApplicationId=" + LRApplicationId + ", LRApplicationType=" + LRApplicationType
+				+ ", LRApplicationStartDate=" + LRApplicationStartDate + ", LRApplicationFinishDate="
+				+ LRApplicationFinishDate + ", LRApplicationState=" + LRApplicationState + ", stuId=" + stuId
+				+ ", usersName=" + usersName + ", usersId=" + usersId + ", majorName=" + majorName + "]";
+	}
+
+	
 }

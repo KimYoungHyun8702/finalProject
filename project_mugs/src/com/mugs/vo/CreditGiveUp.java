@@ -7,63 +7,66 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class CreditGiveUp implements Serializable {
 
-   private int CGUId;
-   private int CGUYear;
-   private String CGUSemester;
-   private Date CGUStartDate;
-   @DateTimeFormat(pattern="yyyy-MM-dd")
-   private Date CGUFinishDate;
-   private String CGUState;
-   private int creditId;
-   
-   private Credit credit;
-   private String majorName;
-   private String usersId;
-   private String usersName;
-   
-   public CreditGiveUp() {
-   }
+	private int CGUId;
+	private int CGUYear;
+	private String CGUSemester;
+	private Date CGUStartDate;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date CGUFinishDate;
+	private String CGUState;
+	private int creditId;
+	
+	private Credit credit;
+	private String majorName;
+	private String usersId;
+	private String usersName;
+	private String subjectName;
 
-   public CreditGiveUp(int cGUId, int cGUYear, String cGUSemester, Date cGUStartDate, Date cGUFinishDate, String cGUState,
-		   int creditId) {
-	   this.CGUId = cGUId;
-	   this.CGUYear = cGUYear;
-	   this.CGUSemester = cGUSemester;
-	   this.CGUStartDate = cGUStartDate;
-	   this.CGUFinishDate = cGUFinishDate;
-	   this.CGUState = cGUState;
-	   this.creditId = creditId;
-   }
+	public CreditGiveUp() {
+	}
 
-   public CreditGiveUp(int cGUId, int cGUYear, String cGUSemester, Date cGUStartDate, Date cGUFinishDate, String cGUState,
-		   int creditId, Credit credit, String majorName, String usersId, String usersName) {
-	   this.CGUId = cGUId;
-	   this.CGUYear = cGUYear;
-	   this.CGUSemester = cGUSemester;
-	   this.CGUStartDate = cGUStartDate;
-	   this.CGUFinishDate = cGUFinishDate;
-	   this.CGUState = cGUState;
-	   this.creditId = creditId;
-	   this.credit = credit;
-	   this.majorName = majorName;
-	   this.usersId = usersId;
-	   this.usersName = usersName;
-   }
+	public CreditGiveUp(int cGUId, int cGUYear, String cGUSemester, Date cGUStartDate, Date cGUFinishDate,
+			String cGUState, int creditId) {
+		CGUId = cGUId;
+		CGUYear = cGUYear;
+		CGUSemester = cGUSemester;
+		CGUStartDate = cGUStartDate;
+		CGUFinishDate = cGUFinishDate;
+		CGUState = cGUState;
+		this.creditId = creditId;
+	}
 
-   public int getCGUId() {
-	   return CGUId;
-   }
+	public CreditGiveUp(int cGUId, int cGUYear, String cGUSemester, Date cGUStartDate, Date cGUFinishDate,
+			String cGUState, int creditId, Credit credit, String majorName, String usersId, String usersName,
+			String subjectName) {
+		CGUId = cGUId;
+		CGUYear = cGUYear;
+		CGUSemester = cGUSemester;
+		CGUStartDate = cGUStartDate;
+		CGUFinishDate = cGUFinishDate;
+		CGUState = cGUState;
+		this.creditId = creditId;
+		this.credit = credit;
+		this.majorName = majorName;
+		this.usersId = usersId;
+		this.usersName = usersName;
+		this.subjectName = subjectName;
+	}
 
-   public void setCGUId(int cGUId) {
-	   this.CGUId = cGUId;
-   }
+	public int getCGUId() {
+		return CGUId;
+	}
 
-   public int getCGUYear() {
-	   return CGUYear;
-   }
+	public void setCGUId(int cGUId) {
+		CGUId = cGUId;
+	}
+
+	public int getCGUYear() {
+		return CGUYear;
+	}
 
 	public void setCGUYear(int cGUYear) {
-		this.CGUYear = cGUYear;
+		CGUYear = cGUYear;
 	}
 
 	public String getCGUSemester() {
@@ -71,7 +74,7 @@ public class CreditGiveUp implements Serializable {
 	}
 
 	public void setCGUSemester(String cGUSemester) {
-		this.CGUSemester = cGUSemester;
+		CGUSemester = cGUSemester;
 	}
 
 	public Date getCGUStartDate() {
@@ -79,7 +82,7 @@ public class CreditGiveUp implements Serializable {
 	}
 
 	public void setCGUStartDate(Date cGUStartDate) {
-		this.CGUStartDate = cGUStartDate;
+		CGUStartDate = cGUStartDate;
 	}
 
 	public Date getCGUFinishDate() {
@@ -87,7 +90,7 @@ public class CreditGiveUp implements Serializable {
 	}
 
 	public void setCGUFinishDate(Date cGUFinishDate) {
-		this.CGUFinishDate = cGUFinishDate;
+		CGUFinishDate = cGUFinishDate;
 	}
 
 	public String getCGUState() {
@@ -95,7 +98,7 @@ public class CreditGiveUp implements Serializable {
 	}
 
 	public void setCGUState(String cGUState) {
-		this.CGUState = cGUState;
+		CGUState = cGUState;
 	}
 
 	public int getCreditId() {
@@ -110,9 +113,9 @@ public class CreditGiveUp implements Serializable {
 		return credit;
 	}
 
-public void setCredit(Credit credit) {
-	this.credit = credit;
-}
+	public void setCredit(Credit credit) {
+		this.credit = credit;
+	}
 
 	public String getMajorName() {
 		return majorName;
@@ -138,12 +141,12 @@ public void setCredit(Credit credit) {
 		this.usersName = usersName;
 	}
 
-	@Override
-	public String toString() {
-		return "CreditGiveUp [CGUId=" + CGUId + ", CGUYear=" + CGUYear + ", CGUSemester=" + CGUSemester + ", CGUStartDate="
-				+ CGUStartDate + ", CGUFinishDate=" + CGUFinishDate + ", CGUState=" + CGUState + ", creditId=" + creditId
-				+ ", credit=" + credit + ", majorName=" + majorName + ", usersId=" + usersId + ", usersName=" + usersName
-				+ "]";
+	public String getSubjectName() {
+		return subjectName;
+	}
+
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
 	}
 
 	@Override
@@ -159,6 +162,7 @@ public void setCredit(Credit credit) {
 		result = prime * result + ((credit == null) ? 0 : credit.hashCode());
 		result = prime * result + creditId;
 		result = prime * result + ((majorName == null) ? 0 : majorName.hashCode());
+		result = prime * result + ((subjectName == null) ? 0 : subjectName.hashCode());
 		result = prime * result + ((usersId == null) ? 0 : usersId.hashCode());
 		result = prime * result + ((usersName == null) ? 0 : usersName.hashCode());
 		return result;
@@ -209,6 +213,11 @@ public void setCredit(Credit credit) {
 				return false;
 		} else if (!majorName.equals(other.majorName))
 			return false;
+		if (subjectName == null) {
+			if (other.subjectName != null)
+				return false;
+		} else if (!subjectName.equals(other.subjectName))
+			return false;
 		if (usersId == null) {
 			if (other.usersId != null)
 				return false;
@@ -220,5 +229,17 @@ public void setCredit(Credit credit) {
 		} else if (!usersName.equals(other.usersName))
 			return false;
 		return true;
-	}  
+	}
+
+	@Override
+	public String toString() {
+		return "CreditGiveUp [CGUId=" + CGUId + ", CGUYear=" + CGUYear + ", CGUSemester=" + CGUSemester
+				+ ", CGUStartDate=" + CGUStartDate + ", CGUFinishDate=" + CGUFinishDate + ", CGUState=" + CGUState
+				+ ", creditId=" + creditId + ", credit=" + credit + ", majorName=" + majorName + ", usersId=" + usersId
+				+ ", usersName=" + usersName + ", subjectName=" + subjectName + "]";
+	}
+	
+	
+	
+	
 }

@@ -10,14 +10,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mugs.dao.AcademicProbationDao;
 import com.mugs.dao.AuthoritiesDao;
+import com.mugs.dao.CreditDao;
 import com.mugs.dao.CreditGiveUpDao;
 import com.mugs.dao.LeaveReturnApplicationDao;
 import com.mugs.dao.MajorDao;
 import com.mugs.dao.StudentDao;
 import com.mugs.dao.UsersDao;
 import com.mugs.service.admin.StudentService;
+import com.mugs.vo.AcademicProbation;
 import com.mugs.vo.Authorities;
+import com.mugs.vo.Credit;
 import com.mugs.vo.CreditGiveUp;
 import com.mugs.vo.LeaveReturnApplication;
 import com.mugs.vo.Major;
@@ -40,6 +44,10 @@ public class StudentServiceImpl implements StudentService {
 	private CreditGiveUpDao creditGiveUpDao;
 	@Autowired
 	private LeaveReturnApplicationDao leaveReturnApplicationDao;
+	@Autowired
+	private CreditDao creditDao;
+	@Autowired
+	private AcademicProbationDao academicProbationDao;
 	
 	@Override
 	@Transactional
@@ -182,6 +190,85 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<LeaveReturnApplication> selectLeaveReturnApplicationList() {
-		return leaveReturnApplicationDao.selectLeaveReturnApplicationList();
+		return leaveReturnApplicationDao.selectLeaveReturnApplicationJoin();
 	}
+
+	@Override
+	@Transactional
+	public void approveCreditGiveUp(int creditGiveUpId){
+		CreditGiveUp creditGiveUp = creditGiveUpDao.selectCreditGiveUpById(creditGiveUpId);
+		int id = creditGiveUp.getCreditId();
+		creditGiveUp.setCGUState("승인");
+		creditGiveUpDao.updateCreditGiveUp(creditGiveUp);
+		Credit credit = creditDao.selectCreditById(id);
+		credit.setCreditGrade("포기");
+		creditDao.updateCreditById(credit);
+	}
+
+	@Override
+	public void refuseCreditGiveUp(int creditGiveUpId) {
+		CreditGiveUp creditGiveUp = creditGiveUpDao.selectCreditGiveUpById(creditGiveUpId);
+		creditGiveUp.setCGUState("반려");
+		creditGiveUpDao.updateCreditGiveUp(creditGiveUp);
+	}
+
+	@Override
+	@Transactional
+	public void approveLeaveReturnApplication(int LRApplicationId) {
+		LeaveReturnApplication leaveReturnApplication = leaveReturnApplicationDao.selectLeaveReturnApplicationById(LRApplicationId);
+		leaveReturnApplication.setLRApplicationState("승인");
+		if (leaveReturnApplication.getLRApplicationType().equals("복학")) {
+			Student student = studentDao.selectStudentById(leaveReturnApplication.getStuId());
+			student.setStuRegisterState("재학");
+			studentDao.updateStudent(student);
+			leaveReturnApplicationDao.updateLeaveReturnApplication(leaveReturnApplication);
+		} else {
+			Student student = studentDao.selectStudentById(leaveReturnApplication.getStuId());
+			student.setStuRegisterState("휴학");
+			studentDao.updateStudent(student);
+			leaveReturnApplicationDao.updateLeaveReturnApplication(leaveReturnApplication);
+		}
+	}
+
+	@Override
+	public void refuseLeaveReturnApplication(int LRApplicationId) {
+		LeaveReturnApplication leaveReturnApplication = leaveReturnApplicationDao.selectLeaveReturnApplicationById(LRApplicationId);
+		leaveReturnApplication.setLRApplicationState("반려");
+		leaveReturnApplicationDao.updateLeaveReturnApplication(leaveReturnApplication);
+	}
+
+	@Override
+	public Map selectForExpel() {
+		Map map = new HashMap();
+		List<AcademicProbation> list = academicProbationDao.selectForExpelStudentInfo();
+		for(int i =0; i<list.size(); i++){
+			if(list.get(i).getUsersEnable() == 0){
+				list.remove(i);
+				i--;
+			}
+		}
+		map.put("list", list);
+		for(int i = 0; i<list.size(); i++){
+			List<AcademicProbation> year = academicProbationDao.selectForExpel(list.get(i).getStuId());
+			map.put("year", year);
+		}
+		return map;
+	}
+
+	@Override
+	public void expelProbation(String usersId) {
+		Users users = usersDao.selectUsersById(usersId);
+		users.setUsersEnable(0);
+		usersDao.updateUsersById(users);
+	}
+
+	
+	
+
+		
+	
+	
+	
+	
+	
 }

@@ -1,7 +1,8 @@
 package com.mugs.controller.admin;
 
 import java.util.List;
-import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,19 +67,22 @@ public class MajorController {
 	}
 	
 	@RequestMapping("/insertMajorController")
-	public ModelAndView insertMajor(Major major){
+	public ModelAndView insertMajor(Major major, HttpSession session){
+		session.setAttribute("majorinsertMessage", "1");
 		int majorId = majorService.insertMajor(major);
 		return new ModelAndView("redirect:/admin/selectMajorGraduationCreditByMajorIdController.do","majorId",majorId);
 	}
 	
 	@RequestMapping("/updateMajorController")
-	public ModelAndView updateMajor(Major major){
+	public ModelAndView updateMajor(Major major, HttpSession session){
+		session.setAttribute("majorupdateMessage", "1");
 		int majorId = majorService.updateMajor(major);
 		return new ModelAndView("redirect:/admin/selectMajorGraduationCreditByMajorIdController.do","majorId",majorId);
 	}
 	
 	@RequestMapping("/deleteMajorController")
-	public String deleteMajor(int majorId){
+	public String deleteMajor(int majorId, HttpSession session){
+		session.setAttribute("majordeleteMessage", "1");
 		majorService.deleteMajor(majorId);
 		return "redirect:/admin/selectCollegeListForSelectController.do";
 	}

@@ -5,9 +5,48 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+input{
+	text-align:center;
+}
+table{
+	width:100%;
+	
+}
+th {
+	bgcolor:peru;
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
+}
+select{
+	width:100px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+.form-controler {
+	color:black;
+}
+h3{
+	font-family:돋움체;
+}
+
+
+</style>
 <script type="text/javascript">
 $(document).ready(function(){
-  
+	  
 	$("#wholeTimeThead").hide();
    
    $("#year").on("change",function(){
@@ -186,10 +225,12 @@ $(document).ready(function(){
 });//document
 
 
+
 </script>
 </head>
 <body>
-	<select id="year">
+<br><br><br>
+	연도선택:<select id="year">
 	<option>연도</option>
 	<option value="2013">2013</option>
 	<option value="2014">2014</option>
@@ -197,21 +238,21 @@ $(document).ready(function(){
 	<option value="2016">2016</option>
 	<option value="2017">2017</option>
 	</select>
-	<select name="semester" id="zero_category" >
+	
+	학기선택:<select name="semester" id="zero_category" >
 		<option> 학기</option>
 		<c:forEach var="i" items="${requestScope.semesterList}">
 			<option value="${i}">${i}</option>
 		</c:forEach>
 	</select>
-
-
-   <select name="collegeName" id="first_category">
+   단과대학선택:<select name="collegeName" id="first_category">
       <option id="college">단과대학</option>      
    </select>
    <%-- -------------------------------------------- 
    학과 select 
 ------------------------------------------------- --%>
 
+   학과선택:
    <select id="second_category">
       <option>학과</option>
    </select>
@@ -220,26 +261,27 @@ $(document).ready(function(){
    이수구분
 ------------------------------------------------- --%>
 
+   이수구분선택:
    <select id="third_category">
       <option>이수구분</option>
-   </select>
+   </select><br><br>
 
    <%--
    과목조회 Table
  --%>
    <table id="wholeTimeTable" border="1" height="12px">
       <thead id="wholeTimeThead">
-         <tr>
-            <th>이수구분</th>
-            <th>과목코드</th>
-            <th>과목명</th>
-            <th>학점</th>
-            <th>학년</th>
-            <th>분반</th>
-            <th>제한인원</th>
-            <th>요일/교시</th>
-            <th>강의실</th>
-            <th>교수명</th>
+         <tr class="filters">
+            <th width='110px'><input type='text' class='form-control' placeholder='이수구분' disabled></th>
+            <th width='120px'><input type='text' class='form-control' placeholder='과목코드' disabled></th>
+            <th width='140px'><input type='text' class='form-control' placeholder='과목명' disabled></th>
+            <th width='70px'><input type='text' class='form-control' placeholder='학점' disabled></th>
+            <th width='70px'><input type='text' class='form-control' placeholder='학년' disabled></th>
+            <th width='90px'><input type='text' class='form-control' placeholder='분반' disabled></th>
+            <th width='110px'><input type='text' class='form-control' placeholder='제한인원' disabled></th>
+            <th width='150px'><input type='text' class='form-control' placeholder='요일' disabled></th>
+            <th width='110px'><input type='text' class='form-control' placeholder='강의실' disabled></th>
+            <th width='100px'><input type='text' class='form-control' placeholder='교수명' disabled></th>
          </tr>
       </thead>
       <tbody id="wholeTimeTbody">

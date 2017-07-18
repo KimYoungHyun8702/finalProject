@@ -2,6 +2,7 @@ package com.mugs.dao.impl;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +64,5 @@ public class GraduationCreditDaoImpl implements GraduationCreditDao{
 		map.put("usersId", usersId);
 		return session.selectOne(makeSqlId("selectGraduationCreditByMajorIdAndUsersId"), map);
 	}
-	
+
 }

@@ -60,6 +60,9 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
 			throw new UsernameNotFoundException("ID를 확인하세요.");
 		}
 		
+		if(user.getUsersEnable()==0){
+			throw new UsernameNotFoundException("퇴학처리된 ID 로그인불가!.");
+		}
 		//Password 체크
 		String password = (String)authentication.getCredentials();	//사용자가 입력한 Password - 리턴 타입이 Object이기에 형변환 필요
 		//if(password.equals(user.getUserPassword())){}	//사용자가 입력한 패스워드는 암호화되서 저장되기 때문에 단순히 문자열이 같은지를 비교하면 안됨
@@ -72,10 +75,10 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
 		
 		//권한 조회
 		Authorities auth = dao.selectAuthoritiesByUserId(id);
-		if(auth == null) {
+		/*if(auth == null) {
 			//모든 인증된 사용자는 권한이 있어야 하는 경우는 권한 개수 체크 후 권한이 없으면 예외 발생시킴 (권한이 없는 사용자도 있을 경우 생략)
 			throw new UsernameNotFoundException("권한이 없는 사용자입니다.");
-		}
+		}*/
 		List<SimpleGrantedAuthority> authList = new ArrayList<>();
 		authList.add(new SimpleGrantedAuthority(auth.getAuthoritiesRole()));
 		

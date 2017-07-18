@@ -84,7 +84,7 @@ public interface CreditDao {
 	 * @param year
 	 * @return
 	 */
-	List<String> selectSemesterByYear(int year);
+	List<String> selectSemesterByYear(String id, int year);
 
 	/**
 	 * 모든 Credit Data들을 select하는 메소드.
@@ -100,7 +100,7 @@ public interface CreditDao {
 	 * @param year
 	 * @return
 	 */
-	List<Credit> selectCreditByYear(int year);
+	List<Credit> selectCreditByYear(String id, int year);
 
 	/**
 	 * credit_semester(학기)로 학점테이블의 데이터를 select하는 메소드. ->join 연산을 이용해 조회된 과목테이블에
@@ -109,7 +109,7 @@ public interface CreditDao {
 	 * @param semester
 	 * @return
 	 */
-	List<Credit> selectCreditBySemester(String semester);
+	List<Credit> selectCreditBySemester(String id, String semester);
 
 	/**
 	 * subject_type(이수구분)로 학점테이블의 데이터를 select하는 메소드. -> join 연산을 이용해 조회된 과목테이블에
@@ -118,7 +118,7 @@ public interface CreditDao {
 	 * @param type
 	 * @return
 	 */
-	List<Credit> selectCreditByType(int year, String semester, String type);
+	List<Credit> selectCreditByType(String id, int year, String semester, String type);
 
 	/**
 	 * 학생의 전체 학점리스트에서 subject_type(이수구분)로 학점테이블의 데이터를 select하는 메소드. -> join 연산을 이용해 조회된 과목테이블에
@@ -127,7 +127,7 @@ public interface CreditDao {
 	 * @param type
 	 * @return
 	 */
-	List<Credit> selectCreditByOneType(String type);
+	List<Credit> selectCreditByOneType(String id, String type);
 
 	/**
 	 * credit_year(연도)와 credit_semester(학기)로 학점테이블의 데이터를 select하는 메소드. ->join
@@ -137,14 +137,14 @@ public interface CreditDao {
 	 * @param semester
 	 * @return
 	 */
-	List<Credit> selectCreditByYearAndSemester(int year, String semester);
+	List<Credit> selectCreditByYearAndSemester(String id, int year, String semester);
 	/**
 	 * credit_year(연도)와 subject_type로 학점테이블의 데이터를 select.
 	 * @param year
 	 * @param type
 	 * @return
 	 */
-	List<Credit> selectCreditByYearType(int year, String type);
+	List<Credit> selectCreditByYearType(String id, int year, String type);
 	
 
 	/**
