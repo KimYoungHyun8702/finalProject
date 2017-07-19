@@ -168,7 +168,7 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 				}
 			}
 			
-			List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoinMajorNull(null, nowYear, semester, subjectType);
+			List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoinMajorNull(nowYear, semester, subjectType);
 			
 			map.put("professorSubjectList", professorSubjectList);
 			return map;
@@ -244,7 +244,7 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 	    	map.put("passionAvg", passionSum * 1.0 / evaluationList.size());
 	    	return map;
 	    } else {
-	    	msg = "해당과목은 작년에 교수가 다르다?뭐라해야 되냐?이거";
+	    	msg = "작년과 담당교수가 다르기 때문에 평가 자료가 존재하지 않습니다.";
 	    	map.put("msg", msg);
 	    	return map;
 	    }

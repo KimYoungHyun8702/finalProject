@@ -58,6 +58,9 @@ public class GradeServiceImpl implements GradeService {
 	@Override
 	public List<Credit> getCreditByYearSemester(String id, int year, String semester) {
 		// TODO Auto-generated method stub
+		System.out.println(id);
+		System.out.println(year);
+		System.out.println(semester);
 		return dao.selectCreditByYearAndSemester(id, year, semester);
 	}
 
@@ -91,7 +94,7 @@ public class GradeServiceImpl implements GradeService {
 		
 		if (month >= 3 && month <= 6) {
 			calName = "1학기성적조회";
-			semester = "1";
+			semester = "1학기";
 		} else if (month >= 7 && month <= 8) {
 			calName = "여름학기성적조회";
 			semester = "여름학기";

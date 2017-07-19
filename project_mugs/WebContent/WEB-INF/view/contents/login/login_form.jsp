@@ -229,7 +229,6 @@ div>.page-header{
      </div>
     </body>
  </html>
->>>>>>> branch 'master' of https://github.com/KimYoungHyun8702/finalProject.git
 
 
 
@@ -244,4 +243,3 @@ div>.page-header{
 
 
 
- --%>

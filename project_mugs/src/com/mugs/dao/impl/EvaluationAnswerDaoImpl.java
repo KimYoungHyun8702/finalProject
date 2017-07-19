@@ -93,4 +93,15 @@ public class EvaluationAnswerDaoImpl implements EvaluationAnswerDao{
 	    return session.selectOne(makeSql("selectEvaluationAnswerValue"), params);
 	}
 
+	@Override
+	public int deleteEvaluationAnswerByEtc(int nowYear, String semester, String stuId, int subjectId) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("nowYear", nowYear);
+		map.put("semester", semester);
+		map.put("stuId", stuId);
+		map.put("subjectId", subjectId);
+		return session.delete(makeSql("deleteEvaluationAnswerByEtc"), map);
+	}
+
 }

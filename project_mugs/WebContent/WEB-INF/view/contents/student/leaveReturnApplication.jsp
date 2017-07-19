@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,12 +30,12 @@ $(document).ready(function() {
 				if(map.leaveReturnApplicationlist) {
 					var tbodyTxt = "";
 					$.each(map.leaveReturnApplicationlist, function() {
-						if(leaveReturnApplicationlist.LRApplicationStartDate == '대기') {
-							tbodyTxt += "<tr><td>" + this.LRApplicationType +  "</td><td>" + this.LRApplicationState +
+						if(this.lrapplicationState == '대기') {
+							tbodyTxt += "<tr><td>" + this.lrapplicationType +  "</td><td>" + this.lrapplicationState +
 							"</td><td>" + this.LRApplicationStartDate + "</td><td>" + "<button id=" + "cancelBtn>" + "신청취소</button>" +
-							"<input type='hidden' value=" + this.LRApplicationId + ">" + "</td></tr>";
+							"<input type='hidden' value=" + this.lrapplicationId + ">" + "</td></tr>";
 						} else {
-							tbodyTxt += "<tr><td>" + this.LRApplicationType +  "</td><td>" + this.LRApplicationState +
+							tbodyTxt += "<tr><td>" + this.lrapplicationType +  "</td><td>" + this.lrapplicationState +
 							"</td><td>" + this.LRApplicationStartDate + "</td><td></td></tr>";
 						}
 					});
@@ -56,12 +57,12 @@ $(document).ready(function() {
 				if(map.leaveReturnApplicationlist) {
 					var tbodyTxt = "";
 					$.each(map.leaveReturnApplicationlist, function() {
-						if(leaveReturnApplicationlist.LRApplicationStartDate == '대기') {
-							tbodyTxt += "<tr><td>" + this.LRApplicationType +  "</td><td>" + this.LRApplicationState +
+						if(this.lrapplicationState == '대기') {
+							tbodyTxt += "<tr><td>" + this.lrapplicationType +  "</td><td>" + this.lrapplicationState +
 							"</td><td>" + this.LRApplicationStartDate + "</td><td>" + "<button id=" + "cancelBtn>" + "신청취소</button>" +
 							"<input type='hidden' value=" + this.LRApplicationId + ">" + "</td></tr>";
 						} else {
-							tbodyTxt += "<tr><td>" + this.LRApplicationType +  "</td><td>" + this.LRApplicationState +
+							tbodyTxt += "<tr><td>" + this.lrapplicationType +  "</td><td>" + this.lrapplicationState +
 							"</td><td>" + this.LRApplicationStartDate + "</td><td></td></tr>";
 						}
 					});
@@ -72,25 +73,29 @@ $(document).ready(function() {
 	});
 	
 	$(document).on("click", "#cancelBtn", function() {
-		$.ajax({
-			"uri":"",
-			"type":"post",
-			"dataType":"json",
-			"data":({LRApplicationId:$(this).next().val(), ${_csrf.parameterName}:'${_csrf.token}'}),
-			"success":function(map) {
-				if(map.leaveReturnApplicationlist) {
-					var txt = "<tr><td colspan='4' style='text-align:center'>휴복학 신청내역이 없습니다.</td></tr>"
-					$("#tbody").html(txt);
-				} else {
-					var tbodyTxt = "";
-					$.each(map.leaveReturnApplicationlist, function() {
-						tbodyTxt += "<tr><td>" + this.LRApplicationType +  "</td><td>" + this.LRApplicationState +
-						"</td><td>" + this.LRApplicationStartDate + "</td><td></td></tr>";
-					});
-					$("#tbody").html(tbodyTxt);	
+		if(confirm("정말 취소하시겠습니까?") == true) {
+			$.ajax({
+				"url":"/project_mugs/student/cancelLeaveReturnApplication.do",
+				"type":"post",
+				"dataType":"json",
+				"data":{'LRApplicationId':$(this).next().val(), ${_csrf.parameterName}:'${_csrf.token}'},
+				"success":function(map) {
+					if(map.leaveReturnApplicationlist) {
+						var txt = "<tr><td colspan='4' style='text-align:center'>휴복학 신청내역이 없습니다.</td></tr>"
+						$("#tbody").html(txt);
+					} else {
+						var tbodyTxt = "";
+						$.each(map.leaveReturnApplicationlist, function() {
+							tbodyTxt += "<tr><td>" + this.lrapplicationType +  "</td><td>" + this.lrapplicationState +
+							"</td><td>" + this.LRApplicationStartDate + "</td><td></td></tr>";
+						});
+						$("#tbody").html(tbodyTxt);	
+					}
 				}
-			},
-		});
+			});
+		} else {
+			return;
+		}
 	});
 });
 </script>
@@ -133,7 +138,8 @@ $(document).ready(function() {
 					<tr>
 						<td>${leaveReturnApplication.LRApplicationType }</td>
 						<td>${leaveReturnApplication.LRApplicationState }</td>
-						<td>${leaveReturnApplication.LRApplicationStartDate }</td>
+						<fmt:formatDate value="${leaveReturnApplication.LRApplicationStartDate}" pattern="yyyy-MM-dd"/>
+						<td><fmt:formatDate value="${leaveReturnApplication.LRApplicationStartDate}" pattern="yyyy-MM-dd"/></td>
 						<td><button id="cancelBtn">신청취소</button>
 						<input type="hidden" value="${leaveReturnApplication.LRApplicationId }">
 						</td>
@@ -143,7 +149,7 @@ $(document).ready(function() {
 					<tr>
 						<td>${leaveReturnApplication.LRApplicationType }</td>
 						<td>${leaveReturnApplication.LRApplicationState }</td>
-						<td>${leaveReturnApplication.LRApplicationStartDate }</td>
+						<td><fmt:formatDate value="${leaveReturnApplication.LRApplicationStartDate}" pattern="yyyy-MM-dd"/></td>
 						<td></td>
 					</tr>
 				</c:otherwise>
