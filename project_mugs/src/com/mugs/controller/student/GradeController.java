@@ -58,6 +58,7 @@ public class GradeController {
 	public List<Credit> creditByYearSemester(int year, String semester) {
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Credit> list = service.getCreditByYearSemester(users.getUsersId(), year, semester);
+		System.out.println(list);
 		return list;
 	}
 

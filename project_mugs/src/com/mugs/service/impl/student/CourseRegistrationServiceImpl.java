@@ -12,6 +12,7 @@ import com.mugs.dao.AcademicCalendarDao;
 import com.mugs.dao.CollegeDao;
 import com.mugs.dao.CourseDao;
 import com.mugs.dao.CreditDao;
+import com.mugs.dao.EvaluationAnswerDao;
 import com.mugs.dao.MajorDao;
 import com.mugs.dao.ProfessorDao;
 import com.mugs.dao.ProfessorSubjectDao;
@@ -23,6 +24,7 @@ import com.mugs.vo.AcademicCalendar;
 import com.mugs.vo.College;
 import com.mugs.vo.Course;
 import com.mugs.vo.Credit;
+import com.mugs.vo.EvaluationAnswer;
 import com.mugs.vo.Major;
 import com.mugs.vo.Professor;
 import com.mugs.vo.ProfessorSubject;
@@ -63,7 +65,8 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
    @Autowired
    private AcademicCalendarDao academicCalendarDaoImpl;
 	
-	
+   @Autowired
+   private EvaluationAnswerDao evaluationAnswerDaoImpl;
 	
 	/**
 	 * 현재 대학교에 존재하는 모든 단과대학(학부)
@@ -91,7 +94,7 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
 				}
 			}
 			
-			List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoinMajorNull(null, nowYear, semester, subjectType);
+			List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoinMajorNull(nowYear, semester, subjectType);
 			
 			List<Credit> myCourseList = creditDaoImpl.selectAllCreditByStuId(stuId);
 			
@@ -298,7 +301,8 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
       String admissionYear = dateStr.substring(0, 4);
       
       Standard standard = standardDaoImpl.selectStandardById(Integer.parseInt(admissionYear), stuMajorId);
-      List<Course> courseList = courseDaoImpl.selectMyCourseList(stuId, nowYear, semester);
+      
+      List<Course>courseList = courseDaoImpl.selectMyCourseList(stuId, nowYear, semester);
       
       int myCreditSum = 0;
       
@@ -337,33 +341,66 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
          }
          
          if(subject.getSubjectCapacity() > subject.getSubjectRequest()) {
-            courseDaoImpl.insertCourse(new Course(0, nowYear, semester, subjectId, stuId, proId));
+        	 if(majorId == 0)  {
+        		 courseDaoImpl.insertCourse(new Course(0, nowYear, semester, subjectId, stuId, proId));
+        		 evaluationAnswerDaoImpl.insertEvaluationAnswer(new EvaluationAnswer(0, "N", nowYear, semester, stuId, subjectId));
+        		 
+                 int subjectRequest = courseDaoImpl.selectStudentCount(semester, nowYear, subjectId);
+                 
+                 subject.setSubjectRequest(subjectRequest);
+                 
+                 subjectDaoImpl.updateSubjectById(subject);
+                 
+                 List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoinMajorNull(nowYear, semester, subjectType);
+                 List<Credit> myCourseList = creditDaoImpl.selectAllCreditByStuId(stuId);
+                 
+                 for(int i = 0; i < professorSubjectList.size(); i++) {
+                    if(myCourseList.size() == 0) {
+                       professorSubjectList.get(i).getSubject().setRecourse("N");
+                    } else {
+                       for(int j = 0; j < myCourseList.size(); j++) {
+                          if(professorSubjectList.get(i).getSubjectId() == myCourseList.get(j).getSubjectId()) {
+                             professorSubjectList.get(i).getSubject().setRecourse("Y");
+                          } else {
+                             professorSubjectList.get(i).getSubject().setRecourse("N");
+                          }
+                       }
+                    }
+                 }
+                 
+                 map.put("professorSubjectList", professorSubjectList);
+                 map.put("courseSubjectList", courseDaoImpl.selectMyCourseList(stuId, nowYear, semester));
+        	 } else {
+        		 courseDaoImpl.insertCourse(new Course(0, nowYear, semester, subjectId, stuId, proId));
+        		 evaluationAnswerDaoImpl.insertEvaluationAnswer(new EvaluationAnswer(0, "N", nowYear, semester, stuId, subjectId));
+        		 
+                 int subjectRequest = courseDaoImpl.selectStudentCount(semester, nowYear, subjectId);
+                 
+                 subject.setSubjectRequest(subjectRequest);
+                 
+                 subjectDaoImpl.updateSubjectById(subject);
+                 
+                 List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoin(majorId, nowYear, semester, subjectType);
+                 List<Credit> myCourseList = creditDaoImpl.selectAllCreditByStuId(stuId);
+                 
+                 for(int i = 0; i < professorSubjectList.size(); i++) {
+                    if(myCourseList.size() == 0) {
+                       professorSubjectList.get(i).getSubject().setRecourse("N");
+                    } else {
+                       for(int j = 0; j < myCourseList.size(); j++) {
+                          if(professorSubjectList.get(i).getSubjectId() == myCourseList.get(j).getSubjectId()) {
+                             professorSubjectList.get(i).getSubject().setRecourse("Y");
+                          } else {
+                             professorSubjectList.get(i).getSubject().setRecourse("N");
+                          }
+                       }
+                    }
+                 }
+                 
+                 map.put("professorSubjectList", professorSubjectList);
+                 map.put("courseSubjectList", courseDaoImpl.selectMyCourseList(stuId, nowYear, semester));
+        	 }
             
-            int subjectRequest = courseDaoImpl.selectStudentCount(semester, nowYear, subjectId);
-            
-            subject.setSubjectRequest(subjectRequest);
-            
-            subjectDaoImpl.updateSubjectById(subject);
-            
-            List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoin(majorId, nowYear, semester, subjectType);
-            List<Credit> myCourseList = creditDaoImpl.selectAllCreditByStuId(stuId);
-            
-            for(int i = 0; i < professorSubjectList.size(); i++) {
-               if(myCourseList.size() == 0) {
-                  professorSubjectList.get(i).getSubject().setRecourse("N");
-               } else {
-                  for(int j = 0; j < myCourseList.size(); j++) {
-                     if(professorSubjectList.get(i).getSubjectId() == myCourseList.get(j).getSubjectId()) {
-                        professorSubjectList.get(i).getSubject().setRecourse("Y");
-                     } else {
-                        professorSubjectList.get(i).getSubject().setRecourse("N");
-                     }
-                  }
-               }
-            }
-            
-            map.put("professorSubjectList", professorSubjectList);
-            map.put("courseSubjectList", courseDaoImpl.selectMyCourseList(stuId, nowYear, semester));
          } else {
             msg = "해당 과목의 수강인원이 꽉 차서 수강신청이 불가능합니다.";
             map.put("msg", msg);
@@ -385,6 +422,7 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
          //List
          HashMap<String, Object> map = new HashMap<>();
          courseDaoImpl.deleteCourse(stuId, nowYear, semester, subjectId);
+         evaluationAnswerDaoImpl.deleteEvaluationAnswerByEtc(nowYear, semester, stuId, subjectId);
          
          int subjectRequest = courseDaoImpl.selectStudentCount(semester, nowYear, subjectId);
          
@@ -393,26 +431,50 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
          
          subjectDaoImpl.updateSubjectById(subject);
          
-         List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoin(majorId, nowYear, semester, subjectType);
-         
-         List<Credit> myCourseList = creditDaoImpl.selectAllCreditByStuId(stuId);
-         
-         for(int i = 0; i < professorSubjectList.size(); i++) {
-            if(myCourseList.size() == 0) {
-               professorSubjectList.get(i).getSubject().setRecourse("N");
-            } else {
-               for(int j = 0; j < myCourseList.size(); j++) {
-                  if(professorSubjectList.get(i).getSubjectId() == myCourseList.get(j).getSubjectId()) {
-                     professorSubjectList.get(i).getSubject().setRecourse("Y");
-                  } else {
-                     professorSubjectList.get(i).getSubject().setRecourse("N");
-                  }
-               }
-            }
+         if(majorId == 0) {
+        	 List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoinMajorNull(nowYear, semester, subjectType);
+        			 
+        	 List<Credit> myCourseList = creditDaoImpl.selectAllCreditByStuId(stuId);
+        	 
+        	 for(int i = 0; i < professorSubjectList.size(); i++) {
+                 if(myCourseList.size() == 0) {
+                    professorSubjectList.get(i).getSubject().setRecourse("N");
+                 } else {
+                    for(int j = 0; j < myCourseList.size(); j++) {
+                       if(professorSubjectList.get(i).getSubjectId() == myCourseList.get(j).getSubjectId()) {
+                          professorSubjectList.get(i).getSubject().setRecourse("Y");
+                       } else {
+                          professorSubjectList.get(i).getSubject().setRecourse("N");
+                       }
+                    }
+                 }
+              }
+              
+              map.put("professorSubjectList", professorSubjectList);
+              map.put("courseSubjectList", courseDaoImpl.selectMyCourseList(stuId, nowYear, semester));
+         } else {
+        	 List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoin(majorId, nowYear, semester, subjectType);
+              
+             List<Credit> myCourseList = creditDaoImpl.selectAllCreditByStuId(stuId);
+              
+             for(int i = 0; i < professorSubjectList.size(); i++) {
+                if(myCourseList.size() == 0) {
+                   professorSubjectList.get(i).getSubject().setRecourse("N");
+                } else {
+                   for(int j = 0; j < myCourseList.size(); j++) {
+                      if(professorSubjectList.get(i).getSubjectId() == myCourseList.get(j).getSubjectId()) {
+                         professorSubjectList.get(i).getSubject().setRecourse("Y");
+                      } else {
+                         professorSubjectList.get(i).getSubject().setRecourse("N");
+                      }
+                   }
+                }
+             }
+             
+             map.put("professorSubjectList", professorSubjectList);
+             map.put("courseSubjectList", courseDaoImpl.selectMyCourseList(stuId, nowYear, semester));
          }
          
-         map.put("professorSubjectList", professorSubjectList);
-         map.put("courseSubjectList", courseDaoImpl.selectMyCourseList(stuId, nowYear, semester));
          return map;
       }
 }

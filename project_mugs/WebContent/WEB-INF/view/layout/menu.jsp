@@ -41,6 +41,7 @@
     <script type="text/javascript">
     
     function popupOpen(url){
+    	alert("saw")
 		var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;"; 
 			window.open(url,"",popOption);
 		}

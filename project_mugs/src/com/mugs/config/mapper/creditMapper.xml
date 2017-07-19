@@ -229,7 +229,7 @@ AND stu_id = #{stuId}
 		   s.lecture_id
     FROM   credit c, subject s
     where  c.subject_id = s.subject_id
-    and    c.credit_id not in(select credit_id from CREDIT_GIVE_UP where CGU_STATE=대기 or CGU_STATE=승인)
+    and    c.credit_id not in(select credit_id from CREDIT_GIVE_UP where CGU_STATE='대기' or CGU_STATE='승인')
     and    c.credit_year=#{nowYear}
     and    c.credit_semester=#{semester}
     and    c.stu_id=#{stuId}

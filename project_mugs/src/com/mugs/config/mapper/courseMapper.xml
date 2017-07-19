@@ -38,6 +38,13 @@
 	<resultMap type="course" id="course-subject-major-professor-resultmap" extends="course-resultmap">
 		<association property="professor" resultMap="com.mugs.config.mapper.professorMapper.professor-user-resultmap"/>
 		<association property="subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-major-resultmap"/>
+		<association property="room" resultMap="com.mugs.config.mapper.roomMapper.room-basic-resultmap"/>
+		<association property="building" resultMap="com.mugs.config.mapper.buildingMapper.building-basic-resultmap"/>
+	</resultMap>
+	
+	<resultMap type="course" id="course-subject-professor-resultmap" extends="course-resultmap">
+		<association property="professor" resultMap="com.mugs.config.mapper.professorMapper.professor-user-resultmap"/>
+		<association property="subject" resultMap="com.mugs.config.mapper.subjectMapper.subject-basic-resultmap"/>
 	</resultMap>
 	
 	<resultMap type="course" id="course-professor-subject-resultmap" extends="course-resultmap">
@@ -147,18 +154,20 @@
 			   u.users_rrn, u.users_email, u.users_phone_num, u.users_cell_num,
 			   u.users_national, u.users_current_addr, u.users_born_addr, u.users_enable, u.users_photo,
 			   p.pro_id, p.pro_university, p.pro_grad_school, p.pro_office_phone_num, 
-			   m.major_id, m.major_name, m.college_id
-			   from course c, professor p, users u, subject s, major m
+			   m.major_id, m.major_name, m.college_id,
+			   r.room_id, r.room_name, r.building_id, b.building_id, b.building_name
+			   from course c, professor p, users u, subject s, major m, ROOM r, building b
 		where c.subject_id = s.subject_id
 		and	c.pro_id = p.pro_id
 		and p.pro_id = u.users_id
-		and s.major_id = m.major_id
+		and s.major_id = m.major_id(+)
+		and s.lecture_id = r.room_id
+		and r.building_id = b.building_id
 		and c.course_year=#{nowYear}
 		and c.course_semester=#{semester}
 		and c.stu_id=#{stuId}
 	</select>
 	
-
 	<delete id="deleteCourse" parameterType="map">
 		delete from course
 		where stu_id=${stuId}
