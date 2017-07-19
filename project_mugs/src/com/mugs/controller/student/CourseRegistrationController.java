@@ -190,11 +190,17 @@ public class CourseRegistrationController {
 	 **/
 	@RequestMapping("addCourseMySubject")
 	@ResponseBody
-	public HashMap<String, Object> addCourseMySubject(int majorId, String semester, int nowYear, 
+	public HashMap<String, Object> addCourseMySubject(String majorId, String semester, int nowYear, 
 			String subjectType, String recourse, String proId, int subjectId, String stuRegister) {
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String stuId = users.getUsersId();
-		return courseRegistrationService.addCourseMySubject(majorId, semester, nowYear, subjectType, recourse, proId, subjectId, stuId, stuRegister);
+		int majorIdInt = 0;
+		
+		if(!majorId.equals("")) {
+			majorIdInt = Integer.parseInt(majorId);
+		}
+		
+		return courseRegistrationService.addCourseMySubject(majorIdInt, semester, nowYear, subjectType, recourse, proId, subjectId, stuId, stuRegister);
 	}
 	
 	
@@ -208,9 +214,15 @@ public class CourseRegistrationController {
 	 **/
 	@RequestMapping("removeMySubject")
 	@ResponseBody
-	public HashMap<String, Object> removeMySubject(int majorId, String semester, int nowYear, String proId, int subjectId, String subjectType) {
+	public HashMap<String, Object> removeMySubject(String majorId, String semester, int nowYear, String proId, int subjectId, String subjectType) {
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String stuId = users.getUsersId();
-		return courseRegistrationService.deleteMySubject(subjectId, proId, semester, majorId, nowYear, stuId, subjectType);
+		int majorIdInt = 0;
+		
+		if(!majorId.equals("")) {
+			majorIdInt = Integer.parseInt(majorId);
+		}
+		
+		return courseRegistrationService.deleteMySubject(subjectId, proId, semester, majorIdInt, nowYear, stuId, subjectType);
 	}
 }

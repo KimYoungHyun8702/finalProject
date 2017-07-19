@@ -58,6 +58,9 @@ public class GradeServiceImpl implements GradeService {
 	@Override
 	public List<Credit> getCreditByYearSemester(String id, int year, String semester) {
 		// TODO Auto-generated method stub
+		System.out.println(id);
+		System.out.println(year);
+		System.out.println(semester);
 		return dao.selectCreditByYearAndSemester(id, year, semester);
 	}
 

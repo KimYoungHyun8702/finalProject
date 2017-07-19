@@ -68,4 +68,14 @@ public interface EvaluationAnswerDao {
 	
 	
 	List<EvaluationAnswer> selectEvaluationAnswerValue(int nowYear, String nowSemester, String loginId, int subjectId);
+	
+	/**
+	 * 
+	 * @param nowYear
+	 * @param semester
+	 * @param stuId
+	 * @param subjectId
+	 * @return
+	 */
+	int deleteEvaluationAnswerByEtc(int nowYear, String semester, String stuId, int subjectId);
 }

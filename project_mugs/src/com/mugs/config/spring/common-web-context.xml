@@ -10,21 +10,22 @@
       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
    
    <context:component-scan base-package="com.mugs.controller"/>
-<!-- 비인증 관련 -->
+	<!-- 비인증 관련 -->
 	<!-- 메인페이지 -->
 	<mvc:view-controller path="index.do" view-name="index.tiles"/>
 	<!-- 403 권한 없음 에러 페이지 -->
 	<mvc:view-controller path="/error/access_denied.do" view-name="error/access_denied.tiles"/>
 	<!-- 로그인 폼 -->	
 	<mvc:view-controller path="login_form.do" view-name="view/contents/login/login_form"/>
-	<!-- 회원 가입 폼 -->
-	<mvc:view-controller path="/join_member_form.do" view-name="member/join_member_form.tiles"/>
 	<!-- 아이디 찾기 폼 -->
 	<mvc:view-controller path="/idFind.do" view-name="view/contents/login/id_find_form"/>
 	<!-- 비밀번호 찾기 폼 -->
 	<mvc:view-controller path="/pwFind.do" view-name="view/contents/login/pw_find_form"/>
-
-<!-- TilesConfigurer -->
+	<!-- 영현형 ㅁㄴㅇㄴㅁㄹ -->
+	<mvc:view-controller path="/SubjectPlan_success.do" view-name="view/contents/professor/SubjectPlan_success"/>
+	<!-- 영현형꼬♥ -->
+	<mvc:view-controller path="/SubjectPlan_insert.do" view-name="view/contents/professor/SubjectPlan_insert"/>
+	<!-- TilesConfigurer -->
    <bean name="tilesConfig" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
       <property name="definitions">
          <list>

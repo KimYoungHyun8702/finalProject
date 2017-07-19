@@ -11,9 +11,12 @@ public class ProfessorSubject implements Serializable {
 	private int proSubjectYear;
 	private String proId;
 	private int subjectId;
+	
 	private Subject subject;
 	private Professor professor;
-
+	private Room room;
+	private Building building;
+	
 	public ProfessorSubject() {
 	}
 
@@ -25,20 +28,9 @@ public class ProfessorSubject implements Serializable {
 		this.proId = proId;
 		this.subjectId = subjectId;
 	}
-	
-	public ProfessorSubject(int proSubjectId, String proSubjectSemester, int proSubjectYear, String proId,
-			int subjectId, Subject subject) {
-		super();
-		this.proSubjectId = proSubjectId;
-		this.proSubjectSemester = proSubjectSemester;
-		this.proSubjectYear = proSubjectYear;
-		this.proId = proId;
-		this.subjectId = subjectId;
-		this.subject = subject;
-	}
 
 	public ProfessorSubject(int proSubjectId, String proSubjectSemester, int proSubjectYear, String proId,
-			int subjectId, Subject subject, Professor professor) {
+			int subjectId, Subject subject, Professor professor, Room room, Building building) {
 		this.proSubjectId = proSubjectId;
 		this.proSubjectSemester = proSubjectSemester;
 		this.proSubjectYear = proSubjectYear;
@@ -46,6 +38,8 @@ public class ProfessorSubject implements Serializable {
 		this.subjectId = subjectId;
 		this.subject = subject;
 		this.professor = professor;
+		this.room = room;
+		this.building = building;
 	}
 
 	public int getProSubjectId() {
@@ -104,22 +98,40 @@ public class ProfessorSubject implements Serializable {
 		this.professor = professor;
 	}
 
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
+	public Building getBuilding() {
+		return building;
+	}
+
+	public void setBuilding(Building building) {
+		this.building = building;
+	}
+
 	@Override
 	public String toString() {
 		return "ProfessorSubject [proSubjectId=" + proSubjectId + ", proSubjectSemester=" + proSubjectSemester
 				+ ", proSubjectYear=" + proSubjectYear + ", proId=" + proId + ", subjectId=" + subjectId + ", subject="
-				+ subject + ", professor=" + professor + "]";
+				+ subject + ", professor=" + professor + ", room=" + room + ", building=" + building + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((building == null) ? 0 : building.hashCode());
 		result = prime * result + ((proId == null) ? 0 : proId.hashCode());
 		result = prime * result + proSubjectId;
 		result = prime * result + ((proSubjectSemester == null) ? 0 : proSubjectSemester.hashCode());
 		result = prime * result + proSubjectYear;
 		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
+		result = prime * result + ((room == null) ? 0 : room.hashCode());
 		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
 		result = prime * result + subjectId;
 		return result;
@@ -134,6 +146,11 @@ public class ProfessorSubject implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ProfessorSubject other = (ProfessorSubject) obj;
+		if (building == null) {
+			if (other.building != null)
+				return false;
+		} else if (!building.equals(other.building))
+			return false;
 		if (proId == null) {
 			if (other.proId != null)
 				return false;
@@ -152,6 +169,11 @@ public class ProfessorSubject implements Serializable {
 			if (other.professor != null)
 				return false;
 		} else if (!professor.equals(other.professor))
+			return false;
+		if (room == null) {
+			if (other.room != null)
+				return false;
+		} else if (!room.equals(other.room))
 			return false;
 		if (subject == null) {
 			if (other.subject != null)

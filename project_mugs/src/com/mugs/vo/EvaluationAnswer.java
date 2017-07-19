@@ -10,6 +10,7 @@ public class EvaluationAnswer implements Serializable {
 	private String evaluationAnswerSemester;
 	private String stuId;
 	private int subjectId;
+	
 	private Subject subject;
 	private Professor professor;
 	private Course course;
