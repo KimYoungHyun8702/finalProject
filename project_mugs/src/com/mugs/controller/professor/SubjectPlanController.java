@@ -50,7 +50,7 @@ public class SubjectPlanController{
 	public String joinSubjectPlan(@ModelAttribute SubjectPlan sp){
 		//비지니스로직
 		service.addSubjectPlan(sp);
-	return "contents/professor/SubjectPlan_insert"; //WEB-INF/view/contents/professor/SubjectPlan_insert.jsp
+	return "professor/SubjectPlan_insert.tiles"; 
 	}
 	
 	@RequestMapping("reNewSubjectPlan") 
@@ -59,7 +59,7 @@ public class SubjectPlanController{
 		//비지니스로직
 		System.out.println(sp);
 		service.setSubjectPlan(sp);
-	return "contents/professor/SubjectPlan_update"; //WEB-INF/view/contents/professor/SubjectPlan_update.jsp
+	return "professor/SubjectPlan_update.tiles";
 	}
 	
 	@RequestMapping("removeSubjectPlan") 
@@ -70,6 +70,6 @@ public class SubjectPlanController{
 		//int planId = Integer.parseInt(id);
 		System.out.println(planId2);
 		service.deleteSubjectPlanById(planId2);
-	return "contents/professor/SubjectPlan_success"; //WEB-INF/view/contents/professor/SubjectPlan_success.jsp
+	return "professor/SubjectPlan_update.tiles"; //WEB-INF/view/contents/professor/SubjectPlan_success.jsp
 	}
 }

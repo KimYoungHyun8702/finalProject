@@ -29,9 +29,9 @@ a.bb:hover {color:red;}
 <td height="401" width="657">
 <table height="150" width="659" border="0" cellspacing="0" cellpadding="2">
 <tr bgcolor="#A6AC6C" height="25">
-<td align=center width="655" bgcolor="#909041">
+<td align=center width="655" bgcolor="#909041" >
 <!-- 과목이름 -->
-<b><font color="red"><input id="subjectName1" value="" readonly="readonly" size="40"></font></b>
+<b><font color="white" size="5"><input id="subjectName1" value="" readonly="readonly" size="40" style="text-align: center; background-color: #909041; border: 0px" ></font></b>
 </td>
 </tr>
 <tr valign="top">
@@ -45,11 +45,11 @@ a.bb:hover {color:red;}
         </td>
         
         <td width="272" valign="middle" height="25" style="border-width:1; border-color:rgb(166,172,108); border-style:solid;" bgcolor="#FAECEC">
-        <p><font face="굴림"><span style="font-size:9pt;">&nbsp;</span></font><font face="굴림" color="blue"><span style="font-size:9pt;">
-       	<!-- 과목ID -->
-       	<input id="subjectId" name="subjectId" value="" readonly="readonly"></span></font><font face="굴림"><span style="font-family:굴림; font-size:9pt;">&nbsp;/</span></font><font face="굴림" color="blue"><span style="font-size:9pt;">
-        <!-- 과목 이름 -->      
-        <input id="subjectName" value="" readonly="readonly"><br></span></font></p>
+        <p align="center"><font face="굴림"><span style="font-size:9pt;">&nbsp;</span></font><font face="굴림" color="blue"><span style="font-size:9pt;">
+       	<!-- 과목코드 -->
+        <input id="subjectId" name="subjectId" value="" readonly="readonly" style="text-align: right;; background-color: #FAECEC; border: 0px"></span></font><font face="굴림"><span style="font-family:굴림; font-size:9pt;">&nbsp;/</span></font><font face="굴림" color="blue"><span style="font-size:9pt;">
+        <!-- 과목명 -->      	
+        <input id="subjectName" value="" readonly="readonly" style="text-align: right;; background-color: #FAECEC; border: 0px"><br></span></font></p>
         </td>
         
         <td width="93" height="25" valign="middle" bgcolor="#EAE8E8" style="border-width:1; border-color:rgb(166,172,108); border-style:solid;">
@@ -58,13 +58,13 @@ a.bb:hover {color:red;}
         </td>
         
         <td width="202" height="25" valign="middle" bgcolor="#FAECEC" style="border-width:1; border-color:rgb(166,172,108); border-style:solid;">
-        <p><font face="굴림"><span style="font-size:9pt;">&nbsp;</span></font><font color="blue">
+        <p align="center"><font face="굴림"><span style="font-size:9pt;">&nbsp;</span></font><font color="blue">
         <!-- 연도 -->
-        <input id="planYear" value="" readonly="readonly" size="10"></font>년<font face="굴림" color="blue"><span style="font-size:9pt;"><br>
+        <input id="planYear" value="" readonly="readonly" size="15" style="text-align: right;; background-color: #FAECEC; border: 0px"></font>년/<font face="굴림" color="blue"><span style="font-size:9pt;">
         <!-- 학년 -->
-        <input id="subjectGrade" value="" readonly="readonly" size="5"></span></font>/학년<font face="굴림" color="blue"><span style="font-size:9pt;">
+        <input id="subjectGrade" value="" readonly="readonly" size="3" style="text-align: right;; background-color: #FAECEC; border: 0px"></span></font>학년/<font face="굴림" color="blue"><span style="font-size:9pt;">
         <!-- 학기 -->
-        <input id="planSemester" value="" readonly="readonly" size="5"></span></font></p>
+        <input id="planSemester" value="" readonly="readonly" size="5" style="text-align: right;; background-color: #FAECEC; border: 0px"></span></font></p>
         </td>
         </tr>
         
@@ -77,7 +77,7 @@ a.bb:hover {color:red;}
         <td width="272" valign="middle" height="25" style="border-width:1; border-color:rgb(166,172,108); border-style:solid;" bgcolor="#F9F9DD" align="left">
         <p>&nbsp;<font color="blue">
         <!-- 강의시간 -->
-        <input id="subjectTime" value="" readonly="readonly"></font></p>
+        <input id="subjectTime" value="" readonly="readonly" size="20" style="text-align: center; background-color: #F9F9DD; border: 0px"></font></p>
 	    </td>
 	    
         <td width="93" valign="middle" height="25" style="border-width:1; border-color:rgb(166,172,108); border-style:solid;" bgcolor="#EAE8E8">
@@ -86,11 +86,11 @@ a.bb:hover {color:red;}
         </td>
         
         <td width="202" valign="middle" height="25" style="border-width:1; border-color:rgb(166,172,108); border-style:solid;" bgcolor="#F9F9DD">
-        <p> <font face="굴림"><span style="font-size:9pt;">&nbsp;</span></font><font color="blue">
+        <p align="center"> <font face="굴림"><span style="font-size:9pt;">&nbsp;</span></font><font color="blue">
         <!-- 이수구분 -->
-        <input id="subjectType" value="" readonly="readonly"></font> / <font face="굴림" color="blue"><span style="font-size:9pt;">
+        <input id="subjectType" value="" readonly="readonly" size="10" style="text-align: right; background-color: #F9F9DD; border: 0px"></font> / <font face="굴림" color="blue"><span style="font-size:9pt;">
         <!-- 학점 -->
-        <input id="subjectCredit" value="" readonly="readonly"></span></font> 학점</p>
+        <input id="subjectCredit" value="" readonly="readonly" size="2" style="text-align: right;; background-color: #F9F9DD; border: 0px"></span></font> 학점</p>
         </td>
         </tr>
         
@@ -101,9 +101,9 @@ a.bb:hover {color:red;}
         </td>
         
         <td width="272" valign="middle" style="border-width:1; border-color:rgb(166,172,108); border-style:solid;" bgcolor="#FAECEC" height="25">
-        <p><font face="굴림"><span style="font-size:9pt;">&nbsp;</span></font><font face="굴림" color="blue"><span style="font-size:9pt;">
+        <p align="center"><font face="굴림"><span style="font-size:9pt;">&nbsp;</span></font><font face="굴림" color="blue"><span style="font-size:9pt;">
         <!-- 교수이름 -->
-        <input id="usersName" value="" readonly="readonly"></span></font></p>
+        <input id="usersName" value="" readonly="readonly" style="text-align: center; background-color: #FAECEC; border: 0px"></span></font></p>
         </td>
         
         <td width="93" valign="middle" style="border-width:1; border-color:rgb(166,172,108); border-style:solid;" bgcolor="#EAE8E8" height="25">
@@ -112,9 +112,9 @@ a.bb:hover {color:red;}
         </td>
         
         <td width="202" valign="middle" style="border-width:1; border-color:rgb(166,172,108); border-style:solid;" bgcolor="#FAECEC" height="25">
-        <p><font face="굴림"><span style="font-size:9pt;">&nbsp;</span></font><font face="굴림" color="blue"><span style="font-size:9pt;">
+        <p align="center"><font face="굴림"><span style="font-size:9pt;">&nbsp;</span></font><font face="굴림" color="blue"><span style="font-size:9pt;">
         <!-- 교수 전화번호 -->
-        <input id="usersCellNum" value="" readonly="readonly"></span></font></p>
+        <input id="usersCellNum" value="" readonly="readonly" style="text-align: center; background-color: #FAECEC; border: 0px"></span></font></p>
         </td>
         </tr>
 		<form>	     
@@ -126,9 +126,9 @@ a.bb:hover {color:red;}
         </td>
         
         <td width="561" valign="middle" height="62" style="margin:0; padding:5px; border-width:1; border-color:rgb(166,172,108); border-style:solid;" bgcolor="#F9F9DD" colspan="3">
-        <p><font face="굴림" color="blue"><span style="font-size:9pt;">
+        <p align="center"><font face="굴림" color="blue"><span style="font-size:9pt;">
         <!-- 교과목 개요 -->
-        <input id="planSummary" value="" readonly="readonly" size="90"><br></span></font></p>
+        <input id="planSummary" value="" readonly="readonly" size="90" style="text-align: justify; background-color: #F9F9DD; border: 0px"><br></span></font></p>
         </td>
         </tr>
         
@@ -139,9 +139,9 @@ a.bb:hover {color:red;}
         </td>
         
         <td width="561" valign="middle" height="62" style="margin:0; padding:5px; border-width:1; border-color:rgb(166,172,108); border-style:solid;" bgcolor="#F9F9DD" colspan="3">
-        <p><font face="굴림" color="blue"><span style="font-size:9pt;">
+        <p align="center"><font face="굴림" color="blue"><span style="font-size:9pt;">
         <!-- 학습목표 -->
-        <input id="planLessonGoal" value="" readonly="readonly" size="90"><br></span></font></p>
+        <input id="planLessonGoal" value="" readonly="readonly" size="90" style="text-align: justify; background-color: #F9F9DD; border: 0px"><br></span></font></p>
         </td>
         </tr>
         
@@ -152,9 +152,9 @@ a.bb:hover {color:red;}
         </td>
         
         <td width="561" valign="top" height="342" style="margin:0; padding:5px; border-width:1; border-color:rgb(166,172,108); border-style:solid;" bgcolor="#FAECEC" colspan="3">
-        <p><font face="굴림" color="blue"><span style="font-size:9pt;">
+        <p align="center"><font face="굴림" color="blue"><span style="font-size:9pt;">
         <!-- 주차별 강의내용 -->
-        <textarea rows="10" cols="90" id="planWeekContent" name="planWeekContent" readonly="readonly"></textarea>
+        <textarea rows="10" cols="90" id="planWeekContent" name="planWeekContent" readonly="readonly" style="text-align: justify; background-color: #FAECEC; border: 0px"></textarea>
         <!-- <input id="planWeekContent" value="" readonly="readonly" size="90"> -->
         </span></font></p>
         </td>
@@ -168,9 +168,9 @@ a.bb:hover {color:red;}
         </td>
         
         <td width="561" valign="middle" height="50" style="margin:0; padding:5px; border-width:1; border-color:rgb(166,172,108); border-style:solid;" bgcolor="#F9F9DD" colspan="3">
-        <p><font face="굴림" color="blue"><span style="font-size:9pt;">
+        <p align="center"><font face="굴림" color="blue"><span style="font-size:9pt;">
         <!-- 교재 -->
-        <input id="planBookinfo" value="" readonly="readonly" size="90"><br></span></font></p>
+        <input id="planBookinfo" value="" readonly="readonly" size="90" style="text-align: justify; background-color: #F9F9DD; border: 0px"><br></span></font></p>
         </td>
         </tr>
         
@@ -182,9 +182,9 @@ a.bb:hover {color:red;}
         </td>
         
         <td width="561" valign="middle" height="50" style="margin:0; padding:5px; border-width:1; border-color:rgb(166,172,108); border-style:solid;" bgcolor="#F9F9DD" colspan="3">
-        <p><font face="굴림" color="blue"><span style="font-size:9pt;">
+        <p align="center"><font face="굴림" color="blue"><span style="font-size:9pt;">
         <!-- 참고문헌 -->
-        <input id="planBibliography" value="" readonly="readonly" size="90"><br></span></font></p>
+        <input id="planBibliography" value="" readonly="readonly" size="90" style="text-align: justify; background-color: #F9F9DD; border: 0px"><br></span></font></p>
         </td>
         </tr>
         
@@ -195,9 +195,9 @@ a.bb:hover {color:red;}
         </td>
         
         <td width="561" valign="middle" height="50" style="margin:0; padding:5px; border-width:1; border-color:rgb(166,172,108); border-style:solid;" bgcolor="#F9F9DD" colspan="3">
-        <p><font face="굴림" color="blue"><span style="font-size:9pt;">
+        <p align="center"><font face="굴림" color="blue"><span style="font-size:9pt;">
         <!-- 채점방식 -->
-        <input id="planMarkingMethod" value="" readonly="readonly" size="90"></span></font></p>
+        <input id="planMarkingMethod" value="" readonly="readonly" size="90" style="text-align: justify; background-color: #F9F9DD; border: 0px"></span></font></p>
         </td>
         </tr>
         
@@ -208,9 +208,9 @@ a.bb:hover {color:red;}
         </td>
         
         <td width="561" valign="middle" height="50" style="margin:0; padding:5px; border-width:1; border-color:rgb(166,172,108); border-style:solid;" bgcolor="#FAECEC" colspan="3">
-        <p><font face="굴림" color="blue"><span style="font-size:9pt;">
+        <p align="center"><font face="굴림" color="blue"><span style="font-size:9pt;">
         <!-- 비고 -->
-        <input id="planNote" value="" readonly="readonly" size="90"><br></span></font></p>
+        <input id="planNote" value="" readonly="readonly" size="90" style="text-align: justify; background-color: #FAECEC; border: 0px"><br></span></font></p>
         </td>
         </tr>     
         </form>
@@ -227,11 +227,7 @@ $("#id").submit -->
 </tr>
 <tr bgcolor="#6B6BCD" height="1" align="center">
 <td width="657" align="center">
-<button type="button" id="updateBtn">수정</button>
-<form action="/project_mugs/professor/removeSubjectPlan.do" method="post">
 <input type="text" id="planId2" name="planId2" value="" readonly="readonly" style="display: none;">
-<button type="submit" id="deleteBtn">삭제</button>
-</form>
 </td>
 </tr>
 </table>
@@ -244,15 +240,11 @@ $("#id").submit -->
 </td>
 </tr>
 </table> 
-</body>
-</html>
-
-
 
 </body>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-	var openWin;
+ 	var openWin;
 	
 	$(document).on("click", "#updateBtn", function openchild(){
 
@@ -282,6 +274,6 @@ $("#id").submit -->
         	openWin.document.getElementById("usersCellNum").value = document.getElementById("usersCellNum").value;
         	openWin.document.getElementById("usersNational").value = document.getElementById("usersNational").value;
          }, 1000);               
-	});
-</script>
+	}); 
+</script> -->
 </html>
