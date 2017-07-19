@@ -86,8 +86,8 @@
 	</select>
 	
 	<select id="selectEvaluationAnswerValueList" resultMap="evaluationAnswer-subject-professor-course-resultmap" parameterType="map">
-	  SELECT  s.subject_id, s.subject_name, s.subject_type, u.users_name, e.evaluation_answer_state, 
-             c.course_year, c.course_semester, c.stu_id, c.subject_id, p.pro_id
+	  SELECT s.subject_id, s.subject_name, s.subject_type, u.users_name, e.evaluation_answer_state, 
+             c.course_year, c.course_semester, c.stu_id , p.pro_id
       FROM    subject s, professor p, course c, users u, professor_subject q, evaluation_answer e
       where    c.subject_id=e.subject_id
       and    e.subject_id=s.subject_id

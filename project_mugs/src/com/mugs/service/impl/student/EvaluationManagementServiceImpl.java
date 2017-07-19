@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -85,10 +86,8 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 		HashMap<String, Object> map = new HashMap<>();
 		Date nowDate = new Date();	// 오늘 날짜
 		// Date date = new Date(System.currentTimeMillis() - 1000*60*60*24*15);	// 15일전 시간
-		
 		List<String> evaluationPeriodResult = 
 				academicCalendarDaoImpl.selectCalendarName(nowDate);	// 오늘 날짜를 기준으로 학사일정명을 뽑아온다.
-		
 		String msg = null;	// 메세지 담을 메소드
 		String nowSemester = null;	// 바로 직전학기 담을 메소드
 		Integer nowYear = new Date().getYear() + 1900;	// 현재 연도 추출
@@ -101,11 +100,13 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 			for(int i = 0; i < evaluationPeriodResult.size(); i++) {
 				if(evaluationPeriodResult.get(i).contains("설문응답")) {
 					term = evaluationPeriodResult.get(i);
+					System.out.println("term : " + term);
 				}
 				
 				if(evaluationPeriodResult.get(i).contains("학기") && 
 						evaluationPeriodResult.get(i).length() < 5) {
 					nowSemester = evaluationPeriodResult.get(i);
+					System.out.println("nowSemester:"+nowSemester);
 				}
 			}
 		}
@@ -128,6 +129,7 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 				msg = "지금은 설문응답기간이 아닙니다. 정해진 기간 내에 설문에 응하여 주시기 바랍니다.";
 				map.put("alarm", msg);
 			} else {
+				System.out.println("nowSemester:"+nowSemester);
 				map.put("evaluationAnswerValueListResult", evaluationAnswerDaoImpl.selectEvaluationAnswerValueList(loginId, nowYear, nowSemester));
 				map.put("alarm", "");	// 현재 로그인한 학생이 재적상태도 정상적인 재적상태이고 현재가 설문 응담기간이면 msg "" 공백으로 map 담고
 									// 바로 윗줄에서는 설문응답 페이지에서 보여줄 설문응답 리스트를 담는다.
