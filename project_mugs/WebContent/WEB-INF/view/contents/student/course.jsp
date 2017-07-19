@@ -39,8 +39,8 @@ $(document).ready(function() {
 					//$("#collegeList").empty();
 					//$("#majorList").empty();
 					var subjectTbody = "";
-					var subjectThead = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>정원</td><td>신청</td><td>여석</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>재수강여부</td><td>신청버튼</td></tr>";
-					$.each(map.professorSubjectList, function(){
+					var subjectThead = "<th><input style='width:55px' type='text' class='form-control' placeholder='학년' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='이수구분' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='분반' disabled></th><th><input style='width:110px' type='text' class='form-control' placeholder='과목명' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='담당교수' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='정원' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청인원' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='여석' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='학점' disabled></th><th><input style='width:110px' type='text' class='form-control' placeholder='강의시간' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='강의실' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='학과' disabled></th><th><input style='width:100px' type='text' class='form-control' placeholder='재수강여부' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청버튼' disabled></th>";
+						$.each(map.professorSubjectList, function(){
 						subjectTbody += "<tr><td>" + this.subject.subjectGrade +
 									"</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
 									"</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCapacity + "</td><td>" + this.subject.subjectRequest + 
@@ -100,7 +100,7 @@ $(document).ready(function() {
 			},
 			"success":function(map) {
 				var subjectTbody = "";
-				var subjectThead = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>정원</td><td>신청</td><td>여석</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>재수강여부</td><td>신청버튼</td></tr>";
+				var subjectThead = "<th><input style='width:55px' type='text' class='form-control' placeholder='학년' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='이수구분' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='분반' disabled></th><th><input style='width:110px' type='text' class='form-control' placeholder='과목명' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='담당교수' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='정원' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청인원' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='여석' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='학점' disabled></th><th><input style='width:110px' type='text' class='form-control' placeholder='강의시간' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='강의실' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='학과' disabled></th><th><input style='width:100px' type='text' class='form-control' placeholder='재수강여부' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청버튼' disabled></th>";
 				$.each(map.professorSubjectList, function(){
 					subjectTbody += "<tr><td>" + this.subject.subjectGrade +
 								"</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
@@ -134,7 +134,7 @@ $(document).ready(function() {
 					alert(map.msg);
 				} else {
 					alert("수강신청 완료")
-					var subjectThead = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>정원</td><td>신청</td><td>여석</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>재수강여부</td><td>신청버튼</td></tr>";
+					var subjectThead = "<th><input style='width:55px' type='text' class='form-control' placeholder='학년' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='이수구분' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='분반' disabled></th><th><input style='width:110px' type='text' class='form-control' placeholder='과목명' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='담당교수' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='정원' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청인원' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='여석' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='학점' disabled></th><th><input style='width:110px' type='text' class='form-control' placeholder='강의시간' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='강의실' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='학과' disabled></th><th><input style='width:100px' type='text' class='form-control' placeholder='재수강여부' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청버튼' disabled></th>";
 					var subjectTbody = "";
 					$.each(map.professorSubjectList, function() {
 						subjectTbody += "<tr><td>" + this.subject.subjectGrade +
@@ -146,7 +146,7 @@ $(document).ready(function() {
 									"<input type='hidden' value=" + this.proId + ">" + "</td></tr>";
 					});
 					
-					var theadMySubject = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>취소버튼</td></tr>";
+					var subjectThead = "<th><input style='width:55px' type='text' class='form-control' placeholder='학년' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='이수구분' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='분반' disabled></th><th><input style='width:110px' type='text' class='form-control' placeholder='과목명' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='담당교수' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='정원' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청인원' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='여석' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='학점' disabled></th><th><input style='width:110px' type='text' class='form-control' placeholder='강의시간' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='강의실' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='학과' disabled></th><th><input style='width:100px' type='text' class='form-control' placeholder='재수강여부' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청버튼' disabled></th>";
 					var tbodyMySubject = "";
 					$.each(map.courseSubjectList, function() {
 						tbodyMySubject += "<tr><td>" + this.subject.subjectGrade + "</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass +
@@ -180,7 +180,7 @@ $(document).ready(function() {
 				"success":function(map) {
 					alert("수강취소 완료");
 					if(subjectTbodySize != 0) {
-						var subjectThead = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>정원</td><td>신청</td><td>여석</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>재수강여부</td><td>신청버튼</td></tr>";
+						var subjectThead = "<th><input style='width:55px' type='text' class='form-control' placeholder='학년' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='이수구분' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='분반' disabled></th><th><input style='width:110px' type='text' class='form-control' placeholder='과목명' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='담당교수' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='정원' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청인원' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='여석' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='학점' disabled></th><th><input style='width:110px' type='text' class='form-control' placeholder='강의시간' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='강의실' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='학과' disabled></th><th><input style='width:100px' type='text' class='form-control' placeholder='재수강여부' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청버튼' disabled></th>";
 						var subjectTbody = "";
 						$.each(map.professorSubjectList, function() {
 							subjectTbody += "<tr><td>" + this.subject.subjectGrade +
@@ -192,7 +192,7 @@ $(document).ready(function() {
 										"<input type='hidden' value=" + this.proId + ">" + "</td></tr>";
 						});
 						
-						var theadMySubject = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>취소버튼</td></tr>";
+						var subjectThead = "<th><input style='width:55px' type='text' class='form-control' placeholder='학년' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='이수구분' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='분반' disabled></th><th><input style='width:110px' type='text' class='form-control' placeholder='과목명' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='담당교수' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='정원' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청인원' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='여석' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='학점' disabled></th><th><input style='width:110px' type='text' class='form-control' placeholder='강의시간' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='강의실' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='학과' disabled></th><th><input style='width:100px' type='text' class='form-control' placeholder='재수강여부' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청버튼' disabled></th>";
 						var tbodyMySubject = "";
 						$.each(map.courseSubjectList, function() {
 							tbodyMySubject += "<tr><td>" + this.subject.subjectGrade + "</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass +
@@ -207,7 +207,7 @@ $(document).ready(function() {
 						$("#theadMySubject").html(theadMySubject);
 						$("#tbodyMySubject").html(tbodyMySubject);
 					} else {
-						var theadMySubject = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>취소버튼</td></tr>";
+						var subjectThead = "<th><input style='width:55px' type='text' class='form-control' placeholder='학년' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='이수구분' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='분반' disabled></th><th><input style='width:110px' type='text' class='form-control' placeholder='과목명' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='담당교수' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='정원' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청인원' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='여석' disabled></th><th><input style='width:55px' type='text' class='form-control' placeholder='학점' disabled></th><th><input style='width:110px' type='text' class='form-control' placeholder='강의시간' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='강의실' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='학과' disabled></th><th><input style='width:100px' type='text' class='form-control' placeholder='재수강여부' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청버튼' disabled></th>";
 						var tbodyMySubject = "";
 						$.each(map.courseSubjectList, function() {
 							tbodyMySubject += "<tr><td>" + this.subject.subjectGrade + "</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass +
@@ -277,28 +277,42 @@ $(document).ready(function() {
 </script>
 
 <style type="text/css">
-	table, td{
-		border: 1px solid black;
-	}
-
-	table{
-		width:700px;
-		border-collapse: collapse;
-	}
-
-	td{
-		padding: 5px;
-	}
-
-	select{
-		width:150px;
-		height: 35px;
-		padding: 5px;
-	}
+input{
+	text-align:center;
+}
+table{
+	width:100%;
 	
-	#tbody{
-		cursor: pointer;
-	}
+}
+th {
+	bgcolor:peru;
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+}
+select{
+	width:150px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+.form-controler {
+	color:black;
+}
+h3{
+	font-family:돋움체;
+}
+
+
 </style>
 </head>
 <body>
@@ -332,30 +346,30 @@ $(document).ready(function() {
 <select id="majorList">
 	<option>선택하세요.</option>
 </select>
+<br><br>
 
-
-<table>
+<table border="2" style="border-color: black">
 	<thead id="subjectThead"></thead>
 	<tbody id="subjectTbody"></tbody>
 </table>
 
 <hr>
 <div id="course_info_layer">
-	<h2>수강신청 내역</h2>
-		<button id="completed">수강신청완료</button>
-		<table>
+	<h2>수강신청 내역</h2><br>
+		<button id="completed">수강신청완료</button><br><br>
+		<table border="2" style="border-color: black">
 			<thead id="theadMySubject">
 				<tr>
-					<td>학년</td>
-					<td>이수구분</td>
-					<td>분반</td>
-					<td>강의명</td>
-					<td>담당교수</td>
-					<td>학점</td>
-					<td>강의시간</td>
-					<td>강의실</td>
-					<td>개설학과</td>
-					<td>취소버튼</td>
+					<th><input type='text' class='form-control' placeholder='학년' disabled></th>
+					<th><input type='text' class='form-control' placeholder='이수구분' disabled></th>
+					<th><input type='text' class='form-control' placeholder='분반' disabled></th>
+					<th><input type='text' class='form-control' placeholder='강의명' disabled></th>
+					<th><input type='text' class='form-control' placeholder='담당교수' disabled></th>
+					<th><input type='text' class='form-control' placeholder='학점' disabled></th>
+					<th><input type='text' class='form-control' placeholder='강의시간' disabled></th>
+					<th><input type='text' class='form-control' placeholder='강의실' disabled></th>
+					<th><input type='text' class='form-control' placeholder='개설학과' disabled></th>
+					<th><input type='text' class='form-control' placeholder='취소버튼' disabled></th>
 				</tr>
 			</thead>
 			<tbody id="tbodyMySubject">
@@ -381,5 +395,7 @@ $(document).ready(function() {
 			</tbody>
 		</table>
 </div>
+<br>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 </html>

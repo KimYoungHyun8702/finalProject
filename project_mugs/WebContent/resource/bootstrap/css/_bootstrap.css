@@ -1410,10 +1410,10 @@ a.bg-danger:focus {
 
 
 .page-header {
-    padding-bottom: 40px;
+    padding-bottom: 50px;
     margin: 0px 0px 0px;
     border-bottom: 0.5px solid #eee;
-    padding-top: 40px;
+    padding-top: 50px;
 }
 ul,
 ol {
@@ -5689,7 +5689,8 @@ button.list-group-item-danger.active:focus {
   border-color: #ddd;
 }
 .panel-default > .panel-heading {
-  color: #333;
+  color: #b39c4a;
+/*   #c8d058 #ccd45f #ccc*/
   background-color: #f5f5f5;
   border-color: #ddd;
 }

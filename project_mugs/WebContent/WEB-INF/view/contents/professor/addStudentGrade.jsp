@@ -18,7 +18,6 @@ table{
 td{
    padding: 5px;
    border: 1px solid black;
-   text-align:center;
 }
 select{
    width:95px;
@@ -254,7 +253,7 @@ $(document).on("change", ".selectBtn1", function(){
 
 <c:choose>
 <c:when test="${check=='접근허용'}">
-<table id="table" border="1">
+<table id="table" border="2" style="border-color: black">
 	<thead>
 		<tr style="width:100px">
 			<th style="width:70px"><input type="text" class="form-control" placeholder="연도" disabled></th>
@@ -291,7 +290,7 @@ $(document).on("change", ".selectBtn1", function(){
 
 <hr style="border: solid px black;">
 
-	<table id="table2" border="1">
+	<table id="table2" border="2" style="border-color: black">
 
 	<thead>
 		<tr>
@@ -315,9 +314,8 @@ $(document).on("change", ".selectBtn1", function(){
 	<tbody id="tbody2"></tbody>			
 </table><br>
 
-<hr style="border: solid px black;">
 
-	<table id="table3" border="1">
+	<table id="table3" border="2" style="border-color: black">
 	<thead>
 		<tr>
 			<th style="width:90px"><input type="text" class="form-control" placeholder="시퀀스(c)" disabled></th>
@@ -334,11 +332,13 @@ $(document).on("change", ".selectBtn1", function(){
 		</tr>
 	</thead>
 	<tbody id="tbody3"></tbody>	
-</table><br><br><br><br><br>
+</table>
 </c:when>
 		<c:otherwise>
 			<script>alert("${check}");</script>
 	</c:otherwise>
 </c:choose>
+<br>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 </html>

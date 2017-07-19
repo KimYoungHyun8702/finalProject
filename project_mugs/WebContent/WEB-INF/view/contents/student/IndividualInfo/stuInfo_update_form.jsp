@@ -12,6 +12,7 @@ input{
 }
 table{
 	width:100%;
+	text-align:center;
 }
 .table2 {
 	width:100%;
@@ -19,7 +20,6 @@ table{
 td{
 	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
 	height:10px;
 }
 #product_info_layer{
@@ -38,12 +38,16 @@ h3{
 <title>Insert title here</title>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#upBtn").on("click",function(){
-		if($("#upImage").val()==null){
-			alert('기존 사진을 사용합니다.');
-		};
-	});		
-});
+   $("#showUpdateImg").hide();
+})
+
+function deleteImg(){      
+      $("#imageSpace").html('<img src ="${initParam.rootPath}/resource/up_image/1.jpg" width="138px" height="100px">');      
+} 
+  
+function showUpImg(){
+      $("#showUpdateImg").toggle();
+};
 
 function check(){
     if($("#usersEmail").val() == "" || $("#usersEmail").val().trim() == 0){
@@ -62,6 +66,8 @@ function check(){
        alert("본적지 주소를 입력하세요")
        return false;
     }else{
+       
+       
        return confirm("등록하시겠습니까 ?")
     }
  };
@@ -70,13 +76,42 @@ function check(){
 </head>
 <body>
 
-	<form action="${initParam.rootPath}/student/updateStuAndSelect.do?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data"  onsubmit="return check();">
-	<sec:csrfInput/>
-	<h3>학생정보조회</h3>
-	<hr style="border: solid px black">
-	<h3>성명, 주민번호, 학번, 학적정보 등 기존 사항은 수정할 수 없습니다.</h3>
-	<hr style="border: solid px black">
-	<table border="2" style="border-color: black"> 
+   <form action="${initParam.rootPath}/student/updateStuAndSelect.do?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data"  onsubmit="return check();">
+   <sec:csrfInput/>
+   <h3>학생정보조회</h3>
+   <h5>성명, 주민번호, 학번, 학적정보 등 기존 사항은 수정할 수 없습니다.</h5>
+   <p>
+   <table border="1" style="border-color: black; width:0%;">
+   <tr align="center">       
+      <td id="imageSpace">
+      <c:choose>
+      <c:when test="${requestScope.reFormDateStu.stuInfo.usersPhoto != null}">
+         <img src ="${initParam.rootPath}/resource/up_image/${requestScope.reFormDateStu.stuInfo.usersPhoto}" id="imageSpace" width="138px" height="100px">
+      </c:when>
+      <c:otherwise>
+         <img src ="${initParam.rootPath}/resource/up_image/1.jpg" width="138px" height="100px">
+      </c:otherwise>
+      </c:choose>
+      </td>                     
+   </tr>  
+   <tr>
+      <td><input type="button" value="이미지변경 " id="updateImg" onclick="showUpImg();">
+         <input type="button" value="삭제" onclick="deleteImg();"></td> 
+   </tr> 
+   </table>
+   <br>
+   <table border="2" id="showUpdateImg" style="border-color: black; width:0%;">
+      <tr>
+         <td align="center">프로필 사진 변경</td>
+      </tr> 
+      <tr> 
+         <td><center><input type="file" id="upImage" name ="upImage"></center></td>
+      </tr>
+   </table>
+   
+   <br>
+   <!-- <table border="2" style="width: 600px; border-color: black">  -->
+   <table border="2" style="border-color: black"> 
 	<tr align="center" class="filters"> 
 		<th><input type="text" class="form-control" placeholder="성명" disabled></th>
 		<th><input type="text" class="form-control" placeholder="학번" disabled></th>
@@ -85,40 +120,41 @@ function check(){
 		<th><input type="text" class="form-control" placeholder="전화번호" disabled></th>
 		<th><input type="text" class="form-control" placeholder="핸드폰번호" disabled></th>	
 	</tr>
-	<tr align="center" class="filters">  
-		<td>${requestScope.reFormDateStu.stuInfo.usersName}</td>
-		<td>${requestScope.reFormDateStu.stuInfo.stuId}</td>
-		<td>${requestScope.reFormDateStu.stuInfo.usersRRN}</td>
-		<td >
-			<input type="text" name ="usersEmail" id="usersEmail" value="${requestScope. reFormDateStu. stuInfo.usersEmail}" >
-		</td>
-		<td >
-			<input type="text" name ="usersPhoneNum" id="usersPhoneNum" value="${requestScope. reFormDateStu. stuInfo.usersPhoneNum}">
-		</td>
-		<td>
-			<input type="text" name ="usersCellNum" id="usersCellNum" value="${requestScope. reFormDateStu. stuInfo.usersCellNum}">
-		</td>
-	</tr>
-	<tr align="center" class="filters">
+   <tr align="center">  
+      <td>${requestScope.reFormDateStu.stuInfo.usersName}</td>
+      <td>${requestScope.reFormDateStu.stuInfo.stuId}</td>
+      <td>${requestScope.reFormDateStu.stuInfo.usersRRN}</td>
+      <td >
+         <input type="text" name ="usersEmail" id="usersEmail" value="${requestScope. reFormDateStu. stuInfo.usersEmail}" >
+      </td>
+      <td >
+         <input type="text" name ="usersPhoneNum" id="usersPhoneNum" value="${requestScope. reFormDateStu. stuInfo.usersPhoneNum}">
+      </td>
+      <td>
+         <input type="text" name ="usersCellNum" id="usersCellNum" value="${requestScope. reFormDateStu. stuInfo.usersCellNum}">
+      </td>
+   </tr>
+   <tr align="center" class="filters">
 		<th><input type="text" class="form-control" placeholder="영문성명" disabled></th>
 		<th><input type="text" class="form-control" placeholder="국적" disabled></th>
 		<th colspan="2"><input type="text" class="form-control" placeholder="본적지" disabled></th>
 		<th colspan="2"><input type="text" class="form-control" placeholder="현주소" disabled></th>
 	</tr>
-	<tr align="center" class="filters">
-		<td>${requestScope.reFormDateStu.stuInfo.usersEngName}</td>
-		<td>${requestScope.reFormDateStu.stuInfo.usersNational}</td>
-		<td colspan="2">
-			<input type="text" name ="usersBornAddr" id="usersBornAddr" value="${requestScope. reFormDateStu. stuInfo.usersBornAddr}">
-		</td>
-		<td colspan="2">
-			<input type="text" name ="usersCurrentAddr" id="usersCurrentAddr" value="${requestScope. reFormDateStu. stuInfo.usersCurrentAddr}">
-		</td>
-	</tr>
+   <tr align="center">
+      <td>${requestScope.reFormDateStu.stuInfo.usersEngName}</td>
+      <td>${requestScope.reFormDateStu.stuInfo.usersNational}</td>
+      <td colspan="2">
+         <input type="text" name ="usersBornAddr" id="usersBornAddr" style="width:400px" value="${requestScope. reFormDateStu. stuInfo.usersBornAddr}">
+      </td>
+      <td colspan="2">
+         <input type="text" name ="usersCurrentAddr" id="usersCurrentAddr" style="width:400px" value="${requestScope. reFormDateStu. stuInfo.usersCurrentAddr}">
+      </td>
+   </tr>
 </table>
 <p>
 
-<table border="2" style="border-color: black" "> 
+
+<table border="2" style="border-color: black"> 
 	<tr align="center" class="filters"> 
 		<th><input type="text" class="form-control" placeholder="학년" disabled></th>   
 		<th><input type="text" class="form-control" placeholder="학기" disabled></th>
@@ -127,15 +163,15 @@ function check(){
 		<th><input type="text" class="form-control" placeholder="입학일자" disabled></th>
 		<th><input type="text" class="form-control" placeholder="졸업일자" disabled></th>
 	</tr>
-	<tr align="center" class="filters">   
-		<td>${requestScope.reFormDateStu.stuInfo.stuGrade}</td><!-- 학년 -->
-		<td>${requestScope.reFormDateStu.stuInfo.stuSemester}</td><!-- 학기 -->
-		<td>${requestScope.reFormDateStu.stuInfo.mainMajor.majorName}</td><!-- 주전공 -->
-		<td>${requestScope.reFormDateStu.stuInfo.subMajor.majorName}</td><!-- 부전공 -->
-		<td>${requestScope.reFormDateStu.stuAdmissionDate}</td><!-- 입학일자 -->
-		<td>${requestScope.reFormDateStu.stuGraduationDate}</td><!-- 졸업일자 -->
-	</tr>
-	<tr align="center" class="filters">
+   <tr align="center">  
+      <td>${requestScope.reFormDateStu.stuInfo.stuGrade}</td><!-- 학년 -->
+      <td>${requestScope.reFormDateStu.stuInfo.stuSemester}</td><!-- 학기 -->
+      <td>${requestScope.reFormDateStu.stuInfo.mainMajor.majorName}</td><!-- 주전공 -->
+      <td>${requestScope.reFormDateStu.stuInfo.subMajor.majorName}</td><!-- 부전공 -->
+      <td>${requestScope.reFormDateStu.stuAdmissionDate}</td><!-- 입학일자 -->
+      <td>${requestScope.reFormDateStu.stuGraduationDate}</td><!-- 졸업일자 -->
+   </tr>
+   <tr align="center" class="filters">
 		<th><input type="text" class="form-control" placeholder="과정구분" disabled></th>
 		<th><input type="text" class="form-control" placeholder="병영구분" disabled></th>
 		<th><input type="text" class="form-control" placeholder="학적구분" disabled></th>
@@ -143,33 +179,25 @@ function check(){
 		<th><input type="text" class="form-control" placeholder="조기졸업대상여부" disabled></th>
 		<th><input type="text" class="form-control" placeholder="복수전공" disabled></th>
 	</tr>
-	<tr align="center" class="filters">
-		<td>${requestScope.reFormDateStu.stuInfo.stuCourse}</td>
-		<td>${requestScope.reFormDateStu.stuInfo.stuArmy}</td>
-		<td>${requestScope.reFormDateStu.stuInfo.stuRegisterState}</td>
-		<td>${requestScope.reFormDateStu.stuInfo.stuStudentState}</td>
-		
-		<td>${(requestScope.reFormDateStu.stuInfo.stuEarlyGraduation=='y')?'조기졸업가능':'조기졸업불가'}</td>
-		<td>${requestScope.reFormDateStu.stuInfo.multiMajor.majorName}</td>
-	</tr>
+   <tr align="center">
+      <td>${requestScope.reFormDateStu.stuInfo.stuCourse}</td>
+      <td>${requestScope.reFormDateStu.stuInfo.stuArmy}</td>
+      <td>${requestScope.reFormDateStu.stuInfo.stuRegisterState}</td>
+      <td>${requestScope.reFormDateStu.stuInfo.stuStudentState}</td>
+      
+      <td>${(requestScope.reFormDateStu.stuInfo.stuEarlyGraduation=='y')?'조기졸업가능':'조기졸업불가'}</td>
+      <td>${requestScope.reFormDateStu.stuInfo.multiMajor.majorName}</td>
+   </tr>
 </table>
-	<p>
-<div class="panel panel-primary filterable">
-	<table border="1" style="float: left">
-		<tr>
-			<td align="center">프로필 사진 변경</td>
-		</tr> 
-		<tr> 
-			<td><input type="file" id="upImage" name ="upImage"></td>
-		</tr>
-	</table>
-	</div>
-	<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<center><input type="submit" id="upBtn" value="수정">&nbsp;&nbsp;</center>
-	<input type="hidden" name="usersPassword" value="${requestScope.reFormDateStu.stuInfo.usersPassword}"></center><br>
-    <center><button onclick="location.href='${initParam.rootPath}/student/moveUpdatePwd.do'" type="button" class="btn btn-primary">비밀번호 변경 페이지로 이동</button></center>
-	</form> 
-
+   <p>
+   
+   <%-- <a href = "${initParam.rootPath}/student/moveUpdatePwd.do" >비밀번호 변경 페이지로 이동</a> --%>
+   
+   <br>
+   <input type="hidden" name="usersPassword" value="${requestScope.reFormDateStu.stuInfo.usersPassword}">
+  <center><input type="submit" id="upBtn" value="수정">&nbsp;&nbsp;</center>
+   </form> 
+ &nbsp;<button onclick="location.href='${initParam.rootPath}/student/moveUpdatePwd.do'" type="button">비밀번호 변경</button></center>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 </html>

@@ -82,9 +82,9 @@ $(document).ready(function(){
 	            }
 	         },
 	         "success":function(arr){
-	            alert("조회 중 입니다. 잠시만 기다려주세요.");
+	            
 					var	tableHead = "<th><input type='text' class='form-control' placeholder='최소학점' disabled></th><th><input type='text' class='form-control' placeholder='최대학점' disabled></th><th><input type='text' class='form-control' placeholder='장학금최소학점' disabled></th><th><input type='text' class='form-control' placeholder='장학금최대학점' disabled></th>"
-					var tableBody = "<tr value="+arr.standardYear+"><td>"+arr.standardMinCredit+"</td><td>"+arr.standardMaxCredit+"</td><td>"+arr.standardMinScholarship+"</td><td>"+arr.standardDelayMaxCredit+"</td></tr>"
+					var tableBody = "<tr align='center' value="+arr.standardYear+"><td>"+arr.standardMinCredit+"</td><td>"+arr.standardMaxCredit+"</td><td>"+arr.standardMinScholarship+"</td><td>"+arr.standardDelayMaxCredit+"</td></tr>"
 			   		$("#thead").html(tableHead);
 					$("#tbody").html(tableBody);
 	         }, 
@@ -108,7 +108,6 @@ table{
 td{
 	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
 }
 select{
 	width:150px;
@@ -149,7 +148,7 @@ h3{
 	<option>년도선택</option>
 </select><br><br>
 
-<table border="1">
+<table border="2" style="border-color: black">
 	<thead id="thead"></thead>
 	   <tr class="filters"></tr>
 	<tbody id="tbody"></tbody>
@@ -160,7 +159,7 @@ h3{
 	<tbody id="tbody"></tbody>
 </table><br><br><br><br> -->
 <br>
-<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" class="btn btn-primary">이전페이지로</button></center>
+<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 <script src="jquery-1.10.2.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>

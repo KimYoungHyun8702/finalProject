@@ -19,10 +19,9 @@ th {
 td{
 	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
 }
 select{
-	width:100px;
+	width:120px;
 	height: 35px;
 	padding: 5px;
 }
@@ -269,7 +268,7 @@ $(document).ready(function(){
    <%--
    과목조회 Table
  --%>
-   <table id="wholeTimeTable" border="1" height="12px">
+   <table id="wholeTimeTable" border="2" style="border-color: black" height="12px">
       <thead id="wholeTimeThead">
          <tr class="filters">
             <th width='110px'><input type='text' class='form-control' placeholder='이수구분' disabled></th>
@@ -288,5 +287,7 @@ $(document).ready(function(){
       </tbody>
 
    </table>
+ <br>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 </html>

@@ -382,3 +382,23 @@ DROP SEQUENCE BUILDING_ID_SEQ;/* 건물 테이블의 기본키에 대한 시퀀�
 DROP SEQUENCE ROOM_ID_SEQ;/* 방 테이블의 기본키에 대한 시퀀스 삭제*/
 DROP SEQUENCE LRAPPLICATION_ID_SEQ;
 DROP SEQUENCE CGU_ID_SEQ;
+
+
+
+
+
+
+
+SELECT s.subject_id, s.subject_name, s.subject_type, s.subject_credit, u.users_name, s.subject_time, s.lecture_id
+		FROM   subject s, professor p, course c, users u, professor_subject q
+		WHERE  c.subject_id = s.subject_id
+		and    q.subject_id = c.subject_id
+		and    q.pro_id = p.pro_id
+		and    p.pro_id = u.users_id
+		AND    c.course_year = 2017
+		AND    c.course_semester = '1학기'
+		AND    c.stu_id = '20140001'
+
+
+
+INSERT INTO CREDIT VALUES(160,'2017','여름학기','2','B+','2','N',70,'20140001');

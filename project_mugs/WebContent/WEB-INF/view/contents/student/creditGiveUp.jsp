@@ -132,7 +132,7 @@ $(document).ready(function() {
 	}
 
 	table{
-		width:700px;
+		width:100%;
 		border-collapse: collapse;
 	}
 
@@ -147,18 +147,19 @@ $(document).ready(function() {
 
 </head>
 <body>
-<h2>학점포기조회</h2>
-<table>
+<h3>학점포기조회</h3>
+<hr style="border: solid px black;">
+<table border="2" style="border-color: black">
 	<thead id="creditGiveUpThead">
 		<tr>
-			<td>연도</td>
-			<td>학기</td>
-			<td>과목명</td>
-			<td>이수구분</td>
-			<td>학점</td>
-			<td>등급</td>
-			<td>진행상태</td>
-			<td>취소버튼</td>
+			<th><input type='text' class='form-control' placeholder='연도' disabled></th>
+			<th><input type='text' class='form-control' placeholder='학기' disabled></th>
+			<th><input type='text' class='form-control' placeholder='과목명' disabled></th>
+			<th><input type='text' class='form-control' placeholder='이수구분' disabled></th>
+			<th><input type='text' class='form-control' placeholder='학점' disabled></th>
+			<th><input type='text' class='form-control' placeholder='등급' disabled></th>
+			<th><input type='text' class='form-control' placeholder='진행상태' disabled></th>
+			<th><input type='text' class='form-control' placeholder='취소버튼' disabled></th>
 		</tr>
 	</thead>
 	<tbody id="creditGiveUpTbody">
@@ -194,18 +195,20 @@ $(document).ready(function() {
 		</c:forEach>
 	</tbody>
 </table>
+<br><br>
 
-<h2>학점포기신청</h2>
-<table>
+<h3>학점포기신청</h3>
+<hr style="border: solid px black;">
+<table border="2" style="border-color: black">
 	<thead id="creditThead">
-		<tr>
-			<td>연도</td>
-			<td>학기</td>
-			<td>과목명</td>
-			<td>이수구분</td>
-			<td>학점</td>
-			<td>등급</td>
-			<td>신청버튼</td>
+		<tr>	
+			<th><input type='text' class='form-control' placeholder='연도' disabled></th>
+			<th><input type='text' class='form-control' placeholder='학기' disabled></th>
+			<th><input type='text' class='form-control' placeholder='과목명' disabled></th>
+			<th><input type='text' class='form-control' placeholder='이수구분' disabled></th>
+			<th><input type='text' class='form-control' placeholder='학점' disabled></th>
+			<th><input type='text' class='form-control' placeholder='등급' disabled></th>
+			<th><input type='text' class='form-control' placeholder='신청버튼' disabled></th>
 		</tr>
 	</thead>
 	<tbody id="creditTbody">
@@ -224,5 +227,7 @@ $(document).ready(function() {
 		</c:forEach>
 	</tbody>
 </table>
+<br>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 </html>

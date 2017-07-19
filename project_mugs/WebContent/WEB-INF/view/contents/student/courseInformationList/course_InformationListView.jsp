@@ -5,12 +5,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+      <script src="${initParam.rootPath }/resource/bootstrap/js/bootstrap.min.js"></script>
+<script src="${initParam.rootPath }/resource/jquery/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap.min.css">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/_bootstrap.min.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/creative.css" rel="stylesheet"> 
+    <link href="${initParam.rootPath }/resource/bootstrap/css/_bootstrap.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/simple-sidebar.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/style.css" rel="stylesheet"> 
 <style type="text/css">
 .table{
 	width:100%;
 }
-td, th, input {
+th, input {
 	text-align:center;
 }
 h3{
@@ -23,7 +31,6 @@ table{
 td{
 	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
 }
 
 #product_info_layer{
@@ -32,6 +39,7 @@ td{
 	padding:5px;
 	display: none;/*최초 로딩시에는 안보이도록 처리*/
 }
+
 </style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
@@ -49,7 +57,7 @@ td{
     <hr style="border: solid px black">
 
 
-	<table border="1">
+	<table border="2" style="border-color: black">
 	<thead id="thead">
 	
 		 <tr class="filters">
@@ -77,7 +85,7 @@ td{
 	</tbody>
 </table>
 <br>
-    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">이전페이지로</button></center>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 <%-- <body>
 <h2>수강정보목록조회하는 jsp</h2>

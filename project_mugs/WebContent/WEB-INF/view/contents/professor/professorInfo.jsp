@@ -102,8 +102,8 @@ $(document).on("click", "#updateBtn", function(){
 	<tr align="center">
 	    <td><input type="text" name ="usersCellNum" id="usersCellNum" value="${sessionScope.professor.usersCellNum}" readonly="readonly"></td>
 		<td><input type="text" id="usersNational" name="usersNational" value="${sessionScope.professor.usersNational}" readonly="readonly"></td>
-		<td colspan="2"><input type="text" id="usersBornAddr" name="usersBornAddr" value="${sessionScope.professor.usersBornAddr}"></td>
-		<td colspan="2"><input type="text" id="usersCurrentAddr" name="usersCurrentAddr" value="${sessionScope.professor.usersCurrentAddr}"></td>
+		<td colspan="2"><input style="width:190px" type="text" id="usersBornAddr" name="usersBornAddr" value="${sessionScope.professor.usersBornAddr}"></td>
+		<td colspan="2"><input style="width:190px" type="text" id="usersCurrentAddr" name="usersCurrentAddr" value="${sessionScope.professor.usersCurrentAddr}"></td>
 	</tr>
 </table></center>
 <br><br>
@@ -125,10 +125,11 @@ $(document).on("click", "#updateBtn", function(){
 
 	<input type="text" id="usersEnable" name="usersEnable" value="${sessionScope.professor.usersId}" style="display: none;">
 	<form action="/project_mugs/professor/professorInfoUpdate.do" method="get"><br>
-	<center><input type="submit" id="UpdateBtn" value="수정 페이지로"></center>
+	<center><input type="submit" id="UpdateBtn" value="수정"></center>
 	<sec:csrfInput/>
 	</form>
-
+<br>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 <!-- <script type="text/javascript">
 	var openWin;

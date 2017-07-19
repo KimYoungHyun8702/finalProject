@@ -111,20 +111,20 @@ $(document).on("click", ".Btn3", function(){
  <hr style="border: solid px black;">
 
 
-	<table border="1">
+	<table border="2" style="border-color: black">
 	<thead id="thead">
 		<tr class="filters">
 		<tr>
-			<th style="width:50px"><input type="text" placeholder="연도ID" disabled></th>
-			<th style="width:50px"><input type="text" width="30px" placeholder="학기" disabled></th>
-			<th style="width:50px"><input type="text"  placeholder="교수번호" disabled></th>
-			<th style="width:50px"><input type="text"  placeholder="과목번호" disabled></th>
-			<th style="width:50px"><input type="text"  placeholder="과목명" disabled></th>
-			<th style="width:50px"><input type="text"  placeholder="강의시간" disabled></th>
-			<th style="width:50px"><input type="text"  placeholder="이수구분" disabled></th>
-			<th style="width:50px"><input type="text"  placeholder="학년" disabled></th>
-			<th style="width:50px"><input type="text"  placeholder="학점" disabled></th>
-			<th style="width:50px"><input type="text"  placeholder="정원" disabled></th>
+			<th style="width:10px"><input style="width:50px" type="text" placeholder="연도" disabled></th>
+			<th style="width:50px"><input style="width:50px" type="text" width="30px" placeholder="학기" disabled></th>
+			<th style="width:50px"><input style="width:70px" type="text"  placeholder="교수번호" disabled></th>
+			<th style="width:50px"><input style="width:60px" type="text"  placeholder="과목번호" disabled></th>
+			<th style="width:50px"><input style="width:150px" type="text"  placeholder="과목명" disabled></th>
+			<th style="width:50px"><input style="width:130px" type="text"  placeholder="강의시간" disabled></th>
+			<th style="width:50px"><input style="width:80px" type="text"  placeholder="이수구분" disabled></th>
+			<th style="width:10px"><input style="width:50px" type="text"  placeholder="학년" disabled></th>
+			<th style="width:10px"><input style="width:50px" type="text"  placeholder="학점" disabled></th>
+			<th style="width:50px"><input style="width:50px" type="text"  placeholder="정원" disabled></th>
 			
 			
 			<td style="display: none">연도</td>
@@ -141,13 +141,15 @@ $(document).on("click", ".Btn3", function(){
 			<td style="display: none">핸드폰</td>
 			<td style="display: none">이메일</td>
 			
-			<th width="120px"><input type="text"  placeholder="강의계획서" disabled></th>
-			<th width="120px"><input type="text"  placeholder="강의계획서 수정" disabled></th>
-			<th width="120px"><input type="text"  placeholder="강의계획서 등록" disabled></th>
+			<th width="120px"><input style="width:120px" type="text"  placeholder="강의계획서" disabled></th>
+			<th width="120px"><input style="width:120px" type="text"  placeholder="강의계획서 수정" disabled></th>
+			<th width="120px"><input style="width:120px" type="text"  placeholder="강의계획서 등록" disabled></th>
 		</tr>
 	</thead>
 	<tbody id="tbody"></tbody>			
 </table>
+<br>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 <script type="text/javascript">
 	var openWin;

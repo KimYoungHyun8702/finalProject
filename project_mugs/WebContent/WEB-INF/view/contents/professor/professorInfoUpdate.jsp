@@ -71,7 +71,7 @@ function showUpImg(){
 	<h3>성명, 주민번호, 학번, 학적정보 등 기존 사항은 수정할 수 없습니다.</h3>
 	<p>
 
-	<center><table border="1" style="width:600px"s>
+	<center><table border="2" style="border-color: black" style="width:600px"s>
 	<tr> 		
 		<td id="imageSpace">
 		<c:choose>
@@ -94,7 +94,7 @@ function showUpImg(){
 <form action="/project_mugs/professor/updateProfile.do" method="post">
 <sec:csrfInput/>
 	
-	<center><table border="1" style="width:500px"> 
+	<center><table border="2" style="border-color: black" style="width:500px"> 
 	<tr align="center"> 
 		<th><input type="text" class="form-control" placeholder="교수번호" disabled></th>
 		<th><input type="text" class="form-control" placeholder="성명" disabled></th>
@@ -121,13 +121,13 @@ function showUpImg(){
 	<tr align="center">
 	    <td><input type="text" name ="usersCellNum" id="usersCellNum" value="${sessionScope.professor.usersCellNum}" readonly="readonly"></td>
 		<td><input type="text" id="usersNational" name="usersNational" value="${sessionScope.professor.usersNational}" readonly="readonly"></td>
-		<td colspan="2"><input type="text" id="usersBornAddr" name="usersBornAddr" value="${sessionScope.professor.usersBornAddr}"></td>
-		<td colspan="2"><input type="text" id="usersCurrentAddr" name="usersCurrentAddr" value="${sessionScope.professor.usersCurrentAddr}"></td>
+		<td colspan="2"><input style="width:200px" type="text" id="usersBornAddr" name="usersBornAddr" value="${sessionScope.professor.usersBornAddr}"></td>
+		<td colspan="2"><input style="width:200px" type="text" id="usersCurrentAddr" name="usersCurrentAddr" value="${sessionScope.professor.usersCurrentAddr}"></td>
 	
 	</tr>
 </table></center>
 <br><br>
-<center><table border="1" style="width: 600px; border-color: black" style="width:600px"> 
+<center><table border="2" style="border-color: black" style="width: 600px; style="width:600px"> 
 	<tr align="center"> 
 		<th><input type="text" class="form-control" placeholder="졸업대학교" disabled></th>
 		<th><input type="text" class="form-control" placeholder="졸업대학원" disabled></th>
@@ -170,7 +170,6 @@ function showUpImg(){
 
 
 <br>
-
-
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 </html>

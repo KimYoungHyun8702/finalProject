@@ -135,6 +135,7 @@ public class CourseRegistrationController {
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String loginId = users.getUsersId();
 		List<Course> myCourseListResult = courseRegistrationService.findMyCourseListByJoin(loginId);
+		System.out.println(myCourseListResult);
 		return new ModelAndView("student/courseInformationList/course_InformationListView.tiles", "myCourseListResult", myCourseListResult);
 		
 	}

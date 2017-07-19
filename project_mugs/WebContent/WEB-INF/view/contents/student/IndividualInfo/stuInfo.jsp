@@ -19,7 +19,6 @@ table{
 td{
 	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
 }
 select{
 	width:150px;
@@ -124,8 +123,10 @@ input {
 </table>
 <br>
 <form action="/project_mugs/student/moveUpdateForm.do" method="get"><br>
-<center><input type="submit" id="stuUpdateBtn" value="수정 페이지로"  type="button" class="btn btn-primary"></center>
+<center><input type="submit" id="stuUpdateBtn" value="수정"  type="button"></center>
 <sec:csrfInput/>
 </form>
+<br>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 </html>

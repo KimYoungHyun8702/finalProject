@@ -10,15 +10,15 @@
 
 table{
 	width:100%;
+	align:center;
 }
 td{
-	height:80px;
-	text-align:center;
+	height:60px;
 	border: 1px solid black;
 	width:100px;
 }
 tbody tr td {
-	width:100px;
+	width:130px;
 }
 th{
 	height:60px;
@@ -27,7 +27,7 @@ th{
 }
 #tbody tr {
 	font-size:15px; font-family:돋움체;
-	line-height:15px;
+	line-height:25px;
 }
 h3{
 	font-family:돋움체;
@@ -3080,9 +3080,8 @@ $(document).ready(function(){
  <div class="container">
     
         <h3>나의 시간표</h3>
-        <hr style="border: solid px black">
         <div id="no-more-tables">
-	           <table class="col-lg-7 table-bordered table-striped table-condensed cf">
+	           <table class="col-lg-11 table-condensed cf" border="2" style="border-color: black">
                 <tbody>
             	<thead class="cf">
         			<tr>
@@ -3096,7 +3095,7 @@ $(document).ready(function(){
         		</thead>
 				<tbody id="tbody">
 					<tr>
-        				<td width="80px">1교시<br>9:00~9:50</td>
+        				<td style="width:60px; height:90px">1교시<br>9:00~9:50</td>
                         <td width="100px"></td>
                         <td width="100px"></td>
                         <td width="100px"></td>
@@ -3105,7 +3104,7 @@ $(document).ready(function(){
                     
         			</tr>
         			<tr>
-            			<td>2교시<br>10:00~10:50</td>
+            			<td style="width:60px; height:90px">2교시<br>10:00~10:50</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -3113,7 +3112,7 @@ $(document).ready(function(){
                         <td></td>
         			</tr>
         			<tr>
-            			<td>3교시<br>11:00~11:50</td>
+            			<td style="width:60px; height:90px">3교시<br>11:00~11:50</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -3121,7 +3120,7 @@ $(document).ready(function(){
                         <td></td>
         			</tr>
         			<tr>
-            			<td>4교시<br>12:00~12:50</td>
+            			<td style="width:60px; height:90px">4교시<br>12:00~12:50</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -3129,7 +3128,7 @@ $(document).ready(function(){
                         <td></td>
         			</tr>
         			<tr>
-            			<td>5교시<br>01:00~01:50</td>
+            			<td style="width:60px; height:90px">5교시<br>01:00~01:50</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -3137,7 +3136,7 @@ $(document).ready(function(){
                         <td></td>
         			</tr>
 					<tr>
-            			<td>6교시<br>02:00~02:50</td>
+            			<td style="width:60px; height:90px">6교시<br>02:00~02:50</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -3145,7 +3144,7 @@ $(document).ready(function(){
                         <td></td>
         			</tr>
 					<tr>
-            			<td>7교시<br>03:00~03:50</td>
+            			<td style="width:60px; height:90px">7교시<br>03:00~03:50</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -3153,7 +3152,7 @@ $(document).ready(function(){
                         <td></td>
         			</tr>
 					<tr>
-            			<td>8교시<br>04:00~04:50</td>
+            			<td style="width:60px; height:90px">8교시<br>04:00~04:50</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -3161,7 +3160,7 @@ $(document).ready(function(){
                         <td></td>
         			</tr>
 					<tr>
-            			<td>9교시<br>05:00~05:50</td>
+            			<td style="width:60px; height:90px">9교시<br>05:00~05:50</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -3169,7 +3168,7 @@ $(document).ready(function(){
                         <td></td>
         			</tr>
 					<tr>
-            			<td>10교시<br>06:00~06:50</td>
+            			<td style="width:60px; height:90px">10교시<br>06:00~06:50</td>
                         <td></td>
                         <td></td>
                         <td></td>
