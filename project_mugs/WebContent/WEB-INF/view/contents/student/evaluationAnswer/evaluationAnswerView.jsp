@@ -97,8 +97,8 @@ $(document).ready(function(){
 					<sec:csrfInput/><%-- csrf 토큰 --%>	
 					</form>
 				</td>
-				<%-- <td><button onclick="location.href='${initParam.rootPath }/evaluationAnswerRegisteration.do'">${evaluationList.evaluationAnswerState}</button></td> --%>
 			</tr>
+			${evaluationList.subjectId}
 		</c:forEach>  
 	</tbody>
 </table><br>

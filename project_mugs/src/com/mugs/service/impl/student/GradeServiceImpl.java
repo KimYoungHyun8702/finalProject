@@ -58,6 +58,9 @@ public class GradeServiceImpl implements GradeService {
 	@Override
 	public List<Credit> getCreditByYearSemester(String id, int year, String semester) {
 		// TODO Auto-generated method stub
+		System.out.println(id);
+		System.out.println(year);
+		System.out.println(semester);
 		return dao.selectCreditByYearAndSemester(id, year, semester);
 	}
 
@@ -84,14 +87,14 @@ public class GradeServiceImpl implements GradeService {
 		// TODO Auto-generated method stub
 		Calendar cal = Calendar.getInstance();
 		String message = "접근허용";
-		String calName = "안갔어";
-		String semester = "안학기~";
+		String calName = "1학기성적조회";
+		String semester = "1학기";
 		int year = cal.get(cal.YEAR);
 		int month = cal.get(cal.MONTH) + 1;
 		
-		if (month >= 3 && month <= 6) {
+	/*	if (month >= 3 && month <= 6) {
 			calName = "1학기성적조회";
-			semester = "1";
+			semester = "1학기";
 		} else if (month >= 7 && month <= 8) {
 			calName = "여름학기성적조회";
 			semester = "여름학기";
@@ -101,7 +104,7 @@ public class GradeServiceImpl implements GradeService {
 		} else if (month >= 1 && month <= 2) {
 			calName = "겨울학기성적조회";
 			semester = "겨울학기";
-		}
+		}*/
 
 		Date currentDate = new Date();
 		AcademicCalendar ac = acDao.selectCalendarByYearCalName(year, calName);

@@ -97,8 +97,6 @@ $(document).ready(function(){
 						
 					}else{
 						txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>";
-						alert(score);
-						alert(count);
 					}
  					$("#tbody").html(txt);
  					$("#tbody2").html(txt2);
@@ -544,14 +542,14 @@ $(document).ready(function(){
 이수구분선택 : <select id="type">
 <option>이수구분</option>
 </select><br><br>
-<table border="1" >
+<table border="1" id="table" >
    <thead id="thead"></thead>
       <tr class="filters"></tr>
    <tbody id="tbody"></tbody>
 </table>
 <hr>
 <div>
-<table class="table2" border="1">
+<table class="table2" border="1" id="table2">
    <thead id="thead2"></thead>
       <tr class="filters"></tr>
    <tbody id="tbody2"></tbody>
