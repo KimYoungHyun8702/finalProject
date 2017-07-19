@@ -293,7 +293,7 @@ $(document).on("change", ".selectBtn1", function(){
 
 	<table id="table2" border="1">
 
-	<thead>
+<!-- 	<thead>
 		<tr>
 			<th><input type="text" class="form-control" placeholder="총학생수" disabled></th>
 			<th><input type="text" class="form-control" placeholder="정원" disabled></th>
@@ -311,7 +311,7 @@ $(document).on("change", ".selectBtn1", function(){
 			<td id="total5"></td> 
 			<td id="total6"></td> 
 		</tr>
-	</thead>
+	</thead> -->
 	<tbody id="tbody2"></tbody>			
 </table><br>
 
@@ -320,17 +320,17 @@ $(document).on("change", ".selectBtn1", function(){
 	<table id="table3" border="1">
 	<thead>
 		<tr>
-			<th style="width:90px"><input type="text" class="form-control" placeholder="시퀀스(c)" disabled></th>
-			<th><input type="text" class="form-control" placeholder="연도(c)" disabled></th>
-			<th style="width:15px"><input type="text" class="form-control" placeholder="학기(c)" disabled></th>
-			<th style="width:40px"><input type="text" class="form-control" placeholder="취득학점(c)" disabled></th>
-			<th style="width:15px"><input type="text" class="form-control" placeholder="등급(c)" disabled></th>
-			<th style="width:15px"><input type="text" class="form-control" placeholder="학점(c)" disabled></th>
-			<th style="width:140px"><input type="text" class="form-control" placeholder="재수강여부(c)" disabled></th>
-			<th style="width:100px"><input type="text" class="form-control" placeholder="과목ID(c)" disabled></th>
-			<th style="width:100px"><input type="text" class="form-control" placeholder="학생ID(c)" disabled></th>
-			<th style="width:110px"><input type="text" class="form-control" placeholder="학생성명" disabled></th>
-			<th style="width:120px"><input type="text" class="form-control" placeholder="성적주기" disabled></th>
+			<th style="width:90px"><input type="text" class="form-control" placeholder="연도" disabled></th>
+			<th><input type="text" class="form-control" placeholder="학기" disabled></th>
+			<th style="width:15px"><input type="text" class="form-control" placeholder="취득학점" disabled></th>
+			<th style="width:40px"><input type="text" class="form-control" placeholder="등급" disabled></th>
+			<th style="width:15px"><input type="text" class="form-control" placeholder="학점" disabled></th>
+			<th style="width:15px"><input type="text" class="form-control" placeholder="재수강" disabled></th>
+			<th style="width:140px"><input type="text" class="form-control" placeholder="과목ID" disabled></th>
+			<th style="width:100px"><input type="text" class="form-control" placeholder="학번" disabled></th>
+			<th style="width:100px"><input type="text" class="form-control" placeholder="성명" disabled></th>
+			<th style="width:110px"><input type="text" class="form-control" placeholder="성적등록" disabled></th>
+			<th style="width:120px"><input type="text" class="form-control" placeholder="성적수정" disabled></th>
 		</tr>
 	</thead>
 	<tbody id="tbody3"></tbody>	
