@@ -86,30 +86,30 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
                String yAndS = timeTableResult.get(i).getSubject().getSubjectTime();
 
                String[] timeArr = yAndS.split("_");
-               String st1 = timeArr[0]; // "월(1,2)"
-               String st2 = timeArr[1];// "수(3,4)"
+               String st1 = timeArr[0]; // "월<1&2>"
+               String st2 = timeArr[1];// "수<3&4>"
 
                String[] st1Arr = st1.split("<");
                String st1_1 = st1Arr[0];// "월"
-               String st1_2 = st1Arr[1];// "1,2)"
+               String st1_2 = st1Arr[1];// "1,2>"
 
                String[] st2Arr = st2.split("<");
                String st2_1 = st2Arr[0];// "수"
-               String st2_2 = st2Arr[1];// "3,4)"
+               String st2_2 = st2Arr[1];// "3,4>"
 
                String[] st1_2Arr = st1_2.split("&");
                String st1_2_1 = st1_2Arr[0];// "1"
-               String st1_2_2 = st1_2Arr[1];// "2)"
+               String st1_2_2 = st1_2Arr[1];// "2>"
 
                String[] st2_2Arr = st2_2.split("&");
                String st2_2_1 = st2_2Arr[0];// "3"
-               String st2_2_2 = st2_2Arr[1];// "4)"
+               String st2_2_2 = st2_2Arr[1];// "4>"
 
                String[] st1_2_2Arr = st1_2_2.split(">");
                String st1_2_2_1 = st1_2_2Arr[0];// 2
 
                String[] st2_2_2Arr = st2_2_2.split(">");
-               String st2_2_2_1 = st2_2_2Arr[0];// 4\
+               String st2_2_2_1 = st2_2_2Arr[0];// 4
                
                if(i == 0) {
                    timeTableResult.get(i).setColor("red");

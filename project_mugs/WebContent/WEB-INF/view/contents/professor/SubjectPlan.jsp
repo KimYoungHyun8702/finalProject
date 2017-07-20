@@ -18,7 +18,7 @@ th, input{
 	text-align:center;
 }
 h3, body{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
 
@@ -106,8 +106,7 @@ $(document).on("click", ".Btn3", function(){
 
 </head>
 <body>
-<h3>강의계획서~안뇽안뇽</h3>
- <hr style="border: solid px black;">
+<h3>강의계획서</h3><br>
 
 
 	<table border="2" style="border-color: black">
@@ -148,7 +147,7 @@ $(document).on("click", ".Btn3", function(){
 	<tbody id="tbody"></tbody>			
 </table>
 <br>
-    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
+    <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
 <script type="text/javascript">
 	var openWin;
@@ -157,7 +156,7 @@ $(document).on("click", ".Btn3", function(){
 		// window.name = "부모창 이름"; planId
         window.name = "parentForm";
         // window.open("open할 window", "자식창 이름", "팝업창 옵션");          
-        openWin = window.open("/project_mugs/SubjectPlan_success.do", "강의계획서조회", "width=500, height=400 resizable=no");
+        openWin = window.open("/project_mugs/SubjectPlan_success.do", "강의계획서조회", "width=700, height=1000 resizable=no");
         
         setTimeout(function(){
         	openWin.document.getElementById("planId").value = obj.planId;

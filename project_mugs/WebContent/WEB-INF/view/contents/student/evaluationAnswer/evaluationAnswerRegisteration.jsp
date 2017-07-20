@@ -50,7 +50,7 @@ select{
 	color:black;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 
 
@@ -99,8 +99,7 @@ $(document).ready(function(){
 
 <form action="${initParam.rootPath }/student/addEvaluationAnswerValue.do">
  <h3>설문응답평가 및 등록</h3>
-    <hr style="border: solid px black;">
-
+<br>
 
    <table border="2" style="border-color: black">
    <thead id="thead">
@@ -116,7 +115,7 @@ $(document).ready(function(){
       <input type="hidden" value="<%=request.getParameter("subjectId")%>" name="subjectId">
       <input type="hidden" value="<%=request.getParameter("proId")%>" name="proId"> <!--  값들 담음. --> 
       <tbody id="tbody">
-         <tr>
+         <tr style="text-align:center">
             <td>1</td>
             <td>평가.과제 질문</td>
             <td>
@@ -127,7 +126,7 @@ $(document).ready(function(){
                <label>5<input type="radio" name="evaluationTaskPoint" value="5" class="tp"></label>
             </td>
          </tr>
-         <tr>
+         <tr style="text-align:center">
             <td>2</td>
             <td>평가.시험 질문</td>
             <td>
@@ -138,7 +137,7 @@ $(document).ready(function(){
                <label>5<input type="radio" name="evaluationExamPoint" value="5" class="ep"></label>
             </td>
          </tr>
-         <tr>
+         <tr style="text-align:center">
             <td>3</td>
             <td>평가.수업준비도 질문</td>
             <td>
@@ -149,7 +148,7 @@ $(document).ready(function(){
                <label>5<input type="radio" name="evaluationReadyPoint" value="5" class="rp"></label>
             </td>
          </tr>
-         <tr>
+         <tr style="text-align:center">
             <td>4</td>
             <td>평가.수업열정도 질문</td>
             <td>
@@ -160,7 +159,7 @@ $(document).ready(function(){
                <label>5<input type="radio" name="evaluationPassionPoint" value="5" class="pp"></label>
             </td>
          </tr>
-         <tr>
+         <tr style="text-align:center">
             <td>5</td>
             <td>평가.질의 질문</td>
             <td>
@@ -174,8 +173,8 @@ $(document).ready(function(){
       </tbody>
       
 </table><br>
-<center><input type="submit" value="제출" id="submit"/><br><br></center>
-<center><button onclick="location.href='${initParam.rootPath }/index.do'" id="back" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
+<center><input type="submit" value="제출" id="submit"/></center><br>
+<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 <sec:csrfInput/><%-- csrf 토큰 --%>   
 </form>
 </body>

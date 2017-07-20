@@ -44,7 +44,7 @@ input {
 </style>
 </head>
 <body>
-<h3>학생정보조회</h3>
+<h3>내 정보 조회</h3>
 <br>
 <ul><li><h4>학생 기본 정보</h4></li></ul>
 <table border="2"  style="border-color: black"> 
@@ -55,7 +55,7 @@ input {
 	</colgroup>
 	<thead>
 		<tr>
-			<td rowspan="4" style="height: 34px"><c:choose>
+			<td style="text-align:center;" rowspan="4" style="height: 34px"><c:choose>
 					<c:when
 						test="${requestScope.reFormDateStu.stuInfo.usersPhoto!=null}">
 						<img
@@ -67,19 +67,19 @@ input {
 					</c:otherwise>
 				</c:choose></td>
 				<th><input type="text"  style="height: 40px"style="height: 40px" class="form-control" placeholder="학번" disabled></th>
-				<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.stuId}</td><!-- 학번 -->
+				<td  style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.stuId}</td><!-- 학번 -->
 		</tr>
 		<tr>
 			<th><input type="text"  style="height: 40px"style="height: 40px" class="form-control" placeholder="성명" disabled></th><!-- 성명 -->
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.usersName}</td>
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.usersName}</td>
 		</tr>
 		<tr>
 			<th><input type="text"  style="height: 40px"style="height: 40px" class="form-control" placeholder="영문성명" disabled></th>
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.usersEngName}</td>
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.usersEngName}</td>
 		</tr>
 		<tr>
 			<th><input type="text"  style="height: 40px"style="height: 40px" class="form-control" placeholder="주민번호" disabled></th>
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.usersRRN}</td><!-- 주민번호 -->
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.usersRRN}</td><!-- 주민번호 -->
 		</tr>
 	</thead>
 </table>
@@ -94,39 +94,39 @@ input {
 	<thead>
 		<tr> 
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="과정구분" disabled></th>
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.stuCourse}</td>
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.stuCourse}</td>
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="병영구분" disabled></th>
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.stuArmy}</td>
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.stuArmy}</td>
 		</tr>
 		<tr> 
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="학년" disabled></th>   
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.stuGrade}</td><!-- 학년 -->
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.stuGrade}</td><!-- 학년 -->
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="학기" disabled></th>
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.stuSemester}</td><!-- 학기 -->
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.stuSemester}</td><!-- 학기 -->
 		</tr>
 		<tr> 
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="학적구분" disabled></th>
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.stuRegisterState}</td>
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.stuRegisterState}</td>
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="학생구분" disabled></th>
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.stuStudentState}</td>
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.stuStudentState}</td>
 		</tr>
 		<tr> 
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="조기졸업대상여부" disabled></th>
-			<td style="height: 34px;font-size: 15px">${(requestScope.reFormDateStu.stuInfo.stuEarlyGraduation=='y')?'조기졸업가능':'조기졸업불가'}</td>
+			<td style="height: 34px; text-align:center; font-size: 15px">${(requestScope.reFormDateStu.stuInfo.stuEarlyGraduation=='y')?'조기졸업가능':'조기졸업불가'}</td>
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="입학일자" disabled></th>
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuAdmissionDate}</td><!-- 입학일자 -->
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuAdmissionDate}</td><!-- 입학일자 -->
 		</tr>
 		<tr> 
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="졸업일자" disabled></th>
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuGraduationDate}</td><!-- 졸업일자 -->
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuGraduationDate}</td><!-- 졸업일자 -->
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="주전공" disabled></th>
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.mainMajor.majorName}</td><!-- 주전공 -->
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.mainMajor.majorName}</td><!-- 주전공 -->
 		</tr>
 		<tr> 
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="부전공" disabled></th>
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.subMajor.majorName}</td><!-- 부전공 -->
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.subMajor.majorName}</td><!-- 부전공 -->
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="복수전공" disabled></th>
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.multiMajor.majorName}</td>
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.multiMajor.majorName}</td>
 		</tr>
 	</thead>
 </table>
@@ -143,32 +143,32 @@ input {
 	<thead>
 		<tr>
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="본적지" disabled></th>
-			<td style="height: 34px;font-size: 15px"colspan="5">${requestScope.reFormDateStu.stuInfo.usersBornAddr}</td>
+			<td style="height: 34px; text-align:center; font-size: 15px"colspan="5">${requestScope.reFormDateStu.stuInfo.usersBornAddr}</td>
 		</tr>
 		<tr>
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="현주소" disabled></th>
-			<td style="height: 34px;font-size: 15px"colspan="5">${requestScope.reFormDateStu.stuInfo.usersCurrentAddr}</td>
+			<td style="height: 34px; text-align:center; font-size: 15px"colspan="5">${requestScope.reFormDateStu.stuInfo.usersCurrentAddr}</td>
 		</tr>
 		<tr>
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="국적" disabled></th>
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.usersNational}</td>
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.usersNational}</td>
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="전화번호" disabled></th>
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.usersPhoneNum}</td><!-- 전화번호 -->
+			<td style="height: 34px; text-align:center; font-size: 15px">${requestScope.reFormDateStu.stuInfo.usersPhoneNum}</td><!-- 전화번호 -->
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="핸드폰번호" disabled></th>	
-			<td style="height: 34px;font-size: 15px">${requestScope.reFormDateStu.stuInfo.usersCellNum}</td><!-- 핸드폰번호 -->
+			<td style="height: 34px; text-align:center;font-size: 15px">${requestScope.reFormDateStu.stuInfo.usersCellNum}</td><!-- 핸드폰번호 -->
 		</tr>
 		<tr>
 			<th><input type="text"  style="height: 40px"class="form-control" placeholder="이메일" disabled></th>
-			<td style="height: 34px;font-size: 15px"colspan="5">${requestScope.reFormDateStu.stuInfo.usersEmail}</td><!-- 이메일 -->
+			<td style="height: 34px; text-align:center; font-size: 15px"colspan="5">${requestScope.reFormDateStu.stuInfo.usersEmail}</td><!-- 이메일 -->
 		</tr>
 	</thead>
 </table>
-<br>
+
 <form action="/project_mugs/student/moveUpdateForm.do" method="get"><br>
 <center><input type="submit" id="stuUpdateBtn" value="수정"  type="button"></center>
 <sec:csrfInput/>
 </form>
 <br>
-    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
+    <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
 </html>

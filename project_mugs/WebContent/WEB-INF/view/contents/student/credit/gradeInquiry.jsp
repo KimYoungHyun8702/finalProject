@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>성적조회</title>
+<title>MUGS</title>
 <style>
 input{
    text-align:center;
@@ -37,7 +37,7 @@ select{
    cursor: pointer;
 }
 h3{
-   font-family:돋움체;
+   font-family:굴림체;
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -530,8 +530,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h3>성적조회</h3>
-<hr style="border: solid px black">
+<h3>전체 성적 조회</h3><br>
 연도선택 : <select id="year">
 </select>
 학기선택 : 
@@ -541,13 +540,14 @@ $(document).ready(function(){
 이수구분선택 : <select id="type">
 <option>이수구분</option>
 </select><br><br>
+<ul id="ul1"><li><h4>과목 목록</h4></li></ul><br>
 <table border="2" style="border-color: black" id="table" >
    <thead id="thead"></thead>
       <tr class="filters"></tr>
    <tbody id="tbody"></tbody>
-</table>
-<hr>
+</table><br>
 <div>
+<ul id="ul2"><li><h4>해당 과목 성적 조회</h4></li></ul><br>
 <table class="table2" border="2" style="border-color: black" id="table2">
    <thead id="thead2"></thead>
       <tr class="filters"></tr>
@@ -555,6 +555,6 @@ $(document).ready(function(){
 </table>
 </div>
 <br>
-    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
+    <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
 </html>
