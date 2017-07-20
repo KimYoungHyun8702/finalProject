@@ -20,11 +20,11 @@ public class Course implements Serializable {
    
    private Room room;
    private Building building;
+   private String color;
 
    public Course() {
    }
 
-   /** --영혀니가추가한 생성자-- */
    public Course(int courseId, int courseYear, String courseSemester, int subjectId, String stuId, String proId) {
       this.courseId = courseId;
       this.courseYear = courseYear;
@@ -32,27 +32,11 @@ public class Course implements Serializable {
       this.subjectId = subjectId;
       this.stuId = stuId;
       this.proId = proId;
-      this.count = count;
    }
 
    public Course(int courseId, int courseYear, String courseSemester, int subjectId, String stuId, String proId,
-         Subject subject, List<Student> studentList) {
-      super();
-      this.courseId = courseId;
-      this.courseYear = courseYear;
-      this.courseSemester = courseSemester;
-      this.subjectId = subjectId;
-      this.stuId = stuId;
-      this.proId = proId;
-      this.count = count;
-      this.subject = subject;
-      this.studentList = studentList;
-   }
-
-   public Course(int courseId, int courseYear, String courseSemester, int subjectId, String stuId, String proId,
-         Subject subject, Student student, Professor professor, List<Student> studentList, Room room,
-         Building building) {
-      super();
+         Subject subject, Student student, Professor professor, int count, List<Student> studentList, Room room,
+         Building building, String color) {
       this.courseId = courseId;
       this.courseYear = courseYear;
       this.courseSemester = courseSemester;
@@ -62,24 +46,11 @@ public class Course implements Serializable {
       this.subject = subject;
       this.student = student;
       this.professor = professor;
+      this.count = count;
       this.studentList = studentList;
       this.room = room;
       this.building = building;
-   }
-
-   public Course(int courseId, int courseYear, String courseSemester, int subjectId, String stuId, String proId,
-         Subject subject, Student student, Professor professor, List<Student> studentList) {
-      super();
-      this.courseId = courseId;
-      this.courseYear = courseYear;
-      this.courseSemester = courseSemester;
-      this.subjectId = subjectId;
-      this.stuId = stuId;
-      this.proId = proId;
-      this.subject = subject;
-      this.student = student;
-      this.professor = professor;
-      this.studentList = studentList;
+      this.color = color;
    }
 
    public int getCourseId() {
@@ -186,12 +157,20 @@ public class Course implements Serializable {
       this.building = building;
    }
 
+   public String getColor() {
+      return color;
+   }
+
+   public void setColor(String color) {
+      this.color = color;
+   }
+
    @Override
    public String toString() {
       return "Course [courseId=" + courseId + ", courseYear=" + courseYear + ", courseSemester=" + courseSemester
             + ", subjectId=" + subjectId + ", stuId=" + stuId + ", proId=" + proId + ", subject=" + subject
-            + ", student=" + student + ", professor=" + professor + ", count=" + count + ", studentList="
-            + studentList + ", room=" + room + ", building=" + building + "]";
+            + ", student=" + student + ", professor=" + professor + ", count=" + count + ", studentList=" + studentList
+            + ", room=" + room + ", building=" + building + ", color=" + color + "]";
    }
 
    @Override
@@ -199,6 +178,7 @@ public class Course implements Serializable {
       final int prime = 31;
       int result = 1;
       result = prime * result + ((building == null) ? 0 : building.hashCode());
+      result = prime * result + ((color == null) ? 0 : color.hashCode());
       result = prime * result + count;
       result = prime * result + courseId;
       result = prime * result + ((courseSemester == null) ? 0 : courseSemester.hashCode());
@@ -225,8 +205,13 @@ public class Course implements Serializable {
       Course other = (Course) obj;
       if (building == null) {
          if (other.building != null)
-            return false;
+         return false;
       } else if (!building.equals(other.building))
+         return false;
+      if (color == null) {
+         if (other.color != null)
+            return false;
+      } else if (!color.equals(other.color))
          return false;
       if (count != other.count)
          return false;
@@ -240,13 +225,13 @@ public class Course implements Serializable {
       if (courseYear != other.courseYear)
          return false;
       if (proId == null) {
-         if (other.proId != null)
-            return false;
+      if (other.proId != null)
+         return false;
       } else if (!proId.equals(other.proId))
          return false;
       if (professor == null) {
          if (other.professor != null)
-            return false;
+         return false;
       } else if (!professor.equals(other.professor))
          return false;
       if (room == null) {
@@ -278,5 +263,4 @@ public class Course implements Serializable {
          return false;
       return true;
    }
-
 }

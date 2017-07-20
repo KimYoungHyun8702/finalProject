@@ -10,11 +10,11 @@ input{
 	text-align:center;
 }
 table{
-	width:700px;
+	width:1000px;
 	
 }
 th {
-	bgcolor:peru;
+	bgcolor:cyan;
 }
 td{
 	padding: 5px;
@@ -78,7 +78,7 @@ h3{
 </head>
 <body>
 	<h2>학과 세부 정보 조회</h2>
-	<hr>
+	<br>
 <c:if test="${sessionScope.grainsertMessage != null}">
 	<script type="text/javascript">
 		alert("등록되었습니다");
@@ -130,13 +130,13 @@ h3{
 	<table border="1">
 		<thead>
 			<tr>
-				<th align="center" ><input type="text" class="form-control" placeholder="학과ID" disabled></th>
-				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="학과이름" disabled></th>
-				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="적용연도" disabled></th>
-				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="교양필수 졸업학점" disabled></th>
-				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="교양선택 필수학점" disabled></th>
-				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="전공필수 졸업학점" disabled></th>
-				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="졸업선택 필수학점" disabled></th>
+				<th style="width:150px" align="center" ><input type="text" class="form-control" placeholder="학과ID" disabled></th>
+				<th style="width:200px" align="center" ><input type="text" class="form-control" placeholder="학과이름" disabled></th>
+				<th style="width:200px" align="center" ><input type="text" class="form-control" placeholder="적용연도" disabled></th>
+				<th style="width:330px" align="center" ><input type="text" class="form-control" placeholder="교양필수 졸업학점" disabled></th>
+				<th style="width:330px" align="center" ><input type="text" class="form-control" placeholder="교양선택 필수학점" disabled></th>
+				<th style="width:330px" align="center" ><input type="text" class="form-control" placeholder="전공필수 졸업학점" disabled></th>
+				<th style="width:330px" align="center" ><input type="text" class="form-control" placeholder="졸업선택 필수학점" disabled></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -174,9 +174,9 @@ h3{
 				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="적용연도" disabled></th>
 				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="수강 최소학점" disabled></th>
 				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="수강 최대학점" disabled></th>
-				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="수강 장학금 최소학점" disabled></th>
-				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="수강 유예자 최소학점" disabled></th>
-				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="수강 유예자 최대학점" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="장학금 최소학점" disabled></th>
+				<th style="width:10px" align="center" ><input type="text" class="form-control" placeholder="유예자 최소학점" disabled></th>
+				<th style="width:320px" align="center" ><input type="text" class="form-control" placeholder="유예자 최대학점" disabled></th>
 			</tr>
 		</thead>
 		<tbody>

@@ -130,7 +130,7 @@ $(document).ready(function() {
 	}
 
 	table{
-		width:700px;
+		width:100%;
 		border-collapse: collapse;
 	}
 
@@ -145,18 +145,19 @@ $(document).ready(function() {
 
 </head>
 <body>
-<h2>학점포기조회</h2>
-<table>
+<h3>학점포기조회</h3>
+<hr style="border: solid px black;">
+<table border="2" style="border-color: black">
 	<thead id="creditGiveUpThead">
 		<tr>
-			<td>연도</td>
-			<td>학기</td>
-			<td>과목명</td>
-			<td>이수구분</td>
-			<td>학점</td>
-			<td>등급</td>
-			<td>진행상태</td>
-			<td>취소버튼</td>
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='연도' disabled></th>
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='학기' disabled></th>
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='과목명' disabled></th>
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='이수구분' disabled></th>
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='학점' disabled></th>
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='등급' disabled></th>
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='진행상태' disabled></th>
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='취소버튼' disabled></th>
 		</tr>
 	</thead>
 	<tbody id="creditGiveUpTbody">
@@ -164,63 +165,67 @@ $(document).ready(function() {
 			<c:choose>
 				<c:when test="${creditGiveUpList.CGUState eq '대기' }">
 					<tr>					
-						<td>${creditGiveUpList.CGUYear }</td>
-						<td>${creditGiveUpList.CGUSemester }</td>
-						<td>${creditGiveUpList.credit.subject.subjectName }</td>
-						<td>${creditGiveUpList.credit.subject.subjectType }</td>
-						<td>${creditGiveUpList.credit.creditAcquire }</td>
-						<td>${creditGiveUpList.credit.creditGrade }</td>
-						<td>${creditGiveUpList.CGUState }</td>
-						<td><button id="cancelBtn">취소버튼</button>
+						<td style='text-align:center'>${creditGiveUpList.CGUYear }</td>
+						<td style='text-align:center'>${creditGiveUpList.CGUSemester }</td>
+						<td style='text-align:center'>${creditGiveUpList.credit.subject.subjectName }</td>
+						<td style='text-align:center'>${creditGiveUpList.credit.subject.subjectType }</td>
+						<td style='text-align:center'>${creditGiveUpList.credit.creditAcquire }</td>
+						<td style='text-align:center'>${creditGiveUpList.credit.creditGrade }</td>
+						<td style='text-align:center'>${creditGiveUpList.CGUState }</td>
+						<td style='text-align:center'><button id="cancelBtn">취소버튼</button>
 						<input type="hidden" value="${creditGiveUpList.CGUId }">
 						</td>
 					</tr>
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td>${creditGiveUpList.CGUYear }</td>
-						<td>${creditGiveUpList.CGUSemester }</td>
-						<td>${creditGiveUpList.credit.subject.subjectName }</td>
-						<td>${creditGiveUpList.credit.subject.subjectType }</td>
-						<td>${creditGiveUpList.credit.creditAcquire }</td>
-						<td>${creditGiveUpList.credit.creditGrade }</td>
-						<td>${creditGiveUpList.CGUState }</td>
-						<td></td>
+						<td style='text-align:center'>${creditGiveUpList.CGUYear }</td>
+						<td style='text-align:center'>${creditGiveUpList.CGUSemester }</td>
+						<td style='text-align:center'>${creditGiveUpList.credit.subject.subjectName }</td>
+						<td style='text-align:center'>${creditGiveUpList.credit.subject.subjectType }</td>
+						<td style='text-align:center'>${creditGiveUpList.credit.creditAcquire }</td>
+						<td style='text-align:center'>${creditGiveUpList.credit.creditGrade }</td>
+						<td style='text-align:center'>${creditGiveUpList.CGUState }</td>
+						<td style='text-align:center'></td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 	</tbody>
 </table>
+<br><br>
 
-<h2>학점포기신청</h2>
-<table>
+<h3>학점포기신청</h3>
+<hr style="border: solid px black;">
+<table border="2" style="border-color: black">
 	<thead id="creditThead">
-		<tr>
-			<td>연도</td>
-			<td>학기</td>
-			<td>과목명</td>
-			<td>이수구분</td>
-			<td>학점</td>
-			<td>등급</td>
-			<td>신청버튼</td>
+		<tr>	
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='연도' disabled></th>
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='학기' disabled></th>
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='과목명' disabled></th>
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='이수구분' disabled></th>
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='학점' disabled></th>
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='등급' disabled></th>
+			<th><input style='text-align:center' type='text' class='form-control' placeholder='신청버튼' disabled></th>
 		</tr>
 	</thead>
 	<tbody id="creditTbody">
 		<c:forEach items="${requestScope.creditList }" var="creditList">
 			<tr>					
-				<td>${creditList.creditYear }</td>
-				<td>${creditList.creditSemester }</td>
-				<td>${creditList.subject.subjectName }</td>
-				<td>${creditList.subject.subjectType }</td>
-				<td>${creditList.creditAcquire }</td>
-				<td>${creditList.creditGrade }</td>
-				<td><button id="creditGiveUpBtn">학점포기신청</button>
+				<td style='text-align:center'>${creditList.creditYear }</td>
+				<td style='text-align:center'>${creditList.creditSemester }</td>
+				<td style='text-align:center'>${creditList.subject.subjectName }</td>
+				<td style='text-align:center'>${creditList.subject.subjectType }</td>
+				<td style='text-align:center'>${creditList.creditAcquire }</td>
+				<td style='text-align:center'>${creditList.creditGrade }</td>
+				<td style='text-align:center'><button id="creditGiveUpBtn">학점포기신청</button>
 				<input type="hidden" value="${creditList.creditId }">
 				</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
+<br>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 </html>

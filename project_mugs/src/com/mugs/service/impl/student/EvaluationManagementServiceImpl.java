@@ -206,10 +206,8 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 	        }
 	     }
 		
-		
 	     List<ProfessorSubject> professorSubjectList = 
 	           professorSubjectDaoImpl.selectProfessorSubjectListByJoin(majorId, nowYear, semester, subjectType);
-
 	     map.put("professorSubjectList", professorSubjectList);
 
 	     return map;

@@ -646,6 +646,7 @@ th {
   }
   thead {
     display: table-header-group;
+    color: red;
   }
   tr,
   img {
@@ -2978,7 +2979,7 @@ output {
   padding: 8px 12px;
   font-size: 15px;
   line-height: 1.4;
-  color: #6f6f6f;
+  color: black;
   background-color: #ffffff;
   background-image: none;
   border: 1px solid #cccccc;

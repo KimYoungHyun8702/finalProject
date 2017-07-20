@@ -4,6 +4,37 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+input{
+	text-align:center;
+	font-size: 15px;
+}
+table{
+	width:100%;
+}
+td{
+	border: 1px solid black;
+	text-align:center;
+	font-size: 15px;
+}
+select{
+	width:150px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+h3{
+	font-family:돋움체;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
@@ -54,24 +85,39 @@ $(document).ready(function(){
 </head>
 <body>
 <h2>강의실 수정</h2>
-<hr>
+<br>
 
 <form action="${initParam.rootPath }/admin/updateRoomController.do" method="post" onsubmit="return check()">
-<select name="buildingId" id="buildingId" >
-<option>강의동 선택</option>
-<c:forEach var="list" items="${requestScope.list }">
-<option value=${list.buildingId }>
-${list.buildingName }
-</option> 
-</c:forEach>
-</select>
-<select name="roomId" id="roomId">
-	<option>강의실 선택</option>
-</select>
-변경된 이름 : <input type="text" name="roomName" id="roomName"/><br>
-<input type="submit" value="수정">
-<input type="button" id="delete" onclick="room_delete($('#roomId').val())" value="삭제"/>
+<table border="2">
+	<thead>
+		<tr>
+			<th><input type="text" class="form-control" placeholder="강의동 선택" disabled></th>
+			<th><input type="text" class="form-control" placeholder="강의실 선택" disabled></th>
+			<th><input type="text" class="form-control" placeholder="변경할 이름" disabled></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+		<td><select name="buildingId" id="buildingId" >
+			<option>강의동 선택</option>
+			<c:forEach var="list" items="${requestScope.list }">
+			<option value=${list.buildingId }>
+			${list.buildingName }
+			</option> 
+			</c:forEach>
+			</select></td>
+		<td><select name="roomId" id="roomId">
+				<option>강의실 선택</option>
+			</select></td>
+		<td><input type="text" name="roomName" id="roomName"/></td>
+		</tr>
+	</tbody>
+</table>
+<br>
+<center><input type="submit" value="수정">
+<input type="button" id="delete" onclick="room_delete($('#roomId').val())" value="삭제"/></center>
 <sec:csrfInput/>
 </form>
-<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
+<br>
+<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 </body>

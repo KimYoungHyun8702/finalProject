@@ -61,50 +61,104 @@ function info_professor(proId){
 			var txt2 = "";
 			var txt3 = "";
 			var txt4 = "";
+			var usersId = "";
+			var usersName = "";
+			var usersEngName = "";
+			var usersRRN = "";
+			var proUniversity = "";
+			var proGradSchool = "";
+			var proOfficePhoneNum = "";
+			var proLaboratoryPhoneNum = "";
+			var majorId = "";
+			var proRoomOfficeId = "";
+			var proRoomLaboratoryId = "";
+			var usersBornAddr = "";
+			var usersCurrentAddr = "";
+			var usersNational = "";
+			var usersPhoneNum = "";
+			var usersCellNum = "";
+			var usersEmail = "";
+			var usersEnable = "";
 			$.each(result,function(){
 			if(this.info.usersPhoto == null){
-				photo += "<img src ='${initParam.rootPath}/resource/up_image/1.jpg' width='110px' height='100px'>"
+				photo += "<img src ='${initParam.rootPath}/resource/up_image/1.jpg' width='150px' height='150px'>"
 			}else{
-				photo += "<img src ='${initParam.rootPath}/resource/up_image/"+this.info.usersPhoto+"' width='110px' height='100px'>"
+				photo += "<img src ='${initParam.rootPath}/resource/up_image/"+this.info.usersPhoto+"' width='150px' height='150px'>"
 			}
-			txt1 += "<tr><td align='center'>"+this.info.proId+"</td><td align='center'>"+this.info.usersName+"</td><td align='center'>"+this.info.usersEngName+"</td><td align='center'>"+this.info.usersRRN
-			+"</td><td align='center'>"+this.info.usersEmail+"</td><td align='center'>"+this.info.usersPhoneNum+"</td></tr>"
-			
-			txt2 += "<tr><td align='center>'"+this.info.usersCellNum+"</td><td align='center'>"+this.info.usersNational+"</td><td align='center'>"+this.info.usersCurrentAddr+"</td><td align='center'>"
-					+this.info.usersBornAddr+"</td><td align='center'>"+this.info.usersEnable+"</td><td align='center'>"+this.info.proUniversity+"</td></tr>"
-			
-			txt3 += "<tr><td align='center'>"+this.info.proGradSchool+"</td><td align='center'>"+(this.info.proOfficePhoneNum == null?"":this.info.proOfficePhoneNum)+"</td><td align='center'>"
-					+(this.info.proLaboratoryPhoneNum == null?"":this.info.proLaboratoryPhoneNum)+"</td><td align='center'>"+(this.major == null?"":this.major.majorName)+"</td><td align='center'>"
-					+(this.office == null?"":this.office.buildingName+",")+(this.office == null?"":this.office.officeName)+"</td><td align='center'>"+(this.laboratory == null?"":this.laboratory.buildingName+",")+(this.laboratory == null?"":this.laboratory.laboratoryName)+"</td></tr>"
-			
-			txt4 +=	"<tr><td align='center'><button onclick='update_professor("+this.info.usersId+")'>수정</button></td><td align='center'><button onclick='delete_professor("+this.info.usersId+")'>삭제</button></td></tr>"
+			usersId += this.info.usersId
+			usersName += this.info.usersName
+			usersEngName += this.info.usersEngName
+			usersRRN += this.info.usersRRN
+			proUniversity += this.info.proUniversity
+			proGradSchool += this.info.proGradSchool
+			proOfficePhoneNum += (this.info.proOfficePhoneNum == null?"":this.info.proOfficePhoneNum)
+			proLaboratoryPhoneNum += (this.info.proLaboratoryPhoneNum == null?"":this.info.proLaboratoryPhoneNum)
+			majorId += (this.major == null?"":this.major.majorName)
+			proRoomOfficeId += (this.office == null?"":this.office.buildingName+",")+(this.office == null?"":this.office.officeName)
+			proRoomLaboratoryId += (this.laboratory == null?"":this.laboratory.buildingName+",")+(this.laboratory == null?"":this.laboratory.laboratoryName)
+			usersBornAddr += this.info.usersBornAddr
+			usersCurrentAddr += this.info.usersCurrentAddr
+			usersNational += this.info.usersNational
+			usersPhoneNum += this.info.usersPhoneNum
+			usersCellNum += this.info.usersCellNum
+			usersEmail += this.info.usersEmail
+			usersEnable += this.info.usersEnable
 			})
-			$("#p").html(photo);
-			$("#infoTbody1").html(txt1);
-			$("#infoTbody2").html(txt2);
-			$("#infoTbody3").html(txt3);
-			$("#infoTbody4").html(txt4);
+			$("#photo").html(photo);
+			$("#usersId").html(usersId);
+			$("#usersName2").html(usersName);
+			$("#usersEngName").html(usersEngName);
+			$("#usersRRN").html(usersRRN);
+			$("#proUniversity").html(proUniversity);
+			$("#proGradSchool").html(proGradSchool);
+			$("#proOfficePhoneNum").html(proOfficePhoneNum);
+			$("#proLaboratoryPhoneNum").html(proLaboratoryPhoneNum);
+			$("#majorId").html(majorId);
+			$("#proRoomOfficeId").html(proRoomOfficeId);
+			$("#proRoomLaboratoryId").html(proRoomLaboratoryId);
+			$("#usersBornAddr").html(usersBornAddr);
+			$("#usersCurrentAddr").html(usersCurrentAddr);
+			$("#usersNational").html(usersNational);
+			$("#usersPhoneNum").html(usersPhoneNum);
+			$("#usersCellNum").html(usersCellNum);
+			$("#usersEmail").html(usersEmail);
+			$("#usersEnable").html(usersEnable);
 			$("#infoProfessor").show();	
-			$("#hr").show();
-			$("h1").show();
-			$("#p").show();
+			$("#infoProfessor2").show();	
+			$("#infoProfessor3").show();	
+			$("#h1").show();
+			$("#h2").show();
+			$("#h3").show();
+			$("#h4").show();
+			$("#update").show();
+			$("#delete").show();
 		}
 	})//end of ajax
 } 
 $(document).ready(function(){
-	$("#hr").hide();	
-	$("h1").hide();
+	$("#h1").hide();
+	$("#h2").hide();
+	$("#h3").hide();
+	$("#h4").hide();
+	$("#update").hide();
+	$("#delete").hide();
 	$("#selectProfessor").hide();	
 	$("#infoProfessor").hide();	
-	$("#p").hide();
+	$("#infoProfessor2").hide();	
+	$("#infoProfessor3").hide();	
 	$("#searchProfessor").on("click",function(){
 		if($("#usersName").val() == ''){
 			alert("검색어를 입력하세요");
-			$("#hr").hide();	
-			$("h1").hide();
-			$("#p").hide();
+			$("#h1").hide();
+			$("#h2").hide();
+			$("#h3").hide();
+			$("#h4").hide();
+			$("#update").hide();
+			$("#delete").hide();
 			$("#selectProfessor").hide();	
 			$("#infoProfessor").hide();	
+			$("#infoProfessor2").hide();	
+			$("#infoProfessor3").hide();
 		}else{
 		$.ajax({
 			"url":"${initParam.rootPath }/admin/selectProfessorByNameController.do",
@@ -112,16 +166,21 @@ $(document).ready(function(){
 			"success":function(result){
 				if(result == ''){
 					alert("조회할 내용이 없습니다")
-					$("#hr").hide();	
-					$("h1").hide();
-					$("#p").hide();
+					$("#h1").hide();
+					$("#h2").hide();
+					$("#h3").hide();
+					$("#h4").hide();
+					$("#update").hide();
+					$("#delete").hide();
 					$("#selectProfessor").hide();	
 					$("#infoProfessor").hide();	
+					$("#infoProfessor2").hide();	
+					$("#infoProfessor3").hide();
 				}else{
 				var txt = "";
 				$.each(result,function(){
-				txt += "<tr><td align='center'>"+this.proId+"</td><td align='center'>"+this.usersName+"</td><td align='center'>"+this.usersRRN+"</td><td align='center'>"+this.usersEmail+
-				"</td><td align='center'><button onclick='info_professor("+this.proId+")'>상세정보보기</button></td></tr>"})
+				txt += "<tr><td align='center' style='height: 34px;font-size: 15px'>"+this.proId+"</td><td align='center' style='height: 34px;font-size: 15px'>"+this.usersName+"</td><td align='center' style='height: 34px;font-size: 15px'>"+this.usersRRN+"</td><td align='center' style='height: 34px;font-size: 15px'>"+this.usersEmail+
+				"</td><td align='center' style='height: 34px;font-size: 15px'><button onclick='info_professor("+this.proId+")'>상세정보보기</button></td></tr>"})
 				$("#selectTbody").html(txt);
 				$("#selectProfessor").show();
 				}
@@ -153,72 +212,118 @@ $(document).ready(function(){
 		</script>
 		<% session.removeAttribute("prodeleteMessage"); %>
 </c:if>
-<hr>
-	
 	검색할 이름: <input type="text" name="usersName" id="usersName"/><button id="searchProfessor">조회</button><br>
 	<br>
-	<table id="selectProfessor" border="1" >
+	<table id="selectProfessor" border="2" >
 		<thead>
-			<tr class="filters">
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="교수 번호" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="교수 이름" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="교수 주민번호" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="교수 이메일" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="상세정보보기" disabled></th>
+			<tr>
+				<th align="center"><input type="text" class="form-control" placeholder="교수 번호" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="교수 이름" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="교수 주민번호" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="교수 이메일" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="상세정보보기" disabled></th>
 			</tr>
 		</thead>
 		<tbody id="selectTbody"></tbody>
 	</table>
-	
-	<hr id="hr"/>
-	<h3>교수 상세 정보</h3>
-	<p id="p">
-	<table id="infoProfessor" border="1">
+	<h3 id="h1">교수 상세 정보</h3>
+	<ul id="h2"><li><h4>교수 기본 정보</h4></li></ul>
+	<table id="infoProfessor" border="2">
+		<colgroup>
+			<col width="20%">
+			<col width="20%">
+			<col width="60%">
+		</colgroup>
 		<thead>
 			<tr>
-				<td align="center">번호</td>
-				<td align="center">이름</td>
-				<td align="center">영문 이름</td>
-				<td align="center">주민 번호</td>
-				<td align="center">이메일</td>
-				<td align="center">집 전화번호</td>
+				<td rowspan="4" id="photo"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="교수번호" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersId"></td>
 			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="교수이름" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersName2"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="영문이름" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersEngName"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="주민번호" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersRRN"></td>
 		</thead>
-		<tbody id="infoTbody1"></tbody>
-			
+		</table>
+	<ul id="h3"><li><h4>교수 학적 정보</h4></li></ul>
+	<table id="infoProfessor2" border="2">
+		<colgroup>
+			<col width="20%">
+			<col width="30%">
+			<col width="20%">
+			<col width="30%">
+		</colgroup>
 		<thead>
 			<tr>
-				<td align="center">핸드폰 번호 </td>
-				<td align="center">국적</td>
-				<td align="center">현 거주지 주소</td>
-				<td align="center">본적지 주소</td>
-				<td align="center">인증가능 상태</td>
-				<td align="center">졸업 대학</td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="졸업 대학" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="proUniversity"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="졸업 대학원" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="proGradSchool"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="소속 학과" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="majorId"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="인증가능 상태" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersEnable"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="교수실" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="proRoomOfficeId"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="교수실 전화 번호" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="proOfficePhoneNum"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="연구실" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="proRoomLaboratoryId"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="연구실 전화 번호" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="proLaboratoryPhoneNum"></td>
 			</tr>
 		</thead>
-		<tbody id="infoTbody2"></tbody>
-				
+	</table>
+	<ul id="h4"><li><h4>교수 카드 정보</h4></li></ul>
+	<table id="infoProfessor3" border="2">
+		<colgroup>
+			<col width="15%">
+			<col width="15%">
+			<col width="15%">
+			<col width="15%">
+			<col width="15%">
+			<col width="15%">
+		</colgroup>
 		<thead>
 			<tr>
-				<td align="center">졸업 대학원</td>
-				<td align="center">교수실 전화 번호</td>
-				<td align="center">연구실 전화 번호</td>
-				<td align="center">소속 학과</td>
-				<td align="center">교수실</td>
-				<td align="center">연구실</td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="본적지 주소" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" colspan="5" id="usersBornAddr"></td>
 			</tr>
-		</thead>
-		<tbody id="infoTbody3"></tbody>
-		
-		<thead>
 			<tr>
-				<td align="center">수정</td>
-				<td align="center">삭제</td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="현 거주지 주소" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" colspan="5" id="usersCurrentAddr"></td>
 			</tr>
-		</thead>
-		<tbody id="infoTbody4"></tbody>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="국적" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersNational"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="집 전화번호" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersPhoneNum"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="핸드폰 번호" disabled> </th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersCellNum"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="이메일" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" colspan="5" id="usersEmail"></td>
+			</tr>
+		</thead>	
 	</table>
 	<br>	
+	<center><button id="update" onclick="update_professor($('#usersId').text())">수정</button>
+	<button id="delete" onclick="delete_professor($('#usersId').text())">삭제</button><br><br>
 	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 
 </body>

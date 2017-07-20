@@ -6,23 +6,43 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-theme.min.css">
-	<link href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="${initParam.rootPath }/resource/bootstrap/css/style.css" rel="stylesheet">
+      <script src="${initParam.rootPath }/resource/bootstrap/js/bootstrap.min.js"></script>
+<script src="${initParam.rootPath }/resource/jquery/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap.min.css">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/_bootstrap.min.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/creative.css" rel="stylesheet"> 
+    <link href="${initParam.rootPath }/resource/bootstrap/css/_bootstrap.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/simple-sidebar.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/style.css" rel="stylesheet"> 
  
 <style type="text/css">
+
+
+input{
+	text-align:center;
+}
 table{
 	width:100%;
-	border-collapse: collapse;
+	
 }
 td{
 	padding: 5px;
-	text-align:center;
 	border: 1px solid black;
 }
-th, input{
-	text-align:center;
+select{
+	width:150px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
 }
 h3{
 	font-family:돋움체;
@@ -67,10 +87,9 @@ $(document).ready(function(){
 </head>
 <body>
  <h3>설문응답평가 조회</h3>
-    <hr style="border: solid px black;">
 
 
-	<table border="1">
+	<table border="2" style="border-color: black">
 	<thead id="thead">
 		<tr class="filters">
 			<th width="70px"><input type="text" class="form-control" placeholder="과목ID" disabled></th>
@@ -82,10 +101,10 @@ $(document).ready(function(){
 	<tbody id="tbody">
 	  <c:forEach items="${requestScope.evaluationAnswerValueListResult}" var="evaluationList">
 			<tr>
-				<td>${evaluationList.subjectId}</td>
-				<td>${evaluationList.subject.subjectName}</td>
-				<td>${evaluationList.professor.usersName}</td>
-				<td>
+				<td style="text-align:center">${evaluationList.subjectId}</td>
+				<td style="text-align:center">${evaluationList.subject.subjectName}</td>
+				<td style="text-align:center">${evaluationList.professor.usersName}</td>
+				<td style="text-align:center">
 					<form action="${initParam.rootPath }/evaluationAnswerRegisteration.do"> <!-- 설문응답하는 jsp로 이동 -->
 						<input type="hidden" value="${evaluationList.course.courseYear}" name="nowYear">
 						<input type="hidden" value="${evaluationList.course.courseSemester}" name="nowSemester">
@@ -98,10 +117,10 @@ $(document).ready(function(){
 					</form>
 				</td>
 			</tr>
-			${evaluationList.subjectId}
+			
 		</c:forEach>  
 	</tbody>
 </table><br>
-<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" class="btn btn-primary">이전페이지로</button></center>
+<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 </html>

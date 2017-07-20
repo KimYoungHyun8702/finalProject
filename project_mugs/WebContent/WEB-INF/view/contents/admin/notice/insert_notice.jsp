@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2>공지사항 등록</h2>
-<hr>
+<br>
 <center><form id="insertForm" action="${initParam.rootPath }/admin/insertNoticeController.do" method="post" onsubmit="return confirm('등록하시겠습니까?')">
 	<h4>공지 내용<h4></h3><br><br><textarea cols="130" rows="20" name="noticeContent"></textarea><p>
 				<center><input id="submit" type="submit" value="등록"></center><br>

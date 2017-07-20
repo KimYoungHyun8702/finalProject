@@ -7,6 +7,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,inital-scale=1.0"/>
+<style>
+input{
+   text-align:center;
+}
+
+#thead {
+   width:100px;
+}
+table{
+   width:100%;
+   
+}
+td{
+   padding: 0px;
+   border: 1px solid black;
+}
+select{
+   width:120px;
+   height: 35px;
+   padding: 5px;
+}
+#product_info_layer{
+   width:700px;
+   border: 1px solid gray;
+   padding:5px;
+   display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+   cursor: pointer;
+}
+h3{
+   font-family:돋움체;
+}
+#tbody>tr{
+   height:10px;
+}
+</style>
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -99,36 +136,17 @@ $(document).ready(function() {
 	});
 });
 </script>
-
-<style type="text/css">
-	table, td{
-		border: 1px solid black;
-	}
-
-	table{
-		width:700px;
-		border-collapse: collapse;
-	}
-
-	td{
-		padding: 5px;
-	}
-	
-	#tbody{
-		cursor: pointer;
-	}
-</style>
-
 </head>
 <body>
-<h2>휴/복학신청</h2>
-<table>
+<h3>휴/복학신청</h3>
+<hr style="border: solid px black">
+<table border="2" style="border-color: black">
 	<thead>
 		<tr id="thead">
-			<td>신청구분</td>
-			<td>결재상태</td>
-			<td>신청일자</td>
-			<td>취소버튼</td>
+			<th ><input style="width:280px" type="text"  placeholder="신청구분" disabled></th>
+			<th ><input style="width:280px" type="text"  placeholder="결재상태" disabled></th>
+			<th ><input style="width:280px" type="text"  placeholder="신청일자" disabled></th>
+			<th ><input style="width:280px" type="text"  placeholder="취소버튼" disabled></th>
 		</tr>
 	</thead>
 	<tbody id="tbody">
@@ -157,7 +175,10 @@ $(document).ready(function() {
 		</c:forEach>
 	</tbody>
 </table>
-
-휴복학 신청이 되지 않으시면 과사로 연락해주세요.<button id="leaveBtn" value="휴학">휴학신청</button><button id="returnBtn" value="복학">복학신청</button>
+<br>
+<center><p style="color:red">* 휴복학 신청이 되지 않으시면 과사로 연락해주세요.</p></center>
+<center><button id="leaveBtn" value="휴학" type="button">휴학신청</button>&nbsp;&nbsp;<button id="returnBtn" value="복학" type="button" >복학신청</button></center>
+<br>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 </html>

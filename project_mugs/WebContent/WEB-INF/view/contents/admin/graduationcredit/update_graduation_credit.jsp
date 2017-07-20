@@ -64,7 +64,7 @@ $(document).ready(function(){
 </head>
 <body>
 <h2>졸업 학점 수정</h2>
-<hr>
+<br>
 	<form action="${initParam.rootPath }/admin/updateGraduationCreditController.do" method="post" onsubmit="return check()">
 	<input type="text" value="${requestScope.list[0].majorName }" readonly/><br>
 	<input type="hidden" id="majorId" name="majorId" value="${requestScope.list[0].majorId }"/>

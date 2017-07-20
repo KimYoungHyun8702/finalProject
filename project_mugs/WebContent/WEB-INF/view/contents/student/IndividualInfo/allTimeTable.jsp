@@ -19,10 +19,9 @@ th {
 td{
 	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
 }
 select{
-	width:100px;
+	width:120px;
 	height: 35px;
 	padding: 5px;
 }
@@ -150,15 +149,15 @@ $(document).ready(function(){
             var trs = "";            
                for(var i = 0; i<jsonData[0][0].length;i++){
                trs = trs+"<tr><td>"+jsonData[0][0][i].subjectType
-                +"</td><td>"+jsonData[0][0][i].subjectId
-                +"</td><td>"+jsonData[0][0][i].subjectName
-                +"</td><td>"+jsonData[0][0][i].subjectCredit
-                +"</td><td>"+jsonData[0][0][i].subjectGrade
-                +"</td><td>"+jsonData[0][0][i].subjectClass
-                +"</td><td>"+jsonData[0][0][i].subjectCapacity
-                +"</td><td>"+jsonData[0][0][i].subjectTime
-                +"</td><td>"+jsonData[0][2][i] 
-                +" </td><td>"+jsonData[0][1][i]+"</td></tr>";
+                +"</td><td style='text-align:center'>"+jsonData[0][0][i].subjectId
+                +"</td><td style='text-align:center'>"+jsonData[0][0][i].subjectName
+                +"</td><td style='text-align:center'>"+jsonData[0][0][i].subjectCredit
+                +"</td><td style='text-align:center'>"+jsonData[0][0][i].subjectGrade
+                +"</td><td style='text-align:center'>"+jsonData[0][0][i].subjectClass
+                +"</td><td style='text-align:center'>"+jsonData[0][0][i].subjectCapacity
+                +"</td><td style='text-align:center'>"+jsonData[0][0][i].subjectTime
+                +"</td><td style='text-align:center'>"+jsonData[0][2][i] 
+                +" </td><td style='text-align:center'>"+jsonData[0][1][i]+"</td></tr>";
                }//end of for          
              $("#wholeTimeTbody").html(trs); 
              if(trs!=""){
@@ -203,16 +202,16 @@ $(document).ready(function(){
             //tbody 구성
             var trs = "";
                 for(var i = 0; i<jsonData.subList.length;i++){
-               trs = trs+"<tr><td>"+jsonData.subList[i].subjectType
-                +"</td><td>"+jsonData.subList[i].subjectId
-                +"</td><td>"+jsonData.subList[i].subjectName
-                +"</td><td>"+jsonData.subList[i].subjectCredit
-                +"</td><td>"+jsonData.subList[i].subjectGrade
-                +"</td><td>"+jsonData.subList[i].subjectClass
-                +"</td><td>"+jsonData.subList[i].subjectCapacity
-                +"</td><td>"+jsonData.subList[i].subjectTime
-                +"</td><td>"+jsonData.roomNameList[i] 
-                +" </td><td>"+jsonData.proNameList[i]+"</td></tr>";
+               trs = trs+"<tr><td style='text-align:center'>"+jsonData.subList[i].subjectType
+                +"</td><td style='text-align:center'>"+jsonData.subList[i].subjectId
+                +"</td><td style='text-align:center'>"+jsonData.subList[i].subjectName
+                +"</td><td style='text-align:center'>"+jsonData.subList[i].subjectCredit
+                +"</td><td style='text-align:center'>"+jsonData.subList[i].subjectGrade
+                +"</td><td style='text-align:center'>"+jsonData.subList[i].subjectClass
+                +"</td><td style='text-align:center'>"+jsonData.subList[i].subjectCapacity
+                +"</td><td style='text-align:center'>"+jsonData.subList[i].subjectTime
+                +"</td><td style='text-align:center'>"+jsonData.roomNameList[i] 
+                +" </td><td style='text-align:center'>"+jsonData.proNameList[i]+"</td></tr>";
                }//end of for             
              $("#wholeTimeTbody").html(trs);
             if(trs!=""){
@@ -269,7 +268,7 @@ $(document).ready(function(){
    <%--
    과목조회 Table
  --%>
-   <table id="wholeTimeTable" border="1" height="12px">
+   <table id="wholeTimeTable" border="2" style="border-color: black" height="12px">
       <thead id="wholeTimeThead">
          <tr class="filters">
             <th width='110px'><input type='text' class='form-control' placeholder='이수구분' disabled></th>
@@ -288,5 +287,7 @@ $(document).ready(function(){
       </tbody>
 
    </table>
+ <br>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 </html>

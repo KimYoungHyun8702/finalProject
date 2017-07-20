@@ -51,8 +51,7 @@ h3{
 </head>
 <body>
 <h2>단과대학 조회</h2>
-	<hr><br><br>
-	
+<br>
 	<table border="1">
 		<thead>
 			<tr>

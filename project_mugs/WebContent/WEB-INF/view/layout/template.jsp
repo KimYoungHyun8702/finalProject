@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
 <!DOCTYPE html>
@@ -8,11 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- 합쳐지고 최소화된 최신 CSS -->
- 
-    <!-- 부가적인 테마 -->
- 
-    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+
 
 <title>학사종합정보시스템_MUGS</title>
 <script type="text/javascript" src="${initParam.rootPath }/resource/jquery/jquery-3.2.1.min.js"></script>
@@ -31,26 +27,39 @@
 <style type="text/css">
 .whole {
 	height: 100%;
-	font-family:돋움체;
+	font-family:굴림체;
 	width:100%;
 }
 .content{
 	
 	overflow-x: auto;
 	overflow-y: auto;
-	font-family:돋움체;	
-	height:800px;
+	font-family:굴림체;	
+	height:1050px;
 	width:100%;
 	
 }
 .side {
-	font-family:돋움체;
+	font-family:굴림체;
 }
 div>.page-header{
-	background:url('https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-landing-page/6e8727895ac632cd3d8a62db2742f208b9083198/img/intro-bg.jpg'); 
-	background-size: 100% auto;
-	color:white;
 
+	background-size: 100% auto;
+	color:black;
+	background:url('/project_mugs/resource/up_image/mug.png'); 
+	background-size: 100%;
+	 padding-bottom: 80px;
+    margin: 0px 0px 0px;
+    border-bottom: 0.5px solid #eee;
+    padding-top: 80px;
+}
+.page-header {
+    padding-bottom: 80px;
+    margin: 0px 0px 0px;
+    border-bottom: 0.5px solid #eee;
+    padding-top: 80px;
+    background:url('/project_mugs/resource/up_image/mug.png'); 
+	background-size: 100%;
 }
 @media screen and (max-width: 750px){ /*화면이 웹 스크린이고 width가 750px 이하가 되면*/
 	.side, .whole {
@@ -58,7 +67,13 @@ div>.page-header{
 	}
 }
 .page-header text-center{
-	background-image:url('https://cdn.pixabay.com/photo/2016/05/18/11/25/library-1400312_960_720.jpg');
+	
+	background:url('/project_mugs/resource/up_image/mug.png'); 
+	background-size: 100%;
+	 padding-bottom: 80px;
+    margin: 0px 0px 0px;
+    border-bottom: 0.5px solid #eee;
+    padding-top: 80px;
 }
 
 </style>
@@ -69,7 +84,7 @@ div>.page-header{
 
 <div class="container-fluid">
 	<div class="page-header text-center">
-		<h1 style="font-family:돋움체; color:black">학사종합정보시스템 - MUGS</h1>
+		<a href="${initParam.rootPath }/index.do"><div style="background:url('/project_mugs/resource/up_image/mug.png').url()"></div></a>
 	</div>
   <%--메인 body --%>
    <div class="row whole">

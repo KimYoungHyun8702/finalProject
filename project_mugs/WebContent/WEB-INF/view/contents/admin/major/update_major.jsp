@@ -9,7 +9,7 @@
 </head>
 <body>
 <h2>학과 수정</h2>
-	<hr>
+	<br>
 	<form action="${initParam.rootPath }/admin/updateMajorController.do" method="post" onsubmit="return confirm('수정하시겠습니까?')">
 		학과 이름 : <input type="text" name="majorName" value="${requestScope.major.majorName }"/><br>
 		<input type="hidden" name="collegeId" value="${requestScope.major.collegeId }"/>
