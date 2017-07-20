@@ -24,14 +24,14 @@
     margin: 0px 0px 0px;
     border-bottom: 0.5px solid #eee;
     padding-top: 80px;
-    background:url('/project_mugs/resource/up_image/mug.png'); 
+    background:url('/project_mugs/resource/up_image/mugs.png'); 
 	background-size: 100%;
 }
    div>.page-header{
 	
 	background-size: 100% auto;
 	color:black;
-	background:url('/project_mugs/resource/up_image/mug.png'); 
+	background:url('/project_mugs/resource/up_image/mugs.png'); 
 	background-size: 100%;
 	 padding-bottom: 80px;
     margin: 0px 0px 0px;
@@ -41,7 +41,7 @@
 }
 .page-header text-center{
 	
-	background:url('/project_mugs/resource/up_image/mug.png'); 
+	background:url('/project_mugs/resource/up_image/mugs.png'); 
 	background-size: 100%;
 	 padding-bottom: 80px;
     margin: 0px 0px 0px;

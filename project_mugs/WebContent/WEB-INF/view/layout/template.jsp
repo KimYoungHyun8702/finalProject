@@ -46,7 +46,7 @@ div>.page-header{
 
 	background-size: 100% auto;
 	color:black;
-	background:url('/project_mugs/resource/up_image/mug.png'); 
+	background:url('/project_mugs/resource/up_image/mugs.png'); 
 	background-size: 100%;
 	 padding-bottom: 80px;
     margin: 0px 0px 0px;
@@ -58,7 +58,7 @@ div>.page-header{
     margin: 0px 0px 0px;
     border-bottom: 0.5px solid #eee;
     padding-top: 80px;
-    background:url('/project_mugs/resource/up_image/mug.png'); 
+    background:url('/project_mugs/resource/up_image/mugs.png'); 
 	background-size: 100%;
 }
 @media screen and (max-width: 750px){ /*화면이 웹 스크린이고 width가 750px 이하가 되면*/
@@ -68,7 +68,7 @@ div>.page-header{
 }
 .page-header text-center{
 	
-	background:url('/project_mugs/resource/up_image/mug.png'); 
+	background:url('/project_mugs/resource/up_image/mugs.png'); 
 	background-size: 100%;
 	 padding-bottom: 80px;
     margin: 0px 0px 0px;
@@ -84,7 +84,7 @@ div>.page-header{
 
 <div class="container-fluid">
 	<div class="page-header text-center">
-		<a href="${initParam.rootPath }/index.do"><div style="background:url('/project_mugs/resource/up_image/mug.png').url()"></div></a>
+		<a href="${initParam.rootPath }/index.do"><div style="background:url('/project_mugs/resource/up_image/mugs.png').url()"></div></a>
 	</div>
   <%--메인 body --%>
    <div class="row whole">
