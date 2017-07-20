@@ -14,7 +14,6 @@ table{
 }
 td{
 	border: 1px solid black;
-	text-align:center;
 	font-size: 15px;
 }
 select{
@@ -32,11 +31,11 @@ select{
 	cursor: pointer;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MUGS</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function check(){
@@ -84,9 +83,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h2>강의실 수정</h2>
+<h3>강의실 수정</h3>
 <br>
-
 <form action="${initParam.rootPath }/admin/updateRoomController.do" method="post" onsubmit="return check()">
 <table border="2">
 	<thead>
@@ -98,7 +96,7 @@ $(document).ready(function(){
 	</thead>
 	<tbody>
 		<tr>
-		<td><select name="buildingId" id="buildingId" >
+		<td align="center"><select name="buildingId" id="buildingId" >
 			<option>강의동 선택</option>
 			<c:forEach var="list" items="${requestScope.list }">
 			<option value=${list.buildingId }>
@@ -106,10 +104,10 @@ $(document).ready(function(){
 			</option> 
 			</c:forEach>
 			</select></td>
-		<td><select name="roomId" id="roomId">
+		<td align="center"><select name="roomId" id="roomId">
 				<option>강의실 선택</option>
 			</select></td>
-		<td><input type="text" name="roomName" id="roomName"/></td>
+		<td align="center"><input type="text" name="roomName" id="roomName" style="border: 0"/></td>
 		</tr>
 	</tbody>
 </table>
@@ -119,5 +117,5 @@ $(document).ready(function(){
 <sec:csrfInput/>
 </form>
 <br>
-<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>

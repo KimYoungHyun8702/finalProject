@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@ table{
 }
 td{
    border: 1px solid black;
-   text-align:center;
+   font-size: 15px;
 }
 select{
    width:150px;
@@ -33,7 +34,7 @@ select{
    color:black;
 }
 h3{
-   font-family:돋움체;
+   font-family:굴림체;
 }
 
 
@@ -59,7 +60,7 @@ function refuse(creditGiveUpId){
 </script>
 </head>
 <body>
-<h2>학점 포기 신청 현황</h2>
+<h3>학점 포기 신청 현황</h3>
 <c:if test="${sessionScope.cguApproveMessage != null}">
 		<script type="text/javascript">
 			alert("승인되었습니다");
@@ -97,12 +98,13 @@ function refuse(creditGiveUpId){
 				<td align="center">${list.usersName }</td>
 				<td align="center">${list.subjectName }</td>
 				<td align="center">${list.CGUSemester }</td>
-				<td align="center">${list.CGUStartDate }</td>
+				<td align="center"><fmt:formatDate value="${list.CGUStartDate}" pattern="yyyy-MM-dd"/></td>
 				<td align="center">${list.CGUState }</td>
 				<td align="center"><button onclick="approval('${list.CGUId }')">승인</button></td>
 				<td align="center"><button onclick="refuse('${list.CGUId }')">거절</button></td>
 			</tr>
 			</c:forEach>
 		</tbody>
-	</table>
+	</table><br>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>

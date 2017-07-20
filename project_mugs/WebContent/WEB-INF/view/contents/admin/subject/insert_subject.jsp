@@ -16,7 +16,7 @@ table{
 td{
 	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
+	font-size: 15px;
 }
 select{
 	width:150px;
@@ -33,7 +33,7 @@ select{
 	cursor: pointer;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
@@ -148,11 +148,10 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<br>
 <h3>과목 등록</h3>
-   <hr>
+   <br>
    <form id="insertForm" action="${initParam.rootPath }/admin/insertSubjectController.do" method="post" onsubmit="return check()">
-   <center><table id="selectSubject" border="2" style="border-color: black">
+   <table id="selectSubject" border="2" style="border-color: black">
       <thead>
          <tr>
          	<th><input type='text' class='form-control' placeholder='과목명' disabled></th>
@@ -213,10 +212,10 @@ $(document).ready(function(){
                </select></td>
          </tr>
       </tbody>
-   </table></center><br>
+   </table><br>
             <input type="hidden" name="subjectRequest" value="0"/>
             <center><input id="submit" type="submit" value="등록"></center>
          <sec:csrfInput/>
    </form><br>
-   <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" class="btn btn-primary">메인화면으로 가기</button></center>
+   <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>

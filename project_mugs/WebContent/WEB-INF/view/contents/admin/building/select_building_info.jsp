@@ -13,7 +13,6 @@ table{
 }
 td{
    border: 1px solid black;
-   text-align:center;
    font-size: 15px;
 }
 select{
@@ -34,13 +33,13 @@ select{
    color:black;
 }
 h3{
-   font-family:돋움체;
+   font-family:굴림체;
 }
 
 
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MUGS</title>
 <script type="text/javascript">
 function room_update(){
 	if($("#room").text() == ''){
@@ -60,7 +59,7 @@ function room_update(){
 </script>
 </head>
 <body>
-<h2>건물 상세 조회</h2>
+<h3>건물 상세 조회</h3>
 <c:if test="${sessionScope.buiinsertMessage != null}">
 		<script type="text/javascript">
 			alert("등록되었습니다");
@@ -92,12 +91,12 @@ function room_update(){
 		<% session.removeAttribute("roomdeleteMessage"); %>
 </c:if>
 <br>
-<table border="1">
+<table border="2">
 		<thead>
 			<tr>
 				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="건물 ID" disabled></th>
 				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="건물 이름" disabled></th>
-				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="건물 전화번호" disabled></th>
+				<th align="center" ><input type="text" style="height: 40px" class="form-control" placeholder="건물 전화번호" disabled></th>
 				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="건물 주소" disabled></th>
 				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="건물 사진" disabled></th>
 				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="강의실 이름" disabled></th>
@@ -105,13 +104,12 @@ function room_update(){
 		</thead>
 		<tbody>
 				<tr>
-					<td align="center">${requestScope.building.buildingId }</td>
-					<td align="center">${requestScope.building.buildingName }</td>
-					<td align="center">${requestScope.building.buildingPhoneNum }</td>
-					<td align="center">${requestScope.building.buildingAddr }</td>
-					<td align="center"> <img src ="${requestScope.building.buildingImg }" id="imageSpace" width="110px" height="100px"></td>
-					<td id="room"><select><c:forEach items="${requestScope.building.roomList }" var="roomList">
-								
+					<td style="width: 20px" align="center">${requestScope.building.buildingId }</td>
+					<td style="width: 30px" align="center">${requestScope.building.buildingName }</td>
+					<td style="width: 30px" align="center">${requestScope.building.buildingPhoneNum }</td>
+					<td style="width: 200px" align="center">${requestScope.building.buildingAddr }</td>
+					<td style="width: 20px" align="center"> <img src ="${requestScope.building.buildingImg }" id="imageSpace" width="110px" height="100px"></td>
+					<td style="width: 20px" align="center" id="room"><select><c:forEach items="${requestScope.building.roomList }" var="roomList">
 									<option>${roomList.roomName }</option></c:forEach></select></td>
 				</tr>
 		</tbody>
@@ -122,6 +120,6 @@ function room_update(){
 	<button onclick="location.href='${initParam.rootPath }/admin/selectBuildingNameController.do'">강의실/연구실 등록</button>
 	<button onclick="room_update()">강의실/연구실 수정 및 삭제</button></center>
 	<br>
-	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 	
 </body>

@@ -18,7 +18,7 @@ th {
 td{
 	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
+	font-size: 15px;
 }
 select{
 	width:150px;
@@ -35,10 +35,10 @@ select{
 	cursor: pointer;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
-<title>Insert title here</title>
+<title>MUGS</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function update_professor(usersId){
@@ -193,7 +193,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h2>교수 조회</h2>
+<h3>교수 조회</h3>
+<br>
 <c:if test="${sessionScope.proinsertMessage != null}">
 		<script type="text/javascript">
 			alert("등록되었습니다");
@@ -236,7 +237,7 @@ $(document).ready(function(){
 		</colgroup>
 		<thead>
 			<tr>
-				<td rowspan="4" id="photo"></td>
+				<td rowspan="4" id="photo" align="center"></td>
 				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="교수번호" disabled></th>
 				<td align="center" style="height: 34px;font-size: 15px" id="usersId"></td>
 			</tr>
@@ -324,6 +325,6 @@ $(document).ready(function(){
 	<br>	
 	<center><button id="update" onclick="update_professor($('#usersId').text())">수정</button>
 	<button id="delete" onclick="delete_professor($('#usersId').text())">삭제</button><br><br>
-	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 
 </body>

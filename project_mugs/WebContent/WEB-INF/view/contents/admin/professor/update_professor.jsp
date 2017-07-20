@@ -16,7 +16,7 @@ table{
 td{
 	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
+	font-size: 15px;
 }
 select{
 	width:150px;
@@ -33,11 +33,11 @@ select{
 	cursor: pointer;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MUGS</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function check(){
@@ -143,7 +143,7 @@ $(document).ready(function(){
 				</colgroup>
 			<thead>
 				<tr>
-					<td rowspan="4">사진</td>
+					<td rowspan="4" align="center">사진</td>
 					<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="교수번호" disabled></th>
 					<td align="center" style="height: 34px;font-size: 15px"><input type="number" name="usersId" id="usersId" value="${requestScope.info.usersId }" readonly style="border: 0"/></td>
 				</tr>
@@ -335,5 +335,5 @@ $(document).ready(function(){
 			<sec:csrfInput/>
 	</form>
 	<br><br>
-	<center><button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>

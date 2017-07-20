@@ -78,6 +78,7 @@ public class AddStudentGradeController{
 				System.out.println(academicProbation);*/
 				//만약 학사경고내역이 없다면 
 				if(academicProbation==null){
+					System.out.println("들어오는지");
 					//학사경고를 등록한다.
 					/*System.out.println("----------------학사경고 등록 여부 확인------------------");*/
 					AcademicProbation newAp = new AcademicProbation(credit.getCreditYear(),credit.getCreditSemester(),avg,credit.getStuId());

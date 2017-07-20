@@ -14,9 +14,8 @@ table{
 }
 
 td{
-	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
+	font-size: 15px;
 }
 select{
 	width:150px;
@@ -33,7 +32,7 @@ select{
 	cursor: pointer;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
 <title>Insert title here</title>
@@ -210,7 +209,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h2>학생 조회</h2>
+<h3>학생 조회</h3>
+<br>
 <c:if test="${sessionScope.stuinsertMessage != null}">
 		<script type="text/javascript">
 			alert("등록되었습니다");
@@ -254,7 +254,7 @@ $(document).ready(function(){
 		</colgroup>
 		<thead>
 	   		<tr>
-	   			<td rowspan="4" id="photo" style="height: 34px;font-size: 15px"></td>
+	   			<td rowspan="4" id="photo" style="height: 34px;font-size: 15px" align="center"></td>
 	   			<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="학번" disabled></th>
 	   			<td align="center" style="height: 34px;font-size: 15px" id="usersId"></td>
 	   		</tr>
@@ -361,4 +361,4 @@ $(document).ready(function(){
 <br>
 	<center><button id="update" onclick="update_student($('#usersId').text())">수정</button>
 	<button id="delete" onclick="delete_student($('#usersId').text())">삭제</button><br><br>
-	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>

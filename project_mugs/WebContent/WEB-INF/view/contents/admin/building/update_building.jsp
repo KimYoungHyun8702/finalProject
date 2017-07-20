@@ -13,7 +13,6 @@ table{
 }
 td{
    border: 1px solid black;
-   text-align:center;
    font-size: 15px;
 }
 select{
@@ -31,13 +30,13 @@ select{
    cursor: pointer;
 }
 h3{
-   font-family:돋움체;
+   font-family:굴림체;
 }
 
 
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MUGS</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function check(){
@@ -105,5 +104,5 @@ function check(){
 			<sec:csrfInput/>
 	</form>
 	<br>
-	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>

@@ -10,8 +10,7 @@ input{
 	text-align:center;
 }
 table{
-	width:1000px;
-	
+	width: 100%;
 }
 th {
 	bgcolor:cyan;
@@ -19,7 +18,7 @@ th {
 td{
 	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
+	font-size: 15px;
 }
 select{
 	width:150px;
@@ -36,7 +35,7 @@ select{
 	cursor: pointer;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
@@ -77,7 +76,7 @@ h3{
 
 </head>
 <body>
-	<h2>학과 세부 정보 조회</h2>
+	<h3>학과 세부 정보 조회</h3>
 	<br>
 <c:if test="${sessionScope.grainsertMessage != null}">
 	<script type="text/javascript">
@@ -127,7 +126,7 @@ h3{
 	</script>
 	<% session.removeAttribute("stadeleteMessage"); %>
 </c:if>
-	<table border="1">
+	<table border="2">
 		<thead>
 			<tr>
 				<th style="width:150px" align="center" ><input type="text" class="form-control" placeholder="학과ID" disabled></th>
@@ -209,12 +208,12 @@ h3{
 				</c:otherwise>
 			</c:choose>
 		</tbody>
-	</table>
-	<button onclick="major_update('${requestScope.major.majorId }')">학과 수정</button>
+	</table><br>
+	<center><button onclick="major_update('${requestScope.major.majorId }')">학과 수정</button>
 	<button onclick="major_delete('${requestScope.major.majorId }')">학과 제거</button>
 	<button onclick="graduation_credit_insert('${requestScope.major.majorId }','${requestScope.major.majorName }')">졸업 기준 학점 등록</button>
 	<button onclick="graduation_credit_update('${requestScope.major.majorId }')">졸업 기준 학점 수정 및 제거</button>
 	<button onclick="standard_insert('${requestScope.major.majorId }','${requestScope.major.majorName }')">수강 기준 학점 등록</button>
-	<button onclick="standard_update('${requestScope.major.majorId }')">수강 기준 학점 수정 및 제거</button>
-	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
+	<button onclick="standard_update('${requestScope.major.majorId }')">수강 기준 학점 수정 및 제거</button></center><br>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
