@@ -43,7 +43,10 @@ h3{
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-   $.ajax({
+   $("#ul1").hide();
+   $("#ul2").hide();
+	
+	$.ajax({
       url:"/project_mugs/student/yearInquiry.do",
       type:"GET",
       dataType:"json",
@@ -70,6 +73,8 @@ $(document).ready(function(){
              success:function(list){
                 $("#table").show();
                 $("#table2").show();
+                $("#ul1").show();
+                $("#ul2").show();
                 $("#semester").html("<option>학기</option>");
                 var txt="";
                 var txt2="";
@@ -107,6 +112,8 @@ $(document).ready(function(){
       }else if($("#year").val()=="연도"){
          $("#table").hide();
          $("#table2").hide();
+         $("#ul1").hide();
+         $("#ul2").hide();
          $("#semester").html("<option>학기</option>")
          $("#type").html("<option>이수구분</option>")
          
@@ -139,6 +146,8 @@ $(document).ready(function(){
                $("#type").val("전체").prop("selected", true);
                $("#table").show();
                $("#table2").show();
+               $("#ul1").show();
+               $("#ul2").show();
                var txt="";
                var txt2="";
                 var allCredit= 0;
@@ -188,6 +197,8 @@ $(document).ready(function(){
                
                $("#table").show();
                $("#table2").show();
+               $("#ul1").show();
+               $("#ul2").show();
                var txt="";
                var txt2="";
                 var allCredit= 0;
@@ -237,6 +248,7 @@ $(document).ready(function(){
                var acquireCredit=0;
                var score=0;
                var count =list.length;
+               
                $("#thead").html("<th><input type='text' class='form-control' placeholder='년도' disabled></th><th><input type='text' class='form-control' placeholder='학기' disabled></th><th><input type='text' class='form-control' placeholder='과목번호' disabled></th><th><input type='text' class='form-control' placeholder='과목명' disabled></th><th><input type='text' class='form-control' placeholder='분반' disabled></th><th><input type='text' class='form-control' placeholder='이수구분' disabled></th><th><input type='text' class='form-control' placeholder='학점' disabled></th><th><input type='text' class='form-control' placeholder='등급' disabled></th><th><input type='text' class='form-control' placeholder='평점' disabled></th><th><input type='text' class='form-control' placeholder='재수강여부' disabled></th>");
                $("#thead2").html("<th><input type='text' class='form-control' placeholder='신청학점' disabled></th><th><input type='text' class='form-control' placeholder='취득학점' disabled></th><th><input type='text' class='form-control' placeholder='평점평균' disabled></th>");
             $.each(list, function(){
@@ -277,6 +289,8 @@ $(document).ready(function(){
                 success:function(list){
                    $("#table").show();
                    $("#table2").show();
+                   $("#ul1").show();
+                   $("#ul2").show();
                    var txt="";
                    var txt2="";
                    var allCredit= 0;
@@ -363,6 +377,8 @@ $(document).ready(function(){
                      
                      $("#table").show();
                      $("#table2").show();
+                     $("#ul1").show();
+                     $("#ul2").show();
                      var txt="";
                      var txt2="";
                       var allCredit= 0;
@@ -447,6 +463,9 @@ $(document).ready(function(){
                   data:{"year":$("#year").val(),"semester":$("#semester").val(), ${_csrf.parameterName}:'${_csrf.token}'},
                   success:function(list){
                      $("#table").show();
+                     $("#table2").show();
+                     $("#ul1").show();
+                     $("#ul2").show();
                      var txt="";
                      var txt2="";
                         var allCredit= 0;

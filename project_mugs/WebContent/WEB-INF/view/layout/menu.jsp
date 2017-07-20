@@ -92,16 +92,27 @@ a.line:hover {
       }
    } 
    
-   var  stuRegister = "${stuRegister}";
-   
-   if(stuRegister == '휴학' || stuRegister == '군휴학') {
-      alert(stuRegister + "학생은 수강신청을 할 수 없습니다.");
-   } else {
-      var msg = "${msg}";
-      if(msg != "") {
-         alert(msg);
-      }
-   } 
+	var  stuRegister = "${stuRegister}";
+	
+	if(stuRegister == '휴학' || stuRegister == '군휴학') {
+		alert(stuRegister + "학생은 수강신청을 할 수 없습니다.");
+	} else {
+		var msg = "${msg}";
+		if(msg != "") {
+			alert(msg);
+		}
+	} 
+	
+	var stuRegisterMyCourse = "${stuRegisterMyCourse}";
+	
+	if(stuRegisterMyCourse == '휴학') {
+		alert(stuRegisterMyCourse + "생은 수강목록을 볼 수 없습니다.");
+	} else {
+		var courseMessage = "${courseMessage}"
+		if(courseMessage != "") {
+			alert(courseMessage);
+		}
+	}
    
    var  stuRegisterTimeTable = "${stuRegisterTimeTable}";
    

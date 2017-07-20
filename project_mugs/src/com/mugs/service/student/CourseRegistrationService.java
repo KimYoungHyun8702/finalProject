@@ -55,7 +55,7 @@ public interface CourseRegistrationService {
 	 * @param loginId
 	 * @return
 	 */
-	List<Course> findMyCourseListByJoin(String loginId);
+	HashMap<String, Object> findMyCourseListByJoin(String loginId);
 	
 	
 	

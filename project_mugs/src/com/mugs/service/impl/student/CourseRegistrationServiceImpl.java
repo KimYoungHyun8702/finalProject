@@ -203,21 +203,38 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
    }
 
    @Override
-   public List<Course> findMyCourseListByJoin(String loginId) {
+   public HashMap<String, Object> findMyCourseListByJoin(String loginId) {
       // 여기서 년도랑 학기를 뽑아오는 메소드를 호출해서 지금년도, 지금학기와 비교하여... 해당학기, 해당년도를 조회한다.
-      Date date = new Date();
+	  HashMap<String, Object> map = new HashMap<>();
+	  Date date = new Date();
       int nowYear = date.getYear() + 1900;
       String nowSemester = "";
+      String courseMessage = null;
+      String stuRegister = studentDaoImpl.selectStudentById(loginId).getStuRegisterState();
       
       List<String> semesterList = academicCalendarDaoImpl.selectCalendarName(date);
       for(int i = 0; i < semesterList.size(); i++) {
          if(semesterList.get(i).contains("학기") && semesterList.get(i).length() < 5) {
             nowSemester = semesterList.get(i);
-               
          }
       }
-      List<Course> myCourseList = courseDaoImpl.selectMyCourseListByJoin(loginId, nowYear, nowSemester);
-      return myCourseList;
+      
+      if (!stuRegister.equals("휴학")) {
+          if (nowSemester == null) {
+             courseMessage = "현재 수강하고 있는 과목이 없습니다.";
+             map.put("courseMessage", courseMessage);
+          } else {
+
+        	 List<Course> myCourseList = courseDaoImpl.selectMyCourseListByJoin(loginId, nowYear, nowSemester);
+
+             map.put("myCourseListResult", myCourseList);
+             map.put("courseMessage", ""); 
+          }
+       } else {
+          map.put("stuRegisterMyCourse", stuRegister);
+       }
+      
+      return map;
    }
 
    @Override
@@ -454,7 +471,6 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
               map.put("courseSubjectList", courseDaoImpl.selectMyCourseList(stuId, nowYear, semester));
          } else {
         	 List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoin(majorId, nowYear, semester, subjectType);
-              
              List<Credit> myCourseList = creditDaoImpl.selectAllCreditByStuId(stuId);
               
              for(int i = 0; i < professorSubjectList.size(); i++) {
@@ -470,7 +486,6 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
                    }
                 }
              }
-             
              map.put("professorSubjectList", professorSubjectList);
              map.put("courseSubjectList", courseDaoImpl.selectMyCourseList(stuId, nowYear, semester));
          }

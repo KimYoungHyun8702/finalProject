@@ -137,6 +137,7 @@
          AND    c.course_year = #{nowYear}
          AND    c.course_semester = #{nowSemester}
          and    c.stu_id = #{loginId}
+
 	</select>
 
 	

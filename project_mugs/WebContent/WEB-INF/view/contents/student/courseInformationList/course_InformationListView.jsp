@@ -72,6 +72,7 @@ td{
 	<tbody id="tbody">
 			<c:forEach items="${requestScope.myCourseListResult}" var="courseList">
 				<tr>
+
 					<td align="center">${courseList.subjectId}</td>
 					<td align="center">${courseList.subject.subjectName}</td>
 					<td align="center">${courseList.subject.subjectType}</td>

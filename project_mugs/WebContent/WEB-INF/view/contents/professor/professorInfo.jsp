@@ -61,6 +61,7 @@ $(document).on("click", "#updateBtn", function(){
 
 <body>
 <h3>교수 개인정보 조회</h3>
+
 <br>
 <ul><li><h4>교수 기본 정보</h4></li></ul>	
 	<table border="2">
