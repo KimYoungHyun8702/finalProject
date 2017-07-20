@@ -111,31 +111,6 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
                String[] st2_2_2Arr = st2_2_2.split(">");
                String st2_2_2_1 = st2_2_2Arr[0];// 4\
                
-               if(i == 0) {
-                   timeTableResult.get(i).setColor("red");
-                } else if(i == 1) {
-                   timeTableResult.get(i).setColor("blue");
-                } else if(i == 2) {
-                   timeTableResult.get(i).setColor("gray");
-                } else if(i == 3) {
-                   timeTableResult.get(i).setColor("pink");
-                } else if(i == 4) {
-                   timeTableResult.get(i).setColor("green");
-                } else if(i == 5) {
-                   timeTableResult.get(i).setColor("orange");
-                } else if(i == 6) {
-                   timeTableResult.get(i).setColor("purple");
-                } else if(i == 7) {
-                   timeTableResult.get(i).setColor("yellow");
-                } else if(i == 8) {
-                   timeTableResult.get(i).setColor("cyan");
-                } else if(i == 9) {
-                   timeTableResult.get(i).setColor("red");
-                } else if(i == 10) {
-                   timeTableResult.get(i).setColor("red");
-                } 
-             
-
                firstYoYil = st1_1;// 월
                secondYoYil = st2_1;// 수
                firstGyoshi = st1_2_1;// 1
@@ -147,28 +122,36 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
                timeTableResult.get(i).getSubject().setGyoShi1(firstGyoshi);
                timeTableResult.get(i).getSubject().setGyoShi2(secondGyoshi);
 
-               System.out.println("첫번째 요일 :" + timeTableResult.get(i).getSubject().getYoYil1());
-               System.out.println("두번째 요일 :" + timeTableResult.get(i).getSubject().getYoYil2());
-               System.out.println("첫번째 교시 :" + timeTableResult.get(i).getSubject().getGyoShi1());
-               System.out.println("두번째 교시 :" + timeTableResult.get(i).getSubject().getGyoShi2());
-               
-
-               // firstYG = firstYoil + firstGyoshi;
-               // secondYG = secondYoil + thirdGyoshi;
-               // System.out.println("각 인덱스에 해당하는 firstYG가 뭔데 : " +
-               // firstYG);
-               // System.out.println("각 인덱스에 해당하는 secondYG가 뭔데 : " +
-               // secondYG);
+               if(i == 0) {
+            	   timeTableResult.get(i).setColor("red");
+               } else if(i == 1) {
+            	   timeTableResult.get(i).setColor("blue");
+               } else if(i == 2) {
+            	   timeTableResult.get(i).setColor("gray");
+               } else if(i == 3) {
+            	   timeTableResult.get(i).setColor("pink");
+               } else if(i == 4) {
+            	   timeTableResult.get(i).setColor("green");
+               } else if(i == 5) {
+            	   timeTableResult.get(i).setColor("orange");
+               } else if(i == 6) {
+            	   timeTableResult.get(i).setColor("purple");
+               } else if(i == 7) {
+            	   timeTableResult.get(i).setColor("yellow");
+               } else if(i == 8) {
+            	   timeTableResult.get(i).setColor("cyan");
+               } else if(i == 9) {
+            	   timeTableResult.get(i).setColor("red");
+               } else if(i == 10) {
+            	   timeTableResult.get(i).setColor("red");
+               } 
             }
 
             map.put("myTimeTableResult", timeTableResult);
-            map.put("message", ""); // 현재 로그인한 학생이 재적상태도 정상적인 재적상태이고 현재가
-                              // 학기(수강기간)이면 msg "" 공백으로 map 담고
-            // 바로 윗줄에서는 시간표 페이지에서 보여줄 내가 수강하고 있는 수강리스트를 담는다.
+            map.put("message", ""); 
          }
       } else {
-         map.put("stuRegisterTimeTable", stuRegister); // 현재 재적 상태가 휴학 상태이거나,
-                                             // 군휴학 이면 map에 담는다.
+         map.put("stuRegisterTimeTable", stuRegister); 
       }
       return map;
    }

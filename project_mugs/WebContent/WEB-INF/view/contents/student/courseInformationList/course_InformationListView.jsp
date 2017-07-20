@@ -73,13 +73,14 @@ td{
 	<tbody id="tbody">
 			<c:forEach items="${requestScope.myCourseListResult}" var="courseList">
 				<tr>
+
 					<td align="center">${courseList.subjectId}</td>
 					<td align="center">${courseList.subject.subjectName}</td>
 					<td align="center">${courseList.subject.subjectType}</td>
 					<td align="center">${courseList.subject.subjectCredit}</td>
 					<td align="center">${courseList.professor.usersName}</td>
 					<td align="center">${courseList.subject.subjectTime}</td>
-					<td align="center">${courseList.subject.lectureId}</td>
+					<td align="center">${courseList.building.buildingName}/${courseList.room.roomName }</td>
 				</tr>
 			</c:forEach>
 	</tbody>

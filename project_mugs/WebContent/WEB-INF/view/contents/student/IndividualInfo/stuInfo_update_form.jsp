@@ -81,8 +81,6 @@ function check(){
 </script>
 </head>
 <body>
-
-<<<<<<< HEAD
 	<form action="${initParam.rootPath}/student/updateStuAndSelect.do?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data"  onsubmit="return check();">
 	<sec:csrfInput/>
 	<h3>학생 정보 수정</h3>

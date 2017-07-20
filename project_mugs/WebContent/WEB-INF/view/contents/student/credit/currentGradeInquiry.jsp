@@ -120,6 +120,5 @@ h3{
 	</c:otherwise>
 	</c:choose>
 <br>
-    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 </html>

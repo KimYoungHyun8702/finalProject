@@ -244,33 +244,40 @@ $(document).ready(function() {
                var taskAvg = parseFloat(map.taskAvg);
                var examAvg = parseFloat(map.examAvg);
                var line = [['수업준비도', readyAvg], ['수업열정도', passionAvg], ['질의응답', questionAvg], ['과제', taskAvg], ['시험', examAvg]];
-                jQuery("#chart").jqplot([line], {
-                      title:"수업 평가그래프",
-                    seriesDefaults:{
-                        renderer:jQuery.jqplot.BarRenderer
-                    },
-                   series:[
-                    {
-                        pointLabels:{
-                            show:true,
-                            labels:[readyAvg, passionAvg, questionAvg, taskAvg, examAvg],
-                        },
-                    }
-                   ],
-                    axes:{
-                        xaxis:{
-                              renderer:jQuery.jqplot.CategoryAxisRenderer
-                        },
-                       yaxis:{  
-                          numberTicks : 7,
-                          min:0,
-                          max:6,
-                          tickOptions:{
-                             formatString : '%.1f'
-                            }
-                       }
-                    }
-                });
+               jQuery("#chart").jqplot([line], {
+			          title:"수업 평가그래프",
+			       	 seriesColors:['#FFCCE5', '#00749F', '#73C774', '#C7754C', '#17BDB8']
+			        ,seriesDefaults:{
+			            renderer:jQuery.jqplot.BarRenderer
+			            , rendererOptions:{
+			                varyBarColor:true ,
+			                barWidth : 35                    // 막대그래프의 넓이를 지정
+		                    , barPadding : -15                // 막대그래프의 여백을 지정
+		                    , highlightMouseOver : false    // 막대그래프의 클릭여부를 지정 (기본값 : true)
+			            }
+			        },
+			    	series:[
+			        {
+			            pointLabels:{
+			                show:true,
+			                labels:[readyAvg, passionAvg, questionAvg, taskAvg, examAvg],
+			            },
+			        }
+			    	],
+			        axes:{
+			            xaxis:{
+			                  renderer:jQuery.jqplot.CategoryAxisRenderer
+			            },
+			        	yaxis:{  
+			        		numberTicks : 7,
+			        		min:0,
+			        		max:6,
+			        		tickOptions:{
+			        			formatString : '%.1f'
+			             	}
+			        	}
+			        }
+			    });
                 $("#chart").show();
             }
          },

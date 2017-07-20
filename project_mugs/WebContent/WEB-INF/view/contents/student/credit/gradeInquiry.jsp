@@ -237,7 +237,7 @@ $(document).ready(function(){
                var acquireCredit=0;
                var score=0;
                var count =list.length;
-               $("#thead").html("<th><input type='text' class='form-control' placeholder='년도' disabled></th><th><input type='text' class='form-control' placeholder='학기' disabled></th><th><input type='text' class='form-control' placeholder='과목번호' disabled></th><th><input type='text' class='form-control' placeholder='과목명' disabled></th><th><input type='text' class='form-control' placeholder='분반' disabled></th><th><input type='text' class='form-control' placeholder='이수구분' disabled></th><th><input type='text' class='form-control' placeholder='학점' disabled></th><th><input type='text' class='form-control' placeholder='등급' disabled></th><th><input type='text' class='form-control' placeholder='평점' disabled></th><th><input type='text' class='form-control' placeholder='재수강여부' disabled></th>");
+               $("#thead").html("<th><input type='text' class='form-control' placeholder='년도' disabled></th><th><input type='text' class='form-control' placeholder='학기' disabled></th><th><input type='text' class='form-control' placeholder='과목번호' disabled></th><th><input type='text' class='form-control' placeholder='과목명' disabled></th><th><input style='text-align:center'type='text' class='form-control' placeholder='분반' disabled></th><th><input type='text' class='form-control' placeholder='이수구분' disabled></th><th><input type='text' class='form-control' placeholder='학점' disabled></th><th><input type='text' class='form-control' placeholder='등급' disabled></th><th><input type='text' class='form-control' placeholder='평점' disabled></th><th><input type='text' class='form-control' placeholder='재수강여부' disabled></th>");
                $("#thead2").html("<th><input type='text' class='form-control' placeholder='신청학점' disabled></th><th><input type='text' class='form-control' placeholder='취득학점' disabled></th><th><input type='text' class='form-control' placeholder='평점평균' disabled></th>");
             $.each(list, function(){
                if(this.creditGrade!='포기'){
@@ -332,7 +332,7 @@ $(document).ready(function(){
                   acquireCredit+=this.creditAcquire;
                   score+=this.creditScore;
                       txt += "<tr><td style='text-align:center'>"+this.creditYear+"</td><td style='text-align:center'>"+this.creditSemester+ "</td><td style='text-align:center'>"
-                         +this.subjectId+"</td><td style='text-align:center'>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td style='text-align:center'>"+this.subject.subjectType+"</td><td style='text-align:center'>"+this.subject.subjectCredit+"</td><td style='text-align:center'>"+this.creditGrade+"</td><td style='text-align:center'>"+this.creditScore+"</td><td style='text-align:center'>"+this.creditRecource+"</td></tr>";
+                         +this.subjectId+"</td><td style='text-align:center'>"+this.subject.subjectName+"</td><td style='text-align:center'>"+this.subject.subjectClass+"</td><td style='text-align:center'>"+this.subject.subjectType+"</td><td style='text-align:center'>"+this.subject.subjectCredit+"</td><td style='text-align:center'>"+this.creditGrade+"</td><td style='text-align:center'>"+this.creditScore+"</td><td style='text-align:center'>"+this.creditRecource+"</td></tr>";
                   }else{
                      count-=1;
                   }

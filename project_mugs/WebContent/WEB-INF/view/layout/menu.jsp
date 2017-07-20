@@ -23,14 +23,14 @@
     margin: 0px 0px 0px;
     border-bottom: 0.5px solid #eee;
     padding-top: 80px;
-    background:url('/project_mugs/resource/up_image/mug.png'); 
+    background:url('/project_mugs/resource/up_image/mugs.png'); 
 	background-size: 100%;
 }
    div>.page-header{
 	
 	background-size: 100% auto;
 	color:black;
-	background:url('/project_mugs/resource/up_image/mug.png'); 
+	background:url('/project_mugs/resource/up_image/mugs.png'); 
 	background-size: 100%;
 	 padding-bottom: 80px;
     margin: 0px 0px 0px;
@@ -40,7 +40,7 @@
 }
 .page-header text-center{
 	
-	background:url('/project_mugs/resource/up_image/mug.png'); 
+	background:url('/project_mugs/resource/up_image/mugs.png'); 
 	background-size: 100%;
 	 padding-bottom: 80px;
     margin: 0px 0px 0px;
@@ -91,16 +91,27 @@ a.line:hover {
       }
    } 
    
-   var  stuRegister = "${stuRegister}";
-   
-   if(stuRegister == '휴학' || stuRegister == '군휴학') {
-      alert(stuRegister + "학생은 수강신청을 할 수 없습니다.");
-   } else {
-      var msg = "${msg}";
-      if(msg != "") {
-         alert(msg);
-      }
-   } 
+	var  stuRegister = "${stuRegister}";
+	
+	if(stuRegister == '휴학' || stuRegister == '군휴학') {
+		alert(stuRegister + "학생은 수강신청을 할 수 없습니다.");
+	} else {
+		var msg = "${msg}";
+		if(msg != "") {
+			alert(msg);
+		}
+	} 
+	
+	var stuRegisterMyCourse = "${stuRegisterMyCourse}";
+	
+	if(stuRegisterMyCourse == '휴학') {
+		alert(stuRegisterMyCourse + "생은 수강목록을 볼 수 없습니다.");
+	} else {
+		var courseMessage = "${courseMessage}"
+		if(courseMessage != "") {
+			alert(courseMessage);
+		}
+	}
    
    var  stuRegisterTimeTable = "${stuRegisterTimeTable}";
    

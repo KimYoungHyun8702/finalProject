@@ -124,16 +124,16 @@
 	<!-- 내가 현재 수강하고 있는 수강내역을 조회 -->
 	<select id="selectMyCourseListByJoin" parameterType="map" resultMap="course-professor-subject-resultmap">
 		SELECT s.subject_id, s.subject_name, s.subject_type, s.subject_credit, u.users_name, s.subject_time, s.lecture_id
-      FROM   subject s, professor p, course c, users u, professor_subject q
-      WHERE  c.subject_id = s.subject_id
-      and    s.subject_id = q.subject_id    
-      and    q.pro_id = p.pro_id
-      and    p.pro_id = u.users_id
-      and    c.course_year =  q.PRO_SUBJECT_YEAR
-      and    c.course_semester = q.PRO_SUBJECT_SEMESTER
-      AND    c.course_year = #{nowYear}
-      AND    c.course_semester = #{nowSemester}
-      and 	 c.stu_id = #{loginId}
+      	FROM   subject s, professor p, course c, users u, professor_subject q
+      	WHERE  c.subject_id = s.subject_id
+     	and    s.subject_id = q.subject_id    
+     	and    q.pro_id = p.pro_id
+     	and    p.pro_id = u.users_id
+     	and    c.course_year =  q.PRO_SUBJECT_YEAR
+      	and    c.course_semester = q.PRO_SUBJECT_SEMESTER
+      	AND    c.course_year = #{nowYear}
+      	AND    c.course_semester = #{nowSemester}
+      	and    c.stu_id = #{loginId}
 	</select>
 
 	

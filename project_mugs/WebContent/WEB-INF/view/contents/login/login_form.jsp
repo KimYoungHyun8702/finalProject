@@ -1818,7 +1818,7 @@ function popupOpen(url){
 <body>
 <c:if test="${not empty param.errorMessage}">
    <div class="well text-danger">
-     <script>alert('${param.errorMessage }')</script>
+     <script type="text/javascript">alert('${param.errorMessage }')</script>
    </div>
 </c:if>
 
