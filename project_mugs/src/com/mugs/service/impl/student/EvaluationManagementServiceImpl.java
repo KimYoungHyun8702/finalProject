@@ -65,7 +65,7 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 										 int evaluationPassionPoint, int evaluationQuestionPoint ,int nowYear, 
 										 String nowSemester, String loginId, int subjectId, String proId) {
 		Evaluation evaluation = new Evaluation(0, nowYear, nowSemester, evaluationTaskPoint, evaluationExamPoint, evaluationReadyPoint, evaluationPassionPoint, evaluationQuestionPoint, proId, subjectId);
-				
+		System.out.println(evaluation);		
 		//평가테이블 - 평가정보 인서트
 		evaluationDaoImpl.insertEvaluation(evaluation);		
 		
@@ -100,13 +100,11 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 			for(int i = 0; i < evaluationPeriodResult.size(); i++) {
 				if(evaluationPeriodResult.get(i).contains("설문응답")) {
 					term = evaluationPeriodResult.get(i);
-					System.out.println("term : " + term);
 				}
 				
 				if(evaluationPeriodResult.get(i).contains("학기") && 
 						evaluationPeriodResult.get(i).length() < 5) {
 					nowSemester = evaluationPeriodResult.get(i);
-					System.out.println("nowSemester:"+nowSemester);
 				}
 			}
 		}
@@ -129,7 +127,10 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 				msg = "지금은 설문응답기간이 아닙니다. 정해진 기간 내에 설문에 응하여 주시기 바랍니다.";
 				map.put("alarm", msg);
 			} else {
-				System.out.println("nowSemester:"+nowSemester);
+				
+				for(EvaluationAnswer ea :evaluationAnswerDaoImpl.selectEvaluationAnswerValueList(loginId, nowYear, nowSemester)){
+					System.out.println(ea);
+				}
 				map.put("evaluationAnswerValueListResult", evaluationAnswerDaoImpl.selectEvaluationAnswerValueList(loginId, nowYear, nowSemester));
 				map.put("alarm", "");	// 현재 로그인한 학생이 재적상태도 정상적인 재적상태이고 현재가 설문 응담기간이면 msg "" 공백으로 map 담고
 									// 바로 윗줄에서는 설문응답 페이지에서 보여줄 설문응답 리스트를 담는다.

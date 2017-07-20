@@ -112,7 +112,6 @@ $(document).ready(function(){
    </thead>
       <input type="hidden" value="<%=request.getParameter("nowYear")%>" name="nowYear">
       <input type="hidden" value="<%=request.getParameter("nowSemester")%>" name="nowSemester">
-      <input type="hidden" value="<%=request.getParameter("loginId")%>" name="loginId">
       <input type="hidden" value="<%=request.getParameter("subjectId")%>" name="subjectId">
       <input type="hidden" value="<%=request.getParameter("proId")%>" name="proId"> <!--  값들 담음. --> 
       <tbody id="tbody">

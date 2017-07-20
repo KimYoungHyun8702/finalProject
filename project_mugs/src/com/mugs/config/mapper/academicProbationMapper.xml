@@ -33,7 +33,7 @@
 	<!-- Insert -->
 	<insert id="insertAcademicProbation" parameterType="academicProbation">
 		<selectKey resultType="int" keyProperty="probationId" order="BEFORE">
-			SELECT ACADEMIC_PROBATION_ID_SEQ.nextval FROM dual
+			SELECT PROBATION_ID_SEQ.nextval FROM dual
 		</selectKey>
 		INSERT INTO academic_probation 
 		VALUES(

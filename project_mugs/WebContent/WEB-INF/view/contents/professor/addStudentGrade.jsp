@@ -202,6 +202,7 @@ $(document).on("change", ".selectBtn1", function(){
 				    ${_csrf.parameterName}:'${_csrf.token}'},
 			"dataType":"json",
 			"success":function(){
+				
 				alert("성공");
 			},//success
 			"error":function(){		

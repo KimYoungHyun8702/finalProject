@@ -202,6 +202,7 @@ public class ApplyServiceImpl implements ApplyService{
 				map.put("creditGiveUpList", creditGiveUpList);
 				return map;
 			}
+			return map;
 		} else if(stuRegister.equals("휴학")) {
 			msg = "휴학생은 학점포기를 할수 없습니다.";
 			map.put("msg", msg);
@@ -209,6 +210,7 @@ public class ApplyServiceImpl implements ApplyService{
 				map.put("creditGiveUpList", creditGiveUpList);
 				return map;
 			}
+			return map;
 		}
 		
 		List<Credit> creditList = creditDaoImpl.selectCreditByYearSemesterStdId(nowYear, semester, stuId);

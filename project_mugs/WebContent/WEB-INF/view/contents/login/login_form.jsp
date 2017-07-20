@@ -1508,7 +1508,7 @@ body>#signup #key_benefits p {
 }
 #signup_form .switch_signup_method#google_signup .alt_signup_link:hover { color: #e73122 }
 body>#login {
-	background-image:url("resource/up_image/logo.PNG");
+	background-image:url("resource/up_image/logo.png");
 	background-repeat: no-repeat;
 	background-size: 2000px 300px;
     border-top: 8px solid #ffb937;

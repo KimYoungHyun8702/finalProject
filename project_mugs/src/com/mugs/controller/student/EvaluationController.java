@@ -32,9 +32,12 @@ public class EvaluationController {
 	public ModelAndView addEvaluationAnswerValue(@RequestParam int evaluationTaskPoint, @RequestParam int evaluationExamPoint, 
 										   @RequestParam int evaluationReadyPoint, @RequestParam int evaluationPassionPoint, 
 										   @RequestParam int evaluationQuestionPoint, @RequestParam int nowYear, 
-										   @RequestParam String nowSemester, @RequestParam String loginId, 
+										   @RequestParam String nowSemester,
 										   @RequestParam int subjectId, @RequestParam String proId){
 		//String loginId="사용자1";//이 서비스 메소드값은 3가지 디에이메소드를 거쳐서 온 값임. insert평가, update평가응답(n->y), select설문응답정보&여부 
+		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String loginId = users.getUsersId();
+		
 		List<EvaluationAnswer> evaluationAnswerValueListResult = evaluationServiceImpl.addEvaluationAnswerValue(evaluationTaskPoint, evaluationExamPoint, evaluationReadyPoint, evaluationPassionPoint, evaluationQuestionPoint, nowYear, nowSemester, loginId, subjectId, proId);
 		return new ModelAndView ("student/evaluationAnswer/evaluationAnswerView.tiles", "evaluationAnswerValueListResult", evaluationAnswerValueListResult);
 		//return new ModelAndView ("contents/student/evaluationAnswer/evaluationAnswerView", "evaluationAnswerValueListResult", evaluationAnswerValueListResult);
@@ -70,6 +73,7 @@ public class EvaluationController {
 		   }
 		   model.addObject(entry.getKey().toString(), entry.getValue());	// 재적상태도 정상이고 지금 현재도 설문응답기간이면 설문응답 리스트 담는다.
 		}
+		System.out.println(model);
 		model.setViewName("student/evaluationAnswer/evaluationAnswerView.tiles"); // 재적상태도 정상이고 지금 현재도 설문응답기간이면 담은 설문응답 리스트 갖고 설문응답페이지로 이동
 		return model;
 	}
