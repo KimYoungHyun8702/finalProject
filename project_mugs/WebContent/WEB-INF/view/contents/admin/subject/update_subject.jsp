@@ -114,7 +114,7 @@ $(document).ready(function(){
 </head>
 <body>
 <h2>과목 수정</h2>
-	<hr>
+	<br>
 	<form action="${initParam.rootPath }/admin/updateSubjectContorller.do" method="post" onsubmit="return check()">
 	 <center><table id="selectSubject" border="2" style="border-color: black">
 		<thead>

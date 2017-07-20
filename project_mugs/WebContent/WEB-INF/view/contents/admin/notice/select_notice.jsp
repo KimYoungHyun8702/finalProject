@@ -7,7 +7,7 @@
 </head>
 <body>
 <h2>공지사항</h2>
-<hr>
+<br>
 ${requestScope.notice.usersName }
 ${requestScope.date }<br>
 ${requestScope.notice.noticeContent }

@@ -31,7 +31,7 @@ function check(){
 </head>
 <body>
 <h2>졸업 학점 등록</h2>
-<hr>
+<br>
 	<form action="${initParam.rootPath }/admin/insertGraduationCreditController.do" method="post" onsubmit="return check()">
 			학과 이름 : <input type="text" value="${param.majorName }" readonly/><br>
 			적용 연도 : <input type="number" name="graduationCreditYear" id="graduationCreditYear"/><br>

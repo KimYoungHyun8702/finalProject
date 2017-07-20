@@ -1982,6 +1982,9 @@ pre code {
     right: 91.66666667%;
   }
   .col-md-pull-10 {
+<<<<<<< HEAD
+    right: 8
+=======
     right: 83.33333333%;
   }
   .col-md-pull-9 {
@@ -6758,4 +6761,3 @@ button.close {
     display: none !important;
   }
 }
-/*# sourceMappingURL=bootstrap.css.map */

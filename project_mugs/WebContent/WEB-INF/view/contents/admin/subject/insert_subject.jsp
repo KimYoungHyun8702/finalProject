@@ -12,7 +12,6 @@ input{
 }
 table{
 	width:100%;
-	
 }
 td{
 	padding: 5px;

@@ -62,6 +62,7 @@ $(document).ready(function(){
 </head>
 <body>
 	<h3>학과 조회</h3>
+	<br>
 	<c:if test="${sessionScope.majordeleteMessage != null}">
 	<script type="text/javascript">
 		alert("삭제되었습니다");

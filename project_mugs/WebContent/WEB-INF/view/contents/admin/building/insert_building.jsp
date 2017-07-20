@@ -11,12 +11,11 @@ input{
 }
 table{
 	width:100%;
-	
 }
 td{
-	padding: 5px;
 	border: 1px solid black;
 	text-align:center;
+	font-size: 15px;
 }
 select{
 	width:150px;
@@ -65,39 +64,41 @@ function check(){
 </head>
 <body>
 <h2>건물 등록</h2>
-<hr>
+<br>
 	<form action="${initParam.rootPath }/admin/insertBuildingController.do" method="post" onsubmit="return check()">
 			<table border="1">
 				<thead>
 					<tr>
-						<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="건물이름" disabled></th>
-						<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder=건물사진 disabled></th>
-						<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="건물X좌표" disabled></th>
+						<th align="center"><input type="text" class="form-control" placeholder="건물이름" disabled></th>
+						<th align="center"><input type="text" class="form-control" placeholder=건물사진 disabled></th>
+						<th align="center"><input type="text" class="form-control" placeholder="건물X좌표" disabled></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td align="center"><input type="text" name="buildingName" id="buildingName"/></td>
-						<td align="center"><input type="text" name="buildingImg" id="buildingImg"/></td>
-						<td align="center"><input type="text" name="buildingX" id="buildingX"/></td>
+						<td align="center"><input type="text" style="border: 0" name="buildingName" id="buildingName"/></td>
+						<td align="center"><input type="text" style="width: 500px;border: 0" name="buildingImg" id="buildingImg"/></td>
+						<td align="center"><input type="text" style="width: 300px;border: 0" name="buildingX" id="buildingX"/></td>
 					</tr>
 				</tbody>
 				<thead>
 					<tr>
-						<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="건물 Y좌표" disabled></th>
-						<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="건물 전화번호" disabled></th>
-						<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="건물 주소" disabled></th>
+						<th align="center"><input type="text" class="form-control" placeholder="건물 Y좌표" disabled></th>
+						<th align="center"><input type="text" class="form-control" placeholder="건물 주소" disabled></th>
+						<th align="center"><input type="text" class="form-control" placeholder="건물 전화번호" disabled></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td align="center"><input type="text" name="buildingY" id="buildingY"/></td>
-						<td align="center"><input type="text" name="buildingPhoneNum" id="buildingPhoneNum"/></td>
-						<td align="center"><input type="text" name="buildingAddr" id="buildingAddr"/></td>
+						<td align="center"><input type="text" style="width: 300px;border: 0" name="buildingY" id="buildingY"/></td>
+						<td align="center"><input type="text" style="width: 500px;border: 0" name="buildingAddr" id="buildingAddr"/></td>
+						<td align="center"><input type="text" style="border: 0" name="buildingPhoneNum" id="buildingPhoneNum"/></td>
 					</tr>
 				</tbody>
 			</table><br>
 			<center><input type="submit" value="등록"></center>
+			<br>
 			<sec:csrfInput/>
 	</form>
+	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 </body>

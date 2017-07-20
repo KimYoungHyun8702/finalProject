@@ -3,6 +3,41 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+input{
+   text-align:center;
+   font-size: 15px;
+}
+table{
+   width:100%;
+}
+td{
+   border: 1px solid black;
+   text-align:center;
+}
+select{
+   width:150px;
+   height: 35px;
+   padding: 5px;
+}
+#product_info_layer{
+   width:700px;
+   border: 1px solid gray;
+   padding:5px;
+   display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+   cursor: pointer;
+}
+.form-controler {
+   color:black;
+}
+h3{
+   font-family:돋움체;
+}
+
+
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
@@ -24,15 +59,15 @@ function expel(usersId){
 		</script>
 		<% session.removeAttribute("expelMessage"); %>
 </c:if>
-<hr>
+<br>
 	<table border="1">
 		<thead>
 			<tr>
-				<td align="center">학과</td>
-				<td align="center">학생 학번</td>
-				<td align="center">학생 이름</td>
-				<td align="center">학사 경고 받은 학기</td>
-				<td align="center">제적</td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="학과" disabled></th>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="학생 학번" disabled></th>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="학생 이름" disabled></th>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="학사 경고 받은 학기" disabled></th>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="제적" disabled></th>
 			</tr>
 		</thead>
 		<tbody>

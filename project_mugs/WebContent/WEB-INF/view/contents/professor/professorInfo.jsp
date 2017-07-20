@@ -12,13 +12,11 @@
 <style type="text/css">
 input{
 	text-align:center;
+	font-size: 15;
 }
 table{
-	width:700px;
+	width:100%;
 	
-}
-th {
-	bgcolor:peru;
 }
 td{
 	padding: 5px;
@@ -26,7 +24,7 @@ td{
 }
 select{
 	width:150px;
-	height: 35px;
+	height: 30px;
 	padding: 5px;
 }
 #product_info_layer{
@@ -62,67 +60,101 @@ $(document).on("click", "#updateBtn", function(){
 </head>
 
 <body>
-교수개인정보~~~<br>
-
-	<c:choose>
-		<c:when test="${sessionScope.professor.usersPhoto != null}">
-			<img src ="${initParam.rootPath}/resource/up_image/${sessionScope.professor.usersPhoto}" id="imageSpace" width="110px" height="100px">
-		</c:when>
-	<c:otherwise>
-			<img src ="${initParam.rootPath}/resource/up_image/1.jpg" width="110px" height="100px">
-		</c:otherwise>
-	</c:choose>
-	<br><br>
-	
-	<center><table border="2" style="width: 300px; border-color: black"> 
-	<tr align="center">
-		<th><input type="text" class="form-control" placeholder="교수번호" disabled></th>
-		<th><input type="text" class="form-control" placeholder="성명" disabled></th>
-		<th><input type="text" class="form-control" placeholder="영문성명" disabled></th>
-		<th><input type="text" class="form-control" placeholder="주민번호" disabled></th>
-		<th><input type="text" class="form-control" placeholder="이메일" disabled></th>
-		<th><input type="text" class="form-control" placeholder="집 전화번호" disabled></th>
-	</tr>
-	<tr align="center">  
-		<td><input type="text" id="usersId" name="usersId" value="${sessionScope.professor.usersId}" readonly="readonly"></td>
-	    <input type="text" id="usersPassword" name="usersPassword" value="${sessionScope.professor.usersPassword}" readonly="readonly" style="display: none;">
-		<td><input type="text" id="usersName" name="usersName" value="${sessionScope.professor.usersName}" readonly="readonly"></td>
-		<td><input type="text" id="usersEngName" name="usersEngName" value="${sessionScope.professor.usersEngName}" readonly="readonly"></td>		
-		<td><input type="text" id="usersRRN" name="usersRRN" value="${sessionScope.professor.usersRRN}" readonly="readonly"></td>
-		<td><input type="text" name ="usersEmail" id="usersEmail" value="${sessionScope.professor.usersEmail}" readonly="readonly"></td>
-		<td><input type="text" name ="usersPhoneNum" id="usersPhoneNum" value="${sessionScope.professor.usersPhoneNum}" readonly="readonly"></td>
-	</tr>
-	<tr align="center">
-		<th><input type="text" class="form-control" placeholder="핸드폰번호" disabled></th>
-		<th><input type="text" class="form-control" placeholder="국적" disabled></th>
-		<th colspan='2'><input type="text" class="form-control" placeholder="본적지" disabled></th>
-		<th colspan='2'><input type="text" class="form-control" placeholder="현주소" disabled></th>
-	</tr>
-	<tr align="center">
-	    <td><input type="text" name ="usersCellNum" id="usersCellNum" value="${sessionScope.professor.usersCellNum}" readonly="readonly"></td>
-		<td><input type="text" id="usersNational" name="usersNational" value="${sessionScope.professor.usersNational}" readonly="readonly"></td>
-		<td colspan="2"><input style="width:190px" type="text" id="usersBornAddr" name="usersBornAddr" value="${sessionScope.professor.usersBornAddr}"></td>
-		<td colspan="2"><input style="width:190px" type="text" id="usersCurrentAddr" name="usersCurrentAddr" value="${sessionScope.professor.usersCurrentAddr}"></td>
-	</tr>
-</table></center>
+<<<<<<< HEAD
+<h3>교수 정보 조회</h3>
+<br>
+<ul><li><h4>교수 기본 정보</h4></li></ul>	
+	<table border="2">
+		<colgroup>
+			<col width="20%">
+			<col width="20%">
+			<col width="60%">
+		</colgroup>
+		<thead>
+			<tr>
+				<td rowspan="4" style="height: 34px"><c:choose>
+														<c:when test="${sessionScope.professor.usersPhoto != null}">
+																<img src ="${initParam.rootPath}/resource/up_image/${sessionScope.professor.usersPhoto}" id="imageSpace" width="150px" height="150px">
+															</c:when>
+														<c:otherwise>
+																<img src ="${initParam.rootPath}/resource/up_image/1.jpg" width="150px" height="150px">
+															</c:otherwise>
+														</c:choose></td>
+				<th><input type="text" style="height: 40px" class="form-control" placeholder="교수번호" disabled></th>
+				<td style="height: 34px"><input style="border: 0" type="text" id="usersId" name="usersId" value="${sessionScope.professor.usersId}" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<th><input type="text" style="height: 40px" class="form-control" placeholder="성명" disabled></th>
+				<td style="height: 34px"><input style="border: 0" type="text" id="usersName" name="usersName" value="${sessionScope.professor.usersName}" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<th><input type="text" style="height: 40px" class="form-control" placeholder="영문성명" disabled></th>
+				<td style="height: 34px"><input style="border: 0" type="text" id="usersEngName" name="usersEngName" value="${sessionScope.professor.usersEngName}" readonly="readonly"></td>	
+			</tr>
+			<tr>
+				<th><input type="text" style="height: 40px" class="form-control" placeholder="주민번호" disabled></th>
+				<td style="height: 34px"><input style="border: 0" type="text" id="usersRRN" name="usersRRN" value="${sessionScope.professor.usersRRN}" readonly="readonly"></td>
+			</tr>
+		</thead>
+	</table>
+<ul><li><h4>교수 학적 정보</h4></li></ul>
+	<table border="2">
+		<colgroup>
+			<col width="20%">
+			<col width="30%">
+			<col width="20%">
+			<col width="30%">
+		</colgroup>
+		<thead>
+			<tr>
+				<th><input type="text" style="height: 40px" class="form-control" placeholder="졸업대학교" disabled></th>
+				<td style="height: 34px" id ="proUniversity">${sessionScope.professor.proUniversity}</td>
+				<th><input type="text" style="height: 40px" class="form-control" placeholder="졸업대학원" disabled></th>
+				<td style="height: 34px" id ="proGradSchool">${sessionScope.professor.proGradSchool}</td>
+			</tr>
+			<tr>
+				<th><input type="text" style="height: 40px" class="form-control" placeholder="교수실전화번호" disabled></th>
+				<td style="height: 34px" id ="proOfficePhoneNum">${sessionScope.professor.proOfficePhoneNum}</td>
+				<th><input type="text" style="height: 40px" class="form-control" placeholder="연구실전화번호" disabled></th>	
+				<td style="height: 34px" id ="proLaboratoryPhoneNum">${sessionScope.professor.proLaboratoryPhoneNum}</td>
+			</tr>
+		</thead>
+	</table>
+<ul><li><h4>교수 카드 정보</h4></li></ul>
+	<table border="2">
+		<colgroup>
+			<col width="15%">
+			<col width="15%">
+			<col width="15%">
+			<col width="15%">
+			<col width="15%">
+			<col width="15%">
+		</colgroup>
+		<thead>
+			<tr>
+				<th><input type="text" style="height: 40px" class="form-control" placeholder="본적지" disabled></th>
+				<td style="height: 34px" colspan="5"><input type="text" style="border: 0;width: 500px" id="usersBornAddr" name="usersBornAddr" value="${sessionScope.professor.usersBornAddr}"></td>
+			</tr>
+			<tr>
+				<th><input type="text" style="height: 40px" class="form-control" placeholder="현주소" disabled></th>
+				<td style="height: 34px" colspan="5"><input type="text" id="usersCurrentAddr" style="border: 0;width: 500px" name="usersCurrentAddr" value="${sessionScope.professor.usersCurrentAddr}"></td>
+			</tr>
+			<tr>
+				<th><input type="text" style="height: 40px" class="form-control" placeholder="국적" disabled></th>
+				<td style="height: 34px"><input type="text" id="usersNational" style="border: 0" name="usersNational" value="${sessionScope.professor.usersNational}" readonly="readonly"></td>
+				<th><input type="text" style="height: 40px" class="form-control" placeholder="집 전화번호" disabled></th>
+				<td style="height: 34px"><input type="text" name ="usersPhoneNum" style="border: 0" id="usersPhoneNum" value="${sessionScope.professor.usersPhoneNum}" readonly="readonly"></td>
+				<th><input type="text" style="height: 40px" class="form-control" placeholder="핸드폰번호" disabled></th>
+			    <td style="height: 34px"><input type="text" name ="usersCellNum" style="border: 0" id="usersCellNum" value="${sessionScope.professor.usersCellNum}" readonly="readonly"></td>
+			</tr>
+			<tr>
+				<th><input type="text" style="height: 40px" class="form-control" placeholder="이메일" disabled></th>
+				<td style="height: 34px" colspan="5"><input type="text" name ="usersEmail" style="border: 0;width: 500px" id="usersEmail" value="${sessionScope.professor.usersEmail}" readonly="readonly"></td>
+			</tr>
+		</thead>
+	</table>
+	<input type="hidden" id="usersEnable" name="usersEnable" value="${sessionScope.professor.usersId}" readonly>
 <br><br>
-<center><table border="2" style="width: 500px; border-color: black"> 
-	<tr align="center"> 
-		<th><input type="text" class="form-control" placeholder="졸업대학교" disabled></th>
-		<th><input type="text" class="form-control" placeholder="졸업대학원" disabled></th>
-		<th><input type="text" class="form-control" placeholder="교수실전화번호" disabled></th>
-		<th><input type="text" class="form-control" placeholder="연구실전화번호" disabled></th>	
-	</tr>
-	<tr align="center">  
-		<td id ="proUniversity">${sessionScope.professor.proUniversity}</td>
-		<td id ="proGradSchool">${sessionScope.professor.proGradSchool}</td>
-		<td id ="proOfficePhoneNum">${sessionScope.professor.proOfficePhoneNum}</td>
-		<td id ="proLaboratoryPhoneNum">${sessionScope.professor.proLaboratoryPhoneNum}</td>
-	</tr>
-</table></center>
-
-
-	<input type="text" id="usersEnable" name="usersEnable" value="${sessionScope.professor.usersId}" style="display: none;">
 	<form action="/project_mugs/professor/professorInfoUpdate.do" method="get"><br>
 	<center><input type="submit" id="UpdateBtn" value="수정"></center>
 	<sec:csrfInput/>

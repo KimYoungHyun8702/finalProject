@@ -51,7 +51,6 @@ public class GraduationCreditController {
 	@ResponseBody
 	public GraduationCredit selectGraduationCreditForUpdate(int majorId, int graduationCreditYear){
 		GraduationCredit graduationCredit = graduationCreditService.selectGraduationCreditbyId(majorId, graduationCreditYear);
-		System.out.println(graduationCredit);
 		return graduationCredit;
 	}
 }

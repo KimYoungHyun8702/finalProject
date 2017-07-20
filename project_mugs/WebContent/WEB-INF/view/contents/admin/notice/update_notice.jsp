@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2>공지사항 수정</h2>
-<hr>
+<br>
 <form id="insertForm" action="${initParam.rootPath }/admin/updateNoticeController.do" method="post" onsubmit="return confirm('수정하시겠습니까?')">
 	공지 내용<br><textarea cols="130" rows="20" name="noticeContent" >${requestScope.notice.noticeContent }</textarea><br>
 	<input type="hidden" name="noticeId" value="${requestScope.notice.noticeId }"/>

@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2>단과대학 등록</h2>
-<hr>
+<br>
 	<form action="${initParam.rootPath }/admin/insertCollegeController.do" method="post" onsubmit="return confirm('등록하시겠습니까?')">
 			단과대학 이름 : <input type="text" name="collegeName"/> &nbsp;&nbsp;
 			<input type="submit" value="등록">

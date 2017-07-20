@@ -10,6 +10,10 @@
 <head>
 <meta>
 <style type="text/css">
+input{
+	text-align:center;
+	font-size: 15;
+}
 table{
 	width:100%;
 	border-collapse: collapse;
@@ -17,9 +21,6 @@ table{
 td{
 	padding: 5px;
 	border: 1px solid black;
-}
-th, input{
-	text-align:center;
 }
 h3{
 	font-family:돋움체;
@@ -66,7 +67,8 @@ function showUpImg(){
 </head>
 <body>
 <%-- ${initParam.rootPath}/resource/up_image/1.jpg --%>
-	<h1>교수정보조회</h1>
+	<h3>교수 정보 수정</h3>
+	<br>
 	<h3>성명, 주민번호, 학번, 학적정보 등 기존 사항은 수정할 수 없습니다.</h3>
 	<p>
 
@@ -104,7 +106,6 @@ function showUpImg(){
 	</tr>
 	<tr align="center">  
 		<td><input type="text" id="usersId" name="usersId" value="${sessionScope.professor.usersId}" readonly="readonly"></td>
-	   <%--  <input type="text" id="usersPassword" name="usersPassword" value="${sessionScope.professor.usersPassword}" readonly="readonly" style="display: none;"> --%>
 		<td><input type="text" id="usersName" name="usersName" value="${sessionScope.professor.usersName}" readonly="readonly"></td>
 		<td><input type="text" id="usersEngName" name="usersEngName" value="${sessionScope.professor.usersEngName}" readonly="readonly"></td>		
 		<td><input type="text" id="usersRRN" name="usersRRN" value="${sessionScope.professor.usersRRN}" readonly="readonly"></td>
