@@ -23,7 +23,6 @@ th {
 td{
 	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
 }
 select{
 	width:150px;

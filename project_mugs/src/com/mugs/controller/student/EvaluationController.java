@@ -44,7 +44,6 @@ public class EvaluationController {
 	
 	@RequestMapping("compareEvaluationPeriod")
 	public ModelAndView compareEvaluationPeriod(){
-		System.out.println("기간조회컨트롤러로이동완료");
 		//결과값이 일정명이어야 함.
 		ModelAndView model = new ModelAndView();
 		
@@ -52,7 +51,7 @@ public class EvaluationController {
 		String loginId = users.getUsersId();
 		
 		HashMap<String, Object> map = evaluationServiceImpl.getEvaluationPeriod(loginId);
-		System.out.println("기간조회완료");
+		System.out.println("map:"+map);
 		Iterator iterator = map.entrySet().iterator();
 		
 		// map의 다음 키값이 있는지 없는지 확인하면서 작업 진행
@@ -75,7 +74,7 @@ public class EvaluationController {
 		   System.out.println(entry.getValue());
 		}
 		model.setViewName("student/evaluationAnswer/evaluationAnswerView.tiles"); // 재적상태도 정상이고 지금 현재도 설문응답기간이면 담은 설문응답 리스트 갖고 설문응답페이지로 이동
-		System.out.println("모델담기완료");
+		System.out.println("#######"+model);
 		return model;
 	}
 	

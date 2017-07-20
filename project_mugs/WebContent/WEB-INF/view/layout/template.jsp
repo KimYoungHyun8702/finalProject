@@ -27,20 +27,20 @@
 <style type="text/css">
 .whole {
 	height: 100%;
-	font-family:맑은고딕;
+	font-family:굴림체;
 	width:100%;
 }
 .content{
 	
 	overflow-x: auto;
 	overflow-y: auto;
-	font-family:맑은고딕;	
+	font-family:굴림체;	
 	height:1050px;
 	width:100%;
 	
 }
 .side {
-	font-family:맑은고딕;
+	font-family:굴림체;
 }
 div>.page-header{
 

@@ -14,7 +14,7 @@
          height:18px;
       }
    .side {
-   font-family:맑은고딕;
+   font-family:굴림체;
     background:white;
     background-size: 100% auto;
     width:100%;

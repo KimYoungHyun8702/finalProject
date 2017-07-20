@@ -73,13 +73,13 @@ td{
 	<tbody id="tbody">
 			<c:forEach items="${requestScope.myCourseListResult}" var="courseList">
 				<tr>
-					<td>${courseList.subjectId}</td>
-					<td>${courseList.subject.subjectName}</td>
-					<td>${courseList.subject.subjectType}</td>
-					<td>${courseList.subject.subjectCredit}</td>
-					<td>${courseList.professor.usersName}</td>
-					<td>${courseList.subject.subjectTime}</td>
-					<td>${courseList.subject.lectureId}</td>
+					<td align="center">${courseList.subjectId}</td>
+					<td align="center">${courseList.subject.subjectName}</td>
+					<td align="center">${courseList.subject.subjectType}</td>
+					<td align="center">${courseList.subject.subjectCredit}</td>
+					<td align="center">${courseList.professor.usersName}</td>
+					<td align="center">${courseList.subject.subjectTime}</td>
+					<td align="center">${courseList.subject.lectureId}</td>
 				</tr>
 			</c:forEach>
 	</tbody>

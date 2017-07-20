@@ -60,8 +60,8 @@ h3{
             $("#thead").html("<th><input type='text' class='form-control' placeholder='년도' disabled></th><th><input type='text' class='form-control' placeholder='학기' disabled></th><th><input type='text' class='form-control' placeholder='평점평균' disabled></th><th><input type='text' class='form-control' placeholder='학사경고횟수' disabled></th>");
             $.each(list, function(){
                count++;
-                   txt += "<tr><td>"+this.probationYear+"</td><td>"+this.probationSemester+"</td><td>"
-                      +this.probationCreditAverage+"</td><td>"+count+"</tr>";
+                   txt += "<tr><td style='text-align:center'>"+this.probationYear+"</td><td style='text-align:center'>"+this.probationSemester+"</td><td style='text-align:center'>"
+                      +this.probationCreditAverage+"</td><td style='text-align:center'>"+count+"</tr>";
                       
             })
             $("#tbody").html(txt);

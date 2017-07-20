@@ -16,7 +16,6 @@ table{
 }
 td{
 	padding: 5px;
-	text-align:center;
 	border: 1px solid black;
 }
 th, input{
@@ -67,11 +66,11 @@ function showUpImg(){
 </head>
 <body>
 <%-- ${initParam.rootPath}/resource/up_image/1.jpg --%>
-	<h1>학생정보조회</h1>
+	<h1>교수정보조회</h1>
 	<h3>성명, 주민번호, 학번, 학적정보 등 기존 사항은 수정할 수 없습니다.</h3>
 	<p>
 
-	<center><table border="2" style="border-color: black" style="width:600px"s>
+	<table border="2" style="border-color: black; width:100px">
 	<tr> 		
 		<td id="imageSpace">
 		<c:choose>
@@ -88,7 +87,7 @@ function showUpImg(){
 		<td><input type="button" value="이미지변경 " id="updateImg" onclick="showUpImg();">
 			<input type="button" value="삭제" onclick="deleteImg();"></td> 
 	</tr> 
-	</table></center>
+	</table>
 <br><br>
 
 <form action="/project_mugs/professor/updateProfile.do" method="post">

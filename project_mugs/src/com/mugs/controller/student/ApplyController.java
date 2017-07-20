@@ -53,7 +53,6 @@ public class ApplyController {
 		
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String stuId = users.getUsersId();
-		
 		return applyServiceImpl.addLeaveReturnApplication(stuId, LRApplicationType);
 	}
 	
@@ -110,7 +109,6 @@ public class ApplyController {
 	public HashMap<String, Object> addCreditGiveUp(int creditId) {
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String stuId = users.getUsersId();
-		
 		return applyServiceImpl.addCreditGiveUp(creditId, stuId);
 	}
 	
@@ -126,8 +124,7 @@ public class ApplyController {
 	public HashMap<String, Object> deleteCreditGiveUp(int CGUId) {
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String stuId = users.getUsersId();
-		
-		return null;
+		return applyServiceImpl.deleteCreditGiveUp(stuId, CGUId);
 	}
 	
 	

@@ -114,7 +114,6 @@ public class CreditDaoImpl implements CreditDao {
 		map.put("id", id);
 		map.put("year", year);
 		map.put("semester", semester);
-
 		return session.selectList(makeSqlId("selectCreditByYearAndSemester"), map);
 	}
 
@@ -160,7 +159,7 @@ public class CreditDaoImpl implements CreditDao {
 		map.put("nowYear", nowYear);
 		map.put("semester", semester);
 		map.put("stuId", stuId);
-		return session.selectList(makeSqlId("selectCreditScoreBySubjectIdStuId"), map);
+		return session.selectList(makeSqlId("selectCreditByYearSemesterStuId"), map);
 	}
 	
 	public Credit selectCreditByFourId(int creditYear, String creditSemester, String stuId, int subjectId) {

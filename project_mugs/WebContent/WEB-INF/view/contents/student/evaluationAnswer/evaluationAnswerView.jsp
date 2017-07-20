@@ -101,10 +101,10 @@ $(document).ready(function(){
 	<tbody id="tbody">
 	  <c:forEach items="${requestScope.evaluationAnswerValueListResult}" var="evaluationList">
 			<tr>
-				<td>${evaluationList.subjectId}</td>
-				<td>${evaluationList.subject.subjectName}</td>
-				<td>${evaluationList.professor.usersName}</td>
-				<td>
+				<td style="text-align:center">${evaluationList.subjectId}</td>
+				<td style="text-align:center">${evaluationList.subject.subjectName}</td>
+				<td style="text-align:center">${evaluationList.professor.usersName}</td>
+				<td style="text-align:center">
 					<form action="${initParam.rootPath }/evaluationAnswerRegisteration.do"> <!-- 설문응답하는 jsp로 이동 -->
 						<input type="hidden" value="${evaluationList.course.courseYear}" name="nowYear">
 						<input type="hidden" value="${evaluationList.course.courseSemester}" name="nowSemester">
@@ -116,8 +116,8 @@ $(document).ready(function(){
 					<sec:csrfInput/><%-- csrf 토큰 --%>	
 					</form>
 				</td>
-				<%-- <td><button onclick="location.href='${initParam.rootPath }/evaluationAnswerRegisteration.do'">${evaluationList.evaluationAnswerState}</button></td> --%>
 			</tr>
+			
 		</c:forEach>  
 	</tbody>
 </table><br>

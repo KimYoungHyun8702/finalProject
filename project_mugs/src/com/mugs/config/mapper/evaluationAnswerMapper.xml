@@ -86,19 +86,17 @@
 	</select>
 	
 	<select id="selectEvaluationAnswerValueList" resultMap="evaluationAnswer-subject-professor-course-resultmap" parameterType="map">
-	  SELECT  s.subject_id, s.subject_name, s.subject_type, u.users_name, e.evaluation_answer_state, 
-             c.course_year, c.course_semester, c.stu_id, c.subject_id, p.pro_id
-      FROM    subject s, professor p, course c, users u, professor_subject q, evaluation_answer e
-      where    c.subject_id=e.subject_id
-      and    e.subject_id=s.subject_id
-      and    s.subject_id=q.subject_id
-      and    q.pro_id=p.pro_id
-      and    p.pro_id=u.users_id
-      AND     c.course_year = #{nowYear}
-      AND     c.course_semester = #{nowSemester}
-      AND     c.stu_id = #{loginId}
-      and e.evaluation_answer_semester = #{nowSemester}
-      and e.evaluation_answer_year = #{nowYear}
+      select s.subject_name, e.evaluation_answer_state, u.users_name, e.subject_id
+	  from evaluation_answer e, subject s, professor p, professor_subject q, users u
+	  where e.subject_id = s.subject_id
+	  and s.subject_id=q.subject_id
+	  and q.pro_Id=p.pro_Id
+      and p.pro_id=u.users_Id
+	  and e.evaluation_answer_year=q.pro_subject_year
+	  and e.evaluation_answer_semester=q.pro_subject_semester
+	  and e.STU_ID=#{loginId}
+	  and e.evaluation_answer_semester =#{nowSemester}
+	  and e.evaluation_answer_year=#{nowYear}
    </select> 
    
    	<!-- 설문응답에 응하였을 시, 설문응답상태가 'N'에서 'Y'로 바뀌는 update문 -->
@@ -129,5 +127,17 @@
 		AND    p.pro_id = u.users_id
  
 	</select>
+	
+	<!-- 
+		By Baek.J.H
+		수강신청 취소를 하면 수강신청시 함께 등록했던 평가등록 여부 데이터도 삭제 
+	-->
+	<delete id="deleteEvaluationAnswerByEtc" parameterType="map">
+		DELETE FROM evaluation_answer
+		WHERE  evaluation_answer_year=#{nowYear}
+		and    evaluation_answer_semester=#{semester}
+		and    stu_id=#{stuId}
+		and    subject_id=#{subjectId}
+	</delete>
 	
 </mapper>

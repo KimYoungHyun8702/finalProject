@@ -19,7 +19,7 @@ table{
    
 }
 td{
-   padding: 0px;
+   padding: 5px;
    border: 1px solid black;
 }
 select{
@@ -38,9 +38,6 @@ select{
 }
 h3{
    font-family:돋움체;
-}
-#tbody>tr{
-   height:5px;
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -87,20 +84,18 @@ $(document).ready(function(){
                    allCredit+=this.subject.subjectCredit;
                    acquireCredit+=this.creditAcquire;
                    score+=this.creditScore;
-                       txt += "<tr style='height:5px'><td style='height:5px'>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
-                          +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+                       txt += "<tr><td style='text-align:center'>"+this.creditYear+"</td><td style='text-align:center'>"+this.creditSemester+ "</td><td style='text-align:center'>"
+                          +this.subjectId+"</td><td style='text-align:center'>"+this.subject.subjectName+"</td><td style='text-align:center'>"+this.subject.subjectClass+"</td><td style='text-align:center'>"+this.subject.subjectType+"</td><td style='text-align:center'>"+this.subject.subjectCredit+"</td><td style='text-align:center'>"+this.creditGrade+"</td><td style='text-align:center'>"+this.creditScore+"</td><td style='text-align:center'>"+this.creditRecource+"</td></tr>";
                    }else{
                       count-=1;
                    }
                 })
                 
                 if(isNaN(score/count)){
-                  txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                  txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                   
                }else{
-                  txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>";
-                  alert(score);
-                  alert(count);
+                  txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>";
                }
                 $("#tbody").html(txt);
                 $("#tbody2").html(txt2);
@@ -153,22 +148,22 @@ $(document).ready(function(){
                 
                 $("#thead").html("<th><input type='text' class='form-control' placeholder='년도' disabled></th><th><input type='text' class='form-control' placeholder='학기' disabled></th><th><input type='text' class='form-control' placeholder='과목번호' disabled></th><th><input type='text' class='form-control' placeholder='과목명' disabled></th><th><input type='text' class='form-control' placeholder='분반' disabled></th><th><input type='text' class='form-control' placeholder='이수구분' disabled></th><th><input type='text' class='form-control' placeholder='학점' disabled></th><th><input type='text' class='form-control' placeholder='등급' disabled></th><th><input type='text' class='form-control' placeholder='평점' disabled></th><th><input type='text' class='form-control' placeholder='재수강여부' disabled></th>");
                 $("#thead2").html("<th><input type='text' class='form-control' placeholder='신청학점' disabled></th><th><input type='text' class='form-control' placeholder='취득학점' disabled></th><th><input type='text' class='form-control' placeholder='평점평균' disabled></th>");
-                $.each(list, function(){
+               $.each(list, function(){
                   if(this.creditGrade!='포기'){
                   allCredit+=this.subject.subjectCredit;
                   acquireCredit+=this.creditAcquire;
                    score+=this.creditScore;
-                      txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
-                         +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+                      txt += "<tr><td style='text-align:center'>"+this.creditYear+"</td><td style='text-align:center'>"+this.creditSemester+ "</td><td style='text-align:center'>"
+                         +this.subjectId+"</td><td style='text-align:center'>"+this.subject.subjectName+"</td><td style='text-align:center'>"+this.subject.subjectClass+"</td><td style='text-align:center'>"+this.subject.subjectType+"</td><td style='text-align:center'>"+this.subject.subjectCredit+"</td><td style='text-align:center'>"+this.creditGrade+"</td><td style='text-align:center'>"+this.creditScore+"</td><td style='text-align:center'>"+this.creditRecource+"</td></tr>";
                   }else{
                      count-=1;
                   }
                   })
                if(isNaN(score/count)){
-                  txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                  txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                   
                }else{
-                  txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                  txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                }
                $("#tbody2").html(txt2);
                $("#tbody").html(txt);
@@ -202,22 +197,22 @@ $(document).ready(function(){
                 
                 $("#thead").html("<th><input type='text' class='form-control' placeholder='년도' disabled></th><th><input type='text' class='form-control' placeholder='학기' disabled></th><th><input type='text' class='form-control' placeholder='과목번호' disabled></th><th><input type='text' class='form-control' placeholder='과목명' disabled></th><th><input type='text' class='form-control' placeholder='분반' disabled></th><th><input type='text' class='form-control' placeholder='이수구분' disabled></th><th><input type='text' class='form-control' placeholder='학점' disabled></th><th><input type='text' class='form-control' placeholder='등급' disabled></th><th><input type='text' class='form-control' placeholder='평점' disabled></th><th><input type='text' class='form-control' placeholder='재수강여부' disabled></th>");
                 $("#thead2").html("<th><input type='text' class='form-control' placeholder='신청학점' disabled></th><th><input type='text' class='form-control' placeholder='취득학점' disabled></th><th><input type='text' class='form-control' placeholder='평점평균' disabled></th>");
-                $.each(list, function(){
+               $.each(list, function(){
                   if(this.creditGrade!='포기'){
                   allCredit+=this.subject.subjectCredit;
                   acquireCredit+=this.creditAcquire;
                    score+=this.creditScore;
-                      txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
-                         +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+                      txt += "<tr><td style='text-align:center'>"+this.creditYear+"</td><td style='text-align:center'>"+this.creditSemester+ "</td><td style='text-align:center'>"
+                         +this.subjectId+"</td><td style='text-align:center'>"+this.subject.subjectName+"</td><td style='text-align:center'>"+this.subject.subjectClass+"</td><td style='text-align:center'>"+this.subject.subjectType+"</td><td style='text-align:center'>"+this.subject.subjectCredit+"</td><td style='text-align:center'>"+this.creditGrade+"</td><td style='text-align:center'>"+this.creditScore+"</td><td style='text-align:center'>"+this.creditRecource+"</td></tr>";
                   }else{
                      count-=1;
                   }
                   })
                if(isNaN(score/count)){
-                  txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                  txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                   
                }else{
-                  txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                  txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                }
                $("#tbody2").html(txt2);
                $("#tbody").html(txt);
@@ -244,22 +239,22 @@ $(document).ready(function(){
                var count =list.length;
                $("#thead").html("<th><input type='text' class='form-control' placeholder='년도' disabled></th><th><input type='text' class='form-control' placeholder='학기' disabled></th><th><input type='text' class='form-control' placeholder='과목번호' disabled></th><th><input type='text' class='form-control' placeholder='과목명' disabled></th><th><input type='text' class='form-control' placeholder='분반' disabled></th><th><input type='text' class='form-control' placeholder='이수구분' disabled></th><th><input type='text' class='form-control' placeholder='학점' disabled></th><th><input type='text' class='form-control' placeholder='등급' disabled></th><th><input type='text' class='form-control' placeholder='평점' disabled></th><th><input type='text' class='form-control' placeholder='재수강여부' disabled></th>");
                $("#thead2").html("<th><input type='text' class='form-control' placeholder='신청학점' disabled></th><th><input type='text' class='form-control' placeholder='취득학점' disabled></th><th><input type='text' class='form-control' placeholder='평점평균' disabled></th>");
-                $.each(list, function(){
+            $.each(list, function(){
                if(this.creditGrade!='포기'){
                allCredit+=this.subject.subjectCredit;
                acquireCredit+=this.creditAcquire;
                   score+=this.creditScore;
-                   txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
-                      +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+                   txt += "<tr><td style='text-align:center'>"+this.creditYear+"</td><td style='text-align:center'>"+this.creditSemester+ "</td><td style='text-align:center'>"
+                      +this.subjectId+"</td><td style='text-align:center'>"+this.subject.subjectName+"</td><td style='text-align:center'>"+this.subject.subjectClass+"</td><td style='text-align:center'>"+this.subject.subjectType+"</td><td style='text-align:center'>"+this.subject.subjectCredit+"</td><td style='text-align:center'>"+this.creditGrade+"</td><td style='text-align:center'>"+this.creditScore+"</td><td style='text-align:center'>"+this.creditRecource+"</td></tr>";
                }else{
                   count-=1;
                }
             })
             if(isNaN(score/count)){
-               txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+               txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                
             }else{
-               txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+               txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
             }
                $("#tbody2").html(txt2);
             $("#tbody").html(txt);
@@ -295,18 +290,18 @@ $(document).ready(function(){
                       allCredit+=this.subject.subjectCredit;
                       acquireCredit+=this.creditAcquire;
                       score+=this.creditScore;
-                          txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
-                             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+                          txt += "<tr><td style='text-align:center'>"+this.creditYear+"</td><td style='text-align:center'>"+this.creditSemester+ "</td><td style='text-align:center'>"
+                             +this.subjectId+"</td><td style='text-align:center'>"+this.subject.subjectName+"</td><td style='text-align:center'>"+this.subject.subjectClass+"</td><td style='text-align:center'>"+this.subject.subjectType+"</td><td style='text-align:center'>"+this.subject.subjectCredit+"</td><td style='text-align:center'>"+this.creditGrade+"</td><td style='text-align:center'>"+this.creditScore+"</td><td style='text-align:center'>"+this.creditRecource+"</td></tr>";
                       }else{
                          count-=1;
                       }
                       })
                    
                    if(isNaN(score/count)){
-                     txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                     txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                      
                   }else{
-                     txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>";
+                     txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>";
                   }
                    $("#tbody").html(txt);
                    $("#tbody2").html(txt2);
@@ -331,22 +326,22 @@ $(document).ready(function(){
                 var count =list.length;
                 $("#thead").html("<th><input type='text' class='form-control' placeholder='년도' disabled></th><th><input type='text' class='form-control' placeholder='학기' disabled></th><th><input type='text' class='form-control' placeholder='과목번호' disabled></th><th><input type='text' class='form-control' placeholder='과목명' disabled></th><th><input type='text' class='form-control' placeholder='분반' disabled></th><th><input type='text' class='form-control' placeholder='이수구분' disabled></th><th><input type='text' class='form-control' placeholder='학점' disabled></th><th><input type='text' class='form-control' placeholder='등급' disabled></th><th><input type='text' class='form-control' placeholder='평점' disabled></th><th><input type='text' class='form-control' placeholder='재수강여부' disabled></th>");
                 $("#thead2").html("<th><input type='text' class='form-control' placeholder='신청학점' disabled></th><th><input type='text' class='form-control' placeholder='취득학점' disabled></th><th><input type='text' class='form-control' placeholder='평점평균' disabled></th>");
-                $.each(list, function(){
+               $.each(list, function(){
                   if(this.creditGrade!='포기'){
                   allCredit+=this.subject.subjectCredit;
                   acquireCredit+=this.creditAcquire;
                   score+=this.creditScore;
-                      txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
-                         +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+                      txt += "<tr><td style='text-align:center'>"+this.creditYear+"</td><td style='text-align:center'>"+this.creditSemester+ "</td><td style='text-align:center'>"
+                         +this.subjectId+"</td><td style='text-align:center'>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td style='text-align:center'>"+this.subject.subjectType+"</td><td style='text-align:center'>"+this.subject.subjectCredit+"</td><td style='text-align:center'>"+this.creditGrade+"</td><td style='text-align:center'>"+this.creditScore+"</td><td style='text-align:center'>"+this.creditRecource+"</td></tr>";
                   }else{
                      count-=1;
                   }
                })
                if(isNaN(score/count)){
-                  txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                  txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                   
                }else{
-                  txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                  txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                }
                $("#tbody2").html(txt2);
                $("#tbody").html(txt);
@@ -377,22 +372,22 @@ $(document).ready(function(){
                       
                       $("#thead").html("<th><input type='text' class='form-control' placeholder='년도' disabled></th><th><input type='text' class='form-control' placeholder='학기' disabled></th><th><input type='text' class='form-control' placeholder='과목번호' disabled></th><th><input type='text' class='form-control' placeholder='과목명' disabled></th><th><input type='text' class='form-control' placeholder='분반' disabled></th><th><input type='text' class='form-control' placeholder='이수구분' disabled></th><th><input type='text' class='form-control' placeholder='학점' disabled></th><th><input type='text' class='form-control' placeholder='등급' disabled></th><th><input type='text' class='form-control' placeholder='평점' disabled></th><th><input type='text' class='form-control' placeholder='재수강여부' disabled></th>");
                       $("#thead2").html("<th><input type='text' class='form-control' placeholder='신청학점' disabled></th><th><input type='text' class='form-control' placeholder='취득학점' disabled></th><th><input type='text' class='form-control' placeholder='평점평균' disabled></th>");
-                      $.each(list, function(){
+                     $.each(list, function(){
                         if(this.creditGrade!='포기'){
                         allCredit+=this.subject.subjectCredit;
                         acquireCredit+=this.creditAcquire;
                          score+=this.creditScore;
-                            txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
-                               +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+                            txt += "<tr><td style='text-align:center'>"+this.creditYear+"</td><td style='text-align:center'>"+this.creditSemester+ "</td><td style='text-align:center'>"
+                               +this.subjectId+"</td><td style='text-align:center'>"+this.subject.subjectName+"</td><td style='text-align:center'>"+this.subject.subjectClass+"</td><td style='text-align:center'>"+this.subject.subjectType+"</td><td style='text-align:center'>"+this.subject.subjectCredit+"</td><td style='text-align:center'>"+this.creditGrade+"</td><td style='text-align:center'>"+this.creditScore+"</td><td style='text-align:center'>"+this.creditRecource+"</td></tr>";
                         }else{
                            count-=1;
                         }
                         })
                      if(isNaN(score/count)){
-                        txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                        txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                         
                      }else{
-                        txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                        txt2+="<tr><td>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                      }
                      $("#tbody2").html(txt2);
                      $("#tbody").html(txt);
@@ -417,22 +412,22 @@ $(document).ready(function(){
                         var count =list.length;
                         $("#thead").html("<th><input type='text' class='form-control' placeholder='년도' disabled></th><th><input type='text' class='form-control' placeholder='학기' disabled></th><th><input type='text' class='form-control' placeholder='과목번호' disabled></th><th><input type='text' class='form-control' placeholder='과목명' disabled></th><th><input type='text' class='form-control' placeholder='분반' disabled></th><th><input type='text' class='form-control' placeholder='이수구분' disabled></th><th><input type='text' class='form-control' placeholder='학점' disabled></th><th><input type='text' class='form-control' placeholder='등급' disabled></th><th><input type='text' class='form-control' placeholder='평점' disabled></th><th><input type='text' class='form-control' placeholder='재수강여부' disabled></th>");
                         $("#thead2").html("<th><input type='text' class='form-control' placeholder='신청학점' disabled></th><th><input type='text' class='form-control' placeholder='취득학점' disabled></th><th><input type='text' class='form-control' placeholder='평점평균' disabled></th>");
-                         $.each(list, function(){
+                     $.each(list, function(){
                         if(this.creditGrade!='포기'){
                         allCredit+=this.subject.subjectCredit;
                         acquireCredit+=this.creditAcquire;
                         score+=this.creditScore;
-                            txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
-                               +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+                            txt += "<tr><td style='text-align:center'>"+this.creditYear+"</td><td style='text-align:center'>"+this.creditSemester+ "</td><td style='text-align:center'>"
+                               +this.subjectId+"</td><td style='text-align:center'>"+this.subject.subjectName+"</td><td style='text-align:center'>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td style='text-align:center'>"+this.subject.subjectCredit+"</td><td style='text-align:center'>"+this.creditGrade+"</td><td style='text-align:center'>"+this.creditScore+"</td><td style='text-align:center'>"+this.creditRecource+"</td></tr>";
                         }else{
                            count-=1;
                         }
                         })
                      if(isNaN(score/count)){
-                        txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                        txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                         
                      }else{
-                        txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                        txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                      }
                         $("#tbody2").html(txt2);
                      $("#tbody").html(txt);
@@ -460,22 +455,22 @@ $(document).ready(function(){
                         var count =list.length;
                         $("#thead").html("<th><input type='text' class='form-control' placeholder='년도' disabled></th><th><input type='text' class='form-control' placeholder='학기' disabled></th><th><input type='text' class='form-control' placeholder='과목번호' disabled></th><th><input type='text' class='form-control' placeholder='과목명' disabled></th><th><input type='text' class='form-control' placeholder='분반' disabled></th><th><input type='text' class='form-control' placeholder='이수구분' disabled></th><th><input type='text' class='form-control' placeholder='학점' disabled></th><th><input type='text' class='form-control' placeholder='등급' disabled></th><th><input type='text' class='form-control' placeholder='평점' disabled></th><th><input type='text' class='form-control' placeholder='재수강여부' disabled></th>");
                         $("#thead2").html("<th><input type='text' class='form-control' placeholder='신청학점' disabled></th><th><input type='text' class='form-control' placeholder='취득학점' disabled></th><th><input type='text' class='form-control' placeholder='평점평균' disabled></th>");
-                         $.each(list, function(){
+                     $.each(list, function(){
                         if(this.creditGrade!='포기'){
                         allCredit+=this.subject.subjectCredit;
                         acquireCredit+=this.creditAcquire;
                            score+=this.creditScore;
-                            txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
-                               +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+                            txt += "<tr><td style='text-align:center'>"+this.creditYear+"</td><td style='text-align:center'>"+this.creditSemester+ "</td><td style='text-align:center'>"
+                               +this.subjectId+"</td><td style='text-align:center'>"+this.subject.subjectName+"</td><td style='text-align:center'>"+this.subject.subjectClass+"</td><td style='text-align:center'>"+this.subject.subjectType+"</td><td style='text-align:center'>"+this.subject.subjectCredit+"</td><td style='text-align:center'>"+this.creditGrade+"</td><td style='text-align:center'>"+this.creditScore+"</td><td style='text-align:center'>"+this.creditRecource+"</td></tr>";
                         }else{
                            count-=1;
                         }
                         })
                      if(isNaN(score/count)){
-                        txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                        txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                         
                      }else{
-                        txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                        txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td>"+acquireCredit+"</td><td style='text-align:center'>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                      }
                         $("#tbody2").html(txt2);
                      $("#tbody").html(txt);
@@ -499,22 +494,22 @@ $(document).ready(function(){
                      var count =list.length;
                      $("#thead").html("<th><input type='text' class='form-control' placeholder='년도' disabled></th><th><input type='text' class='form-control' placeholder='학기' disabled></th><th><input type='text' class='form-control' placeholder='과목번호' disabled></th><th><input type='text' class='form-control' placeholder='과목명' disabled></th><th><input type='text' class='form-control' placeholder='분반' disabled></th><th><input type='text' class='form-control' placeholder='이수구분' disabled></th><th><input type='text' class='form-control' placeholder='학점' disabled></th><th><input type='text' class='form-control' placeholder='등급' disabled></th><th><input type='text' class='form-control' placeholder='평점' disabled></th><th><input type='text' class='form-control' placeholder='재수강여부' disabled></th>");
                      $("#thead2").html("<th><input type='text' class='form-control' placeholder='신청학점' disabled></th><th><input type='text' class='form-control' placeholder='취득학점' disabled></th><th><input type='text' class='form-control' placeholder='평점평균' disabled></th>");
-                      $.each(list, function(){
+                  $.each(list, function(){
                      if(this.creditGrade!='포기'){
                      allCredit+=this.subject.subjectCredit;
                      acquireCredit+=this.creditAcquire;
                      score+=this.creditScore;
-                         txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
-                            +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</td><td>"+this.creditRecource+"</td></tr>";
+                         txt += "<tr><td style='text-align:center'>"+this.creditYear+"</td><td style='text-align:center'>"+this.creditSemester+ "</td><td style='text-align:center'>"
+                            +this.subjectId+"</td><td style='text-align:center'>"+this.subject.subjectName+"</td><td style='text-align:center'>"+this.subject.subjectClass+"</td><td style='text-align:center'>"+this.subject.subjectType+"</td><td style='text-align:center'>"+this.subject.subjectCredit+"</td><td style='text-align:center'>"+this.creditGrade+"</td><td style='text-align:center'>"+this.creditScore+"</td><td style='text-align:center'>"+this.creditRecource+"</td></tr>";
                      }else{
                         count-=1;
                      }
                      })
                   if(isNaN(score/count)){
-                     txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                     txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                      
                   }else{
-                     txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
+                     txt2+="<tr><td style='text-align:center'>"+allCredit+"</td><td style='text-align:center'>"+acquireCredit+"</td><td style='text-align:center'>"+(score/count).toFixed(1)+"&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
                   }
                      $("#tbody2").html(txt2);
                   $("#tbody").html(txt);
@@ -546,15 +541,14 @@ $(document).ready(function(){
 이수구분선택 : <select id="type">
 <option>이수구분</option>
 </select><br><br>
-<hr style="border: solid px black">
-<table border="2" style="border-color: black" >
+<table border="2" style="border-color: black" id="table" >
    <thead id="thead"></thead>
       <tr class="filters"></tr>
    <tbody id="tbody"></tbody>
 </table>
 <hr>
 <div>
-<table class="table2" border="2" style="border-color: black">
+<table class="table2" border="2" style="border-color: black" id="table2">
    <thead id="thead2"></thead>
       <tr class="filters"></tr>
    <tbody id="tbody2"></tbody>

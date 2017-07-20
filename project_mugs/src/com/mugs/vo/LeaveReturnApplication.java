@@ -5,11 +5,17 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.mugs.util.DateJSONSerializer;
+
 public class LeaveReturnApplication implements Serializable {
 	
 	private int LRApplicationId;
 	private String LRApplicationType;
+	
+	@JsonSerialize(using=DateJSONSerializer.class)
 	private Date LRApplicationStartDate;
+	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date LRApplicationFinishDate;
 	private String LRApplicationState;

@@ -12,7 +12,6 @@ table{
 }
 td{
 	padding: 5px;
-	text-align:center;
 	border: 1px solid black;
 }
 th, input{
@@ -39,9 +38,9 @@ $(document).ready(function(){
 			"success":function(list){
 				var txt = "";// undefined값
 				$.each(list, function(){ // style="display: none" 적용해서  + "</td><td>" 등등 삽입해두기!!
-					txt += "<tr><td>" + this.proSubjectYear + "</td><td>" + this.proSubjectSemester + "</td><td>" + this.proId + "</td><td>" + this.subject.subjectId
-					+ "</td><td>" + this.subject.subjectName + "</td><td>" + this.subject.subjectTime + "</td><td>" + this.subject.subjectType
-					+ "</td><td>" + this.subject.subjectGrade + "</td><td>" + this.subject.subjectCredit + "</td><td>" + this.subject.subjectCapacity 
+					txt += "<tr><td style='text-align:center'>" + this.proSubjectYear + "</td><td style='text-align:center'>" + this.proSubjectSemester + "</td><td style='text-align:center'>" + this.proId + "</td><td style='text-align:center'>" + this.subject.subjectId
+					+ "</td><td style='text-align:center'>" + this.subject.subjectName + "</td><td style='text-align:center'>" + this.subject.subjectTime + "</td><td style='text-align:center'>" + this.subject.subjectType
+					+ "</td><td style='text-align:center'>" + this.subject.subjectGrade + "</td><td style='text-align:center'>" + this.subject.subjectCredit + "</td><td style='text-align:center'>" + this.subject.subjectCapacity 
 					// style="display: none" 처리하는 부분
 					+ "</td><td style='display: none'>" + this.proSubjectYear + "</td><td style='display: none'>" + this.proSubjectSemester + "</td><td style='display: none'>" + this.subject.subjectId + "</td><td style='display: none'>" + this.subject.subjectName
 					+ "</td><td style='display: none'>" + this.subject.subjectType + "</td><td style='display: none'>" + this.subject.subjectGrade + "</td><td style='display: none'>" + this.subject.subjectCredit
