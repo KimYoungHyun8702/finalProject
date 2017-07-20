@@ -74,8 +74,6 @@ function check(){
        alert("본적지 주소를 입력하세요")
        return false;
     }else{
-       
-       
     	return confirm("수정하시겠습니까 ?")
     }
  };
@@ -84,6 +82,7 @@ function check(){
 </head>
 <body>
 
+<<<<<<< HEAD
 	<form action="${initParam.rootPath}/student/updateStuAndSelect.do?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data"  onsubmit="return check();">
 	<sec:csrfInput/>
 	<h3>학생 정보 수정</h3>
@@ -213,6 +212,5 @@ function check(){
 	<input type="hidden" name="usersPassword" value="${requestScope.reFormDateStu.stuInfo.usersPassword}">
 	<input type="submit" id="upBtn" value="수정" ><br>
 	</form> 
-	
 </body>
 </html>

@@ -109,7 +109,32 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
                String st1_2_2_1 = st1_2_2Arr[0];// 2
 
                String[] st2_2_2Arr = st2_2_2.split(">");
-               String st2_2_2_1 = st2_2_2Arr[0];// 4
+               String st2_2_2_1 = st2_2_2Arr[0];// 4\
+               
+               if(i == 0) {
+                   timeTableResult.get(i).setColor("red");
+                } else if(i == 1) {
+                   timeTableResult.get(i).setColor("blue");
+                } else if(i == 2) {
+                   timeTableResult.get(i).setColor("gray");
+                } else if(i == 3) {
+                   timeTableResult.get(i).setColor("pink");
+                } else if(i == 4) {
+                   timeTableResult.get(i).setColor("green");
+                } else if(i == 5) {
+                   timeTableResult.get(i).setColor("orange");
+                } else if(i == 6) {
+                   timeTableResult.get(i).setColor("purple");
+                } else if(i == 7) {
+                   timeTableResult.get(i).setColor("yellow");
+                } else if(i == 8) {
+                   timeTableResult.get(i).setColor("cyan");
+                } else if(i == 9) {
+                   timeTableResult.get(i).setColor("red");
+                } else if(i == 10) {
+                   timeTableResult.get(i).setColor("red");
+                } 
+             
 
                firstYoYil = st1_1;// 월
                secondYoYil = st2_1;// 수
@@ -126,6 +151,7 @@ public class TimetableManagementServiceImpl implements TimetableManagementServic
                System.out.println("두번째 요일 :" + timeTableResult.get(i).getSubject().getYoYil2());
                System.out.println("첫번째 교시 :" + timeTableResult.get(i).getSubject().getGyoShi1());
                System.out.println("두번째 교시 :" + timeTableResult.get(i).getSubject().getGyoShi2());
+               
 
                // firstYG = firstYoil + firstGyoshi;
                // secondYG = secondYoil + thirdGyoshi;

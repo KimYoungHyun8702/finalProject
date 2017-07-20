@@ -44,13 +44,13 @@ public class AddStudentGradeController{
 	@RequestMapping("searchCourseByThreeId") 
 	@ResponseBody
 	public List<Course> getCourse(int courseYear, String courseSemester, int subjectId){
-		//System.out.println("-----------------searchCourseByThreeId  TEST -------------------");
-		//System.out.println(courseYear + courseSemester + subjectId);
+		System.out.println("-----------------searchCourseByThreeId  TEST -------------------");
+		System.out.println(courseYear + courseSemester + subjectId);
 		//System.out.println(planYear+planSemester+subjectId+proId);
 		List<Course> courseList = service2.getCourseByThreeId(courseYear, courseSemester, subjectId);
-		for(Course c : courseList){
-			//System.out.println(c.getCount());
-		}
+	/*	for(Course c : courseList){
+			System.out.println(c.getCount());
+		}*/
 		return courseList;
 		
 	}
@@ -58,8 +58,8 @@ public class AddStudentGradeController{
 	@RequestMapping("registerCredit") 
 	@ResponseBody
 	public Credit registerCredit(@ModelAttribute Credit credit)throws Exception{
-		System.out.println("-----------객체 확인용-----------");
-		System.out.println(credit);
+		/*System.out.println("-----------객체 확인용-----------");
+		System.out.println(credit);*/
 		//성적이 등록되었는지 조회하는 메소드
 		Credit check = service2.getCreditByFourId(credit.getCreditYear(),credit.getCreditSemester(),credit.getStuId(),credit.getSubjectId());
 		//만약 등록되어 있지 않다면
@@ -68,32 +68,32 @@ public class AddStudentGradeController{
 			service2.addCredit(credit);
 			//학점테이블로부터 한 학생의 해당 년,학기 학점의 평균을 가져온다.
 			double avg = service2.getCreditAvgByThreeId(credit.getCreditYear(),credit.getCreditSemester(),credit.getStuId());
-			System.out.println("---------------------등록 후 평균 확인---------------");
-			System.out.println(avg);
-			//만약 학년 평균이 1.5 이하라면 
-		if(avg<=1.5){
+			/*System.out.println("---------------------등록 후 평균 확인---------------");
+			System.out.println(avg);*/
+			//만약 학년 평균이 1.0 이하라면 
+		if(avg<=1.0){
 				//해당 년,월에 학사경고가 등록되어 있는지 조회한다.
 				AcademicProbation academicProbation = service2.getAcademicProbationByThreeId(credit.getCreditYear(), credit.getCreditSemester(), credit.getStuId());
-				System.out.println("--------------학사경고 조회여부 확인(1.5이하)-------------");
-				System.out.println(academicProbation);
+			/*	System.out.println("--------------학사경고 조회여부 확인(1.0이하)-------------");
+				System.out.println(academicProbation);*/
 				//만약 학사경고내역이 없다면 
 				if(academicProbation==null){
 					//학사경고를 등록한다.
-					System.out.println("----------------학사경고 등록 여부 확인------------------");
+					/*System.out.println("----------------학사경고 등록 여부 확인------------------");*/
 					AcademicProbation newAp = new AcademicProbation(credit.getCreditYear(),credit.getCreditSemester(),avg,credit.getStuId());
-					System.out.println(newAp);
+					/*System.out.println(newAp);*/
 					service2.addAcademicProbation(newAp);
 				}
 			}else{
 				//해당 년,월에 학사경고가 등록되어 있는지 조회한다.
 				AcademicProbation academicProbation = service2.getAcademicProbationByThreeId(credit.getCreditYear(), credit.getCreditSemester(), credit.getStuId());
-				System.out.println("--------------학사경고 조회여부 확인(1.5이상)-------------");
-				System.out.println(academicProbation);
+			/*	System.out.println("--------------학사경고 조회여부 확인(1.0이상)-------------");
+				System.out.println(academicProbation);*/
 				//만약 학사경고내역이 있다면 
 				if(academicProbation!=null){
 					//학사경고 내역을 삭제한다.
 					service2.removeAcademicProbationByThreeId(credit.getCreditYear(), credit.getCreditSemester(), credit.getStuId());
-					System.out.println("---------------삭제도달-------------");
+				/*	System.out.println("---------------삭제도달-------------");*/
 				}
 			}
 			return credit;
@@ -110,14 +110,14 @@ public class AddStudentGradeController{
 		service2.setCreditByFourId(credit);	
 		//학점테이블로부터 한 학생의 해당 년,학기 학점의 평균을 가져온다.
 		double avg = service2.getCreditAvgByThreeId(credit.getCreditYear(),credit.getCreditSemester(),credit.getStuId());
-		System.out.println("---------------------수정 후 평균 확인---------------");
-		System.out.println(avg);
-		//만약 학년 평균이 1.5 이하라면
-		if(avg<=1.5){
+		/*System.out.println("---------------------수정 후 평균 확인---------------");
+		System.out.println(avg);*/
+		//만약 학년 평균이 1.0 이하라면
+		if(avg<=1.0){
 			//해당 년,월에 학사경고가 등록되어 있는지 조회한다.
 			AcademicProbation academicProbation = service2.getAcademicProbationByThreeId(credit.getCreditYear(), credit.getCreditSemester(), credit.getStuId());
-			System.out.println("--------------학사경고 조회여부 확인(1.5이하)-------------");
-			System.out.println(academicProbation);
+		/*	System.out.println("--------------학사경고 조회여부 확인(1.0이하)-------------");
+			System.out.println(academicProbation);*/
 			//만약 학사경고내역이 없다면 
 			if(academicProbation==null){
 				//학사경고를 등록한다.
@@ -127,8 +127,8 @@ public class AddStudentGradeController{
 		}else{
 			//해당 년,월에 학사경고가 등록되어 있는지 조회한다.
 			AcademicProbation academicProbation = service2.getAcademicProbationByThreeId(credit.getCreditYear(), credit.getCreditSemester(), credit.getStuId());
-			System.out.println("--------------학사경고 조회여부 확인(1.5이상)-------------");
-			System.out.println(academicProbation);
+	/*		System.out.println("--------------학사경고 조회여부 확인(1.0이상)-------------");
+			System.out.println(academicProbation);*/
 			//만약 학사경고내역이 있다면 
 			if(academicProbation!=null){
 				//학사경고 내역을 삭제한다.

@@ -6,6 +6,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+input{
+	text-align:center;
+}
+table{
+	width:100%;
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
+}
+select{
+	width:150px;
+	height: 30px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+h3{
+	font-family:돋움체;
+}
+</style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function check(){
@@ -118,74 +148,75 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<h2>과목 등록</h2>
-	<br>
-	<form id="insertForm" action="${initParam.rootPath }/admin/insertSubjectController.do" method="post" onsubmit="return check()">
-	 <table id="selectSubject" border="1">
-		<thead>
-			<tr>
-				<td align="center">과목 이름</td>
-				<td align="center">강의 시간</td>
-				<td align="center">이수 구분</td>
-				<td align="center">학점</td>
-				<td align="center">정원</td>
-				<td align="center">학년</td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td align="center"><input type="text" name="subjectName" id="subjectName"/></td>
-				<td align="center"><input type="text" name="subjectTime" id="subjectTime"/></td>
-				<td align="center"><select name="subjectType" id="subjectType">
-							<option>이수구분</option>
-							<option>선택전공</option>
-							<option>필수전공</option>
-							<option>선택교양</option>
-							<option>필수교양</option>
-					</select></td>
-				<td align="center"><input type="number" name="subjectCredit" max="3" min="1" id="subjectCredit"/></td>
-				<td align="center"><input type="number" name="subjectCapacity" id="subjectCapacity"/></td>
-				<td align="center"><input type="number" name="subjectGrade" max="4" min="1" id="subjectGrade"/></td>
-			</tr>
-		</tbody>
-		
-		<thead>
-			<tr>
-				<td align="center">분반</td>
-				<td align="center">폐강 여부</td>
-				<td align="center">학기</td>
-				<td align="center">학과</td>
-				<td align="center">강의실</td>
-			</tr>
-		</thead>
-		<tbody id="tbody">
-			<tr>
-				<td align="center"><input type="text" name="subjectClass" id="subjectClass"/></td>
-				<td align="center"><input type="text" name="subjectCloseClass" id="subjectCloseClass"/></td>
-				<td align="center"><input type="text" name="subjectSemester" id="subjectSemester"/></td>
-				<td align="center"><select name="collegeId" id="collegeId">
-							<option>단과대학 선택</option>
-							<c:forEach var="list" items="${requestScope.college }">
-								<option value=${list.collegeId }>${list.collegeName }</option>
-							</c:forEach>
-					</select> <select name="majorId" id="majorId">
-							<option>학과 선택</option>
-					</select></td>
-				<td align="center"> <select name="buildingId" id="buildingId">
-							<option>강의동 선택</option>
-							<option>없음</option>
-							<c:forEach var="list" items="${requestScope.building }">
-								<option value=${list.buildingId }>${list.buildingName }</option>
-							</c:forEach>
-					</select> <select name="lectureId" id="lectureId">
-							<option>강의실 선택</option>
-					</select></td>
-			</tr>
-		</tbody>
-	</table>
-				<input type="hidden" name="subjectRequest" value="0"/>
-				<input id="submit" type="submit" value="등록">
-	      <sec:csrfInput/>
-	</form>
-	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
+<br>
+<h3>과목 등록</h3>
+   <hr>
+   <form id="insertForm" action="${initParam.rootPath }/admin/insertSubjectController.do" method="post" onsubmit="return check()">
+   <center><table id="selectSubject" border="2" style="border-color: black">
+      <thead>
+         <tr>
+         	<th><input type='text' class='form-control' placeholder='과목명' disabled></th>
+         	<th><input type='text' class='form-control' placeholder='강의시간' disabled></th>
+         	<th><input type='text' class='form-control' placeholder='이수구분' disabled></th>
+         	<th><input type='text' class='form-control' placeholder='학점' disabled></th>
+         	<th><input type='text' class='form-control' placeholder='정원' disabled></th>
+         	<th><input type='text' class='form-control' placeholder='학년' disabled></th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td align="center"><input type="text" name="subjectName" id="subjectName"/></td>
+            <td align="center"><input type="text" name="subjectTime" id="subjectTime"/></td>
+            <td align="center"><select name="subjectType" id="subjectType">
+                     <option>이수구분</option>
+                     <option>선택전공</option>
+                     <option>필수전공</option>
+                     <option>선택교양</option>
+                     <option>필수교양</option>
+               </select></td>
+            <td align="center"><input style="width:60px" type="number" name="subjectCredit" max="3" min="1" id="subjectCredit"/></td>
+            <td align="center"><input type="number" name="subjectCapacity" id="subjectCapacity"/></td>
+            <td align="center"><input style="width:60px" type="number" name="subjectGrade" max="4" min="1" id="subjectGrade"/></td>
+         </tr>
+      </tbody>
+      
+      <thead>
+         <tr>
+         	<th><input type='text' class='form-control' placeholder='분반' disabled></th>
+         	<th><input type='text' class='form-control' placeholder='폐강여부' disabled></th>
+         	<th><input type='text' class='form-control' placeholder='학기' disabled></th>
+         	<th><input type='text' class='form-control' placeholder='학과' disabled></th>
+         	<th><input type='text' class='form-control' placeholder='강의실' disabled></th>
+         </tr>
+      </thead>
+      <tbody id="tbody">
+         <tr>
+            <td align="center"><input type="text" name="subjectClass" id="subjectClass"/></td>
+            <td align="center"><input type="text" name="subjectCloseClass" id="subjectCloseClass"/></td>
+            <td align="center"><input type="text" name="subjectSemester" id="subjectSemester"/></td>
+            <td align="center"><select name="collegeId" id="collegeId">
+                     <option>단과대학 선택</option>
+                     <c:forEach var="list" items="${requestScope.college }">
+                        <option value=${list.collegeId }>${list.collegeName }</option>
+                     </c:forEach>
+               </select> <select name="majorId" id="majorId">
+                     <option>학과 선택</option>
+               </select></td>
+            <td align="center"> <select name="buildingId" id="buildingId">
+                     <option>강의동 선택</option>
+                     <option>없음</option>
+                     <c:forEach var="list" items="${requestScope.building }">
+                        <option value=${list.buildingId }>${list.buildingName }</option>
+                     </c:forEach>
+               </select> <select name="lectureId" id="lectureId">
+                     <option>강의실 선택</option>
+               </select></td>
+         </tr>
+      </tbody>
+   </table></center><br>
+            <input type="hidden" name="subjectRequest" value="0"/>
+            <center><input id="submit" type="submit" value="등록"></center>
+         <sec:csrfInput/>
+   </form><br>
+   <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" class="btn btn-primary">메인화면으로 가기</button></center>
 </body>

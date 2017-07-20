@@ -5,6 +5,37 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+input{
+	text-align:center;
+}
+table{
+	width:100%;
+	
+}
+td{
+	padding: 5px;
+	border: 1px solid black;
+	text-align:center;
+}
+select{
+	width:150px;
+	height: 30px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+h3{
+	font-family:돋움체;
+}
+</style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function update_subject(subjectId){
@@ -184,56 +215,56 @@ $(document).ready(function(){
       </script>
       <% session.removeAttribute("subdeleteMessage"); %>
 </c:if>
-	<br>
-	<select name="subjectType" id="subjectType">
-		<option>이수 구분 선택</option>
-		<c:forEach var="list" items="${requestScope.list }">
-			<option value=${list }>${list }</option>
-		</c:forEach>
-	</select>
-	
-	<select id="college">
-	<option>단과 대학 선택</option>
-	</select>
-	
-	<select id="major">
-	<option>학과 선택</option>
-	</select>
-	
-	<select id="subject">
-	<option>과목 선택</option>
-	</select>
-	
-	<select id="time">
-	<option>시간표 선택</option>
-	</select>
-	
-	
-	<button id="majorButton">조회</button>
-	<button id="minorButton">조회</button>
-	
-	<table id="selectSubject" border="1">
-		<thead>
-			<tr>
-				<td align="center">과목 ID</td>
-				<td align="center">과목 이름</td>
-				<td align="center">강의 시간</td>
-				<td align="center">이수 구분</td>
-				<td align="center">학점</td>
-				<td align="center">정원</td>
-				<td align="center">신청인원</td>
-				<td align="center">학년</td>
-				<td align="center">분반</td>
-				<td align="center">폐강 여부</td>
-				<td align="center">학기</td>
-				<td align="center">학과</td>
-				<td align="center">강의동</td>
-				<td align="center">강의실</td>
-				<td align="center">수정</td>
-				<td align="center">삭제</td>
-			</tr>
-		</thead>
-		<tbody id="tbody1"></tbody>
-	</table>
-	<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
+<br>
+   <select name="subjectType" id="subjectType">
+      <option>이수 구분 선택</option>
+      <c:forEach var="list" items="${requestScope.list }">
+         <option value=${list }>${list }</option>
+      </c:forEach>
+   </select>
+   
+   <select id="college">
+   <option>단과 대학 선택</option>
+   </select>
+   
+   <select id="major">
+   <option>학과 선택</option>
+   </select>
+   
+   <select id="subject">
+   <option>과목 선택</option>
+   </select>
+   
+   <select id="time">
+   <option>시간표 선택</option>
+   </select>
+   
+   &nbsp;
+   <button id="majorButton">조회</button>&nbsp;
+   <button id="minorButton">조회</button>
+   
+   <center><br><table id="selectSubject" border="1">
+      <thead>
+         <tr>
+        	<th><input style="width:80px" type='text' class='form-control' placeholder='과목ID' disabled></th>
+        	<th><input style="width:100px" type='text' class='form-control' placeholder='과목명' disabled></th>
+        	<th><input style="width:120px" type='text' class='form-control' placeholder='강의시간' disabled></th>
+        	<th><input style="width:80px" type='text' class='form-control' placeholder='이수구분' disabled></th>
+        	<th><input style="width:60px" type='text' class='form-control' placeholder='학점' disabled></th>
+        	<th><input style="width:60px" type='text' class='form-control' placeholder='정원' disabled></th>
+        	<th><input style="width:90px" type='text' class='form-control' placeholder='신청인원' disabled></th>
+        	<th><input style="width:60px" type='text' class='form-control' placeholder='학년' disabled></th>
+        	<th><input style="width:70px" type='text' class='form-control' placeholder='분반' disabled></th>
+        	<th><input style="width:90px" type='text' class='form-control' placeholder='폐강여부' disabled></th>
+        	<th><input style="width:70px" type='text' class='form-control' placeholder='학기' disabled></th>
+        	<th><input style="width:100px" type='text' class='form-control' placeholder='학과' disabled></th>
+        	<th><input style="width:100px" type='text' class='form-control' placeholder='강의동' disabled></th>
+        	<th><input style="width:100px" type='text' class='form-control' placeholder='강의실' disabled></th>
+        	<th><input style="width:60px" type='text' class='form-control' placeholder='수정' disabled></th>
+        	<th><input style="width:60px" type='text' class='form-control' placeholder='삭제' disabled></th>
+         </tr>
+      </thead>
+      <tbody id="tbody1"></tbody>
+   </table></center><br>
+   <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" class="btn btn-primary">메인화면으로 가기</button></center>
 </body>

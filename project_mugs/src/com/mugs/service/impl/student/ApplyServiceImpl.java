@@ -212,6 +212,7 @@ public class ApplyServiceImpl implements ApplyService{
 		}
 		
 		List<Credit> creditList = creditDaoImpl.selectCreditByYearSemesterStdId(nowYear, semester, stuId);
+		
 		if(creditList.size() != 0) {
 			map.put("creditList", creditList);
 		}
@@ -232,6 +233,7 @@ public class ApplyServiceImpl implements ApplyService{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<>();
 		Credit credit = creditDaoImpl.selectCreditById(creditId);
+		
 		List<CreditGiveUp> creditGiveUpList = creditGiveUpDaoImpl.selectCreditGiveUpByStuIdYearSemester(stuId, credit.getCreditYear(), credit.getCreditSemester());
 		
 		int creditAcquireSum = 0;
@@ -272,7 +274,8 @@ public class ApplyServiceImpl implements ApplyService{
 	public HashMap<String, Object> deleteCreditGiveUp(String stuId, int CGUId) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> map = new HashMap<>();
-		
+		System.out.println(stuId);
+		System.out.println(CGUId);
 		String msg = null;
 		CreditGiveUp creditGiveUp = creditGiveUpDaoImpl.selectCreditGiveUpById(CGUId);
 		

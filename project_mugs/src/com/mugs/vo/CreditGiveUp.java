@@ -5,11 +5,15 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.mugs.util.DateJSONSerializer;
+
 public class CreditGiveUp implements Serializable {
 
 	private int CGUId;
 	private int CGUYear;
 	private String CGUSemester;
+	@JsonSerialize(using=DateJSONSerializer.class)
 	private Date CGUStartDate;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date CGUFinishDate;

@@ -21,7 +21,6 @@ table{
 td{
 	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
 }
 select{
 	width:150px;
@@ -61,6 +60,7 @@ $(document).on("click", "#updateBtn", function(){
 </head>
 
 <body>
+<<<<<<< HEAD
 <h3>교수 정보 조회</h3>
 <br>
 <ul><li><h4>교수 기본 정보</h4></li></ul>	
@@ -156,10 +156,11 @@ $(document).on("click", "#updateBtn", function(){
 	<input type="hidden" id="usersEnable" name="usersEnable" value="${sessionScope.professor.usersId}" readonly>
 <br><br>
 	<form action="/project_mugs/professor/professorInfoUpdate.do" method="get"><br>
-	<center><input type="submit" id="UpdateBtn" value="수정 페이지로"></center>
+	<center><input type="submit" id="UpdateBtn" value="수정"></center>
 	<sec:csrfInput/>
 	</form>
-
+<br>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 <!-- <script type="text/javascript">
 	var openWin;

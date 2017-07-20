@@ -61,5 +61,5 @@ public interface ProfessorSubjectDao {
 	List<ProfessorSubject> selectProfessorSubjectListByJoin(Integer majorId, int nowYear, String semester, String subjectType);
 	
 	
-	List<ProfessorSubject> selectProfessorSubjectListByJoinMajorNull(Integer majorId, int nowYear, String semester, String subjectType);
+	List<ProfessorSubject> selectProfessorSubjectListByJoinMajorNull(int nowYear, String semester, String subjectType);
 }

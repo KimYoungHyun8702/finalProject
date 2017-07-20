@@ -48,10 +48,10 @@
 
 <!-- insert -->
 <insert id="insertCreditGiveUp" parameterType="creditGiveUp">
-   <selectKey resultType="int" keyProperty="creditGiveUpId" order="BEFORE">
+   <selectKey resultType="int" keyProperty="CGUId" order="BEFORE">
       SELECT CGU_ID_SEQ.nextval FROM dual
    </selectKey>
-   INSERT INTO CREDIT_GIVE_UP VALUES(#{CGUId}, #{CGUYear}, #{CGUSemester}, TO_DATE(#{CGUStartDate}, 'YYYY-MM-DD'), #{CGUFinishDate}, #{CGUState}, #{creditId})
+   INSERT INTO CREDIT_GIVE_UP VALUES(#{CGUId}, #{CGUYear}, #{CGUSemester}, #{CGUStartDate}, #{CGUFinishDate}, #{CGUState}, #{creditId})
 </insert>
 
 <!-- update -->
@@ -103,7 +103,7 @@
  	현재연도, 학기, 학생 ID를 이용해서 해당 학생 현재연도, 현재학기의 학적포기 신청내역을 select
 	By Baek.J.H
   -->
- <select id="selectCreditGiveUpByYearStuIdSemester" resultMap="creditGiveUp-credit-subject-reresultmap" parameterType="string">
+ <select id="selectCreditGiveUpByYearStuIdSemester" resultMap="creditGiveUp-credit-subject-reresultmap" parameterType="map">
  	select cg.CGU_ID, cg.CGU_YEAR, cg.CGU_SEMESTER, cg.CGU_START_DATE, cg.CGU_FINISH_DATE, cg.CGU_STATE, cg.CREDIT_ID,
     	   c.credit_id, c.credit_year, c.credit_semester, c.credit_acquire, c.credit_grade, c.credit_score, 
     	   c.credit_recource, c.subject_id, c.stu_id,
