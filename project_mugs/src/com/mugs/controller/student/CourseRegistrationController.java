@@ -132,11 +132,33 @@ public class CourseRegistrationController {
 	/** By Cho.S.R **/
 	@RequestMapping("getMyCourseListByJoin")
 	public ModelAndView getMyCourseListByJoin() {
+		
+		ModelAndView model = new ModelAndView();
+		
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String loginId = users.getUsersId();
-		List<Course> myCourseListResult = courseRegistrationService.findMyCourseListByJoin(loginId);
-		return new ModelAndView("student/courseInformationList/course_InformationListView.tiles", "myCourseListResult", myCourseListResult);
+		HashMap<String, Object> map = courseRegistrationService.findMyCourseListByJoin(loginId);
 		
+		Iterator iterator = map.entrySet().iterator();
+		
+		while (iterator.hasNext()) {
+			
+		   Entry entry = (Entry)iterator.next();
+		   
+		   if(entry.getKey().toString() == "stuRegisterMyCourse" && entry.getValue().equals("휴학")) {
+			   model.setViewName("index.tiles");
+			   model.addObject(entry.getKey().toString(), entry.getValue());
+			   return model;
+		   } else if(entry.getKey().toString() == "courseMessage" && !entry.getValue().equals("")) {
+			   model.setViewName("index.tiles");
+			   model.addObject(entry.getKey().toString(), entry.getValue());
+			   return model;
+		   }
+		   model.addObject(entry.getKey().toString(), entry.getValue());
+		}
+		
+		model.setViewName("student/courseInformationList/course_InformationListView.tiles");
+		return model;	
 	}
 
 	/** By Cho.S.R **/

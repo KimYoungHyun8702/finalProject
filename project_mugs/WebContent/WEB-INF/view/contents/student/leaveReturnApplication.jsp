@@ -14,7 +14,7 @@ $(document).ready(function() {
 	var tbodySize = $("#tbody tr").length;
 	
 	if(tbodySize == 0) {
-		var txt = "<tr><td colspan='4' style='text-align:center'>휴복학 신청내역이 없습니다.</td></tr>"
+		var txt = "<tr><td colspan='4' style='text-align:center'>휴복학 신청내역이 없습니다.</td></tr>";
 		$("#tbody").html(txt);
 	}
 	

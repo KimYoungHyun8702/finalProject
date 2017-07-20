@@ -28,20 +28,14 @@ public class SubjectPlanController{
 		String id = users.getUsersId();
 		//Business Logic 호출	
 		List<ProfessorSubject> list = service.getProfessorSubjectInfoByJoin(id);
-		for(int i=0;i<list.size();i++){
-			System.out.println(list.get(i));
-		}
 		return list;
 	}
 	
 	@RequestMapping("searchSubjectPlanByFourId") 
 	@ResponseBody
 	public SubjectPlan getSubjectPlan(int planYear, String planSemester, int subjectId, String proId){
-		System.out.println("-----------------searchSubjectPlanByFourId  TEST -------------------");
 		
-		//System.out.println(planYear+planSemester+subjectId+proId);
 		SubjectPlan subjectPlan = service.getSubjectPlanByFourId(planYear, planSemester, subjectId, proId);
-		System.out.println(subjectPlan);
 		return subjectPlan;
 		
 	}
@@ -57,7 +51,6 @@ public class SubjectPlanController{
 	@ResponseBody
 	public String reNewSubjectPlan(@ModelAttribute SubjectPlan sp){
 		//비지니스로직
-		System.out.println(sp);
 		service.setSubjectPlan(sp);
 	return "professor/SubjectPlan_update.tiles";
 	}
@@ -68,7 +61,6 @@ public class SubjectPlanController{
 		//비지니스로직
 		
 		//int planId = Integer.parseInt(id);
-		System.out.println(planId2);
 		service.deleteSubjectPlanById(planId2);
 	return "professor/SubjectPlan_update.tiles"; //WEB-INF/view/contents/professor/SubjectPlan_success.jsp
 	}

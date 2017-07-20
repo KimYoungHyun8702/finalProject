@@ -15,12 +15,12 @@ $(document).ready(function() {
 	var msg = "${msg}";
 	
 	if(creditTbodySize == 0) {
-		var creditTbodyTxt = "<tr><td colspan='8' style='text-align:center'>포기할수 있는 학점이 없습니다.</td></tr>"
+		var creditTbodyTxt = "<tr><td colspan='8' style='text-align:center'>포기할수 있는 학점이 없습니다.</td></tr>";
 		$("#creditTbody").html(creditTbodyTxt);
 	}
 
 	if(creditGiveUpTbodySize == 0) {
-		var creditGiveUpTbodyTxt = "<tr><td colspan='8' style='text-align:center'>학점포기신청내역이 없습니다.</td></tr>"
+		var creditGiveUpTbodyTxt = "<tr><td colspan='8' style='text-align:center'>학점포기신청내역이 없습니다.</td></tr>";
 		$("#creditGiveUpTbody").html(creditGiveUpTbodyTxt);
 	}
 	
@@ -33,7 +33,7 @@ $(document).ready(function() {
 			"success":function(map) {
 				alert(map.msg);
 				
-				if(map.creditGiveUpList) {
+				if(map.creditGiveUpList != "") {
 					var creditGiveUpTbodyTxt = "";
 					$.each(map.creditGiveUpList, function() {
 						if(this.cgustate == '대기') {
@@ -52,11 +52,11 @@ $(document).ready(function() {
 					});
 					$("#creditGiveUpTbody").html(creditGiveUpTbodyTxt);
 				} else {
-					var creditGiveUpTbodyTxt = "<tr><h2>학점포기신청내역이 없습니다.</h2></tr>";
+					var creditGiveUpTbodyTxt = "<tr><td colspan='8' style='text-align:center'>학점포기신청내역이 없습니다.</td></tr>";
 					$("#creditGiveUpTbody").html(creditGiveUpTbodyTxt);
 				}
 				
-				if(map.creditList) {
+				if(map.creditList != "") {
 					var creditTbodyTxt = "";
 					$.each(map.creditList, function() {
 						creditTbodyTxt += "<tr><td>" + this.creditYear + "</td><td>" + this.creditSemester + 
@@ -65,6 +65,9 @@ $(document).ready(function() {
 									"</td><td>" + "<button id=" + "creditGiveUpBtn>" + "학점포기신청</button>" + 
 									"<input type='hidden' value=" + this.creditId + ">" + "</td></tr>";
 					});
+					$("#creditTbody").html(creditTbodyTxt);	
+				} else {
+					var creditTbodyTxt = "<tr><td colspan='8' style='text-align:center'>포기할수 있는 학점이 없습니다.</td></tr>";
 					$("#creditTbody").html(creditTbodyTxt);	
 				}
 			},
@@ -80,8 +83,8 @@ $(document).ready(function() {
 				"data":{'CGUId':$(this).next().val(), '${_csrf.parameterName}':'${_csrf.token}'},
 				"success":function(map) {
 					alert(map.msg);
-					
-					if(map.creditGiveUpList) {
+
+					if(map.creditGiveUpList != "") {
 						var creditGiveUpTbodyTxt = "";
 						$.each(map.creditGiveUpList, function() {
 							if(this.cgustate == '대기') {
@@ -100,7 +103,7 @@ $(document).ready(function() {
 						});
 						$("#creditGiveUpTbody").html(creditGiveUpTbodyTxt);
 					} else {
-						var creditGiveUpTbodyTxt = "<tr><h2>학점포기신청내역이 없습니다.</h2></tr>"
+						var creditGiveUpTbodyTxt = "<tr><td colspan='8' style='text-align:center'>학점포기신청내역이 없습니다.</td></tr>";
 						$("#creditGiveUpTbody").html(creditGiveUpTbodyTxt);
 					}
 					

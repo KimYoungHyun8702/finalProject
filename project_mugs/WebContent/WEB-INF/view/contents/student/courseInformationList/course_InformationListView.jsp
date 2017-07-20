@@ -71,7 +71,7 @@ td{
 					<td>${courseList.subject.subjectCredit}</td>
 					<td>${courseList.professor.usersName}</td>
 					<td>${courseList.subject.subjectTime}</td>
-					<td>${courseList.subject.lectureId}</td>
+					<td>${courseList.building.buildingName}/${courseList.room.roomName }</td>
 				</tr>
 			</c:forEach>
 	</tbody>

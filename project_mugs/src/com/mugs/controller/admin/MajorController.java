@@ -62,7 +62,6 @@ public class MajorController {
 	@RequestMapping("/selectMajorByMajorIdForUpdateController")
 	public ModelAndView selectMajorByMajorIdForUpdate(int majorId){
 		Major major = majorService.selectMajorById(majorId);
-		System.out.println(major);
 		return new ModelAndView("admin/major/update_major.tiles","major",major);
 	}
 	

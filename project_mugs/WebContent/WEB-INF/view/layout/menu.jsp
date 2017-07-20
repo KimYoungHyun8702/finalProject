@@ -82,6 +82,17 @@
 			alert(message);
 		}
 	}
+	
+	var stuRegisterMyCourse = "${stuRegisterMyCourse}";
+	
+	if(stuRegisterMyCourse == '휴학') {
+		alert(stuRegisterMyCourse + "생은 수강목록을 볼 수 없습니다.");
+	} else {
+		var courseMessage = "${courseMessage}"
+		if(courseMessage != "") {
+			alert(courseMessage);
+		}
+	}
 </script>
 
 	

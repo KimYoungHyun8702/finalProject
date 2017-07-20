@@ -394,7 +394,7 @@ $(document).ready(function() {
 		if(stuRegister == "재학") {
 			if(myCourseCreditSum < standardMinCredit) {
 				if(confirm("신청학점이 최저 인정가능학점이 되지 않습니다, 그래도 수강신청을 완료하시겠습니까?") == true) {
-					location.href="${initParam.rootPath }";
+					location.href="${initParam.rootPath }/index.do";
 				} else {
 					return;
 				}
@@ -402,17 +402,17 @@ $(document).ready(function() {
 			
 			if(myCourseCreditSum > standardMinCredit && myCourseCreditSum < standardMinScholarship) {
 				if(confirm("신청학점이 장학금 최저 인정가능학점이 되지 않습니다, 그래도 수강신청을 완료하시겠습니까?") == true) {
-					location.href="${initParam.rootPath }";
+					location.href="${initParam.rootPath }/index.do";
 				} else {
 					return;
 				}
 			} else {
-				location.href="${initParam.rootPath }";
+				location.href="${initParam.rootPath }/index.do";
 			}
 		} else {
 			if(myCourseCreditSum < standardDelayMinCredit) {
 				if(confirm("신청학점이 최저 인정가능학점이 되지 않습니다, 그래도 수강신청을 완료하시겠습니까?") == true) {
-					location.href="${initParam.rootPath }";
+					location.href="${initParam.rootPath }/index.do";
 				} else {
 					return;
 				}
@@ -420,12 +420,12 @@ $(document).ready(function() {
 			
 			if(myCourseCreditSum > standardDelayMinCredit && myCourseCreditSum < standardMinScholarship) {
 				if(confirm("신청학점이 장학금 최저 인정가능학점이 되지 않습니다, 그래도 수강신청을 완료하시겠습니까?") == true) {
-					location.href="${initParam.rootPath }";
+					location.href="${initParam.rootPath }/index.do";
 				} else {
 					return;
 				}
 			} else {
-				location.href="${initParam.rootPath }";
+				location.href="${initParam.rootPath }/index.do";
 			}
 		}
 	});
