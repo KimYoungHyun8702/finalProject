@@ -36,7 +36,7 @@ public class NoticeController {
 	public ModelAndView selectNotice(){
 		ModelAndView view = new ModelAndView();
 		Map notice = noticeService.selectNotice();
-		view.setViewName("admin/notice/select_notice.tiles");
+		view.setViewName("index.tiles");
 		view.addObject("notice", notice.get("notice"));
 		view.addObject("date",notice.get("date"));
 		return view;

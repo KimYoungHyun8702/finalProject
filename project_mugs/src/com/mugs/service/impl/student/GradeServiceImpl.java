@@ -87,12 +87,12 @@ public class GradeServiceImpl implements GradeService {
 		// TODO Auto-generated method stub
 		Calendar cal = Calendar.getInstance();
 		String message = "접근허용";
-		String calName = "안갔어";
-		String semester = "안학기~";
+		String calName = "1학기성적조회";
+		String semester = "1학기";
 		int year = cal.get(cal.YEAR);
 		int month = cal.get(cal.MONTH) + 1;
 		
-		if (month >= 3 && month <= 6) {
+	/*	if (month >= 3 && month <= 6) {
 			calName = "1학기성적조회";
 			semester = "1학기";
 		} else if (month >= 7 && month <= 8) {
@@ -104,7 +104,7 @@ public class GradeServiceImpl implements GradeService {
 		} else if (month >= 1 && month <= 2) {
 			calName = "겨울학기성적조회";
 			semester = "겨울학기";
-		}
+		}*/
 
 		Date currentDate = new Date();
 		AcademicCalendar ac = acDao.selectCalendarByYearCalName(year, calName);

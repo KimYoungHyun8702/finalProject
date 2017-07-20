@@ -50,7 +50,7 @@ option {
 </head>
 <body>
 	<h2>학과 등록</h2>
-	<hr>
+	<br>
 	
 	<form id="insertForm" action="${initParam.rootPath }/admin/insertMajorController.do" method="post" onsubmit="return confirm('등록하시겠습니까?')">
 	단과대학선택: <select name="collegeId" id="collegeId">

@@ -64,13 +64,11 @@ public class EvaluationController {
 				   return model;
 			   }
 		   } else if(entry.getKey().toString() == "alarm" && !entry.getValue().equals("")) {
-			  
 			   model.setViewName("index.tiles");	
 			   model.addObject(entry.getKey().toString(), entry.getValue()); // 지금 설문응답 기간아니라는 메세지 담아서 리턴
 			   return model;
 		   }
 		   model.addObject(entry.getKey().toString(), entry.getValue());	// 재적상태도 정상이고 지금 현재도 설문응답기간이면 설문응답 리스트 담는다.
-		   System.out.println(entry.getValue());
 		}
 		model.setViewName("student/evaluationAnswer/evaluationAnswerView.tiles"); // 재적상태도 정상이고 지금 현재도 설문응답기간이면 담은 설문응답 리스트 갖고 설문응답페이지로 이동
 		return model;

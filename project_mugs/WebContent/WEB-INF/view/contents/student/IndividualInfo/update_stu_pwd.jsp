@@ -42,5 +42,7 @@ console.log('${param.errorMessage}');
 <center><input type="submit" value="변경"></center>
 <sec:csrfInput/>
 </form>
+<br>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 </html>

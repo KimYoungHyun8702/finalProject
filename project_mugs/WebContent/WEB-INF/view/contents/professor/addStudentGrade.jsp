@@ -18,7 +18,6 @@ table{
 td{
    padding: 5px;
    border: 1px solid black;
-   text-align:center;
 }
 select{
    width:95px;
@@ -35,7 +34,7 @@ select{
    cursor: pointer;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -88,10 +87,10 @@ $(document).on("change", ".selectBtn1", function(){
 			"success":function(list){
 				var txt = "";// undefined값
 				$.each(list, function(){ 
-					txt += "<tr><td>" + this.proSubjectYear + "</td><td>" + this.proSubjectSemester + "</td><td>" + this.proId + "</td><td>" + this.subject.subjectId
-					+ "</td><td>" + this.subject.subjectName + "</td><td>" + this.subject.subjectTime + "</td><td>" + this.subject.subjectType
-					+ "</td><td>" + this.subject.subjectGrade + "</td><td>" + this.subject.subjectCredit + "</td><td>" + this.subject.subjectCapacity 
-					+ "</td><td>" + "<button id=" + "Btn>" + "학생리스트 보기 </button>" + "</td></tr>"
+					txt += "<tr><td style='text-align:center'>" + this.proSubjectYear + "</td><td style='text-align:center'>" + this.proSubjectSemester + "</td><td style='text-align:center'>" + this.proId + "</td><td style='text-align:center'>" + this.subject.subjectId
+					+ "</td><td style='text-align:center'>" + this.subject.subjectName + "</td><td style='text-align:center'>" + this.subject.subjectTime + "</td><td style='text-align:center'>" + this.subject.subjectType
+					+ "</td><td style='text-align:center'>" + this.subject.subjectGrade + "</td><td style='text-align:center'>" + this.subject.subjectCredit + "</td><td style='text-align:center'>" + this.subject.subjectCapacity 
+					+ "</td><td style='text-align:center'>" + "<button id=" + "Btn>" + "학생리스트 보기 </button>" + "</td></tr>"
 				});
 				$("#tbody").html(txt);
 				$("#table").show();
@@ -121,9 +120,9 @@ $(document).on("change", ".selectBtn1", function(){
 				var txt = "";// undefined값
 				$.each(list, function(){ // style="display: none" 적용해서  + "</td><td>" 등등 삽입해두기!!
 					if(this.count=="1"){
-					txt += "<tr><td>" + courseYear +"</td><td>" + courseSemester +"</td><td>" + Acquire + "</td><td id='change1'>" + select1  
-						+"</td><td>" + select2 +"</td><td id='change2'>" + 'N' + "</td><td>" + subjectId + "</td><td>" + this.student.usersId + "</td><td>" + this.student.usersName 
-						+ "</td><td>" + "<button class=" + "Btn2>" + "성적주기 </button>" + "</td><td>" + "<button class=" + "Btn3 style='display: none'>" + "성적수정 </button>" + "</td></tr>"																		
+					txt += "<tr><td style='text-align:center'>" + courseYear +"</td><td style='text-align:center'>" + courseSemester +"</td><td style='text-align:center'>" + Acquire + "</td><td style='text-align:center' id='change1'>" + select1  
+						+"</td><td style='text-align:center'>" + select2 +"</td><td style='text-align:center' id='change2'>" + 'N' + "</td><td style='text-align:center'>" + subjectId + "</td><td style='text-align:center'>" + this.student.usersId + "</td><td style='text-align:center'>" + this.student.usersName 
+						+ "</td><td style='text-align:center'>" + "<button class=" + "Btn2>" + "성적주기 </button>" + "</td><td style='text-align:center'>" + "<button class=" + "Btn3 style='display: none'>" + "성적수정 </button>" + "</td></tr>"																		
 					}else{
 					txt += "<tr><td>" + courseYear +"</td><td>" + courseSemester +"</td><td>" + Acquire + "</td><td id='change1'>" + select3 
 						+"</td><td>" + select4 +"</td><td id='change2'>" + 'Y' + "</td><td>" + subjectId + "</td><td>" + this.student.usersId + "</td><td>" + this.student.usersName 
@@ -254,7 +253,7 @@ $(document).on("change", ".selectBtn1", function(){
 
 <c:choose>
 <c:when test="${check=='접근허용'}">
-<table id="table" border="1">
+<table id="table" border="2" style="border-color: black">
 	<thead>
 		<tr style="width:100px">
 			<th style="width:70px"><input type="text" class="form-control" placeholder="연도" disabled></th>
@@ -291,9 +290,9 @@ $(document).on("change", ".selectBtn1", function(){
 
 <hr style="border: solid px black;">
 
-	<table id="table2" border="1">
+	<table id="table2" border="2" style="border-color: black">
 
-	<thead>
+<!-- 	<thead>
 		<tr>
 			<th><input type="text" class="form-control" placeholder="총학생수" disabled></th>
 			<th><input type="text" class="form-control" placeholder="정원" disabled></th>
@@ -311,34 +310,35 @@ $(document).on("change", ".selectBtn1", function(){
 			<td id="total5"></td> 
 			<td id="total6"></td> 
 		</tr>
-	</thead>
+	</thead> -->
 	<tbody id="tbody2"></tbody>			
 </table><br>
 
-<hr style="border: solid px black;">
 
-	<table id="table3" border="1">
+	<table id="table3" border="2" style="border-color: black">
 	<thead>
 		<tr>
-			<th style="width:90px"><input type="text" class="form-control" placeholder="시퀀스(c)" disabled></th>
-			<th><input type="text" class="form-control" placeholder="연도(c)" disabled></th>
-			<th style="width:15px"><input type="text" class="form-control" placeholder="학기(c)" disabled></th>
-			<th style="width:40px"><input type="text" class="form-control" placeholder="취득학점(c)" disabled></th>
-			<th style="width:15px"><input type="text" class="form-control" placeholder="등급(c)" disabled></th>
-			<th style="width:15px"><input type="text" class="form-control" placeholder="학점(c)" disabled></th>
-			<th style="width:140px"><input type="text" class="form-control" placeholder="재수강여부(c)" disabled></th>
-			<th style="width:100px"><input type="text" class="form-control" placeholder="과목ID(c)" disabled></th>
-			<th style="width:100px"><input type="text" class="form-control" placeholder="학생ID(c)" disabled></th>
-			<th style="width:110px"><input type="text" class="form-control" placeholder="학생성명" disabled></th>
-			<th style="width:120px"><input type="text" class="form-control" placeholder="성적주기" disabled></th>
+			<th style="width:90px"><input type="text" class="form-control" placeholder="연도" disabled></th>
+			<th><input type="text" class="form-control" placeholder="학기" disabled></th>
+			<th style="width:15px"><input type="text" class="form-control" placeholder="취득학점" disabled></th>
+			<th style="width:40px"><input type="text" class="form-control" placeholder="등급" disabled></th>
+			<th style="width:15px"><input type="text" class="form-control" placeholder="학점" disabled></th>
+			<th style="width:15px"><input type="text" class="form-control" placeholder="재수강" disabled></th>
+			<th style="width:140px"><input type="text" class="form-control" placeholder="과목ID" disabled></th>
+			<th style="width:100px"><input type="text" class="form-control" placeholder="학번" disabled></th>
+			<th style="width:100px"><input type="text" class="form-control" placeholder="성명" disabled></th>
+			<th style="width:110px"><input type="text" class="form-control" placeholder="성적등록" disabled></th>
+			<th style="width:120px"><input type="text" class="form-control" placeholder="성적수정" disabled></th>
 		</tr>
 	</thead>
 	<tbody id="tbody3"></tbody>	
-</table><br><br><br><br><br>
+</table>
 </c:when>
 		<c:otherwise>
 			<script>alert("${check}");</script>
 	</c:otherwise>
 </c:choose>
+<br>
+    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
 </body>
 </html>

@@ -137,6 +137,7 @@ public class CourseRegistrationController {
 		
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String loginId = users.getUsersId();
+
 		HashMap<String, Object> map = courseRegistrationService.findMyCourseListByJoin(loginId);
 		
 		Iterator iterator = map.entrySet().iterator();

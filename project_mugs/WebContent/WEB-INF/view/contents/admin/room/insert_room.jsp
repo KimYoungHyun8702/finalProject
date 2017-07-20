@@ -4,6 +4,36 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+input{
+	text-align:center;
+}
+table{
+	width:100%;
+}
+td{
+	border: 1px solid black;
+	text-align:center;
+	font-size: 15px;
+}
+select{
+	width:150px;
+	height: 35px;
+	padding: 5px;
+}
+#product_info_layer{
+	width:700px;
+	border: 1px solid gray;
+	padding:5px;
+	display: none;/*최초 로딩시에는 안보이도록 처리*/
+}
+#tbody{
+	cursor: pointer;
+}
+h3{
+	font-family:돋움체;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
@@ -23,7 +53,7 @@ function check(){
 </head>
 <body>
 <h2>강의실 등록</h2>
-<hr>
+<br>
 <form action="${initParam.rootPath }/admin/insertRoomController.do" method="post" onsubmit="return check()">
 <select name="buildingId" id="buildingId" >
 <option>강의동 선택</option>
@@ -37,6 +67,6 @@ ${list.buildingName }
 <input type="submit" value="등록">
 <sec:csrfInput/>
 </form>
-<button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
+<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
 
 </body>
