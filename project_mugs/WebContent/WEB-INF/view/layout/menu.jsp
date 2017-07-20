@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-
 <%-- Spring Security 커스텀 태그 --%>
 <!DOCTYPE html>
 <html>
