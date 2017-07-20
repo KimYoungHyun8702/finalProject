@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@ table{
 }
 td{
    border: 1px solid black;
-   text-align:center;
+   font-size: 15px;
 }
 select{
    width:150px;
@@ -33,7 +34,7 @@ select{
    color:black;
 }
 h3{
-   font-family:돋움체;
+   font-family:굴림체;
 }
 
 
@@ -59,7 +60,7 @@ function refuse(LRApplicationId){
 </script>
 </head>
 <body>
-<h2>휴.복학 신청 현황</h2>
+<h3>휴.복학 신청 현황</h3>
 <br>
 <c:if test="${sessionScope.lrApproveMessage != null}">
 		<script type="text/javascript">
@@ -95,12 +96,13 @@ function refuse(LRApplicationId){
 				<td align="center">${list.usersId }</td>
 				<td align="center">${list.usersName }</td>
 				<td align="center">${list.LRApplicationType }</td>
-				<td align="center">${list.LRApplicationStartDate }</td>
+				<td align="center"><fmt:formatDate value="${list.LRApplicationStartDate}" pattern="yyyy-MM-dd"/></td>
 				<td align="center">${list.LRApplicationState }</td>
 				<td align="center"><button onclick="approval('${list.LRApplicationId }')">승인</button></td>
 				<td align="center"><button onclick="refuse('${list.LRApplicationId }')">거절</button></td>
 			</tr>
 			</c:forEach>
 		</tbody>
-	</table>
+	</table><br>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>

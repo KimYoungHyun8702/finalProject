@@ -17,8 +17,7 @@
 	<mvc:view-controller path="/error/access_denied.do" view-name="error/access_denied.tiles"/>
 	<!-- 로그인 폼 -->	
 	<mvc:view-controller path="/login_form.do" view-name="view/contents/login/login_form"/>
-	<!-- 회원 가입 폼 -->
-	<mvc:view-controller path="/join_member_form.do" view-name="member/join_member_form.tiles"/>
+	
 	<!-- 아이디 찾기 폼 -->
 	<mvc:view-controller path="/idFind.do" view-name="view/contents/login/id_find_form"/>
 	<!-- 비밀번호 찾기 폼 -->

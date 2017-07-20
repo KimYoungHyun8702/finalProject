@@ -33,7 +33,7 @@
 	color:black;
 	background:url('/project_mugs/resource/up_image/mugs.png'); 
 	background-size: 100%;
-	 padding-bottom: 80px;
+	 padding-bottom: 110px;
     margin: 0px 0px 0px;
     border-bottom: 0.5px solid #eee;
     padding-top: 80px;
@@ -179,7 +179,7 @@ a.line:hover {
                                 </tr>
                                 <tr style="height:20px">
                                     <td style="background-color: white">
-                                        <span style="text-align:left;" class="glyphicon glyphicon-minus text-primary"></span><a class="line" style="font-size:15px; text-align:left" href="${initParam.rootPath }/student/getMyTimeTable.do"><font color="#ea7f0d" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#ea7f0d'">나의시간표 조회</font></a>
+                                        <span style="text-align:left;" class="glyphicon glyphicon-minus text-primary"></span><a class="line" style="font-size:15px; text-align:left" href="${initParam.rootPath }/student/getMyTimeTable.do"><font color="#ea7f0d" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#ea7f0d'">나의 시간표 조회</font></a>
                                     </td>
                                 </tr>
                                 <tr style="height:20px">
@@ -217,7 +217,7 @@ a.line:hover {
                                 </tr>
                                 <tr>
                                     <td style="background-color: white">
-                                         <span class="glyphicon glyphicon-minus text-primary"></span><a class="line" style="font-size:15px" href="${initParam.rootPath }/student/getLeaveReturnApplicationListByStuId.do"><font color="#ea7f0d" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#ea7f0d'">휴복학신청 및 내역조회</font></a>
+                                         <span class="glyphicon glyphicon-minus text-primary"></span><a class="line" style="font-size:15px" href="${initParam.rootPath }/student/getLeaveReturnApplicationListByStuId.do"><font color="#ea7f0d" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#ea7f0d'">휴, 복학신청 및 내역조회</font></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -374,7 +374,7 @@ a.line:hover {
                     
 </sec:authorize>
 
-<%--졸업자 메뉴 --%>
+<%--졸업자 메뉴 --%> 
 <sec:authorize access="hasRole('ROLE_GRADUATION')">
 <div class="container">
     <div class="row">
@@ -595,19 +595,11 @@ a.line:hover {
                                
                             </table>
                         </div>
-                    </div>
-               
-                <div style="background:#ffb937" class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne7"><span class="glyphicon glyphicon-plus">
-                            </span><font color="white">공지사항관련</font></a>
-                        </h4>
-                    </div>
-                    
-                    <div class="panel-heading">
+                    </div>      
+                    <div class="panel-heading" style="background:#ffb937">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne8"><span class="glyphicon glyphicon-plus">
-                            </span><font color:"white">현황조회</font></a>
+                            </span><font color="white">현황조회</font></a>
                         </h4>
                     </div>
                     <div id="collapseOne8" class="panel-collapse collapse in">

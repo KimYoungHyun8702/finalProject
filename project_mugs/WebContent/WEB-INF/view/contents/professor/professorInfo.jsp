@@ -37,7 +37,7 @@ select{
 	cursor: pointer;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -60,7 +60,8 @@ $(document).on("click", "#updateBtn", function(){
 </head>
 
 <body>
-<h3>교수 정보 조회</h3>
+<h3>교수 개인정보 조회</h3>
+
 <br>
 <ul><li><h4>교수 기본 정보</h4></li></ul>	
 	<table border="2">
@@ -71,7 +72,7 @@ $(document).on("click", "#updateBtn", function(){
 		</colgroup>
 		<thead>
 			<tr>
-				<td rowspan="4" style="height: 34px"><c:choose>
+				<td rowspan="4" style="height: 34px" align="center"><c:choose>
 														<c:when test="${sessionScope.professor.usersPhoto != null}">
 																<img src ="${initParam.rootPath}/resource/up_image/${sessionScope.professor.usersPhoto}" id="imageSpace" width="150px" height="150px">
 															</c:when>
@@ -80,19 +81,19 @@ $(document).on("click", "#updateBtn", function(){
 															</c:otherwise>
 														</c:choose></td>
 				<th><input type="text" style="height: 40px" class="form-control" placeholder="교수번호" disabled></th>
-				<td style="height: 34px"><input style="border: 0" type="text" id="usersId" name="usersId" value="${sessionScope.professor.usersId}" readonly="readonly"></td>
+				<td align="center" style="height: 34px"><input style="border: 0" type="text" id="usersId" name="usersId" value="${sessionScope.professor.usersId}" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th><input type="text" style="height: 40px" class="form-control" placeholder="성명" disabled></th>
-				<td style="height: 34px"><input style="border: 0" type="text" id="usersName" name="usersName" value="${sessionScope.professor.usersName}" readonly="readonly"></td>
+				<td align="center" style="height: 34px"><input style="border: 0" type="text" id="usersName" name="usersName" value="${sessionScope.professor.usersName}" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th><input type="text" style="height: 40px" class="form-control" placeholder="영문성명" disabled></th>
-				<td style="height: 34px"><input style="border: 0" type="text" id="usersEngName" name="usersEngName" value="${sessionScope.professor.usersEngName}" readonly="readonly"></td>	
+				<td align="center" style="height: 34px"><input style="border: 0" type="text" id="usersEngName" name="usersEngName" value="${sessionScope.professor.usersEngName}" readonly="readonly"></td>	
 			</tr>
 			<tr>
 				<th><input type="text" style="height: 40px" class="form-control" placeholder="주민번호" disabled></th>
-				<td style="height: 34px"><input style="border: 0" type="text" id="usersRRN" name="usersRRN" value="${sessionScope.professor.usersRRN}" readonly="readonly"></td>
+				<td align="center" style="height: 34px"><input style="border: 0" type="text" id="usersRRN" name="usersRRN" value="${sessionScope.professor.usersRRN}" readonly="readonly"></td>
 			</tr>
 		</thead>
 	</table>
@@ -107,15 +108,15 @@ $(document).on("click", "#updateBtn", function(){
 		<thead>
 			<tr>
 				<th><input type="text" style="height: 40px" class="form-control" placeholder="졸업대학교" disabled></th>
-				<td style="height: 34px" id ="proUniversity">${sessionScope.professor.proUniversity}</td>
+				<td align="center" style="height: 34px" id ="proUniversity">${sessionScope.professor.proUniversity}</td>
 				<th><input type="text" style="height: 40px" class="form-control" placeholder="졸업대학원" disabled></th>
-				<td style="height: 34px" id ="proGradSchool">${sessionScope.professor.proGradSchool}</td>
+				<td align="center" style="height: 34px" id ="proGradSchool">${sessionScope.professor.proGradSchool}</td>
 			</tr>
 			<tr>
 				<th><input type="text" style="height: 40px" class="form-control" placeholder="교수실전화번호" disabled></th>
-				<td style="height: 34px" id ="proOfficePhoneNum">${sessionScope.professor.proOfficePhoneNum}</td>
+				<td align="center" style="height: 34px" id ="proOfficePhoneNum">${sessionScope.professor.proOfficePhoneNum}</td>
 				<th><input type="text" style="height: 40px" class="form-control" placeholder="연구실전화번호" disabled></th>	
-				<td style="height: 34px" id ="proLaboratoryPhoneNum">${sessionScope.professor.proLaboratoryPhoneNum}</td>
+				<td align="center" style="height: 34px" id ="proLaboratoryPhoneNum">${sessionScope.professor.proLaboratoryPhoneNum}</td>
 			</tr>
 		</thead>
 	</table>
@@ -132,34 +133,34 @@ $(document).on("click", "#updateBtn", function(){
 		<thead>
 			<tr>
 				<th><input type="text" style="height: 40px" class="form-control" placeholder="본적지" disabled></th>
-				<td style="height: 34px" colspan="5"><input type="text" style="border: 0;width: 500px" id="usersBornAddr" name="usersBornAddr" value="${sessionScope.professor.usersBornAddr}"></td>
+				<td align="center" style="height: 34px" colspan="5"><input type="text" style="border: 0;width: 500px" id="usersBornAddr" name="usersBornAddr" value="${sessionScope.professor.usersBornAddr}"></td>
 			</tr>
 			<tr>
 				<th><input type="text" style="height: 40px" class="form-control" placeholder="현주소" disabled></th>
-				<td style="height: 34px" colspan="5"><input type="text" id="usersCurrentAddr" style="border: 0;width: 500px" name="usersCurrentAddr" value="${sessionScope.professor.usersCurrentAddr}"></td>
+				<td align="center" style="height: 34px" colspan="5"><input type="text" id="usersCurrentAddr" style="border: 0;width: 500px" name="usersCurrentAddr" value="${sessionScope.professor.usersCurrentAddr}"></td>
 			</tr>
 			<tr>
 				<th><input type="text" style="height: 40px" class="form-control" placeholder="국적" disabled></th>
-				<td style="height: 34px"><input type="text" id="usersNational" style="border: 0" name="usersNational" value="${sessionScope.professor.usersNational}" readonly="readonly"></td>
+				<td align="center" style="height: 34px"><input type="text" id="usersNational" style="border: 0" name="usersNational" value="${sessionScope.professor.usersNational}" readonly="readonly"></td>
 				<th><input type="text" style="height: 40px" class="form-control" placeholder="집 전화번호" disabled></th>
-				<td style="height: 34px"><input type="text" name ="usersPhoneNum" style="border: 0" id="usersPhoneNum" value="${sessionScope.professor.usersPhoneNum}" readonly="readonly"></td>
+				<td align="center" style="height: 34px"><input type="text" name ="usersPhoneNum" style="border: 0" id="usersPhoneNum" value="${sessionScope.professor.usersPhoneNum}" readonly="readonly"></td>
 				<th><input type="text" style="height: 40px" class="form-control" placeholder="핸드폰번호" disabled></th>
-			    <td style="height: 34px"><input type="text" name ="usersCellNum" style="border: 0" id="usersCellNum" value="${sessionScope.professor.usersCellNum}" readonly="readonly"></td>
+			    <td align="center" style="height: 34px"><input type="text" name ="usersCellNum" style="border: 0" id="usersCellNum" value="${sessionScope.professor.usersCellNum}" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th><input type="text" style="height: 40px" class="form-control" placeholder="이메일" disabled></th>
-				<td style="height: 34px" colspan="5"><input type="text" name ="usersEmail" style="border: 0;width: 500px" id="usersEmail" value="${sessionScope.professor.usersEmail}" readonly="readonly"></td>
+				<td align="center" style="height: 34px" colspan="5"><input type="text" name ="usersEmail" style="border: 0;width: 500px" id="usersEmail" value="${sessionScope.professor.usersEmail}" readonly="readonly"></td>
 			</tr>
 		</thead>
 	</table>
 	<input type="hidden" id="usersEnable" name="usersEnable" value="${sessionScope.professor.usersId}" readonly>
-<br><br>
+
 	<form action="/project_mugs/professor/professorInfoUpdate.do" method="get"><br>
 	<center><input type="submit" id="UpdateBtn" value="수정"></center>
 	<sec:csrfInput/>
 	</form>
 <br>
-    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
+    <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
 <!-- <script type="text/javascript">
 	var openWin;

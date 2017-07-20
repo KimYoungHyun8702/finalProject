@@ -132,7 +132,7 @@
     and    cg.CGU_SEMESTER=#{semester}
  </select>
 
-<select id="selectCreditGiveUpJoin" resultMap="creditGiveUp-basic-reresultmap">
+<select id="selectCreditGiveUpJoin" resultMap="creditGiveUp-credit-reresultmap">
 	SELECT c.cgu_id, c.cgu_year, c.cgu_semester, c.cgu_start_date, c.cgu_finish_date,
 		   c.cgu_state, c.credit_id, m.major_name, u.users_id, u.users_name, su.subject_name
 	FROM credit_give_up c, credit t, student s, users u, major m, subject su

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MUGS</title>
 <style type="text/css">
 input{
 	text-align:center;
@@ -38,7 +38,7 @@ select{
 	color:black;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 
 
@@ -93,7 +93,7 @@ h3{
 	<c:choose>
 		<c:when test="${map.message=='접근허용'}">
 			<script>selectCredit();</script>
-			<h3>당학기 성적조회</h3>
+			<h3>당학기 성적 조회</h3><br>
 			<center><table border="2" style="border-color: black">
 				<thead id="thead"></thead>
 				   <tr class="filters"></tr>
@@ -103,7 +103,7 @@ h3{
 					<thead id="thead2" style="height:30px"></thead>
 					   <tr class="filters"></tr>
 					<tbody id="tbody2" style="height:30px"></tbody>
-				</table></center>
+				</table></center><br>
 				
 			<!-- <table id="table">
 				<thead id="thead"></thead>
@@ -120,5 +120,6 @@ h3{
 	</c:otherwise>
 	</c:choose>
 <br>
+ <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
 </html>

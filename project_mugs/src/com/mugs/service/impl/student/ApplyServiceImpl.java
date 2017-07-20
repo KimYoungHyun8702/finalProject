@@ -124,7 +124,7 @@ public class ApplyServiceImpl implements ApplyService{
 		leaveReturnApplicationlist = leaveReturnApplicationDaoImpl.selectLeaveReturnApplicationByDate(startDate, finishDate, stuId);
 		
 		if(leaveReturnApplicationlist.size() != 0) {
-			msg = "이미 신청하셨습니다. 부득이한 경우 과사로 하시기 바랍니다.";
+			msg = "이미 신청하셨습니다. 부득이한 경우 과사무실로 하시기 바랍니다.";
 			map.put("msg", msg);
 			return map;
 		}

@@ -18,12 +18,5 @@ h3{
 <body bgcolor="black">
 <br><br><br><br><br>
 <h3 align="center">환영합니다 ~~</h3>
-
-
-<br>
-
-<sec:authorize access="hasRole('ROLE_ADMIN')">
-<button onclick="location.href='${initParam.rootPath }/admin/selectNoticeForUpdateController.do'">공지사항 수정</button><br>
-</sec:authorize>
 </body>
 </html>

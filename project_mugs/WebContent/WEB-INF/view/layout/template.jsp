@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<title>학사종합정보시스템_MUGS</title>
+<title>MUGS</title>
 <script type="text/javascript" src="${initParam.rootPath }/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${initParam.rootPath }/resource/bootstrap/js/bootstrap.min.js"></script>
 

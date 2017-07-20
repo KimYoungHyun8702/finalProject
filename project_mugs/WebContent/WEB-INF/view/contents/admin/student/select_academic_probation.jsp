@@ -13,7 +13,7 @@ table{
 }
 td{
    border: 1px solid black;
-   text-align:center;
+   font-size: 15px;
 }
 select{
    width:150px;
@@ -33,7 +33,7 @@ select{
    color:black;
 }
 h3{
-   font-family:돋움체;
+   font-family:굴림체;
 }
 
 
@@ -52,7 +52,7 @@ function expel(usersId){
 </script>
 </head>
 <body>
-<h2>학생 제적 현황</h2>
+<h3>학생 경고 현황</h3>
 <c:if test="${sessionScope.expelMessage != null}">
 		<script type="text/javascript">
 			alert("제적 처리 되었습니다");
@@ -85,5 +85,6 @@ function expel(usersId){
 			</tr>
 			</c:forEach>
 		</tbody>
-	</table>
+	</table><br>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>

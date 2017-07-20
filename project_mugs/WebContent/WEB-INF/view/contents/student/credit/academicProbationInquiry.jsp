@@ -35,7 +35,7 @@ select{
    cursor: pointer;
 }
 h3{
-   font-family:돋움체;
+   font-family:굴림체;
 }
 #tbody>tr{
    height:10px;
@@ -74,8 +74,7 @@ h3{
 </script>
 </head>
 <body>
-<h3>학사경고 내역</h3>
-<hr style="border: solid px black">
+<h3>학사 경고 내역 조회</h3><br>
          <table border="2" style="border-color: black">
             <thead id="thead"></thead>
                <tr class="filters"></tr>
@@ -83,7 +82,7 @@ h3{
          </table>
 <h2 id="warning"></h2>   
 <br>
-    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
+    <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
 
 </html>

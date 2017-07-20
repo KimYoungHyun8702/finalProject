@@ -13,7 +13,6 @@ table{
 }
 td{
 	border: 1px solid black;
-	text-align:center;
 	font-size: 15px;
 }
 select{
@@ -31,11 +30,11 @@ select{
 	cursor: pointer;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MUGS</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function check(){
@@ -55,18 +54,31 @@ function check(){
 <h2>강의실 등록</h2>
 <br>
 <form action="${initParam.rootPath }/admin/insertRoomController.do" method="post" onsubmit="return check()">
-<select name="buildingId" id="buildingId" >
-<option>강의동 선택</option>
-<c:forEach var="list" items="${requestScope.list }">
-<option value=${list.buildingId }>
-${list.buildingName }
-</option> 
-</c:forEach>
-</select>
-강의실 이름 : <input type="text" name="roomName" id="roomName"/><br>
-<input type="submit" value="등록">
+	<table border="2">
+		<thead>
+			<tr>
+				<th align="center"><input type="text" class="form-control" placeholder="강의동 선택" disabled></th>
+				<th align="center"><input type="text" class="form-control" placeholder="강의실 이름" disabled></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td align="center"><select name="buildingId" id="buildingId" >
+										<option>강의동 선택</option>
+										<c:forEach var="list" items="${requestScope.list }">
+										<option value=${list.buildingId }>
+										${list.buildingName }
+										</option> 
+										</c:forEach>
+										</select></td>				
+				<td align="center"><input type="text" name="roomName" id="roomName" style="border: 0"/></td>
+			</tr>
+		</tbody>
+	</table><br>
+<center><input type="submit" value="등록"></center>
 <sec:csrfInput/>
 </form>
-<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+<br>
+<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 
 </body>

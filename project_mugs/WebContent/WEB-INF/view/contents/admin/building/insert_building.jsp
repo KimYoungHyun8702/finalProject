@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <style type="text/css">
 input{
 	text-align:center;
@@ -14,7 +12,6 @@ table{
 }
 td{
 	border: 1px solid black;
-	text-align:center;
 	font-size: 15px;
 }
 select{
@@ -32,9 +29,11 @@ select{
 	cursor: pointer;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
+<meta charset="UTF-8">
+<title>MUGS</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function check(){
@@ -63,10 +62,10 @@ function check(){
 </script>
 </head>
 <body>
-<h2>건물 등록</h2>
+<h3>건물 등록</h3>
 <br>
 	<form action="${initParam.rootPath }/admin/insertBuildingController.do" method="post" onsubmit="return check()">
-			<table border="1">
+			<table border="2">
 				<thead>
 					<tr>
 						<th align="center"><input type="text" class="form-control" placeholder="건물이름" disabled></th>
@@ -100,5 +99,5 @@ function check(){
 			<br>
 			<sec:csrfInput/>
 	</form>
-	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>

@@ -14,7 +14,7 @@ table{
 }
 td{
    border: 1px solid black;
-   text-align:center;
+    font-size: 15px;
 }
 select{
    width:150px;
@@ -34,7 +34,7 @@ select{
    color:black;
 }
 h3{
-   font-family:돋움체;
+   font-family:굴림체;
 }
 
 
@@ -151,7 +151,7 @@ $(document).ready(function(){
 			</colgroup>
 			<thead>
 				<tr>
-					<td rowspan="4" style="height: 34px;font-size: 15px">사진</td>
+					<td rowspan="4" style="height: 34px;font-size: 15px" align="center">사진</td>
 					<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="교수번호" disabled></th>
 					<td align="center" style="height: 34px;font-size: 15px"><input type="number" name="usersId" id="usersId" value="${param.usersId }" style="border: 0" style="border: 0"/></td>
 				</tr>
@@ -328,7 +328,7 @@ $(document).ready(function(){
 						<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="집 전화번호" disabled></th>
 						<td align="center" style="height: 34px;font-size: 15px"><input type="text" name="usersPhoneNum" id="usersPhoneNum" value="${param.usersPhoneNum }" style="border: 0"/></td>
 						<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="핸드폰 번호" disabled></th>
-						<td align="center" style="height: 34px;font-size: 15px"><input type="number" name="usersCellNum" id="usersCellNum" value="${param.usersCellNum }" style="border: 0"/></td>
+						<td align="center" style="height: 34px;font-size: 15px"><input type="text" name="usersCellNum" id="usersCellNum" value="${param.usersCellNum }" style="border: 0"/></td>
 					</tr>
 					<tr>
 						<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="이메일" disabled></th>
@@ -341,5 +341,5 @@ $(document).ready(function(){
 			<sec:csrfInput/>
 	</form>
 	<br>
-	<center><button onclick="location.href='${initParam.rootPath }/'">메인 화면으로 가기</button>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
