@@ -4,20 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="../first/dist/css/sb-admin-2.min.css" rel="stylesheet" media="screen"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 <style type="text/css">
 input{
 	text-align:center;
 }
 table{
-	width:700px;
-	
+	width:100%;
 }
-th {
-	bgcolor:peru;
-}
+
 td{
 	padding: 5px;
 	border: 1px solid black;
@@ -62,60 +57,123 @@ function info_student(stuId){
 		"data":"stuId="+stuId,
 		"success":function(result){
 			var photo = "";
-			var txt1 = "";
-			var txt2 = "";
-			var txt3 = "";
-			var txt4 = "";
-			var txt5 = "";
+			var usersId = "";
+			var usersName = "";
+			var usersEngName ="";
+			var usersRRN = "";
+			var stuCourse = "";
+			var stuArmy = "";
+			var stuGrade = "";
+			var stuSemester = "";
+			var stuRegisterState = "";
+			var stuStudentState = "";
+			var stuGraduationExam = "";
+			var stuEarlyGraduation = ""; 
+			var stuAdmissionDate = "";
+			var stuGraduationDate = ""; 
+			var majorId = "";
+			var majorDualId = "";
+			var majorMinorId = "";
+			var usersBornAddr = "";
+			var usersCurrentAddr = "";
+			var usersNational = "";
+			var usersPhoneNum = "";
+			var usersCellNum = "";
+			var usersEmail = "";
 			$.each(result,function(){
 			if(this.info.usersPhoto == null){
-				photo += "<img src ='${initParam.rootPath}/resource/up_image/1.jpg' width='110px' height='100px'>"
+				photo += "<img src ='${initParam.rootPath}/resource/up_image/1.jpg' width='150px' height='150px'>"
 			}else{
-				photo += "<img src ='${initParam.rootPath}/resource/up_image/"+this.info.usersPhoto+"' width='110px' height='100px'>"
+				photo += "<img src ='${initParam.rootPath}/resource/up_image/"+this.info.usersPhoto+"' width='150px' height='150px'>"
 			}
-
-			txt1 += "<tr><td align='center'>"+this.info.stuId+"</td><td align='center'>"+this.info.usersName+"</td><td align='center'>"+this.info.usersEngName+"</td><td align='center'>"+this.info.usersRRN
-					+"</td><td>"+this.info.usersEmail+"</td><td align='center'>"+this.info.usersPhoneNum+"</td></tr>"
-			
-			txt2 += "<tr><td align='center'>"+this.info.usersCellNum+"</td><td align='center'>"+this.info.usersNational+"</td><td align='center'>"+this.info.usersCurrentAddr+"</td><td align='center'>"+this.info.usersBornAddr
-					+"</td><td align='center'>"+this.info.usersEnable+"</td><td align='center'>"+this.info.stuCourse+"</td></tr>"
-			
-			txt3 += "<tr><td align='center'>"+(this.info.stuArmy==null?"":this.info.stuArmy)+"</td><td align='center'>"+this.stuAdmissionDate+"</td><td align='center'>"+(this.stuGraduationDate==null?"":this.stuGraduationDate)
-					+"</td><td align='center'>"+this.info.stuRegisterState+"</td><td align='center'>"+this.info.stuStudentState+"</td><td align='center'>"+this.info.stuGrade+"</td></tr>"
-				
-			txt4 += "<tr><td align='center'>"+this.info.stuGraduationExam+"</td><td align='center'>"+this.info.stuEarlyGraduation+"</td><td align='center'>"+this.info.stuSemester
-					+"</td><td align='center'>"+(this.major.majorName == null?"":this.major.majorName)+"</td><td align='center'>"+(this.majorDual == null?"":(this.majorDual.majorDualName==null?"":this.majorDual.majorDualName))
-					+"</td><td align='center'>"+(this.majorMinor == null?"":(this.majorMinor.majorMinorName==null?"":this.majorMinor.majorMinorName))+"</td></tr>"
-		
-			txt5 += "<tr><td align='center'><button onclick='update_student("+this.info.usersId+")'>수정</button></td><td align='center'><button onclick='delete_student("+this.info.usersId+")'>삭제</button></td></tr>"
+			usersId += this.info.stuId
+			usersName += this.info.usersName
+			usersEngName += this.info.usersEngName
+			usersRRN += this.info.usersRRN
+			stuCourse += this.info.stuCourse
+			stuArmy += (this.info.stuArmy==null?"":this.info.stuArmy)
+			stuGrade += this.info.stuGrade
+			stuSemester += this.info.stuSemester
+			stuRegisterState += this.info.stuRegisterState
+			stuStudentState += this.info.stuStudentState
+			stuGraduationExam += (this.info.stuGraduationExam==null?"":this.info.stuGraduationExam)
+			stuEarlyGraduation += this.info.stuEarlyGraduation
+			stuAdmissionDate += this.stuAdmissionDate
+			stuGraduationDate += (this.stuGraduationDate==null?"":this.stuGraduationDate)
+			majorId += this.major.majorName
+			majorDualId += (this.majorDual == null?"":(this.majorDual.majorDualName==null?"":this.majorDual.majorDualName))
+			majorMinorId += (this.majorMinor == null?"":(this.majorMinor.majorMinorName==null?"":this.majorMinor.majorMinorName))
+			usersEnable += this.info.usersEnable
+			usersBornAddr += this.info.usersBornAddr
+			usersCurrentAddr += this.info.usersCurrentAddr
+			usersNational += this.info.usersNational
+			usersPhoneNum += this.info.usersPhoneNum
+			usersCellNum += this.info.usersCellNum
+			usersEmail += this.info.usersEmail
 			})
-			$("#p").html(photo);
-			$("#infoTbody1").html(txt1);
-			$("#infoTbody2").html(txt2);
-			$("#infoTbody3").html(txt3);
-			$("#infoTbody4").html(txt4);
-			$("#infoTbody5").html(txt5);
-			$("#infoStudent").show();	
+			$("#photo").html(photo);
+			$("#usersId").html(usersId);
+			$("#usersName2").html(usersName);
+			$("#usersEngName").html(usersEngName);
+			$("#usersRRN").html(usersRRN);
+			$("#stuCourse").html(stuCourse);
+			$("#stuArmy").html(stuArmy);
+			$("#stuGrade").html(stuGrade);
+			$("#stuSemester").html(stuSemester);
+			$("#stuRegisterState").html(stuRegisterState);
+			$("#stuStudentState").html(stuStudentState);
+			$("#stuGraduationExam").html(stuGraduationExam);
+			$("#stuEarlyGraduation").html(stuEarlyGraduation);
+			$("#stuAdmissionDate").html(stuAdmissionDate);
+			$("#stuGraduationDate").html(stuGraduationDate);
+			$("#majorId").html(majorId);
+			$("#majorDualId").html(majorDualId);
+			$("#majorMinorId").html(majorMinorId);
+			$("#usersBornAddr").html(usersBornAddr);
+			$("#usersCurrentAddr").html(usersCurrentAddr);
+			$("#usersNational").html(usersNational);
+			$("#usersPhoneNum").html(usersPhoneNum);
+			$("#usersCellNum").html(usersCellNum);
+			$("#usersEmail").html(usersEmail);
+			$("#infoStudent").show();
+			$("#infoStudent2").show();
+			$("#infoStudent3").show();
 			$("#hr").show();
 			$("#h1").show();
-			$("#p").show();
+			$("#h2").show();
+			$("#h3").show();
+			$("#h4").show();
+			$("#update").show();
+			$("#delete").show();
 		}
 	})//end of ajax
 } 
 $(document).ready(function(){
 	$("#hr").hide();	
 	$("#h1").hide();
+	$("#h2").hide();
+	$("#h3").hide();
+	$("#h4").hide();
+	$("#update").hide();
+	$("#delete").hide();
 	$("#selectStudent").hide();	
 	$("#infoStudent").hide();
-	$("#p").hide();
+	$("#infoStudent2").hide();
+	$("#infoStudent3").hide();
 	$("#searchStudent").on("click",function(){
 		if($("#usersName").val() == ''){
 			alert("검색어를 입력하세요");
 			$("#hr").hide();	
 			$("#h1").hide();
-			$("#p").hide();
+			$("#h2").hide();
+			$("#h3").hide();
+			$("#h4").hide();
+			$("#update").hide();
+			$("#delete").hide();
 			$("#selectStudent").hide();	
 			$("#infoStudent").hide();	
+			$("#infoStudent2").hide();
+			$("#infoStudent3").hide();
 		}else{
 		$.ajax({
 			"url":"${initParam.rootPath }/admin/selectStudentByNameController.do",
@@ -125,14 +183,20 @@ $(document).ready(function(){
 					alert("조회할 내용이 없습니다");
 					$("#hr").hide();	
 					$("#h1").hide();
-					$("#p").hide();
+					$("#h2").hide();
+					$("#h3").hide();
+					$("#h4").hide();
+					$("#update").hide();
+					$("#delete").hide();
 					$("#selectStudent").hide();	
-					$("#infoStudent").hide();	
+					$("#infoStudent").hide();
+					$("#infoStudent2").hide();
+					$("#infoStudent3").hide();
 				}else{
 				var txt = "";
 				$.each(result,function(){
-				txt += "<tr><td align='center'>"+this.stuId+"</td><td align='center'>"+this.usersName+"</td><td align='center'>"+this.usersRRN+"</td><td align='center'>"+this.usersEmail+
-				"</td><td align='center'><button onclick='info_student("+this.stuId+")'>상세정보보기</button></td></tr>"
+				txt += "<tr style='height: 34px'><td align='center' style='height: 34px;font-size: 15px'>"+this.stuId+"</td><td align='center' style='height: 34px;font-size: 15px'>"+this.usersName+"</td><td align='center' style='height: 34px;font-size: 15px'>"+this.usersRRN+"</td><td align='center' style='height: 34px;font-size: 15px'>"+this.usersEmail+
+				"</td><td align='center' style='height: 34px;font-size: 15px'><button onclick='info_student("+this.stuId+")'>상세정보보기</button></td></tr>"
 				})
 				$("#selectTbody").html(txt);
 				$("#hr").show();	
@@ -165,85 +229,136 @@ $(document).ready(function(){
 		</script>
 		<% session.removeAttribute("studeleteMessage"); %>
 </c:if>
-	검색할 이름 <input type="text" name="usersName" id="usersName"/><button id="searchStudent">조회</button><br>
+	검색할 이름 <input type="text" name="usersName" id="usersName"/>&nbsp;&nbsp;<button id="searchStudent">조회</button><br>
 	<br>
-<div id="hr" class="row">
-	<div class="panel panel-primary filterable" id="hr">
-	<table id="selectStudent" border="1" class="table">
-		<thead id="thead">
-			<tr class="filters">
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 번호" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 이름" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 주민 번호" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 이메일" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="상세 정보 보기" disabled></th>
+	<table id="selectStudent" border="1">
+		<thead>
+			<tr style="height: 34px;font-size: 15px">
+				<th align="center"><input type="text"  class="form-control" placeholder="학생 번호" disabled></th>
+				<th align="center"><input type="text"  class="form-control" placeholder="학생 이름" disabled></th>
+				<th align="center"><input type="text"  class="form-control" placeholder="학생 주민 번호" disabled></th>
+				<th align="center"><input type="text"  class="form-control" placeholder="학생 이메일" disabled></th>
+				<th align="center"><input type="text"  class="form-control" placeholder="상세 정보 보기" disabled></th>
 			</tr>
 		</thead>
 		<tbody id="selectTbody"></tbody>
 	</table>
-	</div>
-</div>
+
 	<h3 id="h1">학생 상세 정보</h3>
-	<p id="p">
-	<div id="hr" class="row" >
-	<div class="panel panel-primary filterable" id="hr">
-	<table id="infoStudent" border="1" class="table" >
-		<thead id="thead">
-			<tr class="filters">
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="번호" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="이름" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="영문 이름" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="주민 번호" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="이메일" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="집 전화번호" disabled></th>
+	<ul id="h2"><li><h4>학생 기본 정보</h4></li></ul>
+	<table id="infoStudent" border="2">
+		<colgroup>
+			<col width="20%">
+			<col width="20%">
+			<col width="60%">
+		</colgroup>
+		<thead>
+	   		<tr>
+	   			<td rowspan="4" id="photo" style="height: 34px;font-size: 15px"></td>
+	   			<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="학번" disabled></th>
+	   			<td align="center" style="height: 34px;font-size: 15px" id="usersId"></td>
+	   		</tr>
+	   		<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="이름" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersName2"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="영문 이름" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersEngName"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="주민 번호" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersRRN"></td>
 			</tr>
 		</thead>
-		<tbody id="infoTbody1"></tbody>
-		
-		<thead id="thead">
-			<tr class="filters">
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="핸드폰 번호" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="국적" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="현 거주지 주소" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="본적지 주소" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="인증가능 상태" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="과정 구분" disabled></th>
+	</table>
+	<ul id="h3"><li><h4>학생 학적 정보</h4></li></ul>
+	<table id="infoStudent2" border="2">
+		<colgroup>
+			<col width="20%">
+			<col width="30%">
+			<col width="20%">
+			<col width="30%">
+		</colgroup>
+		<thead>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="과정 구분" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="stuCourse"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="병영 구분" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="stuArmy"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="학년" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="stuGrade"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="학기" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="stuSemester"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="학적 구분" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="stuRegisterState"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="학생 구분" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="stuStudentState"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="졸업시험 패스 여부" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="stuGraduationExam"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="조기졸업 대상 여부" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="stuEarlyGraduation"></td>			
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="입학 일자" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="stuAdmissionDate"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="졸업 일자" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="stuGraduationDate"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="소속 학과" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="majorId"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="복수 전공" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="majorDualId"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="부전공" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="majorMinorId"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="인증가능 상태" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersEnable"></td>
 			</tr>
 		</thead>
-		<tbody id="infoTbody2"></tbody>
-		
-		<thead id="thead">
-			<tr class="filters">
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="병영 구분" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="입학 일자" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="졸업 일자" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학적 구분" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학생 구분" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학년" disabled></th>
+	</table>
+	<ul id="h4"><li><h4>학생 카드 정보</h4></li></ul>
+	<table id="infoStudent3" border="2">
+			<colgroup>
+				<col width="15%">
+				<col width="15%">
+				<col width="15%">
+				<col width="15%">
+				<col width="15%">
+				<col width="15%">
+			</colgroup>
+		<thead>
+			<tr style="height: 34px;font-size: 15px" >
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="본적지 주소" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" colspan="5" id="usersBornAddr"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="현 거주지 주소" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" colspan="5" id="usersCurrentAddr"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="국적" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersNational"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="집 전화번호" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersPhoneNum"></td>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="핸드폰 번호" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" id="usersCellNum"></td>
+			</tr>
+			<tr>
+				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="이메일" disabled></th>
+				<td align="center" style="height: 34px;font-size: 15px" colspan="5" id="usersEmail"></td>
 			</tr>
 		</thead>
-		<tbody id="infoTbody3"></tbody>
-		
-		<thead id="thead">
-			<tr class="filters">		
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="졸업시험 패스 여부" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="조기졸업 대상 여부" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="학기" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="소속 학과" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="복수 전공" disabled></th>
-				<th align="center"  bgcolor="peru"><input type="text" class="form-control" placeholder="부전공" disabled></th>
-			</tr>
-		</thead>
-		<tbody id="infoTbody4"></tbody>
-			
-		<thead id="thead">
-			<tr class="filters">	
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="수정" disabled></th>
-				<th align="center" bgcolor="peru"><input type="text" class="form-control" placeholder="삭제" disabled></th>
-			</tr>
-		</thead>	
-		<tbody id="infoTbody5"></tbody>
 		</table>
-	</div>
-</div><br>
-	<center><button onclick="location.href='${initParam.rootPath }/'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+<br>
+	<center><button id="update" onclick="update_student($('#usersId').text())">수정</button>
+	<button id="delete" onclick="delete_student($('#usersId').text())">삭제</button><br><br>
+	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>

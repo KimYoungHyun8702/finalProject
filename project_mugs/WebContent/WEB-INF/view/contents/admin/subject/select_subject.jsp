@@ -8,17 +8,17 @@
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 function update_subject(subjectId){
-	location.href="${initParam.rootPath }/admin/selectSubjectInfoBySubjectIdForUpdateController.do?subjectId="+subjectId
+   location.href="${initParam.rootPath }/admin/selectSubjectInfoBySubjectIdForUpdateController.do?subjectId="+subjectId
 };
 function update_minor_subject(subjectId){
-	location.href="${initParam.rootPath }/admin/selectSubjectInfoBySubjectIdForMinorUpdateController.do?subjectId="+subjectId
+   location.href="${initParam.rootPath }/admin/selectSubjectInfoBySubjectIdForMinorUpdateController.do?subjectId="+subjectId
 };
 function delete_subject(subjectId){
-	if(confirm("삭제하시겠습니까?")){
-		location.href="${initParam.rootPath }/admin/deleteSubjectBySubjectIdController.do?subjectId="+subjectId
-	}else{
-		return false;
-	}
+   if(confirm("삭제하시겠습니까?")){
+      location.href="${initParam.rootPath }/admin/deleteSubjectBySubjectIdController.do?subjectId="+subjectId
+   }else{
+      return false;
+   }
 };
 $(document).ready(function(){	
 	$("#college").hide();
@@ -165,26 +165,26 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<h2>과목 조회</h2>
-	<c:if test="${sessionScope.subinsertMessage != null}">
-		<script type="text/javascript">
-			alert("등록되었습니다");
-		</script>
-		<% session.removeAttribute("subinsertMessage"); %>
+   <h2>과목 조회</h2>
+   <c:if test="${sessionScope.subinsertMessage != null}">
+      <script type="text/javascript">
+         alert("등록되었습니다");
+      </script>
+      <% session.removeAttribute("subinsertMessage"); %>
 </c:if>
 <c:if test="${sessionScope.subupdateMessage != null}">
-		<script type="text/javascript">
-			alert("수정되었습니다");
-		</script>
-		<% session.removeAttribute("subupdateMessage"); %>
+      <script type="text/javascript">
+         alert("수정되었습니다");
+      </script>
+      <% session.removeAttribute("subupdateMessage"); %>
 </c:if>
 <c:if test="${sessionScope.subdeleteMessage != null}">
-		<script type="text/javascript">
-			alert("삭제되었습니다");
-		</script>
-		<% session.removeAttribute("subdeleteMessage"); %>
+      <script type="text/javascript">
+         alert("삭제되었습니다");
+      </script>
+      <% session.removeAttribute("subdeleteMessage"); %>
 </c:if>
-	<hr>
+	<br>
 	<select name="subjectType" id="subjectType">
 		<option>이수 구분 선택</option>
 		<c:forEach var="list" items="${requestScope.list }">

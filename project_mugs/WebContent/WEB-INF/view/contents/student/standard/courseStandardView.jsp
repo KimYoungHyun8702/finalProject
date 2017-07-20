@@ -5,11 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<link href="../first/dist/css/sb-admin-2.min.css" rel="stylesheet" media="screen"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-<script type="text/javascript" src="/project_mugs/resource/jquery/jquery.js"></script>
+      <script src="${initParam.rootPath }/resource/bootstrap/js/bootstrap.min.js"></script>
+<script src="${initParam.rootPath }/resource/jquery/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="${initParam.rootPath }/resource/bootstrap/css/bootstrap.min.css">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/_bootstrap.min.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/creative.css" rel="stylesheet"> 
+    <link href="${initParam.rootPath }/resource/bootstrap/css/_bootstrap.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/simple-sidebar.css" rel="stylesheet">
+    <link href="${initParam.rootPath }/resource/bootstrap/css/style.css" rel="stylesheet"> 
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -98,7 +102,7 @@ input{
 	text-align:center;
 }
 table{
-	width:600px;
+	width:100%;
 	
 }
 td{
@@ -145,19 +149,18 @@ h3{
 	<option>년도선택</option>
 </select><br><br>
 
-<div class="panel panel-primary filterable">
-<table class="table">
+<table border="1">
 	<thead id="thead"></thead>
 	   <tr class="filters"></tr>
 	<tbody id="tbody"></tbody>
 </table>
-</div>
 
 <!-- <table>
 	<thead id="thead"></thead>
 	<tbody id="tbody"></tbody>
 </table><br><br><br><br> -->
-<center><button onclick="location.href='${initParam.rootPath}/'" type="button" class="btn btn-primary">이전페이지로</button></center>
+<br>
+<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" class="btn btn-primary">이전페이지로</button></center>
 <script src="jquery-1.10.2.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>

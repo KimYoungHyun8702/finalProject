@@ -25,9 +25,10 @@ function check(){
 console.log('${param.errorMessage}');
 </script> 
 <body>
-
+<h3>비밀번호 수정</h3>
+<br><br><br><br><br><br><br>
 <form action="${initParam.rootPath}/student/updatePassword.do" method="post" onsubmit="return check();">
-기존 비밀번호를 입력하세요 <input type="password" name="oldUserPassword" id="oldUserPassword">
+<center>기존 비밀번호를 입력하세요 <input type="password" name="oldUserPassword" id="oldUserPassword"></center>
 	<c:choose>
 		<c:when test="${not empty param.errorMessage}">	
 				<font color="red">${param.errorMessage}</font>
@@ -37,8 +38,8 @@ console.log('${param.errorMessage}');
 		</c:otherwise>
 	</c:choose>
 <br>
-변경할 비밀번호를 입력하세요<input type="password" name="usersPassword" id="usersPassword">
-<input type="submit" value="변경">
+<center>변경할 비밀번호를 입력하세요 <input type="password" name="usersPassword" id="usersPassword"></center><br>
+<center><input type="submit" value="변경"></center>
 <sec:csrfInput/>
 </form>
 </body>

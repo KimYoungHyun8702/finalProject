@@ -42,12 +42,16 @@ h3{
 				$("#thead").html("<tr><td>년도</td><td>학기</td><td>과목번호</td><td>과목명</td><td>분반</td><td>이수구분</td><td>학점</td><td>등급</td><td>평점</td><td>재수강(대체)과목</td></tr>")
 				$("#thead2").html("<tr><td>신청학점</td><td>취득학점</td><td>평점평균</td></tr>")
 				$.each(list, function(){
+					if(this.creditGrade!='포기'){
 					allCredit+=this.subject.subjectCredit;
 					acquireCredit+=this.creditAcquire;
 						score+=this.creditScore;
 		      		 txt += "<tr><td>"+this.creditYear+"</td><td>"+this.creditSemester+ "</td><td>"
 			             +this.subjectId+"</td><td>"+this.subject.subjectName+"</td><td>"+this.subject.subjectClass+"</td><td>"+this.subject.subjectType+"</td><td>"+this.subject.subjectCredit+"</td><td>"+this.creditGrade+"</td><td>"+this.creditScore+"</tr>";
-				})
+					}else{
+						count-=1;
+					}
+					})
 				if(isNaN(score/count)){
 					txt2+="<tr><td>"+allCredit+"</td><td>"+acquireCredit+"</td><td>0&nbsp;&nbsp;/&nbsp;&nbsp;4.5</td></tr>"
 					
@@ -80,14 +84,12 @@ h3{
 			</div>
 			</div>
 			<hr style="border: solid px black">
-				<div class="row">
 				<div class="panel panel-primary filterable">
 				<table class="table2">
 					<thead id="thead2"></thead>
 					   <tr class="filters"></tr>
 					<tbody id="tbody2"></tbody>
 				</table>
-				</div>
 				</div>
 				
 			<!-- <table id="table">
@@ -101,7 +103,7 @@ h3{
 				</table> -->
 		</c:when>
 		<c:otherwise>
-			<script>alert("성적조회기간이 아닙니다!!.");</script>
+			<script>alert("${map.message}");</script>
 	</c:otherwise>
 	</c:choose>
 	

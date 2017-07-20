@@ -187,7 +187,7 @@
 		FROM   professor p, room r, building b
 		WHERE  p.office_id = r.room_id 
 		AND b.building_id = r.building_id
-		AND b.building_name = '교수실연구동'
+		AND b.building_name = '교수연구동'
 	</select>
 	
 	<select id="selectProfessorLabaratoryForoverlap" resultMap="professor-user-resultmap">

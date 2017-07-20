@@ -69,7 +69,7 @@ $(document).ready(function(){
 </head>
 <body>
 <h2>수강 기준 학점  수정</h2>
-<hr>
+<br>
 	<form action="${initParam.rootPath }/admin/updateStandardController.do" method="post" onsubmit="return check()">
 	<input type="text" value="${requestScope.list[0].majorName }" readonly/><br>
 	<input type="hidden" id="majorId" name="majorId" value="${requestScope.list[0].majorId }"/>

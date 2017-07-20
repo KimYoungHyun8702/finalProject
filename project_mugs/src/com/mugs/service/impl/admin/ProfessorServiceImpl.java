@@ -132,12 +132,12 @@ public class ProfessorServiceImpl implements ProfessorService {
 		}else{
 			for(int i = 0; i<office.size(); i++){
 				for(int j = 0; j<olapOffice.size(); j++ ){
-					if(office.get(i).getRoomList().get(i).getRoomId() == olapOffice.get(j).getProRoomOfficeId()){
-						office.get(i).getRoomList().remove(i);
+					if(office.get(0).getRoomList().get(i).getRoomId() == olapOffice.get(j).getProRoomOfficeId()){
+						office.get(0).getRoomList().remove(i);
 					}
 				}
 			}
-			map.put("office", office);	
+			map.put("office", office);
 		}
 		map.put("college", college);
 		map.put("major", major);

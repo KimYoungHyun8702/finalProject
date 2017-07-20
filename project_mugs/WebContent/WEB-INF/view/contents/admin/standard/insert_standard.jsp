@@ -34,7 +34,7 @@ function check(){
 </head>
 <body>
 <h2>수강 기준 학점 등록</h2>
-<hr>
+<br>
 <form action="${initParam.rootPath }/admin/insertStandardController.do" method="post" onsubmit="return check()">
 	학과 이름 : <input type="text" value="${param.majorName }" readonly/><br>
 	적용 연도 : <input type="number" name="standardYear" id="standardYear"/><br>

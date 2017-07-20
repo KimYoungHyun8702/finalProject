@@ -42,7 +42,6 @@
 	<select id="selectRoomByReference" parameterType="int" resultMap="room-basic-resultmap">
 		<include refid="select-room"/>
 		WHERE building_id = #{value}
-		ORDER BY room_name
 	</select>
 	
 	<select id="selectRoomList" resultMap="room-basic-resultmap">
