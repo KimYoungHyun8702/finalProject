@@ -471,7 +471,6 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
               map.put("courseSubjectList", courseDaoImpl.selectMyCourseList(stuId, nowYear, semester));
          } else {
         	 List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoin(majorId, nowYear, semester, subjectType);
-              
              List<Credit> myCourseList = creditDaoImpl.selectAllCreditByStuId(stuId);
               
              for(int i = 0; i < professorSubjectList.size(); i++) {
@@ -487,7 +486,6 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
                    }
                 }
              }
-             
              map.put("professorSubjectList", professorSubjectList);
              map.put("courseSubjectList", courseDaoImpl.selectMyCourseList(stuId, nowYear, semester));
          }

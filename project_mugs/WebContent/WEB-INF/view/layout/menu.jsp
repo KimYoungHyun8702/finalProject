@@ -92,7 +92,6 @@ a.line:hover {
       }
    } 
    
-<<<<<<< HEAD
 	var  stuRegister = "${stuRegister}";
 	
 	if(stuRegister == '휴학' || stuRegister == '군휴학') {
@@ -104,17 +103,6 @@ a.line:hover {
 		}
 	} 
 	
-	var  stuRegisterTimeTable = "${stuRegisterTimeTable}";
-	
-	if(stuRegisterTimeTable == '휴학' || stuRegisterTimeTable == '군휴학') {
-		alert(stuRegisterTimeTable + "학생은 시간표를 볼수 없습니다.");
-	} else {
-		var message = "${message}";
-		if(message != "") {
-			alert(message);
-		}
-	}
-	
 	var stuRegisterMyCourse = "${stuRegisterMyCourse}";
 	
 	if(stuRegisterMyCourse == '휴학') {
@@ -125,17 +113,6 @@ a.line:hover {
 			alert(courseMessage);
 		}
 	}
-=======
-   var  stuRegister = "${stuRegister}";
-   
-   if(stuRegister == '휴학' || stuRegister == '군휴학') {
-      alert(stuRegister + "학생은 수강신청을 할 수 없습니다.");
-   } else {
-      var msg = "${msg}";
-      if(msg != "") {
-         alert(msg);
-      }
-   } 
    
    var  stuRegisterTimeTable = "${stuRegisterTimeTable}";
    
@@ -147,7 +124,6 @@ a.line:hover {
          alert(message);
       }
    }
->>>>>>> branch 'master' of https://github.com/KimYoungHyun8702/finalProject.git
 </script>
 
    

@@ -21,273 +21,6 @@
 <script type="text/javascript" src="${initParam.rootPath }/resource/jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-<<<<<<< HEAD
-	$("#subjectTypeList").change(function() {
-		var txt = "<option>선택하세요.</option>"
-		$("#subjectThead").empty();
-		$("#subjectTbody").empty();
-		$("#majorList").html(txt);
-		$("#collegeList").html(txt);
-		$("#chart").hide();
-		var index = $("#subjectTypeList option").index($("#subjectTypeList option:selected"));
-		$.ajax({
-			"url":"/project_mugs/student/getEvaluationGraphCollegeList.do",
-			"type":"post",
-			"dataType":"json",
-			"data":{'subjectType':$("#subjectTypeList option:selected").text(), '${_csrf.parameterName}':'${_csrf.token}'},
-			"beforeSend":function(){
-				if(index == 0) {
-					alert("이수구분을 선택하세요.");
-					$("#collegeList").html(txt);
-					$("#majorList").html(txt);
-					$("#subjectThead").empty();
-					$("#subjectTbody").empty();
-					$("#chart").hide();
-					return false;
-				}
-			},
-			"success":function(map) {
-				if(map.collegeList) {
-					if($("#collegeLabel").length) {
-						var txt = "<option>선택하세요.</option>";
-						$.each(map.collegeList, function(){
-							txt += "<option value=" + this.collegeId + ">" + this.collegeName + "</option>";
-						});
-						$("#collegeList").html(txt);
-					} else {
-						var txt = " <label id=" + "collegeLabel>단과대학 : " + "<select id=" + "collegeList>" + "<option>선택하세요.</option>";
-						var nextTxt = " <label id=" + "majorLabel>학과 : " + "<select id=" + "majorList>" + "<option>선택하세요.</option></select></label>";
-						$.each(map.collegeList, function(){
-							txt += "<option value=" + this.collegeId + ">" + this.collegeName + "</option>";
-						});
-						txt += "</select></label>";
-						$("#subjectType").after(txt);
-						$("#collegeLabel").after(nextTxt);
-					}
-				} else {
-					$("#collegeList").remove();
-					$("#majorList").remove();
-					$("#collegeLabel").remove();
-					$("#majorLabel").remove();
-					var majorIdTxt = "";
-					var subjectTbody = "";
-					var subjectThead = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>정원</td><td>신청</td><td>여석</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>그래프보기</td></tr>";
-					$.each(map.professorSubjectList, function(){
-						subjectTbody += "<tr><td>" + this.subject.subjectGrade +
-									"</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
-									"</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCapacity + "</td><td>" + this.subject.subjectRequest + 
-									"</td><td>" + this.subject.remainNum + "</td><td>" + this.subject.subjectCredit + "</td><td>" + this.subject.subjectTime + 
-									"</td><td>" + this.building.buildingName + "/" + this.room.roomName + "</td><td>" + majorIdTxt + "</td>" + 
-									"<td>" + "<button id=" + "evaluationGraphSee>" + "평가그래프 보기</button>" + "<input type='hidden' value=" + this.subjectId + ">" + 
-									"<input type='hidden' value=" + this.proId + ">" + "</td></tr>";
-					});
-					$("#subjectThead").html(subjectThead);
-					$("#subjectTbody").html(subjectTbody);
-				}
-			},
-		});
-	});
-	
-	$("#collegeList").change(function() {
-		var index = $("#collegeList option").index($("#collegeList option:selected"));
-		var txt = "<option>선택하세요.</option>"
-		$("#majorList").html(txt);
-		$("#subjectThead").empty();
-		$("#subjectTbody").empty();
-		$("#chart").hide();
-		$.ajax({
-			"url":"/project_mugs/student/getEvaluationGraphMajorListByCollegeId.do",
-			"type":"post",
-			"data":{"collegeId":$("#collegeList").val(), ${_csrf.parameterName}:'${_csrf.token}'},
-			"dataType":"json",
-			"beforeSend":function() {
-				if(index == 0) {
-					alert("단과대학을 선택하세요.");
-					$("#majorList").html(txt);
-					$("#subjectThead").empty();
-					$("#subjectTbody").empty();
-					$("#chart").hide();
-					return false;
-				}
-			},
-			"success":function(list) {
-				var txt = "<option>선택하세요.</option>";
-				$.each(list, function(){
-					txt += "<option value=" + this.majorId + ">" + this.majorName + "</option>";
-				});
-				$("#majorList").html(txt);
-			},
-		});
-	});
-	
-	$(document).on("change", "#collegeList", function() {
-		var index = $("#collegeList option").index($("#collegeList option:selected"));
-		var txt = "<option>선택하세요.</option>"
-		$("#majorList").html(txt);
-		$("#subjectThead").empty();
-		$("#subjectTbody").empty();
-		$("#chart").hide();
-		$.ajax({
-			"url":"/project_mugs/student/getEvaluationGraphMajorListByCollegeId.do",
-			"type":"post",
-			"data":{"collegeId":$("#collegeList").val(), ${_csrf.parameterName}:'${_csrf.token}'},
-			"dataType":"json",
-			"beforeSend":function() {
-				if(index == 0) {
-					alert("단과대학을 선택하세요.");
-					$("#majorList").html(txt);
-					$("#subjectThead").empty();
-					$("#subjectTbody").empty();
-					$("#chart").hide();
-					return false;
-				}
-			},
-			"success":function(list) {
-				var txt = "<option>선택하세요.</option>";
-				$.each(list, function(){
-					txt += "<option value=" + this.majorId + ">" + this.majorName + "</option>";
-				});
-				$("#majorList").html(txt);
-			},
-		});
-	});
-	
-	$("#majorList").change(function() {
-		var index = $("#majorList option").index($("#majorList option:selected"));
-		var txt = "<option>선택하세요.</option>"
-		$("#subjectThead").empty();
-		$("#subjectTbody").empty();
-		$("#chart").hide();
-		$.ajax({
-			"url":"/project_mugs/student/getEvaluationGraphSubjectListByJoin.do",
-			"type":"post",
-			"dataType":"json",
-			"data":({majorId:$("#majorList").val(), subjectType:$("#subjectTypeList").val(), ${_csrf.parameterName}:'${_csrf.token}'}),
-			"beforeSend":function() {
-				if(index == 0) {
-					alert("학과를 선택하세요.");
-					$("#majorList").html(txt);
-					$("#subjectThead").empty();
-					$("#subjectTbody").empty();
-					$("#chart").hide();
-					return false;
-				}
-			},
-			"success":function(map) {
-				var subjectTbody = "";
-				var subjectThead = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>정원</td><td>신청</td><td>여석</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>신청버튼</td></tr>";
-				$.each(map.professorSubjectList, function(){
-					subjectTbody += "<tr><td>" + this.subject.subjectGrade +
-								"</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
-								"</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCapacity + "</td><td>" + this.subject.subjectRequest + 
-								"</td><td>" + this.subject.remainNum + "</td><td>" + this.subject.subjectCredit + "</td><td>" + this.subject.subjectTime + 
-								"</td><td>" + this.building.buildingName + "/" + this.room.roomName + "</td><td>" + this.subject.major.majorName + "</td>" +
-								"<td>" + "<button id=" + "evaluationGraphSee>" + "평가그래프 보기</button>" + "<input type='hidden' value=" + this.subjectId + ">" + 
-								"<input type='hidden' value=" + this.proId + ">" + "</td></tr>";
-				});
-				$("#subjectThead").html(subjectThead);
-				$("#subjectTbody").html(subjectTbody);
-			},
-		});
-	});
-	
-	$(document).on("change", "#majorList", function() {
-		var index = $("#majorList option").index($("#majorList option:selected"));
-		$("#subjectThead").empty();
-		$("#subjectTbody").empty();
-		$("#chart").hide();
-		$.ajax({
-			"url":"/project_mugs/student/getEvaluationGraphSubjectListByJoin.do",
-			"type":"post",
-			"dataType":"json",
-			"data":({majorId:$("#majorList").val(), subjectType:$("#subjectTypeList").val(), ${_csrf.parameterName}:'${_csrf.token}'}),
-			"beforeSend":function() {
-				if(index == 0) {
-					alert("학과를 선택하세요.");
-					$("#subjectThead").empty();
-					$("#subjectTbody").empty();
-					$("#chart").hide();
-					return false;
-				}
-			},
-			"success":function(map) {
-				var subjectTbody = "";
-				var subjectThead = "<tr><td>학년</td><td>이수구분</td><td>분반</td><td>강의명</td><td>담당교수</td><td>정원</td><td>신청</td><td>여석</td><td>학점</td><td>강의시간</td><td>강의실</td><td>개설학과</td><td>신청버튼</td></tr>";
-				$.each(map.professorSubjectList, function(){
-					subjectTbody += "<tr><td>" + this.subject.subjectGrade +
-								"</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
-								"</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCapacity + "</td><td>" + this.subject.subjectRequest + 
-								"</td><td>" + this.subject.remainNum + "</td><td>" + this.subject.subjectCredit + "</td><td>" + this.subject.subjectTime + 
-								"</td><td>" + this.building.buildingName + "/" + this.room.roomName + "</td><td>" + this.subject.major.majorName + "</td>" +
-								"<td>" + "<button id=" + "evaluationGraphSee>" + "평가그래프 보기</button>" + "<input type='hidden' value=" + this.subjectId + ">" + 
-								"<input type='hidden' value=" + this.proId + ">" + "</td></tr>";
-				});
-				$("#subjectThead").html(subjectThead);
-				$("#subjectTbody").html(subjectTbody);
-			},
-		});
-	});
-	
-	$(document).on("click", "#evaluationGraphSee", function() {
-		$.ajax({
-			"url":"/project_mugs/student/getEvaluationGraph.do",
-			"type":"post",
-			"data":({proId:$(this).next().next().val(), subjectId:$(this).next().val(), ${_csrf.parameterName}:'${_csrf.token}'}),
-			"dataType":"json",
-			"beforeSend":function() {
-				
-			},
-			"success":function(map) {
-				if(map.msg) {
-					alert(map.msg);
-					$("#chart").hide();
-				} else {
-					$("#chart").show();
-					var readyAvg = parseFloat(map.readyAvg);
-					var passionAvg = parseFloat(map.passionAvg);
-					var questionAvg = parseFloat(map.questionAvg);
-					var taskAvg = parseFloat(map.taskAvg);
-					var examAvg = parseFloat(map.examAvg);
-					var line = [['수업준비도', readyAvg], ['수업열정도', passionAvg], ['질의응답', questionAvg], ['과제', taskAvg], ['시험', examAvg]];
-				    jQuery("#chart").jqplot([line], {
-				          title:"수업 평가그래프",
-				       	 seriesColors:['#FFCCE5', '#00749F', '#73C774', '#C7754C', '#17BDB8']
-				        ,seriesDefaults:{
-				            renderer:jQuery.jqplot.BarRenderer
-				            , rendererOptions:{
-				                varyBarColor:true ,
-				                barWidth : 35                    // 막대그래프의 넓이를 지정
-			                    , barPadding : -15                // 막대그래프의 여백을 지정
-			                    , highlightMouseOver : false    // 막대그래프의 클릭여부를 지정 (기본값 : true)
-				            }
-				        },
-				    	series:[
-				        {
-				            pointLabels:{
-				                show:true,
-				                labels:[readyAvg, passionAvg, questionAvg, taskAvg, examAvg],
-				            },
-				        }
-				    	],
-				        axes:{
-				            xaxis:{
-				                  renderer:jQuery.jqplot.CategoryAxisRenderer
-				            },
-				        	yaxis:{  
-				        		numberTicks : 7,
-				        		min:0,
-				        		max:6,
-				        		tickOptions:{
-				        			formatString : '%.1f'
-				             	}
-				        	}
-				        }
-				    });
-				}
-			},
-		});
-	});
-=======
    $("#subjectTypeList").change(function() {
       var txt = "<option>선택하세요.</option>"
       $("#subjectThead").empty();
@@ -511,39 +244,45 @@ $(document).ready(function() {
                var taskAvg = parseFloat(map.taskAvg);
                var examAvg = parseFloat(map.examAvg);
                var line = [['수업준비도', readyAvg], ['수업열정도', passionAvg], ['질의응답', questionAvg], ['과제', taskAvg], ['시험', examAvg]];
-                jQuery("#chart").jqplot([line], {
-                      title:"수업 평가그래프",
-                    seriesDefaults:{
-                        renderer:jQuery.jqplot.BarRenderer
-                    },
-                   series:[
-                    {
-                        pointLabels:{
-                            show:true,
-                            labels:[readyAvg, passionAvg, questionAvg, taskAvg, examAvg],
-                        },
-                    }
-                   ],
-                    axes:{
-                        xaxis:{
-                              renderer:jQuery.jqplot.CategoryAxisRenderer
-                        },
-                       yaxis:{  
-                          numberTicks : 7,
-                          min:0,
-                          max:6,
-                          tickOptions:{
-                             formatString : '%.1f'
-                            }
-                       }
-                    }
-                });
+               jQuery("#chart").jqplot([line], {
+			          title:"수업 평가그래프",
+			       	 seriesColors:['#FFCCE5', '#00749F', '#73C774', '#C7754C', '#17BDB8']
+			        ,seriesDefaults:{
+			            renderer:jQuery.jqplot.BarRenderer
+			            , rendererOptions:{
+			                varyBarColor:true ,
+			                barWidth : 35                    // 막대그래프의 넓이를 지정
+		                    , barPadding : -15                // 막대그래프의 여백을 지정
+		                    , highlightMouseOver : false    // 막대그래프의 클릭여부를 지정 (기본값 : true)
+			            }
+			        },
+			    	series:[
+			        {
+			            pointLabels:{
+			                show:true,
+			                labels:[readyAvg, passionAvg, questionAvg, taskAvg, examAvg],
+			            },
+			        }
+			    	],
+			        axes:{
+			            xaxis:{
+			                  renderer:jQuery.jqplot.CategoryAxisRenderer
+			            },
+			        	yaxis:{  
+			        		numberTicks : 7,
+			        		min:0,
+			        		max:6,
+			        		tickOptions:{
+			        			formatString : '%.1f'
+			             	}
+			        	}
+			        }
+			    });
                 $("#chart").show();
             }
          },
       });
    });
->>>>>>> branch 'master' of https://github.com/KimYoungHyun8702/finalProject.git
 });
 </script>
 <style type="text/css">

@@ -73,23 +73,14 @@ td{
 	<tbody id="tbody">
 			<c:forEach items="${requestScope.myCourseListResult}" var="courseList">
 				<tr>
-<<<<<<< HEAD
-					<td>${courseList.subjectId}</td>
-					<td>${courseList.subject.subjectName}</td>
-					<td>${courseList.subject.subjectType}</td>
-					<td>${courseList.subject.subjectCredit}</td>
-					<td>${courseList.professor.usersName}</td>
-					<td>${courseList.subject.subjectTime}</td>
-					<td>${courseList.building.buildingName}/${courseList.room.roomName }</td>
-=======
+
 					<td align="center">${courseList.subjectId}</td>
 					<td align="center">${courseList.subject.subjectName}</td>
 					<td align="center">${courseList.subject.subjectType}</td>
 					<td align="center">${courseList.subject.subjectCredit}</td>
 					<td align="center">${courseList.professor.usersName}</td>
 					<td align="center">${courseList.subject.subjectTime}</td>
-					<td align="center">${courseList.subject.lectureId}</td>
->>>>>>> branch 'master' of https://github.com/KimYoungHyun8702/finalProject.git
+					<td align="center">${courseList.building.buildingName}/${courseList.room.roomName }</td>
 				</tr>
 			</c:forEach>
 	</tbody>
