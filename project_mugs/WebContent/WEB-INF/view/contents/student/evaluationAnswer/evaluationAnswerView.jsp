@@ -106,12 +106,10 @@ $(document).ready(function(){
 				<td style="text-align:center">${evaluationList.professor.usersName}</td>
 				<td style="text-align:center">
 					<form action="${initParam.rootPath }/evaluationAnswerRegisteration.do"> <!-- 설문응답하는 jsp로 이동 -->
-						<input type="hidden" value="${evaluationList.course.courseYear}" name="nowYear">
-						<input type="hidden" value="${evaluationList.course.courseSemester}" name="nowSemester">
-						<input type="hidden" value="${evaluationList.course.stuId}" name="loginId">
-						<input type="hidden" value="${evaluationList.course.subjectId}" name="subjectId">
+						<input type="hidden" value="${evaluationList.evaluationAnswerYear}" name="nowYear">
+						<input type="hidden" value="${evaluationList.evaluationAnswerSemester}" name="nowSemester">
+						<input type="hidden" value="${evaluationList.subjectId}" name="subjectId">
 						<input type="hidden" value="${evaluationList.professor.proId}" name="proId">
-		
 						<input type="submit" value="${evaluationList.evaluationAnswerState}" class="submit"/>
 					<sec:csrfInput/><%-- csrf 토큰 --%>	
 					</form>

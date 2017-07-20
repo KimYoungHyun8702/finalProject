@@ -96,7 +96,7 @@ $(document).ready(function() {
       $.ajax({
          "url":"/project_mugs/student/getEvaluationGraphMajorListByCollegeId.do",
          "type":"post",
-         "data":{"collegeId":$("#collegeList").val(), ${_csrf.parameterName}:'${_csrf.token}'},
+         "data":{"collegeId":$("#collegeList").val(), '${_csrf.parameterName}':'${_csrf.token}'},
          "dataType":"json",
          "beforeSend":function() {
             if(index == 0) {
@@ -244,6 +244,7 @@ $(document).ready(function() {
                var taskAvg = parseFloat(map.taskAvg);
                var examAvg = parseFloat(map.examAvg);
                var line = [['수업준비도', readyAvg], ['수업열정도', passionAvg], ['질의응답', questionAvg], ['과제', taskAvg], ['시험', examAvg]];
+               $("#chart").show();
                jQuery("#chart").jqplot([line], {
 			          title:"수업 평가그래프",
 			       	 seriesColors:['#FFCCE5', '#00749F', '#73C774', '#C7754C', '#17BDB8']
@@ -278,7 +279,6 @@ $(document).ready(function() {
 			        	}
 			        }
 			    });
-                $("#chart").show();
             }
          },
       });
@@ -300,7 +300,6 @@ table{
 td{
    padding: 5px;
    border: 1px solid black;
-   text-align:center;
 }
 select{
    width:120px;

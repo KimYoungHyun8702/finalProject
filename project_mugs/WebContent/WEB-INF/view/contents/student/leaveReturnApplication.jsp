@@ -38,7 +38,7 @@ select{
    cursor: pointer;
 }
 h3{
-   font-family:돋움체;
+   font-family:굴림체;
 }
 #tbody>tr{
    height:10px;
@@ -68,12 +68,12 @@ $(document).ready(function() {
 					var tbodyTxt = "";
 					$.each(map.leaveReturnApplicationlist, function() {
 						if(this.lrapplicationState == '대기') {
-							tbodyTxt += "<tr><td>" + this.lrapplicationType +  "</td><td>" + this.lrapplicationState +
-							"</td><td>" + this.LRApplicationStartDate + "</td><td>" + "<button id=" + "cancelBtn>" + "신청취소</button>" +
-							"<input type='hidden' value=" + this.lrapplicationId + ">" + "</td></tr>";
+							tbodyTxt += "<tr><td style='text-align:center'>" + this.lrapplicationType +  "</td><td style='text-align:center'>" + this.lrapplicationState +
+							"</td><td style='text-align:center'>" + this.LRApplicationStartDate + "</td><td style='text-align:center'>" + "<button style='text-align:center' id=" + "cancelBtn>" + "신청취소</button>" +
+							"<input style='text-align:center' type='hidden' value=" + this.lrapplicationId + ">" + "</td></tr>";
 						} else {
-							tbodyTxt += "<tr><td>" + this.lrapplicationType +  "</td><td>" + this.lrapplicationState +
-							"</td><td>" + this.LRApplicationStartDate + "</td><td></td></tr>";
+							tbodyTxt += "<tr><td style='text-align:center'>" + this.lrapplicationType +  "</td><td style='text-align:center'>" + this.lrapplicationState +
+							"</td><td style='text-align:center'>" + this.LRApplicationStartDate + "</td><td style='text-align:center'></td></tr>";
 						}
 					});
 				$("#tbody").html(tbodyTxt);	
@@ -95,12 +95,12 @@ $(document).ready(function() {
 					var tbodyTxt = "";
 					$.each(map.leaveReturnApplicationlist, function() {
 						if(this.lrapplicationState == '대기') {
-							tbodyTxt += "<tr><td>" + this.lrapplicationType +  "</td><td>" + this.lrapplicationState +
-							"</td><td>" + this.LRApplicationStartDate + "</td><td>" + "<button id=" + "cancelBtn>" + "신청취소</button>" +
-							"<input type='hidden' value=" + this.LRApplicationId + ">" + "</td></tr>";
+							tbodyTxt += "<tr><td style='text-align:center'>" + this.lrapplicationType +  "</td><td style='text-align:center'>" + this.lrapplicationState +
+							"</td><td style='text-align:center'>" + this.LRApplicationStartDate + "</td><td style='text-align:center'>" + "<button style='text-align:center' id=" + "cancelBtn>" + "신청취소</button>" +
+							"<input style='text-align:center' type='hidden' value=" + this.LRApplicationId + ">" + "</td></tr>";
 						} else {
-							tbodyTxt += "<tr><td>" + this.lrapplicationType +  "</td><td>" + this.lrapplicationState +
-							"</td><td>" + this.LRApplicationStartDate + "</td><td></td></tr>";
+							tbodyTxt += "<tr><td style='text-align:center'>" + this.lrapplicationType +  "</td><td style='text-align:center'>" + this.lrapplicationState +
+							"</td><td style='text-align:center'>" + this.LRApplicationStartDate + "</td><td style='text-align:center'></td></tr>";
 						}
 					});
 				$("#tbody").html(tbodyTxt);	
@@ -118,13 +118,13 @@ $(document).ready(function() {
 				"data":{'LRApplicationId':$(this).next().val(), ${_csrf.parameterName}:'${_csrf.token}'},
 				"success":function(map) {
 					if(map.leaveReturnApplicationlist) {
-						var txt = "<tr><td colspan='4' style='text-align:center'>휴복학 신청내역이 없습니다.</td></tr>"
+						var txt = "<tr><td style='text-align:center' colspan='4' style='text-align:center'>휴복학 신청내역이 없습니다.</td></tr>"
 						$("#tbody").html(txt);
 					} else {
 						var tbodyTxt = "";
 						$.each(map.leaveReturnApplicationlist, function() {
-							tbodyTxt += "<tr><td>" + this.lrapplicationType +  "</td><td>" + this.lrapplicationState +
-							"</td><td>" + this.LRApplicationStartDate + "</td><td></td></tr>";
+							tbodyTxt += "<tr><td style='text-align:center'>" + this.lrapplicationType +  "</td><td style='text-align:center'>" + this.lrapplicationState +
+							"</td><td style='text-align:center'>" + this.LRApplicationStartDate + "</td><td style='text-align:center'></td></tr>";
 						});
 						$("#tbody").html(tbodyTxt);	
 					}
@@ -138,8 +138,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<h3>휴/복학신청</h3>
-<hr style="border: solid px black">
+<h3>휴/복학신청</h3><br>
 <table border="2" style="border-color: black">
 	<thead>
 		<tr id="thead">
@@ -154,21 +153,20 @@ $(document).ready(function() {
 			<c:choose>
 				<c:when test="${leaveReturnApplication.LRApplicationState eq '대기' }">
 					<tr>
-						<td>${leaveReturnApplication.LRApplicationType }</td>
-						<td>${leaveReturnApplication.LRApplicationState }</td>
-						<fmt:formatDate value="${leaveReturnApplication.LRApplicationStartDate}" pattern="yyyy-MM-dd"/>
-						<td><fmt:formatDate value="${leaveReturnApplication.LRApplicationStartDate}" pattern="yyyy-MM-dd"/></td>
-						<td><button id="cancelBtn">신청취소</button>
-						<input type="hidden" value="${leaveReturnApplication.LRApplicationId }">
+						<td style='text-align:center'>${leaveReturnApplication.LRApplicationType }</td>
+						<td style='text-align:center'>${leaveReturnApplication.LRApplicationState }</td>
+						<td style='text-align:center'><fmt:formatDate value="${leaveReturnApplication.LRApplicationStartDate}" pattern="yyyy-MM-dd"/></td>
+						<td style='text-align:center'><button id="cancelBtn">신청취소</button>
+						<input style='text-align:center' type="hidden" value="${leaveReturnApplication.LRApplicationId }">
 						</td>
 					</tr>
 				</c:when>
 				<c:otherwise>
 					<tr>
-						<td>${leaveReturnApplication.LRApplicationType }</td>
-						<td>${leaveReturnApplication.LRApplicationState }</td>
-						<td><fmt:formatDate value="${leaveReturnApplication.LRApplicationStartDate}" pattern="yyyy-MM-dd"/></td>
-						<td></td>
+						<td style='text-align:center'>${leaveReturnApplication.LRApplicationType }</td>
+						<td style='text-align:center'>${leaveReturnApplication.LRApplicationState }</td>
+						<td style='text-align:center'><fmt:formatDate value="${leaveReturnApplication.LRApplicationStartDate}" pattern="yyyy-MM-dd"/></td>
+						<td style='text-align:center'></td>
 					</tr>
 				</c:otherwise>
 			</c:choose>
@@ -176,7 +174,7 @@ $(document).ready(function() {
 	</tbody>
 </table>
 <br>
-<center><p style="color:red">* 휴복학 신청이 되지 않으시면 과사로 연락해주세요.</p></center>
+<center><p style="color:red">* 휴복학 신청이 되지 않으시면 과사로 연락해주세요.</p></center><br>
 <center><button id="leaveBtn" value="휴학" type="button">휴학신청</button>&nbsp;&nbsp;<button id="returnBtn" value="복학" type="button" >복학신청</button></center>
 <br>
     <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>

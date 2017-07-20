@@ -6118,7 +6118,7 @@ $("#tbody tr").eq(7).children().eq(5).html("${result.subject.subjectName}<br>${r
 <body>
  <div class="container">
     
-        <h3>나의 시간표</h3>
+        <h3>나의 시간표 조회</h3><br>
         <div id="no-more-tables">
 	           <table class="col-lg-11" border="2" style="border-color: black">
                 <tbody>
@@ -6218,6 +6218,7 @@ $("#tbody tr").eq(7).children().eq(5).html("${result.subject.subjectName}<br>${r
         		</tbody>
         	</table>
         </div>
-	</div>
+	</div><br>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
 </html>

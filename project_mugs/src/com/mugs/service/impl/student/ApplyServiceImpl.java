@@ -198,17 +198,21 @@ public class ApplyServiceImpl implements ApplyService{
 		if(term == null) {
 			msg = "지금은 학점포기 기간이 아닙니다.";
 			map.put("msg", msg);
+			creditGiveUpList = creditGiveUpDaoImpl.selectCreditGiveUpByStuIdState(stuId);
 			if(creditGiveUpList.size() != 0) {
 				map.put("creditGiveUpList", creditGiveUpList);
 				return map;
 			}
+			return map;
 		} else if(stuRegister.equals("휴학")) {
 			msg = "휴학생은 학점포기를 할수 없습니다.";
 			map.put("msg", msg);
+			creditGiveUpList = creditGiveUpDaoImpl.selectCreditGiveUpByStuIdState(stuId);
 			if(creditGiveUpList.size() != 0) {
 				map.put("creditGiveUpList", creditGiveUpList);
 				return map;
 			}
+			return map;
 		}
 		
 		List<Credit> creditList = creditDaoImpl.selectCreditByYearSemesterStdId(nowYear, semester, stuId);

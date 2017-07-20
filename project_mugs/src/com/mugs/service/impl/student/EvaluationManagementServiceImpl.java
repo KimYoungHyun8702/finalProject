@@ -65,14 +65,11 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 										 int evaluationPassionPoint, int evaluationQuestionPoint ,int nowYear, 
 										 String nowSemester, String loginId, int subjectId, String proId) {
 		Evaluation evaluation = new Evaluation(0, nowYear, nowSemester, evaluationTaskPoint, evaluationExamPoint, evaluationReadyPoint, evaluationPassionPoint, evaluationQuestionPoint, proId, subjectId);
-				
 		//평가테이블 - 평가정보 인서트
 		evaluationDaoImpl.insertEvaluation(evaluation);		
 		
 		//평가응답테이블, 평가응답상태(N->Y)로 update하는 dao메소드 호출 - 서비스에서 dao메소드 두개 호출이 가능함.
 		ArrayList<Object> evaluationAnswerState = evaluationAnswerDaoImpl.updateEvaluationAnswerState(nowYear, nowSemester, loginId, subjectId);
-
-		
 		
 		List<EvaluationAnswer> evaluationAnswerValueList = evaluationAnswerDaoImpl.selectEvaluationAnswerValueList(loginId, nowYear, nowSemester);
 
@@ -110,17 +107,6 @@ public class EvaluationManagementServiceImpl implements EvaluationManagementServ
 				}
 			}
 		}
-		
-		// 직전학기를 담는다
-		/*if(nowSemesterResult.size() != 0) {
-			for(int i = 0; i < nowSemesterResult.size(); i++) {
-				if(nowSemesterResult.get(i).contains("학기") && nowSemesterResult.get(i).length() < 5) {
-					nowSemester = nowSemesterResult.get(i);
-					System.out.println(nowSemester);
-				}
-			}
-		}*/
-		
 		
 		if(!stuRegister.equals("휴학") && !stuRegister.equals("군휴학")) {
 			if(term == null) {
