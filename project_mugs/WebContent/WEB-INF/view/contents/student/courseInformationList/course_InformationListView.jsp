@@ -22,7 +22,7 @@ th, input {
 	text-align:center;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 table{
 	width:100%;
@@ -48,13 +48,12 @@ td{
 </script>
 
 
-<title>학사종합정보시스템_MUGS</title>
+<title>MUGS</title>
 
 </head>
 <body>
 
-    <h3>수강목록조회</h3>
-    <hr style="border: solid px black">
+    <h3>수강목록 조회</h3><br>
 
 
 	<table border="2" style="border-color: black">
@@ -73,19 +72,20 @@ td{
 	<tbody id="tbody">
 			<c:forEach items="${requestScope.myCourseListResult}" var="courseList">
 				<tr>
+
 					<td align="center">${courseList.subjectId}</td>
 					<td align="center">${courseList.subject.subjectName}</td>
 					<td align="center">${courseList.subject.subjectType}</td>
 					<td align="center">${courseList.subject.subjectCredit}</td>
 					<td align="center">${courseList.professor.usersName}</td>
 					<td align="center">${courseList.subject.subjectTime}</td>
-					<td align="center">${courseList.subject.lectureId}</td>
+					<td align="center">${courseList.building.buildingName}/${courseList.room.roomName }</td>
 				</tr>
 			</c:forEach>
 	</tbody>
 </table>
 <br>
-    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
+    <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
 <%-- <body>
 <h2>수강정보목록조회하는 jsp</h2>

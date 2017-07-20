@@ -70,14 +70,14 @@ $(document).ready(function() {
                $("#majorLabel").remove();
                var majorIdTxt = "";
                var subjectTbody = "";
-               var subjectThead = "<th><input style='width:60px' type='text' class='form-control' placeholder='학년' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='이수구분' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='분반' disabled></th><th><input style='width:130px' type='text' class='form-control' placeholder='과목명' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='담당교수' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='정원' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청인원' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='여석' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='학점' disabled></th><th><input style='width:120px' type='text' class='form-control' placeholder='강의시간' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='강의실' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='학과' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='그래프' disabled></th>";$.each(map.professorSubjectList, function(){
-                  subjectTbody += "<tr><td>" + this.subject.subjectGrade +
-                           "</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
-                           "</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCapacity + "</td><td>" + this.subject.subjectRequest + 
-                           "</td><td>" + this.subject.remainNum + "</td><td>" + this.subject.subjectCredit + "</td><td>" + this.subject.subjectTime + 
-                           "</td><td>" + this.building.buildingName + "/" + this.room.roomName + "</td><td>" + majorIdTxt + "</td>" + 
-                           "<td>" + "<button id=" + "evaluationGraphSee>" + "평가그래프 보기</button>" + "<input type='hidden' value=" + this.subjectId + ">" + 
-                           "<input type='hidden' value=" + this.proId + ">" + "</td></tr>";
+               var subjectThead = "<th><input style='width:60px' type='text' class='form-control' placeholder='학년' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='이수구분' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='분반' disabled></th><th><input style='width:140px' type='text' class='form-control' placeholder='과목명' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='담당교수' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='정원' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청인원' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='여석' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='학점' disabled></th><th><input style='width:120px' type='text' class='form-control' placeholder='강의시간' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='강의실' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='학과' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='그래프' disabled></th>";$.each(map.professorSubjectList, function(){
+                  subjectTbody += "<tr><td style='text-align:center'>" + this.subject.subjectGrade +
+                           "</td><td style='text-align:center'>" + this.subject.subjectType + "</td><td style='text-align:center'>" + this.subject.subjectClass + "</td><td style='text-align:center'>" + this.subject.subjectName + 
+                           "</td><td style='text-align:center'>" + this.professor.usersName + "</td><td style='text-align:center'>" + this.subject.subjectCapacity + "</td><td style='text-align:center'>" + this.subject.subjectRequest + 
+                           "</td><td style='text-align:center'>" + this.subject.remainNum + "</td><td style='text-align:center'>" + this.subject.subjectCredit + "</td><td style='text-align:center'>" + this.subject.subjectTime + 
+                           "</td><td style='text-align:center'>" + this.building.buildingName + "/" + this.room.roomName + "</td><td style='text-align:center'>" + majorIdTxt + "</td>" + 
+                           "<td style='text-align:center'>" + "<button style='text-align:center' id=" + "evaluationGraphSee>" + "평가그래프 보기</button>" + "<input style='text-align:center' type='hidden' value=" + this.subjectId + ">" + 
+                           "<input style='text-align:center' type='hidden' value=" + this.proId + ">" + "</td></tr>";
                });
                $("#subjectThead").html(subjectThead);
                $("#subjectTbody").html(subjectTbody);
@@ -173,14 +173,14 @@ $(document).ready(function() {
          },
          "success":function(map) {
             var subjectTbody = "";
-            var subjectThead = "<th><input style='width:60px' type='text' class='form-control' placeholder='학년' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='이수구분' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='분반' disabled></th><th><input style='width:130px' type='text' class='form-control' placeholder='과목명' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='담당교수' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='정원' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청인원' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='여석' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='학점' disabled></th><th><input style='width:120px' type='text' class='form-control' placeholder='강의시간' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='강의실' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='학과' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='그래프' disabled></th>";$.each(map.professorSubjectList, function(){
-               subjectTbody += "<tr><td>" + this.subject.subjectGrade +
-                        "</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
-                        "</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCapacity + "</td><td>" + this.subject.subjectRequest + 
-                        "</td><td>" + this.subject.remainNum + "</td><td>" + this.subject.subjectCredit + "</td><td>" + this.subject.subjectTime + 
-                        "</td><td>" + this.building.buildingName + "/" + this.room.roomName + "</td><td>" + this.subject.major.majorName + "</td>" +
-                        "<td>" + "<button id=" + "evaluationGraphSee>" + "평가그래프 보기</button>" + "<input type='hidden' value=" + this.subjectId + ">" + 
-                        "<input type='hidden' value=" + this.proId + ">" + "</td></tr>";
+            var subjectThead = "<th><input style='width:60px' type='text' class='form-control' placeholder='학년' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='이수구분' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='분반' disabled></th><th><input style='width:140px' type='text' class='form-control' placeholder='과목명' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='담당교수' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='정원' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청인원' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='여석' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='학점' disabled></th><th><input style='width:120px' type='text' class='form-control' placeholder='강의시간' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='강의실' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='학과' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='그래프' disabled></th>";$.each(map.professorSubjectList, function(){
+                   subjectTbody += "<tr><td style='text-align:center'>" + this.subject.subjectGrade +
+                        "</td><td style='text-align:center'>" + this.subject.subjectType + "</td><td style='text-align:center'>" + this.subject.subjectClass + "</td><td style='text-align:center'>" + this.subject.subjectName + 
+                        "</td><td style='text-align:center'>" + this.professor.usersName + "</td><td style='text-align:center'>" + this.subject.subjectCapacity + "</td><td style='text-align:center'>" + this.subject.subjectRequest + 
+                        "</td><td style='text-align:center'>" + this.subject.remainNum + "</td><td style='text-align:center'>" + this.subject.subjectCredit + "</td><td style='text-align:center'>" + this.subject.subjectTime + 
+                        "</td><td style='text-align:center'>" + this.building.buildingName + "/" + this.room.roomName + "</td><td style='text-align:center'>" + this.subject.major.majorName + "</td>" +
+                        "<td style='text-align:center'>" + "<button style='text-align:center' id=" + "evaluationGraphSee>" + "평가그래프 보기</button>" + "<input style='text-align:center' type='hidden' value=" + this.subjectId + ">" + 
+                        "<input style='text-align:center' type='hidden' value=" + this.proId + ">" + "</td></tr>";
             });
             $("#subjectThead").html(subjectThead);
             $("#subjectTbody").html(subjectTbody);
@@ -209,14 +209,14 @@ $(document).ready(function() {
          },
          "success":function(map) {
             var subjectTbody = "";
-            var subjectThead = "<th><input style='width:60px' type='text' class='form-control' placeholder='학년' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='이수구분' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='분반' disabled></th><th><input style='width:130px' type='text' class='form-control' placeholder='과목명' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='담당교수' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='정원' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청인원' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='여석' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='학점' disabled></th><th><input style='width:120px' type='text' class='form-control' placeholder='강의시간' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='강의실' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='학과' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='그래프' disabled></th>";$.each(map.professorSubjectList, function(){
-               subjectTbody += "<tr><td>" + this.subject.subjectGrade +
-                        "</td><td>" + this.subject.subjectType + "</td><td>" + this.subject.subjectClass + "</td><td>" + this.subject.subjectName + 
-                        "</td><td>" + this.professor.usersName + "</td><td>" + this.subject.subjectCapacity + "</td><td>" + this.subject.subjectRequest + 
-                        "</td><td>" + this.subject.remainNum + "</td><td>" + this.subject.subjectCredit + "</td><td>" + this.subject.subjectTime + 
-                        "</td><td>" + this.building.buildingName + "/" + this.room.roomName + "</td><td>" + this.subject.major.majorName + "</td>" +
-                        "<td>" + "<button id=" + "evaluationGraphSee>" + "평가그래프 보기</button>" + "<input type='hidden' value=" + this.subjectId + ">" + 
-                        "<input type='hidden' value=" + this.proId + ">" + "</td></tr>";
+            var subjectThead = "<th><input style='width:60px' type='text' class='form-control' placeholder='학년' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='이수구분' disabled></th><th><input style='width:70px' type='text' class='form-control' placeholder='분반' disabled></th><th><input style='width:140px' type='text' class='form-control' placeholder='과목명' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='담당교수' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='정원' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='신청인원' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='여석' disabled></th><th><input style='width:60px' type='text' class='form-control' placeholder='학점' disabled></th><th><input style='width:120px' type='text' class='form-control' placeholder='강의시간' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='강의실' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='학과' disabled></th><th><input style='width:90px' type='text' class='form-control' placeholder='그래프' disabled></th>";$.each(map.professorSubjectList, function(){
+                   subjectTbody += "<tr><td style='text-align:center'>" + this.subject.subjectGrade +
+                        "</td><td style='text-align:center'>" + this.subject.subjectType + "</td><td style='text-align:center'>" + this.subject.subjectClass + "</td><td style='text-align:center'>" + this.subject.subjectName + 
+                        "</td><td style='text-align:center'>" + this.professor.usersName + "</td><td style='text-align:center'>" + this.subject.subjectCapacity + "</td><td style='text-align:center'>" + this.subject.subjectRequest + 
+                        "</td><td style='text-align:center'>" + this.subject.remainNum + "</td><td style='text-align:center'>" + this.subject.subjectCredit + "</td><td style='text-align:center'>" + this.subject.subjectTime + 
+                        "</td><td style='text-align:center'>" + this.building.buildingName + "/" + this.room.roomName + "</td><td style='text-align:center'>" + this.subject.major.majorName + "</td>" +
+                        "<td style='text-align:center'>" + "<button style='text-align:center' id=" + "evaluationGraphSee>" + "평가그래프 보기</button>" + "<input style='text-align:center' type='hidden' value=" + this.subjectId + ">" + 
+                        "<input style='text-align:center' type='hidden' value=" + this.proId + ">" + "</td></tr>";
             });
             $("#subjectThead").html(subjectThead);
             $("#subjectTbody").html(subjectTbody);
@@ -244,33 +244,40 @@ $(document).ready(function() {
                var taskAvg = parseFloat(map.taskAvg);
                var examAvg = parseFloat(map.examAvg);
                var line = [['수업준비도', readyAvg], ['수업열정도', passionAvg], ['질의응답', questionAvg], ['과제', taskAvg], ['시험', examAvg]];
-                jQuery("#chart").jqplot([line], {
-                      title:"수업 평가그래프",
-                    seriesDefaults:{
-                        renderer:jQuery.jqplot.BarRenderer
-                    },
-                   series:[
-                    {
-                        pointLabels:{
-                            show:true,
-                            labels:[readyAvg, passionAvg, questionAvg, taskAvg, examAvg],
-                        },
-                    }
-                   ],
-                    axes:{
-                        xaxis:{
-                              renderer:jQuery.jqplot.CategoryAxisRenderer
-                        },
-                       yaxis:{  
-                          numberTicks : 7,
-                          min:0,
-                          max:6,
-                          tickOptions:{
-                             formatString : '%.1f'
-                            }
-                       }
-                    }
-                });
+               jQuery("#chart").jqplot([line], {
+			          title:"수업 평가그래프",
+			       	 seriesColors:['#FFCCE5', '#00749F', '#73C774', '#C7754C', '#17BDB8']
+			        ,seriesDefaults:{
+			            renderer:jQuery.jqplot.BarRenderer
+			            , rendererOptions:{
+			                varyBarColor:true ,
+			                barWidth : 35                    // 막대그래프의 넓이를 지정
+		                    , barPadding : -15                // 막대그래프의 여백을 지정
+		                    , highlightMouseOver : false    // 막대그래프의 클릭여부를 지정 (기본값 : true)
+			            }
+			        },
+			    	series:[
+			        {
+			            pointLabels:{
+			                show:true,
+			                labels:[readyAvg, passionAvg, questionAvg, taskAvg, examAvg],
+			            },
+			        }
+			    	],
+			        axes:{
+			            xaxis:{
+			                  renderer:jQuery.jqplot.CategoryAxisRenderer
+			            },
+			        	yaxis:{  
+			        		numberTicks : 7,
+			        		min:0,
+			        		max:6,
+			        		tickOptions:{
+			        			formatString : '%.1f'
+			             	}
+			        	}
+			        }
+			    });
                 $("#chart").show();
             }
          },
@@ -293,7 +300,6 @@ table{
 td{
    padding: 5px;
    border: 1px solid black;
-   text-align:center;
 }
 select{
    width:120px;
@@ -310,13 +316,13 @@ select{
    cursor: pointer;
 }
 h3{
-   font-family:돋움체;
+   font-family:굴림체;
 }
 </style>
 </head>
 <body>
-<h2>평가 그래프</h2><br>
-
+<h3>과목평가 그래프</h3>
+<br>
 <label id="subjectType">이수구분 :
    <select name="subjectTypeList" id="subjectTypeList" >
       <option>선택하세요.</option>
@@ -337,14 +343,14 @@ h3{
       <option>선택하세요.</option>
    </select>
 </label>
-<br>
-<center><table border="2" style="border-color: black">
+
+<center><br><table border="2" style="border-color: black">
    <thead id="subjectThead"></thead>
    <tbody id="subjectTbody"></tbody>
 </table></center>
 <hr>
 <center><div id="chart" style="width:100%;height:400px;"></div></center>
 <br>
-    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
+   <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
 </html>

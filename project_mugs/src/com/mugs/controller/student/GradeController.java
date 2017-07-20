@@ -40,7 +40,6 @@ public class GradeController {
 	@ResponseBody
 	public List<String> semesterInquiry(int year) {
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		System.out.println(users.getUsersId()+year+"###########");
 		List<String> list = service.getSemester(users.getUsersId(), year);
 		return list;
 	}
@@ -58,7 +57,6 @@ public class GradeController {
 	public List<Credit> creditByYearSemester(int year, String semester) {
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Credit> list = service.getCreditByYearSemester(users.getUsersId(), year, semester);
-		System.out.println(list);
 		return list;
 	}
 

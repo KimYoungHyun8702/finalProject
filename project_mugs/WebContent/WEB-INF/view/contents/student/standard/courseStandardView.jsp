@@ -124,14 +124,14 @@ select{
 	cursor: pointer;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
-<title>학부당 학과당 년도별 수강신청기준학점조회페이지</title>
+<title>MUGS</title>
 </head>
 <body>
-<h3>학부당 학과당 년도별 수강신청기준학점조회페이지</h3>
-<hr style="border: solid px black">
+<h3>기준학점 조회</h3>
+<br>
 학부선택 :
 <select name="college" id="college">
 	<option>학부선택</option>
@@ -159,7 +159,7 @@ h3{
 	<tbody id="tbody"></tbody>
 </table><br><br><br><br> -->
 <br>
-<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
+<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 <script src="jquery-1.10.2.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>

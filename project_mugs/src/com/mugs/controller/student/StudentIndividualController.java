@@ -57,19 +57,6 @@ public class StudentIndividualController {
       SecurityContext context = SecurityContextHolder.getContext();
       Authentication authentication = context.getAuthentication();
       
-      System.out.println(passwordEncoder.encode("1111"));
-      System.out.println(passwordEncoder.encode("1111"));
-      System.out.println(passwordEncoder.encode("1111"));
-      System.out.println(passwordEncoder.encode("1111"));
-      System.out.println(passwordEncoder.encode("1111"));
-      System.out.println(passwordEncoder.encode("1111"));
-      System.out.println(passwordEncoder.encode("1111"));
-      System.out.println(passwordEncoder.encode("1111"));
-      System.out.println(passwordEncoder.encode("1111"));
-      System.out.println(passwordEncoder.encode("1111"));
-      System.out.println(passwordEncoder.encode("1111"));
-      System.out.println(passwordEncoder.encode("1111"));
-      
       //패스워드 체크            
       if(!passwordEncoder.matches(oldUserPassword, ((Users)authentication.getPrincipal()).getUsersPassword())){ 
          String errorMessage = "기존 비밀번호가 틀렸습니다.";      

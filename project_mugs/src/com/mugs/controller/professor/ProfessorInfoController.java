@@ -38,7 +38,6 @@ public class ProfessorInfoController {
 	      String proId = users.getUsersId();
 	      
 	      Professor professor = service.getProfessorInfoByJoin(proId);
-	      System.out.println(professor);
 	      session.setAttribute("professor", professor);
 	      return "professor/professorInfo.tiles";
 	}
@@ -49,7 +48,6 @@ public class ProfessorInfoController {
 	      String proId = users.getUsersId();
 	      
 	      Professor professor = service.getProfessorInfoByJoin(proId);
-	      System.out.println(professor);
 	      session.setAttribute("professor", professor);
 	      return "professor/professorInfoUpdate.tiles";
 	      //return "/professor/professorInfo.do";

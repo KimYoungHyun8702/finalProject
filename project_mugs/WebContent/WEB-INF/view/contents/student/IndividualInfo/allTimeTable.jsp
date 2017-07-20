@@ -38,7 +38,7 @@ select{
 	color:black;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 
 
@@ -228,7 +228,8 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<br><br><br>
+<h3>전체 강의시간표 조회</h3>
+<br>
 	연도선택:<select id="year">
 	<option>연도</option>
 	<option value="2013">2013</option>
@@ -288,6 +289,6 @@ $(document).ready(function(){
 
    </table>
  <br>
-    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
+   <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
 </html>

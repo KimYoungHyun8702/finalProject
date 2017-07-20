@@ -15,12 +15,12 @@ $(document).ready(function() {
 	var msg = "${msg}";
 	
 	if(creditTbodySize == 0) {
-		var creditTbodyTxt = "<tr><td colspan='8' style='text-align:center'>포기할수 있는 학점이 없습니다.</td></tr>"
+		var creditTbodyTxt = "<tr><td colspan='8' style='text-align:center'>포기할수 있는 학점이 없습니다.</td></tr>";
 		$("#creditTbody").html(creditTbodyTxt);
 	}
 
 	if(creditGiveUpTbodySize == 0) {
-		var creditGiveUpTbodyTxt = "<tr><td colspan='8' style='text-align:center'>학점포기신청내역이 없습니다.</td></tr>"
+		var creditGiveUpTbodyTxt = "<tr><td colspan='8' style='text-align:center'>학점포기신청내역이 없습니다.</td></tr>";
 		$("#creditGiveUpTbody").html(creditGiveUpTbodyTxt);
 	}
 	
@@ -33,38 +33,41 @@ $(document).ready(function() {
 			"success":function(map) {
 				alert(map.msg);
 				
-				if(map.creditGiveUpList) {
+				if(map.creditGiveUpList != "") {
 					var creditGiveUpTbodyTxt = "";
 					$.each(map.creditGiveUpList, function() {
 						if(this.cgustate == '대기') {
-							creditGiveUpTbodyTxt += "<tr><td>" + this.cguyear + 
-							"</td><td>" + this.cgusemester + "</td><td>" + this.credit.subject.subjectName +
-							"</td><td>" + this.credit.subject.subjectType + "</td><td>" + this.credit.creditAcquire +
-							"</td><td>" + this.credit.creditGrade + "</td><td>" + this.cgustate + 
-							"</td><td>" + "<button id=" + "cancelBtn>" + "신청취소</button>" + "<input type='hidden' value=" + this.cguid + ">" + "</td></tr>";
+							creditGiveUpTbodyTxt += "<tr><td style='text-align:center'>" + this.cguyear + 
+							"</td><td style='text-align:center'>" + this.cgusemester + "</td><td style='text-align:center'>" + this.credit.subject.subjectName +
+							"</td><td style='text-align:center'>" + this.credit.subject.subjectType + "</td><td style='text-align:center'>" + this.credit.creditAcquire +
+							"</td><td style='text-align:center'>" + this.credit.creditGrade + "</td><td style='text-align:center'>" + this.cgustate + 
+							"</td><td style='text-align:center'>" + "<button id=" + "cancelBtn style='text-align:center'>" + "신청취소</button>" + "<input style='text-align:center' type='hidden' value=" + this.cguid + ">" + "</td></tr>";
 						} else {
-							creditGiveUpTbodyTxt += "<tr><td>" + this.cguyear + 
-							"</td><td>" + this.cgusemester + "</td><td>" + this.credit.subject.subjectName +
-							"</td><td>" + this.credit.subject.subjectType + "</td><td>" + this.credit.creditAcquire +
-							"</td><td>" + this.credit.creditGrade + "</td><td>" + this.cgustate + 
-							"</td><td>" + "</td></tr>";
+							creditGiveUpTbodyTxt += "<tr><td style='text-align:center'>" + this.cguyear + 
+							"</td><td style='text-align:center'>" + this.cgusemester + "</td><td style='text-align:center'>" + this.credit.subject.subjectName +
+							"</td><td style='text-align:center'>" + this.credit.subject.subjectType + "</td><td style='text-align:center'>" + this.credit.creditAcquire +
+							"</td><td style='text-align:center'>" + this.credit.creditGrade + "</td><td style='text-align:center'>" + this.cgustate + 
+							"</td><td style='text-align:center'>" + "</td></tr>";
 						}
 					});
 					$("#creditGiveUpTbody").html(creditGiveUpTbodyTxt);
 				} else {
-					var creditGiveUpTbodyTxt = "<tr><h2>학점포기신청내역이 없습니다.</h2></tr>";
+					var creditGiveUpTbodyTxt = "<tr><td colspan='8' style='text-align:center'>학점포기신청내역이 없습니다.</td></tr>";
 					$("#creditGiveUpTbody").html(creditGiveUpTbodyTxt);
 				}
 				
-				if(map.creditList) {
+				if(map.creditList != "") {
 					var creditTbodyTxt = "";
 					$.each(map.creditList, function() {
-						creditTbodyTxt += "<tr><td>" + this.creditYear + "</td><td>" + this.creditSemester + 
-									"</td><td>" + this.subject.subjectName + "</td><td>" + this.subject.subjectType + 
-									"</td><td>" + this.creditAcquire + "</td><td>" + this.creditGrade + 
-									"</td><td>" + "<button id=" + "creditGiveUpBtn>" + "학점포기신청</button>" + 
-									"<input type='hidden' value=" + this.creditId + ">" + "</td></tr>";
+						creditTbodyTxt += "<tr><td style='text-align:center'>" + this.creditYear + "</td><td style='text-align:center'>" + this.creditSemester + 
+									"</td><td style='text-align:center'>" + this.subject.subjectName + "</td><td style='text-align:center'>" + this.subject.subjectType + 
+									"</td><td style='text-align:center'>" + this.creditAcquire + "</td><td style='text-align:center'>" + this.creditGrade + 
+									"</td><td style='text-align:center'>" + "<button id=" + "creditGiveUpBtn style='text-align:center'>" + "학점포기신청</button>" + 
+									"<input style='text-align:center' type='hidden' value=" + this.creditId + ">" + "</td></tr>";
 					});
+					$("#creditTbody").html(creditTbodyTxt);	
+				} else {
+					var creditTbodyTxt = "<tr><td colspan='8' style='text-align:center'>포기할수 있는 학점이 없습니다.</td></tr>";
 					$("#creditTbody").html(creditTbodyTxt);	
 				}
 			},
@@ -80,38 +83,38 @@ $(document).ready(function() {
 				"data":{'CGUId':$(this).next().val(), '${_csrf.parameterName}':'${_csrf.token}'},
 				"success":function(map) {
 					alert(map.msg);
-					
-					if(map.creditGiveUpList) {
+
+					if(map.creditGiveUpList != "") {
 						var creditGiveUpTbodyTxt = "";
 						$.each(map.creditGiveUpList, function() {
 							if(this.cgustate == '대기') {
-								creditGiveUpTbodyTxt += "<tr><td>" + this.cguyear + 
-								"</td><td>" + this.cgusemester + "</td><td>" + this.credit.subject.subjectName +
-								"</td><td>" + this.credit.subject.subjectType + "</td><td>" + this.credit.creditAcquire +
-								"</td><td>" + this.credit.creditGrade + "</td><td>" + this.cgustate + 
-								"</td><td>" + "<button id=" + "cancelBtn>" + "신청취소</button>"+ "<input type='hidden' value=" + this.cguid + ">" + "</td></tr>";
+								creditGiveUpTbodyTxt += "<tr><td style='text-align:center'>" + this.cguyear + 
+								"</td><td style='text-align:center'>" + this.cgusemester + "</td><td style='text-align:center'>" + this.credit.subject.subjectName +
+								"</td><td style='text-align:center'>" + this.credit.subject.subjectType + "</td><td style='text-align:center'>" + this.credit.creditAcquire +
+								"</td><td style='text-align:center'>" + this.credit.creditGrade + "</td><td style='text-align:center'>" + this.cgustate + 
+								"</td><td style='text-align:center'>" + "<button id=" + "cancelBtn style='text-align:center'>" + "신청취소</button>"+ "<input style='text-align:center' type='hidden' value=" + this.cguid + ">" + "</td></tr>";
 							} else {
-								creditGiveUpTbodyTxt += "<tr><td>" + this.cguyear + 
-								"</td><td>" + this.cgusemester + "</td><td>" + this.credit.subject.subjectName +
-								"</td><td>" + this.credit.subject.subjectType + "</td><td>" + this.credit.creditAcquire +
-								"</td><td>" + this.credit.creditGrade + "</td><td>" + this.cgustate + 
-								"</td><td>" + "</td></tr>";
+								creditGiveUpTbodyTxt += "<tr><td style='text-align:center'>" + this.cguyear + 
+								"</td><td style='text-align:center'>" + this.cgusemester + "</td><td style='text-align:center'>" + this.credit.subject.subjectName +
+								"</td><td style='text-align:center'>" + this.credit.subject.subjectType + "</td><td style='text-align:center'>" + this.credit.creditAcquire +
+								"</td><td style='text-align:center'>" + this.credit.creditGrade + "</td><td style='text-align:center'>" + this.cgustate + 
+								"</td><td style='text-align:center'>" + "</td></tr>";
 							}
 						});
 						$("#creditGiveUpTbody").html(creditGiveUpTbodyTxt);
 					} else {
-						var creditGiveUpTbodyTxt = "<tr><h2>학점포기신청내역이 없습니다.</h2></tr>"
+						var creditGiveUpTbodyTxt = "<tr><td colspan='8' style='text-align:center'>학점포기신청내역이 없습니다.</td></tr>";
 						$("#creditGiveUpTbody").html(creditGiveUpTbodyTxt);
 					}
 					
 					if(map.creditList) {
 						var creditTbodyTxt = "";
 						$.each(map.creditList, function() {
-							creditTbodyTxt += "<tr><td>" + this.creditYear + "</td><td>" + this.creditSemester + 
-										"</td><td>" + this.subject.subjectName + "</td><td>" + this.subject.subjectType + 
-										"</td><td>" + this.creditAcquire + "</td><td>" + this.creditGrade + 
-										"</td><td>" + "<button id=" + "creditGiveUpBtn>" + "학점포기신청</button>" + 
-										"<input type='hidden' value=" + this.creditId + ">" + "</td></tr>";
+							creditTbodyTxt += "<tr><td style='text-align:center'>" + this.creditYear + "</td><td style='text-align:center'>" + this.creditSemester + 
+										"</td><td style='text-align:center'>" + this.subject.subjectName + "</td><td style='text-align:center'>" + this.subject.subjectType + 
+										"</td><td style='text-align:center'>" + this.creditAcquire + "</td><td style='text-align:center'>" + this.creditGrade + 
+										"</td><td style='text-align:center'>" + "<button id=" + "creditGiveUpBtn style='text-align:center'>" + "학점포기신청</button>" + 
+										"<input style='text-align:center' type='hidden' value=" + this.creditId + ">" + "</td></tr>";
 						});
 						$("#creditTbody").html(creditTbodyTxt);	
 					}
@@ -145,8 +148,8 @@ $(document).ready(function() {
 
 </head>
 <body>
-<h3>학점포기조회</h3>
-<hr style="border: solid px black;">
+<h3>학점포기 신청 및 내역 조회</h3><br>
+<ul><li><h4>학점포기 조회</h4></li></ul><br>
 <table border="2" style="border-color: black">
 	<thead id="creditGiveUpThead">
 		<tr>
@@ -195,8 +198,7 @@ $(document).ready(function() {
 </table>
 <br><br>
 
-<h3>학점포기신청</h3>
-<hr style="border: solid px black;">
+<ul><li><h4>학점포기 신청</h4></li></ul><br>
 <table border="2" style="border-color: black">
 	<thead id="creditThead">
 		<tr>	
@@ -226,6 +228,6 @@ $(document).ready(function() {
 	</tbody>
 </table>
 <br>
-    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
+    <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
 </html>
