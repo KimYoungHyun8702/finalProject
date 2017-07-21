@@ -14,7 +14,7 @@ table{
 }
 td{
    border: 1px solid black;
-   text-align:center;
+   font-size: 15px;
 }
 select{
    width:150px;
@@ -34,7 +34,7 @@ select{
    color:black;
 }
 h3{
-   font-family:돋움체;
+   font-family:굴림체;
 }
 
 
@@ -118,7 +118,6 @@ h3{
       alert("학번이 중복되었습니다");
    </script>
 </c:if>
-	
 	<form id="insertForm" action="${initParam.rootPath }/admin/insertStudentController.do" method="post" onsubmit="return check()">
 	<ul><li><h4>학생 기본 정보</h4></li></ul>
 	<table id="infoStudent" border="2">
@@ -129,7 +128,7 @@ h3{
 		</colgroup>
 		<thead>
 	   		<tr>
-	   			<td rowspan="4" style="height: 34px;font-size: 15px">사진</td>
+	   			<td rowspan="4" style="height: 34px;font-size: 15px" align="center">사진</td>
 	   			<th align="center" ><input type="text" style="height: 40px" class="form-control" placeholder="학번" disabled></th>
 	   			<td align="center" style="height: 34px;font-size: 15px"><input name="usersId" id="usersId" value="${param.usersId }" style="border: 0"/></td>
 	   		</tr>
@@ -318,5 +317,5 @@ h3{
 	<center><input type="submit" id="submit" value="등록"></center>
 			<sec:csrfInput/>
 	</form><br>
-	<center><button onclick="location.href='${initParam.rootPath }/'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>

@@ -45,7 +45,7 @@ select{
 	cursor: pointer;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
 
@@ -86,7 +86,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
- <h3>설문응답평가 조회</h3>
+ <h3>설문응답 평가</h3><br>
 
 
 	<table border="2" style="border-color: black">
@@ -107,9 +107,9 @@ $(document).ready(function(){
 				<td style="text-align:center">
 					<form action="${initParam.rootPath }/evaluationAnswerRegisteration.do"> <!-- 설문응답하는 jsp로 이동 -->
 						<input type="hidden" value="${evaluationList.evaluationAnswerYear}" name="nowYear">
-                  		<input type="hidden" value="${evaluationList.evaluationAnswerSemester}" name="nowSemester">
-                  		<input type="hidden" value="${evaluationList.subjectId}" name="subjectId">
-                  		<input type="hidden" value="${evaluationList.professor.proId}" name="proId">
+						<input type="hidden" value="${evaluationList.evaluationAnswerSemester}" name="nowSemester">
+						<input type="hidden" value="${evaluationList.subjectId}" name="subjectId">
+						<input type="hidden" value="${evaluationList.professor.proId}" name="proId">
 						<input type="submit" value="${evaluationList.evaluationAnswerState}" class="submit"/>
 					<sec:csrfInput/><%-- csrf 토큰 --%>	
 					</form>
@@ -119,6 +119,6 @@ $(document).ready(function(){
 		</c:forEach>  
 	</tbody>
 </table><br>
-<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
+<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
 </html>

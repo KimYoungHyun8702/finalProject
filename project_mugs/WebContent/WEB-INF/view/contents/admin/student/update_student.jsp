@@ -18,9 +18,8 @@ th {
    bgcolor:peru;
 }
 td{
-   padding: 5px;
    border: 1px solid black;
-   text-align:center;
+   font-size: 15px;
    height: 30px;
 }
 select{
@@ -41,7 +40,7 @@ select{
    color:black;
 }
 h3{
-   font-family:돋움체;
+   font-family:굴림체;
 }
 
 </style>
@@ -124,7 +123,7 @@ function check(){
 		</colgroup>
 		<thead>
 	   		<tr>
-	   			<td rowspan="4" style="height: 34px;font-size: 15px">사진</td>
+	   			<td rowspan="4" style="height: 34px;font-size: 15px" align="center">사진</td>
 	   			<th align="center"><input type="text" style="height: 40px"  class="form-control" placeholder="학번" disabled></th>
 	   			<td align="center" style="height: 34px;font-size: 15px"><input type="number" name="usersId" value="${requestScope.info.usersId }" id="usersId" readonly style="border: 0" style="border: 0"/></td>
 	   		</tr>
@@ -326,5 +325,5 @@ function check(){
 			<center><input type="submit" value="수정"></center><br>
 			<sec:csrfInput/>
 	</form>
-	<center><button onclick="location.href='${initParam.rootPath }/'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>

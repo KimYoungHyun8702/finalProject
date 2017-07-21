@@ -99,6 +99,20 @@
     and    c.stu_id = #{value}
  </select>
  
+ <select id="selectCreditGiveUpByStuIdState" resultMap="creditGiveUp-credit-subject-reresultmap" parameterType="string">
+ 	select cg.CGU_ID, cg.CGU_YEAR, cg.CGU_SEMESTER, cg.CGU_START_DATE, cg.CGU_FINISH_DATE, cg.CGU_STATE, cg.CREDIT_ID,
+    	   c.credit_id, c.credit_year, c.credit_semester, c.credit_acquire, c.credit_grade, c.credit_score, 
+    	   c.credit_recource, c.subject_id, c.stu_id,
+    	   s.subject_id, s.subject_name, s.subject_time, s.subject_type, s.subject_credit,
+		   s.subject_capacity, s.subject_request, s.subject_grade, s.subject_class,
+		   s.subject_close_class, s.subject_semester, s.major_id, s.lecture_id
+	from   CREDIT_GIVE_UP cg, credit c, subject s
+    where  cg.CREDIT_ID = c.credit_id
+    and    c.subject_id = s.subject_id
+    and    c.stu_id = #{value}
+    and    cg.CGU_STATE='승인'
+ </select>
+ 
  <!-- 
  	현재연도, 학기, 학생 ID를 이용해서 해당 학생 현재연도, 현재학기의 학적포기 신청내역을 select
 	By Baek.J.H

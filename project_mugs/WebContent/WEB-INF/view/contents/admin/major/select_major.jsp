@@ -19,7 +19,7 @@ th, tbody td{
 td{
 	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
+	font-size: 15px;
 }
 select{
 	width:150px;
@@ -36,7 +36,7 @@ select{
 	cursor: pointer;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
@@ -50,7 +50,7 @@ $(document).ready(function(){
 			"success":function(result){
 				var txt="";
 				$.each(result,function(){
-					txt = txt+"<tr><td>"+this.majorId+"</td><td><a href='${initParam.rootPath }/admin/selectMajorGraduationCreditByMajorIdController.do?majorId="+this.majorId+"'>"+this.majorName+"</a></td></tr>"
+					txt = txt+"<tr><td align='center'>"+this.majorId+"</td><td align='center'><a href='${initParam.rootPath }/admin/selectMajorGraduationCreditByMajorIdController.do?majorId="+this.majorId+"'>"+this.majorName+"</a></td></tr>"
 				});
 				$("#tbody").html(txt);
 				$("#selectMajor").show();
@@ -69,7 +69,6 @@ $(document).ready(function(){
 	</script>
 	<% session.removeAttribute("majordeleteMessage"); %>
 </c:if>
-	<hr>
 	단과대학선택:
 	<select name="collegeId" id="collegeId">
 		<option>단과대학 선택</option>
@@ -77,7 +76,6 @@ $(document).ready(function(){
 			<option value=${list.collegeId }>${list.collegeName }</option>
 		</c:forEach>
 	</select><br><br>
-	<br>
 	<table id="selectMajor" border="1">
 		<thead>
 			<tr class="filters">
@@ -88,5 +86,5 @@ $(document).ready(function(){
 		<tbody id="tbody"></tbody>
 	</table>
 	<br>
-	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>

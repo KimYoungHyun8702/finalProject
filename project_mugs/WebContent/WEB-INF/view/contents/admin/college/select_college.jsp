@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MUGS</title>
 <style type="text/css">
 input{
 	text-align:center;
@@ -19,7 +19,7 @@ th {
 td{
 	padding: 5px;
 	border: 1px solid black;
-	text-align:center;
+	font-size: 15px;
 }
 select{
 	width:150px;
@@ -36,7 +36,7 @@ select{
 	cursor: pointer;
 }
 h3{
-	font-family:돋움체;
+	font-family:굴림체;
 }
 </style>
 <script type="text/javascript">
@@ -50,9 +50,9 @@ h3{
 </script>
 </head>
 <body>
-<h2>단과대학 조회</h2>
+<h3>단과대학 조회</h3>
 <br>
-	<table border="1">
+	<table border="2">
 		<thead>
 			<tr>
 				<th align="center"><input type="text" class="form-control" placeholder="단과대학ID" disabled></th>
@@ -64,10 +64,10 @@ h3{
 		<tbody>
 			<c:forEach items="${requestScope.list }" var="list">
 				<tr>
-					<td>${list.collegeId }</td>
-					<td>${list.collegeName }</td>
-					<td><button id="update" onclick="location.href='${initParam.rootPath }/update_college.do?collegeId=${list.collegeId }&collegeName=${list.collegeName }'">수정</button></td>
-					<td><button id="delete" onclick="College_delete(${list.collegeId})">삭제</button></td>
+					<td align="center" >${list.collegeId }</td>
+					<td align="center" >${list.collegeName }</td>
+					<td align="center"><button id="update" onclick="location.href='${initParam.rootPath }/update_college.do?collegeId=${list.collegeId }&collegeName=${list.collegeName }'">수정</button></td>
+					<td align="center"><button id="delete" onclick="College_delete(${list.collegeId})">삭제</button></td>
 				</tr>
 			</c:forEach>
 		</tbody>

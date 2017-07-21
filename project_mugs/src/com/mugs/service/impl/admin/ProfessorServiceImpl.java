@@ -163,9 +163,9 @@ public class ProfessorServiceImpl implements ProfessorService {
 			if (office == null) {
 				for (int i = 0; i < officeList.size(); i++) {
 					for (int j = 0; j < olapOffice.size(); j++) {
-						if (officeList.get(i).getRoomList().get(i).getRoomId() == olapOffice.get(j)
+						if (officeList.get(0).getRoomList().get(i).getRoomId() == olapOffice.get(j)
 								.getProRoomOfficeId()) {
-							officeList.get(i).getRoomList().remove(i);
+							officeList.get(0).getRoomList().remove(i);
 						}
 					}
 				}
@@ -173,9 +173,11 @@ public class ProfessorServiceImpl implements ProfessorService {
 			} else {
 				for (int i = 0; i < officeList.size(); i++) {
 					for (int j = 0; j < olapOffice.size(); j++) {
-						if (officeList.get(i).getRoomList().get(i).getRoomId() == olapOffice.get(j).getProRoomOfficeId()
-								&& officeList.get(i).getRoomList().get(i).getRoomId() != office.getProRoomOfficeId()) {
-							officeList.get(i).getRoomList().remove(i);
+						if (officeList.get(0).getRoomList().get(i).getRoomId() == olapOffice.get(j).getProRoomOfficeId()
+								&& officeList.get(0).getRoomList().get(i).getRoomId() != office.getProRoomOfficeId()) {
+							officeList.get(0).getRoomList().remove(i);
+						}else{
+							i++;
 						}
 					}
 				}
@@ -188,9 +190,9 @@ public class ProfessorServiceImpl implements ProfessorService {
 			if (laboratory == null) {
 				for (int i = 0; i < laboratoryList.size(); i++) {
 					for (int j = 0; j < olapLaboratory.size(); j++) {
-						if (laboratoryList.get(i).getRoomList().get(i).getRoomId() == olapLaboratory.get(j)
+						if (laboratoryList.get(0).getRoomList().get(i).getRoomId() == olapLaboratory.get(j)
 								.getProRoomLaboratoryId()) {
-							laboratoryList.get(i).getRoomList().remove(i);
+							laboratoryList.get(0).getRoomList().remove(i);
 						}
 					}
 				}
@@ -198,11 +200,13 @@ public class ProfessorServiceImpl implements ProfessorService {
 			} else {
 				for (int i = 0; i < laboratoryList.size(); i++) {
 					for (int j = 0; j < olapLaboratory.size(); j++) {
-						if (laboratoryList.get(i).getRoomList().get(i).getRoomId() == olapLaboratory.get(j)
+						if (laboratoryList.get(0).getRoomList().get(i).getRoomId() == olapLaboratory.get(j)
 								.getProRoomLaboratoryId()
-								&& laboratoryList.get(i).getRoomList().get(i).getRoomId() != laboratory
+								&& laboratoryList.get(0).getRoomList().get(i).getRoomId() != laboratory
 										.getProRoomLaboratoryId()) {
-							laboratoryList.get(i).getRoomList().remove(i);
+							laboratoryList.get(0).getRoomList().remove(i);
+						}else{
+							i++;
 						}
 					}
 				}

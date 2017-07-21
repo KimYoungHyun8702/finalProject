@@ -32,7 +32,7 @@ public class EvaluationController {
 	public ModelAndView addEvaluationAnswerValue(@RequestParam int evaluationTaskPoint, @RequestParam int evaluationExamPoint, 
 										   @RequestParam int evaluationReadyPoint, @RequestParam int evaluationPassionPoint, 
 										   @RequestParam int evaluationQuestionPoint, @RequestParam int nowYear, 
-										   @RequestParam String nowSemester,
+										   @RequestParam String nowSemester, 
 										   @RequestParam int subjectId, @RequestParam String proId){
 		//String loginId="사용자1";//이 서비스 메소드값은 3가지 디에이메소드를 거쳐서 온 값임. insert평가, update평가응답(n->y), select설문응답정보&여부 
 		Users users = (Users)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -66,4 +66,11 @@ public interface CreditGiveUpDao {
 	 * @return
 	 */
 	List<CreditGiveUp> selectCreditGiveUpJoin();
+	
+	/**
+	 * 
+	 * @param stuId
+	 * @return
+	 */
+	List<CreditGiveUp> selectCreditGiveUpByStuIdState(String stuId);
 }

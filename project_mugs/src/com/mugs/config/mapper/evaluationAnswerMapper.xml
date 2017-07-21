@@ -87,11 +87,11 @@
 	
 	<select id="selectEvaluationAnswerValueList" resultMap="evaluationAnswer-subject-professor-course-resultmap" parameterType="map">
       select s.subject_name, e.evaluation_answer_state, u.users_name, e.subject_id, e.evaluation_answer_year, 
-             e.evaluation_answer_semester, p.pro_Id
-     from evaluation_answer e, subject s, professor p, professor_subject q, users u
-     where e.subject_id = s.subject_id
-     and s.subject_id=q.subject_id
-     and q.pro_Id=p.pro_Id
+      		 e.evaluation_answer_semester, p.pro_Id
+	  from evaluation_answer e, subject s, professor p, professor_subject q, users u
+	  where e.subject_id = s.subject_id
+	  and s.subject_id=q.subject_id
+	  and q.pro_Id=p.pro_Id
       and p.pro_id=u.users_Id
      and e.evaluation_answer_year=q.pro_subject_year
      and e.evaluation_answer_semester=q.pro_subject_semester

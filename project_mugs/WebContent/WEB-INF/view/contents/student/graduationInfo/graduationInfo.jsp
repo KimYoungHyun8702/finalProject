@@ -44,8 +44,7 @@ h3{
 </style>
 </head>
 <body>   
-<h3>졸업여부조회!</h3>
-<hr style="border: solid px black">
+<h3>졸업여부 조회</h3><br>
 <table border="2" style="border-color: black" height="12px">   
    <thead>
       <!-- <tr> -->
@@ -99,6 +98,6 @@ h3{
    </tbody>
 </table>
 <br>
-    <center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인페이지로 가기</button></center>
+    <center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>
 </html>

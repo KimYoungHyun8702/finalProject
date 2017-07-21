@@ -124,7 +124,7 @@ public class ApplyServiceImpl implements ApplyService{
 		leaveReturnApplicationlist = leaveReturnApplicationDaoImpl.selectLeaveReturnApplicationByDate(startDate, finishDate, stuId);
 		
 		if(leaveReturnApplicationlist.size() != 0) {
-			msg = "이미 신청하셨습니다. 부득이한 경우 과사로 하시기 바랍니다.";
+			msg = "이미 신청하셨습니다. 부득이한 경우 과사무실로 하시기 바랍니다.";
 			map.put("msg", msg);
 			return map;
 		}
@@ -198,6 +198,7 @@ public class ApplyServiceImpl implements ApplyService{
 		if(term == null) {
 			msg = "지금은 학점포기 기간이 아닙니다.";
 			map.put("msg", msg);
+			creditGiveUpList = creditGiveUpDaoImpl.selectCreditGiveUpByStuIdState(stuId);
 			if(creditGiveUpList.size() != 0) {
 				map.put("creditGiveUpList", creditGiveUpList);
 				return map;
@@ -206,6 +207,7 @@ public class ApplyServiceImpl implements ApplyService{
 		} else if(stuRegister.equals("휴학")) {
 			msg = "휴학생은 학점포기를 할수 없습니다.";
 			map.put("msg", msg);
+			creditGiveUpList = creditGiveUpDaoImpl.selectCreditGiveUpByStuIdState(stuId);
 			if(creditGiveUpList.size() != 0) {
 				map.put("creditGiveUpList", creditGiveUpList);
 				return map;

@@ -288,6 +288,7 @@ $(document).on("click", "#updateBtn", function(){
 		"data":{"planId":planId,"planSummary":planSummary,"planMarkingMethod":planMarkingMethod,"planLessonGoal":planLessonGoal,"planWeekContent":planWeekContent,"planBookinfo":planBookinfo,"planBibliography":planBibliography,"planYear":planYear,"planSemester":planSemester,"planNote":planNote,"proId":proId,"subjectId":subjectId,${_csrf.parameterName}:'${_csrf.token}'},
 		"success":function(){
 			alert("수정완료");
+			window.close();
 		},//success
 		"error":function(){		
 			alert("수정실패");

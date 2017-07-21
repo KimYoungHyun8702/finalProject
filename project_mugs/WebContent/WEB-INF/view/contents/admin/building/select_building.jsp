@@ -13,7 +13,6 @@ table{
 }
 td{
    border: 1px solid black;
-   text-align:center;
    font-size: 15px;
 }
 select{
@@ -31,13 +30,13 @@ select{
    cursor: pointer;
 }
 h3{
-   font-family:돋움체;
+   font-family:굴림체;
 }
 
 
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>MUGS</title>
 <script type="text/javascript" src="/project_mugs/resource/jquery/jquery-3.2.1.min.js"></script>
 </head>
 <body>
@@ -47,9 +46,9 @@ h3{
 		</script>
 		<% session.removeAttribute("buideleteMessage"); %>
 </c:if>
-	<h2>건물 조회</h2>
+	<h3>건물 조회</h3>
 	<br>
-	<table border="1">
+	<table border="2">
 		<thead>
 			<tr>
 				<th align="center"><input type="text" style="height: 40px" class="form-control" placeholder="건물 ID" disabled></th>
@@ -60,13 +59,13 @@ h3{
 		<tbody>
 			<c:forEach items="${requestScope.list }" var="list">
 				<tr>
-					<td>${list.buildingId }</td>
-					<td><a href="${initParam.rootPath }/admin/selectBuildingByIdController.do?buildingId=${list.buildingId}">${list.buildingName }</a></td>
-					<td>${list.buildingPhoneNum }</td>
+					<td align="center">${list.buildingId }</td>
+					<td align="center"><a href="${initParam.rootPath }/admin/selectBuildingByIdController.do?buildingId=${list.buildingId}">${list.buildingName }</a></td>
+					<td align="center">${list.buildingPhoneNum }</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	<br>
-	<center><button onclick="location.href='${initParam.rootPath }/index.do'" type="button" class="btn btn-primary">메인 화면으로 가기</button></center>
+	<center><button onclick="location.href='${initParam.rootPath}/index.do'" type="button" style="color:white; background-color:#ffb937; border:0px; border-radius:10px;height:40px;">메인화면으로 가기</button></center>
 </body>

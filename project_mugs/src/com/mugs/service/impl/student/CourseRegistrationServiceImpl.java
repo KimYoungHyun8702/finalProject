@@ -97,7 +97,6 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
 			List<ProfessorSubject> professorSubjectList = professorSubjectDaoImpl.selectProfessorSubjectListByJoinMajorNull(nowYear, semester, subjectType);
 			
 			List<Credit> myCourseList = creditDaoImpl.selectAllCreditByStuId(stuId);
-			
 			for(int i = 0; i < professorSubjectList.size(); i++) {
 				if(myCourseList.size() == 0) {
 					professorSubjectList.get(i).getSubject().setRecourse("N");
@@ -105,6 +104,7 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
 					for(int j = 0; j < myCourseList.size(); j++) {
 						if(professorSubjectList.get(i).getSubjectId() == myCourseList.get(j).getSubjectId()) {
 							professorSubjectList.get(i).getSubject().setRecourse("Y");
+							break;
 						} else {
 							professorSubjectList.get(i).getSubject().setRecourse("N");
 						}
@@ -280,13 +280,15 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
          } else {
             for(int j = 0; j < myCourseList.size(); j++) {
                if(professorSubjectList.get(i).getSubjectId() == myCourseList.get(j).getSubjectId()) {
-                  professorSubjectList.get(i).getSubject().setRecourse("Y");
+            	   professorSubjectList.get(i).getSubject().setRecourse("Y");
+            	   break;
                } else {
-                  professorSubjectList.get(i).getSubject().setRecourse("N");
+            	   professorSubjectList.get(i).getSubject().setRecourse("N");
                }
             }
          }
       }
+      
       map.put("professorSubjectList", professorSubjectList);
 
       return map;
@@ -303,7 +305,7 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
    public HashMap<String, Object> addCourseMySubject(int majorId, String semester, int nowYear, String subjectType, String recourse, String proId, int subjectId, String stuId, String  stuRegister) {
       // TODO Auto-generated method stub
       HashMap<String, Object> map = new HashMap<>();
-      
+      System.out.println(recourse);
       String msg = null;
       
       Student student = studentDaoImpl.selectStudentById(stuId);
@@ -339,11 +341,11 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
          return map;
       }
       
-      if(recourse == "Y") {
+      if(recourse.equals("Y")) {
          List<Double> creditList = creditDaoImpl.selectCreditScoreBySubjectIdStuId(subjectId, stuId);
          for(int i = 0; i < creditList.size(); i++) {
             if(creditList.get(i) > 1.0) {
-               msg = "D+ 이상은 재수강이 불가능합니다.";
+               msg = "기존 성적 D+ 이상은 재수강이 불가능합니다.";
                map.put("msg", msg);
                return map;
             }
@@ -378,6 +380,7 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
                        for(int j = 0; j < myCourseList.size(); j++) {
                           if(professorSubjectList.get(i).getSubjectId() == myCourseList.get(j).getSubjectId()) {
                              professorSubjectList.get(i).getSubject().setRecourse("Y");
+                             break;
                           } else {
                              professorSubjectList.get(i).getSubject().setRecourse("N");
                           }
@@ -407,6 +410,7 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
                        for(int j = 0; j < myCourseList.size(); j++) {
                           if(professorSubjectList.get(i).getSubjectId() == myCourseList.get(j).getSubjectId()) {
                              professorSubjectList.get(i).getSubject().setRecourse("Y");
+                             break;
                           } else {
                              professorSubjectList.get(i).getSubject().setRecourse("N");
                           }
@@ -460,6 +464,7 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
                     for(int j = 0; j < myCourseList.size(); j++) {
                        if(professorSubjectList.get(i).getSubjectId() == myCourseList.get(j).getSubjectId()) {
                           professorSubjectList.get(i).getSubject().setRecourse("Y");
+                          break;
                        } else {
                           professorSubjectList.get(i).getSubject().setRecourse("N");
                        }
@@ -480,6 +485,7 @@ public class CourseRegistrationServiceImpl implements CourseRegistrationService 
                    for(int j = 0; j < myCourseList.size(); j++) {
                       if(professorSubjectList.get(i).getSubjectId() == myCourseList.get(j).getSubjectId()) {
                          professorSubjectList.get(i).getSubject().setRecourse("Y");
+                         break;
                       } else {
                          professorSubjectList.get(i).getSubject().setRecourse("N");
                       }
